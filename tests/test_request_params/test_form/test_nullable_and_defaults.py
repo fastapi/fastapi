@@ -1,630 +1,554 @@
 from typing import Annotated
 
 import pytest
-from dirty_equals import IsList, IsOneOf, IsPartialDict
-from fastapi import FastAPI, Form
+from fastapi import Body, FastAPI, Form
 from fastapi.testclient import TestClient
-from inline_snapshot import Is, snapshot
-from pydantic import BaseModel
-
-from .utils import get_body_model_name
-
-app = FastAPI()
-
-
-# =====================================================================================
-# Nullable required
-
-
-@app.post("/nullable-required")
-async def read_nullable_required(
-    int_val: Annotated[int | None, Form()],
-    str_val: Annotated[str | None, Form()],
-    list_val: Annotated[list[int] | None, Form()],
-):
-    return {
-        "int_val": int_val,
-        "str_val": str_val,
-        "list_val": list_val,
-        "fields_set": None,
-    }
-
-
-class ModelNullableRequired(BaseModel):
-    int_val: int | None
-    str_val: str | None
-    list_val: list[int] | None
-
-
-@app.post("/model-nullable-required")
-async def read_model_nullable_required(
-    params: Annotated[ModelNullableRequired, Form()],
-):
-    return {
-        "int_val": params.int_val,
-        "str_val": params.str_val,
-        "list_val": params.list_val,
-        "fields_set": params.model_fields_set,
-    }
+from pydantic import BaseModel, ValidationError
 
 
 @pytest.mark.parametrize(
     "path",
     [
-        "/nullable-required",
-        "/model-nullable-required",
+        "/parameter",
+        pytest.param(
+            "/model",
+            marks=pytest.mark.xfail(
+                reason="Empty scalar form strings are not treated as missing in models",
+                raises=AssertionError,
+            ),
+        ),
     ],
 )
-def test_nullable_required_schema(path: str):
-    openapi = app.openapi()
-    body_model_name = get_body_model_name(openapi, path)
+@pytest.mark.parametrize("default", [None, "default"])
+@pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
+def test_empty_string_uses_default(path, default, encoding):
+    app = FastAPI()
 
-    assert openapi["components"]["schemas"][body_model_name] == snapshot(
-        {
-            "properties": {
-                "int_val": {
-                    "title": "Int Val",
-                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                },
-                "str_val": {
-                    "title": "Str Val",
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                },
-                "list_val": {
-                    "title": "List Val",
-                    "anyOf": [
-                        {"type": "array", "items": {"type": "integer"}},
-                        {"type": "null"},
-                    ],
-                },
-            },
-            "required": ["int_val", "str_val", "list_val"],
-            "title": Is(body_model_name),
-            "type": "object",
-        }
-    )
+    class Model(BaseModel):
+        value: str | None = default
 
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[str | None, Form()] = default):
+        return {"value": value, "fields_set": None}
 
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-required",
-        "/model-nullable-required",
-    ],
-)
-def test_nullable_required_missing(path: str):
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
     client = TestClient(app)
+    supplied = client.post(path, data={"value": "hello"})
+    assert supplied.status_code == 200
+    assert supplied.json()["value"] == "hello"
+    if encoding == "urlencoded":
+        response = client.post(path, data={"value": ""})
+    else:
+        response = client.post(path, files={"value": (None, "")})
+    assert response.status_code == 200
+    assert response.json() == {
+        "value": default,
+        "fields_set": [] if path == "/model" else None,
+    }
 
-    response = client.post(path)
 
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/parameter",
+        pytest.param(
+            "/model",
+            marks=pytest.mark.xfail(
+                reason="Empty scalar form strings are not treated as missing in models",
+                raises=AssertionError,
+            ),
+        ),
+    ],
+)
+@pytest.mark.parametrize("default", [None, 10])
+@pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
+def test_empty_integer_uses_default(path, default, encoding):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: int | None = default
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[int | None, Form()] = default):
+        return {"value": value, "fields_set": None}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
+    client = TestClient(app)
+    supplied = client.post(path, data={"value": "1"})
+    assert supplied.status_code == 200
+    assert supplied.json()["value"] == 1
+    if encoding == "urlencoded":
+        response = client.post(path, data={"value": ""})
+    else:
+        response = client.post(path, files={"value": (None, "")})
+    assert response.status_code == 200
+    assert response.json() == {
+        "value": default,
+        "fields_set": [] if path == "/model" else None,
+    }
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/parameter",
+        pytest.param(
+            "/model",
+            marks=pytest.mark.xfail(
+                reason="Empty required scalar form strings are not treated as missing in models",
+                raises=AssertionError,
+            ),
+        ),
+    ],
+)
+def test_empty_required_string_is_missing(path):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: str | None
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[str | None, Form()]):
+        return {"value": value, "fields_set": None}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
+    client = TestClient(app)
+    supplied = client.post(path, data={"value": "hello"})
+    assert supplied.status_code == 200
+    assert supplied.json()["value"] == "hello"
+    response = client.post(path, data={"value": ""})
     assert response.status_code == 422
-    assert response.json() == snapshot(
-        {
-            "detail": [
-                {
-                    "type": "missing",
-                    "loc": ["body", "int_val"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "str_val"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                },
-                {
-                    "type": "missing",
-                    "loc": ["body", "list_val"],
-                    "msg": "Field required",
-                    "input": IsOneOf(None, {}),
-                },
-            ]
-        }
-    )
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "value"]),
+    ]
 
 
 @pytest.mark.parametrize(
     "path",
     [
+        "/parameter",
         pytest.param(
-            "/nullable-required",
+            "/model",
             marks=pytest.mark.xfail(
-                reason="Empty str is replaced with None even for required parameters"
+                reason="Empty required scalar form strings are not treated as missing in models",
+                raises=AssertionError,
             ),
         ),
-        "/model-nullable-required",
     ],
 )
-def test_nullable_required_pass_empty_str_to_str_val(path: str):
+def test_empty_required_integer_is_missing(path):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: int | None
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[int | None, Form()]):
+        return {"value": value, "fields_set": None}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
     client = TestClient(app)
-
-    response = client.post(
-        path,
-        data={
-            "int_val": "0",  # Empty string would cause validation error (see below)
-            "str_val": "",
-            "list_val": "0",  # Empty string would cause validation error (see below)
-        },
-    )
-
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "int_val": 0,
-        "str_val": "",
-        "list_val": [0],
-        "fields_set": IsOneOf(
-            None, IsList("int_val", "str_val", "list_val", check_order=False)
-        ),
-    }
+    supplied = client.post(path, data={"value": "1"})
+    assert supplied.status_code == 200
+    assert supplied.json()["value"] == 1
+    response = client.post(path, data={"value": ""})
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "value"]),
+    ]
 
 
-@pytest.mark.parametrize(
-    "path",
-    [
-        pytest.param(
-            "/nullable-required",
-            marks=pytest.mark.xfail(
-                reason="Empty str is replaced with None even for required parameters"
-            ),
-        ),
-        "/model-nullable-required",
-    ],
-)
-def test_nullable_required_pass_empty_str_to_int_val_and_list_val(path: str):
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize("values", [[""], ["", "hello"]])
+def test_empty_required_string_list_item_is_preserved(path, values):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: list[str] | None
+
+    @app.post("/parameter")
+    def read_required(value: Annotated[list[str] | None, Form()]):
+        return {"value": value, "fields_set": None}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
     client = TestClient(app)
-
-    response = client.post(
-        path,
-        data={
-            "int_val": "",
-            "str_val": "",
-            "list_val": "",
-        },
-    )
-
-    assert response.status_code == 422, response.text
-    assert response.json() == snapshot(
-        {
-            "detail": [
-                {
-                    "input": "",
-                    "loc": ["body", "int_val"],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "type": "int_parsing",
-                },
-                {
-                    "input": "",
-                    "loc": ["body", "list_val", 0],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "type": "int_parsing",
-                },
-            ]
-        }
-    )
-
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-required",
-        "/model-nullable-required",
-    ],
-)
-def test_nullable_required_pass_value(path: str):
-    client = TestClient(app)
-
-    response = client.post(
-        path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-    )
-
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "int_val": 1,
-        "str_val": "test",
-        "list_val": [1, 2],
-        "fields_set": IsOneOf(
-            None, IsList("int_val", "str_val", "list_val", check_order=False)
-        ),
-    }
-
-
-# =====================================================================================
-# Nullable with default=None
-
-
-@app.post("/nullable-non-required")
-async def read_nullable_non_required(
-    int_val: Annotated[int | None, Form()] = None,
-    str_val: Annotated[str | None, Form()] = None,
-    list_val: Annotated[list[int] | None, Form()] = None,
-):
-    return {
-        "int_val": int_val,
-        "str_val": str_val,
-        "list_val": list_val,
-        "fields_set": None,
-    }
-
-
-class ModelNullableNonRequired(BaseModel):
-    int_val: int | None = None
-    str_val: str | None = None
-    list_val: list[int] | None = None
-
-
-@app.post("/model-nullable-non-required")
-async def read_model_nullable_non_required(
-    params: Annotated[ModelNullableNonRequired, Form()],
-):
-    return {
-        "int_val": params.int_val,
-        "str_val": params.str_val,
-        "list_val": params.list_val,
-        "fields_set": params.model_fields_set,
-    }
-
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-non-required",
-        "/model-nullable-non-required",
-    ],
-)
-def test_nullable_non_required_schema(path: str):
-    openapi = app.openapi()
-    body_model_name = get_body_model_name(openapi, path)
-
-    assert openapi["components"]["schemas"][body_model_name] == snapshot(
-        {
-            "properties": {
-                "int_val": {
-                    "title": "Int Val",
-                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                    # "default": None, # `None` values are omitted in OpenAPI schema
-                },
-                "str_val": {
-                    "title": "Str Val",
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    # "default": None, # `None` values are omitted in OpenAPI schema
-                },
-                "list_val": {
-                    "title": "List Val",
-                    "anyOf": [
-                        {"type": "array", "items": {"type": "integer"}},
-                        {"type": "null"},
-                    ],
-                    # "default": None, # `None` values are omitted in OpenAPI schema
-                },
-            },
-            "title": Is(body_model_name),
-            "type": "object",
-        }
-    )
-
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-non-required",
-        "/model-nullable-non-required",
-    ],
-)
-def test_nullable_non_required_missing(path: str):
-    client = TestClient(app)
-
-    response = client.post(path)
-
+    response = client.post(path, data={"value": values})
     assert response.status_code == 200
     assert response.json() == {
-        "int_val": None,
-        "str_val": None,
-        "list_val": None,
-        "fields_set": IsOneOf(None, []),
+        "value": values,
+        "fields_set": ["value"] if path == "/model" else None,
     }
 
 
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-non-required",
-        pytest.param(
-            "/model-nullable-non-required",
-            marks=pytest.mark.xfail(
-                reason="Empty strings are not replaced with None for parameters declared as model"
-            ),
-        ),
-    ],
-)
-def test_nullable_non_required_pass_empty_str_to_str_val_and_int_val(path: str):
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize("default", [None, ["default"]])
+@pytest.mark.parametrize("values", [[""], ["", "hello"]])
+def test_empty_defaulted_string_list_item_is_preserved(path, default, values):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: list[str] | None = default
+
+    @app.post("/parameter")
+    def read_defaulted(value: Annotated[list[str] | None, Form()] = default):
+        return {"value": value, "fields_set": None}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
     client = TestClient(app)
-
-    response = client.post(
-        path,
-        data={
-            "int_val": "",
-            "str_val": "",
-            "list_val": "0",  # Empty string would cause validation error (see below)
-        },
-    )
-
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "int_val": None,
-        "str_val": None,
-        "list_val": [0],
-        "fields_set": IsOneOf(None, IsList("list_val", check_order=False)),
-    }
-
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-non-required",
-        pytest.param(
-            "/model-nullable-non-required",
-            marks=pytest.mark.xfail(
-                reason="Empty strings are not replaced with None for parameters declared as model"
-            ),
-        ),
-    ],
-)
-def test_nullable_non_required_pass_empty_str_to_all(path: str):
-    client = TestClient(app)
-
-    response = client.post(
-        path,
-        data={
-            "int_val": "",
-            "str_val": "",
-            "list_val": "",
-        },
-    )
-
-    assert response.status_code == 422, response.text
-    assert response.json() == snapshot(
-        {
-            "detail": [
-                {
-                    "input": "",
-                    "loc": ["body", "list_val", 0],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "type": "int_parsing",
-                },
-            ]
-        }
-    )
-
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-non-required",
-        "/model-nullable-non-required",
-    ],
-)
-def test_nullable_non_required_pass_value(path: str):
-    client = TestClient(app)
-
-    response = client.post(
-        path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-    )
-
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "int_val": 1,
-        "str_val": "test",
-        "list_val": [1, 2],
-        "fields_set": IsOneOf(
-            None, IsList("int_val", "str_val", "list_val", check_order=False)
-        ),
-    }
-
-
-# =====================================================================================
-# Nullable with not-None default
-
-
-@app.post("/nullable-with-non-null-default")
-async def read_nullable_with_non_null_default(
-    *,
-    int_val: Annotated[int | None, Form()] = -1,
-    str_val: Annotated[str | None, Form()] = "default",
-    list_val: Annotated[list[int] | None, Form(default_factory=lambda: [0])],
-):
-    return {
-        "int_val": int_val,
-        "str_val": str_val,
-        "list_val": list_val,
-        "fields_set": None,
-    }
-
-
-class ModelNullableWithNonNullDefault(BaseModel):
-    int_val: int | None = -1
-    str_val: str | None = "default"
-    list_val: list[int] | None = [0]
-
-
-@app.post("/model-nullable-with-non-null-default")
-async def read_model_nullable_with_non_null_default(
-    params: Annotated[ModelNullableWithNonNullDefault, Form()],
-):
-    return {
-        "int_val": params.int_val,
-        "str_val": params.str_val,
-        "list_val": params.list_val,
-        "fields_set": params.model_fields_set,
-    }
-
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-with-non-null-default",
-        "/model-nullable-with-non-null-default",
-    ],
-)
-def test_nullable_with_non_null_default_schema(path: str):
-    openapi = app.openapi()
-    body_model_name = get_body_model_name(openapi, path)
-    body_model = openapi["components"]["schemas"][body_model_name]
-
-    assert body_model == snapshot(
-        {
-            "properties": {
-                "int_val": {
-                    "title": "Int Val",
-                    "anyOf": [{"type": "integer"}, {"type": "null"}],
-                    "default": -1,
-                },
-                "str_val": {
-                    "title": "Str Val",
-                    "anyOf": [{"type": "string"}, {"type": "null"}],
-                    "default": "default",
-                },
-                "list_val": IsPartialDict(
-                    {
-                        "title": "List Val",
-                        "anyOf": [
-                            {"type": "array", "items": {"type": "integer"}},
-                            {"type": "null"},
-                        ],
-                    }
-                ),
-            },
-            "title": Is(body_model_name),
-            "type": "object",
-        }
-    )
-
-    if path == "/model-nullable-with-non-null-default":
-        # Check default value for list_val param for model-based parameters only.
-        # default_factory is not reflected in OpenAPI schema
-        assert body_model["properties"]["list_val"]["default"] == [0]
-
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-with-non-null-default",
-        pytest.param(
-            "/model-nullable-with-non-null-default",
-            marks=pytest.mark.xfail(
-                reason="Missing model fields are marked as explicitly set"
-            ),
-        ),
-    ],
-)
-def test_nullable_with_non_null_default_missing(path: str):
-    client = TestClient(app)
-
-    response = client.post(path)
-
+    response = client.post(path, data={"value": values})
     assert response.status_code == 200
     assert response.json() == {
-        "int_val": -1,
-        "str_val": "default",
-        "list_val": [0],
-        "fields_set": IsOneOf(None, []),
+        "value": values,
+        "fields_set": ["value"] if path == "/model" else None,
     }
+
+
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+def test_empty_required_integer_list_item_fails_validation(path):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: list[int] | None
+
+    @app.post("/parameter")
+    def read_required(value: Annotated[list[int] | None, Form()]):
+        return {"value": value, "fields_set": None}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
+    client = TestClient(app)
+    supplied = client.post(path, data={"value": ["1", "2"]})
+    assert supplied.status_code == 200
+    assert supplied.json()["value"] == [1, 2]
+    response = client.post(path, data={"value": ""})
+    assert response.status_code == 422
+    assert [
+        (error["type"], error["loc"], error["input"])
+        for error in response.json()["detail"]
+    ] == [
+        ("int_parsing", ["body", "value", 0], ""),
+    ]
+
+
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize("default", [None, [10]])
+def test_empty_defaulted_integer_list_item_fails_validation(path, default):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: list[int] | None = default
+
+    @app.post("/parameter")
+    def read_defaulted(value: Annotated[list[int] | None, Form()] = default):
+        return {"value": value, "fields_set": None}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
+    client = TestClient(app)
+    supplied = client.post(path, data={"value": ["1", "2"]})
+    assert supplied.status_code == 200
+    assert supplied.json()["value"] == [1, 2]
+    response = client.post(path, data={"value": ""})
+    assert response.status_code == 422
+    assert [
+        (error["type"], error["loc"], error["input"])
+        for error in response.json()["detail"]
+    ] == [
+        ("int_parsing", ["body", "value", 0], ""),
+    ]
+
+
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+def test_checked_checkbox_is_true(path):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: bool
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[bool, Form()]):
+        return {"value": value}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return params.model_dump(exclude_unset=True)
+
+    client = TestClient(app)
+    response = client.post(path, data={"value": "on"})
+    assert response.status_code == 200
+    assert response.json() == {"value": True}
 
 
 @pytest.mark.parametrize(
     "path",
     [
-        "/nullable-with-non-null-default",
         pytest.param(
-            "/model-nullable-with-non-null-default",
+            "/parameter",
             marks=pytest.mark.xfail(
-                reason="Empty form strings are not treated as missing in models"
+                reason="An omitted boolean form field is treated as missing instead of False",
+                raises=AssertionError,
+            ),
+        ),
+        pytest.param(
+            "/model",
+            marks=pytest.mark.xfail(
+                reason="An omitted boolean form field is treated as missing instead of False",
+                raises=AssertionError,
+            ),
+        ),
+        "/parameter-default",
+        "/model-default",
+    ],
+)
+def test_unchecked_checkbox_is_false(path):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: bool
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[bool, Form()]):
+        return {"value": value}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return params.model_dump(exclude_unset=True)
+
+    class ModelWithDefault(BaseModel):
+        value: bool = False
+
+    @app.post("/parameter-default")
+    def read_parameter_default(value: Annotated[bool, Form()] = False):
+        return {"value": value}
+
+    @app.post("/model-default")
+    def read_model_default(params: Annotated[ModelWithDefault, Form()]):
+        return params.model_dump(exclude_unset=True)
+
+    client = TestClient(app)
+    checked = client.post(path, data={"value": "on"})
+    assert checked.status_code == 200
+    assert checked.json() == {"value": True}
+    response = client.post(path)
+    assert response.status_code == 200
+    assert response.json() == {"value": False}
+
+
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize(
+    "data,expected",
+    [
+        pytest.param({"value": "on"}, True, id="checked"),
+        pytest.param(
+            {},
+            False,
+            id="unchecked",
+            marks=pytest.mark.xfail(
+                reason="An omitted boolean form field uses its True default instead of False",
+                raises=AssertionError,
             ),
         ),
     ],
 )
-def test_nullable_with_non_null_default_pass_empty_str_to_str_val_and_int_val(
-    path: str,
-):
+def test_checkbox_with_true_default(path, data, expected):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: bool = True
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[bool, Form()] = True):
+        return {"value": value}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return params.model_dump(exclude_unset=True)
+
     client = TestClient(app)
+    response = client.post(path, data=data)
+    assert response.status_code == 200
+    assert response.json() == {"value": expected}
 
-    response = client.post(
-        path,
-        data={
-            "int_val": "",
-            "str_val": "",
-            "list_val": "0",  # Empty string would cause validation error (see below)
-        },
-    )
 
-    assert response.status_code == 200, response.text
-    assert response.json() == {
-        "int_val": -1,
-        "str_val": "default",
-        "list_val": [0],
-        "fields_set": IsOneOf(None, IsList("list_val", check_order=False)),
-    }
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize(
+    "data,expected",
+    [
+        pytest.param({"value": "on"}, True, id="checked"),
+        pytest.param(
+            {},
+            False,
+            id="unchecked",
+            marks=pytest.mark.xfail(
+                reason="An omitted nullable boolean form field is treated as missing instead of False",
+                raises=AssertionError,
+            ),
+        ),
+    ],
+)
+def test_required_nullable_checkbox(path, data, expected):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: bool | None
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[bool | None, Form()]):
+        return {"value": value}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return params.model_dump(exclude_unset=True)
+
+    client = TestClient(app)
+    response = client.post(path, data=data)
+    assert response.status_code == 200
+    assert response.json() == {"value": expected}
+
+
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize(
+    "data,expected",
+    [
+        pytest.param({"value": "on"}, True, id="checked"),
+        pytest.param(
+            {},
+            False,
+            id="unchecked",
+            marks=pytest.mark.xfail(
+                reason="An omitted nullable boolean form field uses its None default instead of False",
+                raises=AssertionError,
+            ),
+        ),
+    ],
+)
+def test_nullable_checkbox_with_none_default(path, data, expected):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: bool | None = None
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[bool | None, Form()] = None):
+        return {"value": value}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return params.model_dump(exclude_unset=True)
+
+    client = TestClient(app)
+    response = client.post(path, data=data)
+    assert response.status_code == 200
+    assert response.json() == {"value": expected}
 
 
 @pytest.mark.parametrize(
-    "path",
+    "data,expected",
     [
-        "/nullable-with-non-null-default",
-        pytest.param(
-            "/model-nullable-with-non-null-default",
-            marks=pytest.mark.xfail(
-                reason="Empty form strings are not treated as missing in models"
-            ),
-        ),
+        pytest.param({"value": "on"}, True, id="checked"),
+        pytest.param({}, False, id="unchecked"),
     ],
 )
-def test_nullable_with_non_null_default_pass_empty_str_to_all(path: str):
-    client = TestClient(app)
+def test_checkbox_with_false_default_is_explicitly_set(data, expected):
+    app = FastAPI()
 
-    response = client.post(
-        path,
-        data={
-            "int_val": "",
-            "str_val": "",
-            "list_val": "",
-        },
-    )
+    class Model(BaseModel):
+        value: bool = False
 
-    assert response.status_code == 422, response.text
-    assert response.json() == snapshot(
-        {
-            "detail": [
-                {
-                    "input": "",
-                    "loc": ["body", "list_val", 0],
-                    "msg": "Input should be a valid integer, unable to parse string as an integer",
-                    "type": "int_parsing",
-                },
-            ]
+    @app.post("/")
+    def read_model(params: Annotated[Model, Form()]):
+        return {
+            "fields_set": sorted(params.model_fields_set),
+            "values": params.model_dump(exclude_unset=True),
         }
-    )
 
-
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/nullable-with-non-null-default",
-        "/model-nullable-with-non-null-default",
-    ],
-)
-def test_nullable_with_non_null_default_pass_value(path: str):
     client = TestClient(app)
+    response = client.post("/", data=data)
+    assert response.status_code == 200
+    assert response.json() == {"fields_set": ["value"], "values": {"value": expected}}
 
-    response = client.post(
-        path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-    )
 
-    assert response.status_code == 200, response.text
+def test_form_does_not_change_required_model_fields():
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: bool
+
+    @app.post("/form")
+    def read_form(params: Annotated[Model, Form()]):
+        return params.model_dump()
+
+    @app.post("/json")
+    def read_json(params: Annotated[Model, Body()]):
+        return params.model_dump()
+
+    client = TestClient(app)
+    response = client.post("/form", data={"value": "on"})
+    assert response.status_code == 200
+    assert response.json() == {"value": True}
+
+    # Exercise omitted-checkbox handling; its response is tested separately.
+    client.post("/form")
+
+    assert Model.model_fields["value"].is_required()
+    with pytest.raises(ValidationError) as exc_info:
+        Model.model_validate({})
+    assert [(error["type"], error["loc"]) for error in exc_info.value.errors()] == [
+        ("missing", ("value",)),
+    ]
+
+    response = client.post("/json", json={})
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "value"]),
+    ]
+
+    response = client.post("/json", json={"value": False})
+    assert response.status_code == 200
+    assert response.json() == {"value": False}
+
+
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+def test_whitespace_string_is_not_missing(path):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: str | None = "default"
+
+    @app.post("/parameter")
+    def read_parameter(value: Annotated[str | None, Form()] = "default"):
+        return {"value": value, "fields_set": None}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return {"value": params.value, "fields_set": sorted(params.model_fields_set)}
+
+    client = TestClient(app)
+    response = client.post(path, data={"value": " "})
+    assert response.status_code == 200
     assert response.json() == {
-        "int_val": 1,
-        "str_val": "test",
-        "list_val": [1, 2],
-        "fields_set": IsOneOf(
-            None, IsList("int_val", "str_val", "list_val", check_order=False)
-        ),
+        "value": " ",
+        "fields_set": ["value"] if path == "/model" else None,
     }
