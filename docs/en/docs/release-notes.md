@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Document URL paths in templates. PR [#16517](https://github.com/fastapi/fastapi/pull/16517) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.144.0 (2026-10-18)
 
 ### Features
