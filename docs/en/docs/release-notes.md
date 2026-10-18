@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.145.0 (2026-10-18)
+
 ### Breaking Changes
 
 * 🔥 Remove deprecated `openapi_prefix` and unused `**extra` from `FastAPI`. PR [#16518](https://github.com/fastapi/fastapi/pull/16518) by [@tiangolo](https://github.com/tiangolo).
