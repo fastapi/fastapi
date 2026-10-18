@@ -260,7 +260,7 @@ In a case like that (without a stripped path prefix), the proxy would listen on 
 
 ## Testing locally with Traefik { #testing-locally-with-traefik }
 
-You can easily run the configuration with reverse proxy and ASGI application behind it locally using [https://docs.traefik.io/](Traefik).
+You can easily run the configuration with a reverse proxy and an ASGI application behind it locally using [https://docs.traefik.io/](Traefik).
 
 [Download Traefik](https://github.com/traefik/traefik/releases), it's a single binary, you can extract the compressed file and run it directly from the terminal.
 
@@ -304,7 +304,7 @@ Now create that other file `routes.toml`:
           url = "http://127.0.0.1:8000"
 ```
 
-This file configures Traefik to forward all requests (``rule = "PathPrefix(`/`)"``) to your Uvicorn running on `http://127.0.0.1:8000`.
+This file configures Traefik to forward all requests (``rule = "PathPrefix(`/`)"``) to your server running on `http://127.0.0.1:8000`.
 
 Now start Traefik:
 
@@ -335,12 +335,15 @@ $ fastapi run main.py --forwarded-allow-ips="*"
 
 /// note
 
-`--forwarded-allow-ips="*"` option is redundant in this case since Uvicorn trusts **proxy** running on the same host by-default.
+`--forwarded-allow-ips="*"` option is redundant in this case since Uvicorn trusts a **proxy** running on the same host by-default.
+
+But if it was, for example, inside a container, that would no longer be the same host, so the `--forwarded-allow-ips="*"` option would be necessary.
 
 ///
 
 Open `http://127.0.0.1:9999/items` in your browser.
-Your request will be redirected by FastAPI to `http://127.0.0.1:8000/items/` and you will see:
+
+Your request will be forwarded by Traefik to your FastAPI app at `http://127.0.0.1:8000/items/` and you will see:
 
 ```json
 ["plumbus","portal gun"]
@@ -369,6 +372,7 @@ Hosting under a prefix keeps everything accessible under a single base URL (like
 ### Routing requests through a reverse proxy { #routing-requests-through-a-reverse-proxy }
 
 In these setups, you typically run your FastAPI app behind the same reverse proxy such as Traefik, Nginx, Caddy, or an API Gateway.
+
 The proxy is configured to route requests under a specific path prefix.
 
 For example, using a Traefik router:
@@ -425,6 +429,7 @@ The IP `0.0.0.0` is commonly used to mean that the program listens on all the IP
 ### Stripping the prefix { #stripping-the-prefix }
 
 One simple way to solve the problem described above is to configure the proxy to strip the prefix before forwarding the request to the app.
+
 For example, if the client requests `/api/v1/items/`, the proxy forwards it as just `/items/`.
 
 ```TOML hl_lines="2-5 13"
@@ -474,7 +479,7 @@ While stripping the prefix by the proxy fixes incoming requests, the app still d
 So any URLs generated inside the app - like those from `url_for()`, URL of `openapi.json` in docs, or redirects - will miss the prefix.
 Clients will get links like `/items/` instead of `/api/v1/items/`, breaking navigation and documentation.
 
-Let's look closer at the problem with URL of `openapi.json` in docs.
+Let's look closer at the problem with the URL of `openapi.json` in docs.
 
 When you open the integrated docs UI (the frontend), it expects to get the OpenAPI schema at `/openapi.json`.
 But, since your app is served under the `/api/v1` prefix, the correct URL of `openapi.json` would be `/api/v1/openapi.json`.
@@ -536,7 +541,7 @@ This allows the app to:
 * Match routes correctly (`/items/` inside the app).
 * Generate proper URLs and redirects that include the prefix (`/api/v1/items/`).
 
-This is the elegant mechanism that makes it possible for ASGI applications - including FastAPI - to work smoothly behind reverse proxies or under nested paths without needing to rewrite routes manually.
+This is the elegant mechanism that makes it possible for ASGI applications, including FastAPI, to work smoothly behind reverse proxies or under nested paths without needing to rewrite routes manually.
 
 ### Providing the `root_path` { #providing-the-root-path_1 }
 
