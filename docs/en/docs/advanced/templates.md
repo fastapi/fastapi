@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Templates { #templates }
 
 You can use any template engine you want with **FastAPI**.
@@ -63,13 +67,9 @@ Then you can write a template at `templates/item.html` with, for example:
 
 In the HTML that contains:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...it will show the `id` taken from the "context" `dict` you passed:
 
@@ -89,13 +89,9 @@ You can also use `url_for()` inside of the template, it takes as arguments the s
 
 So, the section with:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
-
-{% endraw %}
 
 ...will generate a link to the same URL that would be handled by the *path operation function* `read_item(id=id)`.
 
