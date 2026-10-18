@@ -1,12 +1,13 @@
 # Dataclass Kullanımı { #using-dataclasses }
 
+
 FastAPI, **Pydantic** üzerine inşa edilmiştir ve request/response tanımlamak için Pydantic model'lerini nasıl kullanacağınızı gösteriyordum.
 
 Ancak FastAPI, [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) kullanmayı da aynı şekilde destekler:
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-Bu destek hâlâ **Pydantic** sayesinde vardır; çünkü Pydantic, [`dataclasses` için dahili destek](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel) sunar.
+Bu destek hâlâ **Pydantic** sayesinde vardır; çünkü Pydantic, [`dataclasses` için dahili destek](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel) sunar.
 
 Yani yukarıdaki kod Pydantic'i doğrudan kullanmasa bile, FastAPI bu standart dataclass'ları Pydantic'in kendi dataclass biçimine dönüştürmek için Pydantic'i kullanmaktadır.
 
@@ -18,7 +19,7 @@ Ve elbette aynı özellikleri destekler:
 
 Bu, Pydantic model'lerinde olduğu gibi çalışır. Aslında arka planda da aynı şekilde, Pydantic kullanılarak yapılır.
 
-/// info | Bilgi
+/// note | Not
 
 Dataclass'ların, Pydantic model'lerinin yapabildiği her şeyi yapamadığını unutmayın.
 
@@ -88,7 +89,7 @@ Daha spesifik ayrıntılar için yukarıdaki kod içi annotation ipuçlarına ba
 
 `dataclasses`'ı diğer Pydantic model'leriyle de birleştirebilir, onlardan kalıtım alabilir, kendi model'lerinize dahil edebilirsiniz, vb.
 
-Daha fazlası için [Pydantic'in dataclasses dokümantasyonuna](https://docs.pydantic.dev/latest/concepts/dataclasses/) bakın.
+Daha fazlası için [Pydantic'in dataclasses dokümantasyonuna](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/) bakın.
 
 ## Sürüm { #version }
 

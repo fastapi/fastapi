@@ -4,7 +4,7 @@
 
 You can declare a parameter of type `Response` in your *path operation function* (as you can do for cookies).
 
-And then you can set headers in that *temporal* response object.
+And then you can set headers in that *temporary* response object.
 
 {* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 
@@ -12,7 +12,7 @@ And then you can return any object you need, as you normally would (a `dict`, a 
 
 And if you declared a `response_model`, it will still be used to filter and convert the object you returned.
 
-**FastAPI** will use that *temporal* response to extract the headers (also cookies and status code), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
+**FastAPI** will use that *temporary* response to extract the headers (also cookies and status code), and will put them in the final response that contains the value you returned, filtered by any `response_model`.
 
 You can also declare the `Response` parameter in dependencies, and set headers (and cookies) in them.
 
@@ -38,4 +38,4 @@ And as the `Response` can be used frequently to set headers and cookies, **FastA
 
 Keep in mind that custom proprietary headers can be added [using the `X-` prefix](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations (read more in [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), using the parameter `expose_headers` documented in [Starlette's CORS docs](https://www.starlette.dev/middleware/#corsmiddleware).
+But if you have custom headers that you want a client in a browser to be able to see, you need to add them to your CORS configurations (read more in [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), using the parameter `expose_headers` documented in [Starlette's CORS docs](https://starlette.dev/middleware/#corsmiddleware).

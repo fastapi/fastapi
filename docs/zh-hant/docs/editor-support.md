@@ -1,5 +1,6 @@
 # 編輯器支援 { #editor-support }
 
+
 官方的 [FastAPI 擴充套件](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) 透過支援路徑操作（path operation）探索、導覽，以及 FastAPI Cloud 部署與即時日誌串流，強化你的 FastAPI 開發流程。
 
 想了解更多關於此擴充套件的細節，請參考其 [GitHub 儲存庫](https://github.com/fastapi/fastapi-vscode) 中的 README。

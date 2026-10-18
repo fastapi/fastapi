@@ -72,20 +72,20 @@ FastAPI는 이 `response_model`을 사용해 데이터 문서화, 검증 등을 
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | 정보
+/// note | 참고
 
 `EmailStr`을 사용하려면 먼저 [`email-validator`](https://github.com/JoshData/python-email-validator)를 설치하세요.
 
-[가상 환경](../virtual-environments.md)을 생성하고, 활성화한 다음 설치해야 합니다. 예를 들어:
+프로젝트에 추가하세요:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 또는 다음과 같이:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -202,11 +202,11 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 하지만 유효한 Pydantic 타입이 아닌 다른 임의의 객체(예: 데이터베이스 객체)를 반환하고, 함수에서 그렇게 어노테이션하면, FastAPI는 그 타입 어노테이션으로부터 Pydantic 응답 모델을 만들려고 시도하다가 실패합니다.
 
-또한, 유효한 Pydantic 타입이 아닌 타입이 하나 이상 포함된 여러 타입 간의 <dfn title="여러 타입 간의 union은 '이 타입들 중 아무거나'를 의미합니다.">union</dfn>이 있는 경우에도 동일합니다. 예를 들어, 아래는 실패합니다 💥:
+또한, 유효한 Pydantic 타입이 아닌 타입이 하나 이상 포함된 여러 타입 간의 <dfn title="여러 타입 간의 유니온은 '이 타입들 중 아무거나'를 의미합니다.">유니온</dfn>이 있는 경우에도 동일합니다. 예를 들어, 아래는 실패합니다 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
-...이는 타입 어노테이션이 Pydantic 타입이 아니고, 단일 `Response` 클래스/서브클래스도 아니며, `Response`와 `dict` 간 union(둘 중 아무거나)이기 때문에 실패합니다.
+...이는 타입 어노테이션이 Pydantic 타입이 아니고, 단일 `Response` 클래스/서브클래스도 아니며, `Response`와 `dict` 간 유니온(둘 중 아무거나)이기 때문에 실패합니다.
 
 ### 응답 모델 비활성화 { #disable-response-model }
 
@@ -251,14 +251,14 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 }
 ```
 
-/// info | 정보
+/// note | 참고
 
 다음도 사용할 수 있습니다:
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-`exclude_defaults` 및 `exclude_none`에 대해 [Pydantic 문서](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict)에 설명된 대로 사용할 수 있습니다.
+`exclude_defaults` 및 `exclude_none`에 대해 [Pydantic 문서](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value)에 설명된 대로 사용할 수 있습니다.
 
 ///
 

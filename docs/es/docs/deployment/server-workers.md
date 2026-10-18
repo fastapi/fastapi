@@ -17,7 +17,7 @@ Como viste en el capítulo anterior sobre [Conceptos de Despliegue](concepts.md)
 
 Aquí te mostraré cómo usar **Uvicorn** con **worker processes** usando el comando `fastapi` o el comando `uvicorn` directamente.
 
-/// info | Información
+/// note | Nota
 
 Si estás usando contenedores, por ejemplo con Docker o Kubernetes, te contaré más sobre eso en el próximo capítulo: [FastAPI en Contenedores - Docker](docker.md).
 
@@ -86,7 +86,7 @@ Si prefieres usar el comando `uvicorn` directamente:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
+$ uv run uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 <font color="#A6E22E">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8080</b> (Press CTRL+C to quit)
 <font color="#A6E22E">INFO</font>:     Started parent process [<font color="#A1EFE4"><b>27365</b></font>]
 <font color="#A6E22E">INFO</font>:     Started server process [<font color="#A1EFE4">27368</font>]

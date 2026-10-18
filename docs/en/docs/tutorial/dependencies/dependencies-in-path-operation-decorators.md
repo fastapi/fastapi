@@ -28,7 +28,7 @@ It might also help avoid confusion for new developers that see an unused paramet
 
 ///
 
-/// info
+/// note
 
 In this example we use invented custom headers `X-Key` and `X-Token`.
 

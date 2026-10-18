@@ -15,7 +15,7 @@ Le but principal de `__name__ == "__main__"` est d'avoir du code qui est exécut
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ Si vous l'exécutez avec :
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -54,7 +54,7 @@ va s'exécuter.
 
 Cela ne se produira pas si vous importez ce module (fichier).
 
-Par exemple, si vous avez un autre fichier `importer.py` qui contient :
+Donc, si vous avez un autre fichier `importer.py` avec :
 
 ```Python
 from myapp import app
@@ -72,9 +72,9 @@ Ainsi, la ligne :
 
 ne sera pas exécutée.
 
-/// info
+/// note | Remarque
 
-Pour plus d'informations, consultez [la documentation officielle de Python](https://docs.python.org/3/library/__main__.html).
+Pour plus d'informations, consultez [les documents officiels de Python](https://docs.python.org/3/library/__main__.html).
 
 ///
 
@@ -86,10 +86,10 @@ Parce que vous exécutez le serveur Uvicorn directement depuis votre code, vous 
 
 Par exemple, dans Visual Studio Code, vous pouvez :
 
-- Allez dans le panneau « Debug ».
-- « Add configuration ... ».
-- Sélectionnez « Python ».
-- Lancez le <abbr title="En anglais: debugger">débogueur</abbr> avec l'option « Python: Current File (Integrated Terminal) ».
+* Allez dans le panneau « Debug ».
+* « Add configuration... ».
+* Sélectionnez « Python »
+* Lancez le <abbr title="En anglais: debugger">débogueur</abbr> avec l'option « `Python: Current File (Integrated Terminal)` ».
 
 Il démarrera alors le serveur avec votre code **FastAPI**, s'arrêtera à vos points d'arrêt, etc.
 
@@ -99,12 +99,12 @@ Voici à quoi cela pourrait ressembler :
 
 ---
 
-Si vous utilisez Pycharm, vous pouvez :
+Si vous utilisez PyCharm, vous pouvez :
 
-- Ouvrez le menu « Run ».
-- Sélectionnez l'option « Debug ... ».
-- Un menu contextuel s'affiche alors.
-- Sélectionnez le fichier à déboguer (dans ce cas, `main.py`).
+* Ouvrez le menu « Run ».
+* Sélectionnez l'option « Debug... ».
+* Un menu contextuel s'affiche alors.
+* Sélectionnez le fichier à déboguer (dans ce cas, `main.py`).
 
 Il démarrera alors le serveur avec votre code **FastAPI**, s'arrêtera à vos points d'arrêt, etc.
 

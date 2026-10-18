@@ -72,20 +72,20 @@ FastAPI будет использовать этот `response_model` для д�
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | Информация
+/// note | Примечание
 
 Чтобы использовать `EmailStr`, сначала установите [`email-validator`](https://github.com/JoshData/python-email-validator).
 
-Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, а затем установите пакет, например:
+Добавьте его в свой проект:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 или так:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -202,7 +202,7 @@ FastAPI делает несколько вещей внутри вместе с 
 
 Но когда вы возвращаете произвольный объект, не являющийся валидным типом Pydantic (например, объект базы данных), и аннотируете его таким образом в функции, FastAPI попытается создать модель ответа Pydantic из этой аннотации типа и потерпит неудачу.
 
-То же произойдёт, если у вас будет что-то вроде <dfn title="Объединение нескольких типов означает «любой из этих типов».">объединение</dfn> разных типов, где один или несколько не являются валидными типами Pydantic, например, это приведёт к ошибке 💥:
+То же произойдёт, если у вас будет что-то вроде <dfn title="Объединение нескольких типов означает «любой из этих типов».">объединения</dfn> разных типов, где один или несколько не являются валидными типами Pydantic, например, это приведёт к ошибке 💥:
 
 {* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
 
@@ -251,14 +251,14 @@ FastAPI делает несколько вещей внутри вместе с 
 }
 ```
 
-/// info | Информация
+/// note | Примечание
 
 Вы также можете использовать:
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-как описано в [документации Pydantic](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) для `exclude_defaults` и `exclude_none`.
+как описано в [документации Pydantic](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value) для `exclude_defaults` и `exclude_none`.
 
 ///
 

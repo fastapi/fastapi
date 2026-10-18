@@ -6,12 +6,18 @@ O arquivo FastAPI mais simples pode se parecer com:
 
 Copie o conteúdo para um arquivo `main.py`.
 
+/// tip | Dica
+
+FastAPI tem uma [extensão oficial para VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (e Cursor), que fornece muitas funcionalidades, incluindo um explorador de operações de rota, busca de operações de rota, navegação CodeLens em testes (ir para a definição a partir dos testes), e deploy e logs da FastAPI Cloud, tudo a partir do seu editor.
+
+///
+
 Execute o servidor ao vivo:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,37 +84,37 @@ Você verá a documentação interativa automática da API (fornecida por [Swagg
 
 E agora, vá para [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Você verá a documentação alternativa automática (fornecida por [ReDoc](https://github.com/Rebilly/ReDoc)):
+Você verá a documentação alternativa automática (fornecida por [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
 ### OpenAPI { #openapi }
 
-O **FastAPI** gera um "*schema*" com toda a sua API usando o padrão **OpenAPI** para definir APIs.
+O **FastAPI** gera um "schema" com toda a sua API usando o padrão **OpenAPI** para definir APIs.
 
-#### "*Schema*" { #schema }
+#### "Schema" { #schema }
 
-Um "*schema*" é uma definição ou descrição de algo. Não o código que o implementa, mas apenas uma descrição abstrata.
+Um "schema" é uma definição ou descrição de algo. Não o código que o implementa, mas apenas uma descrição abstrata.
 
-#### API "*schema*" { #api-schema }
+#### API "schema" { #api-schema }
 
-Nesse caso, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) é uma especificação que determina como definir um *schema* da sua API.
+Nesse caso, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) é uma especificação que determina como definir um schema da sua API.
 
-Esta definição de *schema* inclui os paths da sua API, os parâmetros possíveis que eles usam, etc.
+Esta definição de schema inclui os paths da sua API, os parâmetros possíveis que eles usam, etc.
 
-#### "*Schema*" de dados { #data-schema }
+#### "Schema" de dados { #data-schema }
 
-O termo "*schema*" também pode se referir à forma de alguns dados, como um conteúdo JSON.
+O termo "schema" também pode se referir à forma de alguns dados, como um conteúdo JSON.
 
 Nesse caso, significaria os atributos JSON e os tipos de dados que eles possuem, etc.
 
 #### OpenAPI e JSON Schema { #openapi-and-json-schema }
 
-OpenAPI define um *schema* de API para sua API. E esse *schema* inclui definições (ou "*schemas*") dos dados enviados e recebidos por sua API usando **JSON Schema**, o padrão para *schemas* de dados JSON.
+OpenAPI define um schema de API para sua API. E esse schema inclui definições (ou "schemas") dos dados enviados e recebidos por sua API usando **JSON Schema**, o padrão para schemas de dados JSON.
 
 #### Verifique o `openapi.json` { #check-the-openapi-json }
 
-Se você está curioso(a) sobre a aparência do *schema* bruto OpenAPI, o FastAPI gera automaticamente um JSON (*schema*) com as descrições de toda a sua API.
+Se você está curioso(a) sobre a aparência do schema bruto OpenAPI, o FastAPI gera automaticamente um JSON (schema) com as descrições de toda a sua API.
 
 Você pode ver isso diretamente em: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
@@ -137,11 +143,11 @@ Ele mostrará um JSON começando com algo como:
 
 #### Para que serve o OpenAPI { #what-is-openapi-for }
 
-O *schema* OpenAPI é o que possibilita os dois sistemas de documentação interativos mostrados.
+O schema OpenAPI é o que possibilita os dois sistemas de documentação interativos mostrados.
 
 E existem dezenas de alternativas, todas baseadas em OpenAPI. Você pode facilmente adicionar qualquer uma dessas alternativas à sua aplicação criada com **FastAPI**.
 
-Você também pode usá-lo para gerar código automaticamente para clientes que se comunicam com sua API. Por exemplo, aplicativos front-end, móveis ou IoT.
+Você também pode usá-lo para gerar código automaticamente para clientes que se comunicam com sua API. Por exemplo, aplicações frontend, móveis ou IoT.
 
 ### Configure o `entrypoint` da aplicação em `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
 
@@ -180,42 +186,32 @@ o que seria equivalente a:
 from backend.main import app
 ```
 
-### `fastapi dev` com path { #fastapi-dev-with-path }
+### `fastapi dev` com path ou com a opção de CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Você também pode passar o path do arquivo para o comando `fastapi dev`, e ele vai deduzir o objeto de aplicação FastAPI a ser usado:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-Mas você teria que lembrar de passar o path correto toda vez que chamar o comando `fastapi`.
+Ou você também pode passar a opção `--entrypoint` para o comando `fastapi dev`:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+Mas você teria que lembrar de passar o path\entrypoint correto toda vez que chamar o comando `fastapi`.
 
 Além disso, outras ferramentas podem não conseguir encontrá-la, por exemplo, a [Extensão do VS Code](../editor-support.md) ou a [FastAPI Cloud](https://fastapicloud.com), então é recomendado usar o `entrypoint` no `pyproject.toml`.
 
 ### Faça o deploy da sua aplicação (opcional) { #deploy-your-app-optional }
 
-Você pode, opcionalmente, fazer o deploy da sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com); acesse e entre na lista de espera, se ainda não entrou. 🚀
-
-Se você já tem uma conta na **FastAPI Cloud** (nós convidamos você da lista de espera 😉), pode fazer o deploy da sua aplicação com um único comando.
-
-Antes do deploy, certifique-se de que está autenticado:
+Você pode, opcionalmente, fazer o deploy da sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com) com um único comando. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Em seguida, faça o deploy da sua aplicação:
-
-<div class="termy">
-
-```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -225,6 +221,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+A CLI detectará automaticamente sua aplicação FastAPI e a fará o deploy na nuvem. Se você não estiver autenticado, o seu navegador será aberto para concluir o processo de autenticação.
 
 É isso! Agora você pode acessar sua aplicação nessa URL. ✨
 
@@ -240,7 +238,7 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` é uma classe que herda diretamente de `Starlette`.
 
-Você pode usar todas as funcionalidades do [Starlette](https://www.starlette.dev/) com `FastAPI` também.
+Você pode usar todas as funcionalidades do [Starlette](https://starlette.dev/) com `FastAPI` também.
 
 ///
 
@@ -252,7 +250,7 @@ Aqui, a variável `app` será uma "instância" da classe `FastAPI`.
 
 Este será o principal ponto de interação para criar toda a sua API.
 
-### Passo 3: crie uma operação de rota { #step-3-create-a-path-operation }
+### Passo 3: crie uma *operação de rota* { #step-3-create-a-path-operation }
 
 #### Path { #path }
 
@@ -270,7 +268,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Informação
+/// note | Nota
 
 Um "path" também é comumente chamado de "endpoint" ou de "rota".
 
@@ -313,16 +311,16 @@ Portanto, no OpenAPI, cada um dos métodos HTTP é chamado de "operação".
 
 Vamos chamá-los de "**operações**" também.
 
-#### Defina um decorador de operação de rota { #define-a-path-operation-decorator }
+#### Defina um *decorador de operação de rota* { #define-a-path-operation-decorator }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
 O `@app.get("/")` diz ao **FastAPI** que a função logo abaixo é responsável por tratar as requisições que vão para:
 
 * o path `/`
-* usando uma <dfn title="um método HTTP GET"><code>get</code> operação</dfn>
+* usando uma <dfn title="um método HTTP GET">operação <code>get</code></dfn>
 
-/// info | Informações sobre `@decorator`
+/// note | Informações sobre `@decorator`
 
 Essa sintaxe `@alguma_coisa` em Python é chamada de "decorador".
 
@@ -395,7 +393,7 @@ Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.m
 
 Você pode retornar um `dict`, `list` e valores singulares como `str`, `int`, etc.
 
-Você também pode devolver modelos Pydantic ( você verá mais sobre isso mais tarde).
+Você também pode retornar modelos Pydantic (você verá mais sobre isso mais tarde).
 
 Existem muitos outros objetos e modelos que serão convertidos automaticamente para JSON (incluindo ORMs, etc). Tente usar seus favoritos, é altamente provável que já sejam compatíveis.
 

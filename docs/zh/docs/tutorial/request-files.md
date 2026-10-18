@@ -2,14 +2,14 @@
 
 你可以使用 `File` 定义由客户端上传的文件。
 
-/// info | 信息
+/// note | 注意
 
 要接收上传的文件，请先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-请确保你创建一个[虚拟环境](../virtual-environments.md)、激活它，然后安装，例如：
+将它添加到你的项目中：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 这是因为上传文件是以「表单数据」发送的。
@@ -28,7 +28,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
 
-/// info | 信息
+/// note | 注意
 
 `File` 是直接继承自 `Form` 的类。
 
@@ -147,11 +147,11 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 ## 多文件上传 { #multiple-file-uploads }
 
-FastAPI 支持同时上传多个文件。
+可以同时上传多个文件。
 
 它们会被关联到同一个通过「表单数据」发送的「表单字段」。
 
-要实现这一点，声明一个由 `bytes` 或 `UploadFile` 组成的列表（`List`）：
+要实现这一点，声明一个由 `bytes` 或 `UploadFile` 组成的列表：
 
 {* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 

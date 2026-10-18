@@ -81,7 +81,7 @@ If you need to support clients that don't send a `Content-Type` header, you can 
 
 With this setting, requests without a `Content-Type` header will have their body parsed as JSON, which is the same behavior as older versions of FastAPI.
 
-/// info
+/// note
 
 This behavior and configuration was added in FastAPI 0.132.0.
 

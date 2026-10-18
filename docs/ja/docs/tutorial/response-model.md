@@ -72,20 +72,20 @@ FastAPIはこの `response_model` を使って、データのドキュメント�
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | 情報
+/// note | 備考
 
 `EmailStr` を使用するには、最初に [`email-validator`](https://github.com/JoshData/python-email-validator) をインストールしてください。
 
-[仮想環境](../virtual-environments.md)を作成して有効化してから、例えば次のようにインストールしてください:
+プロジェクトに追加してください:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 または次のようにします:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -251,14 +251,14 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 }
 ```
 
-/// info | 情報
+/// note | 備考
 
 以下も使用できます:
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-`exclude_defaults` と `exclude_none` については、[Pydanticのドキュメント](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict)で説明されている通りです。
+`exclude_defaults` と `exclude_none` については、[Pydanticのドキュメント](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value)で説明されている通りです。
 
 ///
 

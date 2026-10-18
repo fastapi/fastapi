@@ -1,6 +1,6 @@
 # テスト { #testing }
 
-[Starlette](https://www.starlette.dev/testclient/) のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
+[Starlette](https://starlette.dev/testclient/) のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
 
 [HTTPX](https://www.python-httpx.org) がベースで、さらにその設計は Requests をベースにしているため、とても馴染みがあり直感的です。
 
@@ -8,21 +8,21 @@
 
 ## `TestClient` を使用 { #using-testclient }
 
-/// info
+/// note | 備考
 
 `TestClient` を使用するには、まず [`httpx`](https://www.python-httpx.org) をインストールします。
 
-[仮想環境](../virtual-environments.md) を作成し、それを有効化してから、例えば以下のようにインストールしてください:
+プロジェクトに追加します:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
 
 `TestClient` をインポートします。
 
-`TestClient` を作成し、**FastAPI** に渡します。
+**FastAPI** アプリケーションを渡して `TestClient` を作成します。
 
 `test_` から始まる名前の関数を作成します (これは `pytest` の標準的なコンベンションです)。
 
@@ -32,7 +32,7 @@ $ pip install httpx
 
 {* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
-/// tip
+/// tip | 豆知識
 
 テスト関数は `async def` ではなく、通常の `def` であることに注意してください。
 
@@ -50,9 +50,9 @@ $ pip install httpx
 
 ///
 
-/// tip
+/// tip | 豆知識
 
-FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md) を参照してください。
+FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[非同期テスト](../advanced/async-tests.md) を参照してください。
 
 ///
 
@@ -64,7 +64,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 ### **FastAPI** アプリファイル { #fastapi-app-file }
 
-[Bigger Applications](bigger-applications.md) で説明されている、次のようなファイル構成があるとします:
+[大規模なアプリケーション](bigger-applications.md) で説明されている、次のようなファイル構成があるとします:
 
 ```
 .
@@ -113,7 +113,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 │   └── test_main.py
 ```
 
-ここで、**FastAPI** アプリがある `main.py` ファイルには、他の path operation があります。
+ここで、**FastAPI** アプリがある `main.py` ファイルには、他の **path operations** がいくつかあります。
 
 エラーを返す可能性のある `GET` オペレーションがあります。
 
@@ -144,7 +144,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 (`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、[HTTPXのドキュメント](https://www.python-httpx.org)を確認してください。
 
-/// info
+/// note | 備考
 
 `TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
 
@@ -156,12 +156,12 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 その後、`pytest` をインストールするだけです。
 
-[仮想環境](../virtual-environments.md) を作成し、それを有効化してから、例えば以下のようにインストールしてください:
+プロジェクトに追加します:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ $ pip install pytest
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

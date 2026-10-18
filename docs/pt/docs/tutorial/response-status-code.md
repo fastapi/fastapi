@@ -12,13 +12,13 @@ Da mesma forma que você pode especificar um modelo de resposta, você também p
 
 /// note | Nota
 
-Observe que `status_code` é um parâmetro do método "decorador" (`get`, `post`, etc). Não da sua função de *operação de rota*, como todos os parâmetros e corpo.
+Observe que `status_code` é um parâmetro do método "decorador" (`get`, `post`, etc). Não da sua *função de operação de rota*, como todos os parâmetros e corpo.
 
 ///
 
 O parâmetro `status_code` recebe um número com o código de status HTTP.
 
-/// info | Informação
+/// note | Nota
 
 `status_code` também pode receber um `IntEnum`, como [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) do Python.
 
@@ -35,7 +35,7 @@ Dessa forma:
 
 Alguns códigos de resposta (consulte a próxima seção) indicam que a resposta não possui um corpo.
 
-O FastAPI sabe disso e produzirá documentos OpenAPI informando que não há corpo de resposta.
+O FastAPI sabe disso e produzirá documentação OpenAPI informando que não há corpo de resposta.
 
 ///
 
@@ -84,7 +84,7 @@ Você pode usar as variáveis de conveniência de `fastapi.status`.
 
 {* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
 
-Eles são apenas uma conveniência, eles possuem o mesmo número, mas dessa forma você pode usar o preenchimento automático do editor para encontrá-los:
+Eles são apenas uma conveniência, eles possuem o mesmo número, mas dessa forma você pode usar o autocompletar do editor para encontrá-los:
 
 <img src="/img/tutorial/response-status-code/image02.png">
 

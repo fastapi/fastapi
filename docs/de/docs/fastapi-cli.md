@@ -2,7 +2,7 @@
 
 **FastAPI <abbr title="command line interface - Kommandozeileninterface">CLI</abbr>** ist ein Kommandozeilenprogramm, mit dem Sie Ihre FastAPI-App bereitstellen, Ihr FastAPI-Projekt verwalten und mehr.
 
-Wenn Sie FastAPI installieren (z. B. mit `pip install "fastapi[standard]"`), erhalten Sie ein Kommandozeilenprogramm, das Sie im Terminal ausführen können.
+Wenn Sie FastAPI zu Ihrem Projekt hinzufügen (z. B. mit `uv add "fastapi[standard]"`), erhalten Sie ein Kommandozeilenprogramm, das Sie im Terminal ausführen können.
 
 Um Ihre FastAPI-App für die Entwicklung auszuführen, können Sie den Befehl `fastapi dev` verwenden:
 
@@ -52,7 +52,7 @@ Für die Produktion würden Sie statt `fastapi dev` `fastapi run` verwenden. �
 
 ///
 
-Intern verwendet das **FastAPI CLI** [Uvicorn](https://www.uvicorn.dev), einen leistungsstarken, produktionsreifen, ASGI-Server. 😎
+Intern verwendet das **FastAPI CLI** [Uvicorn](https://uvicorn.dev), einen leistungsstarken, produktionsreifen, ASGI-Server. 😎
 
 Das `fastapi`-CLI versucht automatisch, die auszuführende FastAPI-App zu erkennen, und geht davon aus, dass es sich um ein Objekt namens `app` in einer Datei `main.py` handelt (oder ein paar weitere Varianten).
 
@@ -95,15 +95,21 @@ was gleichbedeutend wäre mit:
 from backend.main import app
 ```
 
-### `fastapi dev` mit Pfad { #fastapi-dev-with-path }
+### `fastapi dev` mit Pfad oder mit der CLI-Option `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Sie können auch den Dateipfad an den Befehl `fastapi dev` übergeben, dann wird das zu verwendende FastAPI-App-Objekt erraten:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-Aber Sie müssten sich merken, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad zu übergeben.
+Oder Sie können auch die Option `--entrypoint` an den Befehl `fastapi dev` übergeben:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+Aber Sie müssten sich merken, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad\entrypoint zu übergeben.
 
 Zusätzlich könnten andere Tools sie nicht finden, z. B. die [VS Code Extension](editor-support.md) oder [FastAPI Cloud](https://fastapicloud.com), daher wird empfohlen, den `entrypoint` in `pyproject.toml` zu verwenden.
 
@@ -112,6 +118,10 @@ Zusätzlich könnten andere Tools sie nicht finden, z. B. die [VS Code Extension
 Das Ausführen von `fastapi dev` startet den Entwicklermodus.
 
 Standardmäßig ist **Autoreload** aktiviert, das den Server automatisch neu lädt, wenn Sie Änderungen an Ihrem Code vornehmen. Dies ist ressourcenintensiv und könnte weniger stabil sein als wenn es deaktiviert ist. Sie sollten es nur für die Entwicklung verwenden. Es horcht auch auf der IP-Adresse `127.0.0.1`, die die IP für Ihre Maschine ist, um nur mit sich selbst zu kommunizieren (`localhost`).
+
+Vor dem Importieren Ihrer App setzt `fastapi dev` die Umgebungsvariable `FASTAPI_ENV` auf `development`. Wenn `FASTAPI_ENV` bereits gesetzt ist, bleibt der vorhandene Wert erhalten. Dadurch kann App-Startup-Code entwicklungsfreundliches Verhalten wählen, während Sie eine app-spezifische Umgebung wie `staging` bereitstellen können.
+
+Die konventionellen `FASTAPI_ENV`-Werte sind `development` und `production`. `fastapi run` lässt `FASTAPI_ENV` derzeit unverändert, setzen Sie es also explizit, wenn Ihre App den Produktionsmodus erkennen muss.
 
 ## `fastapi run` { #fastapi-run }
 

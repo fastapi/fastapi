@@ -34,12 +34,12 @@ Bu çok basit ve kısa bir eğitimdir. Veritabanları genelinde, SQL hakkında v
 
 ## `SQLModel` Kurulumu { #install-sqlmodel }
 
-Önce [virtual environment](../virtual-environments.md) oluşturduğunuzdan emin olun, aktive edin ve ardından `sqlmodel`’i yükleyin:
+Projenize `sqlmodel` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ Uygulamayı çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ Uygulamayı tekrar çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -352,6 +352,6 @@ $ fastapi dev
 
 ## Özet { #recap }
 
-Bir SQL veritabanıyla etkileşim kurmak için [**SQLModel**](https://sqlmodel.tiangolo.com/) kullanabilir ve *data model* ile *table model* yaklaşımıyla kodu sadeleştirebilirsiniz.
+Bir SQL veritabanıyla etkileşim kurmak için [**SQLModel**](https://sqlmodel.tiangolo.com/) kullanabilir ve *data model*’ler ile *table model*’ler kullanarak kodu sadeleştirebilirsiniz.
 
 **SQLModel** dokümantasyonunda çok daha fazlasını öğrenebilirsiniz; **FastAPI** ile SQLModel kullanımı için daha uzun bir mini [tutorial](https://sqlmodel.tiangolo.com/tutorial/fastapi/) da bulunuyor. 🚀

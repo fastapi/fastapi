@@ -16,9 +16,8 @@ FastAPI Cloud 是 *FastAPI and friends* 开源项目的主要赞助方和资金�
 
 ## 云服务商 - 赞助商 { #cloud-providers-sponsors }
 
-还有一些云服务商也会 ✨ [**赞助 FastAPI**](../help-fastapi.md#sponsor-the-author) ✨。🙇
+还有一些云服务商也会 ✨ [**赞助 FastAPI**](https://github.com/sponsors/tiangolo) ✨。🙇
 
 你也可以考虑按照他们的指南尝试他们的服务：
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

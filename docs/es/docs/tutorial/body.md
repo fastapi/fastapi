@@ -1,14 +1,15 @@
 # Request Body { #request-body }
 
+
 Cuando necesitas enviar datos desde un cliente (digamos, un navegador) a tu API, los envías como un **request body**.
 
 Un **request** body es un dato enviado por el cliente a tu API. Un **response** body es el dato que tu API envía al cliente.
 
 Tu API casi siempre tiene que enviar un **response** body. Pero los clientes no necesariamente necesitan enviar **request bodies** todo el tiempo, a veces solo solicitan un path, quizás con algunos parámetros de query, pero no envían un body.
 
-Para declarar un **request** body, usas modelos de [Pydantic](https://docs.pydantic.dev/) con todo su poder y beneficios.
+Para declarar un **request** body, usas modelos de [Pydantic](https://pydantic.dev/docs/) con todo su poder y beneficios.
 
-/// info | Información
+/// note | Nota
 
 Para enviar datos, deberías usar uno de estos métodos: `POST` (el más común), `PUT`, `DELETE` o `PATCH`.
 

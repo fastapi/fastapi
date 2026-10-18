@@ -33,7 +33,10 @@ client = TestClient(app)
 
 def test_dummy_webhook():
     # Just for coverage
-    new_subscription(body={}, token="Bearer 123")
+    new_subscription(
+        body=Subscription(username="rick", monthly_fee=9.99, start_date=datetime.now()),
+        token="Bearer 123",
+    )
 
 
 def test_openapi_schema():

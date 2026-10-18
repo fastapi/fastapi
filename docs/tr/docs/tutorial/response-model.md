@@ -72,20 +72,20 @@ Burada `UserIn` adında bir model declare ediyoruz; bu model plaintext bir passw
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | Bilgi
+/// note | Not
 
 `EmailStr` kullanmak için önce [`email-validator`](https://github.com/JoshData/python-email-validator) paketini kurun.
 
-Bir [virtual environment](../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden emin olun ve ardından örneğin şöyle kurun:
+Projenize ekleyin:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 veya şöyle:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -98,9 +98,9 @@ Artık bir browser password ile user oluşturduğunda, API response içinde ayn�
 
 Bu örnekte sorun olmayabilir; çünkü password’ü gönderen kullanıcı zaten aynı kişi.
 
-Ancak aynı modeli başka bir *path operation* için kullanırsak, kullanıcının password’lerini her client’a gönderiyor olabiliriz.
+Ama aynı modeli başka bir *path operation* için kullanırsak, kullanıcının password’lerini her client’a gönderiyor olabiliriz.
 
-/// danger
+/// danger | Tehlike
 
 Tüm riskleri bildiğinizden ve ne yaptığınızdan emin olmadığınız sürece, bir kullanıcının plain password’ünü asla saklamayın ve bu şekilde response içinde göndermeyin.
 
@@ -251,14 +251,14 @@ Dolayısıyla ID’si `foo` olan item için bu *path operation*’a request atar
 }
 ```
 
-/// info | Bilgi
+/// note | Not
 
 Ayrıca şunları da kullanabilirsiniz:
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-Bunlar, `exclude_defaults` ve `exclude_none` için [Pydantic dokümanlarında](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) anlatıldığı gibidir.
+Bunlar, `exclude_defaults` ve `exclude_none` için [Pydantic dokümanlarında](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value) anlatıldığı gibidir.
 
 ///
 

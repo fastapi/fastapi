@@ -2,7 +2,7 @@
 
 Bir veri dizisini “akış” olarak göndermek istediğiniz durumlar olabilir; bunu **JSON Lines** ile yapabilirsiniz.
 
-/// info | Bilgi
+/// note | Not
 
 FastAPI 0.134.0 ile eklendi.
 
@@ -48,7 +48,7 @@ Response’un `application/json` yerine `application/jsonl` içerik türü (Cont
 
 Bir JSON dizisine (Python list eşdeğeri) çok benzer; ancak öğeler `[]` içine alınmak ve araya `,` konmak yerine, her satırda **bir JSON nesnesi** vardır; bunlar yeni satır karakteri ile ayrılır.
 
-/// info | Bilgi
+/// note | Not
 
 Önemli nokta, uygulamanız her satırı sırayla üretebilirken, istemcinin de önceki satırları tüketmeye devam edebilmesidir.
 

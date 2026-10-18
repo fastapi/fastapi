@@ -20,7 +20,7 @@ try:
     from pydantic import EmailStr
 except ImportError:  # pragma: no cover
 
-    class EmailStr(str):  # type: ignore  # ty: ignore[unused-ignore-comment]
+    class EmailStr(str):  # type: ignore[no-redef]
         @classmethod
         def __get_validators__(cls) -> Iterable[Callable[..., Any]]:
             yield cls.validate
@@ -215,7 +215,7 @@ class Example(TypedDict, total=False):
     value: Any | None
     externalValue: AnyUrl | None
 
-    __pydantic_config__ = {"extra": "allow"}  # type: ignore[misc]
+    __pydantic_config__ = {"extra": "allow"}  # type: ignore[misc]  # ty: ignore[invalid-typed-dict-statement]
 
 
 class ParameterInType(Enum):

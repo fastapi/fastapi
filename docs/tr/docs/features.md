@@ -19,7 +19,7 @@ Etkileşimli API dokümantasyonu ve keşif için web arayüzleri. Framework Open
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* [**ReDoc**](https://github.com/Rebilly/ReDoc) ile alternatif API dokümantasyonu.
+* [**ReDoc**](https://github.com/Redocly/redoc) ile alternatif API dokümantasyonu.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -63,8 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-
-/// info
+/// note | Not
 
 `**second_user_data` şu anlama gelir:
 
@@ -100,7 +99,7 @@ Artık anahtar adlarını yanlış yazmak, dokümana gidip gelmek ya da sonunda 
 
 Her şey için mantıklı **varsayılanlar** ve her yerde isteğe bağlı yapılandırmalar vardır. Tüm parametreler, ihtiyacınızı karşılayacak şekilde ince ayar yapılarak tanımlamak istediğiniz API’yi oluşturabilir.
 
-Ancak varsayılan hâliyle hepsi **“hemen çalışır”**.
+Ancak varsayılan hâliyle hepsi **"hemen çalışır"**.
 
 ### Doğrulama { #validation }
 
@@ -150,7 +149,7 @@ FastAPI, son derece kolay kullanımlı ama son derece güçlü bir <dfn title='�
 
 Başka bir deyişle, onlara gerek yok; ihtiyaç duyduğunuz kodu import edin ve kullanın.
 
-Her entegrasyon (bağımlılıklar ile) o kadar basit olacak şekilde tasarlanmıştır ki, uygulamanız için, *path operations* ile kullandığınız aynı yapı ve söz dizimiyle sadece 2 satırda bir “plug-in” yazabilirsiniz.
+Her entegrasyon (bağımlılıklar ile) o kadar basit olacak şekilde tasarlanmıştır ki, uygulamanız için, *path operations* ile kullandığınız aynı yapı ve söz dizimiyle sadece 2 satırda bir "plug-in" yazabilirsiniz.
 
 ### Test Edildi { #tested }
 
@@ -160,7 +159,7 @@ Her entegrasyon (bağımlılıklar ile) o kadar basit olacak şekilde tasarlanm�
 
 ## Starlette Özellikleri { #starlette-features }
 
-**FastAPI**, [**Starlette**](https://www.starlette.dev/) ile tamamen uyumludur (ve onun üzerine kuruludur). Dolayısıyla elinizdeki ek Starlette kodları da çalışır.
+**FastAPI**, [**Starlette**](https://starlette.dev/) ile tamamen uyumludur (ve onun üzerine kuruludur). Dolayısıyla elinizdeki ek Starlette kodları da çalışır.
 
 `FastAPI` aslında `Starlette`’in bir alt sınıfıdır. Starlette’i zaten biliyor veya kullanıyorsanız, işlevlerin çoğu aynı şekilde çalışır.
 
@@ -172,13 +171,13 @@ Her entegrasyon (bağımlılıklar ile) o kadar basit olacak şekilde tasarlanm�
 * Başlatma ve kapatma olayları.
 * HTTPX üzerine kurulu test istemcisi.
 * **CORS**, GZip, Static Files, Streaming response’lar.
-* **Session** ve **Cookie** desteği.
+* **Session ve Cookie** desteği.
 * %100 test kapsayıcılığı.
 * %100 type annotated kod tabanı.
 
 ## Pydantic Özellikleri { #pydantic-features }
 
-**FastAPI**, [**Pydantic**](https://docs.pydantic.dev/) ile tamamen uyumludur (ve onun üzerine kuruludur). Dolayısıyla elinizdeki ek Pydantic kodları da çalışır.
+**FastAPI**, [**Pydantic**](https://pydantic.dev/docs/) ile tamamen uyumludur (ve onun üzerine kuruludur). Dolayısıyla elinizdeki ek Pydantic kodları da çalışır.
 
 Pydantic’e dayanan harici kütüphaneler de dâhildir; veritabanları için <abbr title="Object-Relational Mapper - Nesne-İlişkisel Eşleyici">ORM</abbr>’ler, <abbr title="Object-Document Mapper - Nesne-Belge Eşleyici">ODM</abbr>’ler gibi.
 

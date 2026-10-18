@@ -1,5 +1,6 @@
 # Conceptos de Implementación { #deployments-concepts }
 
+
 Cuando implementas una aplicación **FastAPI**, o en realidad, cualquier tipo de API web, hay varios conceptos que probablemente te importen, y al entenderlos, puedes encontrar la **forma más adecuada** de **implementar tu aplicación**.
 
 Algunos de los conceptos importantes son:

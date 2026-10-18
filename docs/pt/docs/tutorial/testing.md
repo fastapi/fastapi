@@ -1,6 +1,6 @@
 # Testando { #testing }
 
-Graças ao [Starlette](https://www.starlette.dev/testclient/), testar aplicações **FastAPI** é fácil e agradável.
+Graças ao [Starlette](https://starlette.dev/testclient/), testar aplicações **FastAPI** é fácil e agradável.
 
 Ele é baseado no [HTTPX](https://www.python-httpx.org), que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
 
@@ -8,14 +8,14 @@ Com ele, você pode usar o [pytest](https://docs.pytest.org/) diretamente com **
 
 ## Usando `TestClient` { #using-testclient }
 
-/// info | Informação
+/// note | Nota
 
 Para usar o `TestClient`, primeiro instale [`httpx`](https://www.python-httpx.org).
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e instalá-lo, por exemplo:
+Adicione-o ao seu projeto:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -52,7 +52,7 @@ Você também pode usar `from starlette.testclient import TestClient`.
 
 /// tip | Dica
 
-Se você quiser chamar funções `async` em seus testes além de enviar solicitações à sua aplicação FastAPI (por exemplo, funções de banco de dados assíncronas), dê uma olhada em [Testes assíncronos](../advanced/async-tests.md) no tutorial avançado.
+Se você quiser chamar funções `async` em seus testes além de enviar requests à sua aplicação FastAPI (por exemplo, funções de banco de dados assíncronas), dê uma olhada em [Testes assíncronos](../advanced/async-tests.md) no tutorial avançado.
 
 ///
 
@@ -94,6 +94,7 @@ Como esse arquivo está no mesmo pacote, você pode usar importações relativas
 
 {* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
+
 ...e ter o código para os testes como antes.
 
 ## Testando: exemplo estendido { #testing-extended-example }
@@ -112,13 +113,13 @@ Vamos continuar com a mesma estrutura de arquivo de antes:
 │   └── test_main.py
 ```
 
-Digamos que agora o arquivo `main.py` com sua aplicação **FastAPI** tenha algumas outras **operações de rotas**.
+Digamos que agora o arquivo `main.py` com sua aplicação **FastAPI** tenha algumas outras **operações de rota**.
 
 Ele tem uma operação `GET` que pode retornar um erro.
 
 Ele tem uma operação `POST` que pode retornar vários erros.
 
-Ambas as *operações de rotas* requerem um cabeçalho `X-Token`.
+Ambas as *operações de rota* requerem um cabeçalho `X-Token`.
 
 {* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
@@ -127,6 +128,7 @@ Ambas as *operações de rotas* requerem um cabeçalho `X-Token`.
 Você pode então atualizar `test_main.py` com os testes estendidos:
 
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+
 
 Sempre que você precisar que o cliente passe informações na requisição e não souber como, você pode pesquisar (no Google) como fazer isso no `httpx`, ou até mesmo como fazer isso com `requests`, já que o design do HTTPX é baseado no design do Requests.
 
@@ -142,11 +144,11 @@ Por exemplo:
 
 Para mais informações sobre como passar dados para o backend (usando `httpx` ou `TestClient`), consulte a [documentação do HTTPX](https://www.python-httpx.org).
 
-/// info | Informação
+/// note | Nota
 
 Observe que o `TestClient` recebe dados que podem ser convertidos para JSON, não para modelos Pydantic.
 
-Se você tiver um modelo Pydantic em seu teste e quiser enviar seus dados para o aplicativo durante o teste, poderá usar o `jsonable_encoder` descrito em [Codificador compatível com JSON](encoder.md).
+Se você tiver um modelo Pydantic em seu teste e quiser enviar seus dados para a aplicação durante o teste, poderá usar o `jsonable_encoder` descrito em [Codificador compatível com JSON](encoder.md).
 
 ///
 
@@ -154,12 +156,12 @@ Se você tiver um modelo Pydantic em seu teste e quiser enviar seus dados para o
 
 Depois disso, você só precisa instalar o `pytest`.
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e instalá-lo, por exemplo:
+Adicione-o ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -173,7 +175,7 @@ Execute os testes com:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

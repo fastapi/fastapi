@@ -30,19 +30,19 @@ JWT token'larıyla oynayıp nasıl çalıştıklarını görmek isterseniz [http
 
 Python'da JWT token'larını üretmek ve doğrulamak için `PyJWT` kurmamız gerekiyor.
 
-Bir [sanal ortam](../../virtual-environments.md) oluşturduğunuzdan emin olun, aktif edin ve ardından `pyjwt` kurun:
+Projenize `pyjwt` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | Bilgi
+/// note | Not
 
 RSA veya ECDSA gibi dijital imza algoritmaları kullanmayı planlıyorsanız, `pyjwt[crypto]` bağımlılığı olan `cryptography` kütüphanesini kurmalısınız.
 
@@ -72,12 +72,12 @@ Birçok güvenli hashing algoritmasını ve bunlarla çalışmak için yardımc�
 
 Önerilen algoritma "Argon2"dir.
 
-Bir [sanal ortam](../../virtual-environments.md) oluşturduğunuzdan emin olun, aktif edin ve sonra Argon2 ile birlikte pwdlib'i kurun:
+Projenize Argon2 ile birlikte `pwdlib` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -120,7 +120,7 @@ Bir tane de kullanıcıyı authenticate edip geri döndüren bir yardımcı fonk
 
 `authenticate_user`, veritabanında var olmayan bir username ile çağrıldığında, yine de sahte (dummy) bir hash'e karşı `verify_password` çalıştırıyoruz.
 
-Bu, username geçerli olsun ya da olmasın endpoint'in yaklaşık aynı sürede yanıt vermesini sağlar; böylece mevcut username'leri saymaya yarayabilecek zamanlama saldırılarını (timing attacks) engeller.
+Bu, username geçerli olsun ya da olmasın endpoint'in yaklaşık aynı sürede yanıt vermesini sağlar; böylece mevcut username'leri saymaya yarayabilecek **timing attacks** saldırılarını engeller.
 
 /// note | Not
 
@@ -213,7 +213,7 @@ Uygulamayı, öncekiyle aynı şekilde authorize edin.
 Username: `johndoe`
 Password: `secret`
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Kodun hiçbir yerinde düz metin password "`secret`" yok; sadece hash'lenmiş hâli var.
 

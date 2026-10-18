@@ -81,7 +81,7 @@ Wenn Sie Clients unterstützen müssen, die keinen `Content-Type`-Header senden,
 
 Mit dieser Einstellung werden Requests ohne `Content-Type`-Header im Body als JSON geparst. Das entspricht dem Verhalten älterer FastAPI-Versionen.
 
-/// info | Info
+/// note | Hinweis
 
 Dieses Verhalten und diese Konfiguration wurden in FastAPI 0.132.0 hinzugefügt.
 

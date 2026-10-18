@@ -1,5 +1,57 @@
 {% extends "base.html" %}
 
+{% block site_nav %}
+  {% if nav %}
+    {% if page.meta and page.meta.hide %}
+      {% set hidden = "hidden" if "navigation" in page.meta.hide %}
+    {% endif %}
+    <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" {{ hidden }}>
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner">
+          {% include "partials/nav.html" %}
+          {# Zensical has no page.is_homepage; page.url is empty on the landing page. #}
+          {% if not page.url %}
+            {% include "partials/conf-rail.html" %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% if "toc.integrate" not in features %}
+    {% if page.meta and page.meta.hide %}
+      {% set hidden = "hidden" if "toc" in page.meta.hide %}
+    {% endif %}
+    <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" {{ hidden }}>
+      <div class="md-sidebar__scrollwrap">
+        {% if config.theme.variant != "classic" %}
+          {% set toc = page.toc %}
+          {% set first = toc | first %}
+          {% if first and first.level == 1 %}
+            {% set toc = first.children %}
+          {% endif %}
+          {% if toc %}
+            <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+            <div class="md-sidebar-button__wrapper">
+              <label class="md-sidebar-button" for="__toc"></label>
+            </div>
+          {% endif %}
+        {% endif %}
+        <div class="md-sidebar__inner">
+          {% include "partials/toc.html" %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if not page.url %}
+    {% set conf_rail_mobile = true %}
+    {% include "partials/conf-rail.html" %}
+  {% endif %}
+  {% include "partials/content.html" %}
+{% endblock %}
+
 {% block announce %}
 <div class="announce-wrapper">
   <div id="announce-left">
@@ -7,7 +59,14 @@
       <a class="announce-link" href="https://fastapicloud.com" target="_blank">
         <span class="twemoji">
           {% include ".icons/material/cloud-arrow-up.svg" %}
-        </span> Join the <strong>FastAPI Cloud</strong> waiting list 🚀
+        </span> Deploy on <strong>FastAPI Cloud</strong> 🚀
+      </a>
+    </div>
+    <div class="item">
+      <a class="announce-link" href="https://fastapiconf.com" target="_blank">
+        <span class="twemoji">
+          {% include ".icons/material/calendar-star.svg" %}
+        </span> <strong>FastAPI Conf '26</strong> — Oct 28, 2026, Amsterdam 🎤
       </a>
     </div>
     <div class="item">
@@ -33,66 +92,7 @@
     </div>
   </div>
   <div id="announce-right" style="position: relative;">
-    <div class="item">
-      <a title="BlockBee Cryptocurrency Payment Gateway" style="display: block; position: relative;" href="https://blockbee.io?ref=fastapi" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/blockbee-banner.png" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="Scalar: Beautiful Open-Source API References from Swagger/OpenAPI files" style="display: block; position: relative;" href="https://github.com/scalar/scalar/?utm_source=fastapi&utm_medium=website&utm_campaign=top-banner" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/scalar-banner.svg" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="Auth, user management and more for your B2B product" style="display: block; position: relative;" href="https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=topbanner" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/propelauth-banner.png" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="liblab - Generate SDKs from FastAPI" style="display: block; position: relative;" href="https://liblab.com?utm_source=fastapi" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/liblab-banner.png" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="Deploy & scale any full-stack web app on Render. Focus on building apps, not infra." style="display: block; position: relative;" href="https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/render-banner.svg" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="Cut Code Review Time & Bugs in Half with CodeRabbit" style="display: block; position: relative;" href="https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=banner&utm_campaign=fastapi" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/coderabbit-banner.png" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="Making Retail Purchases Actionable for Brands and Developers" style="display: block; position: relative;" href="https://subtotal.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=open-source" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/subtotal-banner.svg" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="Deploy enterprise applications at startup speed" style="display: block; position: relative;" href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/railway-banner.png" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="SerpApi: Web Search API" style="display: block; position: relative;" href="https://serpapi.com/?utm_source=fastapi_website" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/serpapi-banner.png" />
-      </a>
-    </div>
-    <div class="item">
-      <a title="Greptile: The AI Code Reviewer" style="display: block; position: relative;" href="https://www.greptile.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=fastapi_sponsor_page" target="_blank">
-        <span class="sponsor-badge">sponsor</span>
-        <img class="sponsor-image" src="/img/sponsors/greptile-banner.png" />
-      </a>
-    </div>
+    {% include "partials/banner-sponsors.html" %}
   </div>
 </div>
 {% endblock %}

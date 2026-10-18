@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -54,18 +59,27 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
 
 ### Keystone 赞助商 { #keystone-sponsor }
 
+<div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--keystone" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}"></a>
 {% endfor -%}
+</div>
 
-### 金牌和银牌赞助商 { #gold-and-silver-sponsors }
+### 金牌赞助商 { #gold-sponsors }
 
+<div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--gold" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor -%}
-{%- for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+</div>
+
+### 银牌赞助商 { #silver-sponsors }
+
+<div class="fastapi-sponsors fastapi-sponsors--silver">
+{% for sponsor in sponsors.silver -%}
+<a class="fastapi-sponsors__card fastapi-sponsors__card--silver" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor %}
+</div>
 
 <!-- /sponsors -->
 
@@ -73,61 +87,81 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
 
 ## 评价 { #opinions }
 
-「_[...] 最近我大量使用 **FastAPI**。[...] 我实际上计划把它用于我团队在 **微软** 的所有 **机器学习服务**。其中一些正在集成进核心 **Windows** 产品以及一些 **Office** 产品。_」
+<!-- only-mkdocs -->
+<div class="fastapi-opinions" data-fastapi-opinions>
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-uber" aria-controls="fo-panel-uber" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/uber.svg" alt="Uber" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-netflix" aria-controls="fo-panel-netflix" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-cisco" aria-controls="fo-panel-cisco" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
+    </button>
+  </div>
 
-<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
+  <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
+    <blockquote class="fastapi-opinions__quote">“我最近大量使用 <strong>FastAPI</strong>。我实际上计划把它用于我团队在 <strong>微软的机器学习（ML）服务</strong>。其中一些正在集成进核心 <strong>Windows</strong> 产品以及一些 <strong>Office</strong> 产品。”</blockquote>
+    <div class="fastapi-opinions__attr">— Kabir Khan，<strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(参考)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">“我们采用了 <strong>FastAPI</strong> 库来启动一个可查询获取<strong>预测结果</strong>的 <strong>REST</strong> 服务器。” <em>[用于 Ludwig]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Piero Molino，Yaroslav Dudin，Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(参考)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">“<strong>Netflix</strong> 很高兴宣布开源我们的<strong>危机管理</strong>编排框架：<strong>Dispatch</strong>！” <em>[使用 FastAPI 构建]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Kevin Glisson，Marc Vilanova，Forest Monsen，<strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072">(参考)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-cisco" role="tabpanel" aria-labelledby="fo-tab-cisco" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">“如果有人正在构建生产级的 Python API，我强烈推荐 <strong>FastAPI</strong>。它<strong>设计优雅</strong>、<strong>使用简单</strong>且<strong>高度可扩展</strong> —— 它已经成为我们 API 优先开发战略中的<strong>关键组件</strong>。”</blockquote>
+    <div class="fastapi-opinions__attr">— Deon Pillsbury，<strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(参考)</a></div>
+  </div>
+</div>
+<!-- /only-mkdocs -->
+
+<div class="only-github" markdown="1">
+
+「_[...] 我最近大量使用 **FastAPI**。[...] 我实际上计划把它用于我团队在 **微软的机器学习（ML）服务**。其中一些正在集成进核心 **Windows** 产品以及一些 **Office** 产品。_」
+
+<div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(参考)</small></a></div>
 
 ---
 
-「_我们采用 **FastAPI** 来构建可查询以获取**预测结果**的 **REST** 服务器。[用于 Ludwig]_」
+「_我们采用 **FastAPI** 库来启动一个可查询以获取**预测结果**的 **REST** 服务器。[用于 Ludwig]_」
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino，Yaroslav Dudin，Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino，Yaroslav Dudin，Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(参考)</small></a></div>
 
 ---
 
 「_**Netflix** 很高兴宣布开源我们的**危机管理**编排框架：**Dispatch**！[使用 **FastAPI** 构建]_」
 
-<div style="text-align: right; margin-right: 10%;">Kevin Glisson，Marc Vilanova，Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Kevin Glisson，Marc Vilanova，Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(参考)</small></a></div>
 
 ---
 
-「_我对 **FastAPI** 兴奋到飞起。它太有趣了！_」
+「_如果有人正在构建生产级的 Python API，我强烈推荐 **FastAPI**。它**设计优雅**、**使用简单**且**高度可扩展**，它已经成为我们 API 优先开发战略中的**关键组件**，并驱动了许多自动化和服务，比如我们的 Virtual TAC Engineer。_」
 
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>[Python Bytes](https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855) 播客主持人</strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
-
----
-
-「_老实说，你构建的东西非常稳健而且打磨得很好。从很多方面看，这就是我想让 **Hug** 成为的样子 —— 看到有人把它做出来真的很鼓舞人心。_」
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>[Hug](https://github.com/hugapi/hug) 作者</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(参考)</small></a></div>
 
 ---
 
-「_如果你想学一个用于构建 REST API 的**现代框架**，看看 **FastAPI** [...] 它快速、易用且易学 [...]_」
-
-「_我们已经把我们的 **API** 切换到 **FastAPI** [...] 我想你会喜欢它 [...]_」
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>[Explosion AI](https://explosion.ai) 创始人 - [spaCy](https://spacy.io) 作者</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
-
----
-
-「_如果有人正在构建生产级的 Python API，我强烈推荐 **FastAPI**。它**设计优雅**、**使用简单**且**高度可扩展**，已经成为我们 API 优先开发战略中的**关键组件**，并驱动了许多自动化和服务，比如我们的 Virtual TAC Engineer。_」
-
-<div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
-
----
+</div>
 
 ## FastAPI 迷你纪录片 { #fastapi-mini-documentary }
 
 在 2025 年末发布了一部 [FastAPI 迷你纪录片](https://www.youtube.com/watch?v=mpR8ngthqiE)，你可以在线观看：
 
-<a href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI 迷你纪录片"></a>
 
 ## **Typer**，命令行中的 FastAPI { #typer-the-fastapi-of-clis }
 
 <a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-如果你要开发一个用于终端的 <abbr title="Command Line Interface - 命令行界面">命令行</abbr>应用而不是 Web API，看看 [**Typer**](https://typer.tiangolo.com/)。
+如果你要开发一个用于终端而不是 Web API 的 <abbr title="Command Line Interface - 命令行界面">CLI</abbr> 应用，看看 [**Typer**](https://typer.tiangolo.com/)。
 
 **Typer** 是 FastAPI 的小同胞。它的目标是成为**命令行中的 FastAPI**。⌨️ 🚀
 
@@ -135,24 +169,26 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
 
 FastAPI 站在巨人的肩膀之上：
 
-* [Starlette](https://www.starlette.dev/) 负责 Web 部分。
-* [Pydantic](https://docs.pydantic.dev/) 负责数据部分。
+* [Starlette](https://starlette.dev/) 负责 Web 部分。
+* [Pydantic](https://pydantic.dev/docs/) 负责数据部分。
 
 ## 安装 { #installation }
 
-创建并激活一个 [虚拟环境](https://fastapi.tiangolo.com/zh/virtual-environments/)，然后安装 FastAPI：
+首先，[安装 `uv`](https://docs.astral.sh/uv/getting-started/installation/)，然后将 FastAPI 添加到你的项目中：
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-**Note**: 请确保把 `"fastapi[standard]"` 用引号包起来，以保证在所有终端中都能正常工作。
+**注意**: 请确保把 `"fastapi[standard]"` 用引号包起来，以保证在所有终端中都能正常工作。
+
+如果你更喜欢使用 `pip`，请在虚拟环境中安装 `fastapi[standard]`。请参阅[安装指南](tutorial/#install-fastapi)了解替代步骤。
 
 ## 示例 { #example }
 
@@ -197,7 +233,7 @@ async def read_item(item_id: int, q: str | None = None):
     return {"item_id": item_id, "q": q}
 ```
 
-**Note**:
+**注意**:
 
 如果你不确定，请查看文档中 _"In a hurry?"_ 章节的 [`async` 和 `await`](https://fastapi.tiangolo.com/zh/async/#in-a-hurry) 部分。
 
@@ -210,7 +246,7 @@ async def read_item(item_id: int, q: str | None = None):
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -237,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>关于命令 <code>fastapi dev</code>...</summary>
 
-`fastapi dev` 命令会读取你的 `main.py` 文件，检测其中的 **FastAPI** 应用，并使用 [Uvicorn](https://www.uvicorn.dev) 启动服务器。
+`fastapi dev` 命令会自动读取你的 `main.py` 文件，检测其中的 **FastAPI** 应用，并使用 [Uvicorn](https://uvicorn.dev) 启动服务器。
 
 默认情况下，`fastapi dev` 会在本地开发时启用自动重载。
 
@@ -274,7 +310,7 @@ INFO:     Application startup complete.
 
 然后访问 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你会看到另一个自动生成的文档（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你会看到另一个自动生成的文档（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -360,7 +396,7 @@ item_id: int
 item: Item
 ```
 
-……通过一次声明，你将获得：
+...通过一次声明，你将获得：
 
 * 编辑器支持，包括：
     * 自动补全。
@@ -381,7 +417,7 @@ item: Item
     * `datetime` 对象。
     * `UUID` 对象。
     * 数据库模型。
-    * ……以及更多。
+    * ...以及更多。
 * 自动生成的交互式 API 文档，包括两种可选的用户界面：
     * Swagger UI。
     * ReDoc。
@@ -417,19 +453,19 @@ item: Item
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-……从：
+...从：
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-……改为：
+...改为：
 
 ```Python
         ... "item_price": item.price ...
 ```
 
-……看看你的编辑器如何自动补全属性并知道它们的类型：
+...看看你的编辑器如何自动补全属性并知道它们的类型：
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -448,18 +484,16 @@ item: Item
     * 基于 HTTPX 和 `pytest` 的极其简单的测试
     * **CORS**
     * **Cookie Sessions**
-    * ……以及更多。
+    * ...以及更多。
 
 ### 部署你的应用（可选） { #deploy-your-app-optional }
 
-你可以选择把 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)，如果还没有的话去加入候补名单吧。🚀
-
-如果你已经有 **FastAPI Cloud** 账号（我们从候补名单邀请了你 😉），你可以用一个命令部署你的应用。
+你可以选择用一条命令将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)。🚀
 
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -469,6 +503,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI 会自动检测你的 FastAPI 应用并将其部署到云端。如果你尚未登录，浏览器会打开以完成认证流程。
 
 就这样！现在你可以通过该 URL 访问你的应用了。✨
 
@@ -480,7 +516,7 @@ Deploying to FastAPI Cloud...
 
 它把用 FastAPI 构建应用时的**开发者体验**带到了部署到云上的过程。🎉
 
-FastAPI Cloud 是「FastAPI and friends」开源项目的主要赞助方和资金提供者。✨
+FastAPI Cloud 是 *FastAPI and friends* 开源项目的主要赞助方和资金提供者。✨
 
 #### 部署到其他云厂商 { #deploy-to-other-cloud-providers }
 
@@ -500,7 +536,7 @@ FastAPI 依赖 Pydantic 和 Starlette。
 
 ### `standard` 依赖 { #standard-dependencies }
 
-当你通过 `pip install "fastapi[standard]"` 安装 FastAPI 时，会包含 `standard` 组的一些可选依赖：
+当你通过 `uv add "fastapi[standard]"` 安装 FastAPI 时，会包含 `standard` 组的一些可选依赖：
 
 Pydantic 使用：
 
@@ -514,17 +550,17 @@ Starlette 使用：
 
 FastAPI 使用：
 
-* [`uvicorn`](https://www.uvicorn.dev) - 加载并提供你的应用的服务器。包含 `uvicorn[standard]`，其中包含高性能服务所需的一些依赖（例如 `uvloop`）。
+* [`uvicorn`](https://uvicorn.dev) - 加载并提供你的应用的服务器。包含 `uvicorn[standard]`，其中包含高性能服务所需的一些依赖（例如 `uvloop`）。
 * `fastapi-cli[standard]` - 提供 `fastapi` 命令。
     * 其中包含 `fastapi-cloud-cli`，它允许你将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)。
 
 ### 不包含 `standard` 依赖 { #without-standard-dependencies }
 
-如果你不想包含这些 `standard` 可选依赖，可以使用 `pip install fastapi`，而不是 `pip install "fastapi[standard]"`。
+如果你不想包含这些 `standard` 可选依赖，可以使用 `uv add fastapi`，而不是 `uv add "fastapi[standard]"`。
 
 ### 不包含 `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
-如果你想安装带有 standard 依赖但不包含 `fastapi-cloud-cli` 的 FastAPI，可以使用 `pip install "fastapi[standard-no-fastapi-cloud-cli]"`。
+如果你想安装带有 standard 依赖但不包含 `fastapi-cloud-cli` 的 FastAPI，可以使用 `uv add "fastapi[standard-no-fastapi-cloud-cli]"`。
 
 ### 其他可选依赖 { #additional-optional-dependencies }
 
@@ -532,13 +568,13 @@ FastAPI 使用：
 
 额外的 Pydantic 可选依赖：
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - 用于配置管理。
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - 用于在 Pydantic 中使用的额外类型。
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - 用于配置管理。
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - 用于在 Pydantic 中使用的额外类型。
 
 额外的 FastAPI 可选依赖：
 
 * [`orjson`](https://github.com/ijl/orjson) - 使用 `ORJSONResponse` 时需要。
-* [`ujson`](https://github.com/esnme/ultrajson) - 使用 `UJSONResponse` 时需要。
+* [`ujson`](https://github.com/ultrajson/ultrajson) - 使用 `UJSONResponse` 时需要。
 
 ## 许可协议 { #license }
 

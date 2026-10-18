@@ -1,6 +1,6 @@
 # Tester { #testing }
 
-Grâce à [Starlette](https://www.starlette.dev/testclient/), tester des applications **FastAPI** est simple et agréable.
+Grâce à [Starlette](https://starlette.dev/testclient/), tester des applications **FastAPI** est simple et agréable.
 
 C’est basé sur [HTTPX](https://www.python-httpx.org), dont la conception s’inspire de Requests, ce qui le rend très familier et intuitif.
 
@@ -8,14 +8,14 @@ Avec cela, vous pouvez utiliser [pytest](https://docs.pytest.org/) directement a
 
 ## Utiliser `TestClient` { #using-testclient }
 
-/// info
+/// note | Remarque
 
 Pour utiliser `TestClient`, installez d’abord [`httpx`](https://www.python-httpx.org).
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l’activer, puis y installer le paquet, par exemple :
+Ajoutez-le à votre projet :
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -95,7 +95,7 @@ Comme ce fichier se trouve dans le même package, vous pouvez utiliser des impor
 {* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
-… et avoir le code des tests comme précédemment.
+... et avoir le code des tests comme précédemment.
 
 ## Tester : exemple étendu { #testing-extended-example }
 
@@ -119,7 +119,7 @@ Il a une opération `GET` qui pourrait renvoyer une erreur.
 
 Il a une opération `POST` qui pourrait renvoyer plusieurs erreurs.
 
-Les deux chemins d’accès requièrent un en-tête `X-Token`.
+Les deux *chemins d’accès* requièrent un en-tête `X-Token`.
 
 {* ../../docs_src/app_testing/app_b_an_py310/main.py *}
 
@@ -144,7 +144,7 @@ Par exemple :
 
 Pour plus d’informations sur la manière de transmettre des données au backend (en utilisant `httpx` ou le `TestClient`), consultez la [documentation HTTPX](https://www.python-httpx.org).
 
-/// info
+/// note | Remarque
 
 Notez que le `TestClient` reçoit des données qui peuvent être converties en JSON, pas des modèles Pydantic.
 
@@ -156,12 +156,12 @@ Si vous avez un modèle Pydantic dans votre test et que vous souhaitez envoyer s
 
 Après cela, vous avez simplement besoin d’installer `pytest`.
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l’activer, puis y installer le paquet, par exemple :
+Ajoutez-le à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ Exécutez les tests avec :
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

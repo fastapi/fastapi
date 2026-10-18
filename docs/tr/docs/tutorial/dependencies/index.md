@@ -51,7 +51,7 @@ Bu örnekte, bu dependency şunları bekler:
 
 Sonra da bu değerleri içeren bir `dict` döndürür.
 
-/// info | Bilgi
+/// note | Not
 
 FastAPI, `Annotated` desteğini 0.95.0 sürümünde ekledi (ve önermeye başladı).
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 Bu şekilde paylaşılan kodu bir kez yazarsınız ve onu *path operation*'larda çağırma işini **FastAPI** halleder.
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Dikkat edin: Bunu "register" etmek ya da benzeri bir şey yapmak için özel bir class oluşturup **FastAPI**'ye bir yere geçirmeniz gerekmez.
 

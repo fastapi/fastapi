@@ -33,7 +33,7 @@ FastAPI CLI を *CLI オプション* `--forwarded-allow-ips` 付きで起動し
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -170,7 +170,7 @@ IP `0.0.0.0` は、そのマシン/サーバーで利用可能なすべての IP
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ Hypercorn を使う場合も、同様に `--root-path` オプションがあり�
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Uvicorn は、プロキシが `http://127.0.0.1:8000/app` にアクセスして�
 
 [Traefik](https://docs.traefik.io/) を使えば、パスプレフィックスを削除する構成をローカルで簡単に試せます。
 
-[Traefik をダウンロード](https://github.com/containous/traefik/releases) してください。単一バイナリなので、圧縮ファイルを展開して端末から直接実行できます。
+[Traefik をダウンロード](https://github.com/traefik/traefik/releases) してください。単一バイナリなので、圧縮ファイルを展開して端末から直接実行できます。
 
 次の内容で `traefik.toml` というファイルを作成します:
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

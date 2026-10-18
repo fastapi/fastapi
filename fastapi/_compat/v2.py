@@ -22,10 +22,10 @@ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, create_model
 from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationError
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
-from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
+from pydantic._internal import _typing_extra as _pydantic_typing_extra
+from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
-from pydantic._internal._typing_extra import eval_type_lenient  # ty: ignore[deprecated]
 from pydantic.fields import FieldInfo as FieldInfo
 from pydantic.json_schema import GenerateJsonSchema as _GenerateJsonSchema
 from pydantic.json_schema import JsonSchemaValue as JsonSchemaValue
@@ -38,7 +38,20 @@ from pydantic_core.core_schema import (
 
 RequiredParam = PydanticUndefined
 Undefined = PydanticUndefined
-evaluate_forwardref = eval_type_lenient  # ty: ignore[deprecated]
+
+
+def evaluate_forwardref(
+    value: Any,
+    globalns: dict[str, Any] | None = None,
+    localns: dict[str, Any] | None = None,
+) -> Any:
+    # eval_type_lenient has been deprecated since Pydantic v2.10.0b1 (PR #10530)
+    try_eval_type = getattr(_pydantic_typing_extra, "try_eval_type", None)
+    if try_eval_type is not None:
+        return try_eval_type(value, globalns, localns)[0]
+    return _pydantic_typing_extra.eval_type_lenient(  # ty: ignore[deprecated]
+        value, globalns, localns
+    )
 
 
 class GenerateJsonSchema(_GenerateJsonSchema):
@@ -359,8 +372,8 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
                 continue
             origin_type = get_origin(union_arg) or union_arg
             break
-    assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]
-    return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]
+    assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
+    return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]  # ty: ignore[invalid-return-type]
 
 
 def get_missing_field_error(loc: tuple[int | str, ...]) -> dict[str, Any]:
@@ -368,14 +381,14 @@ def get_missing_field_error(loc: tuple[int | str, ...]) -> dict[str, Any]:
         "Field required", [{"type": "missing", "loc": loc, "input": {}}]
     ).errors(include_url=False)[0]
     error["input"] = None
-    return error  # type: ignore[return-value]
+    return error  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
 
 
 def create_body_model(
     *, fields: Sequence[ModelField], model_name: str
 ) -> type[BaseModel]:
     field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
-    BodyModel: type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
+    BodyModel: type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]  # ty: ignore[no-matching-overload]
     return BodyModel
 
 
@@ -438,7 +451,7 @@ def get_flat_models_from_annotation(
         for arg in get_args(annotation):
             if lenient_issubclass(arg, (BaseModel, Enum)):
                 if arg not in known_models:
-                    known_models.add(arg)  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
+                    known_models.add(arg)  # type: ignore[arg-type]
                     if lenient_issubclass(arg, BaseModel):
                         get_flat_models_from_model(arg, known_models=known_models)
             else:

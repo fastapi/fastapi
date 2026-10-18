@@ -8,7 +8,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-/// info
+/// note
 
 FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
@@ -131,7 +131,7 @@ And you can also declare numeric validations:
 * `lt`: `l`ess `t`han
 * `le`: `l`ess than or `e`qual
 
-/// info
+/// note
 
 `Query`, `Path`, and other classes you will see later are subclasses of a common `Param` class.
 

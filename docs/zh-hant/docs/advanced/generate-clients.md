@@ -12,29 +12,13 @@
 
 針對 **TypeScript 用戶端**，[Hey API](https://heyapi.dev/) 是專門打造的解決方案，為 TypeScript 生態系提供最佳化的體驗。
 
-你可以在 [OpenAPI.Tools](https://openapi.tools/#sdk) 找到更多 SDK 產生器。
+你可以在 [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) 找到更多 SDK 產生器。
 
 /// tip
 
 FastAPI 會自動產生 **OpenAPI 3.1** 規格，因此你使用的任何工具都必須支援這個版本。
 
 ///
-
-## 來自 FastAPI 贊助商的 SDK 產生器 { #sdk-generators-from-fastapi-sponsors }
-
-本節重點介紹由贊助 FastAPI 的公司提供的**創投支持**與**公司維運**的解決方案。這些產品在高品質的自動產生 SDK 之外，還提供**額外功能**與**整合**。
-
-透過 ✨ [**贊助 FastAPI**](../help-fastapi.md#sponsor-the-author) ✨，這些公司幫助確保框架與其**生態系**維持健康且**永續**。
-
-他們的贊助也展現對 FastAPI **社群**（你）的高度承諾，不僅關心提供**優良服務**，也支持 **FastAPI** 作為一個**穩健且蓬勃的框架**。🙇
-
-例如，你可以嘗試：
-
-* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
-
-其中有些方案也可能是開源或提供免費方案，讓你不需財務承諾就能試用。其他商業的 SDK 產生器也不少，你可以在網路上找到。🤓
 
 ## 建立 TypeScript SDK { #create-a-typescript-sdk }
 
@@ -58,7 +42,7 @@ FastAPI 會自動產生 **OpenAPI 3.1** 規格，因此你使用的任何工具�
 
 ### Hey API { #hey-api }
 
-當我們有含模型的 FastAPI 應用後，就能用 Hey API 來產生 TypeScript 用戶端。最快的方法是透過 npx：
+當我們有含模型的 FastAPI 應用後，就能用 Hey API 來產生 TypeScript 用戶端。最快的方法是透過 npx。
 
 ```sh
 npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
@@ -195,9 +179,9 @@ npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 
 使用自動產生的用戶端時，你會得到以下項目的**自動完成**：
 
-* 方法
-* 本文中的請求有效載荷、查詢參數等
-* 回應的有效載荷
+* 方法。
+* Body 中的請求有效載荷、查詢參數等。
+* 回應的有效載荷。
 
 你也會對所有內容獲得**行內錯誤**提示。
 

@@ -81,7 +81,7 @@ Content-Type header’ı göndermeyen client’ları desteklemeniz gerekiyorsa, 
 
 Bu ayarla, Content-Type header’ı olmayan request’lerin body’si JSON olarak parse edilir. Bu, FastAPI’nin eski sürümlerindeki davranışla aynıdır.
 
-/// info | Bilgi
+/// note | Not
 
 Bu davranış ve yapılandırma FastAPI 0.132.0’da eklendi.
 

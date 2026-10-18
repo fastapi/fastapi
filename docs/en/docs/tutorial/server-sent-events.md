@@ -4,7 +4,7 @@ You can stream data to the client using **Server-Sent Events** (SSE).
 
 This is similar to [Stream JSON Lines](stream-json-lines.md), but uses the `text/event-stream` format, which is supported natively by browsers with the [`EventSource` API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource).
 
-/// info
+/// note
 
 Added in FastAPI 0.135.0.
 

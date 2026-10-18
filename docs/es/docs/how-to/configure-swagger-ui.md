@@ -1,4 +1,4 @@
-# Configurar Swagger UI { #configure-swagger-ui }
+# Configura Swagger UI { #configure-swagger-ui }
 
 Puedes configurar algunos [parámetros adicionales de Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
@@ -8,7 +8,7 @@ Para configurarlos, pasa el argumento `swagger_ui_parameters` al crear el objeto
 
 FastAPI convierte las configuraciones a **JSON** para hacerlas compatibles con JavaScript, ya que eso es lo que Swagger UI necesita.
 
-## Desactivar el resaltado de sintaxis { #disable-syntax-highlighting }
+## Desactiva el resaltado de sintaxis { #disable-syntax-highlighting }
 
 Por ejemplo, podrías desactivar el resaltado de sintaxis en Swagger UI.
 
@@ -24,7 +24,7 @@ Pero puedes desactivarlo estableciendo `syntaxHighlight` en `False`:
 
 <img src="/img/tutorial/extending-openapi/image03.png">
 
-## Cambiar el tema { #change-the-theme }
+## Cambia el tema { #change-the-theme }
 
 De la misma manera, podrías configurar el tema del resaltado de sintaxis con la clave `"syntaxHighlight.theme"` (ten en cuenta que tiene un punto en el medio):
 
@@ -34,7 +34,7 @@ Esa configuración cambiaría el tema de color del resaltado de sintaxis:
 
 <img src="/img/tutorial/extending-openapi/image04.png">
 
-## Cambiar los parámetros por defecto de Swagger UI { #change-default-swagger-ui-parameters }
+## Cambia los parámetros por defecto de Swagger UI { #change-default-swagger-ui-parameters }
 
 FastAPI incluye algunos parámetros de configuración por defecto apropiados para la mayoría de los casos de uso.
 

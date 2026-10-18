@@ -67,4 +67,4 @@ presets: [
 
 これらは文字列ではなく **JavaScript** のオブジェクトであるため、Python のコードから直接渡すことはできません。
 
-そのような JavaScript 専用の設定を使う必要がある場合は、上記のいずれかの方法を使用し、Swagger UI の path operation をオーバーライドして、必要な JavaScript を手動で記述してください。
+そのような JavaScript 専用の設定を使う必要がある場合は、上記のいずれかの方法を使用できます。Swagger UI の *path operation* 全体をオーバーライドして、必要な JavaScript を手動で記述してください。

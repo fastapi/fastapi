@@ -35,7 +35,7 @@ Bu kısım oldukça standart; kodun çoğu muhtemelen size zaten tanıdık gelec
 
 /// tip | İpucu
 
-`callback_url` query parametresi, Pydantic'in [Url](https://docs.pydantic.dev/latest/api/networks/) tipini kullanır.
+`callback_url` query parametresi, Pydantic'in [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) tipini kullanır.
 
 ///
 
@@ -106,11 +106,11 @@ Normal bir FastAPI *path operation*'ı gibi görünmelidir:
 Normal bir *path operation*'dan 2 temel farkı vardır:
 
 * Gerçek bir koda ihtiyaç duymaz; çünkü uygulamanız bu kodu asla çağırmayacak. Bu yalnızca *external API*'yi dokümante etmek için kullanılır. Yani fonksiyon sadece `pass` içerebilir.
-* *path*, bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (aşağıda daha fazlası) içerebilir; böylece parametreler ve sizin API'nize gönderilen orijinal request'in bazı parçalarıyla değişkenler kullanılabilir.
+* *path*, bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (aşağıda daha fazlası) içerebilir; böylece parametreler ve sizin API'nize gönderilen orijinal request'in bazı parçalarıyla değişkenler kullanılabilir.
 
 ### Callback path ifadesi { #the-callback-path-expression }
 
-Callback *path*'i, sizin API'nize gönderilen orijinal request'in bazı parçalarını içerebilen bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) barındırabilir.
+Callback *path*'i, sizin API'nize gönderilen orijinal request'in bazı parçalarını içerebilen bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) barındırabilir.
 
 Bu örnekte, bu bir `str`:
 
@@ -167,13 +167,13 @@ Callback URL'sinin, `callback_url` içindeki query parametresi olarak alınan UR
 
 Bu noktada, yukarıda oluşturduğunuz callback router'ında gerekli callback *path operation*'ları (external geliştiricinin *external API*'de implemente etmesi gerekenler) hazır.
 
-Şimdi sizin API'nizin *path operation decorator*'ında `callbacks` parametresini kullanarak, callback router'ının `.routes` attribute'unu (bu aslında route/*path operation*'lardan oluşan bir `list`) geçin:
+Şimdi sizin API'nizin *path operation decorator*'ında `callbacks` parametresini kullanarak, callback router'ının `.routes` attribute'unu geçin:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | İpucu
 
-`callback=` içine router'ın kendisini (`invoices_callback_router`) değil, `invoices_callback_router.routes` şeklinde `.routes` attribute'unu verdiğinize dikkat edin.
+`callbacks=` içine router'ın kendisini (`invoices_callback_router`) değil, `invoices_callback_router.routes` şeklinde `.routes` attribute'unu verdiğinize dikkat edin. FastAPI bu route'ları callback OpenAPI dokümantasyonunu üretmek için kullanacaktır.
 
 ///
 

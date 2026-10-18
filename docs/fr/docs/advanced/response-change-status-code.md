@@ -16,7 +16,7 @@ Pour ces cas, vous pouvez utiliser un paramètre `Response`.
 
 ## Utiliser un paramètre `Response` { #use-a-response-parameter }
 
-Vous pouvez déclarer un paramètre de type `Response` dans votre fonction de chemin d'accès (comme vous pouvez le faire pour les cookies et les en-têtes).
+Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de chemin d'accès* (comme vous pouvez le faire pour les cookies et les en-têtes).
 
 Vous pouvez ensuite définir le `status_code` dans cet objet de réponse *temporaire*.
 

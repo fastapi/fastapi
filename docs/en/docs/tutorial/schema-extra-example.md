@@ -12,7 +12,7 @@ You can declare `examples` for a Pydantic model that will be added to the genera
 
 That extra info will be added as-is to the output **JSON Schema** for that model, and it will be used in the API docs.
 
-You can use the attribute `model_config` that takes a `dict` as described in [Pydantic's docs: Configuration](https://docs.pydantic.dev/latest/api/config/).
+You can use the attribute `model_config` that takes a `dict` as described in [Pydantic's docs: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/).
 
 You can set `"json_schema_extra"` with a `dict` containing any additional data you would like to show up in the generated JSON Schema, including `examples`.
 
@@ -24,7 +24,7 @@ For example you could use it to add metadata for a frontend user interface, etc.
 
 ///
 
-/// info
+/// note
 
 OpenAPI 3.1.0 (used since FastAPI 0.99.0) added support for `examples`, which is part of the **JSON Schema** standard.
 
@@ -78,7 +78,7 @@ Nevertheless, at the <dfn title="2023-08-26">time of writing this</dfn>, Swagger
 
 ### OpenAPI-specific `examples` { #openapi-specific-examples }
 
-Since before **JSON Schema** supported `examples` OpenAPI had support for a different field also called `examples`.
+Since before **JSON Schema** supported `examples`, OpenAPI had support for a different field also called `examples`.
 
 This **OpenAPI-specific** `examples` goes in another section in the OpenAPI specification. It goes in the **details for each *path operation***, not inside each JSON Schema.
 
@@ -155,7 +155,7 @@ OpenAPI also added `example` and `examples` fields to other parts of the specifi
     * `File()`
     * `Form()`
 
-/// info
+/// note
 
 This old OpenAPI-specific `examples` parameter is now `openapi_examples` since FastAPI `0.103.0`.
 
@@ -171,7 +171,7 @@ And now this new `examples` field takes precedence over the old single (and cust
 
 This new `examples` field in JSON Schema is **just a `list`** of examples, not a dict with extra metadata as in the other places in OpenAPI (described above).
 
-/// info
+/// note
 
 Even after OpenAPI 3.1.0 was released with this new simpler integration with JSON Schema, for a while, Swagger UI, the tool that provides the automatic docs, didn't support OpenAPI 3.1.0 (it does since version 5.0.0 🎉).
 

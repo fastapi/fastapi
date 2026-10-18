@@ -18,7 +18,7 @@ Vous aurez normalement une bien meilleure performance en utilisant un [Modèle d
 
 Vous pouvez renvoyer une `Response` ou n'importe laquelle de ses sous-classes.
 
-/// info
+/// note | Remarque
 
 `JSONResponse` est elle-même une sous-classe de `Response`.
 

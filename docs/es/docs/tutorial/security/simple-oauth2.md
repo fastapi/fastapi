@@ -32,7 +32,7 @@ Normalmente se utilizan para declarar permisos de seguridad específicos, por ej
 * `instagram_basic` es usado por Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` es usado por Google.
 
-/// info | Información
+/// note | Nota
 
 En OAuth2 un "scope" es solo un string que declara un permiso específico requerido.
 
@@ -72,7 +72,7 @@ Si necesitas imponerlo, utiliza `OAuth2PasswordRequestFormStrict` en lugar de `O
 * Un `client_id` opcional (no lo necesitamos para nuestro ejemplo).
 * Un `client_secret` opcional (no lo necesitamos para nuestro ejemplo).
 
-/// info | Información
+/// note | Nota
 
 `OAuth2PasswordRequestForm` no es una clase especial para **FastAPI** como lo es `OAuth2PasswordBearer`.
 
@@ -94,7 +94,7 @@ No estamos usando `scopes` en este ejemplo, pero la funcionalidad está ahí si 
 
 ///
 
-Ahora, obtén los datos del usuario desde la base de datos (falsa), usando el `username` del campo del form.
+Ahora, obtén los datos del usuario desde la base de datos (falsa), usando el `username` del campo del formulario.
 
 Si no existe tal usuario, devolvemos un error diciendo "Incorrect username or password".
 
@@ -144,9 +144,9 @@ UserInDB(
 )
 ```
 
-/// info | Información
+/// note | Nota
 
-Para una explicación más completa de `**user_dict` revisa en [la documentación para **Extra Models**](../extra-models.md#about-user-in-dict).
+Para una explicación más completa de `**user_dict` revisa en [la documentación para **Extra Models**](../extra-models.md#about-user-in-model-dump).
 
 ///
 
@@ -196,7 +196,7 @@ Así que, en nuestro endpoint, solo obtendremos un usuario si el usuario existe,
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info | Información
+/// note | Nota
 
 El header adicional `WWW-Authenticate` con el valor `Bearer` que estamos devolviendo aquí también es parte de la especificación.
 

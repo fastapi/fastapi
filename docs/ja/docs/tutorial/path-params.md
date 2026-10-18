@@ -20,7 +20,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ここでは、 `item_id` は `int` として宣言されています。
 
-/// check | 確認
+/// tip | 豆知識
 
 これにより、関数内でのエディターサポート (エラーチェックや補完など) が提供されます。
 
@@ -34,7 +34,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 {"item_id":3}
 ```
 
-/// check | 確認
+/// tip | 豆知識
 
 関数が受け取った（および返した）値は、文字列の `"3"` ではなく、Pythonの `int` としての `3` であることに注意してください。
 
@@ -66,7 +66,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2) で見られるように、`int` のかわりに `float` が与えられた場合にも同様なエラーが表示されます。
 
-/// check | 確認
+/// tip | 豆知識
 
 したがって、同じPythonの型宣言を使用することで、**FastAPI**はデータのバリデーションを行います。
 
@@ -82,7 +82,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | 確認
+/// tip | 豆知識
 
 繰り返しになりますが、同じPython型宣言を使用するだけで、**FastAPI**は対話的なドキュメントを自動的に生成します（Swagger UIを統合）。
 
@@ -92,7 +92,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## 標準ベースのメリット、ドキュメンテーションの代替物 { #standards-based-benefits-alternative-documentation }
 
-また、生成されたスキーマが [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 標準に従っているので、互換性のあるツールが多数あります。
+また、生成されたスキーマが [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 標準に従っているので、互換性のあるツールが多数あります。
 
 このため、**FastAPI**自体が代替のAPIドキュメントを提供します（ReDocを使用）。これは、 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) にアクセスすると確認できます。
 
@@ -102,7 +102,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## Pydantic { #pydantic }
 
-すべてのデータバリデーションは [Pydantic](https://docs.pydantic.dev/) によって内部で実行されるため、Pydanticの全てのメリットが得られます。そして、安心して利用することができます。
+すべてのデータバリデーションは [Pydantic](https://pydantic.dev/docs/) によって内部で実行されるため、Pydanticの全てのメリットが得られます。そして、安心して利用することができます。
 
 `str`、 `float` 、 `bool` および他の多くの複雑なデータ型を型宣言に使用できます。
 

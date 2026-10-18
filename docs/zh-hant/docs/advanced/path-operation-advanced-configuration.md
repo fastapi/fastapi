@@ -16,21 +16,15 @@
 
 ### 使用路徑操作函式（path operation function）的名稱作為 operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-如果你想用 API 的函式名稱作為 `operationId`，你可以遍歷所有路徑，並使用各自的 `APIRoute.name` 覆寫每個*路徑操作*的 `operation_id`。
+如果你想用 API 的函式名稱作為 `operationId`，你可以在 `FastAPI` 中傳入自訂的 `generate_unique_id_function`。
 
-應在加入所有*路徑操作*之後再這麼做。
+該函式會接收每個 `APIRoute` 並回傳該路徑操作要使用的 `operationId`。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip
-
-如果你會手動呼叫 `app.openapi()`，請務必先更新所有 `operationId` 再呼叫。
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning
 
-如果你這樣做，必須確保每個*路徑操作函式*都有唯一的名稱，
+如果你這樣做，必須確保每個*路徑操作函式*都有唯一的名稱。
 
 即使它們位於不同的模組（Python 檔案）中。
 

@@ -38,4 +38,4 @@
 
 커스텀 사설 헤더는 [`X-` 접두어를 사용하여](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) 추가할 수 있다는 점을 기억하세요.
 
-하지만, 여러분이 브라우저에서 클라이언트가 볼 수 있기를 원하는 커스텀 헤더가 있는 경우, CORS 설정에 이를 추가해야 합니다([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)에서 자세히 알아보세요). [Starlette의 CORS 문서](https://www.starlette.dev/middleware/#corsmiddleware)에 문서화된 `expose_headers` 매개변수를 사용하세요.
+하지만, 여러분이 브라우저에서 클라이언트가 볼 수 있기를 원하는 커스텀 헤더가 있는 경우, CORS 설정에 이를 추가해야 합니다([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)에서 자세히 알아보세요). [Starlette의 CORS 문서](https://starlette.dev/middleware/#corsmiddleware)에 문서화된 `expose_headers` 매개변수를 사용하세요.

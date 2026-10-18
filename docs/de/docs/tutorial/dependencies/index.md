@@ -50,7 +50,7 @@ In diesem Fall erwartet diese Abhängigkeit:
 
 Und dann wird einfach ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> zurückgegeben, welches diese Werte enthält.
 
-/// info | Info
+/// note | Hinweis
 
 FastAPI unterstützt (und empfiehlt die Verwendung von) `Annotated` seit Version 0.95.0.
 
@@ -105,7 +105,7 @@ common_parameters --> read_users
 
 Auf diese Weise schreiben Sie gemeinsam genutzten Code nur einmal, und **FastAPI** kümmert sich darum, ihn für Ihre *Pfadoperationen* aufzurufen.
 
-/// check | Testen
+/// tip | Tipp
 
 Beachten Sie, dass Sie keine spezielle Klasse erstellen und diese irgendwo an **FastAPI** übergeben müssen, um sie zu „registrieren“ oder so ähnlich.
 

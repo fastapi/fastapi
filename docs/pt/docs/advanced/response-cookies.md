@@ -30,7 +30,7 @@ Então, defina os cookies nela e a retorne:
 
 Lembre-se de que se você retornar uma resposta diretamente em vez de usar o parâmetro `Response`, FastAPI a retornará diretamente.
 
-Portanto, você terá que garantir que seus dados sejam do tipo correto. E.g. será compatível com JSON se você estiver retornando um `JSONResponse`.
+Portanto, você terá que garantir que seus dados sejam do tipo correto. Por exemplo, será compatível com JSON se você estiver retornando um `JSONResponse`.
 
 E também que você não esteja enviando nenhum dado que deveria ter sido filtrado por um `response_model`.
 
@@ -48,4 +48,4 @@ E como o `Response` pode ser usado frequentemente para definir cabeçalhos e coo
 
 ///
 
-Para ver todos os parâmetros e opções disponíveis, verifique a [documentação no Starlette](https://www.starlette.dev/responses/#set-cookie).
+Para ver todos os parâmetros e opções disponíveis, verifique a [documentação no Starlette](https://starlette.dev/responses/#set-cookie).

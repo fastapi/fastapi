@@ -32,7 +32,7 @@ Você pode ver os cookies definidos na IU da documentação em `/docs`:
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | Informação
+/// note | Nota
 
 Tenha em mente que, como os **navegadores lidam com cookies** de maneira especial e por baixo dos panos, eles **não** permitem facilmente que o **JavaScript** lidem com eles.
 

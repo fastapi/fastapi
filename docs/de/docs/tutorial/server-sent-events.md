@@ -2,9 +2,9 @@
 
 Sie können Daten mithilfe von **Server-Sent Events** (SSE) an den Client streamen.
 
-Das ist ähnlich wie [JSON Lines streamen](stream-json-lines.md), verwendet aber das Format `text/event-stream`, das von Browsern nativ mit der [die `EventSource`-API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) unterstützt wird.
+Das ist ähnlich wie [JSON Lines streamen](stream-json-lines.md), verwendet aber das Format `text/event-stream`, das von Browsern nativ mit der [`EventSource`-API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) unterstützt wird.
 
-/// info | Info
+/// note | Hinweis
 
 Hinzugefügt in FastAPI 0.135.0.
 
@@ -29,7 +29,7 @@ SSE wird häufig für KI-Chat-Streaming, Live-Benachrichtigungen, Logs und Obser
 
 /// tip | Tipp
 
-Wenn Sie Binärdaten streamen wollen, z. B. Video oder Audio, sehen Sie im fortgeschrittenen Handbuch nach: [Daten streamen](../advanced/stream-data.md).
+Wenn Sie Binärdaten streamen wollen, z. B. Video oder Audio, sehen Sie im Handbuch für fortgeschrittene Benutzer nach: [Daten streamen](../advanced/stream-data.md).
 
 ///
 
@@ -103,7 +103,7 @@ Sie können ihn als Header-Parameter einlesen und verwenden, um den Stream dort 
 
 ## SSE mit POST { #sse-with-post }
 
-SSE funktioniert mit **jedem HTTP-Method**, nicht nur mit `GET`.
+SSE funktioniert mit **jeder HTTP-Methode**, nicht nur mit `GET`.
 
 Das ist nützlich für Protokolle wie [MCP](https://modelcontextprotocol.io), die SSE über `POST` streamen:
 
@@ -113,7 +113,7 @@ Das ist nützlich für Protokolle wie [MCP](https://modelcontextprotocol.io), di
 
 FastAPI implementiert einige bewährte SSE-Praktiken direkt out of the box.
 
-- Alle 15 Sekunden, wenn keine Nachricht gesendet wurde, einen **„keep alive“-`ping`-Kommentar** senden, um zu verhindern, dass einige Proxys die Verbindung schließen, wie in der [HTML-Spezifikation: Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes) vorgeschlagen.
+- Einen **„keep alive“-`ping`-Kommentar** alle 15 Sekunden senden, wenn keine Nachricht gesendet wurde, um zu verhindern, dass einige Proxys die Verbindung schließen, wie in der [HTML-Spezifikation: Server-Sent Events](https://html.spec.whatwg.org/multipage/server-sent-events.html#authoring-notes) vorgeschlagen.
 - Den Header `Cache-Control: no-cache` setzen, um **Caching** des Streams zu verhindern.
 - Einen speziellen Header `X-Accel-Buffering: no` setzen, um **Buffering** in einigen Proxys wie Nginx zu verhindern.
 

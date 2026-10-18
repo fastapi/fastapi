@@ -30,19 +30,19 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 我們需要安裝 `PyJWT` 才能在 Python 中產生與驗證 JWT 權杖。
 
-請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，然後安裝 `pyjwt`：
+將 `pyjwt` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | 說明
+/// note | 注意
 
 如果你打算使用像 RSA 或 ECDSA 這類的數位簽章演算法，應該安裝帶有加密函式庫相依的 `pyjwt[crypto]`。
 
@@ -72,12 +72,12 @@ pwdlib 是一個很棒的 Python 套件，用來處理密碼雜湊。
 
 建議使用的演算法是「Argon2」。
 
-請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，然後以 Argon2 支援安裝 pwdlib：
+將帶有 Argon2 的 `pwdlib` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -120,7 +120,7 @@ pwdlib 也支援 bcrypt 雜湊演算法，但不包含傳統（legacy）演算�
 
 當以不存在於資料庫的使用者名稱呼叫 `authenticate_user` 時，我們仍然會拿一個假的雜湊去跑一次 `verify_password`。
 
-這可確保無論使用者名稱是否有效，端點的回應時間都大致相同，避免可用來枚舉既有使用者名稱的「計時攻擊」（timing attacks）。
+這可確保無論使用者名稱是否有效，端點的回應時間都大致相同，避免可用來枚舉既有使用者名稱的 **計時攻擊**（timing attacks）。
 
 /// note | 注意
 
@@ -168,7 +168,7 @@ $ openssl rand -hex 32
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## 更新 `/token` 路徑操作 { #update-the-token-path-operation }
+## 更新 `/token` *路徑操作* { #update-the-token-path-operation }
 
 用權杖有效期建立一個 `timedelta`。
 
@@ -213,7 +213,7 @@ JWT 除了用來識別使用者並允許他直接對你的 API 執行操作外�
 Username: `johndoe`
 Password: `secret`
 
-/// check | 檢查
+/// tip | 提示
 
 注意在程式碼中完全沒有明文密碼「`secret`」，我們只有雜湊後的版本。
 

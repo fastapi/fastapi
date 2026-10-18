@@ -324,6 +324,7 @@ def main() -> None:
     ) or settings.number
     if number is None:
         raise RuntimeError("No PR number available")
+    number = cast(int, number)
 
     # Avoid race conditions with multiple labels
     sleep_time = random.random() * 10  # random number between 0 and 10 seconds

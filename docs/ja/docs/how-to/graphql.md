@@ -1,5 +1,6 @@
 # GraphQL { #graphql }
 
+
 **FastAPI** は **ASGI** 標準に基づいているため、ASGI に対応した任意の **GraphQL** ライブラリを簡単に統合できます。
 
 同じアプリケーション内で通常の FastAPI の *path operation* と GraphQL を組み合わせて使えます。
@@ -21,7 +22,7 @@
 * [Strawberry](https://strawberry.rocks/) 🍓
     * [FastAPI 向けドキュメント](https://strawberry.rocks/docs/integrations/fastapi)あり
 * [Ariadne](https://ariadnegraphql.org/)
-    * [FastAPI 向けドキュメント](https://ariadnegraphql.org/docs/fastapi-integration)あり
+    * [FastAPI 向けドキュメント](https://ariadnegraphql.org/server/Integrations/fastapi-integration)あり
 * [Tartiflette](https://tartiflette.io/)
     * ASGI 連携用の [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) あり
 * [Graphene](https://graphene-python.org/)

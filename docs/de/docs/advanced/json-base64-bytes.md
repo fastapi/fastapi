@@ -4,7 +4,7 @@ Wenn Ihre App JSON-Daten empfangen und senden muss, Sie darin aber Binärdaten e
 
 ## Base64 vs Dateien { #base64-vs-files }
 
-Prüfen Sie zunächst, ob Sie [Request Files](../tutorial/request-files.md) zum Hochladen von Binärdaten und [Benutzerdefinierte Response – FileResponse](./custom-response.md#fileresponse--fileresponse-) zum Senden von Binärdaten verwenden können, anstatt sie in JSON zu kodieren.
+Prüfen Sie zunächst, ob Sie [Requestdateien](../tutorial/request-files.md) zum Hochladen von Binärdaten und [Benutzerdefinierte Response – FileResponse](./custom-response.md#fileresponse) zum Senden von Binärdaten verwenden können, anstatt sie in JSON zu kodieren.
 
 JSON kann nur UTF-8-kodierte Strings enthalten, es kann daher keine rohen Bytes enthalten.
 

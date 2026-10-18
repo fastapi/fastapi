@@ -16,7 +16,7 @@
 
 {* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
 
-/// note | 注意
+/// note | 技術細節
 
 `Header` 與 `Path`、`Query`、`Cookie` 是「姊妹」類別，同樣繼承自共同的 `Param` 類別。
 
@@ -24,7 +24,7 @@
 
 ///
 
-/// info | 說明
+/// note | 注意
 
 要宣告標頭，必須使用 `Header`，否則參數會被解讀為查詢參數。
 

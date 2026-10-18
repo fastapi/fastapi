@@ -139,7 +139,7 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | 情報
+/// note | 備考
 
 美しいイラストは [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot) によるものです。🎨
 
@@ -205,7 +205,7 @@ def results():
 
 ほとんどの時間をカウンター前で待つ 🕙 のに費やしたため、あまり話したり、いちゃついたりできませんでした。😞
 
-/// info | 情報
+/// note | 備考
 
 美しいイラストは [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot) によるものです。🎨
 
@@ -215,7 +215,7 @@ def results():
 
 この「並列ハンバーガー」のシナリオでは、あなたは 2 つのプロセッサ (あなたと好きな人) を持つコンピュータ/プログラム 🤖 で、どちらも長い間 🕙「カウンターでの待機」に注意 ⏯ を専念しています。
 
-ファストフード店には 8 個のプロセッサ (レジ係/料理人) があります。一方、並行ハンバーガーの店には (レジ係 1、人、料理人 1 人の) 2 個しかなかったかもしれません。
+ファストフード店には 8 個のプロセッサ (レジ係/料理人) があります。一方、並行ハンバーガーの店には (レジ係 1 人、料理人 1 人の) 2 個しかなかったかもしれません。
 
 それでも、最終的な体験は最良とは言えません。😞
 

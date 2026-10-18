@@ -11,7 +11,7 @@ FastAPI 애플리케이션을 배포할 때 일반적인 접근 방법은 **리�
 ///
 
 <details>
-<summary>Dockerfile Preview 👀</summary>
+<summary>Dockerfile 미리보기 👀</summary>
 
 ```Dockerfile
 FROM python:3.14
@@ -26,7 +26,7 @@ COPY ./app /code/app
 
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
-# If running behind a proxy like Nginx or Traefik add --proxy-headers
+# Nginx나 Traefik 같은 프록시 뒤에서 실행한다면 --proxy-headers를 추가하세요
 # CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
@@ -46,7 +46,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 **컨테이너**는 **컨테이너 이미지**에서 실행됩니다.
 
-컨테이너 이미지는 컨테이너에 있어야 하는 모든 파일, 환경 변수, 기본 명령/프로그램의 **정적** 버전입니다. 여기서 **정적**이라는 것은 컨테이너 **이미지**가 실행 중이거나 수행되는 것이 아니라, 패키징된 파일과 메타데이터일 뿐이라는 뜻입니다.
+컨테이너 이미지는 컨테이너에 있어야 하는 모든 파일, 환경 변수, 기본 명령어/프로그램의 **정적** 버전입니다. 여기서 **정적**이라는 것은 컨테이너 **이미지**가 실행 중이거나 수행되는 것이 아니라, 패키징된 파일과 메타데이터일 뿐이라는 뜻입니다.
 
 저장된 정적 콘텐츠인 "**컨테이너 이미지**"와 달리, "**컨테이너**"는 보통 실행 중인 인스턴스, 즉 **실행되는** 대상을 의미합니다.
 
@@ -62,7 +62,7 @@ Docker는 **컨테이너 이미지**와 **컨테이너**를 생성하고 관리�
 
 또한 [Docker Hub](https://hub.docker.com/)에는 다양한 도구, 환경, 데이터베이스, 애플리케이션을 위한 미리 만들어진 **공식 컨테이너 이미지**가 공개되어 있습니다.
 
-예를 들어, 공식 [Python Image](https://hub.docker.com/_/python)가 있습니다.
+예를 들어, 공식 [Python 이미지](https://hub.docker.com/_/python)가 있습니다.
 
 그리고 데이터베이스 등 다양한 용도의 다른 이미지도 많이 있습니다. 예를 들면:
 
@@ -81,11 +81,11 @@ Docker나 Kubernetes 같은 모든 컨테이너 관리 시스템에는 이러한
 
 ## 컨테이너와 프로세스 { #containers-and-processes }
 
-**컨테이너 이미지**는 보통 **컨테이너**가 시작될 때 실행되어야 하는 기본 프로그램/명령과 해당 프로그램에 전달할 매개변수를 메타데이터에 포함합니다. 커맨드 라인에서 실행할 때와 매우 유사합니다.
+**컨테이너 이미지**는 보통 **컨테이너**가 시작될 때 실행되어야 하는 기본 프로그램/명령어와 해당 프로그램에 전달할 매개변수를 메타데이터에 포함합니다. 커맨드 라인에서 실행할 때와 매우 유사합니다.
 
-**컨테이너**가 시작되면 해당 명령/프로그램을 실행합니다(다만 오버라이드하여 다른 명령/프로그램을 실행하게 할 수도 있습니다).
+**컨테이너**가 시작되면 해당 명령어/프로그램을 실행합니다(다만 오버라이드하여 다른 명령어/프로그램을 실행하게 할 수도 있습니다).
 
-컨테이너는 **메인 프로세스**(명령 또는 프로그램)가 실행되는 동안 실행됩니다.
+컨테이너는 **메인 프로세스**(명령어 또는 프로그램)가 실행되는 동안 실행됩니다.
 
 컨테이너는 보통 **단일 프로세스**를 가지지만, 메인 프로세스에서 서브프로세스를 시작할 수도 있으며, 그러면 같은 컨테이너에 **여러 프로세스**가 존재하게 됩니다.
 
@@ -105,36 +105,32 @@ Docker나 Kubernetes 같은 모든 컨테이너 관리 시스템에는 이러한
 
 ### 패키지 요구사항 { #package-requirements }
 
-보통 애플리케이션의 **패키지 요구사항**을 어떤 파일에 적어 둡니다.
+`uv`로 프로젝트를 관리할 때는 직접 의존성이 `pyproject.toml`에 선언되고, 정확히 해결된 버전은 `uv.lock`에 저장됩니다.
 
-이는 주로 그 요구사항을 **설치**하는 데 사용하는 도구에 따라 달라집니다.
-
-가장 일반적인 방법은 패키지 이름과 버전을 한 줄에 하나씩 적어 둔 `requirements.txt` 파일을 사용하는 것입니다.
-
-버전 범위를 설정할 때는 [FastAPI 버전들에 대하여](versions.md)에서 읽은 것과 같은 아이디어를 사용하면 됩니다.
-
-예를 들어 `requirements.txt`는 다음과 같을 수 있습니다:
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-그리고 보통 `pip`로 패키지 의존성을 설치합니다. 예를 들면:
+애플리케이션에 필요한 패키지를 다음으로 추가할 수 있습니다:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
-/// info | 정보
+/// note | 참고
 
-패키지 의존성을 정의하고 설치하는 다른 형식과 도구도 있습니다.
+아래 Dockerfile은 컨테이너 내부에서 `pip`를 사용합니다. uv 프로젝트에서 잠긴 의존성을 Dockerfile이 기대하는 `requirements.txt` 형식으로 내보낼 수 있습니다:
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+생성된 `requirements.txt`는 컨테이너 빌드를 위한 내보내기 결과입니다. 의존성 관리는 계속 `uv add`로 하고, `uv.lock`이 변경될 때 다시 생성하세요.
 
 ///
 
@@ -218,11 +214,11 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
     따라서 컨테이너 이미지 빌드 시간을 최적화하려면 `Dockerfile`의 **끝부분 근처**에 두는 것이 중요합니다.
 
-6. 내부적으로 Uvicorn을 사용하는 `fastapi run`을 사용하도록 **명령**을 설정합니다.
+6. 내부적으로 Uvicorn을 사용하는 `fastapi run`을 사용하도록 **명령어**를 설정합니다.
 
     `CMD`는 문자열 리스트를 받으며, 각 문자열은 커맨드 라인에서 공백으로 구분해 입력하는 항목들입니다.
 
-    이 명령은 **현재 작업 디렉터리**에서 실행되며, 이는 위에서 `WORKDIR /code`로 설정한 `/code` 디렉터리와 같습니다.
+    이 명령어는 **현재 작업 디렉터리**에서 실행되며, 이는 위에서 `WORKDIR /code`로 설정한 `/code` 디렉터리와 같습니다.
 
 /// tip | 팁
 
@@ -258,7 +254,7 @@ FastAPI가 정상적으로 종료(graceful shutdown)되고 [lifespan 이벤트](
 
 자세한 내용은 [shell and exec form에 대한 Docker 문서](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form)를 참고하세요.
 
-이는 `docker compose`를 사용할 때 꽤 눈에 띌 수 있습니다. 좀 더 기술적인 상세 내용은 Docker Compose FAQ 섹션을 참고하세요: [Why do my services take 10 seconds to recreate or stop?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
+이는 `docker compose`를 사용할 때 꽤 눈에 띌 수 있습니다. 좀 더 기술적인 상세 내용은 Docker Compose FAQ 섹션을 참고하세요: [왜 내 서비스는 다시 생성되거나 중지되는 데 10초가 걸리나요?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop).
 
 #### 디렉터리 구조 { #directory-structure }
 
@@ -372,7 +368,7 @@ Docker 컨테이너의 URL에서 확인할 수 있어야 합니다. 예를 들�
 
 또한 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 또는 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)(또는 Docker 호스트를 사용해 동등하게 접근)로 이동할 수도 있습니다.
 
-대안 자동 문서([ReDoc](https://github.com/Rebilly/ReDoc) 제공)를 볼 수 있습니다:
+대안 자동 문서([ReDoc](https://github.com/Redocly/redoc) 제공)를 볼 수 있습니다:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -409,7 +405,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 2. 단일 파일 `main.py`에 있는 애플리케이션을 제공(serve)하기 위해 `fastapi run`을 사용합니다.
 
-`fastapi run`에 파일을 전달하면, 이것이 패키지의 일부가 아닌 단일 파일이라는 것을 자동으로 감지하고, 어떻게 임포트해서 FastAPI 앱을 제공할지 알아냅니다. 😎
+`fastapi run`에 파일을 전달하면, 이것이 패키지의 일부가 아닌 단일 파일이라는 것을 자동으로 감지하고, 어떻게 임포트해서 FastAPI 애플리케이션을 제공할지 알아냅니다. 😎
 
 ## 배포 개념 { #deployment-concepts }
 
@@ -472,17 +468,17 @@ HTTPS에 사용되는 동일한 **TLS 종료 프록시** 컴포넌트가 **로�
 
 ///
 
-또한 컨테이너로 작업할 때, 이를 시작하고 관리하는 시스템은 이미 해당 **로드 밸런서**(또는 **TLS 종료 프록시**)에서 여러분의 앱이 있는 컨테이너로 **네트워크 통신**(예: HTTP 요청)을 전달하는 내부 도구를 가지고 있습니다.
+또한 컨테이너로 작업할 때, 이를 시작하고 관리하는 시스템은 이미 해당 **로드 밸런서**(또는 **TLS 종료 프록시**)에서 여러분의 애플리케이션이 있는 컨테이너로 **네트워크 통신**(예: HTTP 요청)을 전달하는 내부 도구를 가지고 있습니다.
 
 ### 하나의 로드 밸런서 - 여러 워커 컨테이너 { #one-load-balancer-multiple-worker-containers }
 
-**Kubernetes** 같은 분산 컨테이너 관리 시스템에서는 내부 네트워킹 메커니즘을 통해, 메인 **포트**에서 대기하는 단일 **로드 밸런서**가 여러분의 앱을 실행하는 **여러 컨테이너**로 통신(요청)을 전달할 수 있습니다.
+**Kubernetes** 같은 분산 컨테이너 관리 시스템에서는 내부 네트워킹 메커니즘을 통해, 메인 **포트**에서 대기하는 단일 **로드 밸런서**가 여러분의 애플리케이션을 실행하는 **여러 컨테이너**로 통신(요청)을 전달할 수 있습니다.
 
-앱을 실행하는 각 컨테이너는 보통 **프로세스 하나만** 가집니다(예: FastAPI 애플리케이션을 실행하는 Uvicorn 프로세스). 모두 같은 것을 실행하는 **동일한 컨테이너**이지만, 각자 고유한 프로세스, 메모리 등을 가집니다. 이렇게 하면 CPU의 **서로 다른 코어** 또는 **서로 다른 머신**에서 **병렬화**의 이점을 얻을 수 있습니다.
+애플리케이션을 실행하는 각 컨테이너는 보통 **프로세스 하나만** 가집니다(예: FastAPI 애플리케이션을 실행하는 Uvicorn 프로세스). 모두 같은 것을 실행하는 **동일한 컨테이너**이지만, 각자 고유한 프로세스, 메모리 등을 가집니다. 이렇게 하면 CPU의 **서로 다른 코어** 또는 **서로 다른 머신**에서 **병렬화**의 이점을 얻을 수 있습니다.
 
-그리고 **로드 밸런서**가 있는 분산 컨테이너 시스템은 여러분의 앱을 실행하는 각 컨테이너에 **번갈아가며** 요청을 **분산**합니다. 따라서 각 요청은 여러분의 앱을 실행하는 여러 **복제된 컨테이너** 중 하나에서 처리될 수 있습니다.
+그리고 **로드 밸런서**가 있는 분산 컨테이너 시스템은 여러분의 애플리케이션을 실행하는 각 컨테이너에 **번갈아가며** 요청을 **분산**합니다. 따라서 각 요청은 여러분의 애플리케이션을 실행하는 여러 **복제된 컨테이너** 중 하나에서 처리될 수 있습니다.
 
-또한 보통 이 **로드 밸런서**는 클러스터 내 *다른* 앱으로 가는 요청(예: 다른 도메인, 또는 다른 URL 경로 접두사 아래로 가는 요청)도 처리할 수 있으며, 그 통신을 클러스터에서 실행 중인 *그 다른* 애플리케이션의 올바른 컨테이너로 전달할 수 있습니다.
+또한 보통 이 **로드 밸런서**는 클러스터 내 *다른* 애플리케이션으로 가는 요청(예: 다른 도메인, 또는 다른 URL 경로 접두사 아래로 가는 요청)도 처리할 수 있으며, 그 통신을 클러스터에서 실행 중인 *그 다른* 애플리케이션의 올바른 컨테이너로 전달할 수 있습니다.
 
 ### 컨테이너당 하나의 프로세스 { #one-process-per-container }
 
@@ -556,7 +552,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 **여러 컨테이너**가 있고 각 컨테이너가 보통 **단일 프로세스**를 실행한다면(예: **Kubernetes** 클러스터), 복제된 워커 컨테이너를 실행하기 **전에**, 단일 컨테이너에서 단일 프로세스로 **시작 전 사전 단계**를 수행하는 **별도의 컨테이너**를 두고 싶을 가능성이 큽니다.
 
-/// info | 정보
+/// note | 참고
 
 Kubernetes를 사용한다면, 이는 아마도 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)일 것입니다.
 
@@ -566,7 +562,7 @@ Kubernetes를 사용한다면, 이는 아마도 [Init Container](https://kuberne
 
 ### 단일 컨테이너 { #single-container }
 
-**단일 컨테이너**에서 여러 **워커 프로세스**(또는 단일 프로세스)를 시작하는 단순한 셋업이라면, 앱이 있는 프로세스를 시작하기 직전에 같은 컨테이너에서 시작 전 사전 단계를 실행할 수 있습니다.
+**단일 컨테이너**에서 여러 **워커 프로세스**(또는 단일 프로세스)를 시작하는 단순한 셋업이라면, 애플리케이션이 있는 프로세스를 시작하기 직전에 같은 컨테이너에서 시작 전 사전 단계를 실행할 수 있습니다.
 
 ### 베이스 도커 이미지 { #base-docker-image }
 
@@ -582,7 +578,7 @@ Kubernetes를 사용한다면, 이는 아마도 [Init Container](https://kuberne
 
 이 Docker 이미지는 Uvicorn이 죽은 워커를 관리하고 재시작하는 기능을 지원하지 않던 시기에 만들어졌습니다. 그래서 Gunicorn과 Uvicorn을 함께 사용해야 했고, Gunicorn이 Uvicorn 워커 프로세스를 관리하고 재시작하도록 하기 위해 상당한 복잡성이 추가되었습니다.
 
-하지만 이제 Uvicorn(그리고 `fastapi` 명령)은 `--workers`를 지원하므로, 베이스 도커 이미지를 사용하는 대신 직접 이미지를 빌드하지 않을 이유가 없습니다(코드 양도 사실상 거의 같습니다 😅).
+하지만 이제 Uvicorn(그리고 `fastapi` 명령어)은 `--workers`를 지원하므로, 베이스 도커 이미지를 사용하는 대신 직접 이미지를 빌드하지 않을 이유가 없습니다(코드 양도 사실상 거의 같습니다 😅).
 
 ///
 
@@ -600,7 +596,7 @@ Kubernetes를 사용한다면, 이는 아마도 [Init Container](https://kuberne
 
 ## `uv`를 사용하는 도커 이미지 { #docker-image-with-uv }
 
-프로젝트를 설치하고 관리하기 위해 [uv](https://github.com/astral-sh/uv)를 사용한다면, [uv Docker guide](https://docs.astral.sh/uv/guides/integration/docker/)를 따를 수 있습니다.
+프로젝트를 설치하고 관리하기 위해 [uv](https://github.com/astral-sh/uv)를 사용한다면, [uv Docker 가이드](https://docs.astral.sh/uv/guides/integration/docker/)를 따를 수 있습니다.
 
 ## 요약 { #recap }
 

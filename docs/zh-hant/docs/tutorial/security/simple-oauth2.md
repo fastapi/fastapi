@@ -32,7 +32,7 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 - `instagram_basic` 用在 Facebook / Instagram
 - `https://www.googleapis.com/auth/drive` 用在 Google
 
-/// info
+/// note
 
 在 OAuth2 裡，「scope」只是用來宣告特定所需權限的一個字串。
 
@@ -72,7 +72,7 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 - 可選的 `client_id`（本例不需要）
 - 可選的 `client_secret`（本例不需要）
 
-/// info
+/// note
 
 `OAuth2PasswordRequestForm` 並不是像 `OAuth2PasswordBearer` 那樣對 **FastAPI** 來說的特殊類別。
 
@@ -128,11 +128,11 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
 
-#### 關於 `**user_dict**` { #about-user-dict }
+#### 關於 `**user_dict` { #about-user-dict }
 
 `UserInDB(**user_dict)` 的意思是：
 
-把 `user_dict` 的鍵和值直接當作具名參數傳入，等同於：
+*把 `user_dict` 的鍵和值直接當作具名參數傳入，等同於：*
 
 ```Python
 UserInDB(
@@ -144,9 +144,9 @@ UserInDB(
 )
 ```
 
-/// info
+/// note
 
-想更完整地了解 `**user_dict`，請回到[**額外模型** 的文件](../extra-models.md#about-user-in-dict)。
+想更完整地了解 `**user_dict`，請回到[**額外模型** 的文件](../extra-models.md#about-user-in-model-dump)。
 
 ///
 
@@ -196,7 +196,7 @@ UserInDB(
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info
+/// note
 
 這裡我們一併回傳值為 `Bearer` 的額外標頭 `WWW-Authenticate`，這也是規範的一部分。
 

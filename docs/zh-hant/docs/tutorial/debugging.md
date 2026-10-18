@@ -1,5 +1,6 @@
 # 偵錯 { #debugging }
 
+
 你可以在編輯器中連接偵錯器，例如 Visual Studio Code 或 PyCharm。
 
 ## 呼叫 `uvicorn` { #call-uvicorn }
@@ -15,7 +16,7 @@
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +36,7 @@ from myapp import app
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -72,7 +73,7 @@ from myapp import app
 
 就不會被執行。
 
-/// info | 說明
+/// note
 
 想了解更多，參考 [Python 官方文件](https://docs.python.org/3/library/__main__.html)。
 

@@ -6,9 +6,13 @@
 
 이 때문에 보통 애플리케이션이 읽어들이는 환경 변수로 이를 제공하는 것이 일반적입니다.
 
+**환경 변수**(**env var**라고도 함)는 Python 코드 외부, 운영체제에 존재하는 값이며, 애플리케이션과 다른 프로그램에서 읽을 수 있습니다.
+
+명령어를 실행할 때 해당 명령어를 위한 환경 변수를 만들 수 있습니다. 아래에서 플랫폼별 명령어를 볼 수 있습니다.
+
 /// tip | 팁
 
-환경 변수를 이해하려면 [환경 변수](../environment-variables.md)를 읽어보세요.
+환경 변수가 어떻게 동작하는지 자세히 설명한 [환경 변수 가이드](https://tiangolo.com/guides/environment-variables/)를 읽어보세요.
 
 ///
 
@@ -20,16 +24,16 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-다행히 Pydantic은 환경 변수에서 오는 이러한 설정을 처리할 수 있는 훌륭한 유틸리티를 [Pydantic: Settings 관리](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)로 제공합니다.
+다행히 Pydantic은 환경 변수에서 오는 이러한 설정을 처리할 수 있는 훌륭한 유틸리티를 [Pydantic: Settings 관리](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/)로 제공합니다.
 
 ### `pydantic-settings` 설치하기 { #install-pydantic-settings }
 
-먼저 [가상 환경](../virtual-environments.md)을 만들고 활성화한 다음, `pydantic-settings` 패키지를 설치하세요:
+프로젝트에 `pydantic-settings` 패키지를 추가하세요:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ $ pip install pydantic-settings
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ Pydantic 모델과 같은 방식으로, 타입 어노테이션(그리고 필요�
 
 다음으로 환경 변수를 통해 구성을 전달하면서 서버를 실행합니다. 예를 들어 다음처럼 `ADMIN_EMAIL`과 `APP_NAME`을 설정할 수 있습니다:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | 팁
 
-하나의 명령에 여러 env var를 설정하려면 공백으로 구분하고, 모두 명령 앞에 두세요.
+Bash에서 하나의 명령에 여러 env var를 설정하려면 공백으로 구분하고, 모두 명령 앞에 두세요.
 
 ///
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic은 외부 라이브러리를 사용해 이런 유형의 파일에서 읽는 기능을 지원합니다. 자세한 내용은 [Pydantic Settings: Dotenv (.env) 지원](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support)을 참고하세요.
+Pydantic은 외부 라이브러리를 사용해 이런 유형의 파일에서 읽는 기능을 지원합니다. 자세한 내용은 [Pydantic Settings: Dotenv (.env) 지원](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support)을 참고하세요.
 
 /// tip | 팁
 
-이를 사용하려면 `pip install python-dotenv`가 필요합니다.
+이를 사용하려면 `uv add python-dotenv`로 프로젝트에 `python-dotenv`를 추가하세요.
 
 ///
 
@@ -197,7 +221,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | 팁
 
-`model_config` 속성은 Pydantic 설정을 위한 것입니다. 자세한 내용은 [Pydantic: 개념: 구성](https://docs.pydantic.dev/latest/concepts/config/)을 참고하세요.
+`model_config` 속성은 Pydantic 설정을 위한 것입니다. 자세한 내용은 [Pydantic: 개념: 구성](https://pydantic.dev/docs/validation/latest/concepts/config/)을 참고하세요.
 
 ///
 

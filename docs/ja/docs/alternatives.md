@@ -36,7 +36,7 @@ Django REST Framework は Tom Christie によって作成されました。Starl
 
 ///
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 自動でAPIドキュメントを生成するWebユーザーインターフェースを持っている点。
 
@@ -56,7 +56,7 @@ Flask は「マイクロフレームワーク」であり、データベース�
 
 Flaskのシンプルさを考えると、APIを構築するのに適しているように思えました。次に見つけるべきは、Flask 用の「Django REST Framework」でした。
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 マイクロフレームワークであること。ツールやパーツを目的に合うように簡単に組み合わせられる点。
 
@@ -88,7 +88,7 @@ Requestsは非常にシンプルかつ直感的なデザインで使いやすく
 response = requests.get("http://example.com/some/url")
 ```
 
-対応するFastAPIのAPIのpath operationはこのようになります:
+対応するFastAPI側のAPI *path operation* はこのようになります:
 
 ```Python hl_lines="1"
 @app.get("/some/url")
@@ -96,12 +96,12 @@ def read_url():
     return {"message": "Hello World"}
 ```
 
- `requests.get(...)` と`@app.get(...)` には類似点が見受けられます。
+`requests.get(...)` と`@app.get(...)` には類似点が見受けられます。
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 * シンプルで直感的なAPIを持っている点。
-* HTTPメソッド名を直接利用し、単純で直感的である。
+* HTTPメソッド名 (operation) を直接利用し、単純で直感的である。
 * 適切なデフォルト値を持ちつつ、強力なカスタマイズ性を持っている。
 
 ///
@@ -118,14 +118,14 @@ def read_url():
 
 そのため、バージョン2.0では「Swagger」、バージョン3以上では「OpenAPI」と表記するのが一般的です。
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 独自のスキーマの代わりに、API仕様のオープンな標準を採用しました。
 
 そして、標準に基づくユーザーインターフェースツールを統合しています。
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 この二つは人気で安定したものとして選択されましたが、少し検索してみると、 (**FastAPI**と同時に使用できる) OpenAPIのための多くの代替となるツールを見つけることができます。
 
@@ -147,7 +147,7 @@ APIが必要とするもう一つの大きな機能はデータのバリデー�
 
 しかし、それはPythonの型ヒントが存在する前に作られたものです。そのため、すべての<dfn title="データがどのように構成されるべきかの定義">スキーマ</dfn>を定義するためには、Marshmallowが提供する特定のユーティリティやクラスを使用する必要があります。
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 コードで「スキーマ」を定義し、データの型やバリデーションを自動で提供する点。
 
@@ -163,13 +163,13 @@ WebargsはFlaskをはじめとするいくつかのフレームワークの上�
 
 素晴らしいツールで、私も**FastAPI**を持つ前はよく使っていました。
 
-/// info | 情報
+/// note | 備考
 
 Webargsは、Marshmallowと同じ開発者により作られました。
 
 ///
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 受信したデータに対する自動的なバリデーションを持っている点。
 
@@ -193,13 +193,13 @@ Flask, Starlette, Responderなどにおいてはそのように動作します�
 
 エディタでは、この問題を解決することはできません。また、パラメータやMarshmallowスキーマを変更したときに、YAMLのdocstringを変更するのを忘れてしまうと、生成されたスキーマが古くなってしまいます。
 
-/// info | 情報
+/// note | 備考
 
 APISpecは、Marshmallowと同じ開発者により作成されました。
 
 ///
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 OpenAPIという、APIについてのオープンな標準をサポートしている点。
 
@@ -223,21 +223,21 @@ Flask、Flask-apispec、Marshmallow、Webargsの組み合わせは、**FastAPI**
 * [https://github.com/tiangolo/full-stack-flask-couchbase](https://github.com/tiangolo/full-stack-flask-couchbase)
 * [https://github.com/tiangolo/full-stack-flask-couchdb](https://github.com/tiangolo/full-stack-flask-couchdb)
 
-そして、これらのフルスタックジェネレーターは、[**FastAPI** Project Generators](project-generation.md)の元となっていました。
+そして、これらのフルスタックジェネレーターは、[**FastAPI** プロジェクトジェネレーター](project-generation.md)の元となっていました。
 
-/// info | 情報
+/// note | 備考
 
 Flask-apispecはMarshmallowと同じ開発者により作成されました。
 
 ///
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 シリアライゼーションとバリデーションを定義したコードから、OpenAPIスキーマを自動的に生成する点。
 
 ///
 
-### [NestJS](https://nestjs.com/) (と[Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (と[Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 NestJSはAngularにインスパイアされたJavaScript (TypeScript) NodeJSフレームワークで、Pythonですらありません。
 
@@ -247,11 +247,11 @@ Angular 2にインスピレーションを受けた、統合された依存性�
 
 パラメータはTypeScriptの型で記述されるので (Pythonの型ヒントに似ています) 、エディタのサポートはとても良いです。
 
-しかし、TypeScriptのデータはJavaScriptへのコンパイル後には残されないため、バリデーション、シリアライゼーション、ドキュメント化を同時に定義するのに型に頼ることはできません。そのため、バリデーション、シリアライゼーション、スキーマの自動生成を行うためには、多くの場所でデコレータを追加する必要があり、非常に冗長になります。
+しかし、TypeScriptのデータはJavaScriptへのコンパイル後には残されないため、バリデーション、シリアライゼーション、ドキュメント化を同時に定義するのに型に頼ることはできません。このことといくつかの設計上の判断により、バリデーション、シリアライゼーション、スキーマの自動生成を行うためには、多くの場所でデコレータを追加する必要があり、非常に冗長になります。
 
 入れ子になったモデルをうまく扱えません。そのため、リクエストのJSONボディが内部フィールドを持つJSONオブジェクトで、それが順番にネストされたJSONオブジェクトになっている場合、適切にドキュメント化やバリデーションをすることができません。
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 素晴らしいエディターの補助を得るために、Pythonの型ヒントを利用している点。
 
@@ -271,7 +271,7 @@ Pythonの`asyncio`ループの代わりに、[`uvloop`](https://github.com/Magic
 
 ///
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 物凄い性能を出す方法を見つけた点。
 
@@ -287,7 +287,7 @@ Falconはもう一つの高性能Pythonフレームワークで、ミニマム�
 
 そのため、データのバリデーション、シリアライゼーション、ドキュメント化は、自動的にできずコードの中で行わなければなりません。あるいは、HugのようにFalconの上にフレームワークとして実装されなければなりません。このような分断は、パラメータとして1つのリクエストオブジェクトと1つのレスポンスオブジェクトを持つというFalconのデザインにインスピレーションを受けた他のフレームワークでも起こります。
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 素晴らしい性能を得るための方法を見つけた点。
 
@@ -313,11 +313,11 @@ Pydanticのようなデータのバリデーション、シリアライゼーシ
 
 ルーティングは一つの場所で宣言され、他の場所で宣言された関数を使用します (エンドポイントを扱う関数のすぐ上に配置できるデコレータを使用するのではなく) 。これはFlask (やStarlette) よりも、Djangoに近いです。これは、比較的緊密に結合されているものをコードの中で分離しています。
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 モデルの属性の「デフォルト」値を使用したデータ型の追加バリデーションを定義します。これはエディタの補助を改善するもので、以前はPydanticでは利用できませんでした。
 
-同様の方法でのバリデーションの宣言をサポートするよう、Pydanticを部分的にアップデートするインスピーレションを与えました。(現在はこれらの機能は全てPydanticで可能となっています。)
+同様の方法でのバリデーションの宣言をサポートするよう、Pydanticを部分的にアップデートするインスピレーションを与えました。(現在はこれらの機能は全てPydanticで可能となっています。)
 
 ///
 
@@ -333,15 +333,15 @@ OpenAPIやJSON Schemaのような標準に基づいたものではありませ�
 
 同じフレームワークを使ってAPIとCLIを作成できる、面白く珍しい機能を持っています。
 
-以前のPythonの同期型Webフレームワーク標準 (WSGI) をベースにしているため、Websocketなどは扱えませんが、それでも高性能です。
+以前のPythonの同期型Webフレームワーク標準 (WSGI) をベースにしているため、WebSocketなどは扱えませんが、それでも高性能です。
 
-/// info | 情報
+/// note | 備考
 
-HugはTimothy Crosleyにより作成されました。彼は[`isort`](https://github.com/timothycrosley/isort)など、Pythonのファイル内のインポートの並び替えを自動的におこうなう素晴らしいツールの開発者です。
+HugはTimothy Crosleyにより作成されました。彼は[`isort`](https://github.com/PyCQA/isort)など、Pythonのファイル内のインポートの並び替えを自動的に行う素晴らしいツールの開発者です。
 
 ///
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**にインスピレーションを与えたアイデア
 
 HugはAPIStarに部分的なインスピレーションを与えており、私が発見した中ではAPIStarと同様に最も期待の持てるツールの一つでした。
 
@@ -375,7 +375,7 @@ Hugは、**FastAPI**がヘッダーやクッキーを設定するために関数
 
 今ではAPIStarはOpenAPI仕様を検証するためのツールセットであり、ウェブフレームワークではありません。
 
-/// info | 情報
+/// note | 備考
 
 APIStarはTom Christieにより開発されました。以下の開発者でもあります:
 
@@ -385,7 +385,7 @@ APIStarはTom Christieにより開発されました。以下の開発者でも�
 
 ///
 
-/// check | **FastAPI**へ与えたインスピレーション
+/// tip | **FastAPI**へ与えたインスピレーション
 
 存在そのもの。
 
@@ -401,7 +401,7 @@ APIStarはTom Christieにより開発されました。以下の開発者でも�
 
 ## **FastAPI**が利用しているもの { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydanticは、Pythonの型ヒントを元にデータのバリデーション、シリアライゼーション、 (JSON Schemaを使用した) ドキュメントを定義するライブラリです。
 
@@ -409,7 +409,7 @@ Pydanticは、Pythonの型ヒントを元にデータのバリデーション、
 
 Marshmallowに匹敵しますが、ベンチマークではMarshmallowよりも高速です。また、Pythonの型ヒントを元にしているので、エディタの補助が素晴らしいです。
 
-/// check | **FastAPI**での使用用途
+/// tip | **FastAPI**での使用用途
 
 データのバリデーション、データのシリアライゼーション、自動的なモデルの (JSON Schemaに基づいた) ドキュメント化の全てを扱えます。
 
@@ -417,7 +417,7 @@ Marshmallowに匹敵しますが、ベンチマークではMarshmallowよりも�
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starletteは、軽量な<dfn title="非同期Python Webアプリケーションを構築するための新しい標準">ASGI</dfn>フレームワーク/ツールキットで、高性能な非同期サービスの構築に最適です。
 
@@ -430,7 +430,7 @@ Starletteは、軽量な<dfn title="非同期Python Webアプリケーション�
 * インプロセスのバックグラウンドタスク。
 * 起動およびシャットダウンイベント。
 * HTTPXに基づいて構築されたテストクライアント。
-* CORS、GZip、静的ファイル、ストリーミング応答。
+* CORS、GZip、静的ファイル、ストリーミングレスポンス。
 * セッションとクッキーのサポート。
 * 100%のテストカバレッジ。
 * 100%の型注釈付きコードベース。
@@ -452,7 +452,7 @@ ASGIはDjangoのコアチームメンバーにより開発された新しい「�
 
 ///
 
-/// check | **FastAPI**での使用用途
+/// tip | **FastAPI**での使用用途
 
 webに関するコアな部分を全て扱います。その上に機能を追加します。
 
@@ -462,7 +462,7 @@ webに関するコアな部分を全て扱います。その上に機能を追�
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicornは非常に高速なASGIサーバーで、uvloopとhttptoolsにより構成されています。
 
@@ -470,7 +470,7 @@ Uvicornは非常に高速なASGIサーバーで、uvloopとhttptoolsにより構
 
 Starletteや**FastAPI**のサーバーとして推奨されています。
 
-/// check | **FastAPI**が推奨する理由
+/// tip | **FastAPI**が推奨する理由
 
 **FastAPI**アプリケーションを実行するメインのウェブサーバーである点。
 
@@ -480,6 +480,6 @@ Starletteや**FastAPI**のサーバーとして推奨されています。
 
 ///
 
-## ベンチマーク と スピード { #benchmarks-and-speed }
+## ベンチマークと速度 { #benchmarks-and-speed }
 
 Uvicorn、Starlette、FastAPIの違いを理解、比較、確認するには、[ベンチマーク](benchmarks.md)を確認してください。

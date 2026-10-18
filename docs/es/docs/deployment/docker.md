@@ -1,5 +1,6 @@
 # FastAPI en Contenedores - Docker { #fastapi-in-containers-docker }
 
+
 Al desplegar aplicaciones de FastAPI, un enfoque común es construir una **imagen de contenedor de Linux**. Normalmente se realiza usando [**Docker**](https://www.docker.com/). Luego puedes desplegar esa imagen de contenedor de varias formas.
 
 Usar contenedores de Linux tiene varias ventajas, incluyendo **seguridad**, **replicabilidad**, **simplicidad**, y otras.
@@ -105,36 +106,32 @@ Esto es lo que querrías hacer en **la mayoría de los casos**, por ejemplo:
 
 ### Requisitos del Paquete { #package-requirements }
 
-Normalmente tendrías los **requisitos del paquete** para tu aplicación en algún archivo.
+Cuando gestionas tu proyecto con `uv`, sus dependencias directas se declaran en `pyproject.toml` y las versiones exactas resueltas se almacenan en `uv.lock`.
 
-Dependería principalmente de la herramienta que uses para **instalar** esos requisitos.
-
-La forma más común de hacerlo es tener un archivo `requirements.txt` con los nombres de los paquetes y sus versiones, uno por línea.
-
-Por supuesto, usarías las mismas ideas que leíste en [Acerca de las versiones de FastAPI](versions.md) para establecer los rangos de versiones.
-
-Por ejemplo, tu `requirements.txt` podría verse así:
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-Y normalmente instalarías esas dependencias de los paquetes con `pip`, por ejemplo:
+Puedes añadir los paquetes que tu aplicación necesita con:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
-/// info | Información
+/// note | Nota
 
-Existen otros formatos y herramientas para definir e instalar dependencias de paquetes.
+El Dockerfile de abajo usa `pip` dentro del contenedor. Puedes exportar las dependencias bloqueadas de tu proyecto uv al formato `requirements.txt` que espera:
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+El `requirements.txt` generado es una exportación para la construcción del contenedor. Continúa gestionando las dependencias con `uv add` y regenéralo cuando cambie `uv.lock`.
 
 ///
 
@@ -372,7 +369,7 @@ Verás la documentación interactiva automática de la API (proporcionada por [S
 
 Y también puedes ir a [http://192.168.99.100/redoc](http://192.168.99.100/redoc) o [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (o equivalente, usando tu host de Docker).
 
-Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Rebilly/ReDoc)):
+Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -556,7 +553,7 @@ Si estás usando contenedores (por ejemplo, Docker, Kubernetes), entonces hay do
 
 Si tienes **múltiples contenedores**, probablemente cada uno ejecutando un **proceso único** (por ejemplo, en un cluster de **Kubernetes**), entonces probablemente querrías tener un **contenedor separado** realizando el trabajo de los **pasos previos** en un solo contenedor, ejecutando un solo proceso, **antes** de ejecutar los contenedores worker replicados.
 
-/// info | Información
+/// note | Nota
 
 Si estás usando Kubernetes, probablemente sería un [Contenedor de Inicialización](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 

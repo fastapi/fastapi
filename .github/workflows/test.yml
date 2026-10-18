@@ -5,9 +5,6 @@ on:
     branches:
       - master
   pull_request:
-    types:
-      - opened
-      - synchronize
   schedule:
     # cron every week on monday
     - cron: "0 0 * * 1"
@@ -25,14 +22,15 @@ jobs:
     permissions:
       pull-requests: read
     # Set job outputs to values from filter step
+    timeout-minutes: 5
     outputs:
       src: ${{ steps.filter.outputs.src }}
     steps:
-    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         persist-credentials: false
     # For pull requests it's not necessary to checkout the code but for the main branch it is
-    - uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
+    - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
       id: filter
       with:
         filters: |
@@ -50,6 +48,7 @@ jobs:
     needs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
+    timeout-minutes: 10
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
@@ -82,6 +81,11 @@ jobs:
             codspeed: codspeed
             deprecated-tests: "no-deprecation"
           - os: ubuntu-latest
+            python-version: "3.13"
+            uv-resolution: highest
+            deprecated-tests: "no-deprecation"
+            without-httpx2: true
+          - os: ubuntu-latest
             python-version: "3.14"
             coverage: coverage
             uv-resolution: highest
@@ -103,17 +107,17 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Setup uv
-        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
-          version: "0.11.4"
+          version: "latest-known"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -129,19 +133,23 @@ jobs:
       - name: Install deprecated libraries just for testing
         if: matrix.deprecated-tests == 'test-deprecation'
         run: uv pip install orjson ujson
+      - name: Uninstall httpx2 to run tests with httpx
+        if: matrix.without-httpx2 == 'true'
+        run: uv pip uninstall httpx2
       - name: Reinstall SQLAlchemy without Cython extensions
         if: matrix.python-version == '3.14t' && matrix.os == 'ubuntu-latest'
         run: "DISABLE_SQLALCHEMY_CEXT=1 uv pip install --force-reinstall --no-binary :all: sqlalchemy"
       - run: mkdir coverage
       - name: Test
-        run: uv run --no-sync bash scripts/test-cov.sh
+        run: uv run --no-sync bash scripts/test-cov.sh $PYTEST_OPTIONS
         env:
           COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-${{ matrix.deprecated-tests}}
+          PYTEST_OPTIONS: ${{ (matrix.without-httpx2 == 'true') && '-W ignore::UserWarning' || '' }}
       # Do not store coverage for all possible combinations to avoid file size max errors in Smokeshow
       - name: Store coverage files
         if: matrix.coverage == 'coverage'
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: coverage-${{ runner.os }}-${{ matrix.python-version }}-${{ matrix.deprecated-tests}}-${{ hashFiles('**/coverage/.coverage.*') }}
           path: coverage
@@ -152,6 +160,7 @@ jobs:
       - changes
     if: needs.changes.outputs.src == 'true' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       UV_PYTHON: "3.13"
       UV_RESOLUTION: highest
@@ -160,17 +169,17 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.13"
       - name: Setup uv
-        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
-          version: "0.11.4"
+          version: "latest-known"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -178,30 +187,106 @@ jobs:
       - name: Install Dependencies
         run: uv sync --no-dev --group tests --extra all
       - name: CodSpeed benchmarks
-        uses: CodSpeedHQ/action@1c8ae4843586d3ba879736b7f6b7b0c990757fab # v4.12.1
+        uses: CodSpeedHQ/action@373d6868929f444bc08d901fd0eb0ad52a8875ea # v5.2.1
         with:
           mode: simulation
           run: uv run --no-sync pytest tests/benchmarks --codspeed
+      - name: CodSpeed memory benchmark
+        uses: CodSpeedHQ/action@373d6868929f444bc08d901fd0eb0ad52a8875ea # v5.2.1
+        with:
+          mode: memory
+          run: uv run --no-sync pytest tests/memory_benchmarks --codspeed
 
+  regression-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the pull request
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          path: pr
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Find changed tests
+        if: github.event_name == 'pull_request'
+        id: changed-tests
+        working-directory: pr
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git diff --name-only --diff-filter=AM -z "$BASE_SHA" "$HEAD_SHA" -- tests \
+            | while IFS= read -r -d '' file; do
+                case "$(basename "$file")" in
+                  test_*.py) printf '%s\0' "$file" ;;
+                esac
+              done > "$RUNNER_TEMP/changed-tests"
+          if [ -s "$RUNNER_TEMP/changed-tests" ]; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+            git diff --binary "$BASE_SHA" "$HEAD_SHA" -- tests \
+              > "$RUNNER_TEMP/tests.patch"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            echo "No added or modified test files; regression proof is not applicable."
+          fi
+      - name: Check out the base revision
+        if: steps.changed-tests.outputs.found == 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          persist-credentials: false
+      - name: Set up Python
+        if: steps.changed-tests.outputs.found == 'true'
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version-file: "base/.python-version"
+      - name: Setup uv
+        if: steps.changed-tests.outputs.found == 'true'
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest-known"
+          enable-cache: true
+      - name: Run the changed tests against the base code
+        if: steps.changed-tests.outputs.found == 'true'
+        working-directory: base
+        run: |
+          git apply "$RUNNER_TEMP/tests.patch"
+          uv sync --locked --no-dev --group tests --extra all
+          set +e
+          xargs -0 uv run --no-sync pytest -- < "$RUNNER_TEMP/changed-tests"
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "::warning::The changed tests already pass on the base revision. Check whether the fix is still needed."
+            echo "### Regression proof: base already passes :warning:" >> "$GITHUB_STEP_SUMMARY"
+            echo "The changed tests pass without the pull request's code changes." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "The changed tests fail on the base revision as expected (pytest exit code $status)."
+            echo "### Regression proof: base fails as expected :white_check_mark:" >> "$GITHUB_STEP_SUMMARY"
+          fi
   coverage-combine:
     needs:
       - test
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
-          version: "0.11.4"
+          version: "latest-known"
           enable-cache: true
           cache-dependency-glob: |
             pyproject.toml
@@ -218,7 +303,7 @@ jobs:
       - run: uv run coverage combine coverage
       - run: uv run coverage html --title "Coverage for ${{ github.sha }}"
       - name: Store coverage HTML
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: coverage-html
           path: htmlcov
@@ -226,19 +311,22 @@ jobs:
       - run: uv run coverage report --fail-under=100
 
   # https://github.com/marketplace/actions/alls-green#why
-  check:  # This job does nothing and is only used for the branch protection
+  test-alls-green:  # This job does nothing and is only used for the branch protection
     if: always()
     needs:
+      - test
       - coverage-combine
       - benchmark
+      - regression-test
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Decide whether the needed jobs succeeded or failed
-        uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
+        uses: re-actors/alls-green@b5b5b37504aa4183270bd3d855c52a67f212be35 # v1.3.0
         with:
           jobs: ${{ toJSON(needs) }}
           allowed-skips: coverage-combine,test,benchmark

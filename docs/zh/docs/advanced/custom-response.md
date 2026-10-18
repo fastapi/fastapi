@@ -41,7 +41,7 @@
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info | 信息
+/// note | 注意
 
 参数 `response_class` 也会用来定义响应的「媒体类型」。
 
@@ -65,7 +65,7 @@
 
 ///
 
-/// info | 信息
+/// note | 注意
 
 当然，实际的 `Content-Type` 头、状态码等等，将来自于你返回的 `Response` 对象。
 

@@ -14,6 +14,12 @@ repos:
       - id: end-of-file-fixer
       - id: trailing-whitespace
 
+  - repo: https://github.com/crate-ci/typos
+    rev: 00f422f3b19c57bc6338715ebfe3316d38768461 # frozen: v1.50.3
+    hooks:
+      - id: typos
+        args: [--force-exclude]
+
   - repo: local
     hooks:
       - id: local-ruff-check
@@ -21,14 +27,20 @@ repos:
         entry: uv run ruff check --force-exclude --fix --exit-non-zero-on-fix
         require_serial: true
         language: unsupported
-        types: [python]
+        types:
+          - python
+        # TODO: when translations catch up, re-enable this
+        # types_or: [python, pyi, jupyter, markdown]
 
       - id: local-ruff-format
         name: ruff format
         entry: uv run ruff format --force-exclude --exit-non-zero-on-format
         require_serial: true
         language: unsupported
-        types: [python]
+        types:
+          - python
+        # TODO: when translations catch up, re-enable this
+        # types_or: [python, pyi, jupyter, markdown]
 
       - id: local-mypy
         name: mypy check
@@ -39,7 +51,7 @@ repos:
 
       - id: local-ty
         name: ty check
-        entry: uv run ty check fastapi
+        entry: uv run ty check
         require_serial: true
         language: unsupported
         pass_filenames: false
@@ -57,6 +69,13 @@ repos:
         name: generate README.md from index.md
         entry: uv run ./scripts/docs.py generate-readme
         files: ^docs/en/docs/index\.md|docs/en/data/sponsors\.yml|scripts/docs\.py$
+        pass_filenames: false
+
+      - id: render-banner-sponsors
+        language: unsupported
+        name: render sponsor banner partial
+        entry: uv run ./scripts/docs.py render-banner-sponsors
+        files: ^docs/en/data/sponsors\.yml|^docs/en/overrides/partials/banner-sponsors\.html|^scripts/docs\.py$
         pass_filenames: false
 
       - id: update-languages
@@ -90,6 +109,6 @@ repos:
         name: zizmor
         language: python
         entry: uv run zizmor .
-        files: ^\.github\/workflows\/
+        files: ^\.github/workflows/|^uv\.lock$
         require_serial: true
         pass_filenames: false

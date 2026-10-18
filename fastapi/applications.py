@@ -1,6 +1,7 @@
+import os
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
-from typing import Annotated, Any, TypeVar
+from typing import Annotated, Any, Literal, TypeVar
 
 from annotated_doc import Doc
 from fastapi import routing
@@ -20,6 +21,12 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
+from fastapi.telemetry import TelemetryConfig
+from fastapi.telemetry._asgi import (
+    ExceptionTelemetryMiddleware,
+    NativeTelemetry,
+    _legacy_otel,
+)
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
@@ -57,6 +64,19 @@ class FastAPI(Starlette):
     def __init__(
         self: AppType,
         *,
+        telemetry: Annotated[
+            TelemetryConfig | None,
+            Doc(
+                """
+                Native OpenTelemetry configuration as a dictionary. Uses global
+                providers by default. Omitted options keep their defaults.
+
+                ```python
+                app = FastAPI(telemetry={"tracing": False})
+                ```
+                """
+            ),
+        ] = None,
         debug: Annotated[
             bool,
             Doc(
@@ -65,7 +85,7 @@ class FastAPI(Starlette):
                 errors.
 
                 Read more in the
-                [Starlette docs for Applications](https://www.starlette.dev/applications/#instantiating-the-application).
+                [Starlette docs for Applications](https://starlette.dev/applications/#starlette.applications.Starlette).
                 """
             ),
         ] = False,
@@ -921,6 +941,7 @@ class FastAPI(Starlette):
             ),
         ] = "3.1.0"
         self.openapi_schema: dict[str, Any] | None = None
+        self._openapi_routes_version: int | None = None
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
@@ -958,7 +979,7 @@ class FastAPI(Starlette):
                 This is simply inherited from Starlette.
 
                 Read more about it in the
-                [Starlette docs for Applications](https://www.starlette.dev/applications/#storing-state-on-the-app-instance).
+                [Starlette docs for Applications](https://starlette.dev/applications/#storing-state-on-the-app-instance).
                 """
             ),
         ] = State()
@@ -1006,8 +1027,23 @@ class FastAPI(Starlette):
         # Starlette still has incorrect type specification for the handlers
         self.exception_handlers.setdefault(
             WebSocketRequestValidationError,
-            websocket_request_validation_exception_handler,  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
+            websocket_request_validation_exception_handler,  # type: ignore[arg-type]
         )  # ty: ignore[no-matching-overload]
+
+        self._telemetry: TelemetryConfig = {
+            "tracer_provider": None,
+            "meter_provider": None,
+            "logger_provider": None,
+            "tracing": True,
+            "metrics": True,
+            "logs": True,
+            "operation_spans": True,
+            "auto_configure": os.getenv("FASTAPI_OTEL_AUTO_CONFIGURE", "").lower()
+            == "true",
+            "exclude": None,
+            **(telemetry if telemetry is not None else {}),
+        }
+        self._native_telemetry = NativeTelemetry(self._telemetry)
 
         self.user_middleware: list[Middleware] = (
             [] if middleware is None else list(middleware)
@@ -1029,11 +1065,14 @@ class FastAPI(Starlette):
                 exception_handlers[key] = value
 
         middleware = (
-            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]  # ty: ignore[invalid-argument-type]
+            [
+                Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug),
+                Middleware(ExceptionTelemetryMiddleware),
+            ]
             + self.user_middleware
             + [
                 Middleware(
-                    ExceptionMiddleware,  # ty: ignore[invalid-argument-type]
+                    ExceptionMiddleware,
                     handlers=exception_handlers,
                     debug=debug,
                 ),
@@ -1056,7 +1095,7 @@ class FastAPI(Starlette):
                 # user middlewares, the same context is used.
                 # This is currently not needed, only for closing files, but used to be
                 # important when dependencies with yield were closed here.
-                Middleware(AsyncExitStackMiddleware),  # ty: ignore[invalid-argument-type]
+                Middleware(AsyncExitStackMiddleware),
             ]
         )
 
@@ -1079,7 +1118,8 @@ class FastAPI(Starlette):
         Read more in the
         [FastAPI docs for OpenAPI](https://fastapi.tiangolo.com/how-to/extending-openapi/).
         """
-        if not self.openapi_schema:
+        routes_version = self.router._get_routes_version()
+        if not self.openapi_schema or self._openapi_routes_version != routes_version:
             self.openapi_schema = get_openapi(
                 title=self.title,
                 version=self.version,
@@ -1096,6 +1136,7 @@ class FastAPI(Starlette):
                 separate_input_output_schemas=self.separate_input_output_schemas,
                 external_docs=self.openapi_external_docs,
             )
+            self._openapi_routes_version = routes_version
         return self.openapi_schema
 
     def setup(self) -> None:
@@ -1156,7 +1197,34 @@ class FastAPI(Starlette):
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
             scope["root_path"] = self.root_path
-        await super().__call__(scope, receive, send)
+        if scope["type"] == "lifespan":
+            from fastapi.telemetry._runtime import lifespan
+
+            await lifespan(
+                config=self._telemetry,
+                app=super().__call__,
+                scope=scope,
+                receive=receive,
+                send=send,
+            )
+            return
+        if (
+            scope["type"] not in ("http", "websocket")
+            or "fastapi.telemetry" in scope
+            or not self._native_telemetry.enabled()
+        ):
+            await super().__call__(scope, receive, send)
+            return
+        if self.middleware_stack is None:
+            self.middleware_stack = self.build_middleware_stack()
+        scope["app"] = self
+        await self._native_telemetry(
+            app=super().__call__,
+            scope=scope,
+            receive=receive,
+            send=send,
+            legacy_otel=_legacy_otel(self.middleware_stack),
+        )
 
     def add_api_route(
         self,
@@ -1213,6 +1281,85 @@ class FastAPI(Starlette):
             name=name,
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
+        )
+
+    def frontend(
+        self,
+        path: Annotated[
+            str,
+            Doc(
+                """
+                The URL path prefix where the frontend build should be served.
+                """
+            ),
+        ],
+        *,
+        directory: Annotated[
+            str | os.PathLike[str],
+            Doc(
+                """
+                The directory containing the static frontend build output.
+                """
+            ),
+        ],
+        fallback: Annotated[
+            Literal["auto", "index.html", "404.html"] | None,
+            Doc(
+                """
+                The fallback file behavior for missing frontend paths.
+                """
+            ),
+        ] = "auto",
+        check_dir: Annotated[
+            bool | Literal["auto"],
+            Doc(
+                """
+                Check that the frontend directory exists when the app is created. When
+                set to `"auto"`, skip the check with a warning when `FASTAPI_ENV` is
+                `"development"`, and check it otherwise. The `fastapi dev` command
+                sets `FASTAPI_ENV` to `"development"` if it is not already set.
+                """
+            ),
+        ] = "auto",
+    ) -> None:
+        """
+        Serve a static frontend build as low-priority routes.
+
+        Use this for frontend tools that build static files into a directory,
+        such as `dist`. **FastAPI** path operations are checked first, and
+        the frontend files are checked only if no normal route matched.
+
+        A typical project could look like this:
+
+        ```text
+        .
+        ├── pyproject.toml
+        ├── app
+        │   ├── __init__.py
+        │   └── main.py
+        └── dist
+            ├── index.html
+            └── assets
+                └── app.js
+        ```
+
+        Then in `app/main.py`:
+
+        ```python
+        from fastapi import FastAPI
+
+        app = FastAPI()
+        app.frontend("/", directory="dist")
+        ```
+        """
+        check_dir = routing._resolve_frontend_check_dir(
+            directory=directory, check_dir=check_dir
+        )
+        self.router.frontend(
+            path,
+            directory=directory,
+            fallback=fallback,
+            check_dir=check_dir,
         )
 
     def api_route(
@@ -4638,7 +4785,7 @@ class FastAPI(Starlette):
         """
 
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
-            self.add_middleware(BaseHTTPMiddleware, dispatch=func)  # ty: ignore[invalid-argument-type]
+            self.add_middleware(BaseHTTPMiddleware, dispatch=func)
             return func
 
         return decorator

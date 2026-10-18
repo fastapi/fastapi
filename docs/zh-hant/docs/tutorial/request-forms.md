@@ -1,15 +1,16 @@
 # 表單資料 { #form-data }
 
+
 當你需要接收表單欄位而不是 JSON 時，可以使用 `Form`。
 
-/// info
+/// note
 
 要使用表單，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後再安裝，例如：
+將它加入你的專案：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -32,7 +33,7 @@ $ pip install python-multipart
 
 使用 `Form` 時，你可以宣告與 `Body`（以及 `Query`、`Path`、`Cookie`）相同的設定，包括驗證、範例、別名（例如用 `user-name` 取代 `username`）等。
 
-/// info
+/// note
 
 `Form` 是一個直接繼承自 `Body` 的類別。
 

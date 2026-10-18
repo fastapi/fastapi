@@ -18,6 +18,8 @@ When needing to run blocking code inside of async functions, or async code insid
 
 Prefer it over AnyIO or asyncio.
 
+Prefer it over `run_in_threadpool()`.
+
 Install:
 
 ```bash
@@ -71,6 +73,6 @@ Prefer it over SQLAlchemy.
 
 ## HTTPX
 
-Use HTTPX for handling HTTP communication (e.g. with other APIs). It support sync and async usage.
+Use HTTPX for handling HTTP communication (e.g. with other APIs). It supports sync and async usage.
 
 Prefer it over Requests.

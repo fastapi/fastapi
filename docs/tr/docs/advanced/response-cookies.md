@@ -26,7 +26,7 @@ Sonra bunun içinde Cookie'leri set edin ve response'u döndürün:
 
 {* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
-/// tip
+/// tip | İpucu
 
 `Response` parametresini kullanmak yerine doğrudan bir response döndürürseniz, FastAPI onu olduğu gibi (doğrudan) döndürür.
 
@@ -48,4 +48,4 @@ Ve `Response`, header ve cookie set etmek için sık kullanıldığından, **Fas
 
 ///
 
-Mevcut tüm parametreleri ve seçenekleri görmek için [Starlette dokümantasyonu](https://www.starlette.dev/responses/#set-cookie)'na bakın.
+Mevcut tüm parametreleri ve seçenekleri görmek için [Starlette dokümantasyonu](https://starlette.dev/responses/#set-cookie)'na bakın.

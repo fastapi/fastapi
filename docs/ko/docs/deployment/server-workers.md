@@ -17,7 +17,7 @@
 
 여기서는 `fastapi` 명령어를 사용하거나 `uvicorn` 명령어를 직접 사용해서, **워커 프로세스**와 함께 **Uvicorn**을 사용하는 방법을 보여드리겠습니다.
 
-/// info | 정보
+/// note | 참고
 
 Docker나 Kubernetes 같은 컨테이너를 사용하고 있다면, 다음 장인 [컨테이너에서의 FastAPI - 도커](docker.md)에서 더 자세히 설명하겠습니다.
 
@@ -86,7 +86,7 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
+$ uv run uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 <font color="#A6E22E">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8080</b> (Press CTRL+C to quit)
 <font color="#A6E22E">INFO</font>:     Started parent process [<font color="#A1EFE4"><b>27365</b></font>]
 <font color="#A6E22E">INFO</font>:     Started server process [<font color="#A1EFE4">27368</font>]

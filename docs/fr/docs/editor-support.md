@@ -1,6 +1,6 @@
 # Prise en charge des éditeurs { #editor-support }
 
-L’extension officielle [Extension FastAPI](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) améliore votre flux de développement FastAPI grâce à la découverte des chemins d'accès, à la navigation, ainsi qu’au déploiement sur FastAPI Cloud et à la diffusion en direct des journaux.
+L’extension officielle [Extension FastAPI](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) améliore votre flux de développement FastAPI grâce à la découverte des *chemins d'accès*, à la navigation, ainsi qu’au déploiement sur FastAPI Cloud et à la diffusion en direct des journaux.
 
 Pour plus de détails sur l’extension, reportez-vous au README sur le [référentiel GitHub](https://github.com/fastapi/fastapi-vscode).
 

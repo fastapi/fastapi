@@ -8,7 +8,7 @@
 
 ## Добавление ASGI middleware { #adding-asgi-middlewares }
 
-Так как **FastAPI** основан на Starlette и реализует спецификацию <abbr title="Asynchronous Server Gateway Interface – Асинхронный шлюзовой интерфейс сервера">ASGI</abbr>, вы можете использовать любое ASGI middleware.
+Так как **FastAPI** основан на Starlette и реализует спецификацию <abbr title="Asynchronous Server Gateway Interface - Асинхронный шлюзовой интерфейс сервера">ASGI</abbr>, вы можете использовать любое ASGI middleware.
 
 Middleware не обязательно должно быть сделано специально для FastAPI или Starlette — достаточно, чтобы оно соответствовало спецификации ASGI.
 
@@ -24,7 +24,7 @@ app = SomeASGIApp()
 new_app = UnicornMiddleware(app, some_config="rainbow")
 ```
 
-Но FastAPI (точнее, Starlette) предоставляет более простой способ, который гарантирует корректную обработку внутренних ошибок сервера и корректную работу пользовательских обработчиков исключений.
+Но FastAPI (точнее, Starlette) предоставляет более простой способ, который гарантирует, что внутренние middleware обрабатывают ошибки сервера, а пользовательские обработчики исключений работают корректно.
 
 Для этого используйте `app.add_middleware()` (как в примере с CORS).
 
@@ -53,37 +53,37 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 ## `HTTPSRedirectMiddleware` { #httpsredirectmiddleware }
 
-Гарантирует, что все входящие запросы должны использовать либо `https`, либо `wss`.
+Гарантирует, что все входящие HTTP-запросы должны использовать либо `https`, либо `wss`.
 
-Любой входящий запрос по `http` или `ws` будет перенаправлен на безопасную схему.
+Любой входящий HTTP-запрос по `http` или `ws` будет перенаправлен на безопасную схему.
 
 {* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
-Гарантирует, что во всех входящих запросах корректно установлен `Host`‑заголовок, чтобы защититься от атак на HTTP‑заголовок Host.
+Гарантирует, что во всех входящих HTTP-запросах корректно установлен `Host` HTTP-заголовок, чтобы защититься от атак на HTTP-заголовок Host.
 
 {* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
 Поддерживаются следующие аргументы:
 
-- `allowed_hosts` — список доменных имён, которые следует разрешить как имена хостов. Подстановки вида `*.example.com` поддерживаются для сопоставления поддоменов. Чтобы разрешить любой хост, используйте либо `allowed_hosts=["*"]`, либо не добавляйте это middleware.
-- `www_redirect` — если установлено в True, запросы к не‑www версиям разрешённых хостов будут перенаправляться на их www‑аналоги. По умолчанию — `True`.
+* `allowed_hosts` - список доменных имён, которые следует разрешить как имена хостов. Подстановки вида `*.example.com` поддерживаются для сопоставления поддоменов. Чтобы разрешить любой хост, используйте либо `allowed_hosts=["*"]`, либо не добавляйте это middleware.
+* `www_redirect` - если установлено в True, запросы к не‑www версиям разрешённых хостов будут перенаправляться на их www‑аналоги. По умолчанию — `True`.
 
-Если входящий запрос не проходит валидацию, будет отправлен ответ `400`.
+Если входящий HTTP-запрос не проходит валидацию, будет отправлен HTTP-ответ `400`.
 
 ## `GZipMiddleware` { #gzipmiddleware }
 
-Обрабатывает GZip‑ответы для любых запросов, которые включают `"gzip"` в заголовке `Accept-Encoding`.
+Обрабатывает GZip‑ответы для любого HTTP-запроса, который включает `"gzip"` в HTTP-заголовке `Accept-Encoding`.
 
-Это middleware обрабатывает как обычные, так и потоковые ответы.
+Это middleware обрабатывает как обычные, так и потоковые HTTP-ответы.
 
 {* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
 Поддерживаются следующие аргументы:
 
-- `minimum_size` — не сжимать GZip‑ом ответы, размер которых меньше этого минимального значения в байтах. По умолчанию — `500`.
-- `compresslevel` — уровень GZip‑сжатия. Целое число от 1 до 9. По умолчанию — `9`. Более низкое значение — быстрее сжатие, но больший размер файла; более высокое значение — более медленное сжатие, но меньший размер файла.
+* `minimum_size` - не сжимать GZip‑ом HTTP-ответы, размер которых меньше этого минимального значения в байтах. По умолчанию — `500`.
+* `compresslevel` - уровень GZip‑сжатия. Целое число от 1 до 9. По умолчанию — `9`. Более низкое значение — быстрее сжатие, но больший размер файла; более высокое значение — более медленное сжатие, но меньший размер файла.
 
 ## Другие middleware { #other-middlewares }
 
@@ -91,7 +91,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 Например:
 
-- [`ProxyHeadersMiddleware` от Uvicorn](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
-- [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
+* [`ProxyHeadersMiddleware` от Uvicorn](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
+* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Чтобы увидеть другие доступные middleware, посмотрите [документацию по middleware в Starlette](https://www.starlette.dev/middleware/) и [список ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).
+Чтобы увидеть другие доступные middleware, посмотрите [документацию по middleware в Starlette](https://starlette.dev/middleware/) и [список ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).

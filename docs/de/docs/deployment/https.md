@@ -21,10 +21,10 @@ Aus **Sicht des Entwicklers** sollten Sie beim Nachdenken über HTTPS Folgendes 
     * Und dann müssen sie vom Dritten **erneuert**, **erneut erworben** werden.
 * Die Verschlüsselung der Verbindung erfolgt auf **TCP-Ebene**.
     * Das ist eine Schicht **unter HTTP**.
-    * Die Handhabung von **Zertifikaten und Verschlüsselung** erfolgt also **vor HTTP**.
+    * Die **Zertifikats- und Verschlüsselungs**-Handhabung erfolgt also **vor HTTP**.
 * **TCP weiß nichts über „Domains“**. Nur über IP-Adressen.
     * Die Informationen über die angeforderte **spezifische Domain** befinden sich in den **HTTP-Daten**.
-* Die **HTTPS-Zertifikate** „zertifizieren“ eine **bestimmte Domain**, aber das Protokoll und die Verschlüsselung erfolgen auf TCP-Ebene, **ohne zu wissen**, um welche Domain es sich handelt.
+* Die **HTTPS-Zertifikate** „zertifizieren“ eine **bestimmte Domain**, aber das Protokoll und die Verschlüsselung erfolgen auf TCP-Ebene, **bevor bekannt ist**, um welche Domain es sich handelt.
 * **Standardmäßig** bedeutet das, dass Sie nur **ein HTTPS-Zertifikat pro IP-Adresse** haben können.
     * Ganz gleich, wie groß Ihr Server ist oder wie klein die einzelnen Anwendungen darauf sind.
     * Hierfür gibt es jedoch eine **Lösung**.
@@ -194,7 +194,7 @@ Dieser ganze Erneuerungsprozess, während die Anwendung weiterhin bereitgestellt
 
 Wenn Sie einen Proxy zur Verarbeitung von HTTPS verwenden, weiß Ihr **Anwendungsserver** (z. B. Uvicorn über das FastAPI CLI) nichts über den HTTPS-Prozess, er kommuniziert per einfachem HTTP mit dem **TLS-Terminierungsproxy**.
 
-Dieser **Proxy** würde normalerweise unmittelbar vor dem Übermitteln der Anfrage an den **Anwendungsserver** einige HTTP-Header dynamisch setzen, um dem Anwendungsserver mitzuteilen, dass der Request vom Proxy **weitergeleitet** wird.
+Dieser **Proxy** würde normalerweise unmittelbar vor dem Übermitteln des Requests an den **Anwendungsserver** einige HTTP-Header dynamisch setzen, um dem Anwendungsserver mitzuteilen, dass der Request vom Proxy **weitergeleitet** wird.
 
 /// note | Technische Details
 

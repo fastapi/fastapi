@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -33,7 +38,7 @@
 
 ---
 
-FastAPI é um framework web moderno e rápido (alta performance) para construção de APIs com Python, baseado nos type hints padrões do Python.
+FastAPI é um framework web moderno e rápido (alta performance) para construção de APIs com Python, baseado nas anotações de tipo padrão do Python.
 
 Os recursos chave são:
 
@@ -41,7 +46,7 @@ Os recursos chave são:
 * **Rápido para codar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
 * **Poucos bugs**: Reduz cerca de 40% de erros induzidos por humanos (desenvolvedores). *
 * **Intuitivo**: Grande suporte a editores. <dfn title="também conhecido como: autocompletar, preenchimento automático, IntelliSense">Completação</dfn> em todos os lugares. Menos tempo debugando.
-* **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo docs.
+* **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo documentação.
 * **Enxuto**: Minimize duplicação de código. Múltiplas funcionalidades para cada declaração de parâmetro. Menos bugs.
 * **Robusto**: Tenha código pronto para produção. E com documentação interativa automática.
 * **Baseado em padrões**: Baseado em (e totalmente compatível com) os padrões abertos para APIs: [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (anteriormente conhecido como Swagger) e [JSON Schema](https://json-schema.org/).
@@ -54,24 +59,71 @@ Os recursos chave são:
 
 ### Patrocinador Keystone { #keystone-sponsor }
 
+<div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--keystone" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}"></a>
 {% endfor -%}
+</div>
 
-### Patrocinadores Ouro e Prata { #gold-and-silver-sponsors }
+### Patrocinadores Ouro { #gold-sponsors }
 
+<div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--gold" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor -%}
-{%- for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+</div>
+
+### Patrocinadores Prata { #silver-sponsors }
+
+<div class="fastapi-sponsors fastapi-sponsors--silver">
+{% for sponsor in sponsors.silver -%}
+<a class="fastapi-sponsors__card fastapi-sponsors__card--silver" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor %}
+</div>
 
 <!-- /sponsors -->
 
 [Outros patrocinadores](https://fastapi.tiangolo.com/pt/fastapi-people/#sponsors)
 
 ## Opiniões { #opinions }
+
+<!-- only-mkdocs -->
+<div class="fastapi-opinions" data-fastapi-opinions>
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Empresas que usam FastAPI">
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-uber" aria-controls="fo-panel-uber" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/uber.svg" alt="Uber" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-netflix" aria-controls="fo-panel-netflix" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-cisco" aria-controls="fo-panel-cisco" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
+    </button>
+  </div>
+
+  <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
+    <blockquote class="fastapi-opinions__quote">"Estou usando o <strong>FastAPI</strong> muito esses dias. Estou na verdade planejando utilizá-lo em todos os meus times de <strong>serviços ML na Microsoft</strong>. Alguns deles estão sendo integrados no produto <strong>Windows</strong> principal e alguns produtos do <strong>Office</strong>."</blockquote>
+    <div class="fastapi-opinions__attr">— Kabir Khan, <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"Nós adotamos a biblioteca <strong>FastAPI</strong> para iniciar um servidor <strong>REST</strong> que pode ser consultado para obter <strong>previsões</strong>." <em>[para o Ludwig]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"A <strong>Netflix</strong> tem o prazer de anunciar o lançamento open-source do nosso framework de orquestração de <strong>gerenciamento de crises</strong>: <strong>Dispatch</strong>!" <em>[criado com FastAPI]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Kevin Glisson, Marc Vilanova, Forest Monsen, <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-cisco" role="tabpanel" aria-labelledby="fo-tab-cisco" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"Se alguém estiver procurando construir uma API Python para produção, eu recomendaria fortemente o <strong>FastAPI</strong>. Ele é <strong>lindamente projetado</strong>, <strong>simples de usar</strong> e <strong>altamente escalável</strong> — tornou-se um <strong>componente chave</strong> na nossa estratégia de desenvolvimento API-first."</blockquote>
+    <div class="fastapi-opinions__attr">— Deon Pillsbury, <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(ref)</a></div>
+  </div>
+</div>
+<!-- /only-mkdocs -->
+
+<div class="only-github" markdown="1">
 
 "_[...] Estou usando **FastAPI** muito esses dias. [...] Estou na verdade planejando utilizar ele em todos os times de **serviços ML na Microsoft**. Alguns deles estão sendo integrados no _core_ do produto **Windows** e alguns produtos **Office**._"
 
@@ -81,7 +133,7 @@ Os recursos chave são:
 
 "_Nós adotamos a biblioteca **FastAPI** para iniciar um servidor **REST** que pode ser consultado para obter **previsões**. [para o Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, e Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, e Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -91,37 +143,19 @@ Os recursos chave são:
 
 ---
 
-"_Estou muito entusiasmado com o **FastAPI**. É tão divertido!_"
-
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>[Python Bytes](https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855) apresentador do podcast</strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
-
----
-
-"_Honestamente, o que você construiu parece super sólido e refinado. De muitas formas, é o que eu queria que o **Hug** fosse - é realmente inspirador ver alguém construir isso._"
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>criador do [Hug](https://github.com/hugapi/hug)</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
-
----
-
-"_Se você está procurando aprender um **framework moderno** para construir APIs REST, dê uma olhada no **FastAPI** [...] É rápido, fácil de usar e fácil de aprender [...]_"
-
-"_Nós trocamos nossas **APIs** por **FastAPI** [...] Acredito que você gostará dele [...]_"
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>fundadores da [Explosion AI](https://explosion.ai) - criadores da [spaCy](https://spacy.io)</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
-
----
-
 "_Se alguém estiver procurando construir uma API Python para produção, eu recomendaria fortemente o **FastAPI**. Ele é **lindamente projetado**, **simples de usar** e **altamente escalável**, e se tornou um **componente chave** para a nossa estratégia de desenvolvimento API first, impulsionando diversas automações e serviços, como o nosso Virtual TAC Engineer._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
 ---
 
+</div>
+
 ## Mini documentário do FastAPI { #fastapi-mini-documentary }
 
 Há um [mini documentário do FastAPI](https://www.youtube.com/watch?v=mpR8ngthqiE) lançado no fim de 2025, você pode assisti-lo online:
 
-<a href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## **Typer**, o FastAPI das interfaces de linhas de comando { #typer-the-fastapi-of-clis }
 
@@ -135,17 +169,17 @@ Se você estiver construindo uma aplicação <abbr title="Command Line Interface
 
 FastAPI está nos ombros de gigantes:
 
-* [Starlette](https://www.starlette.dev/) para as partes web.
-* [Pydantic](https://docs.pydantic.dev/) para a parte de dados.
+* [Starlette](https://starlette.dev/) para as partes web.
+* [Pydantic](https://pydantic.dev/docs/) para a parte de dados.
 
 ## Instalação { #installation }
 
-Crie e ative um [ambiente virtual](https://fastapi.tiangolo.com/pt/virtual-environments/) e então instale o FastAPI:
+Primeiro, [instale o `uv`](https://docs.astral.sh/uv/getting-started/installation/), e então adicione o FastAPI ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -153,6 +187,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **Nota**: Certifique-se de que você colocou `"fastapi[standard]"` com aspas, para garantir que funcione em todos os terminais.
+
+Se você preferir usar `pip`, instale `fastapi[standard]` dentro de um ambiente virtual. Veja o [guia de instalação](tutorial/#install-fastapi) para os passos alternativos.
 
 ## Exemplo { #example }
 
@@ -199,7 +235,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **Nota**:
 
-Se você não sabe, verifique a seção _"Com pressa?"_ sobre [`async` e `await` nas docs](https://fastapi.tiangolo.com/pt/async/#in-a-hurry).
+Se você não sabe, verifique a seção _"Com pressa?"_ sobre [`async` e `await` na documentação](https://fastapi.tiangolo.com/pt/async/#in-a-hurry).
 
 </details>
 
@@ -210,7 +246,7 @@ Rode o servidor com:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -237,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Sobre o comando <code>fastapi dev</code>...</summary>
 
-O comando `fastapi dev` lê automaticamente o seu arquivo `main.py`, detecta a aplicação **FastAPI** nele e inicia um servidor usando o [Uvicorn](https://www.uvicorn.dev).
+O comando `fastapi dev` lê automaticamente o seu arquivo `main.py`, detecta a aplicação **FastAPI** nele e inicia um servidor usando o [Uvicorn](https://uvicorn.dev).
 
 Por padrão, o `fastapi dev` iniciará com auto-reload habilitado para desenvolvimento local.
 
@@ -274,7 +310,7 @@ Você verá a documentação automática interativa da API (fornecida por [Swagg
 
 E agora, vá para [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Você verá a documentação automática alternativa (fornecida por [ReDoc](https://github.com/Rebilly/ReDoc)):
+Você verá a documentação automática alternativa (fornecida por [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -429,7 +465,7 @@ Experimente mudar a seguinte linha:
         ... "item_price": item.price ...
 ```
 
-...e veja como seu editor irá auto-completar os atributos e saberá os tipos:
+...e veja como seu editor irá autocompletar os atributos e saberá os tipos:
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -452,14 +488,12 @@ Para um exemplo mais completo incluindo mais recursos, veja o <a href="https://f
 
 ### Implemente sua aplicação (opcional) { #deploy-your-app-optional }
 
-Você pode opcionalmente implantar sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com), vá e entre na lista de espera se ainda não o fez. 🚀
-
-Se você já tem uma conta na **FastAPI Cloud** (nós convidamos você da lista de espera 😉), pode implantar sua aplicação com um único comando.
+Você pode opcionalmente implantar sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com) com um único comando. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -469,6 +503,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+A CLI detectará automaticamente sua aplicação FastAPI e a implantará na nuvem. Se você não estiver autenticado, o navegador será aberto para concluir o processo de autenticação.
 
 É isso! Agora você pode acessar sua aplicação nesse URL. ✨
 
@@ -480,7 +516,7 @@ Ela simplifica o processo de **construir**, **implantar** e **acessar** uma API 
 
 Traz a mesma **experiência do desenvolvedor** de construir aplicações com FastAPI para **implantá-las** na nuvem. 🎉
 
-A FastAPI Cloud é a principal patrocinadora e financiadora dos projetos open source do ecossistema *FastAPI and friends*. ✨
+A FastAPI Cloud é a principal patrocinadora e financiadora dos projetos open source *FastAPI and friends*. ✨
 
 #### Implante em outros provedores de nuvem { #deploy-to-other-cloud-providers }
 
@@ -500,7 +536,7 @@ O FastAPI depende do Pydantic e do Starlette.
 
 ### Dependências `standard` { #standard-dependencies }
 
-Quando você instala o FastAPI com `pip install "fastapi[standard]"`, ele vem com o grupo `standard` de dependências opcionais:
+Quando você instala o FastAPI com `uv add "fastapi[standard]"`, ele vem com o grupo `standard` de dependências opcionais:
 
 Utilizado pelo Pydantic:
 
@@ -514,17 +550,17 @@ Utilizado pelo Starlette:
 
 Utilizado pelo FastAPI:
 
-* [`uvicorn`](https://www.uvicorn.dev) - para o servidor que carrega e serve a sua aplicação. Isto inclui `uvicorn[standard]`, que inclui algumas dependências (e.g. `uvloop`) necessárias para servir em alta performance.
+* [`uvicorn`](https://uvicorn.dev) - para o servidor que carrega e serve a sua aplicação. Isto inclui `uvicorn[standard]`, que inclui algumas dependências (e.g. `uvloop`) necessárias para servir em alta performance.
 * `fastapi-cli[standard]` - que disponibiliza o comando `fastapi`.
     * Isso inclui `fastapi-cloud-cli`, que permite implantar sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com).
 
 ### Sem as dependências `standard` { #without-standard-dependencies }
 
-Se você não deseja incluir as dependências opcionais `standard`, você pode instalar utilizando `pip install fastapi` ao invés de `pip install "fastapi[standard]"`.
+Se você não deseja incluir as dependências opcionais `standard`, você pode instalar utilizando `uv add fastapi` ao invés de `uv add "fastapi[standard]"`.
 
 ### Sem o `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
-Se você quiser instalar o FastAPI com as dependências padrão, mas sem o `fastapi-cloud-cli`, você pode instalar com `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+Se você quiser instalar o FastAPI com as dependências padrão, mas sem o `fastapi-cloud-cli`, você pode instalar com `uv add "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ### Dependências opcionais adicionais { #additional-optional-dependencies }
 
@@ -532,13 +568,13 @@ Existem algumas dependências adicionais que você pode querer instalar.
 
 Dependências opcionais adicionais do Pydantic:
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - para gerenciamento de configurações.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - para tipos extras a serem utilizados com o Pydantic.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - para gerenciamento de configurações.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - para tipos extras a serem utilizados com o Pydantic.
 
 Dependências opcionais adicionais do FastAPI:
 
 * [`orjson`](https://github.com/ijl/orjson) - Obrigatório se você deseja utilizar o `ORJSONResponse`.
-* [`ujson`](https://github.com/esnme/ultrajson) - Obrigatório se você deseja utilizar o `UJSONResponse`.
+* [`ujson`](https://github.com/ultrajson/ultrajson) - Obrigatório se você deseja utilizar o `UJSONResponse`.
 
 ## Licença { #license }
 

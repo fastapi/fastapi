@@ -14,7 +14,7 @@ Un middleware n'a pas besoin d'être conçu pour FastAPI ou Starlette pour fonct
 
 En général, les middlewares ASGI sont des classes qui s'attendent à recevoir une application ASGI en premier argument.
 
-Ainsi, dans la documentation de middlewares ASGI tiers, on vous indiquera probablement de faire quelque chose comme :
+Ainsi, dans la documentation de middlewares ASGI tiers, on vous indiquera probablement de faire quelque chose comme :
 
 ```Python
 from unicorn import UnicornMiddleware
@@ -65,10 +65,10 @@ Impose que toutes les requêtes entrantes aient un en-tête `Host` correctement 
 
 {* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
 
-Les arguments suivants sont pris en charge :
+Les arguments suivants sont pris en charge :
 
-- `allowed_hosts` - Une liste de noms de domaine autorisés comme noms d'hôte. Les domaines génériques tels que `*.example.com` sont pris en charge pour faire correspondre les sous-domaines. Pour autoriser n'importe quel nom d'hôte, utilisez `allowed_hosts=["*"]` ou omettez le middleware.
-- `www_redirect` - Si défini à `True`, les requêtes vers les versions sans www des hôtes autorisés seront redirigées vers leurs équivalents avec www. Valeur par défaut : `True`.
+* `allowed_hosts` - Une liste de noms de domaine autorisés comme noms d'hôte. Les domaines génériques tels que `*.example.com` sont pris en charge pour faire correspondre les sous-domaines. Pour autoriser n'importe quel nom d'hôte, utilisez `allowed_hosts=["*"]` ou omettez le middleware.
+* `www_redirect` - Si défini à True, les requêtes vers les versions sans www des hôtes autorisés seront redirigées vers leurs équivalents avec www. Valeur par défaut : `True`.
 
 Si une requête entrante n'est pas valide, une réponse `400` sera envoyée.
 
@@ -80,18 +80,18 @@ Le middleware gérera les réponses standard et en streaming.
 
 {* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
 
-Les arguments suivants sont pris en charge :
+Les arguments suivants sont pris en charge :
 
-- `minimum_size` - Ne pas compresser en GZip les réponses dont la taille est inférieure à ce minimum en octets. Valeur par défaut : `500`.
-- `compresslevel` - Utilisé pendant la compression GZip. Entier compris entre 1 et 9. Valeur par défaut : `9`. Une valeur plus faible entraîne une compression plus rapide mais des fichiers plus volumineux, tandis qu'une valeur plus élevée entraîne une compression plus lente mais des fichiers plus petits.
+* `minimum_size` - Ne pas compresser en GZip les réponses dont la taille est inférieure à ce minimum en octets. Valeur par défaut : `500`.
+* `compresslevel` - Utilisé pendant la compression GZip. Entier compris entre 1 et 9. Valeur par défaut : `9`. Une valeur plus faible entraîne une compression plus rapide mais des fichiers plus volumineux, tandis qu'une valeur plus élevée entraîne une compression plus lente mais des fichiers plus petits.
 
 ## Autres middlewares { #other-middlewares }
 
 Il existe de nombreux autres middlewares ASGI.
 
-Par exemple :
+Par exemple :
 
-- [Le `ProxyHeadersMiddleware` d'Uvicorn](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
-- [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
+* [Le `ProxyHeadersMiddleware` d'Uvicorn](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
+* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Pour voir d'autres middlewares disponibles, consultez la [documentation des middlewares de Starlette](https://www.starlette.dev/middleware/) et la [liste ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).
+Pour voir d'autres middlewares disponibles, consultez la [documentation des middlewares de Starlette](https://starlette.dev/middleware/) et la [liste ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).

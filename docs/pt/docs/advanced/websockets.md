@@ -4,12 +4,12 @@ Você pode usar [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/We
 
 ## Instale `websockets` { #install-websockets }
 
-Garanta que você criou um [ambiente virtual](../virtual-environments.md), o ativou e instalou o `websockets` (uma biblioteca Python que facilita o uso do protocolo "WebSocket"):
+Adicione `websockets` (uma biblioteca Python que facilita o uso do protocolo "WebSocket") ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -69,7 +69,7 @@ Coloque seu código em um arquivo `main.py` e então execute sua aplicação:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -111,7 +111,7 @@ Eles funcionam da mesma forma que para outros endpoints FastAPI/*operações de 
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info | Informação
+/// note | Nota
 
 Como isso é um WebSocket, não faz muito sentido levantar uma `HTTPException`, em vez disso levantamos uma `WebSocketException`.
 
@@ -126,7 +126,7 @@ Execute sua aplicação:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -182,5 +182,5 @@ Se você precisa de algo fácil de integrar com o FastAPI, mas que seja mais rob
 
 Para aprender mais sobre as opções, verifique a documentação do Starlette para:
 
-* [A classe `WebSocket`](https://www.starlette.dev/websockets/).
-* [Manipulação de WebSockets baseada em classes](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [A classe `WebSocket`](https://starlette.dev/websockets/).
+* [Manipulação de WebSockets baseada em classes](https://starlette.dev/endpoints/#websocketendpoint).

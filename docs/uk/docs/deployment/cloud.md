@@ -16,9 +16,8 @@ FastAPI Cloud є основним спонсором і джерелом фін�
 
 ## Хмарні постачальники - спонсори { #cloud-providers-sponsors }
 
-Деякі інші хмарні постачальники ✨ [**спонсорують FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ також. 🙇
+Деякі інші хмарні постачальники ✨ [**спонсорують FastAPI**](https://github.com/sponsors/tiangolo) ✨ також. 🙇
 
 Можливо, ви захочете розглянути їх, щоб дотримуватися їхніх інструкцій і спробувати їхні сервіси:
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

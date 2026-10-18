@@ -2,6 +2,14 @@
 
 `StaticFiles` kullanarak bir dizindeki statik dosyaları otomatik olarak sunabilirsiniz.
 
+/// tip | İpucu
+
+Bir frontend host etmeniz gerekiyorsa, bunun yerine `app.frontend()` kullanın; bununla ilgili bilgileri [Frontend](frontend.md) bölümünde okuyabilirsiniz.
+
+`app.frontend()`, altında `StaticFiles` kullanır ve frontend'ler için client-side routing'i handle etmek gibi ek avantajlar sağlar.
+
+///
+
 ## `StaticFiles` Kullanımı { #use-staticfiles }
 
 * `StaticFiles`'ı import edin.
@@ -37,4 +45,4 @@ Bu parametrelerin hepsi "`static`" ile aynı olmak zorunda değildir; kendi uygu
 
 ## Daha Fazla Bilgi { #more-info }
 
-Daha fazla detay ve seçenek için [Starlette'in Statik Dosyalar hakkındaki dokümanlarını](https://www.starlette.dev/staticfiles/) inceleyin.
+Daha fazla detay ve seçenek için [Starlette'in Statik Dosyalar hakkındaki dokümanlarını](https://starlette.dev/staticfiles/) inceleyin.

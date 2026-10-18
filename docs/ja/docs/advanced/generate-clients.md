@@ -12,29 +12,13 @@
 
 **TypeScript クライアント**向けには、[Hey API](https://heyapi.dev/) が目的特化のソリューションで、TypeScript エコシステムに最適化された体験を提供します。
 
-他の SDK ジェネレータは [OpenAPI.Tools](https://openapi.tools/#sdk) でも見つけられます。
+他の SDK ジェネレータは [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) でも見つけられます。
 
 /// tip | 豆知識
 
 FastAPI は自動的に **OpenAPI 3.1** の仕様を生成します。したがって、使用するツールはこのバージョンをサポートしている必要があります。
 
 ///
-
-## FastAPI スポンサーによる SDK ジェネレータ { #sdk-generators-from-fastapi-sponsors }
-
-このセクションでは、FastAPI をスポンサーしている企業による、**ベンチャー支援**および**企業支援**のソリューションを紹介します。これらの製品は、高品質な生成 SDK に加えて、**追加機能**や**統合**を提供します。
-
-✨ [**FastAPI をスポンサーする**](../help-fastapi.md#sponsor-the-author) ✨ ことで、これらの企業はフレームワークとその**エコシステム**の健全性と**持続可能性**を支援しています。
-
-この支援は、FastAPI の**コミュニティ**（皆さん）への強いコミットメントの表明でもあり、**優れたサービス**の提供だけでなく、堅牢で発展するフレームワーク FastAPI を支える姿勢を示しています。🙇
-
-例えば、次のようなものがあります:
-
-* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
-
-これらのソリューションの中にはオープンソースや無料枠を提供するものもあり、金銭的コミットメントなしで試すことができます。他の商用 SDK ジェネレータも存在し、オンラインで見つけられます。🤓
 
 ## TypeScript SDK を作成する { #create-a-typescript-sdk }
 

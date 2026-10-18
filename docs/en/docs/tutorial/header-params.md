@@ -24,7 +24,7 @@ But remember that when you import `Query`, `Path`, `Header`, and others from `fa
 
 ///
 
-/// info
+/// note
 
 To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.
 

@@ -17,7 +17,7 @@
 
 在本章节中，我将向您展示如何使用 `fastapi` 命令或直接使用 `uvicorn` 命令以**多工作进程模式**运行 **Uvicorn**。
 
-/// info | 信息
+/// note | 注意
 
 如果您正在使用容器，例如 Docker 或 Kubernetes，我将在下一章中告诉您更多相关信息：[容器中的 FastAPI - Docker](docker.md)。
 
@@ -86,7 +86,7 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
+$ uv run uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 <font color="#A6E22E">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8080</b> (Press CTRL+C to quit)
 <font color="#A6E22E">INFO</font>:     Started parent process [<font color="#A1EFE4"><b>27365</b></font>]
 <font color="#A6E22E">INFO</font>:     Started server process [<font color="#A1EFE4">27368</font>]

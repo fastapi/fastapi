@@ -1,6 +1,6 @@
 # Handling Errors { #handling-errors }
 
-There are many situations in which you need to notify an error to a client that is using your API.
+There are many situations in which you need to report an error to a client that is using your API.
 
 This client could be a browser with a frontend, a code from someone else, an IoT device, etc.
 
@@ -71,7 +71,7 @@ They are handled automatically by **FastAPI** and converted to JSON.
 
 ## Add custom headers { #add-custom-headers }
 
-There are some situations in where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.
+There are some situations where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.
 
 You probably won't need to use it directly in your code.
 
@@ -81,7 +81,7 @@ But in case you needed it for an advanced scenario, you can add custom headers:
 
 ## Install custom exception handlers { #install-custom-exception-handlers }
 
-You can add custom exception handlers with [the same exception utilities from Starlette](https://www.starlette.dev/exceptions/).
+You can add custom exception handlers with [the same exception utilities from Starlette](https://starlette.dev/exceptions/).
 
 Let's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`.
 

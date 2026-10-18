@@ -35,7 +35,7 @@
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info | 정보
+/// note | 참고
 
 *경로 처리 함수*에서는 `query_or_cookie_extractor`라는 의존성 하나만 선언하고 있다는 점에 주목하세요.
 

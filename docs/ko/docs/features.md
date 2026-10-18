@@ -19,7 +19,7 @@
 
 ![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* [**ReDoc**](https://github.com/Rebilly/ReDoc)을 이용한 대체 API 문서화.
+* [**ReDoc**](https://github.com/Redocly/redoc)을 이용한 대체 API 문서화.
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info | 정보
+/// note | 참고
 
 `**second_user_data`는 다음을 의미합니다:
 
@@ -159,7 +159,7 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <dfn title='또한 �
 
 ## Starlette 기능 { #starlette-features }
 
-**FastAPI**는 [**Starlette**](https://www.starlette.dev/)와 완전히 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Starlette 코드도 모두 동작합니다.
+**FastAPI**는 [**Starlette**](https://starlette.dev/)와 완전히 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Starlette 코드도 모두 동작합니다.
 
 `FastAPI`는 실제로 `Starlette`의 하위 클래스입니다. 그래서 Starlette을 이미 알고 있거나 사용하고 있다면, 대부분의 기능이 같은 방식으로 동작할 것입니다.
 
@@ -172,12 +172,12 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <dfn title='또한 �
 * HTTPX 기반 테스트 클라이언트.
 * **CORS**, GZip, 정적 파일, 스트리밍 응답.
 * **세션과 쿠키** 지원.
-* 100% test coverage.
-* 100% type annotated codebase.
+* 100% 테스트 커버리지.
+* 100% 타입 어노테이션 코드 베이스.
 
 ## Pydantic 기능 { #pydantic-features }
 
-**FastAPI**는 [**Pydantic**](https://docs.pydantic.dev/)과 완벽하게 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Pydantic 코드도 모두 동작합니다.
+**FastAPI**는 [**Pydantic**](https://pydantic.dev/docs/)과 완벽하게 호환되며(또한 이를 기반으로 합니다). 따라서 추가로 가지고 있는 Pydantic 코드도 모두 동작합니다.
 
 데이터베이스를 위한 <abbr title="Object-Relational Mapper - 객체-관계 매퍼">ORM</abbr>, <abbr title="Object-Document Mapper - 객체-문서 매퍼">ODM</abbr>과 같은, Pydantic을 기반으로 하는 외부 라이브러리도 포함합니다.
 
@@ -198,4 +198,4 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <dfn title='또한 �
     * 깊게 **중첩된 JSON** 객체를 가질 수 있으며, 이를 모두 검증하고 주석을 달 수 있습니다.
 * **확장 가능**:
     * Pydantic은 사용자 정의 데이터 타입을 정의할 수 있게 하거나, validator decorator가 붙은 모델 메서드로 검증을 확장할 수 있습니다.
-* 100% test coverage.
+* 100% 테스트 커버리지.

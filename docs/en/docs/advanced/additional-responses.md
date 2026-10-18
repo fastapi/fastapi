@@ -34,7 +34,7 @@ Keep in mind that you have to return the `JSONResponse` directly.
 
 ///
 
-/// info
+/// note
 
 The `model` key is not part of OpenAPI.
 
@@ -183,7 +183,7 @@ Notice that you have to return the image using a `FileResponse` directly.
 
 ///
 
-/// info
+/// note
 
 Unless you specify a different media type explicitly in your `responses` parameter, FastAPI will assume the response has the same media type as the main response class (default `application/json`).
 
@@ -243,5 +243,5 @@ For example:
 
 To see what exactly you can include in the responses, you can check these sections in the OpenAPI specification:
 
-* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), it includes the `Response Object`.
-* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object), it includes the `Response Object`.
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object), you can include anything from this directly in each response inside your `responses` parameter. Including `description`, `headers`, `content` (inside of this is that you declare different media types and JSON Schemas), and `links`.

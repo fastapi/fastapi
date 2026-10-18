@@ -166,7 +166,7 @@ Para hacerlo, usa la anotación de tipos estándar de Python [`typing.Union`](ht
 
 /// note | Nota
 
-Al definir una [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions), incluye el tipo más específico primero, seguido por el tipo menos específico. En el ejemplo a continuación, el más específico `PlaneItem` viene antes de `CarItem` en `Union[PlaneItem, CarItem]`.
+Al definir una [`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/), incluye el tipo más específico primero, seguido por el tipo menos específico. En el ejemplo a continuación, el más específico `PlaneItem` viene antes de `CarItem` en `Union[PlaneItem, CarItem]`.
 
 ///
 
@@ -208,4 +208,4 @@ En este caso, puedes usar `dict`:
 
 Usa múltiples modelos Pydantic y hereda libremente para cada caso.
 
-No necesitas tener un solo modelo de datos por entidad si esa entidad debe poder tener diferentes "estados". Como el caso con la "entidad" usuario con un estado que incluye `password`, `password_hash` y sin contraseña.
+No necesitas tener un solo modelo de datos por entidad si esa entidad debe poder tener diferentes "estados". La "entidad" **usuario** es un ejemplo, con estados que incluyen `password`, `password_hash` o ninguna contraseña.

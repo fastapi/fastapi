@@ -105,40 +105,36 @@ Docker 是用來建立與管理容器映像與容器的主要工具之一。
 
 ### 套件需求 { #package-requirements }
 
-你的應用通常會把「套件需求」放在某個檔案中。
+當你使用 `uv` 管理專案時，它的直接相依會宣告在 `pyproject.toml` 中，而精確解析出的版本會儲存在 `uv.lock`。
 
-這主要取決於你用什麼工具來安裝那些需求。
-
-最常見的方式是準備一個 `requirements.txt` 檔案，逐行列出套件名稱與版本。
-
-當然，你會用與在 [關於 FastAPI 版本](versions.md) 中讀到的相同概念，來設定版本範圍。
-
-例如，你的 `requirements.txt` 可能像這樣：
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-接著你通常會用 `pip` 來安裝這些套件相依，例如：
+你可以用以下指令加入你的應用需要的套件：
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
-/// info | 資訊
+/// note | 注意
 
-還有其他格式與工具可以用來定義與安裝套件相依。
+下面的 Dockerfile 會在容器內使用 `pip`。你可以從你的 uv 專案匯出鎖定的相依，轉成它預期的 `requirements.txt` 格式：
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+產生的 `requirements.txt` 是用於容器建置的匯出檔。請繼續使用 `uv add` 管理相依，並在 `uv.lock` 變更時重新產生它。
 
 ///
 
-### 建立 FastAPI 程式碼 { #create-the-fastapi-code }
+### 建立 **FastAPI** 程式碼 { #create-the-fastapi-code }
 
 * 建立一個 `app` 目錄並進入。
 * 建立一個空的 `__init__.py` 檔案。
@@ -258,7 +254,7 @@ CMD fastapi run app/main.py --port 80
 
 你可以在 [Docker 關於 shell 與 exec 形式的文件](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form) 閱讀更多。
 
-使用 `docker compose` 時這會特別明顯。技術細節請見這段 Docker Compose 常見問題：[為什麼我的服務要花 10 秒才重新建立或停止？](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop)
+使用 `docker compose` 時這會特別明顯。技術細節請見這段 Docker Compose 常見問題：[為什麼我的服務要花 10 秒才重新建立或停止？](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop)。
 
 #### 目錄結構 { #directory-structure }
 
@@ -372,7 +368,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 你也可以前往 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 或 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)（或等效的、使用你的 Docker 主機）。
 
-你會看到另一種自動產生的文件（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你會看到另一種自動產生的文件（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -454,7 +450,7 @@ Traefik 與 Docker、Kubernetes 等整合良好，因此為你的容器設定與
 
 ## 複本 - 行程數量 { #replication-number-of-processes }
 
-如果你在有 Kubernetes、Docker Swarm Mode、Nomad，或其他類似的分散式容器管理系統的「<dfn title="一組配置為連接並共同運作的機器">叢集</dfn>」上運作，那你大概會希望在「叢集層級」處理「複本」，而不是在每個容器內使用「行程管理器」（例如帶有 workers 的 Uvicorn）。
+如果你在有 Kubernetes、Docker Swarm Mode、Nomad，或其他類似的分散式容器管理系統的「<dfn title="一組被設定為以某種方式連接並共同運作的機器。">叢集</dfn>」上運作，那你大概會希望在「叢集層級」處理「複本」，而不是在每個容器內使用「行程管理器」（例如帶有 workers 的 Uvicorn）。
 
 像 Kubernetes 這類的分散式容器管理系統，通常內建處理「容器複本」以及支援進入請求的「負載平衡」的能力——全部都在「叢集層級」。
 
@@ -556,7 +552,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 如果你有「多個容器」，且每個容器大概都只執行「單一行程」（例如在一個 Kubernetes 叢集中），那你可能會想要一個「獨立的容器」來完成「前置步驟」的工作，並只在單一容器、單一行程中執行，接著才啟動多個複本的工作容器。
 
-/// info | 資訊
+/// note | 注意
 
 如果你使用 Kubernetes，這大概會是一個 [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)。
 
@@ -574,7 +570,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80", "--workers", "4"]
 
 你大概「不應該」使用這個基底 Docker 映像（或其他類似的）。
 
-如果你使用 Kubernetes（或其他）並已在叢集層級設定「複本」、使用多個「容器」。在這些情況下，更好的做法是如上所述[從零建置映像](#build-a-docker-image-for-fastapi)。
+如果你使用 Kubernetes（或其他）並已在叢集層級設定「複本」、使用多個「容器」。在這些情況下，更好的做法是如上所述「從零建置映像」：[為 FastAPI 建置 Docker 映像](#build-a-docker-image-for-fastapi)。
 
 若你需要多個 workers，只要使用 `--workers` 命令列選項即可。
 

@@ -51,7 +51,7 @@
 
 然后它只需返回一个包含这些值的 `dict`。
 
-/// info | 信息
+/// note | 注意
 
 FastAPI 在 0.95.0 版本中新增了对 `Annotated` 的支持（并开始推荐使用）。
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 这样，你只需编写一次共享代码，**FastAPI** 会在你的*路径操作*中为你调用它。
 
-/// check | 检查
+/// tip | 提示
 
 注意，无需创建专门的类并传给 **FastAPI** 去“注册”之类的操作。
 
@@ -164,7 +164,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 <img src="/img/tutorial/dependencies/image01.png">
 
-## 简单用法 { #simple-usage }
+## 簡单用法 { #simple-usage }
 
 观察一下就会发现，只要*路径*和*操作*匹配，就会使用声明的*路径操作函数*。随后，**FastAPI** 会用正确的参数调用该函数，并从请求中提取数据。
 

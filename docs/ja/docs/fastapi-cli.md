@@ -2,7 +2,7 @@
 
 **FastAPI <abbr title="command line interface - コマンドラインインターフェース">CLI</abbr>** は、FastAPI アプリの提供、FastAPI プロジェクトの管理などに使用できるコマンドラインプログラムです。
 
-FastAPI をインストールすると（例: `pip install "fastapi[standard]"`）、ターミナルで実行できるコマンドラインプログラムが付属します。
+FastAPI をプロジェクトに追加すると（例: `uv add "fastapi[standard]"`）、ターミナルで実行できるコマンドラインプログラムが付属します。
 
 開発用に FastAPI アプリを起動するには、`fastapi dev` コマンドを使用できます:
 
@@ -52,7 +52,7 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 ///
 
-内部的には、**FastAPI CLI** は [Uvicorn](https://www.uvicorn.dev)（高性能で本番運用向けの ASGI サーバー）を使用します。😎
+内部的には、**FastAPI CLI** は [Uvicorn](https://uvicorn.dev)（高性能で本番運用向けの ASGI サーバー）を使用します。😎
 
 `fastapi` CLI は、実行する FastAPI アプリを自動検出しようとします。既定では、`main.py` の中にある `app` という名前のオブジェクト（ほかにもいくつかの変種）であると仮定します。
 
@@ -95,15 +95,21 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### パス指定での `fastapi dev` { #fastapi-dev-with-path }
+### パス指定または `--entrypoint` オプション付きの `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 `fastapi dev` コマンドにファイルパスを渡すこともでき、使用する FastAPI アプリオブジェクトを推測します:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-ただし、そのたびに `fastapi` コマンドを呼び出す際に正しいパスを渡す必要があります。
+または、`fastapi dev` コマンドに `--entrypoint` オプションを渡すこともできます:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+ただし、そのたびに `fastapi` コマンドを呼び出す際に正しいパスや entrypoint を渡す必要があります。
 
 さらに、[VS Code 拡張機能](editor-support.md) や [FastAPI Cloud](https://fastapicloud.com) など、ほかのツールがそれを見つけられない場合があります。そのため、`pyproject.toml` の `entrypoint` を使用することを推奨します。
 
@@ -113,9 +119,13 @@ $ fastapi dev main.py
 
 デフォルトでは、**auto-reload** が有効です。コードを変更するとサーバーが自動で再読み込みされます。これはリソースを多く消費し、無効時より安定性が低くなる可能性があります。開発時のみに使用してください。また、IP アドレス `127.0.0.1`（マシン自身のみと通信するための IP、`localhost`）で待ち受けます。
 
+アプリを import する前に、`fastapi dev` は `FASTAPI_ENV` 環境変数を `development` に設定します。`FASTAPI_ENV` がすでに設定されている場合、既存の値は保持されます。これにより、アプリ固有の環境（`staging` など）を指定できるようにしつつ、アプリの起動コードが開発向けの動作を選択できます。
+
+慣例的な `FASTAPI_ENV` の値は `development` と `production` です。`fastapi run` は現在 `FASTAPI_ENV` を変更しないため、アプリが本番モードを検出する必要がある場合は明示的に設定してください。
+
 ## `fastapi run` { #fastapi-run }
 
-`fastapi run` を実行すると、デフォルトで本番モードで起動します。
+`fastapi run` を実行すると、本番モードで FastAPI を起動します。
 
 デフォルトでは、**auto-reload** は無効です。また、IP アドレス `0.0.0.0`（利用可能なすべての IP アドレスを意味します）で待ち受けるため、そのマシンと通信できる任意のクライアントから公開アクセスが可能になります。これは、たとえばコンテナ内など、本番環境で一般的な実行方法です。
 

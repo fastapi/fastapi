@@ -15,7 +15,7 @@
 
 ## `Request` オブジェクトの詳細 { #details-about-the-request-object }
 
-**FastAPI** は内部的には **Starlette** の上にいくつかのツール層を載せたものなので、必要に応じて Starlette の [`Request`](https://www.starlette.dev/requests/) オブジェクトを直接使えます。
+**FastAPI** は内部的には **Starlette** の上にいくつかのツール層を載せたものなので、必要に応じて Starlette の [`Request`](https://starlette.dev/requests/) オブジェクトを直接使えます。
 
 また、`Request` オブジェクトから直接データ（例: ボディ）を取得する場合、そのデータは FastAPI によって検証・変換・ドキュメント化（OpenAPI による自動 API ユーザーインターフェース向け）されません。
 
@@ -25,13 +25,13 @@
 
 ## `Request` オブジェクトを直接使う { #use-the-request-object-directly }
 
-たとえば、path operation 関数内でクライアントの IP アドレス／ホストを取得したいとします。
+たとえば、*path operation 関数*内でクライアントの IP アドレス／ホストを取得したいとします。
 
 そのためには、リクエストに直接アクセスする必要があります。
 
 {* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
 
-path operation 関数の引数として `Request` 型のパラメータを宣言すると、**FastAPI** はその引数に `Request` を渡します。
+*path operation 関数*の引数として `Request` 型のパラメータを宣言すると、**FastAPI** はその引数に `Request` を渡します。
 
 /// tip | 豆知識
 
@@ -45,7 +45,7 @@ path operation 関数の引数として `Request` 型のパラメータを宣言
 
 ## `Request` のドキュメント { #request-documentation }
 
-より詳しくは、[公式 Starlette ドキュメントサイトの `Request` オブジェクト](https://www.starlette.dev/requests/)を参照してください。
+より詳しくは、[公式 Starlette ドキュメントサイトの `Request` オブジェクト](https://starlette.dev/requests/)を参照してください。
 
 /// note | 技術詳細
 

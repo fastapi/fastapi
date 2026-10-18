@@ -15,7 +15,7 @@ FastAPIアプリケーション上で、`uvicorn` を直接インポートして
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ from myapp import app
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -72,7 +72,7 @@ from myapp import app
 
 は実行されません。
 
-/// info | 情報
+/// note | 備考
 
 より詳しい情報は、[公式Pythonドキュメント](https://docs.python.org/3/library/__main__.html)を参照してください。
 
@@ -99,7 +99,7 @@ from myapp import app
 
 ---
 
-Pycharmを使用する場合、次のことが可能です:
+PyCharmを使用する場合、次のことが可能です:
 
 * 「実行」メニューをオープン。
 * オプション「デバッグ...」を選択。

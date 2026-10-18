@@ -2,45 +2,49 @@
 
 In vielen Fällen benötigt Ihre Anwendung möglicherweise einige externe Einstellungen oder Konfigurationen, zum Beispiel geheime Schlüssel, Datenbank-Anmeldeinformationen, Anmeldeinformationen für E-Mail-Dienste, usw.
 
-Die meisten dieser Einstellungen sind variabel (können sich ändern), wie z. B. Datenbank-URLs. Und vieles könnten schützenswerte, geheime Daten sein.
+Die meisten dieser Einstellungen sind variabel (können sich ändern), wie z. B. Datenbank-URLs. Und viele könnten schützenswerte, geheime Daten sein.
 
 Aus diesem Grund werden diese üblicherweise in Umgebungsvariablen bereitgestellt, die von der Anwendung gelesen werden.
 
+Eine **Umgebungsvariable** (auch bekannt als **Env-Var**) ist ein Wert, der außerhalb des Python-Codes, im Betriebssystem, existiert und von Ihrer Anwendung und anderen Programmen gelesen werden kann.
+
+Sie können eine Umgebungsvariable für einen Befehl erstellen, wenn Sie ihn ausführen. Sie werden unten die plattformspezifischen Befehle sehen.
+
 /// tip | Tipp
 
-Um Umgebungsvariablen zu verstehen, können Sie [Umgebungsvariablen](../environment-variables.md) lesen.
+Lesen Sie den [Leitfaden zu Umgebungsvariablen](https://tiangolo.com/guides/environment-variables/) für eine detaillierte Erklärung, wie Umgebungsvariablen funktionieren.
 
 ///
 
 ## Typen und Validierung { #types-and-validation }
 
-Diese Umgebungsvariablen können nur Text-Zeichenketten verarbeiten, da sie außerhalb von Python liegen und mit anderen Programmen und dem Rest des Systems (und sogar mit verschiedenen Betriebssystemen wie Linux, Windows, macOS) kompatibel sein müssen.
+Diese Umgebungsvariablen können nur Text-Strings verarbeiten, da sie außerhalb von Python liegen und mit anderen Programmen und dem Rest des Systems (und sogar mit verschiedenen Betriebssystemen wie Linux, Windows und macOS) kompatibel sein müssen.
 
 Das bedeutet, dass jeder in Python aus einer Umgebungsvariablen gelesene Wert ein `str` ist und jede Konvertierung in einen anderen Typ oder jede Validierung im Code erfolgen muss.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Glücklicherweise bietet Pydantic ein großartiges Werkzeug zur Verarbeitung dieser Einstellungen, die von Umgebungsvariablen stammen, mit [Pydantic: Settings Management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
+Glücklicherweise bietet Pydantic ein großartiges Werkzeug zur Verarbeitung dieser Einstellungen, die von Umgebungsvariablen stammen, mit [Pydantic: Settings-Verwaltung](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/).
 
 ### `pydantic-settings` installieren { #install-pydantic-settings }
 
-Stellen Sie zunächst sicher, dass Sie Ihre [virtuelle Umgebung](../virtual-environments.md) erstellt und aktiviert haben, und installieren Sie dann das Package `pydantic-settings`:
+Fügen Sie Ihrem Projekt das Package `pydantic-settings` hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-Es ist bereits enthalten, wenn Sie die `all`-Extras installiert haben, mit:
+Es ist auch enthalten, wenn Sie die `all`-Extras installieren mit:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,25 +80,45 @@ Dann können Sie das neue `settings`-Objekt in Ihrer Anwendung verwenden:
 
 Als Nächstes würden Sie den Server ausführen und die Konfigurationen als Umgebungsvariablen übergeben. Sie könnten beispielsweise `ADMIN_EMAIL` und `APP_NAME` festlegen mit:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | Tipp
 
-Um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, trennen Sie diese einfach durch ein Leerzeichen und fügen Sie alle vor dem Befehl ein.
+In Bash trennen Sie, um mehrere Umgebungsvariablen für einen einzelnen Befehl festzulegen, diese durch ein Leerzeichen und fügen sie alle vor dem Befehl ein.
 
 ///
 
-Und dann würde die Einstellung `admin_email` auf „deadpool@example.com“ gesetzt.
+Und dann würde die Einstellung `admin_email` auf `"deadpool@example.com"` gesetzt.
 
-Der `app_name` wäre „ChimichangApp“.
+Der `app_name` wäre `"ChimichangApp"`.
 
 Und `items_per_user` würde seinen Defaultwert von `50` behalten.
 
@@ -128,7 +152,7 @@ Ausgehend vom vorherigen Beispiel könnte Ihre Datei `config.py` so aussehen:
 
 {* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
-Beachten Sie, dass wir jetzt keine Standardinstanz `settings = Settings()` erstellen.
+Beachten Sie, dass wir jetzt keine Defaultinstanz `settings = Settings()` erstellen.
 
 ### Die Haupt-Anwendungsdatei { #the-main-app-file }
 
@@ -158,7 +182,7 @@ Bei der Abhängigkeitsüberschreibung legen wir einen neuen Wert für `admin_ema
 
 Dann können wir testen, ob das verwendet wird.
 
-## Lesen einer `.env`-Datei { #reading-a-env-file }
+## Eine `.env`-Datei lesen { #reading-a-env-file }
 
 Wenn Sie viele Einstellungen haben, die sich möglicherweise oft ändern, vielleicht in verschiedenen Umgebungen, kann es nützlich sein, diese in eine Datei zu schreiben und sie dann daraus zu lesen, als wären sie Umgebungsvariablen.
 
@@ -172,11 +196,11 @@ Aber eine dotenv-Datei muss nicht unbedingt genau diesen Dateinamen haben.
 
 ///
 
-Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
+Pydantic unterstützt das Lesen dieser Dateitypen mithilfe einer externen Bibliothek. Weitere Informationen finden Sie unter [Pydantic Settings: Dotenv (.env)-Unterstützung](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Tipp
 
-Damit das funktioniert, müssen Sie `pip install python-dotenv` ausführen.
+Damit das funktioniert, fügen Sie Ihrem Projekt `python-dotenv` mit `uv add python-dotenv` hinzu.
 
 ///
 
@@ -197,13 +221,13 @@ Und dann aktualisieren Sie Ihre `config.py` mit:
 
 /// tip | Tipp
 
-Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
+Das Attribut `model_config` wird nur für die Pydantic-Konfiguration verwendet. Weitere Informationen finden Sie unter [Pydantic: Konzepte: Konfiguration](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 
 Hier definieren wir die Konfiguration `env_file` innerhalb Ihrer Pydantic-`Settings`-Klasse und setzen den Wert auf den Dateinamen mit der dotenv-Datei, die wir verwenden möchten.
 
-### Die `Settings` nur einmal laden mittels `lru_cache` { #creating-the-settings-only-once-with-lru-cache }
+### Die `Settings` nur einmal mittels `lru_cache` erstellen { #creating-the-settings-only-once-with-lru-cache }
 
 Das Lesen einer Datei von der Festplatte ist normalerweise ein kostspieliger (langsamer) Vorgang, daher möchten Sie ihn wahrscheinlich nur einmal ausführen und dann dasselbe Einstellungsobjekt erneut verwenden, anstatt es für jeden <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> zu lesen.
 
@@ -291,7 +315,7 @@ Im Fall unserer Abhängigkeit `get_settings()` akzeptiert die Funktion nicht ein
 
 Auf diese Weise verhält es sich fast so, als wäre es nur eine globale Variable. Da es jedoch eine Abhängigkeitsfunktion verwendet, können wir diese zu Testzwecken problemlos überschreiben.
 
-`@lru_cache` ist Teil von `functools`, welches Teil von Pythons Standardbibliothek ist. Weitere Informationen dazu finden Sie in der [Python Dokumentation für `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
+`@lru_cache` ist Teil von `functools`, welches Teil von Pythons Standardbibliothek ist. Weitere Informationen dazu finden Sie in der [Python-Dokumentation für `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Zusammenfassung { #recap }
 

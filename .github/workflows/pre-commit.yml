@@ -2,53 +2,50 @@ name: pre-commit
 
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
-
 permissions: {}
 
 env:
-  # Forks and Dependabot don't have access to secrets
-  HAS_SECRETS: ${{ secrets.PRE_COMMIT != '' }}
+  CAN_PUSH: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
 
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         name: Checkout PR for own repo
-        if: env.HAS_SECRETS == 'true'
+        if: env.CAN_PUSH == 'true'
         with:
           # To be able to commit it needs to fetch the head of the branch, not the
           # merge commit
           ref: ${{ github.head_ref }}
           # And it needs the full history to be able to compute diffs
           fetch-depth: 0
-          # A token other than the default GITHUB_TOKEN is needed to be able to trigger CI
-          token: ${{ secrets.PRE_COMMIT }} # zizmor: ignore[secrets-outside-env]
-          persist-credentials: true # Required for `git push` command
+          persist-credentials: false
       # pre-commit lite ci needs the default checkout configs to work
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         name: Checkout PR for fork
-        if: env.HAS_SECRETS == 'false'
+        if: env.CAN_PUSH == 'false'
         with:
         # To be able to commit it needs the head branch of the PR, the remote one
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7.6.0
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
-          version: "0.11.4"
+          version: "latest-known"
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
@@ -58,11 +55,26 @@ jobs:
         id: precommit
         run: uv run prek run --from-ref origin/${GITHUB_BASE_REF} --to-ref HEAD --show-diff-on-failure
         continue-on-error: true
-      - name: Commit and push changes
-        if: env.HAS_SECRETS == 'true'
+      - name: Check for changes
+        id: changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Get PR Push token
+        id: pr-push
+        if: env.CAN_PUSH == 'true' && steps.changes.outputs.changed == 'true'
+        uses: tiangolo/pr-push@f336b3817f32ea9b8273a8c15f8ecb739ac38167 # 0.0.4
+      - name: Commit and push changes
+        if: env.CAN_PUSH == 'true' && steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ steps.pr-push.outputs.token }}
+        run: |
+          git config user.name "pr-push[bot]"
+          git config user.email "pr-push[bot]@users.noreply.github.com"
+          gh auth setup-git
           git add -A
           if git diff --staged --quiet; then
             echo "No changes to commit"
@@ -71,7 +83,7 @@ jobs:
             git push
           fi
       - uses: pre-commit-ci/lite-action@5d6cc0eb514c891a40562a58a8e71576c5c7fb43 # v1.1.0
-        if: env.HAS_SECRETS == 'false'
+        if: env.CAN_PUSH == 'false'
         with:
           msg: 🎨 Auto format
       - name: Error out on pre-commit errors
@@ -84,12 +96,13 @@ jobs:
     needs:
       - pre-commit
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Decide whether the needed jobs succeeded or failed
-        uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe # v1.2.2
+        uses: re-actors/alls-green@b5b5b37504aa4183270bd3d855c52a67f212be35 # v1.3.0
         with:
           jobs: ${{ toJSON(needs) }}

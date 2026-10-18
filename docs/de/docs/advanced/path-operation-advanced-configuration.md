@@ -16,17 +16,11 @@ Sie müssten sicherstellen, dass sie für jede Operation eindeutig ist.
 
 ### Verwendung des Namens der *Pfadoperation-Funktion* als operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-Wenn Sie die Funktionsnamen Ihrer API als `operationId`s verwenden möchten, können Sie über alle iterieren und die `operation_id` jeder *Pfadoperation* mit deren `APIRoute.name` überschreiben.
+Wenn Sie die Funktionsnamen Ihrer APIs als `operationId`s verwenden möchten, können Sie `FastAPI` eine eigene `generate_unique_id_function` übergeben.
 
-Sie sollten dies tun, nachdem Sie alle Ihre *Pfadoperationen* hinzugefügt haben.
+Diese Funktion erhält jeweils die `APIRoute` und gibt die `operationId` zurück, die für diese Pfadoperation verwendet werden soll.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip | Tipp
-
-Wenn Sie `app.openapi()` manuell aufrufen, sollten Sie vorher die `operationId`s aktualisiert haben.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning | Achtung
 

@@ -1,6 +1,6 @@
 # Sub Aplicaciones - Mounts { #sub-applications-mounts }
 
-Si necesitas tener dos aplicaciones de **FastAPI** independientes, cada una con su propio OpenAPI independiente y su propia interfaz de docs, puedes tener una aplicación principal y "montar" una (o más) sub-aplicación(es).
+Si necesitas tener dos aplicaciones de **FastAPI** independientes, cada una con su propio OpenAPI independiente y su propia interfaz de documentación, puedes tener una aplicación principal y "montar" una (o más) sub-aplicación(es).
 
 ## Montar una aplicación **FastAPI** { #mounting-a-fastapi-application }
 
@@ -35,7 +35,7 @@ Ahora, ejecuta el comando `fastapi`:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

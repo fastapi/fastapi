@@ -1,6 +1,6 @@
 # パスワード（およびハッシュ化）によるOAuth2、JWTトークンによるBearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-これでセキュリティの流れが全てわかったので、<abbr title="JSON Web Tokens - JSON Web Token">JWT</abbr>トークンと安全なパスワードのハッシュ化を使用して、実際にアプリケーションを安全にしてみましょう。
+これでセキュリティの流れが全てわかったので、<abbr title="JSON Web Tokens - JSON Webトークン">JWT</abbr>トークンと安全なパスワードのハッシュ化を使用して、実際にアプリケーションを安全にしてみましょう。
 
 このコードは、アプリケーションで実際に使用したり、パスワードハッシュをデータベースに保存するといった用途に利用できます。
 
@@ -30,23 +30,23 @@ JWT トークンを使って遊んでみたいという方は、[https://jwt.io]
 
 PythonでJWTトークンの生成と検証を行うために、`PyJWT`をインストールする必要があります。
 
-[仮想環境](../../virtual-environments.md)を作成し、アクティベートしてから、`pyjwt`をインストールしてください。
+プロジェクトに`pyjwt`を追加してください：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | 情報
+/// note | 備考
 
 RSAやECDSAのようなデジタル署名アルゴリズムを使用する予定がある場合は、cryptographyライブラリの依存関係`pyjwt[crypto]`をインストールしてください。
 
-詳細は[PyJWT Installation docs](https://pyjwt.readthedocs.io/en/latest/installation.html)で確認できます。
+詳細は[PyJWT インストールに関するドキュメント](https://pyjwt.readthedocs.io/en/latest/installation.html)で確認できます。
 
 ///
 
@@ -72,12 +72,12 @@ pwdlib は、パスワードのハッシュを処理するための優れたPyth
 
 推奨されるアルゴリズムは「Argon2」です。
 
-[仮想環境](../../virtual-environments.md)を作成し、アクティベートしてから、Argon2付きでpwdlibをインストールしてください。
+プロジェクトにArgon2付きで`pwdlib`を追加してください：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -120,7 +120,7 @@ pwdlibはbcryptハッシュアルゴリズムもサポートしていますが�
 
 `authenticate_user` がデータベースに存在しないユーザー名で呼び出された場合でも、ダミーのハッシュを使って `verify_password` を実行します。
 
-これにより、ユーザー名が有効かどうかに関わらずエンドポイントの応答時間がおおよそ同じになり、既存のユーザー名を列挙するために悪用されうる「タイミング攻撃」を防止できます。
+これにより、ユーザー名が有効かどうかに関わらずエンドポイントの応答時間がおおよそ同じになり、既存のユーザー名を列挙するために悪用されうる**タイミング攻撃**を防止できます。
 
 /// note | 備考
 
@@ -213,9 +213,9 @@ IDの衝突を回避するために、ユーザーのJWTトークンを作成す
 Username: `johndoe`
 Password: `secret`
 
-/// check | 確認
+/// tip | 豆知識
 
-コードのどこにも平文のパスワード"`secret`"はなく、ハッシュ化されたものしかないことを確認してください。
+コードのどこにも平文のパスワード「`secret`」はなく、ハッシュ化されたものしかないことを確認してください。
 
 ///
 

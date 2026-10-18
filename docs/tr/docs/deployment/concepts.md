@@ -1,5 +1,6 @@
 # Deployment Kavramları { #deployments-concepts }
 
+
 Bir **FastAPI** uygulamasını (hatta genel olarak herhangi bir web API'yi) deploy ederken, muhtemelen önemseyeceğiniz bazı kavramlar vardır. Bu kavramları kullanarak, **uygulamanızı deploy etmek** için **en uygun** yöntemi bulabilirsiniz.
 
 Önemli kavramlardan bazıları şunlardır:

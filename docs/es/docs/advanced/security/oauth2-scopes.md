@@ -1,5 +1,6 @@
 # Scopes de OAuth2 { #oauth2-scopes }
 
+
 Puedes usar scopes de OAuth2 directamente con **FastAPI**, están integrados para funcionar de manera fluida.
 
 Esto te permitiría tener un sistema de permisos más detallado, siguiendo el estándar de OAuth2, integrado en tu aplicación OpenAPI (y la documentación de la API).
@@ -46,7 +47,7 @@ Normalmente se utilizan para declarar permisos de seguridad específicos, por ej
 * `instagram_basic` es usado por Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` es usado por Google.
 
-/// info | Información
+/// note | Nota
 
 En OAuth2 un "scope" es solo un string que declara un permiso específico requerido.
 
@@ -126,7 +127,7 @@ Lo estamos haciendo aquí para demostrar cómo **FastAPI** maneja scopes declara
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Información Técnica
+/// note | Detalles técnicos
 
 `Security` es en realidad una subclase de `Depends`, y tiene solo un parámetro extra que veremos más adelante.
 

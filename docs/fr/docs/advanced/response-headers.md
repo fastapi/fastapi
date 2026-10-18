@@ -2,9 +2,9 @@
 
 ## Utiliser un paramètre `Response` { #use-a-response-parameter }
 
-Vous pouvez déclarer un paramètre de type `Response` dans votre fonction de chemin d'accès (comme vous pouvez le faire pour les cookies).
+Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de chemin d'accès* (comme vous pouvez le faire pour les cookies).
 
-Vous pouvez ensuite définir des en-têtes dans cet objet de réponse temporaire.
+Vous pouvez ensuite définir des en-têtes dans cet objet de réponse *temporaire*.
 
 {* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
 
@@ -12,7 +12,7 @@ Ensuite, vous pouvez renvoyer n'importe quel objet dont vous avez besoin, comme 
 
 Et si vous avez déclaré un `response_model`, il sera toujours utilisé pour filtrer et convertir l'objet que vous avez renvoyé.
 
-**FastAPI** utilisera cette réponse temporaire pour extraire les en-têtes (ainsi que les cookies et le code de statut), et les placera dans la réponse finale qui contient la valeur que vous avez renvoyée, filtrée par tout `response_model`.
+**FastAPI** utilisera cette réponse *temporaire* pour extraire les en-têtes (ainsi que les cookies et le code de statut), et les placera dans la réponse finale qui contient la valeur que vous avez renvoyée, filtrée par tout `response_model`.
 
 Vous pouvez également déclarer le paramètre `Response` dans des dépendances, et y définir des en-têtes (et des cookies).
 
@@ -38,4 +38,4 @@ Et comme `Response` peut être utilisée fréquemment pour définir des en-tête
 
 Gardez à l'esprit que des en-têtes propriétaires personnalisés peuvent être ajoutés [en utilisant le préfixe `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mais si vous avez des en-têtes personnalisés que vous voulez qu'un client dans un navigateur puisse voir, vous devez les ajouter à vos configurations CORS (en savoir plus dans [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Mais si vous avez des en-têtes personnalisés que vous voulez qu'un client dans un navigateur puisse voir, vous devez les ajouter à vos configurations CORS (en savoir plus dans [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://starlette.dev/middleware/#corsmiddleware).

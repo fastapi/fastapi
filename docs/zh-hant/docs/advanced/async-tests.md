@@ -1,6 +1,6 @@
 # 非同步測試 { #async-tests }
 
-你已經看過如何使用提供的 `TestClient` 來測試你的 FastAPI 應用。到目前為止，你只看到如何撰寫同步測試，沒有使用 `async` 函式。
+你已經看過如何使用提供的 `TestClient` 來測試你的 **FastAPI** 應用。到目前為止，你只看到如何撰寫同步測試，沒有使用 `async` 函式。
 
 在測試中能使用非同步函式會很有用，例如當你以非同步方式查詢資料庫時。想像你想測試發送請求到 FastAPI 應用，然後在使用非同步資料庫函式庫時，驗證後端是否成功把正確資料寫入資料庫。
 
@@ -12,7 +12,7 @@
 
 ## HTTPX { #httpx }
 
-即使你的 FastAPI 應用使用一般的 `def` 函式而非 `async def`，它在底層仍然是個 `async` 應用。
+即使你的 **FastAPI** 應用使用一般的 `def` 函式而非 `async def`，它在底層仍然是個 `async` 應用。
 
 `TestClient` 在內部做了一些魔法，讓我們能在一般的 `def` 測試函式中，使用標準 pytest 來呼叫非同步的 FastAPI 應用。但當我們在非同步函式中使用它時，這個魔法就不再奏效了。也就是說，當以非同步方式執行測試時，就不能在測試函式內使用 `TestClient`。
 
@@ -40,12 +40,12 @@
 
 ## 執行 { #run-it }
 
-如常執行測試：
+你可以像往常一樣透過以下方式執行測試：
 
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ---> 100%
 ```
@@ -74,7 +74,7 @@ $ pytest
 response = client.get('/')
 ```
 
-也就是先前用 `TestClient` 發送請求時所用的寫法。
+...也就是我們先前用 `TestClient` 發送請求時所用的寫法。
 
 /// tip
 
@@ -90,7 +90,7 @@ response = client.get('/')
 
 ## 其他非同步函式呼叫 { #other-asynchronous-function-calls }
 
-由於測試函式現在是非同步的，你也可以在測試中呼叫（並 `await`）其他 `async` 函式，和在程式碼其他地方一樣。
+由於測試函式現在是非同步的，除了在測試中向你的 FastAPI 應用發送請求之外，你也可以呼叫（並 `await`）其他 `async` 函式，就像在程式碼其他地方呼叫它們一樣。
 
 /// tip
 

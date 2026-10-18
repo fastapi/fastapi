@@ -1,8 +1,8 @@
 # Diffuser des JSON Lines { #stream-json-lines }
 
-Vous pouvez avoir une séquence de données que vous souhaitez envoyer en « flux » ; vous pouvez le faire avec « JSON Lines ».
+Vous pouvez avoir une séquence de données que vous souhaitez envoyer en « flux », vous pouvez le faire avec « JSON Lines ».
 
-/// info
+/// note | Remarque
 
 Ajouté dans FastAPI 0.134.0.
 
@@ -48,7 +48,7 @@ Une réponse aurait un type de contenu `application/jsonl` (au lieu de `applicat
 
 C'est très similaire à un tableau JSON (équivalent d'une liste Python), mais au lieu d'être entouré de `[]` et d'avoir des `,` entre les éléments, il y a un objet JSON par ligne, ils sont séparés par un caractère de saut de ligne.
 
-/// info
+/// note | Remarque
 
 Le point important est que votre application pourra produire chaque ligne à son tour, tandis que le client consomme les lignes précédentes.
 

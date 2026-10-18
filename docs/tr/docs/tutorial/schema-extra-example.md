@@ -12,7 +12,7 @@ Oluşturulan JSON Schema’ya eklenecek şekilde bir Pydantic model için `examp
 
 Bu ek bilgi, o modelin çıktı **JSON Schema**’sına olduğu gibi eklenir ve API dokümanlarında kullanılır.
 
-[Pydantic dokümanları: Configuration](https://docs.pydantic.dev/latest/api/config/) bölümünde anlatıldığı gibi, bir `dict` alan `model_config` niteliğini kullanabilirsiniz.
+[Pydantic dokümanları: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/) bölümünde anlatıldığı gibi, bir `dict` alan `model_config` niteliğini kullanabilirsiniz.
 
 Üretilen JSON Schema’da görünmesini istediğiniz (ör. `examples` dahil) her türlü ek veriyi içeren bir `dict` ile `"json_schema_extra"` ayarlayabilirsiniz.
 
@@ -24,7 +24,7 @@ Aynı tekniği JSON Schema’yı genişletmek ve kendi özel ek bilgilerinizi ek
 
 ///
 
-/// info | Bilgi
+/// note | Not
 
 OpenAPI 3.1.0 (FastAPI 0.99.0’dan beri kullanılıyor), **JSON Schema** standardının bir parçası olan `examples` için destek ekledi.
 
@@ -123,7 +123,7 @@ FastAPI’de OpenAPI’ye özel `examples`’ı, şu araçlar için `openapi_exa
 
 /// tip | İpucu
 
-Zaten **FastAPI** sürümü **0.99.0 veya üzerini** kullanıyorsanız, büyük olasılıkla bu detayları **atlanabilirsiniz**.
+Zaten **FastAPI** sürümü **0.99.0 veya üzerini** kullanıyorsanız, büyük olasılıkla bu detayları **atlayabilirsiniz**.
 
 Bunlar daha çok OpenAPI 3.1.0’ın henüz mevcut olmadığı eski sürümler için geçerlidir.
 
@@ -155,7 +155,7 @@ OpenAPI ayrıca spesifikasyonun diğer bölümlerine de `example` ve `examples` 
     * `File()`
     * `Form()`
 
-/// info | Bilgi
+/// note | Not
 
 Bu eski OpenAPI’ye özel `examples` parametresi, FastAPI `0.103.0` sürümünden beri `openapi_examples` olarak kullanılıyor.
 
@@ -171,7 +171,7 @@ Ve artık, deprecated olan eski tekil (ve özel) `example` alanına kıyasla bu 
 
 JSON Schema’daki bu yeni `examples` alanı, OpenAPI’de başka yerlerde kullanılan (yukarıda anlatılan) metadata’lı `dict` yapısından farklı olarak **sadece örneklerden oluşan bir `list`**’tir.
 
-/// info | Bilgi
+/// note | Not
 
 OpenAPI 3.1.0, JSON Schema ile bu yeni ve daha basit entegrasyonla yayımlandıktan sonra bile bir süre, otomatik dokümantasyonu sağlayan araç Swagger UI OpenAPI 3.1.0’ı desteklemiyordu (5.0.0 sürümünden beri destekliyor 🎉).
 

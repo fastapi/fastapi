@@ -34,12 +34,12 @@ This is a very simple and short tutorial, if you want to learn about databases i
 
 ## Install `SQLModel` { #install-sqlmodel }
 
-First, make sure you create your [virtual environment](../virtual-environments.md), activate it, and then install `sqlmodel`:
+Add `sqlmodel` to your project:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ You can run the app:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -201,7 +201,7 @@ Then let's create `Hero`, the actual *table model*, with the **extra fields** th
 * `id`
 * `secret_name`
 
-Because `Hero` inherits form `HeroBase`, it **also** has the **fields** declared in `HeroBase`, so all the fields for `Hero` are:
+Because `Hero` inherits from `HeroBase`, it **also** has the **fields** declared in `HeroBase`, so all the fields for `Hero` are:
 
 * `id`
 * `name`
@@ -337,7 +337,7 @@ You can run the app again:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

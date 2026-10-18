@@ -1,5 +1,6 @@
 # OAuth2 scope'ları { #oauth2-scopes }
 
+
 OAuth2 scope'larını **FastAPI** ile doğrudan kullanabilirsiniz; sorunsuz çalışacak şekilde entegre edilmiştir.
 
 Bu sayede OAuth2 standardını takip eden, daha ince taneli bir izin sistemini OpenAPI uygulamanıza (ve API dokümanlarınıza) entegre edebilirsiniz.
@@ -46,7 +47,7 @@ Genellikle belirli güvenlik izinlerini tanımlamak için kullanılır, örneği
 * `instagram_basic` Facebook / Instagram tarafından kullanılır.
 * `https://www.googleapis.com/auth/drive` Google tarafından kullanılır.
 
-/// info | Bilgi
+/// note | Not
 
 OAuth2'de "scope", gereken belirli bir izni bildiren bir string'den ibarettir.
 
@@ -126,7 +127,7 @@ Burada, **FastAPI**'nin farklı seviyelerde tanımlanan scope'ları nasıl ele a
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Teknik Detaylar
+/// note | Teknik Detaylar
 
 `Security` aslında `Depends`'in bir alt sınıfıdır ve sadece birazdan göreceğimiz bir ek parametreye sahiptir.
 

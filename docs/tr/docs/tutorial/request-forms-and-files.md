@@ -2,14 +2,14 @@
 
 `File` ve `Form` kullanarak aynı anda hem dosyaları hem de form alanlarını tanımlayabilirsiniz.
 
-/// info | Bilgi
+/// note | Not
 
 Yüklenen dosyaları ve/veya form verisini almak için önce [`python-multipart`](https://github.com/Kludex/python-multipart) paketini kurun.
 
-Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden ve ardından paketi kurduğunuzdan emin olun, örneğin:
+Projenize ekleyin:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

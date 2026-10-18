@@ -4,7 +4,7 @@
 
 이는 [JSON Lines 스트리밍](stream-json-lines.md)과 비슷하지만, 브라우저가 기본적으로 [`EventSource` API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource)를 통해 지원하는 `text/event-stream` 형식을 사용합니다.
 
-/// info | 정보
+/// note | 참고
 
 FastAPI 0.135.0에 추가되었습니다.
 

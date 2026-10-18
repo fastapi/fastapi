@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -40,11 +45,11 @@ Temel özellikleri şunlardır:
 * **Hızlı**: Çok yüksek performanslı, **NodeJS** ve **Go** ile eşit düzeyde (Starlette ve Pydantic sayesinde). [Mevcut en hızlı Python framework'lerinden biri](#performance).
 * **Kodlaması Hızlı**: Özellik geliştirme hızını yaklaşık %200 ile %300 aralığında artırır. *
 * **Daha az hata**: İnsan (geliştirici) kaynaklı hataları yaklaşık %40 azaltır. *
-* **Sezgisel**: Harika bir editör desteği. Her yerde <dfn title="oto-tamamlama, autocompletion, IntelliSense olarak da bilinir">Tamamlama</dfn>. Hata ayıklamaya daha az zaman.
+* **Sezgisel**: Harika bir editör desteği. Her yerde <dfn title="otomatik tamamlama, oto-tamamlama, IntelliSense olarak da bilinir">Tamamlama</dfn>. Hata ayıklamaya daha az zaman.
 * **Kolay**: Kullanımı ve öğrenmesi kolay olacak şekilde tasarlandı. Doküman okumaya daha az zaman.
 * **Kısa**: Kod tekrarını minimize eder. Her parametre tanımından birden fazla özellik. Daha az hata.
 * **Sağlam**: Production'a hazır kod elde edersiniz. Otomatik etkileşimli dokümantasyon ile birlikte.
-* **Standardlara dayalı**: API'lar için açık standartlara dayalıdır (ve tamamen uyumludur); [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (önceden Swagger olarak biliniyordu) ve [JSON Schema](https://json-schema.org/).
+* **Standartlara dayalı**: API'lar için açık standartlara dayalıdır (ve tamamen uyumludur); [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (önceden Swagger olarak biliniyordu) ve [JSON Schema](https://json-schema.org/).
 
 <small>* tahmin, production uygulamalar geliştiren dahili bir geliştirme ekibinin yaptığı testlere dayanmaktadır.</small>
 
@@ -54,18 +59,27 @@ Temel özellikleri şunlardır:
 
 ### Keystone Sponsor { #keystone-sponsor }
 
+<div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--keystone" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}"></a>
 {% endfor -%}
+</div>
 
-### Gold and Silver Sponsors { #gold-and-silver-sponsors }
+### Gold Sponsorlar { #gold-sponsors }
 
+<div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--gold" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor -%}
-{%- for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+</div>
+
+### Silver Sponsorlar { #silver-sponsors }
+
+<div class="fastapi-sponsors fastapi-sponsors--silver">
+{% for sponsor in sponsors.silver -%}
+<a class="fastapi-sponsors__card fastapi-sponsors__card--silver" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor %}
+</div>
 
 <!-- /sponsors -->
 
@@ -73,15 +87,53 @@ Temel özellikleri şunlardır:
 
 ## Görüşler { #opinions }
 
+<!-- only-mkdocs -->
+<div class="fastapi-opinions" data-fastapi-opinions>
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-uber" aria-controls="fo-panel-uber" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/uber.svg" alt="Uber" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-netflix" aria-controls="fo-panel-netflix" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-cisco" aria-controls="fo-panel-cisco" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
+    </button>
+  </div>
+
+  <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
+    <blockquote class="fastapi-opinions__quote">"Bugünlerde <strong>FastAPI</strong>'ı çok fazla kullanıyorum. Aslında ekibimin tamamındaki <strong>Microsoft'taki ML servisleri</strong> için kullanmayı planlıyorum. Bunların bazıları çekirdek <strong>Windows</strong> ürününe ve bazıları da <strong>Office</strong> ürünlerine entegre ediliyor."</blockquote>
+    <div class="fastapi-opinions__attr">— Kabir Khan, <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"<strong>FastAPI</strong> kütüphanesini, sorgulanarak <strong>tahminler</strong> alınabilecek bir <strong>REST</strong> server başlatmak için benimsedik." <em>[Ludwig için]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong> olarak <strong>kriz yönetimi</strong> orkestrasyon framework'ümüzün açık kaynak sürümünü duyurmaktan memnuniyet duyuyoruz: <strong>Dispatch</strong>!" <em>[FastAPI ile geliştirildi]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Kevin Glisson, Marc Vilanova, Forest Monsen, <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-cisco" role="tabpanel" aria-labelledby="fo-tab-cisco" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">"Production'da bir Python API geliştirmek isteyen herkese <strong>FastAPI</strong>'ı şiddetle tavsiye ederim. <strong>Harika tasarlanmış</strong>, <strong>kullanımı basit</strong> ve <strong>yüksek ölçekte çalışabilir</strong> — API-first geliştirme stratejimizin <strong>kilit bir bileşeni</strong> haline geldi."</blockquote>
+    <div class="fastapi-opinions__attr">— Deon Pillsbury, <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(ref)</a></div>
+  </div>
+</div>
+<!-- /only-mkdocs -->
+
+<div class="only-github" markdown="1">
+
 "_[...] Bugünlerde **FastAPI**'ı çok fazla kullanıyorum. [...] Aslında bunu ekibimin **Microsoft'taki ML servislerinin** tamamında kullanmayı planlıyorum. Bunlardan bazıları ana **Windows** ürününe ve bazı **Office** ürünlerine entegre ediliyor._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
 
 ---
 
-"_**predictions** almak için sorgulanabilecek bir **REST** server oluşturmak amacıyla **FastAPI** kütüphanesini benimsedik. [Ludwig için]_"
+"_**FastAPI** kütüphanesini, **predictions** almak için sorgulanabilecek bir **REST** server oluşturmak amacıyla benimsedik. [Ludwig için]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -91,37 +143,19 @@ Temel özellikleri şunlardır:
 
 ---
 
-"_**FastAPI** için ayın üzerindeymişcesine heyecanlıyım. Çok eğlenceli!_"
-
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>[Python Bytes](https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855) podcast host</strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
-
----
-
-"_Dürüst olmak gerekirse, inşa ettiğiniz şey gerçekten sağlam ve profesyonel görünüyor. Birçok açıdan, **Hug**'ın olmasını istediğim şey tam da bu - böyle bir şeyi inşa eden birini görmek gerçekten ilham verici._"
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>[Hug](https://github.com/hugapi/hug) yaratıcısı</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
-
----
-
-"_REST API'lar geliştirmek için **modern bir framework** öğrenmek istiyorsanız, **FastAPI**'a bir göz atın [...] Hızlı, kullanımı ve öğrenmesi kolay [...]_"
-
-"_**API**'larımız için **FastAPI**'a geçtik [...] Bence hoşunuza gidecek [...]_"
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>[Explosion AI](https://explosion.ai) kurucuları - [spaCy](https://spacy.io) yaratıcıları</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
-
----
-
 "_Production'da Python API geliştirmek isteyen herkese **FastAPI**'ı şiddetle tavsiye ederim. **Harika tasarlanmış**, **kullanımı kolay** ve **yüksek ölçeklenebilir**; API-first geliştirme stratejimizin **kilit bir bileşeni** haline geldi ve Virtual TAC Engineer gibi birçok otomasyon ve servise güç veriyor._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
 ---
 
+</div>
+
 ## FastAPI mini belgeseli { #fastapi-mini-documentary }
 
 2025'in sonunda yayınlanan bir [FastAPI mini belgeseli](https://www.youtube.com/watch?v=mpR8ngthqiE) var, online olarak izleyebilirsiniz:
 
-<a href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
 
 ## CLI'ların FastAPI'ı: **Typer** { #typer-the-fastapi-of-clis }
 
@@ -135,17 +169,17 @@ Web API yerine terminalde kullanılacak bir <abbr title="Command Line Interface 
 
 FastAPI iki devin omuzları üstünde duruyor:
 
-* Web kısımları için [Starlette](https://www.starlette.dev/).
-* Data kısımları için [Pydantic](https://docs.pydantic.dev/).
+* Web kısımları için [Starlette](https://starlette.dev/).
+* Data kısımları için [Pydantic](https://pydantic.dev/docs/).
 
 ## Kurulum { #installation }
 
-Bir [virtual environment](https://fastapi.tiangolo.com/tr/virtual-environments/) oluşturup etkinleştirelim ve ardından FastAPI'ı yükleyelim:
+Önce [`uv`'yi kurun](https://docs.astral.sh/uv/getting-started/installation/), ardından projenize FastAPI'ı ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -153,6 +187,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **Not**: Tüm terminallerde çalıştığından emin olmak için `"fastapi[standard]"` ifadesini tırnak içinde yazdığınızdan emin olun.
+
+`pip` kullanmayı tercih ediyorsanız, `fastapi[standard]` paketini bir virtual environment içinde kurun. Alternatif adımlar için [kurulum rehberine](tutorial/#install-fastapi) bakın.
 
 ## Örnek { #example }
 
@@ -210,7 +246,7 @@ Sunucuyu şu komutla çalıştıralım:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -237,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary><code>fastapi dev</code> komutu hakkında...</summary>
 
-`fastapi dev` komutu, `main.py` dosyanızı okur, içindeki **FastAPI** uygulamasını algılar ve [Uvicorn](https://www.uvicorn.dev) kullanarak bir server başlatır.
+`fastapi dev` komutu, `main.py` dosyanızı okur, içindeki **FastAPI** uygulamasını algılar ve [Uvicorn](https://uvicorn.dev) kullanarak bir server başlatır.
 
 Varsayılan olarak `fastapi dev`, local geliştirme için auto-reload etkin şekilde başlar.
 
@@ -274,7 +310,7 @@ Otomatik etkileşimli API dokümantasyonunu göreceksiniz ([Swagger UI](https://
 
 Ve şimdi [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gidin.
 
-Alternatif otomatik dokümantasyonu göreceksiniz ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanır):
+Alternatif otomatik dokümantasyonu göreceksiniz ([ReDoc](https://github.com/Redocly/redoc) tarafından sağlanır):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -452,14 +488,12 @@ Daha fazla özellik içeren daha kapsamlı bir örnek için <a href="https://fas
 
 ### Uygulamanızı deploy edin (opsiyonel) { #deploy-your-app-optional }
 
-İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz; eğer henüz yapmadıysanız gidip bekleme listesine katılın. 🚀
-
-Zaten bir **FastAPI Cloud** hesabınız varsa (bekleme listesinden sizi davet ettiysek 😉), uygulamanızı tek bir komutla deploy edebilirsiniz.
+FastAPI uygulamanızı isteğe bağlı olarak tek bir komutla [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -469,6 +503,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI, FastAPI uygulamanızı otomatik olarak algılar ve cloud'a deploy eder. Giriş yapmadıysanız, kimlik doğrulama sürecini tamamlamak için tarayıcınız açılır.
 
 Hepsi bu! Artık uygulamanıza bu URL'den erişebilirsiniz. ✨
 
@@ -500,7 +536,7 @@ FastAPI, Pydantic ve Starlette'a bağımlıdır.
 
 ### `standard` Bağımlılıkları { #standard-dependencies }
 
-FastAPI'ı `pip install "fastapi[standard]"` ile yüklediğinizde, opsiyonel bağımlılıkların `standard` grubuyla birlikte gelir:
+FastAPI'ı `uv add "fastapi[standard]"` ile yüklediğinizde, opsiyonel bağımlılıkların `standard` grubuyla birlikte gelir:
 
 Pydantic tarafından kullanılanlar:
 
@@ -514,17 +550,17 @@ Starlette tarafından kullanılanlar:
 
 FastAPI tarafından kullanılanlar:
 
-* [`uvicorn`](https://www.uvicorn.dev) - uygulamanızı yükleyen ve servis eden server için. Buna, yüksek performanslı servis için gereken bazı bağımlılıkları (örn. `uvloop`) içeren `uvicorn[standard]` dahildir.
+* [`uvicorn`](https://uvicorn.dev) - uygulamanızı yükleyen ve servis eden server için. Buna, yüksek performanslı servis için gereken bazı bağımlılıkları (örn. `uvloop`) içeren `uvicorn[standard]` dahildir.
 * `fastapi-cli[standard]` - `fastapi` komutunu sağlamak için.
     * Buna, FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy etmenizi sağlayan `fastapi-cloud-cli` dahildir.
 
 ### `standard` Bağımlılıkları Olmadan { #without-standard-dependencies }
 
-`standard` opsiyonel bağımlılıklarını dahil etmek istemiyorsanız, `pip install fastapi` ile kurabilirsiniz.
+`standard` opsiyonel bağımlılıklarını dahil etmek istemiyorsanız, `uv add "fastapi[standard]"` yerine `uv add fastapi` ile kurabilirsiniz.
 
 ### `fastapi-cloud-cli` Olmadan { #without-fastapi-cloud-cli }
 
-FastAPI'ı standard bağımlılıklarla ama `fastapi-cloud-cli` olmadan kurmak istiyorsanız, `pip install "fastapi[standard-no-fastapi-cloud-cli]"` ile yükleyebilirsiniz.
+FastAPI'ı standard bağımlılıklarla ama `fastapi-cloud-cli` olmadan kurmak istiyorsanız, `uv add "fastapi[standard-no-fastapi-cloud-cli]"` ile yükleyebilirsiniz.
 
 ### Ek Opsiyonel Bağımlılıklar { #additional-optional-dependencies }
 
@@ -532,13 +568,13 @@ Yüklemek isteyebileceğiniz bazı ek bağımlılıklar da vardır.
 
 Ek opsiyonel Pydantic bağımlılıkları:
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - ayar yönetimi için.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - Pydantic ile kullanılacak ek type'lar için.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - ayar yönetimi için.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - Pydantic ile kullanılacak ek type'lar için.
 
 Ek opsiyonel FastAPI bağımlılıkları:
 
 * [`orjson`](https://github.com/ijl/orjson) - `ORJSONResponse` kullanmak istiyorsanız gereklidir.
-* [`ujson`](https://github.com/esnme/ultrajson) - `UJSONResponse` kullanmak istiyorsanız gereklidir.
+* [`ujson`](https://github.com/ultrajson/ultrajson) - `UJSONResponse` kullanmak istiyorsanız gereklidir.
 
 ## Lisans { #license }
 

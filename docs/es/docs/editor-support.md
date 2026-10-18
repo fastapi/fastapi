@@ -10,7 +10,7 @@ La **Extensión de FastAPI** está disponible tanto para [VS Code](https://code.
 
 ### Descubrimiento de la aplicación { #application-discovery }
 
-Por defecto, la extensión descubrirá automáticamente aplicaciones FastAPI en tu espacio de trabajo escaneando archivos que creen un instance de `FastAPI()`. Si la detección automática no funciona con la estructura de tu proyecto, puedes especificar un punto de entrada mediante `[tool.fastapi]` en `pyproject.toml` o la configuración de VS Code `fastapi.entryPoint` usando notación de módulo (p. ej. `myapp.main:app`).
+Por defecto, la extensión descubrirá automáticamente aplicaciones FastAPI en tu espacio de trabajo escaneando archivos que crean un instance de `FastAPI()`. Si la detección automática no funciona con la estructura de tu proyecto, puedes especificar un punto de entrada mediante `[tool.fastapi]` en `pyproject.toml` o la configuración de VS Code `fastapi.entryPoint` usando notación de módulo (p. ej. `myapp.main:app`).
 
 ## Funcionalidades { #features }
 

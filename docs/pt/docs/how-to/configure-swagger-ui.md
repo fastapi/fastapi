@@ -1,5 +1,6 @@
 # Configure a UI do Swagger { #configure-swagger-ui }
 
+
 Você pode configurar alguns [parâmetros extras da UI do Swagger](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 Para configurá-los, passe o argumento `swagger_ui_parameters` ao criar o objeto da aplicação `FastAPI()` ou para a função `get_swagger_ui_html()`.

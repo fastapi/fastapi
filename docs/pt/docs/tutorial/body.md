@@ -1,14 +1,15 @@
 # Corpo da requisição { #request-body }
 
+
 Quando você precisa enviar dados de um cliente (como de um navegador) para sua API, você os envia como um **corpo da requisição**.
 
 O corpo da **requisição** é a informação enviada pelo cliente para sua API. O corpo da **resposta** é a informação que sua API envia para o cliente.
 
 Sua API quase sempre precisa enviar um corpo na **resposta**. Mas os clientes não necessariamente precisam enviar **corpos de requisição** o tempo todo, às vezes eles apenas requisitam um path, talvez com alguns parâmetros de consulta, mas não enviam um corpo.
 
-Para declarar um corpo da **requisição**, você utiliza os modelos do [Pydantic](https://docs.pydantic.dev/) com todos os seus poderes e benefícios.
+Para declarar um corpo da **requisição**, você utiliza os modelos do [Pydantic](https://pydantic.dev/docs/) com todos os seus poderes e benefícios.
 
-/// info | Informação
+/// note | Nota
 
 Para enviar dados, você deveria usar um dos: `POST` (o mais comum), `PUT`, `DELETE` ou `PATCH`.
 

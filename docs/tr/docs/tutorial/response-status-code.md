@@ -1,4 +1,4 @@
-# Response Status Code { #response-status-code }
+# Response Status Code'u { #response-status-code }
 
 Bir response model tanımlayabildiğiniz gibi, herhangi bir *path operation* içinde `status_code` parametresiyle response için kullanılacak HTTP status code'u da belirtebilirsiniz:
 
@@ -18,7 +18,7 @@ Bir response model tanımlayabildiğiniz gibi, herhangi bir *path operation* iç
 
 `status_code` parametresi, HTTP status code'u içeren bir sayı alır.
 
-/// info | Bilgi
+/// note | Not
 
 Alternatif olarak `status_code`, Python'un [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus)'ı gibi bir `IntEnum` da alabilir.
 

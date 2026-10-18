@@ -81,7 +81,7 @@ Si vous devez prendre en charge des clients qui n’envoient pas d’en-tête `C
 
 Avec ce paramètre, les requêtes sans en-tête `Content-Type` verront leur corps analysé comme JSON, ce qui correspond au comportement des anciennes versions de FastAPI.
 
-/// info
+/// note | Remarque
 
 Ce comportement et cette configuration ont été ajoutés dans FastAPI 0.132.0.
 
