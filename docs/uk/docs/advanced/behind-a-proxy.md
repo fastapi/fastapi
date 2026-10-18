@@ -16,9 +16,9 @@
 
 Заголовки представника:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -33,7 +33,7 @@
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -60,7 +60,7 @@ https://mysuperapp.com/items/
 
 /// tip | Порада
 
-Якщо хочете дізнатися більше про HTTPS, перегляньте посібник [Про HTTPS](../deployment/https.md){.internal-link target=_blank}.
+Якщо хочете дізнатися більше про HTTPS, перегляньте посібник [Про HTTPS](../deployment/https.md).
 
 ///
 
@@ -91,9 +91,9 @@ sequenceDiagram
 
 Ці заголовки зберігають інформацію про оригінальний запит, яка інакше була б втрачена:
 
-- X-Forwarded-For: оригінальна IP-адреса клієнта
-- X-Forwarded-Proto: оригінальний протокол (`https`)
-- X-Forwarded-Host: оригінальний хост (`mysuperapp.com`)
+* **X-Forwarded-For**: оригінальна IP-адреса клієнта
+* **X-Forwarded-Proto**: оригінальний протокол (`https`)
+* **X-Forwarded-Host**: оригінальний хост (`mysuperapp.com`)
 
 Коли **FastAPI CLI** налаштовано з `--forwarded-allow-ips`, він довіряє цим заголовкам і використовує їх, наприклад, для побудови коректних URL-адрес у перенаправленнях.
 
@@ -170,7 +170,7 @@ IP `0.0.0.0` зазвичай означає, що програма слухає
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -228,7 +228,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Майте на увазі, що сервер (Uvicorn) не використовуватиме `root_path` ні для чого, окрім передачі його застосунку.
 
-Але якщо ви перейдете у вашому браузері на <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, ви побачите звичайну відповідь:
+Але якщо ви перейдете у вашому браузері на [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), ви побачите звичайну відповідь:
 
 ```JSON
 {
@@ -251,9 +251,9 @@ Uvicorn очікуватиме, що представник буде зверт�
 
 ## Локальне тестування з Traefik { #testing-locally-with-traefik }
 
-Ви можете легко провести експеримент локально з вилученим префіксом шляху, використовуючи <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a>.
+Ви можете легко провести експеримент локально з вилученим префіксом шляху, використовуючи [Traefik](https://docs.traefik.io/).
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Завантажте Traefik</a>, це один бінарний файл, ви можете розпакувати архів і запустити його безпосередньо з термінала.
+[Завантажте Traefik](https://github.com/traefik/traefik/releases), це один бінарний файл, ви можете розпакувати архів і запустити його безпосередньо з термінала.
 
 Потім створіть файл `traefik.toml` з таким вмістом:
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -330,7 +330,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ### Перевірте відповіді { #check-the-responses }
 
-Тепер, якщо ви перейдете за URL із портом Uvicorn: <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>, ви побачите звичайну відповідь:
+Тепер, якщо ви перейдете за URL із портом Uvicorn: [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), ви побачите звичайну відповідь:
 
 ```JSON
 {
@@ -345,7 +345,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-А тепер відкрийте URL із портом Traefik, включно з префіксом шляху: <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>.
+А тепер відкрийте URL із портом Traefik, включно з префіксом шляху: [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app).
 
 Ми отримуємо ту саму відповідь:
 
@@ -370,13 +370,13 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 «Офіційний» спосіб доступу до застосунку - через представника з префіксом шляху, який ми визначили. Тож, як і очікується, якщо ви спробуєте інтерфейс документації, який обслуговує безпосередньо Uvicorn без префікса шляху в URL, це не запрацює, оскільки він очікує доступу через представника.
 
-Ви можете перевірити це на <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>:
+Ви можете перевірити це на [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs):
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
 Але якщо ми звернемося до інтерфейсу документації за «офіційним» URL, використовуючи представника з портом `9999`, за адресою `/api/v1/docs`, усе працює коректно! 🎉
 
-Ви можете перевірити це на <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>:
+Ви можете перевірити це на [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs):
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
 
@@ -433,7 +433,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-В інтерфейсі документації за адресою <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> це виглядатиме так:
+В інтерфейсі документації за адресою [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs) це виглядатиме так:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
@@ -461,6 +461,6 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ## Монтування підзастосунку { #mounting-a-sub-application }
 
-Якщо вам потрібно змонтувати підзастосунок (як описано в [Підзастосунки - монтування](sub-applications.md){.internal-link target=_blank}), одночасно використовуючи представника з `root_path`, ви можете робити це звичайним чином, як і очікуєте.
+Якщо вам потрібно змонтувати підзастосунок (як описано в [Підзастосунки - монтування](sub-applications.md)), одночасно використовуючи представника з `root_path`, ви можете робити це звичайним чином, як і очікуєте.
 
 FastAPI внутрішньо розумно використовуватиме `root_path`, тож усе просто працюватиме. ✨

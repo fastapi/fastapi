@@ -16,9 +16,9 @@
 
 プロキシのヘッダーは次のとおりです:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -33,7 +33,7 @@ FastAPI CLI を *CLI オプション* `--forwarded-allow-ips` 付きで起動し
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -60,7 +60,7 @@ https://mysuperapp.com/items/
 
 /// tip | 豆知識
 
-HTTPS について詳しく知りたい場合は、[HTTPS について](../deployment/https.md){.internal-link target=_blank} を参照してください。
+HTTPS について詳しく知りたい場合は、[HTTPS について](../deployment/https.md) を参照してください。
 
 ///
 
@@ -170,7 +170,7 @@ IP `0.0.0.0` は、そのマシン/サーバーで利用可能なすべての IP
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ Hypercorn を使う場合も、同様に `--root-path` オプションがあり�
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -228,7 +228,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 サーバー（Uvicorn）は、その `root_path` をアプリに渡す以外の用途では使用しない点に注意してください。
 
-しかし、ブラウザで <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> にアクセスすると、通常どおりのレスポンスが表示されます:
+しかし、ブラウザで [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) にアクセスすると、通常どおりのレスポンスが表示されます:
 
 ```JSON
 {
@@ -251,9 +251,9 @@ Uvicorn は、プロキシが `http://127.0.0.1:8000/app` にアクセスして�
 
 ## Traefik を使ったローカル検証 { #testing-locally-with-traefik }
 
-<a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a> を使えば、パスプレフィックスを削除する構成をローカルで簡単に試せます。
+[Traefik](https://docs.traefik.io/) を使えば、パスプレフィックスを削除する構成をローカルで簡単に試せます。
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">Traefik をダウンロード</a> してください。単一バイナリなので、圧縮ファイルを展開して端末から直接実行できます。
+[Traefik をダウンロード](https://github.com/traefik/traefik/releases) してください。単一バイナリなので、圧縮ファイルを展開して端末から直接実行できます。
 
 次の内容で `traefik.toml` というファイルを作成します:
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -330,7 +330,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ### レスポンスの確認 { #check-the-responses }
 
-ここで、Uvicorn のポートの URL <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a> にアクセスすると、通常どおりのレスポンスが表示されます:
+ここで、Uvicorn のポートの URL [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) にアクセスすると、通常どおりのレスポンスが表示されます:
 
 ```JSON
 {
@@ -345,7 +345,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-次に、Traefik のポートでプレフィックス付きの URL <a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a> を開きます。
+次に、Traefik のポートでプレフィックス付きの URL [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app) を開きます。
 
 同じレスポンスが得られます:
 
@@ -370,13 +370,13 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 「公式な」アクセス方法は、定義したパスプレフィックス付きのプロキシ経由です。したがって想定どおり、プレフィックスなしの URL で Uvicorn が直接提供するドキュメント UI にアクセスすると動作しません。プロキシ経由でアクセスされることを前提としているためです。
 
-<a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> を確認してください:
+[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) を確認してください:
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
 しかし、プロキシ（ポート `9999`）を使った「公式」URL `/api/v1/docs` でドキュメント UI にアクセスすると、正しく動作します！🎉
 
-<a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> を確認してください:
+[http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs) を確認してください:
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
 
@@ -433,7 +433,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-ドキュメント UI（<a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a>）では次のように表示されます:
+ドキュメント UI（[http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs)）では次のように表示されます:
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
@@ -461,6 +461,6 @@ OpenAPI 仕様の `servers` プロパティは任意です。
 
 ## サブアプリケーションのマウント { #mounting-a-sub-application }
 
-`root_path` を伴うプロキシを使用しつつサブアプリケーションをマウントする必要がある場合でも（[サブアプリケーション - マウント](sub-applications.md){.internal-link target=_blank} 参照）、通常どおりに行えます。
+`root_path` を伴うプロキシを使用しつつサブアプリケーションをマウントする必要がある場合でも（[サブアプリケーション - マウント](sub-applications.md) 参照）、通常どおりに行えます。
 
 FastAPI は内部で `root_path` を適切に扱うため、そのまま動作します。✨

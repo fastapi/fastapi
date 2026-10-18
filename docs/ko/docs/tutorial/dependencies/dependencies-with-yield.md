@@ -14,8 +14,8 @@ FastAPI는 <dfn title='때로는 "exit code", "cleanup code", "teardown code", "
 
 다음과 함께 사용할 수 있는 모든 함수:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 또는
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) 또는
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 는 **FastAPI**의 의존성으로 사용할 수 있습니다.
 
@@ -55,7 +55,7 @@ yield된 값은 *경로 처리* 및 다른 의존성들에 주입되는 값 입�
 
 따라서, 의존성 내에서 `except SomeException`을 사용하여 특정 예외를 처리할 수 있습니다.
 
-마찬가지로, `finally`를 사용하여 예외 발생 여부와 관계 없이 종료 단계까 실행되도록 할 수 있습니다.
+마찬가지로, `finally`를 사용하여 예외 발생 여부와 관계 없이 종료 단계가 실행되도록 할 수 있습니다.
 
 {* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
 
@@ -87,7 +87,7 @@ yield된 값은 *경로 처리* 및 다른 의존성들에 주입되는 값 입�
 
 /// note | 기술 세부사항
 
-파이썬의 <a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a> 덕분에 이 기능이 작동합니다.
+파이썬의 [컨텍스트 관리자](https://docs.python.org/3/library/contextlib.html) 덕분에 이 기능이 작동합니다.
 
 **FastAPI**는 이를 내부적으로 사용하여 이를 달성합니다.
 
@@ -111,7 +111,7 @@ yield된 값은 *경로 처리* 및 다른 의존성들에 주입되는 값 입�
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-예외를 잡고 그에 기반해 사용자 정의 응답을 생성하려면, [사용자 정의 예외 처리기](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}를 생성하세요.
+예외를 잡고 그에 기반해 사용자 정의 응답을 생성하려면, [사용자 정의 예외 처리기](../handling-errors.md#install-custom-exception-handlers)를 생성하세요.
 
 ## `yield`와 `except`를 사용하는 의존성 { #dependencies-with-yield-and-except }
 
@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | 정보
+/// note | 참고
 
 클라이언트에는 **하나의 응답**만 전송됩니다. 이는 오류 응답 중 하나일 수도 있고, *경로 처리*에서 생성된 응답일 수도 있습니다.
 
@@ -233,14 +233,15 @@ participant operation as Path Operation
 
 `yield`를 사용하는 의존성은 시간이 지나면서 서로 다른 사용 사례를 다루고 일부 문제를 수정하기 위해 발전해 왔습니다.
 
-FastAPI의 여러 버전에서 무엇이 바뀌었는지 보고 싶다면, 고급 가이드의 [고급 의존성 - `yield`, `HTTPException`, `except` 및 백그라운드 작업을 사용하는 의존성](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}에서 더 자세히 읽을 수 있습니다.
+FastAPI의 여러 버전에서 무엇이 바뀌었는지 보고 싶다면, 고급 가이드의 [고급 의존성 - `yield`, `HTTPException`, `except` 및 백그라운드 작업을 사용하는 의존성](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks)에서 더 자세히 읽을 수 있습니다.
+
 ## 컨텍스트 관리자 { #context-managers }
 
 ### "컨텍스트 관리자"란 { #what-are-context-managers }
 
 "컨텍스트 관리자"는 Python에서 `with` 문에서 사용할 수 있는 모든 객체를 의미합니다.
 
-예를 들어, <a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">`with`를 사용하여 파일을 읽을 수 있습니다</a>:
+예를 들어, [with를 사용해 파일을 읽을 수 있습니다](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,7 +265,7 @@ with open("./somefile.txt") as f:
 
 ///
 
-Python에서는 다음을 통해 컨텍스트 관리자를 생성할 수 있습니다. <a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank"> 두 가지 메서드가 있는 클래스를 생성합니다: `__enter__()` and `__exit__()`</a>.
+Python에서는 [두 가지 메서드: `__enter__()`와 `__exit__()`가 있는 클래스를 생성하여](https://docs.python.org/3/reference/datamodel.html#context-managers) 컨텍스트 관리자를 만들 수 있습니다.
 
 **FastAPI**의 `yield`가 있는 의존성 내에서
 `with` 또는 `async with`문을 사용하여 이들을 활용할 수 있습니다:
@@ -275,8 +276,8 @@ Python에서는 다음을 통해 컨텍스트 관리자를 생성할 수 있습�
 
 컨텍스트 관리자를 생성하는 또 다른 방법은 다음과 같습니다:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> 또는
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) 또는
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 이들은 단일 `yield`가 있는 함수를 꾸미는 데 사용합니다.
 

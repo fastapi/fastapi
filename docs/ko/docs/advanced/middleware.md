@@ -1,8 +1,8 @@
 # 고급 Middleware { #advanced-middleware }
 
-메인 튜토리얼에서 애플리케이션에 [커스텀 Middleware](../tutorial/middleware.md){.internal-link target=_blank}를 추가하는 방법을 읽었습니다.
+메인 튜토리얼에서 애플리케이션에 [커스텀 Middleware](../tutorial/middleware.md)를 추가하는 방법을 읽었습니다.
 
-그리고 [`CORSMiddleware`로 CORS 처리하기](../tutorial/cors.md){.internal-link target=_blank}도 읽었습니다.
+그리고 [`CORSMiddleware`로 CORS 처리하기](../tutorial/cors.md)도 읽었습니다.
 
 이 섹션에서는 다른 middleware들을 사용하는 방법을 살펴보겠습니다.
 
@@ -91,7 +91,7 @@ HTTP Host Header 공격을 방어하기 위해, 들어오는 모든 요청에 �
 
 예를 들어:
 
-* <a href="https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py" class="external-link" target="_blank">Uvicorn의 `ProxyHeadersMiddleware`</a>
-* <a href="https://github.com/florimondmanca/msgpack-asgi" class="external-link" target="_blank">MessagePack</a>
+* [Uvicorn의 `ProxyHeadersMiddleware`](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
+* [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-사용 가능한 다른 middleware를 보려면 <a href="https://www.starlette.dev/middleware/" class="external-link" target="_blank">Starlette의 Middleware 문서</a>와 <a href="https://github.com/florimondmanca/awesome-asgi" class="external-link" target="_blank">ASGI Awesome List</a>를 확인하세요.
+사용 가능한 다른 middleware를 보려면 [Starlette의 Middleware 문서](https://starlette.dev/middleware/)와 [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi)를 확인하세요.

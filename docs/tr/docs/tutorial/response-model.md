@@ -13,6 +13,7 @@ FastAPI bu dönüş tipini şunlar için kullanır:
 * OpenAPI’deki *path operation* içine response için bir **JSON Schema** eklemek.
     * Bu, **otomatik dokümantasyon** tarafından kullanılır.
     * Ayrıca otomatik client code generation araçları tarafından da kullanılır.
+* Dönen veriyi Pydantic kullanarak JSON’a **serileştirmek**; Pydantic **Rust** ile yazıldığı için **çok daha hızlıdır**.
 
 Ama en önemlisi:
 
@@ -71,20 +72,20 @@ Burada `UserIn` adında bir model declare ediyoruz; bu model plaintext bir passw
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | Bilgi
+/// note | Not
 
-`EmailStr` kullanmak için önce <a href="https://github.com/JoshData/python-email-validator" class="external-link" target="_blank">`email-validator`</a> paketini kurun.
+`EmailStr` kullanmak için önce [`email-validator`](https://github.com/JoshData/python-email-validator) paketini kurun.
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, onu aktive ettiğinizden emin olun ve ardından örneğin şöyle kurun:
+Projenize ekleyin:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 veya şöyle:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -97,9 +98,9 @@ Artık bir browser password ile user oluşturduğunda, API response içinde ayn�
 
 Bu örnekte sorun olmayabilir; çünkü password’ü gönderen kullanıcı zaten aynı kişi.
 
-Namun ancak aynı modeli başka bir *path operation* için kullanırsak, kullanıcının password’lerini her client’a gönderiyor olabiliriz.
+Ama aynı modeli başka bir *path operation* için kullanırsak, kullanıcının password’lerini her client’a gönderiyor olabiliriz.
 
-/// danger
+/// danger | Tehlike
 
 Tüm riskleri bildiğinizden ve ne yaptığınızdan emin olmadığınız sürece, bir kullanıcının plain password’ünü asla saklamayın ve bu şekilde response içinde göndermeyin.
 
@@ -181,7 +182,7 @@ Bazı durumlarda Pydantic field olarak geçerli olmayan bir şey döndürebilir 
 
 ### Doğrudan Response Döndürmek { #return-a-response-directly }
 
-En yaygın durum, [ileri seviye dokümanlarda daha sonra anlatıldığı gibi doğrudan bir Response döndürmektir](../advanced/response-directly.md){.internal-link target=_blank}.
+En yaygın durum, [ileri seviye dokümanlarda daha sonra anlatıldığı gibi doğrudan bir Response döndürmektir](../advanced/response-directly.md).
 
 {* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
@@ -250,14 +251,14 @@ Dolayısıyla ID’si `foo` olan item için bu *path operation*’a request atar
 }
 ```
 
-/// info | Bilgi
+/// note | Not
 
 Ayrıca şunları da kullanabilirsiniz:
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-Bunlar, `exclude_defaults` ve `exclude_none` için <a href="https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict" class="external-link" target="_blank">Pydantic dokümanlarında</a> anlatıldığı gibidir.
+Bunlar, `exclude_defaults` ve `exclude_none` için [Pydantic dokümanlarında](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value) anlatıldığı gibidir.
 
 ///
 

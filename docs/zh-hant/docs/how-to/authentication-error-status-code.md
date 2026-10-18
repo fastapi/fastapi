@@ -2,7 +2,7 @@
 
 在 FastAPI 版本 `0.122.0` 之前，當內建的安全工具在身分驗證失敗後回傳錯誤給用戶端時，會使用 HTTP 狀態碼 `403 Forbidden`。
 
-從 FastAPI 版本 `0.122.0` 起，改為使用更合適的 HTTP 狀態碼 `401 Unauthorized`，並在回應中依據 HTTP 規範加上合理的 `WWW-Authenticate` 標頭，參考 <a href="https://datatracker.ietf.org/doc/html/rfc7235#section-3.1" class="external-link" target="_blank">RFC 7235</a>、<a href="https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized" class="external-link" target="_blank">RFC 9110</a>。
+從 FastAPI 版本 `0.122.0` 起，改為使用更合適的 HTTP 狀態碼 `401 Unauthorized`，並在回應中依據 HTTP 規範加上合理的 `WWW-Authenticate` 標頭，參考 [RFC 7235](https://datatracker.ietf.org/doc/html/rfc7235#section-3.1)、[RFC 9110](https://datatracker.ietf.org/doc/html/rfc9110#name-401-unauthorized)。
 
 但如果你的用戶端因某些原因依賴於舊行為，你可以在你的 security 類別中覆寫 `make_not_authenticated_error` 方法以恢復舊的行為。
 

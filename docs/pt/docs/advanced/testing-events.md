@@ -4,7 +4,8 @@ Quando você precisa que o `lifespan` seja executado em seus testes, você pode 
 
 {* ../../docs_src/app_testing/tutorial004_py310.py hl[9:15,18,27:28,30:32,41:43] *}
 
-Você pode ler mais detalhes sobre o ["Executando lifespan em testes no site oficial da documentação do Starlette."](https://www.starlette.dev/lifespan/#running-lifespan-in-tests)
+
+Você pode ler mais detalhes sobre o ["Executando lifespan em testes no site oficial da documentação do Starlette."](https://starlette.dev/lifespan/#running-lifespan-in-tests)
 
 Para os eventos `startup` e `shutdown` descontinuados, você pode usar o `TestClient` da seguinte forma:
 

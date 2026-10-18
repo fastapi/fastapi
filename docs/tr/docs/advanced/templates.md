@@ -8,12 +8,12 @@ Bunu kolayca yapılandırmak için, doğrudan **FastAPI** uygulamanızda kullana
 
 ## Bağımlılıkları Yükleme { #install-dependencies }
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, etkinleştirdiğinizden ve `jinja2`'yi yüklediğinizden emin olun:
+Projenize `jinja2` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -29,7 +29,7 @@ $ pip install jinja2
 
 {* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
-/// note
+/// note | Not
 
 FastAPI 0.108.0 ve Starlette 0.29.0 öncesinde, ilk parametre `name` idi.
 
@@ -37,7 +37,7 @@ Ayrıca, daha önceki sürümlerde `request` nesnesi, Jinja2 için context için
 
 ///
 
-/// tip
+/// tip | İpucu
 
 `response_class=HTMLResponse` olarak tanımlarsanız doküman arayüzü (docs UI) response'un HTML olacağını anlayabilir.
 
@@ -123,4 +123,4 @@ Ve `StaticFiles` kullandığınız için, bu CSS dosyası **FastAPI** uygulaman�
 
 ## Daha fazla detay { #more-details }
 
-Template'leri nasıl test edeceğiniz dahil daha fazla detay için <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette'in template dokümantasyonuna</a> bakın.
+Template'leri nasıl test edeceğiniz dahil daha fazla detay için [Starlette'in template dokümantasyonuna](https://starlette.dev/templates/) bakın.

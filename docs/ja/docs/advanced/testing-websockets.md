@@ -8,6 +8,6 @@ WebSocket をテストするのにも同じ `TestClient` を使用できます�
 
 /// note | 備考
 
-詳細については、Starlette のドキュメント「<a href="https://www.starlette.dev/testclient/#testing-websocket-sessions" class="external-link" target="_blank">WebSocket のテスト</a>」を参照してください。
+詳細については、Starlette のドキュメント「[WebSocket のテスト](https://starlette.dev/testclient/#testing-websocket-sessions)」を参照してください。
 
 ///

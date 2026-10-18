@@ -40,23 +40,23 @@ def results():
 
 ---
 
-Si votre application n'a pas à communiquer avec une autre chose et à attendre sa réponse, utilisez `async def`, même si vous n'avez pas besoin d'utiliser `await` à l'intérieur.
+Si votre application (d'une certaine manière) n'a pas à communiquer avec une autre chose et à attendre sa réponse, utilisez `async def`, même si vous n'avez pas besoin d'utiliser `await` à l'intérieur.
 
 ---
 
-Si vous ne savez pas, utilisez seulement `def` comme vous le feriez habituellement.
+Si vous ne savez pas, utilisez un `def` normal.
 
 ---
 
-Note : vous pouvez mélanger `def` et `async def` dans vos *fonctions de chemin d'accès* autant que nécessaire, et définir chacune avec l’option la plus adaptée pour vous. FastAPI fera ce qu'il faut avec elles.
+**Remarque** : vous pouvez mélanger `def` et `async def` dans vos *fonctions de chemin d'accès* autant que nécessaire, et définir chacune avec l’option la plus adaptée pour vous. FastAPI fera ce qu'il faut avec elles.
 
 Au final, peu importe le cas parmi ceux ci-dessus, FastAPI fonctionnera de manière asynchrone et sera extrêmement rapide.
 
-Mais si vous suivez bien les instructions ci-dessus, il pourra effectuer quelques optimisations et ainsi améliorer les performances.
+Mais si vous suivez bien les étapes ci-dessus, il pourra effectuer quelques optimisations de performance.
 
 ## Détails techniques { #technical-details }
 
-Les versions modernes de Python supportent le **code asynchrone** grâce aux **« coroutines »** avec les syntaxes **`async` et `await`**.
+Les versions modernes de Python supportent le **« code asynchrone »** en utilisant quelque chose appelé **« coroutines »**, avec la syntaxe **`async` et `await`**.
 
 Analysons les différentes parties de cette phrase dans les sections suivantes :
 
@@ -70,7 +70,7 @@ Faire du code asynchrone signifie que le langage 💬 est capable de dire à l'o
 
 Donc, pendant ce temps, l'ordinateur pourra effectuer d'autres tâches, pendant que « slow-file » 📝 se termine.
 
-Ensuite l'ordinateur / le programme 🤖 reviendra à chaque fois qu'il en a la chance que ce soit parce qu'il attend à nouveau, ou car il 🤖 a fini tout le travail qu'il avait à faire. Il 🤖 regardera donc si les tâches qu'il attend ont terminé d'être effectuées.
+Ensuite l'ordinateur / le programme 🤖 reviendra à chaque fois qu'il en a la chance, parce qu'il attend à nouveau, ou quand il 🤖 a fini tout le travail qu'il avait à faire à ce moment-là. Et il 🤖 regardera si des tâches qu'il attendait ont déjà terminé, en faisant ce qu'il devait faire.
 
 Ensuite, il 🤖 prendra la première tâche à finir (disons, notre « slow-file » 📝) et continuera à faire avec cette dernière ce qu'il était censé.
 
@@ -80,18 +80,18 @@ Ce « attendre quelque chose d'autre » fait généralement référence à des o
 * de la donnée envoyée depuis votre programme soit reçue par le client à travers le réseau
 * le contenu d'un fichier sur le disque soit lu par le système et passé à votre programme
 * le contenu que votre programme a passé au système soit écrit sur le disque
-* une opération effectuée à distance par une API se termine
+* une opération effectuée à distance par une API
 * une opération en base de données se termine
 * une requête à une base de données renvoie un résultat
 * etc.
 
 Le temps d'exécution étant consommé majoritairement par l'attente d'opérations <abbr title="Input and Output - Entrées et sorties">I/O</abbr>, on appelle ceci des opérations « I/O bound ».
 
-Ce concept se nomme « asynchrone » car l'ordinateur / le programme n'a pas besoin d'être « synchronisé » avec la tâche, attendant le moment exact où cette dernière se terminera en ne faisant rien, pour être capable de récupérer le résultat de la tâche et l'utiliser dans la suite des opérations.
+Ce concept se nomme « asynchrone » car l'ordinateur / le programme n'a pas besoin d'être « synchronisé » avec la tâche lente, attendant le moment exact où cette dernière se terminera en ne faisant rien, pour être capable de récupérer le résultat de la tâche et l'utiliser dans la suite des opérations.
 
-À la place, en étant « asynchrone », une fois terminée, une tâche peut légèrement attendre (quelques microsecondes) que l'ordinateur / le programme finisse ce qu'il était en train de faire, et revienne récupérer le résultat.
+À la place, en étant un système « asynchrone », une fois terminée, la tâche peut attendre un peu dans la file (quelques microsecondes) que l'ordinateur / le programme finisse ce qu'il était en train de faire, puis revienne récupérer les résultats et continue à travailler avec eux.
 
-Pour parler de tâches « synchrones » (en opposition à « asynchrones »), on utilise souvent le terme « séquentiel », car l'ordinateur / le programme va effectuer toutes les étapes d'une tâche séquentiellement avant de passer à une autre tâche, même si ces étapes impliquent de l'attente.
+Pour parler de tâches « synchrones » (en opposition à « asynchrones »), on utilise souvent aussi le terme « séquentiel », car l'ordinateur / le programme va effectuer toutes les étapes d'une tâche séquentiellement avant de passer à une autre tâche, même si ces étapes impliquent de l'attente.
 
 ### Concurrence et Burgers { #concurrency-and-burgers }
 
@@ -99,49 +99,49 @@ L'idée de code **asynchrone** décrite ci-dessus est parfois aussi appelée **�
 
 La **concurrence** et le **parallélisme** sont tous deux liés à l'idée de « différentes choses arrivant plus ou moins au même moment ».
 
-Mais les détails entre la **concurrence** et le **parallélisme** diffèrent sur de nombreux points.
+Mais les détails entre la *concurrence* et le *parallélisme* sont assez différents.
 
-Pour expliquer la différence, voici une histoire de burgers :
+Pour expliquer la différence, imaginez l'histoire suivante à propos de burgers :
 
 ### Burgers concurrents { #concurrent-burgers }
 
-Vous amenez votre crush 😍 dans votre fast food 🍔 favori, et faites la queue pendant que le serveur 💁 prend les commandes des personnes devant vous.
+Vous allez avec votre crush chercher de la nourriture dans un fast food, vous faites la queue pendant que le caissier prend les commandes des personnes devant vous. 😍
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-01.png" class="illustration">
 
-Puis vient votre tour, vous commandez alors 2 magnifiques burgers 🍔 pour votre crush 😍 et vous.
+Puis vient votre tour, vous commandez alors 2 burgers très sophistiqués pour votre crush et vous. 🍔🍔
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-02.png" class="illustration">
 
-Le serveur 💁 dit quelque chose à son collègue dans la cuisine 👨‍🍳 pour qu'il sache qu'il doit préparer vos burgers 🍔 (bien qu'il soit déjà en train de préparer ceux des clients précédents).
+Le caissier dit quelque chose au cuisinier dans la cuisine pour qu'il sache qu'il doit préparer vos burgers (bien qu'il soit déjà en train de préparer ceux des clients précédents).
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-03.png" class="illustration">
 
-Vous payez 💸.
+Vous payez. 💸
 
-Le serveur 💁 vous donne le numéro assigné à votre commande.
+Le caissier vous donne le numéro de votre tour.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-04.png" class="illustration">
 
-Pendant que vous attendez, vous allez choisir une table avec votre crush 😍, vous discutez avec votre crush 😍 pendant un long moment (les burgers étant « magnifiques » ils sont très longs à préparer ✨🍔✨).
+Pendant que vous attendez, vous allez choisir une table avec votre crush, vous vous asseyez et discutez avec votre crush pendant un long moment (vos burgers étant très sophistiqués, ils prennent du temps à préparer).
 
-Pendant que vous êtes assis à table, en attendant que les burgers 🍔 soient prêts, vous pouvez passer ce temps à admirer à quel point votre crush 😍 est géniale, mignonne et intelligente ✨😍✨.
+Pendant que vous êtes assis à table avec votre crush, en attendant les burgers, vous pouvez passer ce temps à admirer à quel point votre crush est géniale, mignonne et intelligente ✨😍✨.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-05.png" class="illustration">
 
-Pendant que vous discutez avec votre crush 😍, de temps en temps vous jetez un coup d’œil au nombre affiché au-dessus du comptoir pour savoir si c'est à votre tour d'être servis.
+Pendant que vous attendez et discutez avec votre crush, de temps en temps, vous jetez un coup d’œil au nombre affiché au-dessus du comptoir pour savoir si c'est déjà votre tour.
 
-Jusqu'au moment où c'est (enfin) votre tour. Vous allez au comptoir, récupérez vos burgers 🍔 et revenez à votre table.
+Puis, à un moment, c'est enfin votre tour. Vous allez au comptoir, récupérez vos burgers et revenez à votre table.
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-06.png" class="illustration">
 
-Vous et votre crush 😍 mangez les burgers 🍔 et passez un bon moment ✨.
+Vous et votre crush mangez les burgers et passez un bon moment. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info
+/// note | Remarque
 
-Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Belles illustrations par [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
@@ -149,117 +149,117 @@ Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot
 
 Imaginez que vous êtes l'ordinateur / le programme 🤖 dans cette histoire.
 
-Pendant que vous faites la queue, vous être simplement inactif 😴, attendant votre tour, ne faisant rien de « productif ». Mais la queue est rapide car le serveur 💁 prend seulement les commandes (et ne les prépare pas), donc tout va bien.
+Pendant que vous faites la queue, vous êtes simplement inactif 😴, attendant votre tour, ne faisant rien de très « productif ». Mais la queue est rapide car le caissier prend seulement les commandes (et ne les prépare pas), donc tout va bien.
 
-Ensuite, quand c'est votre tour, vous faites des actions « productives » 🤓, vous étudiez le menu, décidez ce que vous voulez, demandez à votre crush 😍 son choix, payez 💸, vérifiez que vous utilisez la bonne carte de crédit, vérifiez que le montant débité sur la carte est correct, vérifiez que la commande contient les bons produits, etc.
+Ensuite, quand c'est votre tour, vous faites du vrai travail « productif », vous étudiez le menu, décidez ce que vous voulez, demandez à votre crush son choix, payez, vérifiez que vous donnez le bon billet ou la bonne carte, vérifiez que le montant débité est correct, vérifiez que la commande contient les bons produits, etc.
 
-Mais ensuite, même si vous n'avez pas encore vos burgers 🍔, votre travail avec le serveur 💁 est « en pause » ⏸, car vous devez attendre 🕙 que vos burgers soient prêts.
+Mais ensuite, même si vous n'avez toujours pas vos burgers, votre travail avec le caissier est « en pause » ⏸, car vous devez attendre 🕙 que vos burgers soient prêts.
 
-Après vous être écarté du comptoir et vous être assis à votre table avec le numéro de votre commande, vous pouvez tourner 🔀 votre attention vers votre crush 😍, et « travailler » ⏯ 🤓 là-dessus. Vous êtes donc à nouveau en train de faire quelque chose de « productif » 🤓, vous flirtez avec votre crush 😍.
+Mais lorsque vous vous écartez du comptoir et vous asseyez à table avec un numéro pour votre tour, vous pouvez tourner 🔀 votre attention vers votre crush, et « travailler » ⏯ 🤓 là-dessus. Vous êtes donc à nouveau en train de faire quelque chose de très « productif », comme flirter avec votre crush 😍.
 
-Puis le serveur 💁 dit « J'ai fini de préparer les burgers » 🍔 en mettant votre numéro sur l'affichage du comptoir, mais vous ne courez pas immédiatement au moment où votre numéro s'affiche. Vous savez que personne ne volera vos burgers 🍔 car vous avez votre numéro et les autres clients ont le leur.
+Puis le caissier 💁 dit « J'ai fini de faire les burgers » en mettant votre numéro sur l'affichage du comptoir, mais vous ne sautez pas comme un fou immédiatement quand le numéro affiché change pour devenir votre numéro. Vous savez que personne ne volera vos burgers car vous avez le numéro de votre tour, et les autres ont le leur.
 
-Vous attendez donc que votre crush 😍 finisse son histoire, souriez gentiment et dites que vous allez chercher les burgers ⏸.
+Vous attendez donc que votre crush finisse son histoire (termine le travail actuel ⏯ / la tâche en cours de traitement 🤓), souriez gentiment et dites que vous allez chercher les burgers ⏸.
 
-Pour finir vous allez au comptoir 🔀, vers la tâche initiale qui est désormais terminée ⏯, récupérez les burgers 🍔, remerciez le serveur et ramenez les burgers 🍔 à votre table. Ceci termine l'étape / la tâche d'interaction avec le comptoir ⏹. Ce qui ensuite, crée une nouvelle tâche de « manger les burgers » 🔀 ⏯, mais la précédente, « récupérer les burgers » est terminée ⏹.
+Puis vous allez au comptoir 🔀, vers la tâche initiale qui est désormais terminée ⏯, récupérez les burgers, remerciez et ramenez les burgers à votre table. Ceci termine l'étape / la tâche d'interaction avec le comptoir ⏹. Ce qui ensuite crée une nouvelle tâche, « manger les burgers » 🔀 ⏯, mais la précédente, « récupérer les burgers », est terminée ⏹.
 
 ### Burgers parallèles { #parallel-burgers }
 
-Imaginons désormais que ce ne sont pas des « burgers concurrents » mais des « burgers parallèles ».
+Imaginons désormais que ce ne sont pas des « Burgers concurrents » mais des « Burgers parallèles ».
 
-Vous allez avec votre crush 😍 dans un fast food 🍔 parallélisé.
+Vous allez avec votre crush chercher de la nourriture dans un fast food parallèle.
 
-Vous attendez pendant que plusieurs (disons 8) serveurs qui sont aussi des cuisiniers 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳 prennent les commandes des personnes devant vous.
+Vous attendez pendant que plusieurs (disons 8) caissiers qui sont en même temps cuisiniers prennent les commandes des personnes devant vous.
 
-Chaque personne devant vous attend 🕙 que son burger 🍔 soit prêt avant de quitter le comptoir car chacun des 8 serveurs va lui-même préparer le burger directement avant de prendre la commande suivante.
+Chaque personne devant vous attend que son burger soit prêt avant de quitter le comptoir car chacun des 8 caissiers va préparer le burger directement avant de prendre la commande suivante.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
-Puis c'est enfin votre tour, vous commandez 2 magnifiques burgers 🍔 pour vous et votre crush 😍.
+Puis c'est enfin votre tour, vous commandez 2 burgers très sophistiqués pour vous et votre crush.
 
 Vous payez 💸.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-02.png" class="illustration">
 
-Le serveur va dans la cuisine 👨‍🍳.
+Le caissier va dans la cuisine.
 
-Vous attendez devant le comptoir afin que personne ne prenne vos burgers 🍔 avant vous, vu qu'il n'y a pas de numéro de commande.
+Vous attendez, debout devant le comptoir 🕙, afin que personne d'autre ne prenne vos burgers avant vous, vu qu'il n'y a pas de numéros pour les tours.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-03.png" class="illustration">
 
-Vous et votre crush 😍 étant occupés à vérifier que personne ne passe devant vous prendre vos burgers au moment où ils arriveront 🕙, vous ne pouvez pas vous préoccuper de votre crush 😞.
+Vous et votre crush étant occupés à ne laisser personne passer devant vous et prendre vos burgers au moment où ils arriveront, vous ne pouvez pas prêter attention à votre crush. 😞
 
-C'est du travail « synchrone », vous être « synchronisés » avec le serveur/cuisinier 👨‍🍳. Vous devez attendre 🕙 et être présent au moment exact où le serveur/cuisinier 👨‍🍳 finira les burgers 🍔 et vous les donnera, sinon quelqu'un risque de vous les prendre.
+C'est du travail « synchrone », vous être « synchronisés » avec le caissier/cuisinier 👨‍🍳. Vous devez attendre 🕙 et être présent au moment exact où le caissier/cuisinier 👨‍🍳 finira les burgers et vous les donnera, sinon quelqu'un d'autre risque de vous les prendre.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
-Puis le serveur/cuisinier 👨‍🍳 revient enfin avec vos burgers 🍔, après un long moment d'attente 🕙 devant le comptoir.
+Puis votre caissier/cuisinier 👨‍🍳 revient enfin avec vos burgers, après un long moment d'attente 🕙 devant le comptoir.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
 
-Vous prenez vos burgers 🍔 et allez à une table avec votre crush 😍
+Vous prenez vos burgers et allez à une table avec votre crush.
 
-Vous les mangez, et vous avez terminé 🍔 ⏹.
+Vous les mangez simplement, et vous avez terminé. ⏹
 
 <img src="/img/async/parallel-burgers/parallel-burgers-06.png" class="illustration">
 
-Durant tout ce processus, il n'y a presque pas eu de discussions ou de flirts car la plupart de votre temps à été passé à attendre 🕙 devant le comptoir 😞.
+Il n'y a pas eu beaucoup de discussions ou de flirts car la plupart du temps a été passé à attendre 🕙 devant le comptoir. 😞
 
-/// info
+/// note | Remarque
 
-Illustrations proposées par <a href="https://www.instagram.com/ketrinadrawsalot" class="external-link" target="_blank">Ketrina Thompson</a>. 🎨
+Belles illustrations par [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
 ///
 
 ---
 
-Dans ce scénario de burgers parallèles, vous êtes un ordinateur / programme 🤖 avec deux processeurs (vous et votre crush 😍) attendant 🕙 à deux et dédiant votre attention ⏯ à « attendre devant le comptoir » 🕙 pour une longue durée.
+Dans ce scénario de burgers parallèles, vous êtes un ordinateur / programme 🤖 avec deux processeurs (vous et votre crush), tous deux attendant 🕙 et dédiant leur attention ⏯ à « attendre devant le comptoir » 🕙 pour une longue durée.
 
-Le fast-food a 8 processeurs (serveurs/cuisiniers) 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳. Alors que le fast-food de burgers concurrents en avait 2 (un serveur et un cuisinier).
+Le fast food a 8 processeurs (caissiers/cuisiniers). Alors que le fast food de burgers concurrents aurait pu n'en avoir que 2 (un caissier et un cuisinier).
 
-Et pourtant l'expérience finale n'est pas meilleure 😞.
+Mais tout de même, l'expérience finale n'est pas la meilleure. 😞
 
 ---
 
-C'est donc l'histoire équivalente parallèle pour les burgers 🍔.
+Ce serait donc l'histoire équivalente parallèle pour les burgers. 🍔
 
-Pour un exemple plus courant dans la « vie réelle », imaginez une banque.
+Pour un exemple plus « vie réelle », imaginez une banque.
 
-Jusqu'à récemment, la plupart des banques avaient plusieurs caisses (et banquiers) 👨‍💼👨‍💼👨‍💼👨‍💼 et une unique file d'attente 🕙🕙🕙🕙🕙🕙🕙🕙.
+Jusqu'à récemment, la plupart des banques avaient plusieurs caissiers 👨‍💼👨‍💼👨‍💼👨‍💼 et une grande file d'attente 🕙🕙🕙🕙🕙🕙🕙🕙.
 
-Tous les banquiers faisaient l'intégralité du travail avec chaque client avant de passer au suivant 👨‍💼⏯.
+Tous les caissiers faisaient tout le travail avec chaque client avant de passer au suivant 👨‍💼⏯.
 
-Et vous deviez attendre 🕙 dans la file pendant un long moment ou vous perdiez votre place.
+Et vous devez attendre 🕙 dans la file pendant un long moment ou vous perdez votre tour.
 
-Vous n'auriez donc probablement pas envie d'amener votre crush 😍 avec vous à la banque 🏦.
+Vous n'auriez donc probablement pas envie d'amener votre crush 😍 avec vous pour faire des démarches à la banque 🏦.
 
 ### Conclusion sur les burgers { #burger-conclusion }
 
-Dans ce scénario des « burgers du fast-food avec votre crush », comme il y a beaucoup d'attente 🕙, il est très logique d'avoir un système concurrent ⏸🔀⏯.
+Dans ce scénario des « burgers de fast food avec votre crush », comme il y a beaucoup d'attente 🕙, il est beaucoup plus logique d'avoir un système concurrent ⏸🔀⏯.
 
-Et c'est le cas pour la plupart des applications web.
+C'est le cas pour la plupart des applications web.
 
-Vous aurez de nombreux, nombreux utilisateurs, mais votre serveur attendra 🕙 que leur connexion peu performante envoie des requêtes.
+De très, très nombreux utilisateurs, mais votre serveur attend 🕙 que leur connexion pas très bonne envoie leurs requêtes.
 
-Puis vous attendrez 🕙 de nouveau que leurs réponses reviennent.
+Puis attend 🕙 de nouveau que les réponses reviennent.
 
-Cette « attente » 🕙 se mesure en microsecondes, mais tout de même, en cumulé cela fait beaucoup d'attente.
+Cette « attente » 🕙 se mesure en microsecondes, mais tout de même, en les cumulant toutes, cela fait beaucoup d'attente au final.
 
-C'est pourquoi il est logique d'utiliser du code asynchrone ⏸🔀⏯ pour des APIs web.
+C'est pourquoi il est très logique d'utiliser du code asynchrone ⏸🔀⏯ pour des APIs web.
 
 Ce type d'asynchronicité est ce qui a rendu NodeJS populaire (bien que NodeJS ne soit pas parallèle) et c'est la force de Go en tant que langage de programmation.
 
 Et c'est le même niveau de performance que celui obtenu avec **FastAPI**.
 
-Et comme on peut avoir du parallélisme et de l'asynchronicité en même temps, on obtient des performances plus hautes que la plupart des frameworks NodeJS testés et égales à celles du Go, qui est un langage compilé plus proche du C <a href="https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1" class="external-link" target="_blank">(tout ça grâce à Starlette)</a>.
+Et comme on peut avoir du parallélisme et de l'asynchronicité en même temps, on obtient des performances plus hautes que la plupart des frameworks NodeJS testés et égales à celles du Go, qui est un langage compilé plus proche du C [(tout ça grâce à Starlette)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### Est-ce que la concurrence est mieux que le parallélisme ? { #is-concurrency-better-than-parallelism }
 
-Nope ! C'est ça la morale de l'histoire.
+Nope ! Ce n'est pas la morale de l'histoire.
 
-La concurrence est différente du parallélisme. C'est mieux sur des scénarios **spécifiques** qui impliquent beaucoup d'attente. À cause de ça, c'est généralement bien meilleur que le parallélisme pour le développement d'applications web. Mais pas pour tout.
+La concurrence est différente du parallélisme. Et c'est mieux dans des scénarios **spécifiques** qui impliquent beaucoup d'attente. À cause de ça, c'est généralement bien meilleur que le parallélisme pour le développement d'applications web. Mais pas pour tout.
 
-Donc pour équilibrer tout ça, imaginez l'histoire suivante :
+Donc pour équilibrer tout ça, imaginez l'histoire courte suivante :
 
 > Vous devez nettoyer une grande et sale maison.
 
@@ -269,42 +269,42 @@ Donc pour équilibrer tout ça, imaginez l'histoire suivante :
 
 Il n'y a plus d'attente 🕙 nulle part, juste beaucoup de travail à effectuer, dans différentes pièces de la maison.
 
-Vous pourriez diviser en différentes sections comme avec les burgers, d'abord le salon, puis la cuisine, etc. Mais vous n'attendez 🕙 rien, vous ne faites que nettoyer et nettoyer, la séparation en sections ne changerait rien au final.
+Vous pourriez avoir des tours comme dans l'exemple des burgers, d'abord le salon, puis la cuisine, mais comme vous n'attendez 🕙 rien, vous ne faites que nettoyer et nettoyer, les tours ne changeraient rien.
 
-Cela prendrait autant de temps pour finir avec ou sans sections (concurrence) et vous auriez effectué la même quantité de travail.
+Cela prendrait autant de temps pour finir avec ou sans tours (concurrence) et vous auriez effectué la même quantité de travail.
 
-Mais dans ce cas, si pouviez amener 8 ex-serveurs/cuisiniers/devenus-nettoyeurs 👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳, et que chacun d'eux (plus vous) pouvait prendre une zone de la maison pour la nettoyer, vous pourriez faire tout le travail en parallèle, et finir plus tôt.
+Mais dans ce cas, si vous pouviez amener les 8 ex-caissiers/cuisiniers/désormais-nettoyeurs, et que chacun d'eux (plus vous) pouvait prendre une zone de la maison pour la nettoyer, vous pourriez faire tout le travail en **parallèle**, avec l'aide supplémentaire, et finir beaucoup plus tôt.
 
 Dans ce scénario, chacun des nettoyeurs (vous y compris) serait un processeur, faisant sa partie du travail.
 
-Et comme la plupart du temps d'exécution est pris par du « vrai » travail (et non de l'attente), et que le travail dans un ordinateur est fait par un <abbr title="Central Processing Unit - Unité centrale de traitement">CPU</abbr>, ce sont des problèmes dits « CPU bound ».
+Et comme la plupart du temps d'exécution est pris par du vrai travail (et non de l'attente), et que le travail dans un ordinateur est fait par un <abbr title="Central Processing Unit - Unité centrale de traitement">CPU</abbr>, ce sont des problèmes dits « CPU bound ».
 
 ---
 
-Des exemples communs d'opérations « CPU bound » sont les procédés qui requièrent des traitements mathématiques complexes.
+Des exemples communs d'opérations CPU bound sont les choses qui requièrent des traitements mathématiques complexes.
 
 Par exemple :
 
-* Traitements d'**audio** et d'**images**.
-* La **vision par ordinateur** : une image est composée de millions de pixels, chaque pixel ayant 3 valeurs / couleurs, les traiter tous va nécessiter d'effectuer des traitements sur chaque pixel, et de préférence tous en même temps.
-* L'apprentissage automatique (ou **Machine Learning**) : cela nécessite de nombreuses multiplications de matrices et vecteurs. Imaginez une énorme feuille de calcul remplie de nombres que vous multiplierez entre eux tous au même moment.
-* L'apprentissage profond (ou **Deep Learning**) : est un sous-domaine du **Machine Learning**, donc les mêmes raisons s'appliquent. Avec la différence qu'il n'y a pas une unique feuille de calcul de nombres à multiplier, mais une énorme quantité d'entre elles, et dans de nombreux cas, on utilise un processeur spécial pour construire et / ou utiliser ces modèles.
+* Traitements d'**audio** ou d'**images**.
+* **Computer vision** : une image est composée de millions de pixels, chaque pixel ayant 3 valeurs / couleurs, les traiter nécessite normalement d'effectuer des calculs sur ces pixels, tous en même temps.
+* **Machine Learning** : cela nécessite normalement de nombreuses multiplications de « matrices » et de « vecteurs ». Imaginez une énorme feuille de calcul remplie de nombres et les multiplier tous ensemble au même moment.
+* **Deep Learning** : c'est un sous-domaine du Machine Learning, donc les mêmes raisons s'appliquent. C'est juste qu'il n'y a pas une unique feuille de calcul de nombres à multiplier, mais une énorme quantité d'entre elles, et dans de nombreux cas, on utilise un processeur spécial pour construire et / ou utiliser ces modèles.
 
 ### Concurrence + Parallélisme : Web + Machine Learning { #concurrency-parallelism-web-machine-learning }
 
-Avec **FastAPI** vous pouvez bénéficier de la concurrence qui est très courante en développement web (c'est l'attrait principal de NodeJS).
+Avec **FastAPI** vous pouvez bénéficier de la concurrence qui est très courante en développement web (le même attrait principal de NodeJS).
 
-Mais vous pouvez aussi profiter du parallélisme et du multiprocessing (plusieurs processus s'exécutant en parallèle) afin de gérer des charges **CPU bound** qui sont récurrentes dans les systèmes de *Machine Learning*.
+Mais vous pouvez aussi profiter du parallélisme et du multiprocessing (plusieurs processus s'exécutant en parallèle) afin de gérer des charges **CPU bound** comme celles des systèmes de Machine Learning.
 
-Ça, ajouté au fait que Python soit le langage le plus populaire pour la **Data Science**, le **Machine Learning** et surtout le **Deep Learning**, font de **FastAPI** un très bon choix pour les APIs et applications de **Data Science** / **Machine Learning**.
+Ça, ajouté au simple fait que Python soit le langage principal pour la **Data Science**, le Machine Learning et surtout le Deep Learning, fait de FastAPI un très bon choix pour les APIs web et applications de Data Science / Machine Learning (entre autres).
 
-Pour comprendre comment mettre en place ce parallélisme en production, allez lire la section [Déploiement](deployment/index.md){.internal-link target=_blank}.
+Pour comprendre comment mettre en place ce parallélisme en production, consultez la section sur le [Déploiement](deployment/index.md).
 
 ## `async` et `await` { #async-and-await }
 
-Les versions modernes de Python ont une manière très intuitive de définir le code asynchrone, tout en gardant une apparence de code « séquentiel » classique en laissant Python faire l'attente pour vous au bon moment.
+Les versions modernes de Python ont une manière très intuitive de définir le code asynchrone. Cela le fait ressembler à du code « séquentiel » normal et effectue l'« attente » pour vous aux bons moments.
 
-Pour une opération qui nécessite de l'attente avant de donner un résultat et qui supporte ces nouvelles fonctionnalités Python, vous pouvez l'utiliser comme tel :
+Pour une opération qui nécessite de l'attente avant de donner un résultat et qui supporte ces nouvelles fonctionnalités Python, vous pouvez l'écrire comme ceci :
 
 ```Python
 burgers = await get_burgers(2)
@@ -312,7 +312,7 @@ burgers = await get_burgers(2)
 
 Le mot-clé important ici est `await`. Il informe Python qu'il faut attendre ⏸ que `get_burgers(2)` finisse d'effectuer ses opérations 🕙 avant de stocker les résultats dans la variable `burgers`. Grâce à cela, Python saura qu'il peut aller effectuer d'autres opérations 🔀 ⏯ pendant ce temps (comme par exemple recevoir une autre requête).
 
-Pour que `await` fonctionne, il doit être placé dans une fonction qui supporte l'asynchronicité. Pour que ça soit le cas, il faut déclarer cette dernière avec `async def` :
+Pour que `await` fonctionne, il doit être placé dans une fonction qui supporte cette asynchronicité. Pour que ça soit le cas, il faut déclarer cette dernière avec `async def` :
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
@@ -320,7 +320,7 @@ async def get_burgers(number: int):
     return burgers
 ```
 
-... et non `def` :
+... au lieu de `def` :
 
 ```Python hl_lines="2"
 # Ceci n'est pas asynchrone
@@ -331,16 +331,16 @@ def get_sequential_burgers(number: int):
 
 Avec `async def`, Python sait que dans cette fonction il doit prendre en compte les expressions `await`, et qu'il peut mettre en pause ⏸ l'exécution de la fonction pour aller faire autre chose 🔀 avant de revenir.
 
-Pour appeler une fonction définie avec `async def`, vous devez utiliser `await`. Donc ceci ne marche pas :
+Lorsque vous voulez appeler une fonction `async def`, vous devez l'« attendre ». Donc ceci ne marche pas :
 
 ```Python
-# Ceci ne fonctionne pas, car get_burgers a été défini avec async def
+# Ceci ne fonctionne pas, car get_burgers a été défini avec : async def
 burgers = get_burgers(2)
 ```
 
 ---
 
-Donc, si vous utilisez une bibliothèque qui nécessite que ses fonctions soient appelées avec `await`, vous devez définir la *fonction de chemin d'accès* en utilisant `async def` comme dans :
+Donc, si vous utilisez une bibliothèque qui vous indique que vous pouvez l'appeler avec `await`, vous devez créer les *fonctions de chemin d'accès* qui l'utilisent avec `async def`, comme dans :
 
 ```Python hl_lines="2-3"
 @app.get('/burgers')
@@ -351,25 +351,25 @@ async def read_burgers():
 
 ### Plus de détails techniques { #more-technical-details }
 
-Vous avez donc compris que `await` peut seulement être utilisé dans des fonctions définies avec `async def`.
+Vous avez peut-être remarqué que `await` peut seulement être utilisé dans des fonctions définies avec `async def`.
 
-Mais en même temps, les fonctions définies avec `async def` doivent être appelées avec `await` et donc dans des fonctions définies elles aussi avec `async def`.
+Mais en même temps, les fonctions définies avec `async def` doivent être « attendues ». Donc, les fonctions avec `async def` peuvent seulement être appelées à l'intérieur de fonctions définies elles aussi avec `async def`.
 
-Vous avez donc remarqué ce paradoxe d'œuf et de la poule, comment appelle-t-on la première fonction `async` ?
+Donc, à propos de l'œuf et de la poule, comment appelle-t-on la première fonction `async` ?
 
-Si vous utilisez **FastAPI**, pas besoin de vous en inquiéter, car cette « première » fonction sera votre *fonction de chemin d'accès* ; et **FastAPI** saura comment arriver au résultat attendu.
+Si vous utilisez **FastAPI**, pas besoin de vous en inquiéter, car cette « première » fonction sera votre *fonction de chemin d'accès*, et FastAPI saura comment faire ce qu'il faut.
 
 Mais si vous souhaitez utiliser `async` / `await` sans FastAPI, vous pouvez également le faire.
 
 ### Écrire votre propre code async { #write-your-own-async-code }
 
-Starlette (et **FastAPI**) s’appuie sur <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a>, ce qui le rend compatible à la fois avec la bibliothèque standard <a href="https://docs.python.org/3/library/asyncio-task.html" class="external-link" target="_blank">asyncio</a> de Python et avec <a href="https://trio.readthedocs.io/en/stable/" class="external-link" target="_blank">Trio</a>.
+Starlette (et **FastAPI**) s’appuie sur [AnyIO](https://anyio.readthedocs.io/en/stable/), ce qui le rend compatible à la fois avec la bibliothèque standard [asyncio](https://docs.python.org/3/library/asyncio-task.html) de Python et avec [Trio](https://trio.readthedocs.io/en/stable/).
 
-En particulier, vous pouvez utiliser directement <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> pour vos cas d’usage de concurrence avancés qui nécessitent des schémas plus élaborés dans votre propre code.
+En particulier, vous pouvez utiliser directement [AnyIO](https://anyio.readthedocs.io/en/stable/) pour vos cas d’usage de concurrence avancés qui nécessitent des schémas plus élaborés dans votre propre code.
 
-Et même si vous n’utilisiez pas FastAPI, vous pourriez aussi écrire vos propres applications async avec <a href="https://anyio.readthedocs.io/en/stable/" class="external-link" target="_blank">AnyIO</a> pour une grande compatibilité et pour bénéficier de ses avantages (par ex. la « structured concurrency »).
+Et même si vous n’utilisiez pas FastAPI, vous pourriez aussi écrire vos propres applications async avec [AnyIO](https://anyio.readthedocs.io/en/stable/) pour une grande compatibilité et pour bénéficier de ses avantages (par ex. la *structured concurrency*).
 
-J’ai créé une autre bibliothèque au-dessus d’AnyIO, comme une fine surcouche, pour améliorer un peu les annotations de type et obtenir une meilleure **autocomplétion**, des **erreurs en ligne**, etc. Elle propose également une introduction et un tutoriel accessibles pour vous aider à **comprendre** et écrire **votre propre code async** : <a href="https://asyncer.tiangolo.com/" class="external-link" target="_blank">Asyncer</a>. Elle sera particulièrement utile si vous devez **combiner du code async avec du code classique** (bloquant/synchrone).
+J’ai créé une autre bibliothèque au-dessus d’AnyIO, comme une fine surcouche, pour améliorer un peu les annotations de type et obtenir une meilleure **autocomplétion**, des **erreurs en ligne**, etc. Elle propose également une introduction et un tutoriel accessibles pour vous aider à **comprendre** et écrire **votre propre code async** : [Asyncer](https://asyncer.tiangolo.com/). Elle sera particulièrement utile si vous devez **combiner du code async avec du code classique** (bloquant/synchrone).
 
 ### Autres formes de code asynchrone { #other-forms-of-asynchronous-code }
 
@@ -377,25 +377,25 @@ L'utilisation d'`async` et `await` est relativement nouvelle dans ce langage.
 
 Mais cela rend la programmation asynchrone bien plus simple.
 
-Cette même syntaxe (ou presque) a aussi été incluse récemment dans les versions modernes de JavaScript (dans les navigateurs et NodeJS).
+Cette même syntaxe (ou presque) a aussi été incluse récemment dans les versions modernes de JavaScript (dans le navigateur et NodeJS).
 
 Mais avant ça, gérer du code asynchrone était bien plus complexe et difficile.
 
-Dans les versions précédentes de Python, vous auriez utilisé des threads ou <a href="https://www.gevent.org/" class="external-link" target="_blank">Gevent</a>.  Mais le code aurait été bien plus difficile à comprendre, débugger, et concevoir.
+Dans les versions précédentes de Python, vous auriez pu utiliser des threads ou [Gevent](https://www.gevent.org/). Mais le code est bien plus difficile à comprendre, débugger, et concevoir.
 
-Dans les versions précédentes de JavaScript côté navigateur / NodeJS, vous auriez utilisé des « callbacks ». Menant potentiellement à ce que l'on appelle le « callback hell ».
+Dans les versions précédentes de NodeJS / JavaScript de navigateur, vous auriez utilisé des « callbacks ». Ce qui mène au « callback hell ».
 
 ## Coroutines { #coroutines }
 
-« Coroutine » est juste un terme élaboré pour désigner ce qui est retourné par une fonction définie avec `async def`. Python sait que c'est comme une fonction classique qui va démarrer à un moment et terminer à un autre, mais qu'elle peut aussi être mise en pause ⏸, du moment qu'il y a un `await` dans son contenu.
+**Coroutine** est juste un terme élaboré pour désigner ce qui est retourné par une fonction définie avec `async def`. Python sait que c'est comme une fonction, qui peut démarrer et qui se terminera à un moment, mais qu'elle peut aussi être mise en pause ⏸ en interne, quand il y a un `await` à l'intérieur.
 
 Mais toutes ces fonctionnalités d'utilisation de code asynchrone avec `async` et `await` sont souvent résumées comme l'utilisation des « coroutines ». On peut comparer cela à la principale fonctionnalité clé de Go, les « Goroutines ».
 
 ## Conclusion { #conclusion }
 
-Reprenons la phrase du début de la page :
+Reprenons la même phrase ci-dessus :
 
-> Les versions modernes de Python supportent le **code asynchrone** grâce aux **« coroutines »** avec les syntaxes **`async` et `await`**.
+> Les versions modernes de Python supportent le **« code asynchrone »** en utilisant quelque chose appelé **« coroutines »**, avec la syntaxe **`async` et `await`**.
 
 Ceci devrait être plus compréhensible désormais. ✨
 
@@ -409,25 +409,25 @@ Vous pouvez probablement ignorer cela.
 
 Ce sont des détails très poussés sur comment **FastAPI** fonctionne en arrière-plan.
 
-Si vous avez de bonnes connaissances techniques (coroutines, threads, code bloquant, etc.) et êtes curieux de comment **FastAPI** gère `async def` versus le `def` classique, cette partie est faite pour vous.
+Si vous avez de bonnes connaissances techniques (coroutines, threads, code bloquant, etc.) et êtes curieux de comment FastAPI gère `async def` versus le `def` classique, cette partie est faite pour vous.
 
 ///
 
 ### Fonctions de chemin d'accès { #path-operation-functions }
 
-Quand vous déclarez une *fonction de chemin d'accès* avec un `def` normal et non `async def`, elle est exécutée dans un groupe de threads (threadpool) externe qui est ensuite attendu, plutôt que d'être appelée directement (car cela bloquerait le serveur).
+Quand vous déclarez une *fonction de chemin d'accès* avec un `def` normal et non `async def`, elle est exécutée dans une threadpool externe qui est ensuite attendue, plutôt que d'être appelée directement (car cela bloquerait le serveur).
 
-Si vous venez d'un autre framework asynchrone qui ne fonctionne pas comme de la façon décrite ci-dessus et que vous êtes habitué à définir des *fonctions de chemin d'accès* basiques et purement calculatoires avec un simple `def` pour un faible gain de performance (environ 100 nanosecondes), veuillez noter que dans **FastAPI**, l'effet serait plutôt contraire. Dans ces cas-là, il vaut mieux utiliser `async def` à moins que votre *fonction de chemin d'accès* utilise du code qui effectue des opérations <abbr title="Input/Output - Entrées/Sorties: lecture ou écriture sur le disque, communications réseau.">I/O</abbr> bloquantes.
+Si vous venez d'un autre framework async qui ne fonctionne pas de la façon décrite ci-dessus et que vous êtes habitué à définir des *fonctions de chemin d'accès* triviales faisant uniquement du calcul avec un simple `def` pour un faible gain de performance (environ 100 nanosecondes), veuillez noter que dans **FastAPI**, l'effet serait plutôt contraire. Dans ces cas-là, il vaut mieux utiliser `async def` à moins que vos *fonctions de chemin d'accès* utilisent du code qui effectue des opérations <abbr title="Input/Output - Entrées/Sorties: lecture ou écriture sur le disque, communications réseau.">I/O</abbr> bloquantes.
 
-Au final, dans les deux situations, il est fort probable que **FastAPI** soit tout de même [plus rapide](index.md#performance){.internal-link target=_blank} que (ou au moins de vitesse égale à) votre framework précédent.
+Au final, dans les deux situations, il est fort probable que **FastAPI** soit [tout de même plus rapide](index.md#performance) que (ou au moins comparable à) votre framework précédent.
 
 ### Dépendances { #dependencies }
 
-La même chose s'applique aux [dépendances](tutorial/dependencies/index.md){.internal-link target=_blank}. Si une dépendance est définie avec `def` plutôt que `async def`, elle est exécutée dans la threadpool externe.
+La même chose s'applique aux [dépendances](tutorial/dependencies/index.md). Si une dépendance est une fonction standard `def` plutôt qu'`async def`, elle est exécutée dans la threadpool externe.
 
 ### Sous-dépendances { #sub-dependencies }
 
-Vous pouvez avoir de multiples dépendances et [sous-dépendances](tutorial/dependencies/sub-dependencies.md){.internal-link target=_blank} dépendant les unes des autres (en tant que paramètres de la définition de la *fonction de chemin d'accès*), certaines créées avec `async def` et d'autres avec `def`. Cela fonctionnerait aussi, et celles définies avec un simple `def` seraient exécutées sur un thread externe (venant de la threadpool) plutôt que d'être « attendues ».
+Vous pouvez avoir de multiples dépendances et [sous-dépendances](tutorial/dependencies/sub-dependencies.md) dépendant les unes des autres (en tant que paramètres des définitions des fonctions), certaines créées avec `async def` et d'autres avec un `def` normal. Cela fonctionnerait aussi, et celles définies avec un `def` normal seraient appelées sur un thread externe (venant de la threadpool) plutôt que d'être « attendues ».
 
 ### Autres fonctions utilitaires { #other-utility-functions }
 
@@ -435,10 +435,10 @@ Toute autre fonction utilitaire que vous appelez directement peut être créée 
 
 Contrairement aux fonctions que FastAPI appelle pour vous : les *fonctions de chemin d'accès* et dépendances.
 
-Si votre fonction utilitaire est une fonction classique définie avec `def`, elle sera appelée directement (telle qu'écrite dans votre code), pas dans une threadpool ; si la fonction est définie avec `async def` alors vous devrez attendre (avec `await`) que cette fonction se termine avant de passer à la suite du code.
+Si votre fonction utilitaire est une fonction classique définie avec `def`, elle sera appelée directement (telle qu'écrite dans votre code), pas dans une threadpool ; si la fonction est définie avec `async def` alors vous devez `await` cette fonction lorsque vous l'appelez dans votre code.
 
 ---
 
 Encore une fois, ce sont des détails très techniques qui peuvent être utiles si vous venez ici les chercher.
 
-Sinon, les instructions de la section <a href="#in-a-hurry">Vous êtes pressés ?</a> ci-dessus sont largement suffisantes.
+Sinon, les instructions de la section ci-dessus sont largement suffisantes : <a href="#in-a-hurry">Vous êtes pressés ?</a>.

@@ -14,8 +14,8 @@ FastAPIは、いくつかの<dfn title="「終了コード」「クリーンア�
 
 以下と一緒に使用できる関数なら何でも有効です:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a>または
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) または
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 これらは **FastAPI** の依存関係として使用するのに有効です。
 
@@ -87,7 +87,7 @@ FastAPIは、いくつかの<dfn title="「終了コード」「クリーンア�
 
 /// note | 技術詳細
 
-これはPythonの<a href="https://docs.python.org/3/library/contextlib.html" class="external-link" target="_blank">Context Managers</a>のおかげで動作します。
+これはPythonの[コンテキストマネージャ](https://docs.python.org/3/library/contextlib.html)のおかげで動作します。
 
 **FastAPI** はこれを実現するために内部的に使用しています。
 
@@ -111,7 +111,7 @@ FastAPIは、いくつかの<dfn title="「終了コード」「クリーンア�
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-例外をキャッチして、それに基づいてカスタムレスポンスを作成したい場合は、[カスタム例外ハンドラ](../handling-errors.md#install-custom-exception-handlers){.internal-link target=_blank}を作成してください。
+例外をキャッチして、それに基づいてカスタムレスポンスを作成したい場合は、[カスタム例外ハンドラ](../handling-errors.md#install-custom-exception-handlers)を作成してください。
 
 ## `yield`と`except`を持つ依存関係 { #dependencies-with-yield-and-except }
 
@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | 情報
+/// note | 備考
 
 **１つのレスポンス** だけがクライアントに送信されます。それはエラーレスポンスの一つかもしれませんし、*path operation*からのレスポンスかもしれません。
 
@@ -233,14 +233,15 @@ participant operation as Path Operation
 
 `yield`を持つ依存関係は、さまざまなユースケースをカバーし、いくつかの問題を修正するために、時間とともに進化してきました。
 
-FastAPIの異なるバージョンで何が変わったのかを知りたい場合は、上級ガイドの[上級の依存関係 - `yield`、`HTTPException`、`except`、バックグラウンドタスクを持つ依存関係](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks){.internal-link target=_blank}で詳しく読めます。
+FastAPIの異なるバージョンで何が変わったのかを知りたい場合は、上級ガイドの[上級の依存関係 - `yield`、`HTTPException`、`except`、バックグラウンドタスクを持つ依存関係](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks)で詳しく読めます。
+
 ## コンテキストマネージャ { #context-managers }
 
 ### 「コンテキストマネージャ」とは { #what-are-context-managers }
 
 「コンテキストマネージャ」とは、`with`文の中で使用できるPythonオブジェクトのことです。
 
-例えば、<a href="https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files" class="external-link" target="_blank">ファイルを読み込むには`with`を使用することができます</a>:
+例えば、[ファイルを読み込むには`with`を使用することができます](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
 
 ```Python
 with open("./somefile.txt") as f:
@@ -264,7 +265,7 @@ with open("./somefile.txt") as f:
 
 ///
 
-Pythonでは、<a href="https://docs.python.org/3/reference/datamodel.html#context-managers" class="external-link" target="_blank">以下の２つのメソッドを持つクラスを作成する: `__enter__()`と`__exit__()`</a>ことでコンテキストマネージャを作成することができます。
+Pythonでは、[以下の２つのメソッドを持つクラスを作成する: `__enter__()`と`__exit__()`](https://docs.python.org/3/reference/datamodel.html#context-managers)ことでコンテキストマネージャを作成することができます。
 
 また、依存関数の中で`with`や`async with`文を使用することによって`yield`を持つ **FastAPI** の依存関係の中でそれらを使用することができます:
 
@@ -272,10 +273,10 @@ Pythonでは、<a href="https://docs.python.org/3/reference/datamodel.html#conte
 
 /// tip | 豆知識
 
-コンテキストマネージャを作成するもう一つの方法はwithです:
+コンテキストマネージャを作成するもう一つの方法は次の方法です:
 
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager" class="external-link" target="_blank">`@contextlib.contextmanager`</a> または
-* <a href="https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager" class="external-link" target="_blank">`@contextlib.asynccontextmanager`</a>
+* [`@contextlib.contextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager) または
+* [`@contextlib.asynccontextmanager`](https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager)
 
 これらを使って、関数を単一の`yield`でデコレートすることができます。
 

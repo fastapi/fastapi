@@ -1,0 +1,15 @@
+auto-labels:
+  docs:
+    - docs/en/docs/**
+    - docs_src/**
+  lang-all:
+    - exclude: docs/*/**/_*.md
+    - docs/*/docs/**
+  internal:
+    - .github/**
+    - scripts/**
+    - .gitignore
+    - .pre-commit-config.yaml
+    - uv.lock
+    - docs/en/data/sponsors.yml
+    - docs/en/overrides/main.html

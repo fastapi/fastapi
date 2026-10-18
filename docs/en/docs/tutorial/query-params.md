@@ -21,7 +21,7 @@ As they are part of the URL, they are "naturally" strings.
 
 But when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it.
 
-All the same process that applied for path parameters also applies for query parameters:
+All the same processes that apply to path parameters also apply to query parameters:
 
 * Editor support (obviously)
 * Data <dfn title="converting the string that comes from an HTTP request into Python data">"parsing"</dfn>
@@ -65,7 +65,7 @@ The same way, you can declare optional query parameters, by setting their defaul
 
 In this case, the function parameter `q` will be optional, and will be `None` by default.
 
-/// check
+/// tip
 
 Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
 
@@ -183,6 +183,6 @@ In this case, there are 3 query parameters:
 
 /// tip
 
-You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values){.internal-link target=_blank}.
+You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values).
 
 ///

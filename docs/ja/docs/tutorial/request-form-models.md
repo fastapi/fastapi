@@ -1,15 +1,15 @@
 # フォームモデル { #form-models }
 
-FastAPI では、フォームフィールドを宣言するために Pydantic モデルを使用できます。
+FastAPI では、フォームフィールドを宣言するために **Pydantic モデル**を使用できます。
 
-/// info | 情報
+/// note | 備考
 
-フォームを使うには、まず <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a> をインストールします。
+フォームを使うには、まず [`python-multipart`](https://github.com/Kludex/python-multipart) をインストールします。
 
-まず [仮想環境](../virtual-environments.md){.internal-link target=_blank} を作成して有効化し、そのうえでインストールしてください。例えば:
+プロジェクトに追加します:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -54,9 +54,9 @@ Pydantic のモデル設定で、`extra` フィールドを `forbid` にでき�
 
 例えば、クライアントが次のフォームフィールドを送ろうとした場合:
 
-- `username`: `Rick`
-- `password`: `Portal Gun`
-- `extra`: `Mr. Poopybutthole`
+* `username`: `Rick`
+* `password`: `Portal Gun`
+* `extra`: `Mr. Poopybutthole`
 
 フィールド `extra` は許可されていない旨のエラーレスポンスが返されます:
 

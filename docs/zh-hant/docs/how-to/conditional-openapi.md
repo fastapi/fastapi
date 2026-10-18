@@ -10,7 +10,7 @@
 
 若你的程式碼有安全性缺陷，它依然會存在。
 
-隱藏文件只會讓他人更難理解如何與你的 API 互動，也可能讓你在正式環境除錯更困難。這通常僅被視為一種 <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">以隱匿求安全</a>。
+隱藏文件只會讓他人更難理解如何與你的 API 互動，也可能讓你在正式環境除錯更困難。這通常僅被視為一種 [以隱匿求安全](https://en.wikipedia.org/wiki/Security_through_obscurity)。
 
 如果你想保護 API，有許多更好的作法，例如：
 

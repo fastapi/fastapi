@@ -1,5 +1,6 @@
 from typing import Annotated, Any, Literal
 
+from dirty_equals import IsOneOf
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -88,11 +89,19 @@ def test_discriminator_pydantic_v2() -> None:
                                 "description": "Successful Response",
                                 "content": {
                                     "application/json": {
-                                        "schema": {
-                                            "type": "object",
-                                            "additionalProperties": True,
-                                            "title": "Response Save Union Body Discriminator Items  Post",
-                                        }
+                                        "schema": IsOneOf(
+                                            # Pydantic < 2.11: no additionalProperties
+                                            {
+                                                "type": "object",
+                                                "title": "Response Save Union Body Discriminator Items  Post",
+                                            },
+                                            # Pydantic >= 2.11: has additionalProperties
+                                            {
+                                                "type": "object",
+                                                "additionalProperties": True,
+                                                "title": "Response Save Union Body Discriminator Items  Post",
+                                            },
+                                        )
                                     }
                                 },
                             },
@@ -114,11 +123,21 @@ def test_discriminator_pydantic_v2() -> None:
                 "schemas": {
                     "FirstItem": {
                         "properties": {
-                            "value": {
-                                "type": "string",
-                                "const": "first",
-                                "title": "Value",
-                            },
+                            "value": IsOneOf(
+                                # Pydantic >= 2.10: const only
+                                {
+                                    "type": "string",
+                                    "const": "first",
+                                    "title": "Value",
+                                },
+                                # Pydantic 2.9: const + enum
+                                {
+                                    "type": "string",
+                                    "const": "first",
+                                    "enum": ["first"],
+                                    "title": "Value",
+                                },
+                            ),
                             "price": {"type": "integer", "title": "Price"},
                         },
                         "type": "object",
@@ -140,11 +159,21 @@ def test_discriminator_pydantic_v2() -> None:
                     },
                     "OtherItem": {
                         "properties": {
-                            "value": {
-                                "type": "string",
-                                "const": "other",
-                                "title": "Value",
-                            },
+                            "value": IsOneOf(
+                                # Pydantic >= 2.10.0: const only
+                                {
+                                    "type": "string",
+                                    "const": "other",
+                                    "title": "Value",
+                                },
+                                # Pydantic 2.9.x: const + enum
+                                {
+                                    "type": "string",
+                                    "const": "other",
+                                    "enum": ["other"],
+                                    "title": "Value",
+                                },
+                            ),
                             "price": {"type": "number", "title": "Price"},
                         },
                         "type": "object",

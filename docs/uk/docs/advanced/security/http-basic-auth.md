@@ -32,7 +32,7 @@
 
 Використайте залежність, щоб перевірити, чи правильні ім'я користувача та пароль.
 
-Для цього використайте стандартний модуль Python <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a>, щоб перевірити ім'я користувача та пароль.
+Для цього використайте стандартний модуль Python [`secrets`](https://docs.python.org/3/library/secrets.html), щоб перевірити ім'я користувача та пароль.
 
 `secrets.compare_digest()` повинен отримувати `bytes` або `str`, що містить лише ASCII-символи (англійські), це означає, що він не працюватиме з символами на кшталт `á`, як у `Sebastián`.
 
@@ -46,7 +46,7 @@
 
 ```Python
 if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
-    # Return some error
+    # Поверніть якусь помилку
     ...
 ```
 

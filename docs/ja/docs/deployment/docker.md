@@ -1,6 +1,6 @@
 # コンテナ内のFastAPI - Docker { #fastapi-in-containers-docker }
 
-FastAPIアプリケーションをデプロイする場合、一般的なアプローチは**Linuxコンテナ・イメージ**をビルドすることです。基本的には <a href="https://www.docker.com/" class="external-link" target="_blank">**Docker**</a>を用いて行われます。生成されたコンテナ・イメージは、いくつかの方法のいずれかでデプロイできます。
+FastAPIアプリケーションをデプロイする場合、一般的なアプローチは**Linuxコンテナ・イメージ**をビルドすることです。基本的には [**Docker**](https://www.docker.com/) を用いて行われます。生成されたコンテナ・イメージは、いくつかの方法のいずれかでデプロイできます。
 
 Linuxコンテナの使用には、**セキュリティ**、**反復可能性（レプリカビリティ）**、**シンプリシティ**など、いくつかの利点があります。
 
@@ -11,7 +11,7 @@ Linuxコンテナの使用には、**セキュリティ**、**反復可能性（
 ///
 
 <details>
-<summary>Dockerfile Preview 👀</summary>
+<summary>Dockerfile プレビュー 👀</summary>
 
 ```Dockerfile
 FROM python:3.14
@@ -26,7 +26,7 @@ COPY ./app /code/app
 
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
-# If running behind a proxy like Nginx or Traefik add --proxy-headers
+# Nginx や Traefik のようなプロキシの背後で実行する場合は --proxy-headers を追加します
 # CMD ["fastapi", "run", "app/main.py", "--port", "80", "--proxy-headers"]
 ```
 
@@ -60,16 +60,16 @@ Linuxコンテナは、ホスト（マシン、仮想マシン、クラウドサ
 
 Dockerは、**コンテナ・イメージ**と**コンテナ**を作成・管理するための主要なツールの1つです。
 
-そして、多くのツールや環境、データベース、アプリケーションに対応している予め作成された**公式のコンテナ・イメージ**をパブリックに提供している<a href="https://hub.docker.com/" class="external-link" target="_blank">Docker Hub</a>というものがあります。
+そして、多くのツールや環境、データベース、アプリケーションに対応している予め作成された**公式のコンテナ・イメージ**をパブリックに提供している [Docker Hub](https://hub.docker.com/) というものがあります。
 
-例えば、公式イメージの1つに<a href="https://hub.docker.com/_/python" class="external-link" target="_blank">Python Image</a>があります。
+例えば、公式イメージの1つに [Python Image](https://hub.docker.com/_/python) があります。
 
 その他にも、データベースなどさまざまなイメージがあります：
 
-* <a href="https://hub.docker.com/_/postgres" class="external-link" target="_blank">PostgreSQL</a>
-* <a href="https://hub.docker.com/_/mysql" class="external-link" target="_blank">MySQL</a>
-* <a href="https://hub.docker.com/_/mongo" class="external-link" target="_blank">MongoDB</a>
-* <a href="https://hub.docker.com/_/redis" class="external-link" target="_blank">Redis</a>, etc.
+* [PostgreSQL](https://hub.docker.com/_/postgres)
+* [MySQL](https://hub.docker.com/_/mysql)
+* [MongoDB](https://hub.docker.com/_/mongo)
+* [Redis](https://hub.docker.com/_/redis), etc.
 
 予め作成されたコンテナ・イメージを使用することで、異なるツールを**組み合わせて**使用することが非常に簡単になります。例えば、新しいデータベースを試す場合に特に便利です。ほとんどの場合、**公式イメージ**を使い、環境変数で設定するだけで良いです。
 
@@ -105,36 +105,32 @@ FastAPI用の**Dockerイメージ**を、**公式Python**イメージに基づ�
 
 ### パッケージ要件 { #package-requirements }
 
-アプリケーションの**パッケージ要件**は通常、何らかのファイルに記述されているはずです。
+`uv` でプロジェクトを管理している場合、直接の依存関係は `pyproject.toml` に宣言され、正確に解決されたバージョンは `uv.lock` に保存されます。
 
-パッケージ要件は主に**インストール**するために使用するツールに依存するでしょう。
-
-最も一般的な方法は、`requirements.txt` ファイルにパッケージ名とそのバージョンを 1 行ずつ書くことです。
-
-もちろん、[FastAPI バージョンについて](versions.md){.internal-link target=_blank}で読んだのと同じアイデアを使用して、バージョンの範囲を設定します。
-
-例えば、`requirements.txt` は次のようになります：
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-そして通常、例えば `pip` を使ってこれらのパッケージの依存関係をインストールします：
+アプリケーションに必要なパッケージは次のように追加できます：
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
-/// info | 情報
+/// note | 備考
 
-パッケージの依存関係を定義しインストールするためのフォーマットやツールは他にもあります。
+以下のDockerfileでは、コンテナ内で `pip` を使用します。uvプロジェクトからロックされた依存関係を、Dockerfileが想定する `requirements.txt` 形式にエクスポートできます：
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+生成された `requirements.txt` はコンテナビルド用のエクスポートです。依存関係の管理は `uv add` で続け、`uv.lock` が変更されたら再生成してください。
 
 ///
 
@@ -238,27 +234,27 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 
 #### `CMD` を使う - Exec形式 { #use-cmd-exec-form }
 
-Docker命令 <a href="https://docs.docker.com/reference/dockerfile/#cmd" class="external-link" target="_blank">`CMD`</a> は2つの形式で書けます：
+Docker命令 [`CMD`](https://docs.docker.com/reference/dockerfile/#cmd) は2つの形式で書けます：
 
 ✅ **Exec** 形式：
 
 ```Dockerfile
-# ✅ Do this
+# ✅ こうしてください
 CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 ```
 
 ⛔️ **Shell** 形式：
 
 ```Dockerfile
-# ⛔️ Don't do this
+# ⛔️ こうしないでください
 CMD fastapi run app/main.py --port 80
 ```
 
-FastAPIが正常にシャットダウンでき、[lifespan events](../advanced/events.md){.internal-link target=_blank}がトリガーされるように、常に **exec** 形式を使用してください。
+FastAPIが正常にシャットダウンでき、[lifespan events](../advanced/events.md)がトリガーされるように、常に **exec** 形式を使用してください。
 
-詳しくは、<a href="https://docs.docker.com/reference/dockerfile/#shell-and-exec-form" class="external-link" target="_blank">shell形式とexec形式に関するDockerドキュメント</a>をご覧ください。
+詳しくは、[shell形式とexec形式に関するDockerドキュメント](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form)をご覧ください。
 
-これは `docker compose` を使用する場合にかなり目立つことがあります。より技術的な詳細は、このDocker ComposeのFAQセクションをご覧ください：<a href="https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop" class="external-link" target="_blank">Why do my services take 10 seconds to recreate or stop?</a>。
+これは `docker compose` を使用する場合にかなり目立つことがあります。より技術的な詳細は、このDocker ComposeのFAQセクションをご覧ください：[Why do my services take 10 seconds to recreate or stop?](https://docs.docker.com/compose/faq/#why-do-my-services-take-10-seconds-to-recreate-or-stop)。
 
 #### ディレクトリ構造 { #directory-structure }
 
@@ -340,7 +336,7 @@ $ docker build -t myimage .
 
 ///
 
-### Dockerコンテナの起動する { #start-the-docker-container }
+### Dockerコンテナを起動する { #start-the-docker-container }
 
 * イメージに基づいてコンテナを実行します：
 
@@ -354,7 +350,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 ## 確認する { #check-it }
 
-Dockerコンテナの<a href="http://192.168.99.100/items/5?q=somequery" class="external-link" target="_blank">http://192.168.99.100/items/5?q=somequery</a> や <a href="http://127.0.0.1/items/5?q=somequery" class="external-link" target="_blank">http://127.0.0.1/items/5?q=somequery</a> (またはそれに相当するDockerホストを使用したもの）といったURLで確認できるはずです。
+Dockerコンテナの[http://192.168.99.100/items/5?q=somequery](http://192.168.99.100/items/5?q=somequery) や [http://127.0.0.1/items/5?q=somequery](http://127.0.0.1/items/5?q=somequery) (またはそれに相当するDockerホストを使用したもの）といったURLで確認できるはずです。
 
 アクセスすると以下のようなものが表示されます：
 
@@ -364,17 +360,17 @@ Dockerコンテナの<a href="http://192.168.99.100/items/5?q=somequery" class="
 
 ## インタラクティブなAPIドキュメント { #interactive-api-docs }
 
-これらのURLにもアクセスできます:  <a href="http://192.168.99.100/docs" class="external-link" target="_blank">http://192.168.99.100/docs</a> や <a href="http://127.0.0.1/docs" class="external-link" target="_blank">http://127.0.0.1/docs</a> (またはそれに相当するDockerホストを使用したもの）
+これらのURLにもアクセスできます:  [http://192.168.99.100/docs](http://192.168.99.100/docs) や [http://127.0.0.1/docs](http://127.0.0.1/docs) (またはそれに相当するDockerホストを使用したもの）
 
-アクセスすると、自動対話型APIドキュメント（<a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>が提供）が表示されます：
+アクセスすると、自動対話型APIドキュメント（[Swagger UI](https://github.com/swagger-api/swagger-ui)が提供）が表示されます：
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ## 代替のAPIドキュメント { #alternative-api-docs }
 
-また、<a href="http://192.168.99.100/redoc" class="external-link" target="_blank">http://192.168.99.100/redoc</a> や <a href="http://127.0.0.1/redoc" class="external-link" target="_blank">http://127.0.0.1/redoc</a> (またはそれに相当するDockerホストを使用したもの）にもアクセスできます。
+また、[http://192.168.99.100/redoc](http://192.168.99.100/redoc) や [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (またはそれに相当するDockerホストを使用したもの）にもアクセスできます。
 
-代替の自動ドキュメント（<a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>によって提供される）が表示されます：
+代替の自動ドキュメント（[ReDoc](https://github.com/Redocly/redoc)によって提供される）が表示されます：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -415,9 +411,9 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 ## デプロイメントのコンセプト { #deployment-concepts }
 
-コンテナという観点から、[デプロイのコンセプト](concepts.md){.internal-link target=_blank}に共通するいくつかについて、もう一度説明しましょう。
+コンテナという観点から、[デプロイのコンセプト](concepts.md)に共通するいくつかについて、もう一度説明しましょう。
 
-コンテナは主に、アプリケーションの**ビルドとデプロイ**のプロセスを簡素化するためのツールですが、これらの**デプロイのコンセプト**を扱うための特定のアプローチを強制するものではなく、いくつかの戦略があります。
+コンテナは主に、アプリケーションの**ビルドとデプロイ**のプロセスを簡素化するための工具ですが、これらの**デプロイのコンセプト**を扱うための特定のアプローチを強制するものではなく、いくつかの戦略があります。
 
 **良いニュース**は、それぞれの異なる戦略には、すべてのデプロイメントのコンセプトをカバーする方法があるということです。🎉
 
@@ -434,7 +430,7 @@ CMD ["fastapi", "run", "main.py", "--port", "80"]
 
 FastAPI アプリケーションの **コンテナ・イメージ**（および後で実行中の **コンテナ**）だけに焦点を当てると、通常、HTTPSは別のツールを用いて**外部で**処理されます。
 
-例えば<a href="https://traefik.io/" class="external-link" target="_blank">Traefik</a>のように、**HTTPS**と**証明書**の**自動**取得を扱う別のコンテナである可能性もあります。
+例えば [Traefik](https://traefik.io/) のように、**HTTPS**と**証明書**の**自動**取得を扱う別のコンテナである可能性もあります。
 
 /// tip | 豆知識
 
@@ -544,13 +540,9 @@ Docker Composeで**単一サーバ**（クラスタではない）にデプロ�
 
 コンテナごとに**単一のプロセスを実行する**と、それらのコンテナ（レプリケートされている場合は1つ以上）によって消費される多かれ少なかれ明確に定義された、安定し制限された量のメモリを持つことになります。
 
-そして、コンテナ管理システム（**Kubernetes**など）の設定で、同じメモリ制限と要件を設定することができます。
+そして、コンテナ管理システム（**Kubernetes**など）の設定で、同じメモリ制限と要件を設定することができます。そうすれば、コンテナが必要とするメモリ量とクラスタ内のマシンで利用可能なメモリ量を考慮して、**利用可能なマシン**に**コンテナをレプリケート**できるようになります。
 
-そうすれば、コンテナが必要とするメモリ量とクラスタ内のマシンで利用可能なメモリ量を考慮して、**利用可能なマシン**に**コンテナ**をレプリケートできるようになります。
-
-アプリケーションが**シンプル**なものであれば、これはおそらく**問題にはならない**でしょうし、ハードなメモリ制限を指定する必要はないかもしれないです。
-
-しかし、**多くのメモリを使用**している場合（たとえば**機械学習**モデルなど）、どれだけのメモリを消費しているかを確認し、**各マシンで実行するコンテナの数**を調整する必要があります（そしておそらくクラスタにマシンを追加します）。
+アプリケーションが**シンプル**なものであれば、これはおそらく**問題にはならない**でしょうし、ハードなメモリ制限を指定する必要はないかもしれないです。しかし、**多くのメモリを使用**している場合（たとえば**機械学習**モデルなど）、どれだけのメモリを消費しているかを確認し、**各マシンで実行するコンテナの数**を調整する必要があります（そしておそらくクラスタにマシンを追加します）。
 
 **コンテナごとに複数のプロセス**を実行する場合、起動するプロセスの数が**利用可能なメモリ以上に消費しない**ようにする必要があります。
 
@@ -562,9 +554,9 @@ Docker Composeで**単一サーバ**（クラスタではない）にデプロ�
 
 複数の**コンテナ**があり、おそらくそれぞれが**単一のプロセス**を実行している場合（例えば、**Kubernetes**クラスタなど）、レプリケートされたワーカーコンテナを実行する**前に**、単一のコンテナで**事前のステップ**の作業を行う**別のコンテナ**を持ちたいと思うでしょう。
 
-/// info | 情報
+/// note | 備考
 
-もしKubernetesを使用している場合, これはおそらく<a href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/" class="external-link" target="_blank">Init Container</a>でしょう。
+もしKubernetesを使用している場合, これはおそらく[Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/)でしょう。
 
 ///
 
@@ -576,7 +568,7 @@ Docker Composeで**単一サーバ**（クラスタではない）にデプロ�
 
 ### ベースDockerイメージ { #base-docker-image }
 
-以前は、公式のFastAPI Dockerイメージがありました：<a href="https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker" class="external-link" target="_blank">tiangolo/uvicorn-gunicorn-fastapi</a>。しかし、現在は非推奨です。⛔️
+以前は、公式のFastAPI Dockerイメージがありました：[tiangolo/uvicorn-gunicorn-fastapi](https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker)。しかし、現在は非推奨です。⛔️
 
 おそらく、このベースDockerイメージ（またはその他の類似のもの）は**使用しない**方がよいでしょう。
 
@@ -606,7 +598,7 @@ Docker Composeで**単一サーバ**（クラスタではない）にデプロ�
 
 ## `uv` を使ったDockerイメージ { #docker-image-with-uv }
 
-<a href="https://github.com/astral-sh/uv" class="external-link" target="_blank">uv</a> を使ってプロジェクトのインストールと管理をしている場合は、<a href="https://docs.astral.sh/uv/guides/integration/docker/" class="external-link" target="_blank">uv Docker guide</a>に従ってください。
+[uv](https://github.com/astral-sh/uv) を使ってプロジェクトのインストールと管理をしている場合は、[uv Docker guide](https://docs.astral.sh/uv/guides/integration/docker/)に従ってください。
 
 ## まとめ { #recap }
 

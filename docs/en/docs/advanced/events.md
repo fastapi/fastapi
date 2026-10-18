@@ -120,7 +120,7 @@ To add a function that should be run when the application is shutting down, decl
 
 Here, the `shutdown` event handler function will write a text line `"Application shutdown"` to a file `log.txt`.
 
-/// info
+/// note
 
 In the `open()` function, the `mode="a"` means "append", so, the line will be added after whatever is on that file, without overwriting the previous contents.
 
@@ -142,7 +142,7 @@ So, we declare the event handler function with standard `def` instead of `async 
 
 There's a high chance that the logic for your *startup* and *shutdown* is connected, you might want to start something and then finish it, acquire a resource and then release it, etc.
 
-Doing that in separated functions that don't share logic or variables together is more difficult as you would need to store values in global variables or similar tricks.
+Doing that in separate functions that don't share logic or variables together is more difficult as you would need to store values in global variables or similar tricks.
 
 Because of that, it's now recommended to instead use the `lifespan` as explained above.
 
@@ -150,11 +150,11 @@ Because of that, it's now recommended to instead use the `lifespan` as explained
 
 Just a technical detail for the curious nerds. 🤓
 
-Underneath, in the ASGI technical specification, this is part of the <a href="https://asgi.readthedocs.io/en/latest/specs/lifespan.html" class="external-link" target="_blank">Lifespan Protocol</a>, and it defines events called `startup` and `shutdown`.
+Underneath, in the ASGI technical specification, this is part of the [Lifespan Protocol](https://asgi.readthedocs.io/en/latest/specs/lifespan.html), and it defines events called `startup` and `shutdown`.
 
-/// info
+/// note
 
-You can read more about the Starlette `lifespan` handlers in <a href="https://www.starlette.dev/lifespan/" class="external-link" target="_blank">Starlette's  Lifespan' docs</a>.
+You can read more about the Starlette `lifespan` handlers in [Starlette's  Lifespan' docs](https://starlette.dev/lifespan/).
 
 Including how to handle lifespan state that can be used in other areas of your code.
 
@@ -162,4 +162,4 @@ Including how to handle lifespan state that can be used in other areas of your c
 
 ## Sub Applications { #sub-applications }
 
-🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md){.internal-link target=_blank}.
+🚨 Keep in mind that these lifespan events (startup and shutdown) will only be executed for the main application, not for [Sub Applications - Mounts](sub-applications.md).

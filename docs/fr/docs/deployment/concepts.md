@@ -1,5 +1,6 @@
 # Concepts de déploiement { #deployments-concepts }
 
+
 Lorsque vous déployez une application **FastAPI**, ou en fait n'importe quel type de web API, il existe plusieurs concepts qui vous importent probablement, et en les utilisant vous pouvez trouver la manière la **plus appropriée** de **déployer votre application**.
 
 Parmi les concepts importants, on trouve :
@@ -25,7 +26,7 @@ Mais pour l'instant, voyons ces **idées conceptuelles** importantes. Ces concep
 
 ## Sécurité - HTTPS { #security-https }
 
-Dans le [chapitre précédent à propos de HTTPS](https.md){.internal-link target=_blank}, nous avons vu comment HTTPS fournit le chiffrement pour votre API.
+Dans le [chapitre précédent à propos de HTTPS](https.md), nous avons vu comment HTTPS fournit le chiffrement pour votre API.
 
 Nous avons également vu que HTTPS est normalement fourni par un composant **externe** à votre serveur d'application, un **TLS Termination Proxy**.
 
@@ -190,7 +191,7 @@ Quand vous exécutez **plusieurs processus** du même programme d'API, on les ap
 
 ### Processus workers et ports { #worker-processes-and-ports }
 
-Rappelez‑vous, d'après les documents [À propos de HTTPS](https.md){.internal-link target=_blank}, qu'un seul processus peut écouter une combinaison de port et d'adresse IP sur un serveur ?
+Rappelez‑vous, d'après les documents [À propos de HTTPS](https.md), qu'un seul processus peut écouter une combinaison de port et d'adresse IP sur un serveur ?
 
 C'est toujours vrai.
 
@@ -243,7 +244,7 @@ Voici quelques combinaisons et stratégies possibles :
 
 Ne vous inquiétez pas si certains de ces éléments concernant les **conteneurs**, Docker ou Kubernetes ne sont pas encore très clairs.
 
-Je vous en dirai plus sur les images de conteneurs, Docker, Kubernetes, etc. dans un chapitre à venir : [FastAPI dans des conteneurs - Docker](docker.md){.internal-link target=_blank}.
+Je vous en dirai plus sur les images de conteneurs, Docker, Kubernetes, etc. dans un chapitre à venir : [FastAPI dans des conteneurs - Docker](docker.md).
 
 ///
 
@@ -281,7 +282,7 @@ Voici quelques idées possibles :
 
 /// tip | Astuce
 
-Je vous donnerai des exemples plus concrets pour faire cela avec des conteneurs dans un chapitre à venir : [FastAPI dans des conteneurs - Docker](docker.md){.internal-link target=_blank}.
+Je vous donnerai des exemples plus concrets pour faire cela avec des conteneurs dans un chapitre à venir : [FastAPI dans des conteneurs - Docker](docker.md).
 
 ///
 

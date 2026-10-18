@@ -52,11 +52,10 @@ Uzak bir sunucu makinesinde **FastAPI** uygulamasını (veya herhangi bir ASGI u
 
 Buna alternatif birkaç seçenek daha vardır, örneğin:
 
-* <a href="https://www.uvicorn.dev/" class="external-link" target="_blank">Uvicorn</a>: yüksek performanslı bir ASGI server.
-* <a href="https://hypercorn.readthedocs.io/" class="external-link" target="_blank">Hypercorn</a>: diğer özelliklerin yanında HTTP/2 ve Trio ile uyumlu bir ASGI server.
-* <a href="https://github.com/django/daphne" class="external-link" target="_blank">Daphne</a>: Django Channels için geliştirilmiş ASGI server.
-* <a href="https://github.com/emmett-framework/granian" class="external-link" target="_blank">Granian</a>: Python uygulamaları için bir Rust HTTP server.
-* <a href="https://unit.nginx.org/howto/fastapi/" class="external-link" target="_blank">NGINX Unit</a>: NGINX Unit, hafif ve çok yönlü bir web uygulaması runtime'ıdır.
+* [Uvicorn](https://uvicorn.dev): yüksek performanslı bir ASGI server.
+* [Hypercorn](https://hypercorn.readthedocs.io/): diğer özelliklerin yanında HTTP/2 ve Trio ile uyumlu bir ASGI server.
+* [Daphne](https://github.com/django/daphne): Django Channels için geliştirilmiş ASGI server.
+* [Granian](https://github.com/emmett-framework/granian): Python uygulamaları için bir Rust HTTP server.
 
 ## Sunucu Makinesi ve Sunucu Programı { #server-machine-and-server-program }
 
@@ -74,14 +73,14 @@ FastAPI'yi kurduğunuzda, production sunucusu olarak Uvicorn da beraberinde geli
 
 Ancak bir ASGI server'ı manuel olarak da kurabilirsiniz.
 
-Bir [sanal ortam](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, etkinleştirdiğinizden emin olun; ardından server uygulamasını kurabilirsiniz.
+Server uygulamasını projenize ekleyin.
 
 Örneğin Uvicorn'u kurmak için:
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]"
+$ uv add "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -96,7 +95,7 @@ Benzer bir süreç, diğer ASGI server programlarının tamamı için de geçerl
 
 Bunlara, `asyncio` için yüksek performanslı bir drop-in replacement olan ve concurrency performansını ciddi şekilde artıran `uvloop` da dahildir.
 
-FastAPI'yi `pip install "fastapi[standard]"` gibi bir şekilde kurduğunuzda `uvicorn[standard]` da zaten kurulmuş olur.
+FastAPI'yi `uv add "fastapi[standard]"` gibi bir şekilde eklediğinizde `uvicorn[standard]` da zaten kurulmuş olur.
 
 ///
 
@@ -107,7 +106,7 @@ Bir ASGI server'ı manuel olarak kurduysanız, FastAPI uygulamanızı import ede
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+$ uv run uvicorn main:app --host 0.0.0.0 --port 80
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```

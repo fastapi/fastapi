@@ -8,13 +8,13 @@
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-/// info | Інформація
+/// note | Примітка
 
 FastAPI додав підтримку `Annotated` (і почав рекомендувати його використання) у версії 0.95.0.
 
 Якщо у вас стара версія, при спробі використати `Annotated` можуть виникати помилки.
 
-Переконайтеся, що ви [оновили версію FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} принаймні до версії 0.95.1 перед використанням `Annotated`.
+Переконайтеся, що ви [оновили версію FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions) принаймні до версії 0.95.1 перед використанням `Annotated`.
 
 ///
 
@@ -122,7 +122,7 @@ Python нічого не зробить із цією `*`, але розпізн
 
 ## Підсумок { #recap }
 
-За допомогою `Query`, `Path` (і інших параметрів, які ви ще не бачили) можна оголошувати метадані та перевірки рядків так само як у [Query параметри та валідація рядків](query-params-str-validations.md){.internal-link target=_blank}.
+За допомогою `Query`, `Path` (і інших параметрів, які ви ще не бачили) можна оголошувати метадані та перевірки рядків так само як у [Query параметри та валідація рядків](query-params-str-validations.md).
 
 Також можна оголошувати числові перевірки:
 
@@ -131,7 +131,7 @@ Python нічого не зробить із цією `*`, але розпізн
 * `lt`: `l`ess `t`han
 * `le`: `l`ess than or `e`qual
 
-/// info | Інформація
+/// note | Примітка
 
 `Query`, `Path` та інші класи, які ви побачите пізніше, є підкласами спільного класу `Param`.
 

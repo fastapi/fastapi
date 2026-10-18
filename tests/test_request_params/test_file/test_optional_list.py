@@ -41,7 +41,10 @@ def test_optional_list_schema(path: str):
                 "anyOf": [
                     {
                         "type": "array",
-                        "items": {"type": "string", "format": "binary"},
+                        "items": {
+                            "type": "string",
+                            "contentMediaType": "application/octet-stream",
+                        },
                     },
                     {"type": "null"},
                 ],
@@ -116,7 +119,10 @@ def test_optional_list_alias_schema(path: str):
                 "anyOf": [
                     {
                         "type": "array",
-                        "items": {"type": "string", "format": "binary"},
+                        "items": {
+                            "type": "string",
+                            "contentMediaType": "application/octet-stream",
+                        },
                     },
                     {"type": "null"},
                 ],
@@ -205,7 +211,10 @@ def test_optional_validation_alias_schema(path: str):
                 "anyOf": [
                     {
                         "type": "array",
-                        "items": {"type": "string", "format": "binary"},
+                        "items": {
+                            "type": "string",
+                            "contentMediaType": "application/octet-stream",
+                        },
                     },
                     {"type": "null"},
                 ],
@@ -301,7 +310,10 @@ def test_optional_list_alias_and_validation_alias_schema(path: str):
                 "anyOf": [
                     {
                         "type": "array",
-                        "items": {"type": "string", "format": "binary"},
+                        "items": {
+                            "type": "string",
+                            "contentMediaType": "application/octet-stream",
+                        },
                     },
                     {"type": "null"},
                 ],

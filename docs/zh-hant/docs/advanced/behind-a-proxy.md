@@ -16,9 +16,9 @@
 
 代理相關的標頭有：
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -33,7 +33,7 @@
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -60,7 +60,7 @@ https://mysuperapp.com/items/
 
 /// tip
 
-如果你想了解更多 HTTPS 的內容，請參考指南［[關於 HTTPS](../deployment/https.md){.internal-link target=_blank}］。
+如果你想了解更多 HTTPS 的內容，請參考指南［[關於 HTTPS](../deployment/https.md)］。
 
 ///
 
@@ -170,7 +170,7 @@ IP `0.0.0.0` 通常用來表示程式在該機器／伺服器上的所有可用 
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ ASGI 規格針對這種用例定義了 `root_path`。
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -228,7 +228,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 請記住，伺服器（Uvicorn）除了把 `root_path` 傳給應用之外，不會拿它做其他用途。
 
-但如果你用瀏覽器前往 <a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>，你會看到一般的回應：
+但如果你用瀏覽器前往 [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) ，你會看到一般的回應：
 
 ```JSON
 {
@@ -251,9 +251,9 @@ Uvicorn 會預期代理以 `http://127.0.0.1:8000/app` 來存取 Uvicorn，而�
 
 ## 在本機使用 Traefik 測試 { #testing-locally-with-traefik }
 
-你可以很容易地用 <a href="https://docs.traefik.io/" class="external-link" target="_blank">Traefik</a> 在本機跑一個「移除路徑前綴」的測試。
+你可以很容易地用 [Traefik](https://docs.traefik.io/) 在本機跑一個「移除路徑前綴」的測試。
 
-<a href="https://github.com/containous/traefik/releases" class="external-link" target="_blank">下載 Traefik</a>，它是一個單一的執行檔，你可以解壓縮後直接在終端機執行。
+[下載 Traefik](https://github.com/traefik/traefik/releases)，它是一個單一的執行檔，你可以解壓縮後直接在終端機執行。
 
 然後建立一個 `traefik.toml` 檔案，內容如下：
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -330,7 +330,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ### 檢查回應 { #check-the-responses }
 
-現在，如果你前往 Uvicorn 的埠：<a href="http://127.0.0.1:8000/app" class="external-link" target="_blank">http://127.0.0.1:8000/app</a>，你會看到一般的回應：
+現在，如果你前往 Uvicorn 的埠：[http://127.0.0.1:8000/app](http://127.0.0.1:8000/app)，你會看到一般的回應：
 
 ```JSON
 {
@@ -345,7 +345,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-接著打開使用 Traefik 埠且包含路徑前綴的 URL：<a href="http://127.0.0.1:9999/api/v1/app" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/app</a>。
+接著打開使用 Traefik 埠且包含路徑前綴的 URL：[http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app)。
 
 我們會得到相同的回應：
 
@@ -370,13 +370,13 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 「正式」的存取方式應該是透過我們定義了路徑前綴的代理。因此，如我們預期，如果你直接透過 Uvicorn 供應的文件 UI、而 URL 中沒有該路徑前綴，那它不會運作，因為它預期要透過代理來存取。
 
-你可以在 <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> 檢查：
+你可以在 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) 檢查：
 
 <img src="/img/tutorial/behind-a-proxy/image01.png">
 
 但如果我們改用「正式」的 URL，也就是使用埠號 `9999` 的代理、並在 `/api/v1/docs`，它就能正確運作了！🎉
 
-你可以在 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> 檢查：
+你可以在 [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs) 檢查：
 
 <img src="/img/tutorial/behind-a-proxy/image02.png">
 
@@ -433,7 +433,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ///
 
-在位於 <a href="http://127.0.0.1:9999/api/v1/docs" class="external-link" target="_blank">http://127.0.0.1:9999/api/v1/docs</a> 的文件 UI 中看起來會像這樣：
+在位於 [http://127.0.0.1:9999/api/v1/docs](http://127.0.0.1:9999/api/v1/docs) 的文件 UI 中看起來會像這樣：
 
 <img src="/img/tutorial/behind-a-proxy/image03.png">
 
@@ -461,6 +461,6 @@ OpenAPI 規格中的 `servers` 屬性是可選的。
 
 ## 掛載子應用 { #mounting-a-sub-application }
 
-如果你需要在同時使用具有 `root_path` 的代理時，掛載一個子應用（如［[子應用 - 掛載](sub-applications.md){.internal-link target=_blank}］中所述），可以像平常一樣操作，正如你所預期的那樣。
+如果你需要在同時使用具有 `root_path` 的代理時，掛載一個子應用（如［[子應用 - 掛載](sub-applications.md)］中所述），可以像平常一樣操作，正如你所預期的那樣。
 
 FastAPI 會在內部智慧地使用 `root_path`，所以一切都能順利運作。✨

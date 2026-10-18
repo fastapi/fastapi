@@ -32,7 +32,7 @@ URL を最初に開こうとしたとき（またはドキュメントで「Exec
 
 依存関係を使ってユーザー名とパスワードが正しいかを確認します。
 
-これには、Python 標準モジュール <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> を用いてユーザー名とパスワードを検証します。
+これには、Python 標準モジュール [`secrets`](https://docs.python.org/3/library/secrets.html) を用いてユーザー名とパスワードを検証します。
 
 `secrets.compare_digest()` は `bytes` か、ASCII 文字（英語の文字）のみを含む `str` を受け取る必要があります。つまり、`Sebastián` のように `á` を含む文字ではそのままでは動作しません。
 
@@ -46,7 +46,7 @@ URL を最初に開こうとしたとき（またはドキュメントで「Exec
 
 ```Python
 if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
-    # Return some error
+    # 何らかのエラーを返す
     ...
 ```
 

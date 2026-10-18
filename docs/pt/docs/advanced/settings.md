@@ -6,30 +6,34 @@ A maioria dessas configurações é variável (pode mudar), como URLs de banco d
 
 Por esse motivo, é comum fornecê-las em variáveis de ambiente lidas pela aplicação.
 
+Uma **variável de ambiente** (também conhecida como **env var**) é um valor que existe fora do código Python, no sistema operacional, e pode ser lido pela sua aplicação e por outros programas.
+
+Você pode criar uma variável de ambiente para um comando ao executá-lo. Você verá os comandos específicos de cada plataforma abaixo.
+
 /// tip | Dica
 
-Para entender variáveis de ambiente, você pode ler [Variáveis de Ambiente](../environment-variables.md){.internal-link target=_blank}.
+Leia o [guia de Variáveis de Ambiente](https://tiangolo.com/guides/environment-variables/) para uma explicação detalhada de como variáveis de ambiente funcionam.
 
 ///
 
 ## Tipagem e validação { #types-and-validation }
 
-Essas variáveis de ambiente só conseguem lidar com strings de texto, pois são externas ao Python e precisam ser compatíveis com outros programas e com o resto do sistema (e até com diferentes sistemas operacionais, como Linux, Windows, macOS).
+Essas variáveis de ambiente só conseguem lidar com strings de texto, pois são externas ao Python e precisam ser compatíveis com outros programas e com o resto do sistema (e até com diferentes sistemas operacionais, como Linux, Windows e macOS).
 
 Isso significa que qualquer valor lido em Python a partir de uma variável de ambiente será uma `str`, e qualquer conversão para um tipo diferente ou validação precisa ser feita em código.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Felizmente, o Pydantic fornece uma ótima utilidade para lidar com essas configurações vindas de variáveis de ambiente com <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>.
+Felizmente, o Pydantic fornece uma ótima utilidade para lidar com essas configurações vindas de variáveis de ambiente com [Pydantic: Settings management](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/).
 
 ### Instalar `pydantic-settings` { #install-pydantic-settings }
 
-Primeiro, certifique-se de criar seu [ambiente virtual](../virtual-environments.md){.internal-link target=_blank}, ativá-lo e então instalar o pacote `pydantic-settings`:
+Adicione o pacote `pydantic-settings` ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ Ele também vem incluído quando você instala os extras `all` com:
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ Depois você pode usar o novo objeto `settings` na sua aplicação:
 
 Em seguida, você executaria o servidor passando as configurações como variáveis de ambiente, por exemplo, você poderia definir `ADMIN_EMAIL` e `APP_NAME` com:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | Dica
 
-Para definir várias variáveis de ambiente para um único comando, basta separá-las com espaço e colocá-las todas antes do comando.
+No Bash, para definir várias env vars para um único comando, separe-as com espaço e coloque todas antes do comando.
 
 ///
 
@@ -100,7 +124,7 @@ E `items_per_user` manteria seu valor padrão de `50`.
 
 ## Configurações em outro módulo { #settings-in-another-module }
 
-Você pode colocar essas configurações em outro arquivo de módulo como visto em [Aplicações Maiores - Múltiplos Arquivos](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Você pode colocar essas configurações em outro arquivo de módulo como visto em [Aplicações Maiores - Múltiplos Arquivos](../tutorial/bigger-applications.md).
 
 Por exemplo, você poderia ter um arquivo `config.py` com:
 
@@ -112,7 +136,7 @@ E então usá-lo em um arquivo `main.py`:
 
 /// tip | Dica
 
-Você também precisaria de um arquivo `__init__.py` como visto em [Aplicações Maiores - Múltiplos Arquivos](../tutorial/bigger-applications.md){.internal-link target=_blank}.
+Você também precisaria de um arquivo `__init__.py` como visto em [Aplicações Maiores - Múltiplos Arquivos](../tutorial/bigger-applications.md).
 
 ///
 
@@ -172,11 +196,11 @@ Mas um arquivo dotenv não precisa ter exatamente esse nome de arquivo.
 
 ///
 
-O Pydantic tem suporte para leitura desses tipos de arquivos usando uma biblioteca externa. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+O Pydantic tem suporte para leitura desses tipos de arquivos usando uma biblioteca externa. Você pode ler mais em [Pydantic Settings: suporte a Dotenv (.env)](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Dica
 
-Para isso funcionar, você precisa executar `pip install python-dotenv`.
+Para isso funcionar, adicione `python-dotenv` ao seu projeto com `uv add python-dotenv`.
 
 ///
 
@@ -197,7 +221,7 @@ E então atualizar seu `config.py` com:
 
 /// tip | Dica
 
-O atributo `model_config` é usado apenas para configuração do Pydantic. Você pode ler mais em <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+O atributo `model_config` é usado apenas para configuração do Pydantic. Você pode ler mais em [Pydantic: Conceitos: Configuração](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 
@@ -291,11 +315,11 @@ No caso da nossa dependência `get_settings()`, a função nem recebe argumentos
 
 Dessa forma, ela se comporta quase como se fosse apenas uma variável global. Mas como usa uma função de dependência, podemos sobrescrevê-la facilmente para testes.
 
-`@lru_cache` faz parte de `functools`, que faz parte da biblioteca padrão do Python; você pode ler mais sobre isso na <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">documentação do Python para `@lru_cache`</a>.
+`@lru_cache` faz parte de `functools`, que faz parte da biblioteca padrão do Python; você pode ler mais sobre isso na [documentação do Python para `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Recapitulando { #recap }
 
-Você pode usar Pydantic Settings para lidar com as configurações da sua aplicação, com todo o poder dos modelos Pydantic.
+Você pode usar Pydantic Settings para lidar com as definições ou configurações da sua aplicação, com todo o poder dos modelos Pydantic.
 
 * Usando uma dependência você pode simplificar os testes.
 * Você pode usar arquivos `.env` com ele.

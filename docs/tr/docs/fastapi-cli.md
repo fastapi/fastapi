@@ -1,15 +1,15 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI**, FastAPI uygulamanızı servis etmek, FastAPI projenizi yönetmek ve daha fazlası için kullanabileceğiniz bir komut satırı programıdır.
+**FastAPI <abbr title="command line interface - komut satırı arayüzü">CLI</abbr>**, FastAPI uygulamanızı servis etmek, FastAPI projenizi yönetmek ve daha fazlası için kullanabileceğiniz bir komut satırı programıdır.
 
-FastAPI'yi kurduğunuzda (ör. `pip install "fastapi[standard]"`), beraberinde `fastapi-cli` adlı bir paket de gelir; bu paket terminalde `fastapi` komutunu sağlar.
+FastAPI'yi projenize eklediğinizde (ör. `uv add "fastapi[standard]"` ile), terminalde çalıştırabileceğiniz bir komut satırı programı birlikte gelir.
 
 FastAPI uygulamanızı geliştirme için çalıştırmak üzere `fastapi dev` komutunu kullanabilirsiniz:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -46,13 +46,72 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-`fastapi` adlı bu komut satırı programı, **FastAPI CLI**'dır.
+/// tip | İpucu
 
-FastAPI CLI, Python programınızın path'ini (ör. `main.py`) alır; `FastAPI` instance'ını (genellikle `app` olarak adlandırılır) otomatik olarak tespit eder, doğru import sürecini belirler ve ardından uygulamayı servis eder.
+Production için `fastapi dev` yerine `fastapi run` kullanırsınız. 🚀
 
-Production için bunun yerine `fastapi run` kullanırsınız. 🚀
+///
 
-İçeride **FastAPI CLI**, yüksek performanslı, production'a hazır bir ASGI server olan <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>'u kullanır. 😎
+İçeride, **FastAPI CLI**, yüksek performanslı, production'a hazır bir ASGI server olan [Uvicorn](https://uvicorn.dev)'u kullanır. 😎
+
+`fastapi` CLI, çalıştırılacak FastAPI app'ini otomatik olarak tespit etmeye çalışır; `main.py` dosyasında `app` adlı bir nesne olduğunu varsayar (veya birkaç başka varyant).
+
+Ancak, kullanılacak app'i açıkça yapılandırabilirsiniz.
+
+## Uygulama `entrypoint`'ini `pyproject.toml` İçinde Yapılandırma { #configure-the-app-entrypoint-in-pyproject-toml }
+
+Uygulamanızın nerede olduğunu aşağıdaki gibi bir `pyproject.toml` dosyasında yapılandırabilirsiniz:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+Bu `entrypoint`, `fastapi` komutuna app'i şu şekilde import etmesi gerektiğini söyler:
+
+```python
+from main import app
+```
+
+Kodunuz şu şekilde yapılandırılmışsa:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+O zaman `entrypoint`'i şu şekilde ayarlarsınız:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+Bu da şu koda eşdeğerdir:
+
+```python
+from backend.main import app
+```
+
+### path ile veya `--entrypoint` CLI seçeneği ile `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
+
+Ayrıca `fastapi dev` komutuna dosya path'ini de verebilirsiniz; hangi FastAPI app nesnesinin kullanılacağını tahmin eder:
+
+```console
+$ uv run fastapi dev main.py
+```
+
+Ya da `fastapi dev` komutuna `--entrypoint` seçeneğini de verebilirsiniz:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+Ancak `fastapi` komutunu her çağırdığınızda doğru path'i/entrypoint'i geçmeyi hatırlamanız gerekir.
+
+Ayrıca, [VS Code Extension](editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com) gibi diğer araçlar da bunu bulamayabilir; bu yüzden `pyproject.toml` içindeki `entrypoint`'i kullanmanız önerilir.
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -60,9 +119,13 @@ Production için bunun yerine `fastapi run` kullanırsınız. 🚀
 
 Varsayılan olarak **auto-reload** etkindir; kodunuzda değişiklik yaptığınızda server'ı otomatik olarak yeniden yükler. Bu, kaynak tüketimi yüksek bir özelliktir ve kapalı olduğuna kıyasla daha az stabil olabilir. Sadece geliştirme sırasında kullanmalısınız. Ayrıca yalnızca `127.0.0.1` IP adresini dinler; bu, makinenizin sadece kendisiyle iletişim kurması için kullanılan IP'dir (`localhost`).
 
+App'inizi import etmeden önce `fastapi dev`, `FASTAPI_ENV` ortam değişkenini `development` olarak ayarlar. `FASTAPI_ENV` zaten ayarlanmışsa mevcut değeri korunur. Bu, app başlangıç kodunun geliştirme dostu davranış seçebilmesini sağlar ve aynı zamanda `staging` gibi app'e özel bir ortam sağlamanıza izin verir.
+
+Geleneksel `FASTAPI_ENV` değerleri `development` ve `production` şeklindedir. `fastapi run` şu anda `FASTAPI_ENV` değerini değiştirmez; bu yüzden app'inizin production modunu tespit etmesi gerekiyorsa bunu açıkça ayarlayın.
+
 ## `fastapi run` { #fastapi-run }
 
-`fastapi run` çalıştırmak, varsayılan olarak FastAPI'yi production modunda başlatır.
+`fastapi run` komutunu çalıştırmak, FastAPI'yi production modunda başlatır.
 
 Varsayılan olarak **auto-reload** kapalıdır. Ayrıca `0.0.0.0` IP adresini dinler; bu, kullanılabilir tüm IP adresleri anlamına gelir. Böylece makineyle iletişim kurabilen herkes tarafından genel erişime açık olur. Bu, normalde production'da çalıştırma şeklidir; örneğin bir container içinde.
 
@@ -70,6 +133,6 @@ Varsayılan olarak **auto-reload** kapalıdır. Ayrıca `0.0.0.0` IP adresini di
 
 /// tip | İpucu
 
-Bununla ilgili daha fazla bilgiyi [deployment dokümantasyonunda](deployment/index.md){.internal-link target=_blank} bulabilirsiniz.
+Bununla ilgili daha fazla bilgiyi [deployment dokümantasyonunda](deployment/index.md) bulabilirsiniz.
 
 ///

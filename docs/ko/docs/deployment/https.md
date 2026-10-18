@@ -10,11 +10,11 @@ HTTPS는 그냥 “켜져 있거나” 아니면 “꺼져 있는” 것이라�
 
 ///
 
-소비자 관점에서 **HTTPS의 기본을 배우려면** <a href="https://howhttps.works/" class="external-link" target="_blank">https://howhttps.works/</a>를 확인하세요.
+소비자 관점에서 **HTTPS의 기본을 배우려면** [https://howhttps.works/](https://howhttps.works/)를 확인하세요.
 
 이제 **개발자 관점**에서 HTTPS를 생각할 때 염두에 두어야 할 여러 가지가 있습니다:
 
-* HTTPS를 사용하려면, **서버**가 **제3자**가 발급한 **"인증서(certificates)"**를 **보유**해야 합니다.
+* HTTPS를 사용하려면, **서버**가 **제3자**가 생성한 **"인증서(certificates)"**를 **보유**해야 합니다.
     * 이 인증서는 실제로 '생성'되는 것이 아니라 제3자로부터 **발급/획득**하는 것입니다.
 * 인증서에는 **유효 기간**이 있습니다.
     * 즉, **만료**됩니다.
@@ -28,13 +28,13 @@ HTTPS는 그냥 “켜져 있거나” 아니면 “꺼져 있는” 것이라�
 * **기본적으로** 이는 IP 주소 하나당 **HTTPS 인증서 하나만** 둘 수 있다는 뜻입니다.
     * 서버가 아무리 크든, 그 위에 올린 각 애플리케이션이 아무리 작든 상관없습니다.
     * 하지만 이에 대한 **해결책**이 있습니다.
-* **TLS** 프로토콜(HTTP 이전, TCP 레벨에서 암호화를 처리하는 것)에 대한 **확장** 중에 **<a href="https://en.wikipedia.org/wiki/Server_Name_Indication" class="external-link" target="_blank"><abbr title="Server Name Indication - 서버 이름 표시">SNI</abbr></a>**라는 것이 있습니다.
+* **TLS** 프로토콜(HTTP 이전, TCP 레벨에서 암호화를 처리하는 것)에 대한 **확장** 중에 **[<abbr title="Server Name Indication - 서버 이름 표시">SNI</abbr>](https://en.wikipedia.org/wiki/Server_Name_Indication)**라는 것이 있습니다.
     * 이 SNI 확장을 사용하면, 단일 서버(**단일 IP 주소**)에서 **여러 HTTPS 인증서**를 사용하고 **여러 HTTPS 도메인/애플리케이션**을 제공할 수 있습니다.
     * 이를 위해서는 서버에서 **공개 IP 주소**로 리스닝하는 **하나의** 컴포넌트(프로그램)가 서버에 있는 **모든 HTTPS 인증서**에 접근할 수 있어야 합니다.
 * 보안 연결을 얻은 **이후에도**, 통신 프로토콜 자체는 **여전히 HTTP**입니다.
     * **HTTP 프로토콜**로 전송되더라도, 내용은 **암호화**되어 있습니다.
 
-일반적으로 서버(머신, 호스트 등)에는 **프로그램/HTTP 서버 하나**를 실행해 **HTTPS 관련 부분 전체**를 관리하게 합니다: **암호화된 HTTPS 요청**을 받고, 복호화된 **HTTP 요청**을 같은 서버에서 실행 중인 실제 HTTP 애플리케이션(이 경우 **FastAPI** 애플리케이션)으로 전달하고, 애플리케이션의 **HTTP 응답**을 받아 적절한 **HTTPS 인증서**로 **암호화**한 뒤 **HTTPS**로 클라이언트에 다시 보내는 역할입니다. 이런 서버를 흔히 **<a href="https://en.wikipedia.org/wiki/TLS_termination_proxy" class="external-link" target="_blank">TLS Termination Proxy</a>**라고 부릅니다.
+일반적으로 서버(머신, 호스트 등)에는 **프로그램/HTTP 서버 하나**를 실행해 **HTTPS 관련 부분 전체**를 관리하게 합니다: **암호화된 HTTPS 요청**을 받고, 복호화된 **HTTP 요청**을 같은 서버에서 실행 중인 실제 HTTP 애플리케이션(이 경우 **FastAPI** 애플리케이션)으로 전달하고, 애플리케이션의 **HTTP 응답**을 받아 적절한 **HTTPS 인증서**로 **암호화**한 뒤 **HTTPS**로 클라이언트에 다시 보내는 역할입니다. 이런 서버를 흔히 **[TLS Termination Proxy](https://en.wikipedia.org/wiki/TLS_termination_proxy)**라고 부릅니다.
 
 TLS Termination Proxy로 사용할 수 있는 옵션은 다음과 같습니다:
 
@@ -49,7 +49,7 @@ Let's Encrypt 이전에는 이러한 **HTTPS 인증서**가 신뢰할 수 있는
 
 인증서를 획득하는 과정은 번거롭고, 꽤 많은 서류 작업이 필요했으며, 인증서도 상당히 비쌌습니다.
 
-하지만 그 후 **<a href="https://letsencrypt.org/" class="external-link" target="_blank">Let's Encrypt</a>**가 만들어졌습니다.
+하지만 그 후 **[Let's Encrypt](https://letsencrypt.org/)**가 만들어졌습니다.
 
 이는 Linux Foundation의 프로젝트입니다. 표준 암호학적 보안을 모두 사용하는 **HTTPS 인증서**를 **무료로**, 자동화된 방식으로 제공합니다. 이 인증서들은 수명이 짧고(약 3개월) 그래서 유효 기간이 짧은 만큼 **실제로 보안이 더 좋아지기도** 합니다.
 
@@ -200,9 +200,9 @@ TLS Termination Proxy는 합의된 암호화를 사용해 **요청을 복호화*
 
 프록시 헤더는 다음과 같습니다:
 
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For" class="external-link" target="_blank">X-Forwarded-For</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto" class="external-link" target="_blank">X-Forwarded-Proto</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host" class="external-link" target="_blank">X-Forwarded-Host</a>
+* [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-For)
+* [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto)
+* [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Forwarded-Host)
 
 ///
 
@@ -218,7 +218,7 @@ TLS Termination Proxy는 합의된 암호화를 사용해 **요청을 복호화*
 
 /// tip | 팁
 
-이에 대해서는 [프록시 뒤에서 실행하기 - 프록시 전달 헤더 활성화](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers){.internal-link target=_blank} 문서에서 더 알아볼 수 있습니다.
+이에 대해서는 [프록시 뒤에서 실행하기 - 프록시 전달 헤더 활성화](../advanced/behind-a-proxy.md#enable-proxy-forwarded-headers) 문서에서 더 알아볼 수 있습니다.
 
 ///
 

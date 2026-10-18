@@ -1,5 +1,6 @@
 # 路徑操作設定 { #path-operation-configuration }
 
+
 你可以在你的「路徑操作裝飾器」中傳入多個參數來進行設定。
 
 /// warning | 警告
@@ -58,7 +59,7 @@
 
 由於描述常常較長、跨越多行，你可以在函式的 <dfn title="用於文件的多行字串，作為函式內的第一個運算式（不賦值給任何變數）">文件字串（docstring）</dfn> 中宣告「路徑操作」的描述，**FastAPI** 會從那裡讀取。
 
-你可以在 docstring 中書寫 <a href="https://en.wikipedia.org/wiki/Markdown" class="external-link" target="_blank">Markdown</a>，它會被正確解析並顯示（會考慮 docstring 的縮排）。
+你可以在 docstring 中書寫 [Markdown](https://en.wikipedia.org/wiki/Markdown)，它會被正確解析並顯示（會考慮 docstring 的縮排）。
 
 {* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
 
@@ -72,13 +73,13 @@
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | 資訊
+/// note | 注意
 
 請注意，`response_description` 專指回應，而 `description` 則是針對整個「路徑操作」的一般描述。
 
 ///
 
-/// check | 檢查
+/// tip
 
 OpenAPI 規範要求每個「路徑操作」都必須有一個回應描述。
 

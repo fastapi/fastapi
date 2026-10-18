@@ -1,4 +1,4 @@
-# Yol Parametreleri { #path-parameters }
+# Path Parametreleri { #path-parameters }
 
 Python <abbr title="String Biçimleme: Format String">string biçimlemede</abbr> kullanılan sözdizimiyle path "parametreleri"ni veya "değişkenleri"ni tanımlayabilirsiniz:
 
@@ -6,13 +6,13 @@ Python <abbr title="String Biçimleme: Format String">string biçimlemede</abbr>
 
 Path parametresi `item_id`'nin değeri, fonksiyonunuza `item_id` argümanı olarak aktarılacaktır.
 
-Yani, bu örneği çalıştırıp <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> adresine giderseniz, şöyle bir response görürsünüz:
+Yani, bu örneği çalıştırıp [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo) adresine giderseniz, şöyle bir response görürsünüz:
 
 ```JSON
 {"item_id":"foo"}
 ```
 
-## Tip İçeren Yol Parametreleri { #path-parameters-with-types }
+## Tip İçeren Path Parametreleri { #path-parameters-with-types }
 
 Standart Python tip belirteçlerini kullanarak path parametresinin tipini fonksiyonun içinde tanımlayabilirsiniz:
 
@@ -20,7 +20,7 @@ Standart Python tip belirteçlerini kullanarak path parametresinin tipini fonksi
 
 Bu durumda, `item_id` bir `int` olarak tanımlanır.
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Bu sayede, fonksiyon içinde hata denetimi, kod tamamlama vb. konularda editör desteğine kavuşursunuz.
 
@@ -28,13 +28,13 @@ Bu sayede, fonksiyon içinde hata denetimi, kod tamamlama vb. konularda editör 
 
 ## Veri <dfn title="diğer adlarıyla: serileştirme, ayrıştırma, marshalling">dönüştürme</dfn> { #data-conversion }
 
-Bu örneği çalıştırıp tarayıcınızda <a href="http://127.0.0.1:8000/items/3" class="external-link" target="_blank">http://127.0.0.1:8000/items/3</a> adresini açarsanız, şöyle bir response görürsünüz:
+Bu örneği çalıştırıp tarayıcınızda [http://127.0.0.1:8000/items/3](http://127.0.0.1:8000/items/3) adresini açarsanız, şöyle bir response görürsünüz:
 
 ```JSON
 {"item_id":3}
 ```
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Dikkat edin: fonksiyonunuzun aldığı (ve döndürdüğü) değer olan `3`, string `"3"` değil, bir Python `int`'idir.
 
@@ -44,7 +44,7 @@ Yani, bu tip tanımıyla birlikte **FastAPI** size otomatik request "<dfn title=
 
 ## Veri Doğrulama { #data-validation }
 
-Ancak tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="external-link" target="_blank">http://127.0.0.1:8000/items/foo</a> adresine giderseniz, şuna benzer güzel bir HTTP hatası görürsünüz:
+Ancak tarayıcınızda [http://127.0.0.1:8000/items/foo](http://127.0.0.1:8000/items/foo) adresine giderseniz, şuna benzer güzel bir HTTP hatası görürsünüz:
 
 ```JSON
 {
@@ -64,9 +64,9 @@ Ancak tarayıcınızda <a href="http://127.0.0.1:8000/items/foo" class="external
 
 çünkü path parametresi `item_id`, `int` olmayan `"foo"` değerine sahipti.
 
-Aynı hata, şu örnekte olduğu gibi `int` yerine `float` verirseniz de ortaya çıkar: <a href="http://127.0.0.1:8000/items/4.2" class="external-link" target="_blank">http://127.0.0.1:8000/items/4.2</a>
+Aynı hata, şu örnekte olduğu gibi `int` yerine `float` verirseniz de ortaya çıkar: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Yani, aynı Python tip tanımıyla birlikte **FastAPI** size veri doğrulama sağlar.
 
@@ -78,11 +78,11 @@ Bu, API'ınızla etkileşime giren kodu geliştirirken ve debug ederken inanılm
 
 ## Dokümantasyon { #documentation }
 
-Tarayıcınızı <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresinde açtığınızda, aşağıdaki gibi otomatik ve interaktif bir API dokümantasyonu görürsünüz:
+Tarayıcınızı [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresinde açtığınızda, aşağıdaki gibi otomatik ve interaktif bir API dokümantasyonu görürsünüz:
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Yine, sadece aynı Python tip tanımıyla **FastAPI** size otomatik ve interaktif dokümantasyon (Swagger UI entegrasyonuyla) sağlar.
 
@@ -92,9 +92,9 @@ Dikkat edin: path parametresi integer olarak tanımlanmıştır.
 
 ## Standartlara Dayalı Avantajlar, Alternatif Dokümantasyon { #standards-based-benefits-alternative-documentation }
 
-Üretilen şema <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md" class="external-link" target="_blank">OpenAPI</a> standardından geldiği için birçok uyumlu araç vardır.
+Üretilen şema [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) standardından geldiği için birçok uyumlu araç vardır.
 
-Bu nedenle **FastAPI**'ın kendisi, <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a> adresinden erişebileceğiniz alternatif bir API dokümantasyonu (ReDoc kullanarak) sağlar:
+Bu nedenle **FastAPI**'ın kendisi, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresinden erişebileceğiniz alternatif bir API dokümantasyonu (ReDoc kullanarak) sağlar:
 
 <img src="/img/tutorial/path-params/image02.png">
 
@@ -102,7 +102,7 @@ Aynı şekilde, birçok uyumlu araç vardır. Birçok dil için kod üretme ara�
 
 ## Pydantic { #pydantic }
 
-Tüm veri doğrulamaları, arka planda <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> tarafından gerçekleştirilir; böylece onun tüm avantajlarından faydalanırsınız. Ve emin ellerde olduğunuzu bilirsiniz.
+Tüm veri doğrulamaları, arka planda [Pydantic](https://pydantic.dev/docs/) tarafından gerçekleştirilir; böylece onun tüm avantajlarından faydalanırsınız. Ve emin ellerde olduğunuzu bilirsiniz.
 
 Aynı tip tanımlarını `str`, `float`, `bool` ve daha birçok karmaşık veri tipiyle kullanabilirsiniz.
 
@@ -130,7 +130,7 @@ Path önce eşleştiği için her zaman ilk olan kullanılır.
 
 ## Ön Tanımlı Değerler { #predefined-values }
 
-Bir *path operation*'ınız *path parameter* alıyorsa ama olası geçerli *path parameter* değerlerinin önceden tanımlı olmasını istiyorsanız, standart bir Python <abbr title="Enumeration">`Enum`</abbr> kullanabilirsiniz.
+Bir *path operation*'ınız *path parameter* alıyorsa ama olası geçerli *path parameter* değerlerinin önceden tanımlı olmasını istiyorsanız, standart bir Python <abbr title="Enumeration - Numaralandırma">`Enum`</abbr> kullanabilirsiniz.
 
 ### Bir `Enum` Sınıfı Oluşturalım { #create-an-enum-class }
 

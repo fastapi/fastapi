@@ -11,17 +11,17 @@
 
 Bu noktaya kadar, dokümantasyondaki tüm tutorial'larla muhtemelen bir **server programı** çalıştırıyordunuz; örneğin Uvicorn'u çalıştıran `fastapi` komutunu kullanarak ve **tek bir process** ile.
 
-Uygulamaları deploy ederken, **çok çekirdekten (multiple cores)** faydalanmak ve daha fazla request'i karşılayabilmek için büyük olasılıkla **process replikasyonu** (birden fazla process) isteyeceksiniz.
+Uygulamaları deploy ederken, çok çekirdekten (multiple cores) faydalanmak ve daha fazla request'i karşılayabilmek için büyük olasılıkla **process replikasyonu (birden fazla process)** isteyeceksiniz.
 
-[Daha önceki Deployment Concepts](concepts.md){.internal-link target=_blank} bölümünde gördüğünüz gibi, kullanabileceğiniz birden fazla strateji var.
+[Daha önceki Deployment Concepts](concepts.md) bölümünde gördüğünüz gibi, kullanabileceğiniz birden fazla strateji var.
 
 Burada, `fastapi` komutunu kullanarak ya da `uvicorn` komutunu doğrudan çalıştırarak **worker process**'lerle **Uvicorn**'u nasıl kullanacağınızı göstereceğim.
 
-/// info | Bilgi
+/// note | Not
 
-Container kullanıyorsanız (örneğin Docker veya Kubernetes ile), bununla ilgili daha fazlasını bir sonraki bölümde anlatacağım: [Container'larda FastAPI - Docker](docker.md){.internal-link target=_blank}.
+Container kullanıyorsanız (örneğin Docker veya Kubernetes ile), bununla ilgili daha fazlasını bir sonraki bölümde anlatacağım: [Container'larda FastAPI - Docker](docker.md).
 
-Özellikle **Kubernetes** üzerinde çalıştırırken, büyük olasılıkla worker kullanmak **istemeyeceksiniz**; bunun yerine **container başına tek bir Uvicorn process** çalıştırmak daha uygundur. Ancak bunu da o bölümde detaylandıracağım.
+Özellikle **Kubernetes** üzerinde çalıştırırken, büyük olasılıkla worker kullanmak istemeyeceksiniz; bunun yerine **container başına tek bir Uvicorn process** çalıştırmak daha uygundur. Ancak bunu da o bölümde detaylandıracağım.
 
 ///
 
@@ -86,7 +86,7 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
+$ uv run uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 <font color="#A6E22E">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8080</b> (Press CTRL+C to quit)
 <font color="#A6E22E">INFO</font>:     Started parent process [<font color="#A1EFE4"><b>27365</b></font>]
 <font color="#A6E22E">INFO</font>:     Started server process [<font color="#A1EFE4">27368</font>]
@@ -126,13 +126,13 @@ Yukarıdaki deployment kavramları listesinden, worker kullanımı ağırlıklı
 
 ## Container'lar ve Docker { #containers-and-docker }
 
-Bir sonraki bölümde, [Container'larda FastAPI - Docker](docker.md){.internal-link target=_blank} üzerinden diğer **deployment kavramlarını** ele almak için kullanabileceğiniz bazı stratejileri anlatacağım.
+Bir sonraki bölümde, [Container'larda FastAPI - Docker](docker.md) üzerinden diğer **deployment kavramlarını** ele almak için kullanabileceğiniz bazı stratejileri anlatacağım.
 
 Tek bir Uvicorn process çalıştıracak şekilde **sıfırdan kendi image'ınızı oluşturmayı** göstereceğim. Bu oldukça basit bir süreçtir ve **Kubernetes** gibi dağıtık bir container yönetim sistemi kullanırken büyük olasılıkla yapmak isteyeceğiniz şey de budur.
 
 ## Özet { #recap }
 
-**Çok çekirdekli CPU**'lardan faydalanmak ve **birden fazla process'i paralel** çalıştırmak için `fastapi` veya `uvicorn` komutlarıyla `--workers` CLI seçeneğini kullanarak birden fazla worker process çalıştırabilirsiniz.
+Çok çekirdekli CPU'lardan faydalanmak ve **birden fazla process'i paralel çalıştırmak** için `fastapi` veya `uvicorn` komutlarıyla `--workers` CLI seçeneğini kullanarak birden fazla worker process çalıştırabilirsiniz.
 
 Diğer deployment kavramlarını da kendiniz ele alarak **kendi deployment sisteminizi** kuruyorsanız, bu araçları ve fikirleri kullanabilirsiniz.
 

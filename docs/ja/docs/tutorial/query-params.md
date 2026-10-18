@@ -1,5 +1,6 @@
 # クエリパラメータ { #query-parameters }
 
+
 パスパラメータではない関数パラメータを宣言すると、それらは自動的に「クエリ」パラメータとして解釈されます。
 
 {* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
@@ -65,7 +66,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 この場合、関数パラメータ `q` はオプショナルとなり、デフォルトでは `None` になります。
 
-/// check | 確認
+/// tip | 豆知識
 
 パスパラメータ `item_id` はパスパラメータであり、`q` はそれとは違ってクエリパラメータであると判別できるほど**FastAPI** が賢いということにも注意してください。
 
@@ -183,6 +184,6 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 /// tip | 豆知識
 
-[パスパラメータ](path-params.md#predefined-values){.internal-link target=_blank}と同様に `Enum` を使用できます。
+[パスパラメータ](path-params.md#predefined-values)と同様に `Enum` を使用できます。
 
 ///

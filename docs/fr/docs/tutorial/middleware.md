@@ -15,7 +15,7 @@ Un « middleware » est une fonction qui agit sur chaque **requête** avant qu�
 
 Si vous avez des dépendances avec `yield`, le code de sortie s’exécutera après le middleware.
 
-S’il y avait des tâches d’arrière-plan (présentées dans la section [Tâches d’arrière-plan](background-tasks.md){.internal-link target=_blank}, que vous verrez plus tard), elles s’exécuteront après tous les middlewares.
+S’il y avait des tâches d’arrière-plan (présentées dans la section [Tâches d’arrière-plan](background-tasks.md), que vous verrez plus tard), elles s’exécuteront après tous les middlewares.
 
 ///
 
@@ -35,9 +35,9 @@ La fonction de middleware reçoit :
 
 /// tip | Astuce
 
-Gardez à l’esprit que des en-têtes propriétaires personnalisés peuvent être ajoutés <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">en utilisant le préfixe `X-`</a>.
+Gardez à l’esprit que des en-têtes propriétaires personnalisés peuvent être ajoutés [en utilisant le préfixe `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mais si vous avez des en-têtes personnalisés que vous voulez rendre visibles pour un client dans un navigateur, vous devez les ajouter à votre configuration CORS ([CORS (Partage des ressources entre origines)](cors.md){.internal-link target=_blank}) en utilisant le paramètre `expose_headers` documenté dans <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">la documentation CORS de Starlette</a>.
+Mais si vous avez des en-têtes personnalisés que vous voulez rendre visibles pour un client dans un navigateur, vous devez les ajouter à votre configuration CORS ([CORS (Partage des ressources entre origines)](cors.md)) en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -61,15 +61,15 @@ Par exemple, vous pourriez ajouter un en-tête personnalisé `X-Process-Time` co
 
 /// tip | Astuce
 
-Ici, nous utilisons <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> au lieu de `time.time()` car cela peut être plus précis pour ces cas d’usage. 🤓
+Ici, nous utilisons [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) au lieu de `time.time()` car cela peut être plus précis pour ces cas d’usage. 🤓
 
 ///
 
 ## Ordre d’exécution de plusieurs middlewares { #multiple-middleware-execution-order }
 
-Quand vous ajoutez plusieurs middlewares en utilisant soit le décorateur `@app.middleware()`, soit la méthode `app.add_middleware()`, chaque nouveau middleware enveloppe l’application, formant une pile. Le dernier middleware ajouté est le plus externe, et le premier est le plus interne.
+Quand vous ajoutez plusieurs middlewares en utilisant soit le décorateur `@app.middleware()`, soit la méthode `app.add_middleware()`, chaque nouveau middleware enveloppe l’application, formant une pile. Le dernier middleware ajouté est le *plus externe*, et le premier est le *plus interne*.
 
-Sur le chemin de la requête, le plus externe s’exécute en premier.
+Sur le chemin de la requête, le *plus externe* s’exécute en premier.
 
 Sur le chemin de la réponse, il s’exécute en dernier.
 
@@ -90,6 +90,6 @@ Ce comportement d’empilement garantit que les middlewares s’exécutent dans 
 
 ## Autres middlewares { #other-middlewares }
 
-Vous pouvez en lire davantage sur d’autres middlewares dans le [Guide de l’utilisateur avancé : Middleware avancé](../advanced/middleware.md){.internal-link target=_blank}.
+Vous pouvez plus tard en lire davantage sur d’autres middlewares dans le [Guide de l’utilisateur avancé : Middleware avancé](../advanced/middleware.md).
 
 Vous verrez comment gérer <abbr title="Cross-Origin Resource Sharing - Partage des ressources entre origines">CORS</abbr> avec un middleware dans la section suivante.

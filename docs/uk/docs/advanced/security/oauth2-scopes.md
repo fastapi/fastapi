@@ -46,7 +46,7 @@ OAuth2 зі scopes - це механізм, який використовуют�
 - `instagram_basic` використовується Facebook / Instagram.
 - `https://www.googleapis.com/auth/drive` використовується Google.
 
-/// info | Інформація
+/// note | Примітка
 
 В OAuth2 «scope» - це просто строка, що декларує конкретний потрібний дозвіл.
 
@@ -60,7 +60,7 @@ OAuth2 зі scopes - це механізм, який використовуют�
 
 ## Загальний огляд { #global-view }
 
-Спочатку швидко подивімося на частини, що відрізняються від прикладів у головному **Навчальному посібнику - Керівництві користувача** для [OAuth2 з паролем (і хешуванням), Bearer з JWT-токенами](../../tutorial/security/oauth2-jwt.md){.internal-link target=_blank}. Тепер із використанням OAuth2 scopes:
+Спочатку швидко подивімося на частини, що відрізняються від прикладів у головному **Навчальному посібнику - Керівництві користувача** для [OAuth2 з паролем (і хешуванням), Bearer з JWT-токенами](../../tutorial/security/oauth2-jwt.md). Тепер із використанням OAuth2 scopes:
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
@@ -76,7 +76,7 @@ OAuth2 зі scopes - це механізм, який використовуют�
 
 Оскільки тепер ми оголошуємо ці scopes, вони з’являться в документації API, коли ви увійдете/авторизуєтеся.
 
-І ви зможете обрати, які scopes надати доступ: `me` і `items`.
+І ви зможете обрати, яким scopes надати доступ: `me` і `items`.
 
 Це той самий механізм, який використовується, коли ви надаєте дозволи під час входу через Facebook, Google, GitHub тощо:
 
@@ -126,13 +126,13 @@ OAuth2 зі scopes - це механізм, який використовуют�
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
 
-/// info | Технічні деталі
+/// note | Технічні деталі
 
 `Security` насправді є підкласом `Depends`, і має лише один додатковий параметр, який ми побачимо пізніше.
 
 Але використовуючи `Security` замість `Depends`, **FastAPI** знатиме, що можна оголошувати scopes безпеки, використовувати їх внутрішньо та документувати API через OpenAPI.
 
-Коли ви імпортуєте `Query`, `Path`, `Depends`, `Security` та інші з `fastapi`, це насправді функції, що повертають спеціальні класи.
+Але коли ви імпортуєте `Query`, `Path`, `Depends`, `Security` та інші з `fastapi`, це насправді функції, що повертають спеціальні класи.
 
 ///
 
@@ -152,7 +152,7 @@ OAuth2 зі scopes - це механізм, який використовуют�
 
 {* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
 
-## Використовуйте scopes { #use-the-scopes }
+## Використовуйте `scopes` { #use-the-scopes }
 
 Параметр `security_scopes` матиме тип `SecurityScopes`.
 
@@ -194,9 +194,9 @@ OAuth2 зі scopes - це механізм, який використовуют�
 
 Ще раз розгляньмо дерево залежностей і scopes.
 
-Оскільки залежність `get_current_active_user` має підзалежність `get_current_user`, scope «me», оголошений у `get_current_active_user`, буде включений до списку потрібних scopes у `security_scopes.scopes`, переданого до `get_current_user`.
+Оскільки залежність `get_current_active_user` має підзалежність `get_current_user`, scope `"me"`, оголошений у `get_current_active_user`, буде включений до списку потрібних scopes у `security_scopes.scopes`, переданого до `get_current_user`.
 
-Сама операція шляху також оголошує scope «items», отже він також буде у списку `security_scopes.scopes`, переданому до `get_current_user`.
+Сама операція шляху також оголошує scope `"items"`, отже він також буде у списку `security_scopes.scopes`, переданому до `get_current_user`.
 
 Ось як виглядає ієрархія залежностей і scopes:
 
@@ -271,4 +271,4 @@ OAuth2 зі scopes - це механізм, який використовуют�
 
 ## `Security` у параметрі декоратора `dependencies` { #security-in-decorator-dependencies }
 
-Так само як ви можете визначити `list` із `Depends` у параметрі `dependencies` декоратора (як пояснено в [Залежності в декораторах операцій шляху](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md){.internal-link target=_blank}), ви також можете використовувати там `Security` зі `scopes`.
+Так само як ви можете визначити `list` із `Depends` у параметрі `dependencies` декоратора (як пояснено в [Залежності в декораторах операцій шляху](../../tutorial/dependencies/dependencies-in-path-operation-decorators.md)), ви також можете використовувати там `Security` зі `scopes`.

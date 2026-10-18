@@ -6,7 +6,7 @@
 
 **FastAPI** 보안 유틸리티를 사용하여 `username` 및 `password`를 가져올 것입니다.
 
-OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 때 클라이언트/유저가 `username` 및 `password` 필드를 폼 데이터로 보내야 함을 지정합니다.
+OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"를 사용할 때 클라이언트/유저가 `username` 및 `password` 필드를 폼 데이터로 보내야 함을 지정합니다.
 
 그리고 사양에는 필드의 이름을 그렇게 지정해야 한다고 나와 있습니다. 따라서 `user-name` 또는 `email`은 작동하지 않습니다.
 
@@ -32,7 +32,7 @@ OAuth2는 (우리가 사용하고 있는) "패스워드 플로우"을 사용할 
 * `instagram_basic`은 페이스북/인스타그램에서 사용합니다.
 * `https://www.googleapis.com/auth/drive`는 Google에서 사용합니다.
 
-/// info | 정보
+/// note | 참고
 
 OAuth2에서 "범위"는 필요한 특정 권한을 선언하는 문자열입니다.
 
@@ -72,7 +72,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 * `client_id`(선택적으로 사용) (예제에서는 필요하지 않습니다).
 * `client_secret`(선택적으로 사용) (예제에서는 필요하지 않습니다).
 
-/// info | 정보
+/// note | 참고
 
 `OAuth2PasswordRequestForm`은 `OAuth2PasswordBearer`와 같이 **FastAPI**에 대한 특수 클래스가 아닙니다.
 
@@ -104,7 +104,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 ### 패스워드 확인하기 { #check-the-password }
 
-이 시점에서 데이터베이스의 사용자 데이터 형식을 확인했지만 암호를 확인하지 않았습니다.
+이 시점에서 데이터베이스의 사용자 데이터는 있지만, 아직 패스워드는 확인하지 않았습니다.
 
 먼저 데이터를 Pydantic `UserInDB` 모델에 넣겠습니다.
 
@@ -144,9 +144,9 @@ UserInDB(
 )
 ```
 
-/// info | 정보
+/// note | 참고
 
-`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-dict){.internal-link target=_blank}를 다시 확인해보세요.
+`**user_dict`에 대한 자세한 설명은 [**추가 모델** 문서](../extra-models.md#about-user-in-model-dump)를 다시 확인해보세요.
 
 ///
 
@@ -196,7 +196,7 @@ UserInDB(
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info | 정보
+/// note | 참고
 
 여기서 반환하는 값이 `Bearer`인 추가 헤더 `WWW-Authenticate`도 사양의 일부입니다.
 
@@ -216,7 +216,7 @@ UserInDB(
 
 ## 확인하기 { #see-it-in-action }
 
-대화형 문서 열기: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+대화형 문서 열기: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ### 인증하기 { #authenticate }
 

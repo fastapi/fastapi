@@ -11,7 +11,7 @@
 * 检查翻译是否正确。
 * 如有需要，改进你的语言特定提示、通用提示，或英文文档。
 * 然后手动修正翻译中剩余的问题，确保这是一个优秀的译文。
-* 重新翻译，在已有的优秀译文基础上进行。理想情况是 LLM 不再对译文做任何更改。这意味着通用提示和你的语言特定提示已经尽可能完善（有时它仍会做一些看似随机的改动，原因是<a href="https://doublespeak.chat/#/handbook#deterministic-output" class="external-link" target="_blank">LLM 不是确定性算法</a>）。
+* 重新翻译，在已有的优秀译文基础上进行。理想情况是 LLM 不再对译文做任何更改。这意味着通用提示和你的语言特定提示已经尽可能完善（有时它仍会做一些看似随机的改动，原因是[LLM 不是确定性算法](https://doublespeak.chat/#/handbook#deterministic-output)）。
 
 测试如下：
 
@@ -95,7 +95,7 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ...以及另一个控制台代码示例...
 
 ```console
-// 创建目录 "code"
+// 创建目录 "Code"
 $ mkdir code
 // 切换到该目录
 $ cd code
@@ -124,32 +124,24 @@ works(foo="bar")  # 这可行 🎉
 
 //// tab | 测试
 
-/// info | 信息
-Some text
-///
-
 /// note | 注意
-Some text
+一些文本
 ///
 
 /// note | 技术细节
-Some text
-///
-
-/// check | 检查
-Some text
+一些文本
 ///
 
 /// tip | 提示
-Some text
+一些文本
 ///
 
 /// warning | 警告
-Some text
+一些文本
 ///
 
 /// danger | 危险
-Some text
+一些文本
 ///
 
 ////
@@ -169,15 +161,15 @@ Some text
 链接文本应被翻译，链接地址应保持不变：
 
 * [链接到上面的标题](#code-snippets)
-* [内部链接](index.md#installation){.internal-link target=_blank}
-* <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">外部链接</a>
-* <a href="https://fastapi.tiangolo.com/css/styles.css" class="external-link" target="_blank">样式链接</a>
-* <a href="https://fastapi.tiangolo.com/js/logic.js" class="external-link" target="_blank">脚本链接</a>
-* <a href="https://fastapi.tiangolo.com/img/foo.jpg" class="external-link" target="_blank">图片链接</a>
+* [内部链接](index.md#installation)
+* [外部链接](https://sqlmodel.tiangolo.com/)
+* [样式链接](https://fastapi.tiangolo.com/css/styles.css)
+* [脚本链接](https://fastapi.tiangolo.com/js/logic.js)
+* [图片链接](https://fastapi.tiangolo.com/img/foo.jpg)
 
 链接文本应被翻译，且链接地址应指向对应的译文页面：
 
-* <a href="https://fastapi.tiangolo.com/zh/" class="external-link" target="_blank">FastAPI 链接</a>
+* [FastAPI 链接](https://fastapi.tiangolo.com/zh/)
 
 ////
 
@@ -221,7 +213,7 @@ Some text
 
 ## HTML "dfn" 元素 { #html-dfn-elements }
 
-* <dfn title="配置为以某种方式连接并协同工作的机器组">集群</dfn>
+* <dfn title="配置为以某种方式连接并协同工作的一组机器。">集群</dfn>
 * <dfn title="一种使用具有多个隐藏层的人工神经网络的机器学习方法，从输入层到输出层构建了完整的内部结构">深度学习</dfn>
 
 ## 标题 { #headings }
@@ -230,15 +222,15 @@ Some text
 
 ### 开发 Web 应用——教程 { #develop-a-webapp-a-tutorial }
 
-Hello.
+你好。
 
 ### 类型提示与注解 { #type-hints-and-annotations }
 
-Hello again.
+再次你好。
 
 ### 超类与子类 { #super-and-subclasses }
 
-Hello again.
+再次你好。
 
 ////
 
@@ -256,267 +248,15 @@ Hello again.
 
 //// tab | 测试
 
-* you
-* your
-
-* e.g.
-* etc.
-
-* `foo` as an `int`
-* `bar` as a `str`
-* `baz` as a `list`
-
-* the Tutorial - User guide
-* the Advanced User Guide
-* the SQLModel docs
-* the API docs
-* the automatic docs
-
-* Data Science
-* Deep Learning
-* Machine Learning
-* Dependency Injection
-* HTTP Basic authentication
-* HTTP Digest
-* ISO format
-* the JSON Schema standard
-* the JSON schema
-* the schema definition
-* Password Flow
-* Mobile
-
-* deprecated
-* designed
-* invalid
-* on the fly
-* standard
-* default
-* case-sensitive
-* case-insensitive
-
-* to serve the application
-* to serve the page
-
-* the app
-* the application
-
-* the request
-* the response
-* the error response
-
-* the path operation
-* the path operation decorator
-* the path operation function
-
-* the body
-* the request body
-* the response body
-* the JSON body
-* the form body
-* the file body
-* the function body
-
-* the parameter
-* the body parameter
-* the path parameter
-* the query parameter
-* the cookie parameter
-* the header parameter
-* the form parameter
-* the function parameter
-
-* the event
-* the startup event
-* the startup of the server
-* the shutdown event
-* the lifespan event
-
-* the handler
-* the event handler
-* the exception handler
-* to handle
-
-* the model
-* the Pydantic model
-* the data model
-* the database model
-* the form model
-* the model object
-
-* the class
-* the base class
-* the parent class
-* the subclass
-* the child class
-* the sibling class
-* the class method
-
-* the header
-* the headers
-* the authorization header
-* the `Authorization` header
-* the forwarded header
-
-* the dependency injection system
-* the dependency
-* the dependable
-* the dependant
-
-* I/O bound
-* CPU bound
-* concurrency
-* parallelism
-* multiprocessing
-
-* the env var
-* the environment variable
-* the `PATH`
-* the `PATH` variable
-
-* the authentication
-* the authentication provider
-* the authorization
-* the authorization form
-* the authorization provider
-* the user authenticates
-* the system authenticates the user
-
-* the CLI
-* the command line interface
-
-* the server
-* the client
-
-* the cloud provider
-* the cloud service
-
-* the development
-* the development stages
-
-* the dict
-* the dictionary
-* the enumeration
-* the enum
-* the enum member
-
-* the encoder
-* the decoder
-* to encode
-* to decode
-
-* the exception
-* to raise
-
-* the expression
-* the statement
-
-* the frontend
-* the backend
-
-* the GitHub discussion
-* the GitHub issue
-
-* the performance
-* the performance optimization
-
-* the return type
-* the return value
-
-* the security
-* the security scheme
-
-* the task
-* the background task
-* the task function
-
-* the template
-* the template engine
-
-* the type annotation
-* the type hint
-
-* the server worker
-* the Uvicorn worker
-* the Gunicorn Worker
-* the worker process
-* the worker class
-* the workload
-
-* the deployment
-* to deploy
-
-* the SDK
-* the software development kit
-
-* the `APIRouter`
-* the `requirements.txt`
-* the Bearer Token
-* the breaking change
-* the bug
-* the button
-* the callable
-* the code
-* the commit
-* the context manager
-* the coroutine
-* the database session
-* the disk
-* the domain
-* the engine
-* the fake X
-* the HTTP GET method
-* the item
-* the library
-* the lifespan
-* the lock
-* the middleware
-* the mobile application
-* the module
-* the mounting
-* the network
-* the origin
-* the override
-* the payload
-* the processor
-* the property
-* the proxy
-* the pull request
-* the query
-* the RAM
-* the remote machine
-* the status code
-* the string
-* the tag
-* the web framework
-* the wildcard
-* to return
-* to validate
-
-////
-
-//// tab | 信息
-
-这是一份不完整且非规范性的（主要是）技术术语清单，取自文档中常见的词汇。它可能有助于提示词设计者判断哪些术语需要对 LLM 提供额外指引。例如当它总是把一个好的译法改回次优译法，或在你的语言中对某个术语的词形变化有困难时。
-
-参见例如 `docs/de/llm-prompt.md` 中的 `### List of English terms and their preferred German translations` 部分。
-
-////
-
-////
-
-翻译（术语）对照：
-
-//// tab | 测试（译文）
-
 * 你
 * 你的
 
 * 例如
-* 等等
+* 等
 
-* 将 `foo` 作为 `int`
-* 将 `bar` 作为 `str`
-* 将 `baz` 作为 `list`
+* 作为 `int` 的 `foo`
+* 作为 `str` 的 `bar`
+* 作为 `list` 的 `baz`
 
 * 教程 - 用户指南
 * 高级用户指南
@@ -528,21 +268,21 @@ Hello again.
 * 深度学习
 * 机器学习
 * 依赖注入
-* HTTP 基本认证
-* HTTP 摘要认证
+* HTTP Basic 认证
+* HTTP Digest
 * ISO 格式
 * JSON Schema 标准
-* JSON 模式
-* 模式定义
+* JSON schema
+* schema 定义
 * 密码流
 * 移动端
 
 * 已弃用
 * 设计的
 * 无效
-* 即时
-* 标准的
-* 默认的
+* 动态地
+* 标准
+* 默认
 * 区分大小写
 * 不区分大小写
 
@@ -560,10 +300,10 @@ Hello again.
 * 路径操作装饰器
 * 路径操作函数
 
-* 主体
+* 请求体
 * 请求体
 * 响应体
-* JSON 体
+* JSON 请求体
 * 表单体
 * 文件体
 * 函数体
@@ -579,9 +319,9 @@ Hello again.
 
 * 事件
 * 启动事件
-* 服务器的启动
+* 服务器启动
 * 关闭事件
-* 生命周期事件
+* lifespan 事件
 
 * 处理器
 * 事件处理器
@@ -603,19 +343,19 @@ Hello again.
 * 兄弟类
 * 类方法
 
-* 请求头
-* 请求头
-* 授权头
-* `Authorization` 头
-* 转发头
+* Header
+* Headers
+* 授权 Header
+* `Authorization` header
+* 转发 Header
 
 * 依赖注入系统
-* 依赖
-* 可依赖对象
 * 依赖项
+* 可依赖项
+* 依赖方
 
-* I/O 受限
-* CPU 受限
+* I/O 密集型
+* CPU 密集型
 * 并发
 * 并行
 * 多进程
@@ -666,7 +406,7 @@ Hello again.
 * 后端
 
 * GitHub 讨论
-* GitHub Issue
+* GitHub issue
 
 * 性能
 * 性能优化
@@ -689,7 +429,7 @@ Hello again.
 
 * 服务器 worker
 * Uvicorn worker
-* Gunicorn worker
+* Gunicorn Worker
 * worker 进程
 * worker 类
 * 工作负载
@@ -704,7 +444,7 @@ Hello again.
 * `requirements.txt`
 * Bearer Token
 * 破坏性变更
-* Bug
+* bug
 * 按钮
 * 可调用对象
 * 代码
@@ -715,7 +455,7 @@ Hello again.
 * 磁盘
 * 域名
 * 引擎
-* 假 X
+* 虚假 X
 * HTTP GET 方法
 * 项
 * 库
@@ -728,7 +468,7 @@ Hello again.
 * 网络
 * 源
 * 覆盖
-* 负载
+* 载荷
 * 处理器
 * 属性
 * 代理
@@ -746,10 +486,10 @@ Hello again.
 
 ////
 
-//// tab | 信息（译文）
+//// tab | 信息
 
-此清单是不完整且非规范性的，列出（主要是）文档中出现的技术术语。它有助于提示词设计者确定哪些术语需要额外的指引。例如当 LLM 总是把更好的译法改回次优译法，或在你的语言中难以正确变形时。
+这是一份不完整且非规范性的（主要是）技术术语清单，取自文档中常见的词汇。它可能有助于提示词设计者判断哪些术语需要对 LLM 提供额外指引。例如当它总是把一个好的译法改回次优译法，或在你的语言中对某个术语的词形变化有困难时。
 
-也可参见 `docs/de/llm-prompt.md` 中的 `### List of English terms and their preferred German translations` 部分。
+参见例如 `docs/de/llm-prompt.md` 中的 `### List of English terms and their preferred German translations` 部分。
 
 ////

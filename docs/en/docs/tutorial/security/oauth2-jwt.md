@@ -18,35 +18,35 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 It is not encrypted, so, anyone could recover the information from the contents.
 
-But it's signed. So, when you receive a token that you emitted, you can verify that you actually emitted it.
+But it's signed. So, when you receive a token that you issued, you can verify that it was you who issued it.
 
 That way, you can create a token with an expiration of, let's say, 1 week. And then when the user comes back the next day with the token, you know that user is still logged in to your system.
 
 After a week, the token will be expired and the user will not be authorized and will have to sign in again to get a new token. And if the user (or a third party) tried to modify the token to change the expiration, you would be able to discover it, because the signatures would not match.
 
-If you want to play with JWT tokens and see how they work, check <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>.
+If you want to play with JWT tokens and see how they work, check [https://jwt.io](https://jwt.io/).
 
 ## Install `PyJWT` { #install-pyjwt }
 
 We need to install `PyJWT` to generate and verify the JWT tokens in Python.
 
-Make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install `pyjwt`:
+Add `pyjwt` to your project:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info
+/// note
 
 If you are planning to use digital signature algorithms like RSA or ECDSA, you should install the cryptography library dependency `pyjwt[crypto]`.
 
-You can read more about it in the <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>.
+You can read more about it in the [PyJWT Installation docs](https://pyjwt.readthedocs.io/en/latest/installation.html).
 
 ///
 
@@ -72,12 +72,12 @@ It supports many secure hashing algorithms and utilities to work with them.
 
 The recommended algorithm is "Argon2".
 
-Make sure you create a [virtual environment](../../virtual-environments.md){.internal-link target=_blank}, activate it, and then install pwdlib with Argon2:
+Add `pwdlib` with Argon2 to your project:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -124,7 +124,7 @@ This ensures the endpoint takes roughly the same amount of time to respond wheth
 
 /// note
 
-If you check the new (fake) database `fake_users_db`, you will see how the hashed password looks like now: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
+If you check the new (fake) database `fake_users_db`, you will see what the hashed password looks like now: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
 
 ///
 
@@ -200,7 +200,7 @@ The important thing to keep in mind is that the `sub` key should have a unique i
 
 ## Check it { #check-it }
 
-Run the server and go to the docs: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Run the server and go to the docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 You'll see the user interface like:
 
@@ -213,7 +213,7 @@ Using the credentials:
 Username: `johndoe`
 Password: `secret`
 
-/// check
+/// tip
 
 Notice that nowhere in the code is the plaintext password "`secret`", we only have the hashed version.
 

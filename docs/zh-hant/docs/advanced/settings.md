@@ -6,9 +6,13 @@
 
 因此，通常會透過環境變數提供這些設定，讓應用程式去讀取。
 
+**環境變數**（也稱為 **env var**）是存在於 Python 程式碼之外、作業系統中的值，並可由你的應用程式與其他程式讀取。
+
+你可以在執行指令時為該指令建立環境變數。你會在下方看到各平台專用的指令。
+
 /// tip
 
-若想了解環境變數，你可以閱讀[環境變數](../environment-variables.md){.internal-link target=_blank}。
+請閱讀[環境變數指南](https://tiangolo.com/guides/environment-variables/)以詳細了解環境變數的運作方式。
 
 ///
 
@@ -20,27 +24,27 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-幸好，Pydantic 提供了很好的工具，可用來處理由環境變數而來的設定：<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic：設定管理</a>。
+幸好，Pydantic 提供了很好的工具，可用來處理由環境變數而來的設定：[Pydantic：設定管理](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/)。
 
 ### 安裝 `pydantic-settings` { #install-pydantic-settings }
 
-首先，請先建立你的[虛擬環境](../virtual-environments.md){.internal-link target=_blank}，啟用它，然後安裝 `pydantic-settings` 套件：
+將 `pydantic-settings` 套件加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-當你用 `all` extras 安裝時，它也會一併包含在內：
+當你用以下方式安裝 `all` extras 時，它也會一併包含在內：
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -74,21 +78,41 @@ $ pip install "fastapi[all]"
 
 ### 執行伺服器 { #run-the-server }
 
-接下來，你可以在啟動伺服器時，將設定以環境變數傳入。舉例來說，你可以設定 `ADMIN_EMAIL` 與 `APP_NAME`：
+接下來，你可以在啟動伺服器時，將設定以環境變數傳入。例如，你可以用以下方式設定 `ADMIN_EMAIL` 與 `APP_NAME`：
+
+//// tab | Linux, macOS, Windows Bash
 
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip
 
-要為單一指令設定多個環境變數，只要用空白分隔它們，並全部放在指令前面即可。
+在 Bash 中，要為單一指令設定多個環境變數，只要用空白分隔它們，並全部放在指令前面即可。
 
 ///
 
@@ -100,7 +124,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## 在另一個模組中的設定 { #settings-in-another-module }
 
-你也可以把這些設定放在另一個模組檔案中，就像在[更大的應用程式 - 多個檔案](../tutorial/bigger-applications.md){.internal-link target=_blank}所示。
+你也可以把這些設定放在另一個模組檔案中，就像在[更大的應用程式 - 多個檔案](../tutorial/bigger-applications.md)所示。
 
 例如，你可以有一個 `config.py` 檔案如下：
 
@@ -112,7 +136,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 /// tip
 
-你也需要一個 `__init__.py` 檔案，詳見[更大的應用程式 - 多個檔案](../tutorial/bigger-applications.md){.internal-link target=_blank}。
+你也需要一個 `__init__.py` 檔案，詳見[更大的應用程式 - 多個檔案](../tutorial/bigger-applications.md)。
 
 ///
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic 透過外部函式庫支援讀取這類型的檔案。你可以閱讀更多：<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings：Dotenv (.env) 支援</a>。
+Pydantic 透過外部函式庫支援讀取這類型的檔案。你可以閱讀更多：[Pydantic Settings：Dotenv (.env) 支援](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support)。
 
 /// tip
 
-要讓這個功能運作，你需要 `pip install python-dotenv`。
+要讓這個功能運作，請用 `uv add python-dotenv` 將 `python-dotenv` 加入你的專案。
 
 ///
 
@@ -197,7 +221,7 @@ APP_NAME="ChimichangApp"
 
 /// tip
 
-`model_config` 屬性僅用於 Pydantic 的設定。你可以閱讀更多：<a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic：概念：設定</a>。
+`model_config` 屬性僅用於 Pydantic 的設定。你可以閱讀更多：[Pydantic：概念：設定](https://pydantic.dev/docs/validation/latest/concepts/config/)。
 
 ///
 
@@ -291,12 +315,12 @@ participant execute as Execute function
 
 如此一來，它的行為幾乎就像全域變數。但因為它使用相依函式，因此我們可以在測試時輕鬆將其覆寫。
 
-`@lru_cache` 是 `functools` 的一部分，而 `functools` 是 Python 標準程式庫的一部分。你可以在<a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python 文件中閱讀 `@lru_cache`</a> 以了解更多。
+`@lru_cache` 是 `functools` 的一部分，而 `functools` 是 Python 標準程式庫的一部分。你可以在[Python 文件中閱讀 `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache) 以了解更多。
 
 ## 回顧 { #recap }
 
 你可以使用 Pydantic Settings 來處理應用程式的設定或組態，並享有 Pydantic model 的全部能力。
 
-- 透過相依可以讓測試更容易。
-- 你可以搭配 `.env` 檔使用。
-- 使用 `@lru_cache` 可以避免每個請求都重複讀取 dotenv 檔，同時仍可在測試時覆寫設定。
+* 透過相依可以讓測試更容易。
+* 你可以搭配 `.env` 檔使用。
+* 使用 `@lru_cache` 可以避免每個請求都重複讀取 dotenv 檔，同時仍可在測試時覆寫設定。

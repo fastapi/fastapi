@@ -1,15 +1,15 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI** 是一個命令列程式，能用來運行你的 FastAPI 應用程式、管理你的 FastAPI 專案等。
+**FastAPI <abbr title="command line interface - 命令列介面">CLI</abbr>** 是一個命令列程式，你可以用它來啟動你的 FastAPI 應用程式、管理你的 FastAPI 專案，等等。
 
-當你安裝 FastAPI（例如使用 `pip install "fastapi[standard]"`），它會包含一個叫做 `fastapi-cli` 的套件，這個套件提供了 `fastapi` 命令。
+當你將 FastAPI 加入專案（例如使用 `uv add "fastapi[standard]"`）時，會附帶一個可以在終端機執行的命令列程式。
 
-要運行你的 FastAPI 應用程式來進行開發，你可以使用 `fastapi dev` 命令：
+要在開發時運行你的 FastAPI 應用程式，你可以使用 `fastapi dev` 指令：
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -46,19 +46,82 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-名為 `fastapi` 的命令列程式就是 **FastAPI CLI**。
+/// tip
 
-FastAPI CLI 接收你的 Python 程式路徑（例如 `main.py`），並自動檢測 `FastAPI` 實例（通常命名為 `app`），確定正確的引入模組流程，然後運行該應用程式。
+在生產環境請改用 `fastapi run`，不要用 `fastapi dev`。🚀
 
-在生產環境，你應該使用 `fastapi run` 命令。 🚀
+///
 
-**FastAPI CLI** 內部使用了 <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>，這是一個高效能、適合生產環境的 ASGI 伺服器。 😎
+在內部，**FastAPI CLI** 使用 [Uvicorn](https://uvicorn.dev)，這是一個高效能、適用於生產環境的 ASGI 伺服器。😎
+
+`fastapi` CLI 會嘗試自動偵測要執行的 FastAPI 應用程式，預設假設它是檔案 `main.py` 中名為 `app` 的物件（或其他幾種變體）。
+
+不過你也可以明確設定要使用的 app。
+
+## 在 `pyproject.toml` 中設定應用程式的 `entrypoint` { #configure-the-app-entrypoint-in-pyproject-toml }
+
+你可以在 `pyproject.toml` 檔案中指定你的 app 位置，例如：
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+這個 `entrypoint` 會告訴 `fastapi` 指令應該像這樣匯入 app：
+
+```python
+from main import app
+```
+
+如果你的程式碼結構是這樣：
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+那麼你應該把 `entrypoint` 設為：
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+這等同於：
+
+```python
+from backend.main import app
+```
+
+### 帶路徑或使用 `--entrypoint` 選項的 `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
+
+你也可以把檔案路徑傳給 `fastapi dev` 指令，它會推測要使用的 FastAPI app 物件：
+
+```console
+$ uv run fastapi dev main.py
+```
+
+或者，你也可以把 `--entrypoint` 選項傳給 `fastapi dev` 指令：
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+但這樣每次呼叫 `fastapi` 指令時都得記得傳入正確的路徑或 entrypoint。
+
+此外，其他工具可能找不到它，例如 [VS Code 擴充套件](editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此建議在 `pyproject.toml` 中使用 `entrypoint`。
 
 ## `fastapi dev` { #fastapi-dev }
 
 執行 `fastapi dev` 會啟動開發模式。
 
 預設情況下，**auto-reload** 功能是啟用的，當你對程式碼進行修改時，伺服器會自動重新載入。這會消耗較多資源，並且可能比禁用時更不穩定。因此，你應該只在開發環境中使用此功能。它也會在 IP 位址 `127.0.0.1` 上監聽，這是用於你的機器與自身通訊的 IP 位址（`localhost`）。
+
+在匯入你的 app 之前，`fastapi dev` 會將 `FASTAPI_ENV` 環境變數設為 `development`。如果 `FASTAPI_ENV` 已經設定，則會保留其既有值。這讓 app 啟動程式碼可以選擇適合開發的行為，同時允許你提供 app 專用的環境，例如 `staging`。
+
+慣例的 `FASTAPI_ENV` 值是 `development` 和 `production`。`fastapi run` 目前會讓 `FASTAPI_ENV` 保持不變，因此如果你的 app 需要偵測生產模式，請明確設定它。
 
 ## `fastapi run` { #fastapi-run }
 
@@ -70,6 +133,6 @@ FastAPI CLI 接收你的 Python 程式路徑（例如 `main.py`），並自動�
 
 /// tip
 
-你可以在[部署文件](deployment/index.md){.internal-link target=_blank}中了解更多相關資訊。
+你可以在[部署文件](deployment/index.md)中了解更多相關資訊。
 
 ///

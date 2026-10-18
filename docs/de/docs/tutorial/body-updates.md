@@ -2,7 +2,7 @@
 
 ## Ersetzendes Aktualisieren mit `PUT` { #update-replacing-with-put }
 
-Um einen Artikel zu aktualisieren, können Sie die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT" class="external-link" target="_blank">HTTP `PUT`</a> Operation verwenden.
+Um einen Artikel zu aktualisieren, können Sie die [HTTP `PUT`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT) Operation verwenden.
 
 Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas zu konvertieren, das als JSON gespeichert werden kann (z. B. in einer NoSQL-Datenbank). Zum Beispiel, um ein `datetime` in einen `str` zu konvertieren.
 
@@ -28,7 +28,7 @@ Und die Daten würden mit diesem „neuen“ `tax` von `10.5` gespeichert werden
 
 ## Teil-Aktualisierungen mit `PATCH` { #partial-updates-with-patch }
 
-Sie können auch die <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH" class="external-link" target="_blank">HTTP `PATCH`</a> Operation verwenden, um Daten *teilweise* zu ersetzen.
+Sie können auch die [HTTP `PATCH`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) Operation verwenden, um Daten *teilweise* zu ersetzen.
 
 Das bedeutet, Sie senden nur die Daten, die Sie aktualisieren wollen, der Rest bleibt unverändert.
 
@@ -95,6 +95,6 @@ Beachten Sie, dass das hereinkommende Modell immer noch validiert wird.
 
 Wenn Sie also Teil-Aktualisierungen empfangen wollen, die alle Attribute auslassen können, müssen Sie ein Modell haben, dessen Attribute alle als optional gekennzeichnet sind (mit Defaultwerten oder `None`).
 
-Um zu unterscheiden zwischen Modellen für **Aktualisierungen**, mit lauter optionalen Werten, und solchen für die **Erzeugung**, mit benötigten Werten, können Sie die Techniken verwenden, die in [Extramodelle](extra-models.md){.internal-link target=_blank} beschrieben wurden.
+Um zu unterscheiden zwischen Modellen für **Aktualisierungen**, mit lauter optionalen Werten, und solchen für die **Erzeugung**, mit benötigten Werten, können Sie die Techniken verwenden, die in [Extramodelle](extra-models.md) beschrieben wurden.
 
 ///

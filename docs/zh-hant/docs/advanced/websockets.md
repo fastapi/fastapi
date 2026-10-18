@@ -1,15 +1,15 @@
 # WebSockets { #websockets }
 
-你可以在 **FastAPI** 中使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" class="external-link" target="_blank">WebSockets</a>。
+你可以在 **FastAPI** 中使用 [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)。
 
 ## 安裝 `websockets` { #install-websockets }
 
-請先建立[虛擬環境](../virtual-environments.md){.internal-link target=_blank}、啟用它，然後安裝 `websockets`（一個讓你更容易使用「WebSocket」通訊協定的 Python 套件）：
+將 `websockets`（一個讓你更容易使用「WebSocket」通訊協定的 Python 套件）加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -38,13 +38,13 @@ $ pip install websockets
 
 但這是能讓我們專注於 WebSocket 伺服端並跑起一個可運作範例的最簡單方式：
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## 建立一個 `websocket` { #create-a-websocket }
 
 在你的 **FastAPI** 應用中，建立一個 `websocket`：
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 技術細節
 
@@ -58,25 +58,25 @@ $ pip install websockets
 
 在你的 WebSocket 路由中，你可以 `await` 接收訊息並傳送訊息。
 
-{* ../../docs_src/websockets/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
 
 你可以接收與傳送二進位、文字與 JSON 資料。
 
 ## 試試看 { #try-it }
 
-如果你的檔案名為 `main.py`，用以下指令執行應用：
+將你的程式碼放在 `main.py` 檔案中，然後執行你的應用：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-在瀏覽器開啟 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+在瀏覽器開啟 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 你會看到一個像這樣的簡單頁面：
 
@@ -109,31 +109,31 @@ $ fastapi dev main.py
 
 它們的運作方式與其他 FastAPI 端點/*路徑操作* 相同：
 
-{* ../../docs_src/websockets/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
-/// info
+/// note
 
 因為這是 WebSocket，拋出 `HTTPException` 並沒有意義，因此我們改為拋出 `WebSocketException`。
 
-你可以使用規範中定義的<a href="https://tools.ietf.org/html/rfc6455#section-7.4.1" class="external-link" target="_blank">有效關閉代碼</a>之一。
+你可以使用規範中定義的[有效關閉代碼](https://tools.ietf.org/html/rfc6455#section-7.4.1)之一。
 
 ///
 
 ### 用依賴試用 WebSocket { #try-the-websockets-with-dependencies }
 
-如果你的檔案名為 `main.py`，用以下指令執行應用：
+執行你的應用：
 
 <div class="termy">
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-在瀏覽器開啟 <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>。
+在瀏覽器開啟 [http://127.0.0.1:8000](http://127.0.0.1:8000)。
 
 在那裡你可以設定：
 
@@ -154,7 +154,7 @@ $ fastapi dev main.py
 
 當 WebSocket 連線關閉時，`await websocket.receive_text()` 會拋出 `WebSocketDisconnect` 例外，你可以像範例中那樣捕捉並處理。
 
-{* ../../docs_src/websockets/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
 試用方式：
 
@@ -174,7 +174,7 @@ Client #1596980209979 left the chat
 
 但請注意，因為所有狀態都在記憶體中的單一 list 裡管理，它只會在該程序執行期間生效，且僅適用於單一程序。
 
-如果你需要一個容易與 FastAPI 整合、但更健壯，且可由 Redis、PostgreSQL 等後端支援的方案，請參考 <a href="https://github.com/encode/broadcaster" class="external-link" target="_blank">encode/broadcaster</a>。
+如果你需要一個容易與 FastAPI 整合、但更健壯，且可由 Redis、PostgreSQL 等後端支援的方案，請參考 [encode/broadcaster](https://github.com/encode/broadcaster)。
 
 ///
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 想了解更多選項，請參考 Starlette 的文件：
 
-* <a href="https://www.starlette.dev/websockets/" class="external-link" target="_blank">`WebSocket` 類別</a>。
-* <a href="https://www.starlette.dev/endpoints/#websocketendpoint" class="external-link" target="_blank">以類別為基礎的 WebSocket 處理</a>。
+* [`WebSocket` 類別](https://starlette.dev/websockets/)。
+* [以類別為基礎的 WebSocket 處理](https://starlette.dev/endpoints/#websocketendpoint)。

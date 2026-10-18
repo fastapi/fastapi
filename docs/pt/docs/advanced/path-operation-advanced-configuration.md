@@ -16,17 +16,11 @@ Você deveria ter certeza que ele é único para cada operação.
 
 ### Utilizando o nome da *função de operação de rota* como o operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-Se você quiser utilizar o nome das funções da sua API como `operationId`s, você pode iterar sobre todos esses nomes e sobrescrever o `operation_id` em  cada *operação de rota* utilizando o `APIRoute.name` dela.
+Se você quiser utilizar os nomes das funções da sua API como `operationId`s, você pode passar uma `generate_unique_id_function` personalizada para o `FastAPI`.
 
-Você deveria fazer isso depois de adicionar todas as suas *operações de rota*.
+A função recebe cada `APIRoute` e retorna o `operationId` a ser usado para aquela operação de rota.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip | Dica
-
-Se você chamar `app.openapi()` manualmente, você deveria atualizar os `operationId`s antes dessa chamada.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning | Atenção
 
@@ -60,7 +54,7 @@ Isso define os metadados sobre a resposta principal da *operação de rota*.
 
 Você também pode declarar respostas adicionais, com seus modelos, códigos de status, etc.
 
-Existe um capítulo inteiro da nossa documentação sobre isso, você pode ler em [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Existe um capítulo inteiro da nossa documentação sobre isso, você pode ler em [Respostas Adicionais no OpenAPI](additional-responses.md).
 
 ## Extras do OpenAPI { #openapi-extra }
 
@@ -68,7 +62,7 @@ Quando você declara uma *operação de rota* na sua aplicação, o **FastAPI** 
 
 /// note | Detalhes Técnicos
 
-Na especificação do OpenAPI, isso é chamado de um <a href="https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object" class="external-link" target="_blank">Objeto de Operação</a>.
+Na especificação do OpenAPI, isso é chamado de um [Objeto de Operação](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object).
 
 ///
 
@@ -82,7 +76,7 @@ Esse esquema específico para uma *operação de rota* normalmente é gerado aut
 
 Esse é um ponto de extensão de baixo nível.
 
-Caso você só precise declarar respostas adicionais, uma forma conveniente de fazer isso é com [Retornos Adicionais no OpenAPI](additional-responses.md){.internal-link target=_blank}.
+Caso você só precise declarar respostas adicionais, uma forma conveniente de fazer isso é com [Respostas Adicionais no OpenAPI](additional-responses.md).
 
 ///
 

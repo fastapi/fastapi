@@ -2,14 +2,14 @@
 
 Vous pouvez utiliser des **modèles Pydantic** pour déclarer des **champs de formulaire** dans FastAPI.
 
-/// info
+/// note | Remarque
 
-Pour utiliser les formulaires, installez d'abord <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Pour utiliser les formulaires, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md){.internal-link target=_blank}, de l'activer, puis d'installer le paquet, par exemple :
+Ajoutez-le à votre projet :
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -38,7 +38,7 @@ Vous pouvez le vérifier dans l'interface des documents à `/docs` :
 
 ## Interdire les champs de formulaire supplémentaires { #forbid-extra-form-fields }
 
-Dans certains cas d'utilisation particuliers (probablement peu courants), vous pourriez vouloir **restreindre** les champs de formulaire à ceux déclarés dans le modèle Pydantic, et **interdire** tout champ **supplémentaire**.
+Dans certains cas d'utilisation particuliers (probablement peu courants), vous pourriez vouloir **restreindre** les champs de formulaire à ceux déclarés dans le modèle Pydantic. Et **interdire** tout champ **supplémentaire**.
 
 /// note | Remarque
 

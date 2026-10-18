@@ -1,15 +1,15 @@
 # FastAPI CLI { #fastapi-cli }
 
-**FastAPI CLI** は、FastAPI アプリの提供、FastAPI プロジェクトの管理などに使用できるコマンドラインプログラムです。
+**FastAPI <abbr title="command line interface - コマンドラインインターフェース">CLI</abbr>** は、FastAPI アプリの提供、FastAPI プロジェクトの管理などに使用できるコマンドラインプログラムです。
 
-FastAPI をインストールすると（例: `pip install "fastapi[standard]"`）、`fastapi-cli` というパッケージが含まれます。このパッケージがターミナルで使用する `fastapi` コマンドを提供します。
+FastAPI をプロジェクトに追加すると（例: `uv add "fastapi[standard]"`）、ターミナルで実行できるコマンドラインプログラムが付属します。
 
 開発用に FastAPI アプリを起動するには、`fastapi dev` コマンドを使用できます:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -46,13 +46,72 @@ $ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid
 
 </div>
 
-`fastapi` というコマンドラインプログラムが **FastAPI CLI** です。
+/// tip
 
-FastAPI CLI は、Python プログラムへのパス（例: `main.py`）を受け取り、`FastAPI` インスタンス（通常は `app`）を自動検出し、適切な import 方法を判断して提供します。
+本番では `fastapi dev` の代わりに `fastapi run` を使用します。🚀
 
-本番環境では代わりに `fastapi run` を使用します。🚀
+///
 
-内部的には、**FastAPI CLI** は <a href="https://www.uvicorn.dev" class="external-link" target="_blank">Uvicorn</a>（高性能で本番運用向けの ASGI サーバー）を使用します。😎
+内部的には、**FastAPI CLI** は [Uvicorn](https://uvicorn.dev)（高性能で本番運用向けの ASGI サーバー）を使用します。😎
+
+`fastapi` CLI は、実行する FastAPI アプリを自動検出しようとします。既定では、`main.py` の中にある `app` という名前のオブジェクト（ほかにもいくつかの変種）であると仮定します。
+
+ただし、使用するアプリを明示的に設定することもできます。
+
+## `pyproject.toml` でアプリの `entrypoint` を設定 { #configure-the-app-entrypoint-in-pyproject-toml }
+
+`pyproject.toml` に次のように、アプリの場所を設定できます:
+
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
+```
+
+この `entrypoint` により、`fastapi` コマンドは次のようにアプリを import する必要があると認識します:
+
+```python
+from main import app
+```
+
+もしコード構成が次のような場合:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+`entrypoint` は次のように設定します:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+これは次と同等です:
+
+```python
+from backend.main import app
+```
+
+### パス指定または `--entrypoint` オプション付きの `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
+
+`fastapi dev` コマンドにファイルパスを渡すこともでき、使用する FastAPI アプリオブジェクトを推測します:
+
+```console
+$ uv run fastapi dev main.py
+```
+
+または、`fastapi dev` コマンドに `--entrypoint` オプションを渡すこともできます:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+ただし、そのたびに `fastapi` コマンドを呼び出す際に正しいパスや entrypoint を渡す必要があります。
+
+さらに、[VS Code 拡張機能](editor-support.md) や [FastAPI Cloud](https://fastapicloud.com) など、ほかのツールがそれを見つけられない場合があります。そのため、`pyproject.toml` の `entrypoint` を使用することを推奨します。
 
 ## `fastapi dev` { #fastapi-dev }
 
@@ -60,16 +119,20 @@ FastAPI CLI は、Python プログラムへのパス（例: `main.py`）を受�
 
 デフォルトでは、**auto-reload** が有効です。コードを変更するとサーバーが自動で再読み込みされます。これはリソースを多く消費し、無効時より安定性が低くなる可能性があります。開発時のみに使用してください。また、IP アドレス `127.0.0.1`（マシン自身のみと通信するための IP、`localhost`）で待ち受けます。
 
+アプリを import する前に、`fastapi dev` は `FASTAPI_ENV` 環境変数を `development` に設定します。`FASTAPI_ENV` がすでに設定されている場合、既存の値は保持されます。これにより、アプリ固有の環境（`staging` など）を指定できるようにしつつ、アプリの起動コードが開発向けの動作を選択できます。
+
+慣例的な `FASTAPI_ENV` の値は `development` と `production` です。`fastapi run` は現在 `FASTAPI_ENV` を変更しないため、アプリが本番モードを検出する必要がある場合は明示的に設定してください。
+
 ## `fastapi run` { #fastapi-run }
 
-`fastapi run` を実行すると、デフォルトで本番モードで起動します。
+`fastapi run` を実行すると、本番モードで FastAPI を起動します。
 
 デフォルトでは、**auto-reload** は無効です。また、IP アドレス `0.0.0.0`（利用可能なすべての IP アドレスを意味します）で待ち受けるため、そのマシンと通信できる任意のクライアントから公開アクセスが可能になります。これは、たとえばコンテナ内など、本番環境で一般的な実行方法です。
 
 多くの場合（そして推奨されるのは）、上位に HTTPS を終端する「termination proxy」を置きます。これはアプリのデプロイ方法に依存し、プロバイダが代行する場合もあれば、自分で設定する必要がある場合もあります。
 
-/// tip | 豆知識
+/// tip
 
-詳しくは、[デプロイのドキュメント](deployment/index.md){.internal-link target=_blank}を参照してください。
+詳しくは、[デプロイのドキュメント](deployment/index.md)を参照してください。
 
 ///

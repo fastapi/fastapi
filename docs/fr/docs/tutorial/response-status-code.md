@@ -1,5 +1,6 @@
 # Code d'état de la réponse { #response-status-code }
 
+
 De la même manière que vous pouvez spécifier un modèle de réponse, vous pouvez également déclarer le code d'état HTTP utilisé pour la réponse avec le paramètre `status_code` dans n'importe lequel des chemins d'accès :
 
 * `@app.get()`
@@ -18,9 +19,9 @@ Remarquez que `status_code` est un paramètre de la méthode « decorator » (`g
 
 Le paramètre `status_code` reçoit un nombre correspondant au code d'état HTTP.
 
-/// info
+/// note | Remarque
 
-`status_code` peut aussi recevoir un `IntEnum`, comme le <a href="https://docs.python.org/3/library/http.html#http.HTTPStatus" class="external-link" target="_blank">`http.HTTPStatus`</a> de Python.
+`status_code` peut aussi recevoir un `IntEnum`, comme le [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) de Python.
 
 ///
 
@@ -66,7 +67,7 @@ En bref :
 
 /// tip | Astuce
 
-Pour en savoir plus sur chaque code d'état et à quoi il correspond, consultez la <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" class="external-link" target="_blank"><abbr title="Mozilla Developer Network - Réseau des développeurs Mozilla">MDN</abbr> documentation about HTTP status codes</a>.
+Pour en savoir plus sur chaque code d'état et à quoi il correspond, consultez la [<abbr title="Mozilla Developer Network - Réseau des développeurs Mozilla">MDN</abbr> documentation sur les codes d'état HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
 ///
 
@@ -92,10 +93,10 @@ Elles ne sont qu'une commodité, elles contiennent le même nombre, mais de cett
 
 Vous pourriez aussi utiliser `from starlette import status`.
 
-FastAPI fournit le même `starlette.status` que `fastapi.status`, uniquement pour votre commodité de développeur. Mais cela vient directement de Starlette.
+**FastAPI** fournit le même `starlette.status` que `fastapi.status`, uniquement pour votre commodité de développeur. Mais cela vient directement de Starlette.
 
 ///
 
 ## Modifier la valeur par défaut { #changing-the-default }
 
-Plus tard, dans le [Guide utilisateur avancé](../advanced/response-change-status-code.md){.internal-link target=_blank}, vous verrez comment renvoyer un code d'état différent de celui par défaut que vous déclarez ici.
+Plus tard, dans le [Guide utilisateur avancé](../advanced/response-change-status-code.md), vous verrez comment renvoyer un code d'état différent de celui par défaut que vous déclarez ici.

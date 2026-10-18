@@ -1,10 +1,10 @@
 # OpenAPI Callback'leri { #openapi-callbacks }
 
-Başka biri tarafından (muhtemelen API'nizi *kullanacak* olan aynı geliştirici tarafından) oluşturulmuş bir *external API*'ye request tetikleyebilen bir *path operation* ile bir API oluşturabilirsiniz.
+Başka biri tarafından (muhtemelen API'nizi kullanacak olan aynı geliştirici tarafından) oluşturulmuş bir *external API*'ye request tetikleyebilen bir *path operation* ile bir API oluşturabilirsiniz.
 
-API uygulamanızın *external API*'yi çağırdığı sırada gerçekleşen sürece "callback" denir. Çünkü dış geliştiricinin yazdığı yazılım API'nize bir request gönderir ve ardından API'niz *geri çağrı* yaparak (*call back*), bir *external API*'ye request gönderir (muhtemelen aynı geliştiricinin oluşturduğu).
+API uygulamanızın *external API*'yi çağırdığı sırada gerçekleşen sürece "callback" denir. Çünkü dış geliştiricinin yazdığı yazılım API'nize bir request gönderir ve ardından API'niz geri çağrı yaparak (*call back*), bir *external API*'ye request gönderir (muhtemelen aynı geliştiricinin oluşturduğu).
 
-Bu durumda, o external API'nin nasıl görünmesi *gerektiğini* dokümante etmek isteyebilirsiniz. Hangi *path operation*'a sahip olmalı, hangi body'yi beklemeli, hangi response'u döndürmeli, vb.
+Bu durumda, o external API'nin nasıl görünmesi gerektiğini dokümante etmek isteyebilirsiniz. Hangi *path operation*'a sahip olmalı, hangi body'yi beklemeli, hangi response'u döndürmeli, vb.
 
 ## Callback'leri olan bir uygulama { #an-app-with-callbacks }
 
@@ -21,7 +21,7 @@ Sonra API'niz (varsayalım ki):
 * Faturayı external geliştiricinin bir müşterisine gönderir.
 * Parayı tahsil eder.
 * API kullanıcısına (external geliştiriciye) tekrar bir bildirim gönderir.
-    * Bu, external geliştiricinin sağladığı bir *external API*'ye (*sizin API'nizden*) bir POST request gönderilerek yapılır (işte bu "callback"tir).
+    * Bu, external geliştiricinin sağladığı bir *external API*'ye (sizin API'nizden) bir POST request gönderilerek yapılır (işte bu "callback"tir).
 
 ## Normal **FastAPI** uygulaması { #the-normal-fastapi-app }
 
@@ -35,7 +35,7 @@ Bu kısım oldukça standart; kodun çoğu muhtemelen size zaten tanıdık gelec
 
 /// tip | İpucu
 
-`callback_url` query parametresi, Pydantic'in <a href="https://docs.pydantic.dev/latest/api/networks/" class="external-link" target="_blank">Url</a> tipini kullanır.
+`callback_url` query parametresi, Pydantic'in [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) tipini kullanır.
 
 ///
 
@@ -54,9 +54,9 @@ callback_url = "https://example.com/api/v1/invoices/events/"
 httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 ```
 
-Ancak callback'in belki de en önemli kısmı, API'nizin kullanıcısının (external geliştiricinin) *external API*'yi doğru şekilde uyguladığından emin olmaktır; çünkü *sizin API'niz* callback'in request body'sinde belirli veriler gönderecektir, vb.
+Ancak callback'in belki de en önemli kısmı, API'nizin kullanıcısının (external geliştiricinin) *external API*'yi doğru şekilde uyguladığından emin olmaktır; çünkü sizin API'niz callback'in request body'sinde belirli veriler gönderecektir, vb.
 
-Dolayısıyla sıradaki adım olarak, *sizin API'nizden* callback almak için o *external API*'nin nasıl görünmesi gerektiğini dokümante eden kodu ekleyeceğiz.
+Dolayısıyla sıradaki adım olarak, sizin API'nizden callback almak için o *external API*'nin nasıl görünmesi gerektiğini dokümante eden kodu ekleyeceğiz.
 
 Bu dokümantasyon, API'nizde `/docs` altındaki Swagger UI'da görünecek ve external geliştiricilere *external API*'yi nasıl inşa edeceklerini gösterecek.
 
@@ -66,13 +66,13 @@ Bu örnek callback'in kendisini implemente etmiyor (o zaten tek satır kod olabi
 
 Gerçek callback, sadece bir HTTP request'tir.
 
-Callback'i kendiniz implemente ederken <a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> veya <a href="https://requests.readthedocs.io/" class="external-link" target="_blank">Requests</a> gibi bir şey kullanabilirsiniz.
+Callback'i kendiniz implemente ederken [HTTPX](https://www.python-httpx.org) veya [Requests](https://requests.readthedocs.io/) gibi bir şey kullanabilirsiniz.
 
 ///
 
 ## Callback dokümantasyon kodunu yazın { #write-the-callback-documentation-code }
 
-Bu kod uygulamanızda çalıştırılmayacak; sadece o *external API*'nin nasıl görünmesi gerektiğini *dokümante etmek* için gerekiyor.
+Bu kod uygulamanızda çalıştırılmayacak; sadece o *external API*'nin nasıl görünmesi gerektiğini dokümante etmek için gerekiyor.
 
 Ancak **FastAPI** ile bir API için otomatik dokümantasyonu kolayca nasıl üreteceğinizi zaten biliyorsunuz.
 
@@ -80,7 +80,7 @@ O halde aynı bilgiyi kullanarak, *external API*'nin nasıl görünmesi gerekti�
 
 /// tip | İpucu
 
-Bir callback'i dokümante eden kodu yazarken, kendinizi *external geliştirici* olarak hayal etmek faydalı olabilir. Ve şu anda *sizin API'nizi* değil, *external API*'yi implemente ettiğinizi düşünün.
+Bir callback'i dokümante eden kodu yazarken, kendinizi external geliştirici olarak hayal etmek faydalı olabilir. Ve şu anda sizin API'nizi değil, *external API*'yi implemente ettiğinizi düşünün.
 
 Bu bakış açısını (external geliştiricinin bakış açısını) geçici olarak benimsemek; parametreleri nereye koyacağınızı, body için Pydantic modelini, response için modelini vb. external API tarafında nasıl tasarlayacağınızı daha net hale getirebilir.
 
@@ -106,11 +106,11 @@ Normal bir FastAPI *path operation*'ı gibi görünmelidir:
 Normal bir *path operation*'dan 2 temel farkı vardır:
 
 * Gerçek bir koda ihtiyaç duymaz; çünkü uygulamanız bu kodu asla çağırmayacak. Bu yalnızca *external API*'yi dokümante etmek için kullanılır. Yani fonksiyon sadece `pass` içerebilir.
-* *path*, bir <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> (aşağıda daha fazlası) içerebilir; böylece parametreler ve *sizin API'nize* gönderilen orijinal request'in bazı parçalarıyla değişkenler kullanılabilir.
+* *path*, bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (aşağıda daha fazlası) içerebilir; böylece parametreler ve sizin API'nize gönderilen orijinal request'in bazı parçalarıyla değişkenler kullanılabilir.
 
 ### Callback path ifadesi { #the-callback-path-expression }
 
-Callback *path*'i, *sizin API'nize* gönderilen orijinal request'in bazı parçalarını içerebilen bir <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression" class="external-link" target="_blank">OpenAPI 3 expression</a> barındırabilir.
+Callback *path*'i, sizin API'nize gönderilen orijinal request'in bazı parçalarını içerebilen bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) barındırabilir.
 
 Bu örnekte, bu bir `str`:
 
@@ -118,7 +118,7 @@ Bu örnekte, bu bir `str`:
 "{$callback_url}/invoices/{$request.body.id}"
 ```
 
-Yani API'nizin kullanıcısı (external geliştirici) *sizin API'nize* şu adrese bir request gönderirse:
+Yani API'nizin kullanıcısı (external geliştirici) sizin API'nize şu adrese bir request gönderirse:
 
 ```
 https://yourapi.com/invoices/?callback_url=https://www.external.org/events
@@ -134,7 +134,7 @@ ve JSON body şu şekilde olursa:
 }
 ```
 
-o zaman *sizin API'niz* faturayı işleyecek ve daha sonra bir noktada `callback_url`'ye (yani *external API*'ye) bir callback request gönderecek:
+o zaman sizin API'niz faturayı işleyecek ve daha sonra bir noktada `callback_url`'ye (yani *external API*'ye) bir callback request gönderecek:
 
 ```
 https://www.external.org/events/invoices/2expen51ve
@@ -167,19 +167,19 @@ Callback URL'sinin, `callback_url` içindeki query parametresi olarak alınan UR
 
 Bu noktada, yukarıda oluşturduğunuz callback router'ında gerekli callback *path operation*'ları (external geliştiricinin *external API*'de implemente etmesi gerekenler) hazır.
 
-Şimdi *sizin API'nizin path operation decorator*'ında `callbacks` parametresini kullanarak, callback router'ının `.routes` attribute'unu (bu aslında route/*path operation*'lardan oluşan bir `list`) geçin:
+Şimdi sizin API'nizin *path operation decorator*'ında `callbacks` parametresini kullanarak, callback router'ının `.routes` attribute'unu geçin:
 
 {* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
 
 /// tip | İpucu
 
-`callback=` içine router'ın kendisini (`invoices_callback_router`) değil, `invoices_callback_router.routes` şeklinde `.routes` attribute'unu verdiğinize dikkat edin.
+`callbacks=` içine router'ın kendisini (`invoices_callback_router`) değil, `invoices_callback_router.routes` şeklinde `.routes` attribute'unu verdiğinize dikkat edin. FastAPI bu route'ları callback OpenAPI dokümantasyonunu üretmek için kullanacaktır.
 
 ///
 
 ### Dokümanları kontrol edin { #check-the-docs }
 
-Artık uygulamanızı başlatıp <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a> adresine gidebilirsiniz.
+Artık uygulamanızı başlatıp [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) adresine gidebilirsiniz.
 
 *Path operation*'ınız için, *external API*'nin nasıl görünmesi gerektiğini gösteren bir "Callbacks" bölümünü içeren dokümanları göreceksiniz:
 

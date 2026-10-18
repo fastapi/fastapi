@@ -8,13 +8,13 @@ Primeiro, importe `Path` de `fastapi`, e importe `Annotated`:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-/// info | Informação
+/// note | Nota
 
 O FastAPI adicionou suporte a `Annotated` (e passou a recomendá-lo) na versão 0.95.0.
 
 Se você tiver uma versão mais antiga, verá erros ao tentar usar `Annotated`.
 
-Certifique-se de [Atualizar a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} para pelo menos 0.95.1 antes de usar `Annotated`.
+Certifique-se de [Atualizar a versão do FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions) para pelo menos 0.95.1 antes de usar `Annotated`.
 
 ///
 
@@ -122,7 +122,7 @@ E o mesmo para <abbr title="less than – menor que"><code>lt</code></abbr>.
 
 ## Recapitulando { #recap }
 
-Com `Query`, `Path` (e outras que você ainda não viu) você pode declarar metadados e validações de string do mesmo modo que em [Parâmetros de consulta e validações de string](query-params-str-validations.md){.internal-link target=_blank}.
+Com `Query`, `Path` (e outras que você ainda não viu) você pode declarar metadados e validações de string do mesmo modo que em [Parâmetros de consulta e validações de string](query-params-str-validations.md).
 
 E você também pode declarar validações numéricas:
 
@@ -131,7 +131,7 @@ E você também pode declarar validações numéricas:
 * `lt`: menor que (`l`ess `t`han)
 * `le`: menor que ou igual (`l`ess than or `e`qual)
 
-/// info | Informação
+/// note | Nota
 
 `Query`, `Path` e outras classes que você verá depois são subclasses de uma classe comum `Param`.
 

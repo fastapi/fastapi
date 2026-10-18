@@ -2,14 +2,14 @@
 
 Вы можете использовать **Pydantic-модели** для объявления **полей формы** в FastAPI.
 
-/// info | Дополнительная информация
+/// note | Заметка
 
-Чтобы использовать формы, сначала установите <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>.
+Чтобы использовать формы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Убедитесь, что вы создали и активировали [виртуальное окружение](../virtual-environments.md){.internal-link target=_blank}, а затем установите пакет, например:
+Добавьте его в ваш проект:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -50,7 +50,7 @@ $ pip install python-multipart
 
 {* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
 
-Если клиент попробует отправить дополнительные данные, то в ответ он получит **ошибку**.
+Если клиент попробует отправить дополнительные данные, то в ответ он получит ответ с **ошибкой**.
 
 Например, если клиент попытается отправить поля формы:
 
@@ -58,7 +58,7 @@ $ pip install python-multipart
 * `password`: `Portal Gun`
 * `extra`: `Mr. Poopybutthole`
 
-То в ответ он получит **ошибку**, сообщающую ему, что поле `extra` не разрешено:
+Он получит ответ с ошибкой, сообщающий ему, что поле `extra` не разрешено:
 
 ```json
 {

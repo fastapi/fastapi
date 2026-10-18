@@ -8,13 +8,13 @@ Tout d'abord, importez `Path` de `fastapi`, et importez `Annotated` :
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-/// info
+/// note | Remarque
 
 FastAPI a ajouté le support pour `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
 
 Si vous avez une version plus ancienne, vous obtiendrez des erreurs en essayant d'utiliser `Annotated`.
 
-Assurez-vous de [Mettre à niveau la version de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} à la version 0.95.1 à minima avant d'utiliser `Annotated`.
+Assurez-vous de [Mettre à niveau la version de FastAPI](../deployment/versions.md#upgrading-the-fastapi-versions) à la version 0.95.1 à minima avant d'utiliser `Annotated`.
 
 ///
 
@@ -112,17 +112,17 @@ La même chose s'applique pour :
 
 Les validations numériques fonctionnent également pour les valeurs `float`.
 
-C'est ici qu'il devient important de pouvoir déclarer <abbr title="greater than"><code>gt</code></abbr> et pas seulement <abbr title="greater than or equal"><code>ge</code></abbr>. Avec cela, vous pouvez exiger, par exemple, qu'une valeur doit être supérieure à `0`, même si elle est inférieure à `1`.
+C'est ici qu'il devient important de pouvoir déclarer <abbr title="greater than - supérieur à"><code>gt</code></abbr> et pas seulement <abbr title="greater than or equal - supérieur ou égal"><code>ge</code></abbr>. Avec cela, vous pouvez exiger, par exemple, qu'une valeur doit être supérieure à `0`, même si elle est inférieure à `1`.
 
 Ainsi, `0.5` serait une valeur valide. Mais `0.0` ou `0` ne le serait pas.
 
-Et la même chose pour <abbr title="less than"><code>lt</code></abbr>.
+Et la même chose pour <abbr title="less than - inférieur à"><code>lt</code></abbr>.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 
 ## Pour résumer { #recap }
 
-Avec `Query`, `Path` (et d'autres que vous verrez plus tard) vous pouvez déclarer des métadonnées et des validations de chaînes de la même manière qu'avec les [Paramètres de requête et validations de chaînes](query-params-str-validations.md){.internal-link target=_blank}.
+Avec `Query`, `Path` (et d'autres que vous verrez plus tard) vous pouvez déclarer des métadonnées et des validations de chaînes de la même manière qu'avec les [Paramètres de requête et validations de chaînes](query-params-str-validations.md).
 
 Et vous pouvez également déclarer des validations numériques :
 
@@ -131,7 +131,7 @@ Et vous pouvez également déclarer des validations numériques :
 * `lt` : `l`ess `t`han
 * `le` : `l`ess than or `e`qual
 
-/// info
+/// note | Remarque
 
 `Query`, `Path`, et d'autres classes que vous verrez plus tard sont des sous-classes d'une classe commune `Param`.
 

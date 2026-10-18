@@ -1,0 +1,80 @@
+name: Prepare Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Release bump
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      date:
+        description: Release date in YYYY-MM-DD format. Defaults to today.
+        required: false
+        type: string
+
+permissions: {}
+
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      PREPARE_RELEASE_VERSION_FILE: fastapi/__init__.py
+      PREPARE_RELEASE_RELEASE_NOTES_FILE: docs/en/docs/release-notes.md
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version-file: ".python-version"
+      - name: Install uv
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest-known"
+      - name: Prepare release
+        env:
+          PREPARE_RELEASE_BUMP: ${{ inputs.bump }}
+          PREPARE_RELEASE_DATE: ${{ inputs.date }}
+        run: uv run python scripts/prepare_release.py prepare
+      - name: Get release version
+        id: release-version
+        run: |
+          version="$(uv run python scripts/prepare_release.py current-version)"
+          echo "$version"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Get PR Submit token
+        id: pr-submit
+        uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
+      - name: Create release pull request
+        env:
+          GH_TOKEN: ${{ steps.pr-submit.outputs.token }}
+          VERSION: ${{ steps.release-version.outputs.version }}
+        run: |
+          set -euo pipefail
+          branch="release-${VERSION}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git config user.name "pr-submit[bot]"
+          git config user.email "pr-submit[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add $PREPARE_RELEASE_VERSION_FILE $PREPARE_RELEASE_RELEASE_NOTES_FILE
+          git commit -m "🔖 Release version ${VERSION}"
+          gh auth setup-git
+          git push --set-upstream origin "$branch"
+          gh pr create \
+            --base master \
+            --head "$branch" \
+            --title "🔖 Release version ${VERSION}" \
+            --body "Prepare release ${VERSION}." \
+            --label release

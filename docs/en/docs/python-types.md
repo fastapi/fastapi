@@ -2,7 +2,7 @@
 
 Python has support for optional "type hints" (also called "type annotations").
 
-These **"type hints"** or annotations are a special syntax that allow declaring the <dfn title="for example: str, int, float, bool">type</dfn> of a variable.
+These **"type hints"** or annotations are a special syntax that allows declaring the <dfn title="for example: str, int, float, bool">type</dfn> of a variable.
 
 By declaring types for your variables, editors and tools can give you better support.
 
@@ -44,7 +44,7 @@ It's a very simple program.
 
 But now imagine that you were writing it from scratch.
 
-At some point you would have started the definition of the function, you had the parameters ready...
+At some point you start defining the function, and you have the parameters ready...
 
 But then you have to call "that method that converts the first letter to upper case".
 
@@ -80,7 +80,7 @@ Those are the "type hints":
 
 {* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
 
-That is not the same as declaring default values like would be with:
+That is not the same as declaring default values like it would be with:
 
 ```Python
     first_name="john", last_name="doe"
@@ -172,7 +172,7 @@ As the list is a type that contains some internal types, you put them in square 
 
 {* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
 
-/// info
+/// note
 
 Those internal types in the square brackets are called "type parameters".
 
@@ -269,7 +269,7 @@ It doesn't mean "`one_person` is the **class** called `Person`".
 
 ## Pydantic models { #pydantic-models }
 
-<a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic</a> is a Python library to perform data validation.
+[Pydantic](https://pydantic.dev/docs/) is a Python library to perform data validation.
 
 You declare the "shape" of the data as classes with attributes.
 
@@ -283,15 +283,15 @@ An example from the official Pydantic docs:
 
 {* ../../docs_src/python_types/tutorial011_py310.py *}
 
-/// info
+/// note
 
-To learn more about <a href="https://docs.pydantic.dev/" class="external-link" target="_blank">Pydantic, check its docs</a>.
+To learn more about [Pydantic, check its docs](https://pydantic.dev/docs/).
 
 ///
 
 **FastAPI** is all based on Pydantic.
 
-You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+You will see a lot more of all this in practice in the [Tutorial - User Guide](tutorial/index.md).
 
 ## Type Hints with Metadata Annotations { #type-hints-with-metadata-annotations }
 
@@ -337,12 +337,12 @@ With **FastAPI** you declare parameters with type hints and you get:
 * **Document** the API using OpenAPI:
     * which is then used by the automatic interactive documentation user interfaces.
 
-This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md){.internal-link target=_blank}.
+This might all sound abstract. Don't worry. You'll see all this in action in the [Tutorial - User Guide](tutorial/index.md).
 
 The important thing is that by using standard Python types, in a single place (instead of adding more classes, decorators, etc), **FastAPI** will do a lot of the work for you.
 
-/// info
+/// note
 
-If you already went through all the tutorial and came back to see more about types, a good resource is <a href="https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html" class="external-link" target="_blank">the "cheat sheet" from `mypy`</a>.
+If you already went through all the tutorial and came back to see more about types, a good resource is [the "cheat sheet" from `mypy`](https://mypy.readthedocs.io/en/latest/cheat_sheet_py3.html).
 
 ///

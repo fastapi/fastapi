@@ -1,6 +1,6 @@
 # Middleware { #middleware }
 
-Você pode adicionar middleware à suas aplicações **FastAPI**.
+Você pode adicionar middleware às aplicações **FastAPI**.
 
 Um "middleware" é uma função que manipula cada **requisição** antes de ser processada por qualquer *operação de rota* específica. E também cada **resposta** antes de retorná-la.
 
@@ -15,7 +15,7 @@ Um "middleware" é uma função que manipula cada **requisição** antes de ser 
 
 Se você tiver dependências com `yield`, o código de saída será executado *depois* do middleware.
 
-Se houver alguma tarefa em segundo plano (abordada na seção [Tarefas em segundo plano](background-tasks.md){.internal-link target=_blank}, que você verá mais adiante), ela será executada *depois* de todo o middleware.
+Se houver alguma tarefa em segundo plano (abordada na seção [Tarefas em segundo plano](background-tasks.md), que você verá mais adiante), ela será executada *depois* de todo o middleware.
 
 ///
 
@@ -35,9 +35,9 @@ A função middleware recebe:
 
 /// tip | Dica
 
-Tenha em mente que cabeçalhos proprietários personalizados podem ser adicionados <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" class="external-link" target="_blank">usando o prefixo `X-`</a>.
+Tenha em mente que cabeçalhos proprietários personalizados podem ser adicionados [usando o prefixo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md){.internal-link target=_blank}) usando o parâmetro `expose_headers` documentado em <a href="https://www.starlette.dev/middleware/#corsmiddleware" class="external-link" target="_blank">Documentação CORS da Starlette</a>.
+Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando o parâmetro `expose_headers` documentado na [Documentação CORS da Starlette](https://starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -55,21 +55,21 @@ Você pode adicionar código para ser executado com a `request`, antes que qualq
 
 E também depois que a `response` é gerada, antes de retorná-la.
 
-Por exemplo, você pode adicionar um cabeçalho personalizado `X-Process-Time` contendo o tempo em segundos que levou para processar a solicitação e gerar uma resposta:
+Por exemplo, você pode adicionar um cabeçalho personalizado `X-Process-Time` contendo o tempo em segundos que levou para processar a requisição e gerar uma resposta:
 
 {* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
 /// tip | Dica
 
-Aqui usamos <a href="https://docs.python.org/3/library/time.html#time.perf_counter" class="external-link" target="_blank">`time.perf_counter()`</a> em vez de `time.time()` porque ele pode ser mais preciso para esses casos de uso. 🤓
+Aqui usamos [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) em vez de `time.time()` porque ele pode ser mais preciso para esses casos de uso. 🤓
 
 ///
 
 ## Ordem de execução de múltiplos middlewares { #multiple-middleware-execution-order }
 
-Quando você adiciona múltiplos middlewares usando o decorador `@app.middleware()` ou o método `app.add_middleware()`, cada novo middleware envolve a aplicação, formando uma pilha. O último middleware adicionado é o mais externo, e o primeiro é o mais interno.
+Quando você adiciona múltiplos middlewares usando o decorador `@app.middleware()` ou o método `app.add_middleware()`, cada novo middleware envolve a aplicação, formando uma pilha. O último middleware adicionado é o *mais externo*, e o primeiro é o *mais interno*.
 
-No caminho da requisição, o middleware mais externo roda primeiro.
+No caminho da requisição, o middleware *mais externo* roda primeiro.
 
 No caminho da resposta, ele roda por último.
 
@@ -90,6 +90,6 @@ Esse comportamento de empilhamento garante que os middlewares sejam executados e
 
 ## Outros middlewares { #other-middlewares }
 
-Mais tarde, você pode ler mais sobre outros middlewares no [Guia do usuário avançado: Middleware avançado](../advanced/middleware.md){.internal-link target=_blank}.
+Mais tarde, você pode ler mais sobre outros middlewares no [Guia do usuário avançado: Middleware avançado](../advanced/middleware.md).
 
 Você lerá sobre como manipular <abbr title="Cross-Origin Resource Sharing">CORS</abbr> com um middleware na próxima seção.

@@ -1,5 +1,6 @@
 # 額外的狀態碼 { #additional-status-codes }
 
+
 在預設情況下，**FastAPI** 會使用 `JSONResponse` 傳回回應，並把你從你的「路徑操作（path operation）」回傳的內容放進該 `JSONResponse` 中。
 
 它會使用預設的狀態碼，或你在路徑操作中設定的狀態碼。
@@ -26,7 +27,7 @@
 
 ///
 
-/// note | 注意
+/// note | 技術細節
 
 你也可以使用 `from starlette.responses import JSONResponse`。
 
@@ -38,4 +39,4 @@
 
 如果你直接回傳額外的狀態碼與回應，它們不會被包含進 OpenAPI 綱要（API 文件）中，因為 FastAPI 無法事先知道你會回傳什麼。
 
-但你可以在程式碼中補充文件，使用：[額外的回應](additional-responses.md){.internal-link target=_blank}。
+但你可以在程式碼中補充文件，使用：[額外的回應](additional-responses.md)。

@@ -54,7 +54,7 @@ Now, to be able to test that everything works, create a *path operation*:
 
 ### Test it { #test-it }
 
-Now, you should be able to go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page, it will load those assets from the new CDN.
+Now, you should be able to go to your docs at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), and reload the page, it will load those assets from the new CDN.
 
 ## Self-hosting JavaScript and CSS for docs { #self-hosting-javascript-and-css-for-docs }
 
@@ -93,12 +93,12 @@ You can probably right-click each link and select an option similar to "Save lin
 
 **Swagger UI** uses the files:
 
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js" class="external-link" target="_blank">`swagger-ui-bundle.js`</a>
-* <a href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" class="external-link" target="_blank">`swagger-ui.css`</a>
+* [`swagger-ui-bundle.js`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js)
+* [`swagger-ui.css`](https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css)
 
 And **ReDoc** uses the file:
 
-* <a href="https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js" class="external-link" target="_blank">`redoc.standalone.js`</a>
+* [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
 
 After that, your file structure could look like:
 
@@ -122,7 +122,7 @@ After that, your file structure could look like:
 
 ### Test the static files { #test-the-static-files }
 
-Start your application and go to <a href="http://127.0.0.1:8000/static/redoc.standalone.js" class="external-link" target="_blank">http://127.0.0.1:8000/static/redoc.standalone.js</a>.
+Start your application and go to [http://127.0.0.1:8000/static/redoc.standalone.js](http://127.0.0.1:8000/static/redoc.standalone.js).
 
 You should see a very long JavaScript file for **ReDoc**.
 
@@ -180,6 +180,6 @@ Now, to be able to test that everything works, create a *path operation*:
 
 ### Test Static Files UI { #test-static-files-ui }
 
-Now, you should be able to disconnect your WiFi, go to your docs at <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>, and reload the page.
+Now, you should be able to disconnect your WiFi, go to your docs at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs), and reload the page.
 
 And even without Internet, you would be able to see the docs for your API and interact with it.

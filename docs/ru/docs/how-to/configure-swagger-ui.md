@@ -1,6 +1,6 @@
 # Настройка Swagger UI { #configure-swagger-ui }
 
-Вы можете настроить дополнительные <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">параметры Swagger UI</a>.
+Вы можете настроить дополнительные [параметры Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 Чтобы настроить их, передайте аргумент `swagger_ui_parameters` при создании объекта приложения `FastAPI()` или в функцию `get_swagger_ui_html()`.
 
@@ -26,7 +26,7 @@ FastAPI преобразует эти настройки в **JSON**, чтобы
 
 ## Изменить тему { #change-the-theme }
 
-Аналогично вы можете задать тему подсветки синтаксиса с ключом "syntaxHighlight.theme" (обратите внимание, что посередине стоит точка):
+Аналогично вы можете задать тему подсветки синтаксиса с ключом `"syntaxHighlight.theme"` (обратите внимание, что посередине стоит точка):
 
 {* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
 
@@ -50,7 +50,7 @@ FastAPI включает некоторые параметры конфигур�
 
 ## Другие параметры Swagger UI { #other-swagger-ui-parameters }
 
-Чтобы увидеть все остальные возможные настройки, прочитайте официальную <a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/" class="external-link" target="_blank">документацию по параметрам Swagger UI</a>.
+Чтобы увидеть все остальные возможные настройки, прочитайте официальную [документацию по параметрам Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 ## Настройки только для JavaScript { #javascript-only-settings }
 
