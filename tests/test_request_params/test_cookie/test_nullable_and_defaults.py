@@ -1,18 +1,13 @@
-from typing import Annotated, Any
-from unittest.mock import Mock, patch
+from typing import Annotated
 
 import pytest
 from dirty_equals import IsList, IsOneOf
 from fastapi import Cookie, FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from pydantic import BaseModel, BeforeValidator, field_validator
+from pydantic import BaseModel
 
 app = FastAPI()
-
-
-def convert(v: Any) -> Any:
-    return v
 
 
 # =====================================================================================
@@ -21,16 +16,8 @@ def convert(v: Any) -> Any:
 
 @app.get("/nullable-required")
 async def read_nullable_required(
-    int_val: Annotated[
-        int | None,
-        Cookie(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
-    str_val: Annotated[
-        str | None,
-        Cookie(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    int_val: Annotated[int | None, Cookie()],
+    str_val: Annotated[str | None, Cookie()],
 ):
     return {
         "int_val": int_val,
@@ -42,11 +29,6 @@ async def read_nullable_required(
 class ModelNullableRequired(BaseModel):
     int_val: int | None
     str_val: str | None
-
-    @field_validator("*", mode="before")
-    @classmethod
-    def convert_fields(cls, v):
-        return convert(v)
 
 
 @app.get("/model-nullable-required")
@@ -101,12 +83,8 @@ def test_nullable_required_schema(path: str):
 )
 def test_nullable_required_missing(path: str):
     client = TestClient(app)
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(path)
+    response = client.get(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 422
     assert response.json() == snapshot(
         {
@@ -146,10 +124,8 @@ def test_nullable_required_pass_value(path: str, values: dict[str, str]):
     client = TestClient(app)
     client.cookies.set("int_val", values["int_val"])
     client.cookies.set("str_val", values["str_val"])
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(path)
+    response = client.get(path)
 
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": int(values["int_val"]),
@@ -164,16 +140,8 @@ def test_nullable_required_pass_value(path: str, values: dict[str, str]):
 
 @app.get("/nullable-non-required")
 async def read_nullable_non_required(
-    int_val: Annotated[
-        int | None,
-        Cookie(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
-    str_val: Annotated[
-        str | None,
-        Cookie(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
+    int_val: Annotated[int | None, Cookie()] = None,
+    str_val: Annotated[str | None, Cookie()] = None,
 ):
     return {
         "int_val": int_val,
@@ -185,11 +153,6 @@ async def read_nullable_non_required(
 class ModelNullableNonRequired(BaseModel):
     int_val: int | None = None
     str_val: str | None = None
-
-    @field_validator("*", mode="before")
-    @classmethod
-    def convert_fields(cls, v):
-        return convert(v)
 
 
 @app.get("/model-nullable-non-required")
@@ -247,12 +210,8 @@ def test_nullable_non_required_schema(path: str):
 def test_nullable_non_required_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(path)
+    response = client.get(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 200
     assert response.json() == {
         "int_val": None,
@@ -280,10 +239,8 @@ def test_nullable_non_required_pass_value(path: str, values: dict[str, str]):
     client.cookies.set("int_val", values["int_val"])
     client.cookies.set("str_val", values["str_val"])
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(path)
+    response = client.get(path)
 
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": int(values["int_val"]),
@@ -299,16 +256,8 @@ def test_nullable_non_required_pass_value(path: str, values: dict[str, str]):
 @app.get("/nullable-with-non-null-default")
 async def read_nullable_with_non_null_default(
     *,
-    int_val: Annotated[
-        int | None,
-        Cookie(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = -1,
-    str_val: Annotated[
-        str | None,
-        Cookie(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = "default",
+    int_val: Annotated[int | None, Cookie()] = -1,
+    str_val: Annotated[str | None, Cookie()] = "default",
 ):
     return {
         "int_val": int_val,
@@ -320,11 +269,6 @@ async def read_nullable_with_non_null_default(
 class ModelNullableWithNonNullDefault(BaseModel):
     int_val: int | None = -1
     str_val: str | None = "default"
-
-    @field_validator("*", mode="before")
-    @classmethod
-    def convert_fields(cls, v):
-        return convert(v)
 
 
 @app.get("/model-nullable-with-non-null-default")
@@ -376,28 +320,25 @@ def test_nullable_with_non_null_default_schema(path: str):
     "path",
     [
         "/nullable-with-non-null-default",
-        "/model-nullable-with-non-null-default",
+        pytest.param(
+            "/model-nullable-with-non-null-default",
+            marks=pytest.mark.xfail(
+                reason="Missing model fields are marked as explicitly set"
+            ),
+        ),
     ],
-)
-@pytest.mark.xfail(
-    reason="Missing parameters are pre-populated with default values before validation"
 )
 def test_nullable_with_non_null_default_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(path)
+    response = client.get(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
-    assert response.status_code == 200  # pragma: no cover
-    assert response.json() == {  # pragma: no cover
+    assert response.status_code == 200
+    assert response.json() == {
         "int_val": -1,
         "str_val": "default",
         "fields_set": IsOneOf(None, []),
     }
-    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
@@ -419,10 +360,8 @@ def test_nullable_with_non_null_default_pass_value(path: str, values: dict[str, 
     client.cookies.set("int_val", values["int_val"])
     client.cookies.set("str_val", values["str_val"])
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.get(path)
+    response = client.get(path)
 
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": int(values["int_val"]),

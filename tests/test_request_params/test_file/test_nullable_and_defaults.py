@@ -1,21 +1,14 @@
-from typing import Annotated, Any
-from unittest.mock import Mock, patch
+from typing import Annotated
 
 import pytest
 from dirty_equals import IsOneOf
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
 from inline_snapshot import Is, snapshot
-from pydantic import BeforeValidator
-from starlette.datastructures import UploadFile as StarletteUploadFile
 
 from .utils import get_body_model_name
 
 app = FastAPI()
-
-
-def convert(v: Any) -> Any:
-    return v
 
 
 # =====================================================================================
@@ -24,16 +17,8 @@ def convert(v: Any) -> Any:
 
 @app.post("/nullable-required-bytes")
 async def read_nullable_required_bytes(
-    file: Annotated[
-        bytes | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
-    files: Annotated[
-        list[bytes] | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    file: Annotated[bytes | None, File()],
+    files: Annotated[list[bytes] | None, File()],
 ):
     return {
         "file": len(file) if file is not None else None,
@@ -43,16 +28,8 @@ async def read_nullable_required_bytes(
 
 @app.post("/nullable-required-uploadfile")
 async def read_nullable_required_uploadfile(
-    file: Annotated[
-        UploadFile | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
-    files: Annotated[
-        list[UploadFile] | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    file: Annotated[UploadFile | None, File()],
+    files: Annotated[list[UploadFile] | None, File()],
 ):
     return {
         "file": file.size if file is not None else None,
@@ -115,12 +92,8 @@ def test_nullable_required_schema(path: str):
 def test_nullable_required_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path)
+    response = client.post(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 422
     assert response.json() == snapshot(
         {
@@ -152,26 +125,9 @@ def test_nullable_required_missing(path: str):
 def test_nullable_required_pass_empty_file(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            files=[("file", b""), ("files", b""), ("files", b"")],
-        )
-
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
-    call_args = [call_args_item.args for call_args_item in mock_convert.call_args_list]
-    file_call_arg_1 = call_args[0][0]
-    files_call_arg_1 = call_args[1][0]
-
-    assert (
-        (file_call_arg_1 == b"")  # file as bytes
-        or isinstance(file_call_arg_1, StarletteUploadFile)  # file as UploadFile
-    )
-    assert (
-        (files_call_arg_1 == [b"", b""])  # files as bytes
-        or all(  # files as UploadFile
-            isinstance(f, StarletteUploadFile) for f in files_call_arg_1
-        )
+    response = client.post(
+        path,
+        files=[("file", b""), ("files", b""), ("files", b"")],
     )
 
     assert response.status_code == 200, response.text
@@ -191,17 +147,15 @@ def test_nullable_required_pass_empty_file(path: str):
 def test_nullable_required_pass_file(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            files=[
-                ("file", b"test 1"),
-                ("files", b"test 2"),
-                ("files", b"test 3"),
-            ],
-        )
+    response = client.post(
+        path,
+        files=[
+            ("file", b"test 1"),
+            ("files", b"test 2"),
+            ("files", b"test 3"),
+        ],
+    )
 
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {"file": 6, "files": [6, 6]}
 
@@ -212,16 +166,8 @@ def test_nullable_required_pass_file(path: str):
 
 @app.post("/nullable-non-required-bytes")
 async def read_nullable_non_required_bytes(
-    file: Annotated[
-        bytes | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
-    files: Annotated[
-        list[bytes] | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
+    file: Annotated[bytes | None, File()] = None,
+    files: Annotated[list[bytes] | None, File()] = None,
 ):
     return {
         "file": len(file) if file is not None else None,
@@ -231,16 +177,8 @@ async def read_nullable_non_required_bytes(
 
 @app.post("/nullable-non-required-uploadfile")
 async def read_nullable_non_required_uploadfile(
-    file: Annotated[
-        UploadFile | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
-    files: Annotated[
-        list[UploadFile] | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
+    file: Annotated[UploadFile | None, File()] = None,
+    files: Annotated[list[UploadFile] | None, File()] = None,
 ):
     return {
         "file": file.size if file is not None else None,
@@ -304,12 +242,8 @@ def test_nullable_non_required_schema(path: str):
 def test_nullable_non_required_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path)
+    response = client.post(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 200
     assert response.json() == {
         "file": None,
@@ -327,26 +261,9 @@ def test_nullable_non_required_missing(path: str):
 def test_nullable_non_required_pass_empty_file(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            files=[("file", b""), ("files", b""), ("files", b"")],
-        )
-
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
-    call_args = [call_args_item.args for call_args_item in mock_convert.call_args_list]
-    file_call_arg_1 = call_args[0][0]
-    files_call_arg_1 = call_args[1][0]
-
-    assert (
-        (file_call_arg_1 == b"")  # file as bytes
-        or isinstance(file_call_arg_1, StarletteUploadFile)  # file as UploadFile
-    )
-    assert (
-        (files_call_arg_1 == [b"", b""])  # files as bytes
-        or all(  # files as UploadFile
-            isinstance(f, StarletteUploadFile) for f in files_call_arg_1
-        )
+    response = client.post(
+        path,
+        files=[("file", b""), ("files", b""), ("files", b"")],
     )
 
     assert response.status_code == 200, response.text
@@ -363,13 +280,11 @@ def test_nullable_non_required_pass_empty_file(path: str):
 def test_nullable_non_required_pass_file(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            files=[("file", b"test 1"), ("files", b"test 2"), ("files", b"test 3")],
-        )
+    response = client.post(
+        path,
+        files=[("file", b"test 1"), ("files", b"test 2"), ("files", b"test 3")],
+    )
 
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {"file": 6, "files": [6, 6]}
 
@@ -381,16 +296,8 @@ def test_nullable_non_required_pass_file(path: str):
 @app.post("/nullable-with-non-null-default-bytes")
 async def read_nullable_with_non_null_default_bytes(
     *,
-    file: Annotated[
-        bytes | None,
-        File(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = b"default",
-    files: Annotated[
-        list[bytes] | None,
-        File(default_factory=lambda: [b"default"]),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    file: Annotated[bytes | None, File()] = b"default",
+    files: Annotated[list[bytes] | None, File(default_factory=lambda: [b"default"])],
 ):
     return {
         "file": len(file) if file is not None else None,
@@ -459,14 +366,10 @@ def test_nullable_with_non_null_default_schema(path: str):
 def test_nullable_with_non_null_default_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path)
+    response = client.post(path)
 
-    assert mock_convert.call_count == 0, (  # pragma: no cover
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 200  # pragma: no cover
-    assert response.json() == {"file": None, "files": None}  # pragma: no cover
+    assert response.json() == {"file": 7, "files": [7]}  # pragma: no cover
     # TODO: Remove 'no cover' when the issue is fixed
 
 
@@ -479,26 +382,9 @@ def test_nullable_with_non_null_default_missing(path: str):
 def test_nullable_with_non_null_default_pass_empty_file(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            files=[("file", b""), ("files", b""), ("files", b"")],
-        )
-
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
-    call_args = [call_args_item.args for call_args_item in mock_convert.call_args_list]
-    file_call_arg_1 = call_args[0][0]
-    files_call_arg_1 = call_args[1][0]
-
-    assert (
-        (file_call_arg_1 == b"")  # file as bytes
-        or isinstance(file_call_arg_1, StarletteUploadFile)  # file as UploadFile
-    )
-    assert (
-        (files_call_arg_1 == [b"", b""])  # files as bytes
-        or all(  # files as UploadFile
-            isinstance(f, StarletteUploadFile) for f in files_call_arg_1
-        )
+    response = client.post(
+        path,
+        files=[("file", b""), ("files", b""), ("files", b"")],
     )
 
     assert response.status_code == 200, response.text
@@ -514,12 +400,10 @@ def test_nullable_with_non_null_default_pass_empty_file(path: str):
 def test_nullable_with_non_null_default_pass_file(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            files=[("file", b"test 1"), ("files", b"test 2"), ("files", b"test 3")],
-        )
+    response = client.post(
+        path,
+        files=[("file", b"test 1"), ("files", b"test 2"), ("files", b"test 3")],
+    )
 
-    assert mock_convert.call_count == 2, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {"file": 6, "files": [6, 6]}

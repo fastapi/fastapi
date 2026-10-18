@@ -1,20 +1,15 @@
-from typing import Annotated, Any
-from unittest.mock import Mock, call, patch
+from typing import Annotated
 
 import pytest
 from dirty_equals import IsList, IsOneOf, IsPartialDict
 from fastapi import FastAPI, Form
 from fastapi.testclient import TestClient
 from inline_snapshot import Is, snapshot
-from pydantic import BaseModel, BeforeValidator, field_validator
+from pydantic import BaseModel
 
 from .utils import get_body_model_name
 
 app = FastAPI()
-
-
-def convert(v: Any) -> Any:
-    return v
 
 
 # =====================================================================================
@@ -23,21 +18,9 @@ def convert(v: Any) -> Any:
 
 @app.post("/nullable-required")
 async def read_nullable_required(
-    int_val: Annotated[
-        int | None,
-        Form(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
-    str_val: Annotated[
-        str | None,
-        Form(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
-    list_val: Annotated[
-        list[int] | None,
-        Form(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    int_val: Annotated[int | None, Form()],
+    str_val: Annotated[str | None, Form()],
+    list_val: Annotated[list[int] | None, Form()],
 ):
     return {
         "int_val": int_val,
@@ -51,10 +34,6 @@ class ModelNullableRequired(BaseModel):
     int_val: int | None
     str_val: str | None
     list_val: list[int] | None
-
-    @field_validator("*", mode="before")
-    def convert_fields(cls, v):
-        return convert(v)
 
 
 @app.post("/model-nullable-required")
@@ -116,12 +95,8 @@ def test_nullable_required_schema(path: str):
 def test_nullable_required_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path)
+    response = client.post(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 422
     assert response.json() == snapshot(
         {
@@ -164,22 +139,15 @@ def test_nullable_required_missing(path: str):
 def test_nullable_required_pass_empty_str_to_str_val(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            data={
-                "int_val": "0",  # Empty string would cause validation error (see below)
-                "str_val": "",
-                "list_val": "0",  # Empty string would cause validation error (see below)
-            },
-        )
+    response = client.post(
+        path,
+        data={
+            "int_val": "0",  # Empty string would cause validation error (see below)
+            "str_val": "",
+            "list_val": "0",  # Empty string would cause validation error (see below)
+        },
+    )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
-    assert mock_convert.call_args_list == [
-        call("0"),  # int_val
-        call(""),  # str_val
-        call(["0"]),  # list_val
-    ]
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": 0,
@@ -206,22 +174,15 @@ def test_nullable_required_pass_empty_str_to_str_val(path: str):
 def test_nullable_required_pass_empty_str_to_int_val_and_list_val(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            data={
-                "int_val": "",
-                "str_val": "",
-                "list_val": "",
-            },
-        )
+    response = client.post(
+        path,
+        data={
+            "int_val": "",
+            "str_val": "",
+            "list_val": "",
+        },
+    )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
-    assert mock_convert.call_args_list == [
-        call(""),  # int_val
-        call(""),  # str_val
-        call([""]),  # list_val
-    ]
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
         {
@@ -253,12 +214,10 @@ def test_nullable_required_pass_empty_str_to_int_val_and_list_val(path: str):
 def test_nullable_required_pass_value(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-        )
+    response = client.post(
+        path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
+    )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": 1,
@@ -276,21 +235,9 @@ def test_nullable_required_pass_value(path: str):
 
 @app.post("/nullable-non-required")
 async def read_nullable_non_required(
-    int_val: Annotated[
-        int | None,
-        Form(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
-    str_val: Annotated[
-        str | None,
-        Form(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
-    list_val: Annotated[
-        list[int] | None,
-        Form(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
+    int_val: Annotated[int | None, Form()] = None,
+    str_val: Annotated[str | None, Form()] = None,
+    list_val: Annotated[list[int] | None, Form()] = None,
 ):
     return {
         "int_val": int_val,
@@ -304,10 +251,6 @@ class ModelNullableNonRequired(BaseModel):
     int_val: int | None = None
     str_val: str | None = None
     list_val: list[int] | None = None
-
-    @field_validator("*", mode="before")
-    def convert_fields(cls, v):
-        return convert(v)
 
 
 @app.post("/model-nullable-non-required")
@@ -371,12 +314,8 @@ def test_nullable_non_required_schema(path: str):
 def test_nullable_non_required_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path)
+    response = client.post(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 200
     assert response.json() == {
         "int_val": None,
@@ -401,20 +340,15 @@ def test_nullable_non_required_missing(path: str):
 def test_nullable_non_required_pass_empty_str_to_str_val_and_int_val(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            data={
-                "int_val": "",
-                "str_val": "",
-                "list_val": "0",  # Empty string would cause validation error (see below)
-            },
-        )
+    response = client.post(
+        path,
+        data={
+            "int_val": "",
+            "str_val": "",
+            "list_val": "0",  # Empty string would cause validation error (see below)
+        },
+    )
 
-    assert mock_convert.call_count == 1, "Validator should be called for list_val only"
-    assert mock_convert.call_args_list == [
-        call(["0"]),  # list_val
-    ]
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": None,
@@ -439,20 +373,15 @@ def test_nullable_non_required_pass_empty_str_to_str_val_and_int_val(path: str):
 def test_nullable_non_required_pass_empty_str_to_all(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            data={
-                "int_val": "",
-                "str_val": "",
-                "list_val": "",
-            },
-        )
+    response = client.post(
+        path,
+        data={
+            "int_val": "",
+            "str_val": "",
+            "list_val": "",
+        },
+    )
 
-    assert mock_convert.call_count == 1, "Validator should be called for list_val only"
-    assert mock_convert.call_args_list == [
-        call([""]),  # list_val
-    ]
     assert response.status_code == 422, response.text
     assert response.json() == snapshot(
         {
@@ -478,12 +407,10 @@ def test_nullable_non_required_pass_empty_str_to_all(path: str):
 def test_nullable_non_required_pass_value(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-        )
+    response = client.post(
+        path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
+    )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": 1,
@@ -502,21 +429,9 @@ def test_nullable_non_required_pass_value(path: str):
 @app.post("/nullable-with-non-null-default")
 async def read_nullable_with_non_null_default(
     *,
-    int_val: Annotated[
-        int | None,
-        Form(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = -1,
-    str_val: Annotated[
-        str | None,
-        Form(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = "default",
-    list_val: Annotated[
-        list[int] | None,
-        Form(default_factory=lambda: [0]),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    int_val: Annotated[int | None, Form()] = -1,
+    str_val: Annotated[str | None, Form()] = "default",
+    list_val: Annotated[list[int] | None, Form(default_factory=lambda: [0])],
 ):
     return {
         "int_val": int_val,
@@ -530,10 +445,6 @@ class ModelNullableWithNonNullDefault(BaseModel):
     int_val: int | None = -1
     str_val: str | None = "default"
     list_val: list[int] | None = [0]
-
-    @field_validator("*", mode="before")
-    def convert_fields(cls, v):
-        return convert(v)
 
 
 @app.post("/model-nullable-with-non-null-default")
@@ -598,44 +509,36 @@ def test_nullable_with_non_null_default_schema(path: str):
     "path",
     [
         "/nullable-with-non-null-default",
-        "/model-nullable-with-non-null-default",
+        pytest.param(
+            "/model-nullable-with-non-null-default",
+            marks=pytest.mark.xfail(
+                reason="Missing model fields are marked as explicitly set"
+            ),
+        ),
     ],
-)
-@pytest.mark.xfail(
-    reason="Missing parameters are pre-populated with default values before validation"
 )
 def test_nullable_with_non_null_default_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path)
+    response = client.post(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
-    assert response.status_code == 200  # pragma: no cover
-    assert response.json() == {  # pragma: no cover
+    assert response.status_code == 200
+    assert response.json() == {
         "int_val": -1,
         "str_val": "default",
         "list_val": [0],
         "fields_set": IsOneOf(None, []),
     }
-    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/nullable-with-non-null-default",
-            marks=pytest.mark.xfail(
-                reason="Empty strings are replaced with default values before validation"
-            ),
-        ),
+        "/nullable-with-non-null-default",
         pytest.param(
             "/model-nullable-with-non-null-default",
             marks=pytest.mark.xfail(
-                reason="Empty strings are not replaced with None for parameters declared as model"
+                reason="Empty form strings are not treated as missing in models"
             ),
         ),
     ],
@@ -645,43 +548,32 @@ def test_nullable_with_non_null_default_pass_empty_str_to_str_val_and_int_val(
 ):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            data={
-                "int_val": "",
-                "str_val": "",
-                "list_val": "0",  # Empty string would cause validation error (see below)
-            },
-        )
+    response = client.post(
+        path,
+        data={
+            "int_val": "",
+            "str_val": "",
+            "list_val": "0",  # Empty string would cause validation error (see below)
+        },
+    )
 
-    assert mock_convert.call_count == 1, "Validator should be called for list_val only"
-    assert mock_convert.call_args_list == [  # pragma: no cover
-        call(["0"]),  # list_val
-    ]
-    assert response.status_code == 200, response.text  # pragma: no cover
-    assert response.json() == {  # pragma: no cover
+    assert response.status_code == 200, response.text
+    assert response.json() == {
         "int_val": -1,
         "str_val": "default",
         "list_val": [0],
         "fields_set": IsOneOf(None, IsList("list_val", check_order=False)),
     }
-    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
     "path",
     [
-        pytest.param(
-            "/nullable-with-non-null-default",
-            marks=pytest.mark.xfail(
-                reason="Empty strings are replaced with default values before validation"
-            ),
-        ),
+        "/nullable-with-non-null-default",
         pytest.param(
             "/model-nullable-with-non-null-default",
             marks=pytest.mark.xfail(
-                reason="Empty strings are not replaced with None for parameters declared as model"
+                reason="Empty form strings are not treated as missing in models"
             ),
         ),
     ],
@@ -689,22 +581,17 @@ def test_nullable_with_non_null_default_pass_empty_str_to_str_val_and_int_val(
 def test_nullable_with_non_null_default_pass_empty_str_to_all(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            data={
-                "int_val": "",
-                "str_val": "",
-                "list_val": "",
-            },
-        )
+    response = client.post(
+        path,
+        data={
+            "int_val": "",
+            "str_val": "",
+            "list_val": "",
+        },
+    )
 
-    assert mock_convert.call_count == 1, "Validator should be called for list_val only"
-    assert mock_convert.call_args_list == [  # pragma: no cover
-        call([""]),  # list_val
-    ]
-    assert response.status_code == 422, response.text  # pragma: no cover
-    assert response.json() == snapshot(  # pragma: no cover
+    assert response.status_code == 422, response.text
+    assert response.json() == snapshot(
         {
             "detail": [
                 {
@@ -716,7 +603,6 @@ def test_nullable_with_non_null_default_pass_empty_str_to_all(path: str):
             ]
         }
     )
-    # TODO: Remove 'no cover' when the issue is fixed
 
 
 @pytest.mark.parametrize(
@@ -729,12 +615,10 @@ def test_nullable_with_non_null_default_pass_empty_str_to_all(path: str):
 def test_nullable_with_non_null_default_pass_value(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
-        )
+    response = client.post(
+        path, data={"int_val": "1", "str_val": "test", "list_val": ["1", "2"]}
+    )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": 1,

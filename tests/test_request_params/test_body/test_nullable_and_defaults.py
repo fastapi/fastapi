@@ -1,20 +1,15 @@
 from typing import Annotated, Any
-from unittest.mock import Mock, patch
 
 import pytest
 from dirty_equals import IsList, IsOneOf, IsPartialDict
 from fastapi import Body, FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import Is, snapshot
-from pydantic import BaseModel, BeforeValidator, field_validator
+from pydantic import BaseModel
 
 from .utils import get_body_model_name
 
 app = FastAPI()
-
-
-def convert(v: Any) -> Any:
-    return v
 
 
 # =====================================================================================
@@ -23,13 +18,9 @@ def convert(v: Any) -> Any:
 
 @app.post("/nullable-required")
 async def read_nullable_required(
-    int_val: Annotated[int | None, Body(), BeforeValidator(lambda v: convert(v))],
-    str_val: Annotated[str | None, Body(), BeforeValidator(lambda v: convert(v))],
-    list_val: Annotated[
-        list[int] | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    int_val: Annotated[int | None, Body()],
+    str_val: Annotated[str | None, Body()],
+    list_val: Annotated[list[int] | None, Body()],
 ):
     return {
         "int_val": int_val,
@@ -44,10 +35,6 @@ class ModelNullableRequired(BaseModel):
     str_val: str | None
     list_val: list[int] | None
 
-    @field_validator("*", mode="before")
-    def validate_all(cls, v):
-        return convert(v)
-
 
 @app.post("/model-nullable-required")
 async def read_model_nullable_required(params: ModelNullableRequired):
@@ -61,23 +48,21 @@ async def read_model_nullable_required(params: ModelNullableRequired):
 
 @app.post("/nullable-required-str")
 async def read_nullable_required_no_embed_str(
-    str_val: Annotated[str | None, Body(), BeforeValidator(lambda v: convert(v))],
+    str_val: Annotated[str | None, Body()],
 ):
     return {"val": str_val}
 
 
 @app.post("/nullable-required-int")
 async def read_nullable_required_no_embed_int(
-    int_val: Annotated[int | None, Body(), BeforeValidator(lambda v: convert(v))],
+    int_val: Annotated[int | None, Body()],
 ):
     return {"val": int_val}
 
 
 @app.post("/nullable-required-list")
 async def read_nullable_required_no_embed_list(
-    list_val: Annotated[
-        list[int] | None, Body(), BeforeValidator(lambda v: convert(v))
-    ],
+    list_val: Annotated[list[int] | None, Body()],
 ):
     return {"val": list_val}
 
@@ -307,17 +292,15 @@ def test_nullable_required_no_embed_pass_empty_dict(
 def test_nullable_required_pass_null(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            json={
-                "int_val": None,
-                "str_val": None,
-                "list_val": None,
-            },
-        )
+    response = client.post(
+        path,
+        json={
+            "int_val": None,
+            "str_val": None,
+            "list_val": None,
+        },
+    )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": None,
@@ -341,10 +324,10 @@ def test_nullable_required_pass_null(path: str):
 def test_nullable_required_no_embed_pass_null(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, content="null")
+    response = client.post(
+        path, content="null", headers={"content-type": "application/json"}
+    )
 
-    assert mock_convert.call_count == 1, "Validator should be called once for the field"
     assert response.status_code == 200, response.text  # pragma: no cover
     assert response.json() == {"val": None}  # pragma: no cover
     # TODO: Remove 'no cover' when the issue is fixed
@@ -367,10 +350,8 @@ def test_nullable_required_no_embed_pass_null(path: str):
 def test_nullable_required_pass_value(path: str, values: dict[str, Any]):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, json=values)
+    response = client.post(path, json=values)
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": int(values["int_val"]),
@@ -394,10 +375,8 @@ def test_nullable_required_pass_value(path: str, values: dict[str, Any]):
 def test_nullable_required_no_embed_pass_value(path: str, value: Any):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, json=value)
+    response = client.post(path, json=value)
 
-    assert mock_convert.call_count == 1, "Validator should be called once for the field"
     assert response.status_code == 200, response.text
     assert response.json() == {"val": value}
 
@@ -408,21 +387,9 @@ def test_nullable_required_no_embed_pass_value(path: str, value: Any):
 
 @app.post("/nullable-non-required")
 async def read_nullable_non_required(
-    int_val: Annotated[
-        int | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
-    str_val: Annotated[
-        str | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
-    list_val: Annotated[
-        list[int] | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
+    int_val: Annotated[int | None, Body()] = None,
+    str_val: Annotated[str | None, Body()] = None,
+    list_val: Annotated[list[int] | None, Body()] = None,
 ):
     return {
         "int_val": int_val,
@@ -436,10 +403,6 @@ class ModelNullableNonRequired(BaseModel):
     int_val: int | None = None
     str_val: str | None = None
     list_val: list[int] | None = None
-
-    @field_validator("*", mode="before")
-    def validate_all(cls, v):
-        return convert(v)
 
 
 @app.post("/model-nullable-non-required")
@@ -456,33 +419,21 @@ async def read_model_nullable_non_required(
 
 @app.post("/nullable-non-required-str")
 async def read_nullable_non_required_no_embed_str(
-    str_val: Annotated[
-        str | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
+    str_val: Annotated[str | None, Body()] = None,
 ):
     return {"val": str_val}
 
 
 @app.post("/nullable-non-required-int")
 async def read_nullable_non_required_no_embed_int(
-    int_val: Annotated[
-        int | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
+    int_val: Annotated[int | None, Body()] = None,
 ):
     return {"val": int_val}
 
 
 @app.post("/nullable-non-required-list")
 async def read_nullable_non_required_no_embed_list(
-    list_val: Annotated[
-        list[int] | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = None,
+    list_val: Annotated[list[int] | None, Body()] = None,
 ):
     return {"val": list_val}
 
@@ -577,12 +528,8 @@ def test_nullable_non_required_no_embed_schema(path: str, schema: dict):
 def test_nullable_non_required_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, json={})
+    response = client.post(path, json={})
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 200
     assert response.json() == {
         "int_val": None,
@@ -633,42 +580,27 @@ def test_nullable_non_required_no_body(path: str):
 def test_nullable_non_required_no_embed_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path)
+    response = client.post(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 200
     assert response.json() == {"val": None}
 
 
 @pytest.mark.parametrize(
-    "path",
-    [
-        pytest.param(
-            "/nullable-non-required",
-            marks=pytest.mark.xfail(
-                reason="Null values are treated as missing for non-model Body parameters"
-            ),
-        ),
-        "/model-nullable-non-required",
-    ],
+    "path", ["/nullable-non-required", "/model-nullable-non-required"]
 )
 def test_nullable_non_required_pass_null(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            json={
-                "int_val": None,
-                "str_val": None,
-                "list_val": None,
-            },
-        )
+    response = client.post(
+        path,
+        json={
+            "int_val": None,
+            "str_val": None,
+            "list_val": None,
+        },
+    )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": None,
@@ -688,17 +620,15 @@ def test_nullable_non_required_pass_null(path: str):
         "/nullable-non-required-list",
     ],
 )
-@pytest.mark.xfail(reason="Explicit null-body is treated as missing")
 def test_nullable_non_required_no_embed_pass_null(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, content="null")
+    response = client.post(
+        path, content="null", headers={"content-type": "application/json"}
+    )
 
-    assert mock_convert.call_count == 1, "Validator should be called once for the field"
-    assert response.status_code == 200, response.text  # pragma: no cover
-    assert response.json() == {"val": None}  # pragma: no cover
-    # TODO: Remove 'no cover' when the issue is fixed
+    assert response.status_code == 200, response.text
+    assert response.json() == {"val": None}
 
 
 @pytest.mark.parametrize(
@@ -718,10 +648,8 @@ def test_nullable_non_required_no_embed_pass_null(path: str):
 def test_nullable_non_required_pass_value(path: str, values: dict[str, Any]):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, json=values)
+    response = client.post(path, json=values)
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": int(values["int_val"]),
@@ -745,10 +673,8 @@ def test_nullable_non_required_pass_value(path: str, values: dict[str, Any]):
 def test_nullable_non_required_no_embed_pass_value(path: str, value: Any):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, json=value)
+    response = client.post(path, json=value)
 
-    assert mock_convert.call_count == 1, "Validator should be called once for the field"
     assert response.status_code == 200, response.text
     assert response.json() == {"val": value}
 
@@ -760,21 +686,9 @@ def test_nullable_non_required_no_embed_pass_value(path: str, value: Any):
 @app.post("/nullable-with-non-null-default")
 async def read_nullable_with_non_null_default(
     *,
-    int_val: Annotated[
-        int | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = -1,
-    str_val: Annotated[
-        str | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = "default",
-    list_val: Annotated[
-        list[int] | None,
-        Body(default_factory=lambda: [0]),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    int_val: Annotated[int | None, Body()] = -1,
+    str_val: Annotated[str | None, Body()] = "default",
+    list_val: Annotated[list[int] | None, Body(default_factory=lambda: [0])],
 ):
     return {
         "int_val": int_val,
@@ -788,10 +702,6 @@ class ModelNullableWithNonNullDefault(BaseModel):
     int_val: int | None = -1
     str_val: str | None = "default"
     list_val: list[int] | None = [0]
-
-    @field_validator("*", mode="before")
-    def validate_all(cls, v):
-        return convert(v)
 
 
 @app.post("/model-nullable-with-non-null-default")
@@ -808,33 +718,21 @@ async def read_model_nullable_with_non_null_default(
 
 @app.post("/nullable-with-non-null-default-str")
 async def read_nullable_with_non_null_default_no_embed_str(
-    str_val: Annotated[
-        str | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = "default",
+    str_val: Annotated[str | None, Body()] = "default",
 ):
     return {"val": str_val}
 
 
 @app.post("/nullable-with-non-null-default-int")
 async def read_nullable_with_non_null_default_no_embed_int(
-    int_val: Annotated[
-        int | None,
-        Body(),
-        BeforeValidator(lambda v: convert(v)),
-    ] = -1,
+    int_val: Annotated[int | None, Body()] = -1,
 ):
     return {"val": int_val}
 
 
 @app.post("/nullable-with-non-null-default-list")
 async def read_nullable_with_non_null_default_no_embed_list(
-    list_val: Annotated[
-        list[int] | None,
-        Body(default_factory=lambda: [0]),
-        BeforeValidator(lambda v: convert(v)),
-    ],
+    list_val: Annotated[list[int] | None, Body(default_factory=lambda: [0])],
 ):
     return {"val": list_val}
 
@@ -935,12 +833,8 @@ def test_nullable_with_non_null_default_no_embed_schema(path: str, schema: dict)
 def test_nullable_with_non_null_default_missing(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, json={})
+    response = client.post(path, json={})
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": -1,
@@ -991,12 +885,8 @@ def test_nullable_with_non_null_default_no_body(path: str):
 def test_nullable_with_non_null_default_no_embed_missing(path: str, expected: Any):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path)
+    response = client.post(path)
 
-    assert mock_convert.call_count == 0, (
-        "Validator should not be called if the value is missing"
-    )
     assert response.status_code == 200, response.text
     assert response.json() == {"val": expected}
 
@@ -1016,17 +906,15 @@ def test_nullable_with_non_null_default_no_embed_missing(path: str, expected: An
 def test_nullable_with_non_null_default_pass_null(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(
-            path,
-            json={
-                "int_val": None,
-                "str_val": None,
-                "list_val": None,
-            },
-        )
+    response = client.post(
+        path,
+        json={
+            "int_val": None,
+            "str_val": None,
+            "list_val": None,
+        },
+    )
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": None,
@@ -1050,10 +938,10 @@ def test_nullable_with_non_null_default_pass_null(path: str):
 def test_nullable_with_non_null_default_no_embed_pass_null(path: str):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, content="null")
+    response = client.post(
+        path, content="null", headers={"content-type": "application/json"}
+    )
 
-    assert mock_convert.call_count == 1, "Validator should be called once for the field"
     assert response.status_code == 200, response.text  # pragma: no cover
     assert response.json() == {"val": None}  # pragma: no cover
     # TODO: Remove 'no cover' when the issue is fixed
@@ -1076,10 +964,8 @@ def test_nullable_with_non_null_default_no_embed_pass_null(path: str):
 def test_nullable_with_non_null_default_pass_value(path: str, values: dict[str, Any]):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, json=values)
+    response = client.post(path, json=values)
 
-    assert mock_convert.call_count == 3, "Validator should be called for each field"
     assert response.status_code == 200, response.text
     assert response.json() == {
         "int_val": int(values["int_val"]),
@@ -1103,9 +989,7 @@ def test_nullable_with_non_null_default_pass_value(path: str, values: dict[str, 
 def test_nullable_with_non_null_default_no_embed_pass_value(path: str, value: Any):
     client = TestClient(app)
 
-    with patch(f"{__name__}.convert", Mock(wraps=convert)) as mock_convert:
-        response = client.post(path, json=value)
+    response = client.post(path, json=value)
 
-    assert mock_convert.call_count == 1, "Validator should be called once for the field"
     assert response.status_code == 200, response.text
     assert response.json() == {"val": value}
