@@ -558,7 +558,6 @@ There are a few common ways these components can work together to ensure `root_p
 
 1. The proxy strips the prefix, and the ASGI server (e.g., Uvicorn) adds it back and sets `root_path` in the ASGI `scope`.
 2. The proxy keeps the prefix and forwards requests as-is, while the ASGI app is started with the correct `root_path` parameter.
-3. The proxy keeps the prefix but also sends an `X-Forwarded-Prefix` header, and a middleware in the app uses that header to dynamically set `root_path`.
 
 Let's look at each of these approaches in detail.
 
@@ -729,108 +728,6 @@ Use this approach when your ASGI server doesn't support a `--root-path` option, 
 Otherwise, prefer using the `--root-path` approach [described above](#uvicorn-root-path-proxy-strips-prefix).
 
 ///
-
-#### Using `X-Forwarded-Prefix` header { #using-x-forwarded-prefix-header }
-
-This is another common approach. It's the most flexible, but requires more complex initial configuration.
-
-/// warning
-
-This is a more advanced approach. In most cases, you should use the `--root-path` option [described above](#uvicorn-root-path-proxy-strips-prefix).
-
-///
-
-Imagine the prefix you use to serve the app might change over time. With the `--root-path` approach, you would need to update both the proxy configuration and the ASGI server command each time the prefix changes.
-
-Or, suppose you want to serve your app under multiple prefixes, such as `/api/v1` and `/backend/v1`. You would then need multiple instances of your app configured with different `--root-path` values - not ideal.
-
-There is a better solution for this!
-
-💡 Configure your reverse proxy to send the mount prefix in a header, e.g.:
-
-```
-X-Forwarded-Prefix: /api/v1
-```
-
-Here is an example Traefik configuration:
-
-```TOML
-[http]
-
-  [http.routers]
-
-    [http.routers.app-api-v1]
-      entryPoints = ["http"]
-      service = "app"
-      rule = "PathPrefix(`/api/v1`)"
-      middlewares = ["prefix-api-v1"]
-
-    [http.routers.app-backend-v1]
-      entryPoints = ["http"]
-      service = "app"
-      rule = "PathPrefix(`/backend/v1`)"
-      middlewares = ["prefix-backend-v1"]
-
-  [http.services]
-
-    [http.services.app.loadBalancer]
-      [[http.services.app.loadBalancer.servers]]
-        url = "http://127.0.0.1:8000"
-
-  [http.middlewares]
-
-    [http.middlewares.prefix-api-v1.headers.customRequestHeaders]
-      X-Forwarded-Prefix = "/api/v1"
-
-    [http.middlewares.prefix-backend-v1.headers.customRequestHeaders]
-      X-Forwarded-Prefix = "/backend/v1"
-```
-
-/// note
-
-`X-Forwarded-Prefix` is not a part of any standard, but it is widely recognized for informing an app of its URL path prefix.
-
-///
-
-You can then use middleware to read this header and dynamically set the correct `root_path`:
-
-{* ../../docs_src/behind_a_proxy/tutorial005_py310.py hl[1:22] *}
-
-This allows a single FastAPI instance to handle requests under multiple prefixes, with `root_path` correctly set for each request.
-
-Run the server without `--root-path` option:
-
-<div class="termy">
-
-```console
-$ fastapi run main.py --forwarded-allow-ips="*"
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-```
-
-</div>
-
-Open your browser and go to [http://127.0.0.1:9999/api/v1/app](http://127.0.0.1:9999/api/v1/app)
-
-```json
-{
-    "message": "Hello World",
-    "path": "/api/v1/app",
-    "root_path": "/api/v1"
-}
-```
-
-Now, go to [http://127.0.0.1:9999/backend/v1/app](http://127.0.0.1:9999/backend/v1/app)
-
-```json
-{
-    "message": "Hello World",
-    "path": "/backend/v1/app",
-    "root_path": "/backend/v1"
-}
-```
-
-The same FastAPI instance now handles requests for multiple prefixes, using the correct `root_path` each time. 🎉
 
 #### Important note { #important-note }
 
