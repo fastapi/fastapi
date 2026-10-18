@@ -221,7 +221,7 @@ def test_custom_error_handler_sees_span(telemetry):
 
 def test_route_prefix_and_dynamic_mount(telemetry):
     config, exporter, reader = telemetry
-    parent = FastAPI(telemetry=config, root_path="/proxy")
+    parent = FastAPI(telemetry=config)
     child = FastAPI()
     router = APIRouter(prefix="/v1")
 
@@ -231,7 +231,9 @@ def test_route_prefix_and_dynamic_mount(telemetry):
 
     child.include_router(router, prefix="/api")
     parent.mount("/tenants/{tenant}", child)
-    response = TestClient(parent).get("/proxy/tenants/acme/api/v1/items/4")
+    response = TestClient(parent, root_path="/proxy").get(
+        "/proxy/tenants/acme/api/v1/items/4"
+    )
     assert response.json() == 4
     (span,) = server_spans(exporter)
     assert (

@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+The `root_path` parameter in `FastAPI()` is deprecated. Configure the server with `fastapi run --root-path /api/v1` instead.
+
 ## 0.145.0 (2026-10-18)
 
 ### Breaking Changes
