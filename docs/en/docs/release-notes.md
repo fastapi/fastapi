@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Breaking Changes
+
+* 🔥 Remove deprecated `openapi_prefix` and unused `**extra` from `FastAPI`. PR [#16518](https://github.com/fastapi/fastapi/pull/16518) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Document URL paths in templates. PR [#16517](https://github.com/fastapi/fastapi/pull/16517) by [@tiangolo](https://github.com/tiangolo).
