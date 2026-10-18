@@ -84,8 +84,8 @@ class OpenIdConnect(SecurityBase):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    async def __call__(self, conn: HTTPConnection) -> str | None:
-        authorization = conn.headers.get("Authorization")
+    async def __call__(self, request: HTTPConnection) -> str | None:
+        authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
                 raise self.make_not_authenticated_error()

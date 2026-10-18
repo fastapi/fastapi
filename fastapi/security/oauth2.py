@@ -420,8 +420,8 @@ class OAuth2(SecurityBase):
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    async def __call__(self, conn: HTTPConnection) -> str | None:
-        authorization = conn.headers.get("Authorization")
+    async def __call__(self, request: HTTPConnection) -> str | None:
+        authorization = request.headers.get("Authorization")
         if not authorization:
             if self.auto_error:
                 raise self.make_not_authenticated_error()
@@ -533,8 +533,8 @@ class OAuth2PasswordBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, conn: HTTPConnection) -> str | None:
-        authorization = conn.headers.get("Authorization")
+    async def __call__(self, request: HTTPConnection) -> str | None:
+        authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:
@@ -639,8 +639,8 @@ class OAuth2AuthorizationCodeBearer(OAuth2):
             auto_error=auto_error,
         )
 
-    async def __call__(self, conn: HTTPConnection) -> str | None:
-        authorization = conn.headers.get("Authorization")
+    async def __call__(self, request: HTTPConnection) -> str | None:
+        authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "bearer":
             if self.auto_error:

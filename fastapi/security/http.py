@@ -92,9 +92,9 @@ class HTTPBase(SecurityBase):
         )
 
     async def __call__(
-        self, conn: HTTPConnection
+        self, request: HTTPConnection
     ) -> HTTPAuthorizationCredentials | None:
-        authorization = conn.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -202,9 +202,9 @@ class HTTPBasic(HTTPBase):
         return {"WWW-Authenticate": "Basic"}
 
     async def __call__(  # type: ignore
-        self, conn: HTTPConnection
+        self, request: HTTPConnection
     ) -> HTTPBasicCredentials | None:
-        authorization = conn.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "basic":
             if self.auto_error:
@@ -303,9 +303,9 @@ class HTTPBearer(HTTPBase):
         self.auto_error = auto_error
 
     async def __call__(
-        self, conn: HTTPConnection
+        self, request: HTTPConnection
     ) -> HTTPAuthorizationCredentials | None:
-        authorization = conn.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
@@ -406,9 +406,9 @@ class HTTPDigest(HTTPBase):
         self.auto_error = auto_error
 
     async def __call__(
-        self, conn: HTTPConnection
+        self, request: HTTPConnection
     ) -> HTTPAuthorizationCredentials | None:
-        authorization = conn.headers.get("Authorization")
+        authorization = request.headers.get("Authorization")
         scheme, credentials = get_authorization_scheme_param(authorization)
         if not (authorization and scheme and credentials):
             if self.auto_error:
