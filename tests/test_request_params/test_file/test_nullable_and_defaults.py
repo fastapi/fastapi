@@ -1,9 +1,10 @@
 from typing import Annotated
 
 import pytest
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 
@@ -80,14 +81,7 @@ EMPTY_FILE_FORM = (
     "content",
     [
         pytest.param(b"", id="omitted"),
-        pytest.param(
-            EMPTY_FILE_FORM,
-            id="no-selection",
-            marks=pytest.mark.xfail(
-                reason="A file with an empty filename and content is treated as supplied",
-                raises=AssertionError,
-            ),
-        ),
+        pytest.param(EMPTY_FILE_FORM, id="no-selection"),
     ],
 )
 def test_missing_required_nullable_files(path, content):
@@ -108,14 +102,7 @@ def test_missing_required_nullable_files(path, content):
     "content",
     [
         pytest.param(b"", id="omitted"),
-        pytest.param(
-            EMPTY_FILE_FORM,
-            id="no-selection",
-            marks=pytest.mark.xfail(
-                reason="A file with an empty filename and content is treated as supplied",
-                raises=AssertionError,
-            ),
-        ),
+        pytest.param(EMPTY_FILE_FORM, id="no-selection"),
     ],
 )
 def test_missing_optional_nullable_files(path, content):
@@ -158,14 +145,7 @@ def test_named_file_is_supplied_even_when_empty(path, content):
     "content",
     [
         pytest.param(b"", id="omitted"),
-        pytest.param(
-            EMPTY_FILE_FORM,
-            id="no-selection",
-            marks=pytest.mark.xfail(
-                reason="A file with an empty filename and content is treated as supplied",
-                raises=AssertionError,
-            ),
-        ),
+        pytest.param(EMPTY_FILE_FORM, id="no-selection"),
     ],
 )
 def test_missing_files_use_bytes_defaults(content):
@@ -189,6 +169,116 @@ def test_supplied_files_override_bytes_defaults(content, expected):
     )
     assert response.status_code == 200
     assert response.json() == {"file": expected, "files": [expected]}
+
+
+@pytest.mark.parametrize("path", ["/required-bytes", "/required-uploadfile"])
+def test_file_without_a_name_is_supplied_when_it_has_content(path):
+    response = client.post(
+        path,
+        content=(
+            b"--boundary\r\n"
+            b'Content-Disposition: form-data; name="file"; filename=""\r\n'
+            b"Content-Type: application/octet-stream\r\n\r\n"
+            b"hello\r\n--boundary\r\n"
+            b'Content-Disposition: form-data; name="files"; filename=""\r\n'
+            b"Content-Type: application/octet-stream\r\n\r\n"
+            b"hello\r\n--boundary--\r\n"
+        ),
+        headers={"content-type": "multipart/form-data; boundary=boundary"},
+    )
+    assert response.status_code == 200
+    assert response.json() == {"file": 5, "files": [5]}
+
+
+@pytest.mark.parametrize("path", ["/required-bytes", "/required-uploadfile"])
+def test_file_list_ignores_unselected_inputs(path):
+    response = client.post(
+        path,
+        content=(
+            b"--boundary\r\n"
+            b'Content-Disposition: form-data; name="file"; filename="empty.txt"\r\n'
+            b"Content-Type: application/octet-stream\r\n\r\n"
+            b"\r\n--boundary\r\n"
+            b'Content-Disposition: form-data; name="files"; filename="first.txt"\r\n'
+            b"Content-Type: application/octet-stream\r\n\r\n"
+            b"\r\n--boundary\r\n"
+            b'Content-Disposition: form-data; name="files"; filename=""\r\n'
+            b"Content-Type: application/octet-stream\r\n\r\n"
+            b"\r\n--boundary\r\n"
+            b'Content-Disposition: form-data; name="files"; filename="last.txt"\r\n'
+            b"Content-Type: application/octet-stream\r\n\r\n"
+            b"hello\r\n--boundary--\r\n"
+        ),
+        headers={"content-type": "multipart/form-data; boundary=boundary"},
+    )
+    assert response.status_code == 200
+    assert response.json() == {"file": 0, "files": [0, 5]}
+
+
+def test_multipart_text_items_in_bytes_list_are_preserved():
+    response = client.post(
+        "/required-bytes",
+        files=[
+            ("file", ("empty.txt", b"")),
+            ("files", (None, "")),
+            ("files", (None, "text")),
+            ("files", ("selected.txt", b"hello")),
+        ],
+    )
+    assert response.status_code == 200
+    assert response.json() == {"file": 0, "files": [0, 4, 5]}
+
+
+def test_unselected_files_in_form_model_use_defaults_and_remain_unset():
+    app = FastAPI()
+
+    class FileModel(BaseModel):
+        file: UploadFile | None = None
+        files: Annotated[list[UploadFile], Field(default_factory=list)]
+
+    @app.post("/")
+    def upload(params: Annotated[FileModel, Form()]):
+        assert params.file is None
+        assert params.files == []
+        return params.model_dump(exclude_unset=True)
+
+    client = TestClient(app)
+    response = client.post(
+        "/",
+        content=EMPTY_FILE_FORM,
+        headers={"content-type": "multipart/form-data; boundary=boundary"},
+    )
+    assert response.status_code == 200
+    assert response.json() == {}
+
+
+def test_required_non_nullable_files():
+    app = FastAPI()
+
+    @app.post("/")
+    def upload(
+        file: Annotated[UploadFile, File()], files: Annotated[list[bytes], File()]
+    ):
+        return {"file": file.size, "files": [len(value) for value in files]}
+
+    client = TestClient(app)
+    response = client.post(
+        "/",
+        content=EMPTY_FILE_FORM,
+        headers={"content-type": "multipart/form-data; boundary=boundary"},
+    )
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "file"]),
+        ("missing", ["body", "files"]),
+    ]
+
+    response = client.post(
+        "/",
+        files=[("file", ("empty.txt", b"")), ("files", ("empty.txt", b""))],
+    )
+    assert response.status_code == 200
+    assert response.json() == {"file": 0, "files": [0]}
 
 
 def test_openapi_schema():
