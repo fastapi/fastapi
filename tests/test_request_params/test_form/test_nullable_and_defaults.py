@@ -16,19 +16,7 @@ from pydantic import (
 )
 
 
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/parameter",
-        pytest.param(
-            "/model",
-            marks=pytest.mark.xfail(
-                reason="Empty scalar form strings are not treated as missing in models",
-                raises=AssertionError,
-            ),
-        ),
-    ],
-)
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
 @pytest.mark.parametrize("default", [None, "default"])
 @pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
 def test_empty_string_uses_default(path, default, encoding):
@@ -60,19 +48,7 @@ def test_empty_string_uses_default(path, default, encoding):
     }
 
 
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/parameter",
-        pytest.param(
-            "/model",
-            marks=pytest.mark.xfail(
-                reason="Empty scalar form strings are not treated as missing in models",
-                raises=AssertionError,
-            ),
-        ),
-    ],
-)
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
 @pytest.mark.parametrize("default", [None, 10])
 @pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
 def test_empty_integer_uses_default(path, default, encoding):
@@ -104,27 +80,17 @@ def test_empty_integer_uses_default(path, default, encoding):
     }
 
 
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/parameter",
-        pytest.param(
-            "/model",
-            marks=pytest.mark.xfail(
-                reason="Empty required scalar form strings are not treated as missing in models",
-                raises=AssertionError,
-            ),
-        ),
-    ],
-)
-def test_empty_required_string_is_missing(path):
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
+@pytest.mark.parametrize("annotation", [str, str | None])
+def test_empty_required_string_is_missing(path, encoding, annotation):
     app = FastAPI()
 
     class Model(BaseModel):
-        value: str | None
+        value: annotation
 
     @app.post("/parameter")
-    def read_parameter(value: Annotated[str | None, Form()]):
+    def read_parameter(value: Annotated[annotation, Form()]):
         return {"value": value, "fields_set": None}
 
     @app.post("/model")
@@ -135,34 +101,27 @@ def test_empty_required_string_is_missing(path):
     supplied = client.post(path, data={"value": "hello"})
     assert supplied.status_code == 200
     assert supplied.json()["value"] == "hello"
-    response = client.post(path, data={"value": ""})
+    if encoding == "urlencoded":
+        response = client.post(path, data={"value": ""})
+    else:
+        response = client.post(path, files={"value": (None, "")})
     assert response.status_code == 422
     assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
         ("missing", ["body", "value"]),
     ]
 
 
-@pytest.mark.parametrize(
-    "path",
-    [
-        "/parameter",
-        pytest.param(
-            "/model",
-            marks=pytest.mark.xfail(
-                reason="Empty required scalar form strings are not treated as missing in models",
-                raises=AssertionError,
-            ),
-        ),
-    ],
-)
-def test_empty_required_integer_is_missing(path):
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
+@pytest.mark.parametrize("annotation", [int, int | None])
+def test_empty_required_integer_is_missing(path, encoding, annotation):
     app = FastAPI()
 
     class Model(BaseModel):
-        value: int | None
+        value: annotation
 
     @app.post("/parameter")
-    def read_parameter(value: Annotated[int | None, Form()]):
+    def read_parameter(value: Annotated[annotation, Form()]):
         return {"value": value, "fields_set": None}
 
     @app.post("/model")
@@ -173,11 +132,301 @@ def test_empty_required_integer_is_missing(path):
     supplied = client.post(path, data={"value": "1"})
     assert supplied.status_code == 200
     assert supplied.json()["value"] == 1
-    response = client.post(path, data={"value": ""})
+    if encoding == "urlencoded":
+        response = client.post(path, data={"value": ""})
+    else:
+        response = client.post(path, files={"value": (None, "")})
     assert response.status_code == 422
     assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
         ("missing", ["body", "value"]),
     ]
+
+
+@pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
+def test_empty_form_model_value_uses_default_factory(encoding):
+    app = FastAPI()
+    default_factory = Mock(return_value=10)
+
+    class Model(BaseModel):
+        value: Annotated[int, Field(default_factory=default_factory)]
+
+    @app.post("/")
+    def read_model(params: Annotated[Model, Form()]):
+        return {
+            "values": params.model_dump(),
+            "supplied": params.model_dump(exclude_unset=True),
+        }
+
+    default_factory.assert_not_called()
+    client = TestClient(app)
+    if encoding == "urlencoded":
+        response = client.post("/", data={"value": ""})
+    else:
+        response = client.post("/", files={"value": (None, "")})
+    assert response.status_code == 200
+    assert response.json() == {"values": {"value": 10}, "supplied": {}}
+    default_factory.assert_called_once_with()
+
+
+@pytest.mark.parametrize("validate_default,expected", [(False, 10), (True, 20)])
+def test_empty_form_model_value_respects_default_validation(validate_default, expected):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: Annotated[
+            int,
+            AfterValidator(lambda value: value * 2),
+            Field(validate_default=validate_default),
+        ] = 10
+
+    @app.post("/")
+    def read_model(params: Annotated[Model, Form()]):
+        return {
+            "values": params.model_dump(),
+            "supplied": params.model_dump(exclude_unset=True),
+        }
+
+    client = TestClient(app)
+    response = client.post("/", data={"value": ""})
+    assert response.status_code == 200
+    assert response.json() == {"values": {"value": expected}, "supplied": {}}
+
+
+@pytest.mark.parametrize(
+    "field",
+    [
+        Field(alias="input"),
+        Field(alias="legacy", validation_alias="input"),
+        Field(validation_alias=AliasChoices("first", "input")),
+    ],
+)
+def test_empty_form_model_value_uses_alias(field):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        model_config = ConfigDict(extra="forbid")
+        value: Annotated[int, field] = 10
+
+    @app.post("/")
+    def read_model(params: Annotated[Model, Form()]):
+        return {
+            "values": params.model_dump(),
+            "supplied": params.model_dump(exclude_unset=True),
+        }
+
+    client = TestClient(app)
+    response = client.post("/", data={"input": "5"})
+    assert response.status_code == 200
+    assert response.json() == {"values": {"value": 5}, "supplied": {"value": 5}}
+    response = client.post("/", data={"input": ""})
+    assert response.status_code == 200
+    assert response.json() == {"values": {"value": 10}, "supplied": {}}
+
+
+@pytest.mark.parametrize(
+    "config",
+    [
+        ConfigDict(populate_by_name=True, extra="forbid"),
+        pytest.param(
+            ConfigDict(validate_by_name=True, validate_by_alias=False, extra="forbid"),
+            marks=pytest.mark.skipif(
+                PYDANTIC_VERSION_MINOR_TUPLE < (2, 11),
+                reason="validate_by_name and validate_by_alias require Pydantic 2.11",
+            ),
+        ),
+    ],
+)
+def test_empty_form_model_value_accepts_field_name(config):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        model_config = config
+        value: Annotated[int, Field(alias="input")] = 10
+
+    @app.post("/")
+    def read_model(params: Annotated[Model, Form()]):
+        return {
+            "values": params.model_dump(),
+            "supplied": params.model_dump(exclude_unset=True),
+        }
+
+    client = TestClient(app)
+    response = client.post("/", data={"value": "5"})
+    assert response.status_code == 200
+    assert response.json() == {"values": {"value": 5}, "supplied": {"value": 5}}
+    response = client.post("/", data={"value": ""})
+    assert response.status_code == 200
+    assert response.json() == {"values": {"value": 10}, "supplied": {}}
+
+
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize(
+    "data,expected",
+    [
+        ({"first": "", "second": ""}, 10),
+        ({"first": "", "second": "5"}, 5),
+        ({"first": "5", "second": ""}, 5),
+        ({"first": "5", "second": "6"}, 5),
+    ],
+)
+def test_empty_form_values_with_alias_choices(path, data, expected):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: Annotated[
+            int, Field(validation_alias=AliasChoices("first", "second"))
+        ] = 10
+
+    @app.post("/parameter")
+    def read_parameter(
+        value: Annotated[
+            int, Form(validation_alias=AliasChoices("first", "second"))
+        ] = 10,
+    ):
+        return {"value": value}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return params.model_dump()
+
+    client = TestClient(app)
+    response = client.post(path, data=data)
+    assert response.status_code == 200
+    assert response.json() == {"value": expected}
+
+
+@pytest.mark.parametrize(
+    "path,error_alias", [("/parameter", "value"), ("/model", "first")]
+)
+def test_required_form_alias_choices_preserve_validation_precedence(path, error_alias):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: Annotated[int, Field(validation_alias=AliasChoices("first", "second"))]
+
+    @app.post("/parameter")
+    def read_parameter(
+        value: Annotated[int, Form(validation_alias=AliasChoices("first", "second"))],
+    ):
+        return {"value": value}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return params.model_dump()
+
+    client = TestClient(app)
+    response = client.post(path, data={"first": "", "second": "5"})
+    assert response.status_code == 200
+    assert response.json() == {"value": 5}
+
+    response = client.post(path, data={"first": "invalid", "second": "5"})
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("int_parsing", ["body", error_alias]),
+    ]
+
+    response = client.post(path, data={"first": "", "second": ""})
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", error_alias]),
+    ]
+
+
+@pytest.mark.parametrize(
+    "data,expected,supplied",
+    [
+        ({"first": "", "value": ""}, 10, {}),
+        ({"first": "", "value": "5"}, 5, {"value": 5}),
+    ],
+)
+def test_empty_form_model_alias_falls_back_to_field_name(data, expected, supplied):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        model_config = ConfigDict(populate_by_name=True)
+        value: Annotated[
+            int, Field(validation_alias=AliasChoices("first", "second"))
+        ] = 10
+
+    @app.post("/")
+    def read_model(params: Annotated[Model, Form()]):
+        return {
+            "value": params.value,
+            "supplied": params.model_dump(exclude_unset=True),
+        }
+
+    client = TestClient(app)
+    response = client.post("/", data=data)
+    assert response.status_code == 200
+    assert response.json() == {"value": expected, "supplied": supplied}
+
+
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize(
+    "data,expected",
+    [
+        ({"second": [""]}, [""]),
+        ({"second": ["", "hello"]}, ["", "hello"]),
+        ({"first": [""], "second": ["hello"]}, [""]),
+    ],
+)
+def test_form_list_alias_choices_preserve_empty_items(path, data, expected):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: Annotated[
+            list[str], Field(validation_alias=AliasChoices("first", "second"))
+        ]
+
+    @app.post("/parameter")
+    def read_parameter(
+        value: Annotated[
+            list[str], Form(validation_alias=AliasChoices("first", "second"))
+        ],
+    ):
+        return {"value": value}
+
+    @app.post("/model")
+    def read_model(params: Annotated[Model, Form()]):
+        return params.model_dump(exclude_unset=True)
+
+    client = TestClient(app)
+    response = client.post(path, data=data)
+    assert response.status_code == 200
+    assert response.json() == {"value": expected}
+
+
+def test_empty_form_model_value_preserves_extra_and_json_strings():
+    app = FastAPI()
+
+    class Model(BaseModel):
+        model_config = ConfigDict(extra="allow")
+        value: str = "default"
+
+    @app.post("/form")
+    def read_form(params: Annotated[Model, Form()]):
+        return {
+            "values": params.model_dump(),
+            "supplied": params.model_dump(exclude_unset=True),
+        }
+
+    @app.post("/json")
+    def read_json(params: Model):
+        return params.model_dump(exclude_unset=True)
+
+    client = TestClient(app)
+    response = client.post("/form", data={"value": "", "extra": ""})
+    assert response.status_code == 200
+    assert response.json() == {
+        "values": {"value": "default", "extra": ""},
+        "supplied": {"extra": ""},
+    }
+    response = client.post("/json", json={"value": "", "extra": ""})
+    assert response.status_code == 200
+    assert response.json() == {"value": "", "extra": ""}
+    assert Model.model_validate({"value": ""}).model_dump(exclude_unset=True) == {
+        "value": ""
+    }
 
 
 @pytest.mark.parametrize("path", ["/parameter", "/model"])
@@ -538,6 +787,7 @@ def test_checkbox_model_accepts_field_name(config, data, expected, validation_al
         ({"enabled": "on"}, True),
         ({"checkbox": "on"}, True),
         ({"checkbox": ["off", "on"]}, True),
+        ({"enabled": "", "checkbox": "on"}, True),
         ({}, False),
     ],
 )
