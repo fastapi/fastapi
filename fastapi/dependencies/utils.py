@@ -737,8 +737,9 @@ def _validate_value_with_model_field(
     if value is None:
         if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
-        else:
-            return deepcopy(field.default), []
+        value = deepcopy(field.default)
+        if not field.field_info.validate_default:
+            return value, []
     return field.validate(value, values, loc=loc)
 
 
@@ -770,10 +771,8 @@ def _get_multidict_value(
             and len(value) == 0
         )
     ):
-        if field.field_info.is_required():
-            return
-        else:
-            return deepcopy(field.default)
+        # Apply defaults during validation, not while extracting request data.
+        return None
     return value
 
 
