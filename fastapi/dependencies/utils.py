@@ -747,6 +747,11 @@ def _is_json_field(field: ModelField) -> bool:
     return any(type(item) is Json for item in field.field_info.metadata)
 
 
+def _is_empty_file_input(value: Any) -> bool:
+    # Browsers send an empty filename and content when no file is selected.
+    return isinstance(value, UploadFile) and value.filename == "" and value.size == 0
+
+
 def _get_multidict_value(
     field: ModelField, values: Mapping[str, Any], alias: str | None = None
 ) -> Any:
@@ -757,14 +762,17 @@ def _get_multidict_value(
         and isinstance(values, (ImmutableMultiDict, Headers))
     ):
         value = values.getlist(alias)
+        if isinstance(values, FormData):
+            value = [item for item in value if not _is_empty_file_input(item)]
     else:
         value = values.get(alias, None)
     if (
         value is None
         or (
             isinstance(values, FormData)
-            and isinstance(value, str)  # For type checks
-            and value == ""
+            and (
+                (isinstance(value, str) and value == "") or _is_empty_file_input(value)
+            )
         )
         or (
             field_annotation_is_sequence(field.field_info.annotation)
