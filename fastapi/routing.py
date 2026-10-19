@@ -5,6 +5,7 @@ import errno
 import functools
 import inspect
 import json
+import math
 import os
 import stat
 import threading
@@ -305,6 +306,17 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
     return ctx
 
 
+def _normalize_non_finite_floats(data: Any) -> Any:
+    """Replace non-finite values in JSON-compatible data, preserving dict keys."""
+    if isinstance(data, float):
+        return data if math.isfinite(data) else None
+    if isinstance(data, dict):
+        return {key: _normalize_non_finite_floats(value) for key, value in data.items()}
+    if isinstance(data, list):
+        return [_normalize_non_finite_floats(value) for value in data]
+    return data
+
+
 async def serialize_response(
     *,
     field: ModelField | None = None,
@@ -536,7 +548,9 @@ def get_request_handler(
                     )
                 else:
                     data = jsonable_encoder(data)
-                    return json.dumps(data).encode("utf-8")
+                    return json.dumps(_normalize_non_finite_floats(data)).encode(
+                        "utf-8"
+                    )
 
             if is_sse_stream:
                 # Generator endpoint: stream as Server-Sent Events
@@ -554,7 +568,11 @@ def get_request_handler(
                             if hasattr(item.data, "model_dump_json"):
                                 data_str = item.data.model_dump_json()
                             else:
-                                data_str = json.dumps(jsonable_encoder(item.data))
+                                data_str = json.dumps(
+                                    _normalize_non_finite_floats(
+                                        jsonable_encoder(item.data)
+                                    )
+                                )
                         else:
                             data_str = None
                         return format_sse_event(
@@ -2004,13 +2022,16 @@ class _FrontendStaticFiles(StaticFiles):
             return self.file_response(full_path, stat_result, scope)
 
         if self.fallback == "404.html" or (
-            self.fallback == "auto" and self._fallback_file_exists("404.html")
+            self.fallback == "auto" and await self._fallback_file_exists("404.html")
         ):
             return await self._fallback_response("404.html", scope, status_code=404)
 
         if (
             self.fallback == "index.html"
-            or (self.fallback == "auto" and self._fallback_file_exists("index.html"))
+            or (
+                self.fallback == "auto"
+                and await self._fallback_file_exists("index.html")
+            )
         ) and _is_frontend_navigation_request(scope):
             return await self._fallback_response("index.html", scope, status_code=200)
 
@@ -2043,8 +2064,8 @@ class _FrontendStaticFiles(StaticFiles):
                 return full_path, stat_result, True
         return None
 
-    def _fallback_file_exists(self, fallback: str) -> bool:
-        _, stat_result = self.lookup_path(fallback)
+    async def _fallback_file_exists(self, fallback: str) -> bool:
+        _, stat_result = await run_in_threadpool(self.lookup_path, fallback)
         return stat_result is not None and stat.S_ISREG(stat_result.st_mode)
 
     async def _fallback_response(

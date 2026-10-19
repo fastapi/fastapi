@@ -31,7 +31,7 @@ $ uv add "fastapi[standard]"
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-이 모든 기능은 기본적으로 작동하며, 텔레메트리를 사용하기 위해 별도의 코드를 작성할 필요가 없습니다.
+텔레메트리를 수집하기 위해 별도의 코드를 작성할 필요가 없습니다.
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ Pro 요금제에서는 [메트릭 대시보드](https://fastapicloud.com/docs/mo
 예제 URL을 사용할 엔드포인트로 바꾸고 다음 환경 변수를 설정하세요:
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME`은 모니터링 서비스에서 애플리케이션을 식별합니다. 엔드포인트는 데이터를 수신하는 기본 URL입니다. 트레이스는 해당 URL 아래의 `/v1/traces`로, 메트릭은 `/v1/metrics`로, 로그는 `/v1/logs`로 전송됩니다.
+`FASTAPI_OTEL_AUTO_CONFIGURE=true`는 FastAPI의 자동 익스포터 설정을 활성화합니다. `OTEL_SERVICE_NAME`은 모니터링 서비스에서 애플리케이션을 식별합니다. 엔드포인트는 데이터를 수신하는 기본 URL입니다. 트레이스는 해당 URL 아래의 `/v1/traces`로, 메트릭은 `/v1/metrics`로, 로그는 `/v1/logs`로 전송됩니다.
 
 서비스에서 인증을 요구하는 경우, `OTEL_EXPORTER_OTLP_HEADERS`를 해당 서비스에서 지정한 헤더로 설정하세요. 예를 들면 `api-key=YOUR_API_KEY`입니다.
 
@@ -85,13 +86,9 @@ $ curl http://127.0.0.1:8000/items/1
 
 텔레메트리 라이브러리는 OpenTelemetry의 전역 프로바이더를 설정할 수 있습니다. 애플리케이션이 시작되기 전에 라이브러리를 설정하면 FastAPI가 해당 프로바이더를 자동으로 사용합니다.
 
-환경 변수에 OTLP 엔드포인트가 설정되어 있으면, FastAPI는 활성화된 각 프로바이더에 해당 대상으로 데이터를 보내는 익스포터를 추가합니다. 기존 익스포터는 계속해서 각자의 대상으로 데이터를 보냅니다.
+기본적으로 FastAPI는 익스포터를 추가하지 않고 설정된 프로바이더를 사용합니다. 자동 설정이 활성화되어 있고 환경 변수에 OTLP 엔드포인트가 설정되어 있으면, FastAPI는 활성화된 각 프로바이더에 해당 대상으로 데이터를 보내는 익스포터를 추가합니다. 기존 익스포터는 계속해서 각자의 대상으로 데이터를 보냅니다.
 
-각 대상은 한 번만 설정하세요. 다른 라이브러리가 이미 환경 변수에 지정된 대상으로의 전송을 처리하고 있다면, 해당 라이브러리의 환경 변수 기반 내보내기를 비활성화하거나 FastAPI의 자동 설정을 끄세요:
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+다른 라이브러리가 이미 같은 대상으로의 내보내기를 설정하고 있다면, 텔레메트리가 중복되지 않도록 `FASTAPI_OTEL_AUTO_CONFIGURE`를 설정하지 않거나 `false`로 설정하세요.
 
 `telemetry` 딕셔너리에 프로바이더를 직접 전달할 수도 있습니다. 예를 들어, 다음 프로바이더는 OpenTelemetry의 콘솔 익스포터를 사용하여 터미널에 요청 스팬을 출력합니다:
 
@@ -143,7 +140,7 @@ FastAPI는 요청 유효성 검사 실패도 경로와 오류 수가 포함된 �
 | `logs` | 유효성 검사 실패 및 처리되지 않은 예외 기록 | `True` |
 | `operation_spans` | 요청 작업에 대한 스팬 추가 | `True` |
 | `exclude` | ASGI 스코프를 전달받는 함수가 `True`를 반환하면 해당 요청 제외 | `None` |
-| `auto_configure` | 환경 변수에 설정된 엔드포인트에 대한 익스포터 추가 | `True` |
+| `auto_configure` | 환경 변수에 설정된 엔드포인트에 대한 익스포터 추가 | `FASTAPI_OTEL_AUTO_CONFIGURE=true`이면 `True`, 그렇지 않으면 `False` |
 
 예를 들어, 상태 확인 요청을 제외하고 메트릭을 수집하려면 다음과 같이 설정하세요:
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-애플리케이션이 lifespan 함수 내부 등에서 프로바이더 설정을 직접 처리하는 경우 `auto_configure`를 `False`로 설정하세요.
+`telemetry` 딕셔너리에 명시적으로 지정한 `auto_configure` 값은 `FASTAPI_OTEL_AUTO_CONFIGURE`보다 우선합니다. 코드에서 자동 설정을 활성화하려면 `telemetry={"auto_configure": True}`를 사용하세요. 환경 변수에서 자동 설정을 활성화했더라도 특정 애플리케이션에서 비활성화하려면 `telemetry={"auto_configure": False}`를 사용하세요.

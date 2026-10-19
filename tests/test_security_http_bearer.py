@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Security
+from fastapi import FastAPI, Security, WebSocket
+from fastapi.requests import HTTPConnection
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -34,6 +35,43 @@ def test_security_http_bearer_incorrect_scheme_credentials():
     assert response.status_code == 401, response.text
     assert response.json() == {"detail": "Not authenticated"}
     assert response.headers["WWW-Authenticate"] == "Bearer"
+
+
+def test_security_http_bearer_subclass_request_keyword():
+    class CustomHTTPBearer(HTTPBearer):
+        async def __call__(
+            self, request: HTTPConnection
+        ) -> HTTPAuthorizationCredentials | None:
+            return await super().__call__(request=request)
+
+    subclass_app = FastAPI()
+    subclass_security = CustomHTTPBearer()
+
+    @subclass_app.get("/users/me")
+    async def read_user(
+        credentials: HTTPAuthorizationCredentials = Security(subclass_security),
+    ):
+        return credentials
+
+    @subclass_app.websocket("/users/me")
+    async def read_user_websocket(
+        websocket: WebSocket,
+        credentials: HTTPAuthorizationCredentials = Security(subclass_security),
+    ):
+        await websocket.accept()
+        await websocket.send_json(credentials.model_dump())
+        await websocket.close()
+
+    subclass_client = TestClient(subclass_app)
+    headers = {"Authorization": "Bearer foobar"}
+    expected = {"scheme": "Bearer", "credentials": "foobar"}
+
+    response = subclass_client.get("/users/me", headers=headers)
+    assert response.status_code == 200, response.text
+    assert response.json() == expected
+
+    with subclass_client.websocket_connect("/users/me", headers=headers) as websocket:
+        assert websocket.receive_json() == expected
 
 
 def test_openapi_schema():

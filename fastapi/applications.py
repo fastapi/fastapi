@@ -1,4 +1,5 @@
 import os
+import warnings
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
 from typing import Annotated, Any, Literal, TypeVar
@@ -11,8 +12,11 @@ from fastapi.exception_handlers import (
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.logger import logger
+from fastapi.exceptions import (
+    FastAPIDeprecationWarning,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
@@ -641,38 +645,22 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
-        openapi_prefix: Annotated[
-            str,
-            Doc(
-                """
-                A URL prefix for the OpenAPI URL.
-                """
-            ),
-            deprecated(
-                """
-                "openapi_prefix" has been deprecated in favor of "root_path", which
-                follows more closely the ASGI standard, is simpler, and more
-                automatic.
-                """
-            ),
-        ] = "",
         root_path: Annotated[
             str,
             Doc(
                 """
-                A path prefix handled by a proxy that is not seen by the application
-                but is seen by external clients, which affects things like Swagger UI.
+                Deprecated. Configure the server with
+                `fastapi run --root-path /api/v1` instead.
 
-                Read more about it at the
+                Read more in the
                 [FastAPI docs for Behind a Proxy](https://fastapi.tiangolo.com/advanced/behind-a-proxy/).
-
-                **Example**
-
-                ```python
-                from fastapi import FastAPI
-
-                app = FastAPI(root_path="/api/v1")
-                ```
+                """
+            ),
+            deprecated(
+                """
+                The `root_path` parameter is deprecated. Configure the server's
+                root path instead, for example with
+                `fastapi run --root-path /api/v1`.
                 """
             ),
         ] = "",
@@ -879,15 +867,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
-        **extra: Annotated[
-            Any,
-            Doc(
-                """
-                Extra keyword arguments to be stored in the app, not used by FastAPI
-                anywhere.
-                """
-            ),
-        ],
     ) -> None:
         self.debug = debug
         self.title = title
@@ -908,7 +887,6 @@ class FastAPI(Starlette):
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
         self.openapi_external_docs = openapi_external_docs
-        self.extra = extra
         self.openapi_version: Annotated[
             str,
             Doc(
@@ -945,14 +923,6 @@ class FastAPI(Starlette):
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
-        # TODO: remove when discarding the openapi_prefix parameter
-        if openapi_prefix:
-            logger.warning(
-                '"openapi_prefix" has been deprecated in favor of "root_path", which '
-                "follows more closely the ASGI standard, is simpler, and more "
-                "automatic. Check the docs at "
-                "https://fastapi.tiangolo.com/advanced/sub-applications/"
-            )
         self.webhooks: Annotated[
             routing.APIRouter,
             Doc(
@@ -965,7 +935,15 @@ class FastAPI(Starlette):
                 """
             ),
         ] = webhooks or routing.APIRouter()
-        self.root_path = root_path or openapi_prefix
+        if root_path:
+            warnings.warn(
+                "The `root_path` parameter is deprecated. Configure the "
+                "server's root path instead, for example with "
+                "`fastapi run --root-path /api/v1`.",
+                category=FastAPIDeprecationWarning,
+                stacklevel=2,
+            )
+        self.root_path = root_path
         self.state: Annotated[
             State,
             Doc(

@@ -31,7 +31,7 @@ Crea un archivo `main.py`:
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-Ten en cuenta que todo funciona por defecto, no necesitas escribir ningún código personalizado para que funcione la telemetría.
+No necesitas escribir ningún código personalizado para recopilar telemetría.
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ Para enviar telemetría a otro servicio de monitorización, configura un endpoin
 Establece estas variables de entorno, reemplazando la URL de ejemplo por tu endpoint:
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME` identifica tu aplicación en el servicio de monitorización. El endpoint es la URL base para recibir datos. Las trazas se envían a `/v1/traces`, las métricas a `/v1/metrics` y los logs a `/v1/logs` bajo esa URL.
+`FASTAPI_OTEL_AUTO_CONFIGURE=true` activa la configuración automática de exportadores de FastAPI. `OTEL_SERVICE_NAME` identifica tu aplicación en el servicio de monitorización. El endpoint es la URL base para recibir datos. Las trazas se envían a `/v1/traces`, las métricas a `/v1/metrics` y los logs a `/v1/logs` bajo esa URL.
 
 Si tu servicio requiere autenticación, establece `OTEL_EXPORTER_OTLP_HEADERS` con los headers que especifique, por ejemplo `api-key=YOUR_API_KEY`.
 
@@ -85,13 +86,9 @@ Un **proveedor** proporciona los objetos que registran trazas, métricas o logs.
 
 Los paquetes de telemetría pueden configurar los proveedores globales de OpenTelemetry. Configura el paquete antes de que se inicie la aplicación y FastAPI usará esos proveedores automáticamente.
 
-Cuando se establece un endpoint OTLP en el entorno, FastAPI añade un exportador para ese destino a cada proveedor habilitado. Los exportadores existentes siguen enviando datos a sus destinos.
+Por defecto, FastAPI usa los proveedores configurados sin añadir exportadores. Cuando la configuración automática está activada y se establece un endpoint OTLP en el entorno, FastAPI añade un exportador para ese destino a cada proveedor habilitado. Los exportadores existentes siguen enviando datos a sus destinos.
 
-Configura cada destino una sola vez. Si otro paquete ya gestiona el destino del entorno, desactiva su exportación al destino del entorno o desactiva la configuración automática de FastAPI:
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+Si otro paquete ya configura la exportación al mismo destino, deja `FASTAPI_OTEL_AUTO_CONFIGURE` sin establecer o establécelo en `false` para evitar telemetría duplicada.
 
 También puedes pasar un proveedor directamente en el diccionario `telemetry`. Por ejemplo, este proveedor usa el exportador de consola de OpenTelemetry para imprimir los spans de las requests en tu terminal:
 
@@ -128,7 +125,7 @@ Las métricas de requests HTTP abarcan únicamente requests HTTP. Las desconexio
 
 FastAPI registra las excepciones no controladas como logs de OpenTelemetry, vinculados a la traza de la request o de la conexión. Los logs de error se registran incluso cuando la traza no se incluye en el muestreo.
 
-Los logs de excepciones incluyen el tipo, el mensaje y la traza de la pila de la excepción. Los mensajes y las trazas de la pila pueden contener información sensible. Usa los procesadores de logs de tu proveedor para filtrarlos u ocultar la información sensible, o establece `logs` en `False` para desactivar estos logs.
+Los logs de excepciones incluyen el tipo, el mensaje y la traza del stack de la excepción. Los mensajes y las trazas del stack pueden contener información sensible. Usa los procesadores de logs de tu proveedor para filtrarlos u ocultar la información sensible, o establece `logs` en `False` para desactivar estos logs.
 
 FastAPI también registra los fallos de validación de las requests como logs de advertencia con la ruta y el número de errores. Estos logs no incluyen la entrada no válida.
 
@@ -143,7 +140,7 @@ El diccionario `telemetry` también acepta estos ajustes:
 | `logs` | Registrar fallos de validación y excepciones no controladas | `True` |
 | `operation_spans` | Añadir spans para las operaciones de las requests | `True` |
 | `exclude` | Omitir requests cuando una función que recibe el scope de ASGI devuelve `True` | `None` |
-| `auto_configure` | Añadir exportadores para los endpoints establecidos en variables de entorno | `True` |
+| `auto_configure` | Añadir exportadores para los endpoints establecidos en variables de entorno | `True` si `FASTAPI_OTEL_AUTO_CONFIGURE=true`, de lo contrario `False` |
 
 Por ejemplo, para recopilar métricas excluyendo las verificaciones de estado:
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-Establece `auto_configure` en `False` cuando tu aplicación gestione por sí misma la configuración de los proveedores, por ejemplo, dentro de su función lifespan.
+Un valor explícito de `auto_configure` en el diccionario `telemetry` tiene prioridad sobre `FASTAPI_OTEL_AUTO_CONFIGURE`. Usa `telemetry={"auto_configure": True}` para activar la configuración automática en el código, o `telemetry={"auto_configure": False}` para desactivarla en una aplicación incluso cuando la variable de entorno la active.

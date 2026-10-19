@@ -7,6 +7,92 @@ hide:
 
 ## Latest Changes
 
+## 0.147.0 (2026-10-19)
+
+Omitted `bool` and `bool | None` form fields are now interpreted as `False`, matching unchecked HTML checkboxes. This applies to individual `Form` parameters and form models, including required fields and fields with defaults of `True` or `None`. The inferred value is considered explicitly set, including in `model_dump(exclude_unset=True)`.
+
+JSON requests and direct Pydantic validation are unchanged. See [Boolean Form Fields](https://fastapi.tiangolo.com/tutorial/request-forms/#boolean-form-fields).
+
+### Breaking Changes
+
+* 🐛 Treat omitted boolean form fields as False. PR [#16523](https://github.com/fastapi/fastapi/pull/16523) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ✅ Add tests for parameter defaults, nullability, and browser form behavior. PR [#14829](https://github.com/fastapi/fastapi/pull/14829) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.146.0 (2026-10-18)
+
+The `root_path` parameter in `FastAPI()` is deprecated. Configure the server with `fastapi run --root-path /api/v1` instead.
+
+### Breaking Changes
+
+* 🗑️ Deprecate the `root_path` parameter in `FastAPI`. PR [#16520](https://github.com/fastapi/fastapi/pull/16520) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.145.0 (2026-10-18)
+
+### Breaking Changes
+
+* 🔥 Remove deprecated `openapi_prefix` and unused `**extra` from `FastAPI`. PR [#16518](https://github.com/fastapi/fastapi/pull/16518) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Document URL paths in templates. PR [#16517](https://github.com/fastapi/fastapi/pull/16517) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.144.0 (2026-10-18)
+
+### Features
+
+* ✨ Add WebSocket support to security dependencies. PR [#10147](https://github.com/fastapi/fastapi/pull/10147) by [@mnixry](https://github.com/mnixry).
+
+## 0.143.5 (2026-10-18)
+
+### Fixes
+
+* 🐛 Fix handling of empty value for `byte` file list parameter. PR [#9383](https://github.com/fastapi/fastapi/pull/9383) by [@Viicos](https://github.com/Viicos).
+
+## 0.143.4 (2026-10-17)
+
+### Upgrades
+
+* ⬆️ Add httpx2 to optional dependencies. PR [#16512](https://github.com/fastapi/fastapi/pull/16512) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.143.3 (2026-10-16)
+
+### Fixes
+
+* 🐛 Fix non-finite float serialization in JSONL and SSE streams. PR [#16509](https://github.com/fastapi/fastapi/pull/16509) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 🎨 Update Python format in Markdown with Ruff. PR [#16505](https://github.com/fastapi/fastapi/pull/16505) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.143.2 (2026-10-15)
+
+### Fixes
+
+* 🐛 Fix blocking frontend fallback file checks. PR [#16503](https://github.com/fastapi/fastapi/pull/16503) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update translations for zh-hant (update-outdated). PR [#16500](https://github.com/fastapi/fastapi/pull/16500) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ja (update-outdated). PR [#16499](https://github.com/fastapi/fastapi/pull/16499) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for zh (update-outdated). PR [#16501](https://github.com/fastapi/fastapi/pull/16501) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for hi (update-outdated). PR [#16498](https://github.com/fastapi/fastapi/pull/16498) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for es (update-outdated). PR [#16497](https://github.com/fastapi/fastapi/pull/16497) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for fr (update-outdated). PR [#16495](https://github.com/fastapi/fastapi/pull/16495) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ko (update-outdated). PR [#16496](https://github.com/fastapi/fastapi/pull/16496) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for de (update-outdated). PR [#16493](https://github.com/fastapi/fastapi/pull/16493) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for uk (update-outdated). PR [#16494](https://github.com/fastapi/fastapi/pull/16494) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for tr (update-outdated). PR [#16490](https://github.com/fastapi/fastapi/pull/16490) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for pt (update-outdated). PR [#16491](https://github.com/fastapi/fastapi/pull/16491) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ru (update-outdated). PR [#16492](https://github.com/fastapi/fastapi/pull/16492) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+
+### Internal
+
+* ⬆ Bump pydantic-ai-slim from 2.49.0 to 2.53.0. PR [#16487](https://github.com/fastapi/fastapi/pull/16487) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump werkzeug from 3.1.6 to 3.1.9. PR [#16464](https://github.com/fastapi/fastapi/pull/16464) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
 ## 0.143.1 (2026-10-14)
 
 ### Fixes
@@ -4645,23 +4731,19 @@ def get_current_user(token: str):
 
 
 @app.get("/items/")
-def read_items(user: User = Depends(get_current_user)):
-    ...
+def read_items(user: User = Depends(get_current_user)): ...
 
 
 @app.post("/items/")
-def create_item(*, user: User = Depends(get_current_user), item: Item):
-    ...
+def create_item(*, user: User = Depends(get_current_user), item: Item): ...
 
 
 @app.get("/items/{item_id}")
-def read_item(*, user: User = Depends(get_current_user), item_id: int):
-    ...
+def read_item(*, user: User = Depends(get_current_user), item_id: int): ...
 
 
 @app.delete("/items/{item_id}")
-def delete_item(*, user: User = Depends(get_current_user), item_id: int):
-    ...
+def delete_item(*, user: User = Depends(get_current_user), item_id: int): ...
 ```
 
 There's a bit of code duplication for the dependency:
@@ -4685,23 +4767,19 @@ CurrentUser = Annotated[User, Depends(get_current_user)]
 
 
 @app.get("/items/")
-def read_items(user: CurrentUser):
-    ...
+def read_items(user: CurrentUser): ...
 
 
 @app.post("/items/")
-def create_item(user: CurrentUser, item: Item):
-    ...
+def create_item(user: CurrentUser, item: Item): ...
 
 
 @app.get("/items/{item_id}")
-def read_item(user: CurrentUser, item_id: int):
-    ...
+def read_item(user: CurrentUser, item_id: int): ...
 
 
 @app.delete("/items/{item_id}")
-def delete_item(user: CurrentUser, item_id: int):
-    ...
+def delete_item(user: CurrentUser, item_id: int): ...
 ```
 
 ...and `CurrentUser` has all the typing information as `User`, so your editor will work as expected (autocompletion and everything), and **FastAPI** will be able to understand the dependency defined in `Annotated`. 😎
@@ -5293,12 +5371,15 @@ For example, if you have an app like this:
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+
 class Item(BaseModel):
     name: str
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
 
+
 app = FastAPI()
+
 
 @app.get("/items/invalidnone", response_model=Item)
 def get_invalid_none():
@@ -5313,12 +5394,15 @@ You could also be implicitly returning `None` without realizing, for example:
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+
 class Item(BaseModel):
     name: str
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
 
+
 app = FastAPI()
+
 
 @app.get("/items/invalidnone", response_model=Item)
 def get_invalid_none():
@@ -5335,12 +5419,15 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+
 class Item(BaseModel):
     name: str
     price: Optional[float] = None
     owner_ids: Optional[List[int]] = None
 
+
 app = FastAPI()
+
 
 @app.get("/items/invalidnone", response_model=Union[Item, None])
 def get_invalid_none():
@@ -5712,6 +5799,7 @@ from typing import Any, Dict, Optional
 legacy_request_state_context_var: ContextVar[Optional[Dict[str, Any]]] = ContextVar(
     "legacy_request_state_context_var", default=None
 )
+
 
 async def set_up_request_state_dependency():
     request_state = {"user": "deadpond"}

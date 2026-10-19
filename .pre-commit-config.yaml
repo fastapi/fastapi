@@ -27,14 +27,20 @@ repos:
         entry: uv run ruff check --force-exclude --fix --exit-non-zero-on-fix
         require_serial: true
         language: unsupported
-        types: [python]
+        types:
+          - python
+        # TODO: when translations catch up, re-enable this
+        # types_or: [python, pyi, jupyter, markdown]
 
       - id: local-ruff-format
         name: ruff format
         entry: uv run ruff format --force-exclude --exit-non-zero-on-format
         require_serial: true
         language: unsupported
-        types: [python]
+        types:
+          - python
+        # TODO: when translations catch up, re-enable this
+        # types_or: [python, pyi, jupyter, markdown]
 
       - id: local-mypy
         name: mypy check

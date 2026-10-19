@@ -31,7 +31,7 @@ $ uv add "fastapi[standard]"
 
 {* ../../docs_src/opentelemetry/tutorial001_py310.py *}
 
-Her şeyin varsayılan olarak çalıştığına dikkat edin; telemetrinin çalışması için özel bir kod yazmanız gerekmez.
+Telemetri toplamak için özel bir kod yazmanız gerekmez.
 
 ## FastAPI Cloud { #fastapi-cloud }
 
@@ -48,11 +48,12 @@ Telemetri verilerini başka bir izleme hizmetine göndermek için OpenTelemetry'
 Örnek URL'yi kendi endpoint'inizle değiştirerek şu ortam değişkenlerini ayarlayın:
 
 ```bash
+export FASTAPI_OTEL_AUTO_CONFIGURE=true
 export OTEL_SERVICE_NAME=my-api
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://collector.example.com
 ```
 
-`OTEL_SERVICE_NAME`, izleme hizmetinde uygulamanızı tanımlar. Endpoint, verilerin alınacağı temel URL'dir. Trace'ler bu URL altındaki `/v1/traces` adresine, metrikler `/v1/metrics` adresine ve log'lar `/v1/logs` adresine gönderilir.
+`FASTAPI_OTEL_AUTO_CONFIGURE=true`, FastAPI'nin otomatik exporter kurulumunu etkinleştirir. `OTEL_SERVICE_NAME`, izleme hizmetinde uygulamanızı tanımlar. Endpoint, verilerin alınacağı temel URL'dir. Trace'ler bu URL altındaki `/v1/traces` adresine, metrikler `/v1/metrics` adresine ve log'lar `/v1/logs` adresine gönderilir.
 
 Hizmetiniz kimlik doğrulaması gerektiriyorsa `OTEL_EXPORTER_OTLP_HEADERS` değerini, hizmetin belirttiği header'lara göre ayarlayın. Örneğin: `api-key=YOUR_API_KEY`.
 
@@ -85,13 +86,9 @@ $ curl http://127.0.0.1:8000/items/1
 
 Telemetri kütüphaneleri, OpenTelemetry'nin global provider'larını yapılandırabilir. Kütüphaneyi uygulama başlamadan önce yapılandırın; FastAPI bu provider'ları otomatik olarak kullanır.
 
-Ortam değişkenlerinde bir OTLP endpoint'i ayarlandığında FastAPI, etkin olan her provider'a bu hedef için bir exporter ekler. Mevcut exporter'lar kendi hedeflerine veri göndermeye devam eder.
+Varsayılan olarak FastAPI, exporter eklemeden yapılandırılmış provider'ları kullanır. Otomatik kurulum etkinleştirildiğinde ve ortam değişkenlerinde bir OTLP endpoint'i ayarlandığında FastAPI, etkin olan her provider'a bu hedef için bir exporter ekler. Mevcut exporter'lar kendi hedeflerine veri göndermeye devam eder.
 
-Her hedefi yalnızca bir kez yapılandırın. Ortam değişkenlerinde belirtilen hedefe gönderimi zaten başka bir kütüphane yönetiyorsa o kütüphanenin bu hedefe veri aktarımını devre dışı bırakın veya FastAPI'nin otomatik yapılandırmasını kapatın:
-
-```python
-app = FastAPI(telemetry={"auto_configure": False})
-```
+Aynı hedefe veri aktarımını zaten başka bir kütüphane yapılandırıyorsa telemetrinin yinelenmesini önlemek için `FASTAPI_OTEL_AUTO_CONFIGURE` değişkenini ayarlamayın veya `false` olarak ayarlayın.
 
 Ayrıca `telemetry` sözlüğünde doğrudan bir provider da iletebilirsiniz. Örneğin aşağıdaki provider, request span'lerini terminalinize yazdırmak için OpenTelemetry'nin konsol exporter'ını kullanır:
 
@@ -143,7 +140,7 @@ FastAPI, request doğrulama hatalarını da route ve hata sayısını içeren uy
 | `logs` | Doğrulama hatalarını ve yakalanmamış istisnaları kaydetmek | `True` |
 | `operation_spans` | Request işlemleri için span eklemek | `True` |
 | `exclude` | ASGI scope'unu alan bir fonksiyon `True` döndürdüğünde request'leri atlamak | `None` |
-| `auto_configure` | Ortam değişkenlerinde ayarlanan endpoint'ler için exporter eklemek | `True` |
+| `auto_configure` | Ortam değişkenlerinde ayarlanan endpoint'ler için exporter eklemek | `FASTAPI_OTEL_AUTO_CONFIGURE=true` ise `True`, aksi halde `False` |
 
 Örneğin, sağlık kontrollerini hariç tutarak metrik toplamak için:
 
@@ -158,4 +155,4 @@ app = FastAPI(
 )
 ```
 
-Uygulamanız provider kurulumunu kendisi yönetiyorsa, örneğin lifespan fonksiyonu içinde yapıyorsa, `auto_configure` değerini `False` olarak ayarlayın.
+`telemetry` sözlüğünde açıkça belirtilen bir `auto_configure` değeri, `FASTAPI_OTEL_AUTO_CONFIGURE` değişkeninden önceliklidir. Otomatik kurulumu kod üzerinden etkinleştirmek için `telemetry={"auto_configure": True}` kullanın. Ortam değişkeni etkinleştirse bile bir uygulama için devre dışı bırakmak üzere `telemetry={"auto_configure": False}` kullanın.
