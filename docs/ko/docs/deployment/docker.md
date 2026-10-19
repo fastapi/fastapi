@@ -105,36 +105,32 @@ Docker나 Kubernetes 같은 모든 컨테이너 관리 시스템에는 이러한
 
 ### 패키지 요구사항 { #package-requirements }
 
-보통 애플리케이션의 **패키지 요구사항**을 어떤 파일에 적어 둡니다.
+`uv`로 프로젝트를 관리할 때는 직접 의존성이 `pyproject.toml`에 선언되고, 정확히 해결된 버전은 `uv.lock`에 저장됩니다.
 
-이는 주로 그 요구사항을 **설치**하는 데 사용하는 도구에 따라 달라집니다.
-
-가장 일반적인 방법은 패키지 이름과 버전을 한 줄에 하나씩 적어 둔 `requirements.txt` 파일을 사용하는 것입니다.
-
-버전 범위를 설정할 때는 [FastAPI 버전들에 대하여](versions.md)에서 읽은 것과 같은 아이디어를 사용하면 됩니다.
-
-예를 들어 `requirements.txt`는 다음과 같을 수 있습니다:
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-그리고 보통 `pip`로 패키지 의존성을 설치합니다. 예를 들면:
+애플리케이션에 필요한 패키지를 다음으로 추가할 수 있습니다:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
 /// note | 참고
 
-패키지 의존성을 정의하고 설치하는 다른 형식과 도구도 있습니다.
+아래 Dockerfile은 컨테이너 내부에서 `pip`를 사용합니다. uv 프로젝트에서 잠긴 의존성을 Dockerfile이 기대하는 `requirements.txt` 형식으로 내보낼 수 있습니다:
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+생성된 `requirements.txt`는 컨테이너 빌드를 위한 내보내기 결과입니다. 의존성 관리는 계속 `uv add`로 하고, `uv.lock`이 변경될 때 다시 생성하세요.
 
 ///
 
@@ -372,7 +368,7 @@ Docker 컨테이너의 URL에서 확인할 수 있어야 합니다. 예를 들�
 
 또한 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 또는 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)(또는 Docker 호스트를 사용해 동등하게 접근)로 이동할 수도 있습니다.
 
-대안 자동 문서([ReDoc](https://github.com/Rebilly/ReDoc) 제공)를 볼 수 있습니다:
+대안 자동 문서([ReDoc](https://github.com/Redocly/redoc) 제공)를 볼 수 있습니다:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

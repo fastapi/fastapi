@@ -6,10 +6,10 @@
 
 要接收上传的文件，请先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-请确保你创建一个[虚拟环境](../virtual-environments.md)、激活它，然后安装，例如：
+将它添加到你的项目中：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 这是因为上传文件是以「表单数据」发送的。
@@ -151,7 +151,7 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 它们会被关联到同一个通过「表单数据」发送的「表单字段」。
 
-要实现这一点，声明一个由 `bytes` 或 `UploadFile` 组成的列表（`List`）：
+要实现这一点，声明一个由 `bytes` 或 `UploadFile` 组成的列表：
 
 {* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
 

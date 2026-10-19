@@ -487,7 +487,7 @@ Auf diese Weise weiß der `fastapi`-Befehl, wo er Ihre App findet.
 Sie könnten auch den Pfad an den Befehl übergeben, etwa:
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 Aber dann müssten Sie sich jedes Mal, wenn Sie den `fastapi`-Befehl aufrufen, an den korrekten Pfad erinnern.
@@ -503,7 +503,7 @@ Führen Sie nun Ihre App aus:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

@@ -370,11 +370,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 這種情況下，你可以使用**自訂驗證函式**，它會在一般驗證之後套用（例如先確認值是 `str` 之後）。
 
-你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) 來達成。
+你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) 來達成。
 
 /// tip | 提示
 
-Pydantic 也有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) 等等。🤓
+Pydantic 也有 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) 等等。🤓
 
 ///
 

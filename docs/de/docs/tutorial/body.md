@@ -6,7 +6,7 @@ Ein <abbr title="Anfragekörper">**Request**body</abbr> sind Daten, die vom Clie
 
 Ihre API muss fast immer einen **Response**body senden. Aber Clients müssen nicht unbedingt immer **Requestbodys** senden, manchmal fordern sie nur einen Pfad an, vielleicht mit einigen Query-Parametern, aber senden keinen Body.
 
-Um einen **Request**body zu deklarieren, verwenden Sie [Pydantic](https://docs.pydantic.dev/)-Modelle mit all deren Fähigkeiten und Vorzügen.
+Um einen **Request**body zu deklarieren, verwenden Sie [Pydantic](https://pydantic.dev/docs/)-Modelle mit all deren Fähigkeiten und Vorzügen.
 
 /// note | Hinweis
 

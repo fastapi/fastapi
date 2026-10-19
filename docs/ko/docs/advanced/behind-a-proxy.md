@@ -33,7 +33,7 @@ FastAPI CLI를 *CLI 옵션* `--forwarded-allow-ips`로 실행하고, 전달 헤�
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -161,7 +161,7 @@ IP `0.0.0.0`은 보통 해당 머신/서버에서 사용 가능한 모든 IP에�
 }
 ```
 
-이 예시에서 "Proxy"는 **Traefik** 같은 것이고, 서버는 **Uvicorn**으로 실행되는 FastAPI CLI처럼, FastAPI 애플리케이션을 실행하는 구성일 수 있습니다.
+이 예시에서 "Proxy"는 **Traefik** 같은 것이고, 서버는 **Uvicorn**을 사용하는 FastAPI CLI처럼, FastAPI 애플리케이션을 실행하는 구성일 수 있습니다.
 
 ### `root_path` 제공하기 { #providing-the-root-path }
 
@@ -170,7 +170,7 @@ IP `0.0.0.0`은 보통 해당 머신/서버에서 사용 가능한 모든 IP에�
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ ASGI 사양은 이 사용 사례를 위해 `root_path`를 정의합니다.
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Uvicorn은 프록시가 `http://127.0.0.1:8000/app`에서 Uvicorn에 접근할 �
 
 [Traefik](https://docs.traefik.io/)을 사용하면, 경로 접두사가 제거되는 구성을 로컬에서 쉽게 실험할 수 있습니다.
 
-[Traefik 다운로드](https://github.com/containous/traefik/releases)는 단일 바이너리이며, 압축 파일을 풀고 터미널에서 바로 실행할 수 있습니다.
+[Traefik 다운로드](https://github.com/traefik/traefik/releases)는 단일 바이너리이며, 압축 파일을 풀고 터미널에서 바로 실행할 수 있습니다.
 
 그 다음 다음 내용을 가진 `traefik.toml` 파일을 생성하세요:
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -394,7 +394,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 기본적으로 **FastAPI**는 OpenAPI 스키마에서 `root_path`의 URL로 `server`를 생성합니다.
 
-하지만 예를 들어 동일한 docs UI가 스테이징과 프로덕션 환경 모두와 상호작용하도록 하려면, 다른 대안 `servers`를 제공할 수도 있습니다.
+하지만 예를 들어 *동일한* docs UI가 스테이징과 프로덕션 환경 모두와 상호작용하도록 하려면, 다른 대안 `servers`를 제공할 수도 있습니다.
 
 사용자 정의 `servers` 리스트를 전달했고 `root_path`(API가 프록시 뒤에 있기 때문)가 있다면, **FastAPI**는 리스트의 맨 앞에 이 `root_path`를 가진 "server"를 삽입합니다.
 

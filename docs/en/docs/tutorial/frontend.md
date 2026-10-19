@@ -106,9 +106,13 @@ Then missing frontend paths return the normal `404`.
 
 ## Check Directory { #check-directory }
 
-By default, `app.frontend()` checks that the directory exists when the app is created.
+By default, `app.frontend()` uses `check_dir="auto"`.
 
-This helps catch configuration errors early. For example, if the frontend build output directory is missing, **FastAPI** will raise an error on startup.
+When the `FASTAPI_ENV` environment variable is set to `development`, **FastAPI** only shows a warning if the frontend build output directory is missing. The [`fastapi dev` command](https://github.com/fastapi/fastapi-cli#fastapi-dev) sets this environment variable for you if it is not already set. This lets you start the backend before building or starting the frontend during development.
+
+In any other environment, **FastAPI** raises an error when the app is created. This helps catch configuration errors early before deploying an app without its frontend files.
+
+You can also set `check_dir=True` to always check the directory when the app is created.
 
 If your frontend files are created later, for example by a separate build step after the app object is created, set `check_dir=False`:
 
@@ -131,6 +135,8 @@ Any regular *path operations* in the app will still take precedence, including i
 Frontend responses run inside the normal **FastAPI** application, so HTTP middleware applies to them.
 
 Dependencies from the app, from an `APIRouter`, and from `include_router()` also apply to frontend responses. This can be useful for protecting a frontend with cookie authentication or similar.
+
+Dependencies can also modify response headers and add background tasks, as with normal *path operations*.
 
 ## Static Build Output Only { #static-build-output-only }
 

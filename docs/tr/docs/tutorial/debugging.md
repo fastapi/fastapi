@@ -15,7 +15,7 @@ FastAPI uygulamanızda `uvicorn`'ı import edip doğrudan çalıştırın:
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ Dosyanızın adının `myapp.py` olduğunu varsayalım.
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>

@@ -48,4 +48,4 @@
 
 ///
 
-사용 가능한 모든 매개변수와 옵션은 [Starlette의 문서](https://www.starlette.dev/responses/#set-cookie)에서 확인할 수 있습니다.
+사용 가능한 모든 매개변수와 옵션은 [Starlette의 문서](https://starlette.dev/responses/#set-cookie)에서 확인할 수 있습니다.

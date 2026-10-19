@@ -271,7 +271,7 @@ def some_function(data: Any):
 
 ## Pydantic 모델 { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/)은 데이터 검증을 수행하는 파이썬 라이브러리입니다.
+[Pydantic](https://pydantic.dev/docs/)은 데이터 검증을 수행하는 파이썬 라이브러리입니다.
 
 속성을 가진 클래스 형태로 데이터의 "모양(shape)"을 선언합니다.
 
@@ -287,7 +287,7 @@ Pydantic 공식 문서의 예시:
 
 /// note | 참고
 
-더 알아보려면 [Pydantic 문서를 확인하세요](https://docs.pydantic.dev/).
+더 알아보려면 [Pydantic 문서를 확인하세요](https://pydantic.dev/docs/).
 
 ///
 

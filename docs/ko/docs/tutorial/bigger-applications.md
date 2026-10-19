@@ -58,17 +58,17 @@ from app.routers import items
 
 ```bash
 .
-├── app                  # 'app'은 Python 패키지입니다
-│   ├── __init__.py      # 이 파일로 'app'이 'Python 패키지'가 됩니다
-│   ├── main.py          # 'main' 모듈, 예: import app.main
-│   ├── dependencies.py  # 'dependencies' 모듈, 예: import app.dependencies
-│   └── routers          # 'routers'는 'Python 하위 패키지'입니다
-│   │   ├── __init__.py  # 이 파일로 'routers'가 'Python 하위 패키지'가 됩니다
-│   │   ├── items.py     # 'items' 서브모듈, 예: import app.routers.items
-│   │   └── users.py     # 'users' 서브모듈, 예: import app.routers.users
-│   └── internal         # 'internal'은 'Python 하위 패키지'입니다
-│       ├── __init__.py  # 이 파일로 'internal'이 'Python 하위 패키지'가 됩니다
-│       └── admin.py     # 'admin' 서브모듈, 예: import app.internal.admin
+├── app                  # "app"은 Python 패키지입니다
+│   ├── __init__.py      # 이 파일로 "app"이 "Python 패키지"가 됩니다
+│   ├── main.py          # "main" 모듈, 예: import app.main
+│   ├── dependencies.py  # "dependencies" 모듈, 예: import app.dependencies
+│   └── routers          # "routers"는 "Python 하위 패키지"입니다
+│   │   ├── __init__.py  # 이 파일로 "routers"가 "Python 하위 패키지"가 됩니다
+│   │   ├── items.py     # "items" 서브모듈, 예: import app.routers.items
+│   │   └── users.py     # "users" 서브모듈, 예: import app.routers.users
+│   └── internal         # "internal"은 "Python 하위 패키지"입니다
+│       ├── __init__.py  # 이 파일로 "internal"이 "Python 하위 패키지"가 됩니다
+│       └── admin.py     # "admin" 서브모듈, 예: import app.internal.admin
 ```
 
 ## `APIRouter` { #apirouter }
@@ -487,7 +487,7 @@ from app.main import app
 명령어에 경로를 직접 전달할 수도 있습니다:
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 하지만 `fastapi` 명령어를 실행할 때마다 올바른 경로를 기억해 전달해야 합니다.
@@ -503,7 +503,7 @@ $ fastapi dev app/main.py
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

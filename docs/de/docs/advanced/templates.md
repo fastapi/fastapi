@@ -8,12 +8,12 @@ Es gibt Werkzeuge zur einfachen Konfiguration, die Sie direkt in Ihrer **FastAPI
 
 ## Abhängigkeiten installieren { #install-dependencies }
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und `jinja2` installieren:
+Fügen Sie `jinja2` Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -53,7 +53,7 @@ Sie können auch `from starlette.templating import Jinja2Templates` verwenden.
 
 ## Templates erstellen { #writing-templates }
 
-Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B. folgendem Inhalt:
+Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B.:
 
 ```jinja hl_lines="7"
 {!../../docs_src/templates/templates/item.html!}
@@ -123,4 +123,4 @@ Und da Sie `StaticFiles` verwenden, wird diese CSS-Datei automatisch von Ihrer *
 
 ## Mehr Details { #more-details }
 
-Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in [Starlettes Dokumentation zu Templates](https://www.starlette.dev/templates/).
+Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in [Starlettes Dokumentation zu Templates](https://starlette.dev/templates/).

@@ -66,7 +66,7 @@
 
 І саме ці дві сутності - `scope` та `receive` - потрібні для створення нового екземпляра `Request`.
 
-Щоб дізнатися більше про `Request`, перегляньте [документацію Starlette про запити](https://www.starlette.dev/requests/).
+Щоб дізнатися більше про `Request`, перегляньте [документацію Starlette про запити](https://starlette.dev/requests/).
 
 ///
 

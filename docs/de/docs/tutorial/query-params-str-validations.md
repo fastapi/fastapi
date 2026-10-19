@@ -369,11 +369,11 @@ Es kann Fälle geben, in denen Sie eine **benutzerdefinierte Validierung** durch
 
 In diesen Fällen können Sie eine **benutzerdefinierte Validierungsfunktion** verwenden, die nach der normalen Validierung angewendet wird (z. B. nach der Validierung, dass der Wert ein `str` ist).
 
-Sie können dies mit [Pydantics `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) innerhalb von `Annotated` erreichen.
+Sie können dies mit [Pydantics `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) innerhalb von `Annotated` erreichen.
 
 /// tip | Tipp
 
-Pydantic unterstützt auch [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) und andere. 🤓
+Pydantic unterstützt auch [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) und andere. 🤓
 
 ///
 

@@ -33,7 +33,7 @@ Si tu **server** está detrás de un **proxy** confiable y solo el proxy le habl
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -170,7 +170,7 @@ Para lograr esto, puedes usar la opción de línea de comandos `--root-path` com
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ Luego, si inicias Uvicorn con:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ En un caso así (sin un prefijo de path eliminado), el proxy escucharía algo co
 
 Puedes ejecutar fácilmente el experimento localmente con un prefijo de path eliminado usando [Traefik](https://docs.traefik.io/).
 
-[Descarga Traefik](https://github.com/containous/traefik/releases), es un archivo binario único, puedes extraer el archivo comprimido y ejecutarlo directamente desde la terminal.
+[Descarga Traefik](https://github.com/traefik/traefik/releases), es un archivo binario único, puedes extraer el archivo comprimido y ejecutarlo directamente desde la terminal.
 
 Luego crea un archivo `traefik.toml` con:
 
@@ -321,7 +321,7 @@ Y ahora inicia tu app, utilizando la opción `--root-path`:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

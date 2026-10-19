@@ -166,7 +166,7 @@ Um das zu tun, verwenden Sie den Standard-Python-Typhinweis [`typing.Union`](htt
 
 /// note | Hinweis
 
-Wenn Sie eine [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) definieren, listen Sie den spezifischeren Typ zuerst auf, gefolgt vom weniger spezifischen Typ. Im Beispiel unten steht `PlaneItem` vor `CarItem` in `Union[PlaneItem, CarItem]`.
+Wenn Sie eine [`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/) definieren, listen Sie den spezifischsten Typ zuerst auf, gefolgt vom weniger spezifischen Typ. Im folgenden Beispiel kommt der spezifischere `PlaneItem` vor `CarItem` in `Union[PlaneItem, CarItem]`.
 
 ///
 

@@ -74,7 +74,7 @@ HTTP Host Header 攻撃を防ぐため、すべての受信リクエストに正
 
 ## `GZipMiddleware` { #gzipmiddleware }
 
-`Accept-Encoding` ヘッダーに "gzip" を含むリクエストに対して GZip レスポンスを処理します。
+`Accept-Encoding` ヘッダーに `"gzip"` を含むリクエストに対して GZip レスポンスを処理します。
 
 このミドルウェアは、通常のレスポンスとストリーミングレスポンスの両方を処理します。
 
@@ -91,7 +91,7 @@ HTTP Host Header 攻撃を防ぐため、すべての受信リクエストに正
 
 例えば:
 
-- [Uvicorn の `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+- [Uvicorn の `ProxyHeadersMiddleware`](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 - [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-他に利用可能なミドルウェアについては、[Starlette のミドルウェアドキュメント](https://www.starlette.dev/middleware/)や [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi) を参照してください。
+他に利用可能なミドルウェアについては、[Starlette のミドルウェアドキュメント](https://starlette.dev/middleware/)や [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi) を参照してください。

@@ -6,10 +6,10 @@ Você pode definir arquivos para serem enviados pelo cliente usando `File`.
 
 Para receber arquivos enviados, primeiro instale [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Garanta que você criou um [ambiente virtual](../virtual-environments.md), o ativou e então o instalou, por exemplo:
+Adicione-o ao seu projeto:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Isso é necessário, visto que os arquivos enviados são enviados como "dados de formulário".

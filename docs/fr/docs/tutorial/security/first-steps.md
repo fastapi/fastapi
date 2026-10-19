@@ -26,26 +26,26 @@ Copiez l'exemple dans un fichier `main.py` :
 
 /// note | Remarque
 
-Le package [`python-multipart`](https://github.com/Kludex/python-multipart) est installé automatiquement avec **FastAPI** lorsque vous exécutez la commande `pip install "fastapi[standard]"`.
+Le package [`python-multipart`](https://github.com/Kludex/python-multipart) est installé automatiquement avec **FastAPI** lorsque vous exécutez la commande `uv add "fastapi[standard]"`.
 
-Cependant, si vous utilisez la commande `pip install fastapi`, le package `python-multipart` n'est pas inclus par défaut.
+Cependant, si vous utilisez la commande `uv add fastapi`, le package `python-multipart` n'est pas inclus par défaut.
 
-Pour l'installer manuellement, vous devez vous assurer de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis de l'installer avec :
+Pour l'installer manuellement, ajoutez-le à votre projet avec :
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Cela est dû au fait que **OAuth2** utilise des « form data » pour envoyer le `username` et le `password`.
 
 ///
 
-Exécutez l'exemple avec :
+Exécutez l'exemple avec :
 
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -54,9 +54,9 @@ $ fastapi dev
 
 ## Vérifier { #check-it }
 
-Allez aux documents interactifs à l'adresse : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+Allez aux documents interactifs à l'adresse : [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-Vous verrez quelque chose comme ceci :
+Vous verrez quelque chose comme ceci :
 
 <img src="/img/tutorial/security/image01.png">
 
@@ -68,7 +68,7 @@ Et votre *chemin d'accès* a un petit cadenas dans le coin supérieur droit sur 
 
 ///
 
-Et si vous cliquez dessus, vous obtenez un petit formulaire d'autorisation pour saisir un `username` et un `password` (et d'autres champs optionnels) :
+Et si vous cliquez dessus, vous obtenez un petit formulaire d'autorisation pour saisir un `username` et un `password` (et d'autres champs optionnels) :
 
 <img src="/img/tutorial/security/image02.png">
 
@@ -96,7 +96,7 @@ OAuth2 a été conçu pour que le backend ou l'API puisse être indépendant du 
 
 Mais dans ce cas, la même application **FastAPI** gérera l'API et l'authentification.
 
-Voyons cela selon ce point de vue simplifié :
+Voyons cela selon ce point de vue simplifié :
 
 * L'utilisateur saisit le `username` et le `password` dans le frontend, puis appuie sur Entrée.
 * Le frontend (exécuté dans le navigateur de l'utilisateur) envoie ce `username` et ce `password` vers une URL spécifique de notre API (déclarée avec `tokenUrl="token"`).
@@ -110,7 +110,7 @@ Voyons cela selon ce point de vue simplifié :
 * Le frontend doit récupérer d'autres données depuis l'API.
     * Mais cela nécessite une authentification pour cet endpoint spécifique.
     * Donc, pour s'authentifier auprès de notre API, il envoie un en-tête `Authorization` avec une valeur `Bearer ` suivie du token.
-    * Si le token contient `foobar`, le contenu de l'en-tête `Authorization` serait : `Bearer foobar`.
+    * Si le token contient `foobar`, le contenu de l'en-tête `Authorization` serait : `Bearer foobar`.
 
 ## Le `OAuth2PasswordBearer` de **FastAPI** { #fastapis-oauth2passwordbearer }
 
@@ -158,7 +158,7 @@ C'est parce qu'il utilise le même nom que dans la spécification OpenAPI. Ainsi
 
 La variable `oauth2_scheme` est une instance de `OAuth2PasswordBearer`, mais c'est aussi un « callable ».
 
-Elle pourrait être appelée ainsi :
+Elle pourrait être appelée ainsi :
 
 ```Python
 oauth2_scheme(some, parameters)
@@ -192,7 +192,7 @@ S'il ne voit pas d'en-tête `Authorization`, ou si la valeur n'a pas de token `B
 
 Vous n'avez même pas à vérifier si le token existe pour renvoyer une erreur. Vous pouvez être sûr que si votre fonction est exécutée, elle aura une `str` dans ce token.
 
-Vous pouvez déjà l'essayer dans les documents interactifs :
+Vous pouvez déjà l'essayer dans les documents interactifs :
 
 <img src="/img/tutorial/security/image03.png">
 

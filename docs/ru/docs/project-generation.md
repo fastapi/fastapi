@@ -4,13 +4,13 @@
 
 Вы можете использовать этот шаблон для старта: в нём уже сделана значительная часть начальной настройки, безопасность, база данных и несколько эндпоинтов API.
 
-Репозиторий GitHub: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
+Репозиторий GitHub: [Full Stack FastAPI Template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ## Шаблон Full Stack FastAPI — Технологический стек и возможности { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/ru) для бэкенд‑API на Python.
     - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) для взаимодействия с SQL‑базой данных на Python (ORM).
-    - 🔍 [Pydantic](https://docs.pydantic.dev), используется FastAPI, для валидации данных и управления настройками.
+    - 🔍 [Pydantic](https://pydantic.dev/docs/), используется FastAPI, для валидации данных и управления настройками.
     - 💾 [PostgreSQL](https://www.postgresql.org) в качестве SQL‑базы данных.
 - 🚀 [React](https://react.dev) для фронтенда.
     - 💃 Используются TypeScript, хуки, Vite и другие части современного фронтенд‑стека.

@@ -1,6 +1,5 @@
 # レスポンスの Cookie { #response-cookies }
 
-
 ## `Response` パラメータを使う { #use-a-response-parameter }
 
 *path operation 関数*で `Response` 型のパラメータを宣言できます。
@@ -49,4 +48,4 @@
 
 ///
 
-利用可能なすべてのパラメータやオプションについては、[Starlette のドキュメント](https://www.starlette.dev/responses/#set-cookie)を参照してください。
+利用可能なすべてのパラメータやオプションについては、[Starlette のドキュメント](https://starlette.dev/responses/#set-cookie)を参照してください。

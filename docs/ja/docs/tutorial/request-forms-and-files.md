@@ -4,12 +4,12 @@
 
 /// note | 備考
 
-アップロードされたファイルやフォームデータを受信するには、まず[`python-multipart`](https://github.com/Kludex/python-multipart)をインストールします。
+アップロードされたファイルおよび/またはフォームデータを受信するには、まず[`python-multipart`](https://github.com/Kludex/python-multipart)をインストールします。
 
-[仮想環境](../virtual-environments.md)を作成し、それを有効化してから、例えば次のようにインストールしてください:
+プロジェクトに追加します:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

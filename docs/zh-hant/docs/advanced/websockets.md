@@ -4,12 +4,12 @@
 
 ## 安裝 `websockets` { #install-websockets }
 
-請先建立[虛擬環境](../virtual-environments.md)、啟用它，然後安裝 `websockets`（一個讓你更容易使用「WebSocket」通訊協定的 Python 套件）：
+將 `websockets`（一個讓你更容易使用「WebSocket」通訊協定的 Python 套件）加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -64,12 +64,12 @@ $ pip install websockets
 
 ## 試試看 { #try-it }
 
-如果你的檔案名為 `main.py`，用以下指令執行應用：
+將你的程式碼放在 `main.py` 檔案中，然後執行你的應用：
 
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -126,7 +126,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 想了解更多選項，請參考 Starlette 的文件：
 
-* [`WebSocket` 類別](https://www.starlette.dev/websockets/)。
-* [以類別為基礎的 WebSocket 處理](https://www.starlette.dev/endpoints/#websocketendpoint)。
+* [`WebSocket` 類別](https://starlette.dev/websockets/)。
+* [以類別為基礎的 WebSocket 處理](https://starlette.dev/endpoints/#websocketendpoint)。

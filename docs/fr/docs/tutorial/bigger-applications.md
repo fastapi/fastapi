@@ -180,7 +180,7 @@ Le résultat final est que les chemins d'item sont désormais :
 
 ... comme prévu.
 
-* Ils seront marqués avec une liste de tags qui contient une seule chaîne « items ».
+* Ils seront marqués avec une liste de tags qui contient une seule chaîne `"items"`.
     * Ces « tags » sont particulièrement utiles pour les systèmes de documentation interactive automatique (utilisant OpenAPI).
 * Ils incluront tous les `responses` prédéfinies.
 * Tous ces *chemins d'accès* auront la liste des `dependencies` évaluées/exécutées avant eux.
@@ -487,7 +487,7 @@ De cette façon, la commande `fastapi` saura où trouver votre app.
 Vous pourriez aussi passer le chemin à la commande, comme :
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 Mais vous devez vous rappeler de passer le bon chemin à chaque fois que vous appelez la commande `fastapi`.
@@ -503,7 +503,7 @@ Maintenant, exécutez votre application :
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

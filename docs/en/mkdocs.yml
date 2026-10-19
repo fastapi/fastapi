@@ -159,6 +159,7 @@ nav:
     - advanced/templates.md
     - advanced/websockets.md
     - advanced/events.md
+    - advanced/opentelemetry.md
     - advanced/testing-websockets.md
     - advanced/testing-events.md
     - advanced/testing-dependencies.md
@@ -211,6 +212,7 @@ nav:
   - reference/httpconnection.md
   - reference/response.md
   - reference/responses.md
+  - reference/sse.md
   - reference/middleware.md
   - "":
     - reference/openapi/index.md

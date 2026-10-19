@@ -34,12 +34,12 @@ Il s'agit d'un tutoriel très simple et court ; si vous souhaitez apprendre sur 
 
 ## Installer `SQLModel` { #install-sqlmodel }
 
-D'abord, assurez-vous de créer votre [environnement virtuel](../virtual-environments.md), de l'activer, puis d'installer `sqlmodel` :
+Ajoutez `sqlmodel` à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -152,7 +152,7 @@ Vous pouvez exécuter l'application :
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -337,7 +337,7 @@ Vous pouvez exécuter l'application à nouveau :
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -352,6 +352,6 @@ Si vous allez sur l'UI `/docs` de l'API, vous verrez qu'elle est maintenant à j
 
 ## Récapitulatif { #recap }
 
-Vous pouvez utiliser [**SQLModel**](https://sqlmodel.tiangolo.com/) pour interagir avec une base SQL et simplifier le code avec des *modèles de données* et des *modèles de table*.
+Vous pouvez utiliser [**SQLModel**](https://sqlmodel.tiangolo.com/) pour interagir avec une base SQL et simplifier le code avec des *modèles de données*  et des *modèles de table*.
 
 Vous pouvez en apprendre beaucoup plus dans les documents de **SQLModel**, il y a un mini [tutoriel plus long sur l'utilisation de SQLModel avec **FastAPI**](https://sqlmodel.tiangolo.com/tutorial/fastapi/). 🚀

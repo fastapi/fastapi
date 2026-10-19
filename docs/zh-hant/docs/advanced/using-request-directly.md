@@ -4,18 +4,18 @@
 
 例如從以下來源取得資料：
 
-- 路徑中的參數。
-- 標頭。
-- Cookies。
-- 等等。
+* 路徑中的參數。
+* 標頭。
+* Cookies。
+* 等等。
 
-這麼做時，FastAPI 會自動驗證並轉換這些資料，還會為你的 API 產生文件。
+這麼做時，**FastAPI** 會自動驗證並轉換這些資料，還會為你的 API 產生文件。
 
 但有些情況你可能需要直接存取 `Request` 物件。
 
 ## 關於 `Request` 物件的細節 { #details-about-the-request-object }
 
-由於 FastAPI 底層其實是 Starlette，再加上一層工具，因此在需要時你可以直接使用 Starlette 的 [`Request`](https://www.starlette.dev/requests/) 物件。
+由於 **FastAPI** 底層其實是 **Starlette**，再加上一層工具，因此在需要時你可以直接使用 Starlette 的 [`Request`](https://starlette.dev/requests/) 物件。
 
 同時也代表，如果你直接從 `Request` 物件取得資料（例如讀取 body），FastAPI 不會替它做驗證、轉換或文件化（透過 OpenAPI 為自動化的 API 介面產生文件）。
 
@@ -25,13 +25,13 @@
 
 ## 直接使用 `Request` 物件 { #use-the-request-object-directly }
 
-假設你想在你的 路徑操作函式（path operation function） 中取得用戶端的 IP 位址／主機。
+假設你想在你的 *路徑操作函式* 中取得用戶端的 IP 位址／主機。
 
 為此，你需要直接存取請求。
 
 {* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
 
-只要在 路徑操作函式 中宣告一個型別為 `Request` 的參數，FastAPI 就會將當前的 `Request` 傳入該參數。
+只要在 *路徑操作函式* 中宣告一個型別為 `Request` 的參數，**FastAPI** 就會將當前的 `Request` 傳入該參數。
 
 /// tip
 
@@ -45,12 +45,12 @@
 
 ## `Request` 文件 { #request-documentation }
 
-你可以在 [Starlette 官方文件站點中的 `Request` 物件](https://www.starlette.dev/requests/) 了解更多細節。
+你可以在 [Starlette 官方文件站點中的 `Request` 物件](https://starlette.dev/requests/) 了解更多細節。
 
 /// note | 技術細節
 
 你也可以使用 `from starlette.requests import Request`。
 
-FastAPI 之所以直接提供它，是為了讓開發者更方便；但它本身是來自 Starlette。
+**FastAPI** 之所以直接提供它，是為了讓開發者更方便；但它本身是來自 Starlette。
 
 ///

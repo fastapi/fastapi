@@ -30,12 +30,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 Python में JWT tokens generate और verify करने के लिए हमें `PyJWT` install करना होगा।
 
-सुनिश्चित करें कि आप एक [virtual environment](../../virtual-environments.md) बनाएँ, उसे activate करें, और फिर `pyjwt` install करें:
+अपने project में `pyjwt` जोड़ें:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ pwdlib password hashes संभालने के लिए एक शान�
 
 Recommended algorithm "Argon2" है।
 
-सुनिश्चित करें कि आप एक [virtual environment](../../virtual-environments.md) बनाएँ, उसे activate करें, और फिर Argon2 के साथ pwdlib install करें:
+अपने project में Argon2 के साथ `pwdlib` जोड़ें:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```

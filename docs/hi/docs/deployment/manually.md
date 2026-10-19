@@ -46,13 +46,13 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 
 आइए details में थोड़ा और गहराई से देखें।
 
-FastAPI Python web frameworks और servers बनाने के लिए एक standard का उपयोग करता है जिसे <abbr title="Asynchronous Server Gateway Interface - asynchronous server gateway interface">ASGI</abbr> कहा जाता है। FastAPI एक ASGI web framework है।
+FastAPI Python web frameworks और servers बनाने के लिए एक standard का उपयोग करता है जिसे <abbr title="Asynchronous Server Gateway Interface - asynchronous सर्वर गेटवे इंटरफेस">ASGI</abbr> कहा जाता है। FastAPI एक ASGI web framework है।
 
 किसी remote server machine में **FastAPI** application (या कोई भी दूसरी ASGI application) चलाने के लिए आपको मुख्य रूप से एक ASGI server program चाहिए, जैसे **Uvicorn**; यही `fastapi` command में default रूप से आता है।
 
 कई विकल्प हैं, जिनमें शामिल हैं:
 
-* [Uvicorn](https://www.uvicorn.dev/): एक high performance ASGI server।
+* [Uvicorn](https://uvicorn.dev): एक high performance ASGI server।
 * [Hypercorn](https://hypercorn.readthedocs.io/): एक ASGI server जो अन्य features के साथ HTTP/2 और Trio के साथ compatible है।
 * [Daphne](https://github.com/django/daphne): Django Channels के लिए बनाया गया ASGI server।
 * [Granian](https://github.com/emmett-framework/granian): Python applications के लिए एक Rust HTTP server।
@@ -73,14 +73,14 @@ Remote machine का संदर्भ देते समय, इसे **ser
 
 लेकिन आप एक ASGI server को मैन्युअली भी install कर सकते हैं।
 
-सुनिश्चित करें कि आप एक [virtual environment](../virtual-environments.md) बनाएँ, उसे activate करें, और फिर आप server application install कर सकते हैं।
+Server application को अपने project में जोड़ें।
 
 उदाहरण के लिए, Uvicorn install करने के लिए:
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]"
+$ uv add "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -95,7 +95,7 @@ $ pip install "uvicorn[standard]"
 
 इसमें `uvloop` शामिल है, जो `asyncio` के लिए high-performance drop-in replacement है, और बड़ा concurrency performance boost देता है।
 
-जब आप `pip install "fastapi[standard]"` जैसी किसी command से FastAPI install करते हैं, तो आपको `uvicorn[standard]` भी मिल जाता है।
+जब आप `uv add "fastapi[standard]"` जैसी किसी चीज़ से FastAPI जोड़ते हैं, तो आपको `uvicorn[standard]` भी मिल जाता है।
 
 ///
 
@@ -106,7 +106,7 @@ $ pip install "uvicorn[standard]"
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+$ uv run uvicorn main:app --host 0.0.0.0 --port 80
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```

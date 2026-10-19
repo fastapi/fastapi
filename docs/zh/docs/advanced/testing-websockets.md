@@ -8,6 +8,6 @@
 
 /// note | 注意
 
-更多细节请查看 Starlette 的文档：[测试 WebSockets](https://www.starlette.dev/testclient/#testing-websocket-sessions)。
+更多细节请查看 Starlette 的文档：[测试 WebSockets](https://starlette.dev/testclient/#testing-websocket-sessions)。
 
 ///

@@ -1,6 +1,6 @@
 # Тестування { #testing }
 
-Завдяки [Starlette](https://www.starlette.dev/testclient/), тестувати застосунки **FastAPI** просто й приємно.
+Завдяки [Starlette](https://starlette.dev/testclient/), тестувати застосунки **FastAPI** просто й приємно.
 
 Воно базується на [HTTPX](https://www.python-httpx.org), який, своєю чергою, спроєктований на основі Requests, тож він дуже знайомий та інтуїтивно зрозумілий.
 
@@ -12,10 +12,10 @@
 
 Щоб використовувати `TestClient`, спочатку встановіть [`httpx`](https://www.python-httpx.org).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили `httpx`, наприклад:
+Додайте його до вашого проєкту:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -130,7 +130,7 @@ $ pip install httpx
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
 
-Коли вам потрібно, щоб клієнт передав інформацію в запиті, але ви не знаєте, як це зробити, ви можете пошукати (Google), як це зробити в `httpx`, або навіть як це зробити з `requests`, оскільки дизайн HTTPX базується на дизайні Requests.
+Коли вам потрібно, щоб клієнт передав інформацію в запиті, але ви не знаєте, як це зробити, ви можете пошукати (Google), як це зробити в `httpx`, або навіть як це зробити з `requests`, оскільки дизайн HTTPX базується на дизайі Requests.
 
 Далі ви просто повторюєте ці ж дії у ваших тестах.
 
@@ -156,12 +156,12 @@ $ pip install httpx
 
 Після цього вам потрібно встановити `pytest`.
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його і встановили необхідні пакети, наприклад:
+Додайте його до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ $ pip install pytest
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

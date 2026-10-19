@@ -92,7 +92,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## 標準ベースのメリット、ドキュメンテーションの代替物 { #standards-based-benefits-alternative-documentation }
 
-また、生成されたスキーマが [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 標準に従っているので、互換性のあるツールが多数あります。
+また、生成されたスキーマが [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 標準に従っているので、互換性のあるツールが多数あります。
 
 このため、**FastAPI**自体が代替のAPIドキュメントを提供します（ReDocを使用）。これは、 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) にアクセスすると確認できます。
 
@@ -102,7 +102,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 ## Pydantic { #pydantic }
 
-すべてのデータバリデーションは [Pydantic](https://docs.pydantic.dev/) によって内部で実行されるため、Pydanticの全てのメリットが得られます。そして、安心して利用することができます。
+すべてのデータバリデーションは [Pydantic](https://pydantic.dev/docs/) によって内部で実行されるため、Pydanticの全てのメリットが得られます。そして、安心して利用することができます。
 
 `str`、 `float` 、 `bool` および他の多くの複雑なデータ型を型宣言に使用できます。
 

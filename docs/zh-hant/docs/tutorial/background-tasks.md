@@ -1,6 +1,6 @@
 # 背景任務 { #background-tasks }
 
-你可以定義背景任務，讓它們在傳回回應之後執行。
+你可以定義背景任務，讓它們在傳回回應*之後*執行。
 
 這對於那些需要在請求之後發生、但用戶端其實不必在收到回應前等它完成的操作很有用。
 
@@ -13,11 +13,11 @@
 
 ## 使用 `BackgroundTasks` { #using-backgroundtasks }
 
-首先，匯入 `BackgroundTasks`，並在你的路徑操作函式中定義一個型別為 `BackgroundTasks` 的參數：
+首先，匯入 `BackgroundTasks`，並在你的*路徑操作函式*中定義一個型別宣告為 `BackgroundTasks` 的參數：
 
 {* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
 
-**FastAPI** 會為你建立 `BackgroundTasks` 物件，並以該參數傳入。
+**FastAPI** 會為你建立 `BackgroundTasks` 型別的物件，並以該參數傳入。
 
 ## 建立任務函式 { #create-a-task-function }
 
@@ -35,7 +35,7 @@
 
 ## 新增背景任務 { #add-the-background-task }
 
-在路徑操作函式內，使用 `.add_task()` 將任務函式加入背景任務物件：
+在你的*路徑操作函式*內，使用 `.add_task()` 將任務函式傳給*背景任務*物件：
 
 {* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
@@ -47,29 +47,31 @@
 
 ## 相依性注入 { #dependency-injection }
 
-在相依性注入系統中也可使用 `BackgroundTasks`。你可以在多個層級宣告 `BackgroundTasks` 型別的參數：路徑操作函式、相依項（dependable）、次級相依項等。
+在相依性注入系統中也可使用 `BackgroundTasks`。你可以在多個層級宣告 `BackgroundTasks` 型別的參數：*路徑操作函式*、相依項（dependable）、次級相依項等。
 
 **FastAPI** 會在各種情況下正確處理並重用同一個物件，將所有背景任務合併，並在之後於背景執行：
 
+
 {* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
 
-在此範例中，訊息會在回應送出之後寫入 `log.txt` 檔案。
+
+在此範例中，訊息會在回應送出*之後*寫入 `log.txt` 檔案。
 
 如果請求中有查詢參數，會以背景任務寫入日誌。
 
-接著，在路徑操作函式中建立的另一個背景任務會使用 `email` 路徑參數寫入訊息。
+接著，在*路徑操作函式*中建立的另一個背景任務會使用 `email` 路徑參數寫入訊息。
 
 ## 技術細節 { #technical-details }
 
-類別 `BackgroundTasks` 直接來自 [`starlette.background`](https://www.starlette.dev/background/)。
+類別 `BackgroundTasks` 直接來自 [`starlette.background`](https://starlette.dev/background/)。
 
-它被直接匯入/包含到 FastAPI 中，因此你可以從 `fastapi` 匯入它，並避免不小心從 `starlette.background` 匯入另一個同名的 `BackgroundTask`（結尾沒有 s）。
+它被直接匯入/包含到 FastAPI 中，因此你可以從 `fastapi` 匯入它，並避免不小心從 `starlette.background` 匯入替代的 `BackgroundTask`（結尾沒有 `s`）。
 
-只使用 `BackgroundTasks`（而非 `BackgroundTask`）時，你就能把它當作路徑操作函式的參數，並讓 **FastAPI** 幫你處理其餘部分，就像直接使用 `Request` 物件一樣。
+只使用 `BackgroundTasks`（而非 `BackgroundTask`）時，你就能把它當作*路徑操作函式*的參數，並讓 **FastAPI** 幫你處理其餘部分，就像直接使用 `Request` 物件一樣。
 
 在 FastAPI 中仍可單獨使用 `BackgroundTask`，但你需要在程式碼中自行建立該物件，並回傳包含它的 Starlette `Response`。
 
-更多細節請參閱 [Starlette 官方的 Background Tasks 文件](https://www.starlette.dev/background/)。
+更多細節請參閱 [Starlette 官方的 Background Tasks 文件](https://starlette.dev/background/)。
 
 ## 注意事項 { #caveat }
 
@@ -81,4 +83,4 @@
 
 ## 重點回顧 { #recap }
 
-在路徑操作函式與相依項中匯入並使用 `BackgroundTasks` 參數，以新增背景任務。
+在*路徑操作函式*與相依項中匯入並使用 `BackgroundTasks` 參數，以新增背景任務。

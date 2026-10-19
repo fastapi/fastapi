@@ -19,7 +19,7 @@ Primero, importa `BackgroundTasks` y define un parámetro en tu *path operation 
 
 **FastAPI** creará el objeto de tipo `BackgroundTasks` por ti y lo pasará como ese parámetro.
 
-## Crear una función de tarea { #create-a-task-function }
+## Crea una función de tarea { #create-a-task-function }
 
 Crea una función para que se ejecute como la tarea en segundo plano.
 
@@ -33,9 +33,9 @@ Y como la operación de escritura no usa `async` y `await`, definimos la funció
 
 {* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
 
-## Agregar la tarea en segundo plano { #add-the-background-task }
+## Agrega la tarea en segundo plano { #add-the-background-task }
 
-Dentro de tu *path operation function*, pasa tu función de tarea al objeto de *background tasks* con el método `.add_task()`:
+Dentro de tu *path operation function*, pasa tu función de tarea al objeto de *tareas en segundo plano* con el método `.add_task()`:
 
 {* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
@@ -51,7 +51,9 @@ Usar `BackgroundTasks` también funciona con el sistema de inyección de depende
 
 **FastAPI** sabe qué hacer en cada caso y cómo reutilizar el mismo objeto, de modo que todas las tareas en segundo plano se combinan y ejecutan en segundo plano después:
 
+
 {* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+
 
 En este ejemplo, los mensajes se escribirán en el archivo `log.txt` *después* de que se envíe el response.
 
@@ -61,7 +63,7 @@ Y luego otra tarea en segundo plano generada en la *path operation function* esc
 
 ## Detalles Técnicos { #technical-details }
 
-La clase `BackgroundTasks` proviene directamente de [`starlette.background`](https://www.starlette.dev/background/).
+La clase `BackgroundTasks` proviene directamente de [`starlette.background`](https://starlette.dev/background/).
 
 Se importa/incluye directamente en FastAPI para que puedas importarla desde `fastapi` y evitar importar accidentalmente la alternativa `BackgroundTask` (sin la `s` al final) de `starlette.background`.
 
@@ -69,7 +71,7 @@ Al usar solo `BackgroundTasks` (y no `BackgroundTask`), es posible usarla como u
 
 Todavía es posible usar `BackgroundTask` solo en FastAPI, pero debes crear el objeto en tu código y devolver una `Response` de Starlette incluyéndolo.
 
-Puedes ver más detalles en [la documentación oficial de Starlette sobre Background Tasks](https://www.starlette.dev/background/).
+Puedes ver más detalles en [la documentación oficial de Starlette sobre Background Tasks](https://starlette.dev/background/).
 
 ## Advertencia { #caveat }
 

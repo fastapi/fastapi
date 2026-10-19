@@ -4,12 +4,12 @@ Vous pouvez utiliser [WebSockets](https://developer.mozilla.org/en-US/docs/Web/A
 
 ## Installer `websockets` { #install-websockets }
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l'activer, et installer `websockets` (une bibliothèque Python qui facilite l'utilisation du protocole « WebSocket ») :
+Ajoutez `websockets` (une bibliothèque Python qui facilite l'utilisation du protocole « WebSocket ») à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -69,7 +69,7 @@ Mettez votre code dans un fichier `main.py` puis exécutez votre application :
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -126,7 +126,7 @@ Exécutez votre application :
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -182,5 +182,5 @@ Si vous avez besoin de quelque chose de facile à intégrer avec FastAPI mais pl
 
 Pour en savoir plus sur les options, consultez la documentation de Starlette concernant :
 
-* [La classe `WebSocket`](https://www.starlette.dev/websockets/).
-* [Gestion des WebSocket basée sur des classes](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [La classe `WebSocket`](https://starlette.dev/websockets/).
+* [Gestion des WebSocket basée sur des classes](https://starlette.dev/endpoints/#websocketendpoint).

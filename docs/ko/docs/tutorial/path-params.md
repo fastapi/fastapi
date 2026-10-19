@@ -92,7 +92,7 @@
 
 ## 표준 기반의 이점, 대체 문서 { #standards-based-benefits-alternative-documentation }
 
-그리고 생성된 스키마는 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 표준에서 나온 것이기 때문에 호환되는 도구가 많이 있습니다.
+그리고 생성된 스키마는 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 표준에서 나온 것이기 때문에 호환되는 도구가 많이 있습니다.
 
 이 덕분에 **FastAPI** 자체에서 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 접속할 수 있는 (ReDoc을 사용하는) 대체 API 문서를 제공합니다:
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-모든 데이터 검증은 [Pydantic](https://docs.pydantic.dev/)에 의해 내부적으로 수행되므로 이로 인한 이점을 모두 얻을 수 있습니다. 여러분은 관리를 잘 받고 있음을 느낄 수 있습니다.
+모든 데이터 검증은 [Pydantic](https://pydantic.dev/docs/)에 의해 내부적으로 수행되므로 이로 인한 이점을 모두 얻을 수 있습니다. 여러분은 관리를 잘 받고 있음을 느낄 수 있습니다.
 
 `str`, `float`, `bool`, 그리고 다른 여러 복잡한 데이터 타입 선언을 할 수 있습니다.
 

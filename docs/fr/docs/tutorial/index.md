@@ -11,12 +11,12 @@ Il est également conçu pour servir de référence ultérieure, afin que vous p
 
 Tous les blocs de code peuvent être copiés et utilisés directement (il s'agit en fait de fichiers Python testés).
 
-Pour exécuter l'un de ces exemples, copiez le code dans un fichier `main.py`, et démarrez `fastapi dev` :
+Pour exécuter l'un de ces exemples, copiez le code dans un fichier `main.py`, et démarrez `fastapi dev` avec `uv run` :
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -61,35 +61,75 @@ L'utiliser dans votre éditeur est ce qui vous montre vraiment les avantages de 
 
 ## Installer FastAPI { #install-fastapi }
 
-La première étape consiste à installer FastAPI.
+La première étape consiste à configurer votre projet et à ajouter FastAPI.
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md), de l'activer, puis **d'installer FastAPI** :
+Installez [`uv`](https://docs.astral.sh/uv/getting-started/installation/), puis créez un projet et ajoutez FastAPI :
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv init awesome-project --bare
+$ cd awesome-project
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
+`uv add` crée l'environnement virtuel du projet dans `.venv`, ajoute FastAPI à `pyproject.toml`, et crée `uv.lock` afin que les mêmes versions de packages puissent être installées plus tard.
+
+/// details | Ce que font ces commandes
+
+* `uv init` : crée un nouveau projet Python.
+* `awesome-project` : crée le projet dans un nouveau répertoire portant ce nom.
+* `--bare` : crée uniquement le fichier `pyproject.toml` minimal, sans générer d'exemple `main.py`, `README.md` ou d'autres fichiers. Vous créerez vous-même les fichiers de l'application dans les prochaines étapes de ce tutoriel.
+
+Ensuite, `cd awesome-project` entre dans le nouveau répertoire du projet avant d'ajouter FastAPI.
+
+`uv` utilisera une version compatible de Python déjà installée sur votre système, ou en téléchargera une si nécessaire.
+
+Lorsque vous exécutez `uv add`, il sélectionne des versions compatibles de FastAPI et de tous les packages dont FastAPI dépend. Il enregistre les versions exactes dans `uv.lock`, ce qui permet d'installer les mêmes versions de packages plus tard sur un autre ordinateur ou lors du déploiement de l'application.
+
+La création ou la mise à jour de ce fichier est appelée [**verrouillage** des dépendances du projet](https://docs.astral.sh/uv/concepts/projects/sync/). `uv` le fait automatiquement lorsque vous ajoutez un package.
+
+///
+
+/// details | Options d'installation de FastAPI
+
+Lorsque vous installez avec `uv add "fastapi[standard]"`, cela inclut des dépendances standards optionnelles par défaut, y compris `fastapi-cloud-cli`, qui vous permet de déployer sur [FastAPI Cloud](https://fastapicloud.com).
+
+Si vous ne souhaitez pas avoir ces dépendances optionnelles, vous pouvez à la place installer `uv add fastapi`.
+
+Si vous souhaitez installer les dépendances standard mais sans `fastapi-cloud-cli`, vous pouvez installer avec `uv add "fastapi[standard-no-fastapi-cloud-cli]"`.
+
+///
+
+/// details | Utiliser `pip` à la place
+
+Si vous préférez gérer manuellement un environnement virtuel et les packages, créez et activez un environnement virtuel, puis installez FastAPI avec `pip install "fastapi[standard]"`.
+
+Lisez le [guide sur les environnements virtuels](https://tiangolo.com/guides/virtual-environments/) pour les étapes détaillées.
+
+///
+
+## Skills des agents IA { #ai-agent-skills }
+
+FastAPI inclut une skill officielle pour les agents de codage IA. Elle est fournie avec le package, donc ses indications restent alignées avec la version de FastAPI installée dans votre projet et se mettent à jour lorsque vous mettez à niveau FastAPI.
+
+Après avoir installé FastAPI dans votre projet, vous pouvez installer la skill avec <a href="https://library-skills.io">Library Skills</a> :
+
+```bash
+uvx library-skills
+```
+
 /// note | Remarque
 
-Lorsque vous installez avec `pip install "fastapi[standard]"`, cela inclut des dépendances standards optionnelles par défaut, y compris `fastapi-cloud-cli`, qui vous permet de déployer sur [FastAPI Cloud](https://fastapicloud.com).
-
-Si vous ne souhaitez pas avoir ces dépendances optionnelles, vous pouvez à la place installer `pip install fastapi`.
-
-Si vous souhaitez installer les dépendances standard mais sans `fastapi-cloud-cli`, vous pouvez installer avec `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+`uvx` est un alias pour `uv tool run`. Il exécute Library Skills dans un environnement temporaire et isolé pendant que Library Skills analyse les packages installés dans votre projet.
 
 ///
 
-/// tip | Astuce
-
-FastAPI dispose d'une [extension officielle pour VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (et Cursor), qui fournit de nombreuses fonctionnalités, notamment un explorateur de chemins d'accès, une recherche de chemins d'accès, la navigation CodeLens dans les tests (aller à la définition depuis les tests), ainsi que le déploiement et les journaux FastAPI Cloud, le tout depuis votre éditeur.
-
-///
+La skill est compatible avec Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI, Pi, OpenCode, et la plupart des autres agents de codage. Pour Claude Code, sélectionnez `.claude/skills` lorsqu'il vous est demandé où installer la skill.
 
 ## Guide d'utilisation avancé { #advanced-user-guide }
 

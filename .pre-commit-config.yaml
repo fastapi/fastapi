@@ -15,7 +15,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/crate-ci/typos
-    rev: bee27e3a4fd1ea2111cf90ab89cd076c870fce14 # frozen: v1.48.0
+    rev: 00f422f3b19c57bc6338715ebfe3316d38768461 # frozen: v1.50.3
     hooks:
       - id: typos
         args: [--force-exclude]
@@ -27,14 +27,20 @@ repos:
         entry: uv run ruff check --force-exclude --fix --exit-non-zero-on-fix
         require_serial: true
         language: unsupported
-        types: [python]
+        types:
+          - python
+        # TODO: when translations catch up, re-enable this
+        # types_or: [python, pyi, jupyter, markdown]
 
       - id: local-ruff-format
         name: ruff format
         entry: uv run ruff format --force-exclude --exit-non-zero-on-format
         require_serial: true
         language: unsupported
-        types: [python]
+        types:
+          - python
+        # TODO: when translations catch up, re-enable this
+        # types_or: [python, pyi, jupyter, markdown]
 
       - id: local-mypy
         name: mypy check

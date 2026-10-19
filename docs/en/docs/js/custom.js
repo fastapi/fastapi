@@ -238,12 +238,45 @@ function setupOpinionsTabs() {
     });
 }
 
+let cleanupNewsletterEmbed = () => {};
+
+function setupNewsletterEmbed() {
+    cleanupNewsletterEmbed();
+    const frame = document.querySelector('.newsletter-embed');
+    if (!frame) return;
+    const origin = new URL(frame.src).origin;
+    const configure = () => frame.contentWindow.postMessage({
+        type: 'fastapi-newsletter:configure',
+        theme: document.body.dataset.mdColorScheme === 'slate' ? 'dark' : 'light',
+        fontSize: parseFloat(getComputedStyle(frame.parentElement).fontSize),
+    }, origin);
+    const resize = (event) => {
+        if (event.origin !== origin || event.source !== frame.contentWindow) return;
+        const { type, height } = event.data ?? {};
+        if (type !== 'fastapi-newsletter:resize' || !Number.isFinite(height) || height <= 0 || height > 2000) return;
+        frame.style.height = `${Math.ceil(height)}px`;
+    };
+    window.addEventListener('message', resize);
+    frame.addEventListener('load', configure);
+    window.addEventListener('resize', configure);
+    const themeObserver = new MutationObserver(configure);
+    themeObserver.observe(document.body, { attributes: true, attributeFilter: ['data-md-color-scheme'] });
+    configure();
+    cleanupNewsletterEmbed = () => {
+        window.removeEventListener('message', resize);
+        frame.removeEventListener('load', configure);
+        window.removeEventListener('resize', configure);
+        themeObserver.disconnect();
+    };
+}
+
 async function main() {
     setupTermynal();
     showRandomAnnouncement('announce-left', 5000)
     handleSponsorImages();
     openLinksInNewTab();
     setupOpinionsTabs();
+    setupNewsletterEmbed();
 }
 document$.subscribe(() => {
     main()

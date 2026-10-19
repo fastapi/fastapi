@@ -35,7 +35,7 @@ Essa parte é bastante normal, a maior parte do código provavelmente já é fam
 
 /// tip | Dica
 
-O parâmetro de consulta `callback_url` usa um tipo Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/).
+O parâmetro de consulta `callback_url` usa um tipo Pydantic [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/).
 
 ///
 
@@ -106,11 +106,11 @@ Ela deve parecer exatamente como uma *operação de rota* normal do FastAPI:
 Há 2 diferenças principais de uma *operação de rota* normal:
 
 * Ela não necessita ter nenhum código real, porque sua aplicação nunca chamará esse código. Ele é usado apenas para documentar a *API externa*. Então, a função poderia ter apenas `pass`.
-* O *path* pode conter uma [expressão OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (veja mais abaixo) em que pode usar variáveis com parâmetros e partes do request original enviado para *sua API*.
+* O *path* pode conter uma [expressão OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (veja mais abaixo) em que pode usar variáveis com parâmetros e partes do request original enviado para *sua API*.
 
 ### A expressão do path do callback { #the-callback-path-expression }
 
-O *path* do callback pode ter uma [expressão OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) que pode conter partes do request original enviado para *sua API*.
+O *path* do callback pode ter uma [expressão OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) que pode conter partes do request original enviado para *sua API*.
 
 Nesse caso, é a `str`:
 

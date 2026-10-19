@@ -110,7 +110,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"우리는 <strong>FastAPI</strong> 라이브러리를 채택해 <strong>예측</strong>을 얻기 위해 쿼리할 수 있는 <strong>REST</strong> 서버를 생성했습니다." <em>[Ludwig을 위해]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong>는 우리의 <strong>위기 관리</strong> 오케스트레이션 프레임워크인 <strong>Dispatch</strong>의 오픈 소스 공개를 발표하게 되어 기쁩니다!" <em>[FastAPI로 빌드]</em></blockquote>
@@ -133,7 +133,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 "_**FastAPI** 라이브러리를 채택하여 **예측**을 얻기 위해 쿼리를 실행할 수 있는 **REST** 서버를 생성했습니다. [Ludwig을 위해]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -150,12 +150,6 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 ---
 
 </div>
-
-## FastAPI Conf { #fastapi-conf }
-
-[**FastAPI Conf '26**](https://fastapiconf.com)은 **2026년 10월 28일**, **네덜란드 암스테르담**에서 열립니다. FastAPI에 관한 모든 것, 바로 출처에서. 🎤
-
-<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"></a>
 
 ## FastAPI 미니 다큐멘터리 { #fastapi-mini-documentary }
 
@@ -175,17 +169,17 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 FastAPI는 거인들의 어깨 위에 서 있습니다:
 
-* [Starlette](https://www.starlette.dev/) — 웹 부분을 담당합니다.
-* [Pydantic](https://docs.pydantic.dev/) — 데이터 부분을 담당합니다.
+* [Starlette](https://starlette.dev/) — 웹 부분을 담당합니다.
+* [Pydantic](https://pydantic.dev/docs/) — 데이터 부분을 담당합니다.
 
 ## 설치 { #installation }
 
-[가상 환경](https://fastapi.tiangolo.com/ko/virtual-environments/)을 생성하고 활성화한 다음 FastAPI를 설치하세요:
+먼저, [`uv`를 설치](https://docs.astral.sh/uv/getting-started/installation/)한 다음 프로젝트에 FastAPI를 추가하세요:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -193,6 +187,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **참고**: 모든 터미널에서 동작하도록 `"fastapi[standard]"`를 따옴표로 감싸 넣었는지 확인하세요.
+
+`pip`를 사용하는 것을 선호한다면, 가상 환경 안에 `fastapi[standard]`를 설치하세요. 대안 단계는 [설치 가이드](tutorial/#install-fastapi)를 참고하세요.
 
 ## 예제 { #example }
 
@@ -250,7 +246,7 @@ async def read_item(item_id: int, q: str | None = None):
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -277,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary><code>fastapi dev</code> 명령에 관하여...</summary>
 
-`fastapi dev` 명령은 여러분의 `main.py` 파일을 자동으로 읽고, 그 안의 **FastAPI** 앱을 감지한 다음, [Uvicorn](https://www.uvicorn.dev)을 사용해 서버를 시작합니다.
+`fastapi dev` 명령은 여러분의 `main.py` 파일을 자동으로 읽고, 그 안의 **FastAPI** 앱을 감지한 다음, [Uvicorn](https://uvicorn.dev)을 사용해 서버를 시작합니다.
 
 기본적으로 `fastapi dev`는 로컬 개발을 위해 auto-reload가 활성화된 상태로 시작됩니다.
 
@@ -314,7 +310,7 @@ INFO:     Application startup complete.
 
 그리고 이제 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 가봅시다.
 
-다른 자동 문서를 볼 수 있습니다([ReDoc](https://github.com/Rebilly/ReDoc) 제공):
+다른 자동 문서를 볼 수 있습니다([ReDoc](https://github.com/Redocly/redoc) 제공):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -497,7 +493,7 @@ item: Item
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -540,7 +536,7 @@ FastAPI는 Pydantic과 Starlette에 의존합니다.
 
 ### `standard` 의존성 { #standard-dependencies }
 
-`pip install "fastapi[standard]"`로 FastAPI를 설치하면 `standard` 그룹의 선택적 의존성이 함께 설치됩니다.
+`uv add "fastapi[standard]"`로 FastAPI를 설치하면 `standard` 그룹의 선택적 의존성이 함께 설치됩니다.
 
 Pydantic이 사용하는:
 
@@ -554,17 +550,17 @@ Starlette이 사용하는:
 
 FastAPI가 사용하는:
 
-* [`uvicorn`](https://www.uvicorn.dev) - 애플리케이션을 로드하고 제공하는 서버를 위한 것입니다. 여기에는 고성능 서빙에 필요한 일부 의존성(예: `uvloop`)이 포함된 `uvicorn[standard]`가 포함됩니다.
+* [`uvicorn`](https://uvicorn.dev) - 애플리케이션을 로드하고 제공하는 서버를 위한 것입니다. 여기에는 고성능 서빙에 필요한 일부 의존성(예: `uvloop`)이 포함된 `uvicorn[standard]`가 포함됩니다.
 * `fastapi-cli[standard]` - `fastapi` 명령을 제공하기 위한 것입니다.
     * 여기에는 [FastAPI Cloud](https://fastapicloud.com)에 FastAPI 애플리케이션을 배포할 수 있게 해주는 `fastapi-cloud-cli`가 포함됩니다.
 
 ### `standard` 의존성 없이 { #without-standard-dependencies }
 
-`standard` 선택적 의존성을 포함하고 싶지 않다면, `pip install "fastapi[standard]"` 대신 `pip install fastapi`로 설치할 수 있습니다.
+`standard` 선택적 의존성을 포함하고 싶지 않다면, `uv add "fastapi[standard]"` 대신 `uv add fastapi`로 설치할 수 있습니다.
 
 ### `fastapi-cloud-cli` 없이 { #without-fastapi-cloud-cli }
 
-표준 의존성과 함께 FastAPI를 설치하되 `fastapi-cloud-cli` 없이 설치하고 싶다면, `pip install "fastapi[standard-no-fastapi-cloud-cli]"`로 설치할 수 있습니다.
+표준 의존성과 함께 FastAPI를 설치하되 `fastapi-cloud-cli` 없이 설치하고 싶다면, `uv add "fastapi[standard-no-fastapi-cloud-cli]"`로 설치할 수 있습니다.
 
 ### 추가 선택적 의존성 { #additional-optional-dependencies }
 
@@ -572,13 +568,13 @@ FastAPI가 사용하는:
 
 추가 선택적 Pydantic 의존성:
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - 설정 관리를 위한 것입니다.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - Pydantic에서 사용할 추가 타입을 위한 것입니다.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - 설정 관리를 위한 것입니다.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - Pydantic에서 사용할 추가 타입을 위한 것입니다.
 
 추가 선택적 FastAPI 의존성:
 
 * [`orjson`](https://github.com/ijl/orjson) - `ORJSONResponse`를 사용하려면 필요.
-* [`ujson`](https://github.com/esnme/ultrajson) - `UJSONResponse`를 사용하려면 필요.
+* [`ujson`](https://github.com/ultrajson/ultrajson) - `UJSONResponse`를 사용하려면 필요.
 
 ## 라이센스 { #license }
 

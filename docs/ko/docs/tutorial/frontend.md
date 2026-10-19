@@ -52,7 +52,7 @@ npm run build
 
 {* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
 
-**FastAPI**는 브라우저 탐색처럼 보이는 `GET` 및 `HEAD` 요청에만 이 fallback을 사용합니다. JavaScript, CSS, 이미지처럼 누락된 파일은 여전히 `404`를 반환합니다.
+**FastAPI**는 브라우저 탐색 요청이 보통 그러하듯 `Accept: text/html` 또는 `Accept: application/xhtml+xml`로 HTML을 명시적으로 허용하는 `GET` 및 `HEAD` 요청에만 이 fallback을 사용합니다. JavaScript, CSS, 이미지처럼 누락된 파일은 여전히 `404`를 반환합니다.
 
 `POST`나 `PUT` 같은 다른 메서드의 요청이 프론트엔드 fallback에만 매칭되는 경로로 들어와도 `404`를 반환합니다. 일반 **FastAPI** *경로 처리*는 여전히 프론트엔드 라우트보다 높은 우선순위를 가집니다.
 
@@ -106,9 +106,13 @@ npm run build
 
 ## 디렉터리 확인하기 { #check-directory }
 
-기본적으로 `app.frontend()`는 애플리케이션이 생성될 때 디렉터리가 존재하는지 확인합니다.
+기본적으로 `app.frontend()`는 `check_dir="auto"`를 사용합니다.
 
-이는 설정 오류를 일찍 발견하는 데 도움이 됩니다. 예를 들어 프론트엔드 빌드 출력 디렉터리가 없다면 **FastAPI**는 시작 시 오류를 발생시킵니다.
+`FASTAPI_ENV` 환경 변수가 `development`로 설정되어 있으면, 프론트엔드 빌드 출력 디렉터리가 없을 때 **FastAPI**는 경고만 표시합니다. [`fastapi dev` 명령어](https://github.com/fastapi/fastapi-cli#fastapi-dev)는 이 환경 변수가 아직 설정되어 있지 않다면 대신 설정해 줍니다. 이를 통해 개발 중에 프론트엔드를 빌드하거나 시작하기 전에 백엔드를 시작할 수 있습니다.
+
+다른 모든 환경에서는 애플리케이션이 생성될 때 **FastAPI**가 오류를 발생시킵니다. 이는 프론트엔드 파일 없이 애플리케이션을 배포하기 전에 설정 오류를 일찍 발견하는 데 도움이 됩니다.
+
+애플리케이션이 생성될 때 항상 디렉터리를 확인하도록 `check_dir=True`를 설정할 수도 있습니다.
 
 프론트엔드 파일이 나중에 생성된다면, 예를 들어 애플리케이션 객체가 생성된 후 별도의 빌드 단계에서 생성된다면, `check_dir=False`를 설정합니다:
 
@@ -131,6 +135,8 @@ npm run build
 프론트엔드 응답은 일반 **FastAPI** 애플리케이션 안에서 실행되므로 HTTP 미들웨어가 적용됩니다.
 
 애플리케이션, `APIRouter`, `include_router()`의 의존성도 프론트엔드 응답에 적용됩니다. 이는 쿠키 인증 등으로 프론트엔드를 보호하는 데 유용할 수 있습니다.
+
+의존성은 일반 *경로 처리*에서처럼 응답 헤더를 수정하고 백그라운드 작업을 추가할 수도 있습니다.
 
 ## 정적 빌드 출력만 사용하기 { #static-build-output-only }
 

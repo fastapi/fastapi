@@ -6,12 +6,18 @@
 
 इसे `main.py` नाम की file में copy करें।
 
+/// tip | सुझाव
+
+FastAPI के पास [VS Code के लिए official extension](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (और Cursor) है, जो बहुत सारे features प्रदान करता है, जिसमें path operation explorer, path operation search, tests में CodeLens navigation (tests से definition पर jump), और FastAPI Cloud deployment और logs शामिल हैं, सब आपके editor से।
+
+///
+
 live server चलाएँ:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 और अब, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) पर जाएँ।
 
-आपको वैकल्पिक automatic documentation दिखेगी ([ReDoc](https://github.com/Rebilly/ReDoc) द्वारा प्रदान की गई):
+आपको वैकल्पिक automatic documentation दिखेगी ([ReDoc](https://github.com/Redocly/redoc) द्वारा प्रदान की गई):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 आप `fastapi dev` command को file path भी pass कर सकते हैं, और यह उपयोग करने के लिए FastAPI app object का अनुमान लगा लेगा:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 या, आप `fastapi dev` command को `--entrypoint` option भी pass कर सकते हैं:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 लेकिन हर बार `fastapi` command call करते समय आपको सही path\entrypoint pass करना याद रखना होगा।
@@ -205,7 +211,7 @@ $ fastapi dev --entrypoint main:app
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -232,7 +238,7 @@ CLI आपकी FastAPI application को अपने आप detect करे
 
 `FastAPI` एक class है जो सीधे `Starlette` से inherit करती है।
 
-आप `FastAPI` के साथ सारी [Starlette](https://www.starlette.dev/) functionality भी उपयोग कर सकते हैं।
+आप `FastAPI` के साथ सारी [Starlette](https://starlette.dev/) functionality भी उपयोग कर सकते हैं।
 
 ///
 

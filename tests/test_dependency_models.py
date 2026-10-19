@@ -1,4 +1,4 @@
-from collections.abc import AsyncGenerator, Generator
+from collections.abc import AsyncGenerator, Callable, Generator
 from typing import Any
 
 from fastapi.dependencies.models import (
@@ -6,7 +6,6 @@ from fastapi.dependencies.models import (
     _get_cache_key,
     _get_computed_scope,
     _get_oauth_scopes,
-    _get_security_dependencies,
     _get_security_scheme,
     _is_async_gen_callable,
     _is_async_gen_callable_cached,
@@ -93,7 +92,27 @@ def test_callable_classification_is_shared_by_call() -> None:
         cache_info = cached_function.cache_info()
         assert cache_info.hits == 1
         assert cache_info.misses == 1
-        assert cache_info.maxsize == 1024
+        assert cache_info.maxsize == 4096
+
+
+def test_callable_classification_cache_supports_large_apps() -> None:
+    callables: list[Callable[[], None]] = [lambda: None for _ in range(3000)]
+
+    for classifier, cached_classifier in (
+        (_is_gen_callable, _is_gen_callable_cached),
+        (_is_async_gen_callable, _is_async_gen_callable_cached),
+        (_is_coroutine_callable, _is_coroutine_callable_cached),
+    ):
+        cached_classifier.cache_clear()
+
+        for _ in range(2):
+            assert all(not classifier(call) for call in callables)
+
+        cache_info = cached_classifier.cache_info()
+        assert cache_info.hits == len(callables)
+        assert cache_info.misses == len(callables)
+        assert cache_info.maxsize == 4096
+        cached_classifier.cache_clear()
 
 
 def test_unhashable_callable_classification() -> None:
@@ -126,7 +145,6 @@ def test_derived_values_are_not_stored_on_dependant() -> None:
     assert _get_oauth_scopes(dependant=dependant) == []
     assert not _uses_scopes(dependant=dependant, cache=uses_scopes_cache)
     assert not _uses_scopes(dependant=dependant, cache=uses_scopes_cache)
-    assert _get_security_dependencies(dependant=dependant) == []
     assert _get_computed_scope(dependant=dependant) is None
     assert _get_cache_key(dependant=dependant) == (async_dependency, (), "")
 
@@ -140,7 +158,6 @@ def test_security_scheme_helpers() -> None:
 
     assert _is_security_scheme(dependant=security_dependant)
     assert _get_security_scheme(dependant=security_dependant) is security_scheme
-    assert _get_security_dependencies(dependant=dependant) == [security_dependant]
     assert _uses_scopes(dependant=dependant)
 
 

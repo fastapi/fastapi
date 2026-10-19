@@ -5,7 +5,7 @@
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 

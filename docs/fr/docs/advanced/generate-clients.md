@@ -12,7 +12,7 @@ Une option polyvalente est le [OpenAPI Generator](https://openapi-generator.tech
 
 Pour les **clients TypeScript**, [Hey API](https://heyapi.dev/) est une solution dédiée, offrant une expérience optimisée pour l’écosystème TypeScript.
 
-Vous pouvez découvrir davantage de générateurs de SDK sur [OpenAPI.Tools](https://openapi.tools/#sdk).
+Vous pouvez découvrir davantage de générateurs de SDK sur [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Astuce
 

@@ -30,12 +30,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 Нам потрібно встановити `PyJWT`, щоб створювати та перевіряти токени JWT у Python.
 
-Переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md), активували його і тоді встановіть `pyjwt`:
+Додайте `pyjwt` до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ pwdlib - це чудовий пакет Python для роботи з хешам
 
 Рекомендований алгоритм - «Argon2».
 
-Переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md), активували його і тоді встановіть pwdlib з Argon2:
+Додайте `pwdlib` з Argon2 до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```

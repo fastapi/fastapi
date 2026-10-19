@@ -166,7 +166,7 @@ UserInDB(
 
 /// note
 
-在定義 [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) 時，請先放置「更具體」的型別，再放「較不具體」的型別。以下範例中，較具體的 `PlaneItem` 置於 `CarItem` 之前：`Union[PlaneItem, CarItem]`。
+在定義 [`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/) 時，請先放置「更具體」的型別，再放「較不具體」的型別。以下範例中，較具體的 `PlaneItem` 置於 `CarItem` 之前：`Union[PlaneItem, CarItem]`。
 
 ///
 

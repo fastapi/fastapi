@@ -7,12 +7,18 @@ En sade FastAPI dosyası şu şekilde görünür:
 
 Yukarıdakini `main.py` adlı bir dosyaya kopyalayın.
 
+/// tip | İpucu
+
+FastAPI'nin [VS Code için resmi bir eklentisi](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (ve Cursor için) vardır; path operation explorer, path operation search, testlerde CodeLens navigasyonu (testlerden tanıma atlama), FastAPI Cloud deployment ve log'lar dahil olmak üzere birçok özelliği doğrudan editörünüzden sağlar.
+
+///
+
 Canlı sunucuyu çalıştırın:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -79,7 +85,7 @@ Otomatik etkileşimli API dokümantasyonunu ([Swagger UI](https://github.com/swa
 
 Ve şimdi [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gidin.
 
-Alternatif otomatik dokümantasyonu ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanan) göreceksiniz:
+Alternatif otomatik dokümantasyonu ([ReDoc](https://github.com/Redocly/redoc) tarafından sağlanan) göreceksiniz:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -186,16 +192,16 @@ from backend.main import app
 Dosya path'ini `fastapi dev` komutuna da verebilirsiniz; hangi FastAPI app objesini kullanacağını tahmin eder:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Veya `fastapi dev` komutuna `--entrypoint` seçeneğini de geçebilirsiniz:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
-Ancak `fastapi` komutunu her çağırdığınızda doğru path'i veya entrypoint'i geçmeyi hatırlamanız gerekir.
+Ancak `fastapi` komutunu her çağırdığınızda doğru path'i/entrypoint'i geçmeyi hatırlamanız gerekir.
 
 Ayrıca, [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com) gibi başka araçlar da onu bulamayabilir; bu yüzden `pyproject.toml` içindeki `entrypoint`'i kullanmanız önerilir.
 
@@ -206,7 +212,7 @@ Ayrıca, [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -233,7 +239,7 @@ Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 `FastAPI`, doğrudan `Starlette`'ten miras alan bir class'tır.
 
-[Starlette](https://www.starlette.dev/)'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
+[Starlette](https://starlette.dev/)'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
 
 ///
 

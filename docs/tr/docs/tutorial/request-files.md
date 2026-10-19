@@ -6,10 +6,10 @@
 
 Upload edilen dosyaları alabilmek için önce [`python-multipart`](https://github.com/Kludex/python-multipart) yükleyin.
 
-Bir [Sanal ortam](../virtual-environments.md) oluşturduğunuzdan, aktive ettiğinizden ve ardından paketi yüklediğinizden emin olun. Örneğin:
+Projenize ekleyin:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Bunun nedeni, upload edilen dosyaların "form data" olarak gönderilmesidir.

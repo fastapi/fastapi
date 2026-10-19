@@ -35,12 +35,12 @@ SQLModel은 SQLAlchemy를 기반으로 하므로, SQLAlchemy에서 **지원하�
 
 ## `SQLModel` 설치하기 { #install-sqlmodel }
 
-먼저, [가상 환경](../virtual-environments.md)을 생성하고 활성화한 다음, `sqlmodel`을 설치하세요:
+프로젝트에 `sqlmodel`을 추가하세요:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -153,7 +153,7 @@ SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 �
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -338,7 +338,7 @@ hero **삭제**는 이전과 거의 동일합니다.
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

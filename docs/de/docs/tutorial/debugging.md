@@ -15,7 +15,7 @@ Der Hauptzweck von `__name__ == "__main__"` ist, dass Code ausgeführt wird, wen
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ Wenn Sie sie mit folgendem Befehl ausführen:
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -88,7 +88,7 @@ Zum Beispiel können Sie in Visual Studio Code:
 
 * Zum „Debug“-Panel gehen.
 * „Konfiguration hinzufügen ...“ auswählen.
-* „Python“ auswählen.
+* „Python“ auswählen
 * Den Debugger mit der Option „`Python: Current File (Integrated Terminal)`“ ausführen.
 
 Der Server wird dann mit Ihrem **FastAPI**-Code gestartet, an Ihren Haltepunkten angehalten, usw.

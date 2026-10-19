@@ -2,7 +2,7 @@
 
 क्योंकि **FastAPI** **OpenAPI** specification पर आधारित है, इसकी APIs को एक standard format में वर्णित किया जा सकता है जिसे कई tools समझते हैं।
 
-इससे up-to-date **documentation**, कई भाषाओं में client libraries (<abbr title="Software Development Kits - सॉफ़्टवेयर Development Kits">**SDKs**</abbr>), और **testing** या **automation workflows** जेनरेट करना आसान हो जाता है, जो आपके code के साथ sync में रहते हैं।
+इससे up-to-date **documentation**, कई भाषाओं में client libraries (<abbr title="Software Development Kits - सॉफ़्टवेयर डेवलपमेंट किट्स">**SDKs**</abbr>), और **testing** या **automation workflows** जेनरेट करना आसान हो जाता है, जो आपके code के साथ sync में रहते हैं।
 
 इस guide में, आप सीखेंगे कि अपने FastAPI backend के लिए **TypeScript SDK** कैसे जेनरेट करें।
 
@@ -12,7 +12,7 @@
 
 **TypeScript clients** के लिए, [Hey API](https://heyapi.dev/) एक purpose-built solution है, जो TypeScript ecosystem के लिए optimized experience प्रदान करता है।
 
-आप [OpenAPI.Tools](https://openapi.tools/#sdk) पर और SDK generators खोज सकते हैं।
+आप [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) पर और SDK generators खोज सकते हैं।
 
 /// tip | सुझाव
 

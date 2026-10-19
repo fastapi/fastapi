@@ -84,7 +84,7 @@ class SponsorsResponse(BaseModel):
 
 class Settings(BaseSettings):
     sponsors_token: SecretStr
-    pr_token: SecretStr
+    github_token: SecretStr
     github_repository: str
     httpx_timeout: int = 30
 
@@ -158,9 +158,9 @@ def update_content(*, content_path: Path, new_content: Any) -> bool:
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO)
-    settings = Settings()  # ty: ignore[missing-argument]
+    settings = Settings()
     logging.info(f"Using config: {settings.model_dump_json()}")
-    g = Github(settings.pr_token.get_secret_value())
+    g = Github(settings.github_token.get_secret_value())
     repo = g.get_repo(settings.github_repository)
 
     tiers = get_individual_sponsors(settings=settings)
@@ -190,9 +190,9 @@ def main() -> None:
         return
 
     logging.info("Setting up GitHub Actions git user")
-    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], check=True)
+    subprocess.run(["git", "config", "user.name", "pr-submit[bot]"], check=True)
     subprocess.run(
-        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"],
+        ["git", "config", "user.email", "pr-submit[bot]@users.noreply.github.com"],
         check=True,
     )
     branch_name = f"fastapi-people-sponsors-{secrets.token_hex(4)}"

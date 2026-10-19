@@ -12,10 +12,6 @@ gold:
     img: /img/sponsors/propelauth.png
     banner_url: https://www.propelauth.com/?utm_source=fastapi&utm_campaign=1223&utm_medium=topbanner
     banner_img: /img/sponsors/propelauth-banner.png
-  - url: https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi
-    title: Deploy & scale any full-stack web app on Render. Focus on building apps, not infra.
-    img: /img/sponsors/render.svg
-    banner_img: /img/sponsors/render-banner.svg
   - url: https://www.coderabbit.ai/?utm_source=fastapi&utm_medium=badge&utm_campaign=fastapi
     title: Cut Code Review Time & Bugs in Half with CodeRabbit
     img: /img/sponsors/coderabbit.png
@@ -45,9 +41,6 @@ silver:
   - url: https://www.svix.com/
     title: Svix - Webhooks as a service
     img: /img/sponsors/svix.svg
-  - url: https://www.permit.io/blog/implement-authorization-in-fastapi?utm_source=github&utm_medium=referral&utm_campaign=fastapi
-    title: Fine-Grained Authorization for FastAPI
-    img: /img/sponsors/permit.png
   - url: https://dribia.com/en/
     title: Dribia - Data Science within your reach
     img: /img/sponsors/dribia.png

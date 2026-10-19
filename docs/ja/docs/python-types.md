@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic のモデル { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) はデータ検証を行うための Python ライブラリです。
+[Pydantic](https://pydantic.dev/docs/) はデータ検証を行うための Python ライブラリです。
 
 データの「形」を属性付きのクラスとして宣言します。
 
@@ -285,7 +285,7 @@ Pydantic の公式ドキュメントからの例:
 
 /// note | 備考
 
-[Pydantic の詳細はドキュメントを参照してください](https://docs.pydantic.dev/)。
+[Pydantic の詳細はドキュメントを参照してください](https://pydantic.dev/docs/)。
 
 ///
 

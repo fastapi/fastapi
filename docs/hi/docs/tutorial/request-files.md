@@ -6,10 +6,10 @@
 
 अपलोड की गई files प्राप्त करने के लिए, पहले [`python-multipart`](https://github.com/Kludex/python-multipart) install करें।
 
-सुनिश्चित करें कि आप एक [virtual environment](../virtual-environments.md) बनाते हैं, उसे activate करते हैं, और फिर इसे install करते हैं, उदाहरण के लिए:
+इसे अपने project में जोड़ें:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ऐसा इसलिए है क्योंकि अपलोड की गई files "form data" के रूप में भेजी जाती हैं।

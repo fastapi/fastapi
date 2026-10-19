@@ -10,12 +10,12 @@ Ayrıca, ileride tekrar dönüp tam olarak ihtiyaç duyduğunuz şeyi görebilec
 
 Tüm code block'lar kopyalanıp doğrudan kullanılabilir (zaten test edilmiş Python dosyalarıdır).
 
-Örneklerden herhangi birini çalıştırmak için, kodu `main.py` adlı bir dosyaya kopyalayın ve `fastapi dev`'i başlatın:
+Örneklerden herhangi birini çalıştırmak için, kodu `main.py` adlı bir dosyaya kopyalayın ve `uv run` ile `fastapi dev`'i başlatın:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -60,35 +60,75 @@ Editörünüzde kullanmak FastAPI'nin avantajlarını gerçekten gösterir: ne k
 
 ## FastAPI'yi Kurun { #install-fastapi }
 
-İlk adım FastAPI'yi kurmaktır.
+İlk adım projenizi hazırlamak ve FastAPI'yi eklemektir.
 
-Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan emin olun, etkinleştirin ve ardından **FastAPI'yi kurun**:
+[`uv`](https://docs.astral.sh/uv/getting-started/installation/)'yi kurun, ardından bir proje oluşturup FastAPI'yi ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv init awesome-project --bare
+$ cd awesome-project
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
+`uv add`, projenin sanal ortamını `.venv` içinde oluşturur, FastAPI'yi `pyproject.toml` dosyasına ekler ve aynı paket sürümlerinin daha sonra kurulabilmesi için `uv.lock` oluşturur.
+
+/// details | Bu komutlar ne yapar
+
+* `uv init`: yeni bir Python projesi oluşturur.
+* `awesome-project`: projeyi bu adla yeni bir dizinde oluşturur.
+* `--bare`: örnek bir `main.py`, `README.md` veya başka dosyalar oluşturmadan yalnızca en minimal `pyproject.toml` dosyasını oluşturur. Bu eğitimin sonraki adımlarında uygulama dosyalarını kendiniz oluşturacaksınız.
+
+Ardından `cd awesome-project`, FastAPI eklenmeden önce yeni proje dizinine girer.
+
+`uv`, sisteminizde zaten kurulu olan uyumlu bir Python sürümünü kullanır veya gerekirse bir tane indirir.
+
+`uv add` çalıştırdığınızda, FastAPI'nin ve FastAPI'nin bağlı olduğu tüm paketlerin uyumlu sürümlerini seçer. Kesin sürümleri `uv.lock` içine kaydeder; bu da aynı paket sürümlerini daha sonra başka bir bilgisayarda veya uygulamayı deploy ederken kurmayı mümkün kılar.
+
+Bu dosyayı oluşturmak veya güncellemek, proje bağımlılıklarını [**lock'lamak**](https://docs.astral.sh/uv/concepts/projects/sync/) olarak adlandırılır. `uv`, bir paket eklediğinizde bunu otomatik olarak yapar.
+
+///
+
+/// details | FastAPI kurulum seçenekleri
+
+`uv add "fastapi[standard]"` ile kurduğunuzda, bazı varsayılan opsiyonel standart bağımlılıklarla birlikte gelir. Bunlara `fastapi-cloud-cli` da dahildir; bu sayede [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz.
+
+Bu opsiyonel bağımlılıkları istemiyorsanız bunun yerine `uv add fastapi` kurabilirsiniz.
+
+Standart bağımlılıkları kurmak istiyor ama `fastapi-cloud-cli` olmasın diyorsanız, `uv add "fastapi[standard-no-fastapi-cloud-cli]"` ile kurabilirsiniz.
+
+///
+
+/// details | Bunun yerine `pip` kullanmak
+
+Bir sanal ortamı ve paketleri manuel yönetmeyi tercih ediyorsanız, bir sanal ortam oluşturup etkinleştirin ve ardından FastAPI'yi `pip install "fastapi[standard]"` ile kurun.
+
+Ayrıntılı adımlar için [Sanal Ortamlar rehberini](https://tiangolo.com/guides/virtual-environments/) okuyun.
+
+///
+
+## AI Agent Skill'leri { #ai-agent-skills }
+
+FastAPI, AI kodlama agent'ları için resmi bir skill içerir. Paketle birlikte gelir; bu nedenle yönergeleri projenizde kurulu FastAPI sürümüyle uyumlu kalır ve FastAPI'yi güncellediğinizde güncellenir.
+
+Projenize FastAPI'yi kurduktan sonra, skill'i <a href="https://library-skills.io">Library Skills</a> ile kurabilirsiniz:
+
+```bash
+uvx library-skills
+```
+
 /// note | Not
 
-`pip install "fastapi[standard]"` ile kurduğunuzda, bazı varsayılan opsiyonel standart bağımlılıklarla birlikte gelir. Bunlara `fastapi-cloud-cli` da dahildir; bu sayede [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz.
-
-Bu opsiyonel bağımlılıkları istemiyorsanız bunun yerine `pip install fastapi` kurabilirsiniz.
-
-Standart bağımlılıkları kurmak istiyor ama `fastapi-cloud-cli` olmasın diyorsanız, `pip install "fastapi[standard-no-fastapi-cloud-cli]"` ile kurabilirsiniz.
+`uvx`, `uv tool run` için bir alias'tır. Library Skills projenizde kurulu paketleri tararken, Library Skills'i geçici ve izole bir ortamda çalıştırır.
 
 ///
 
-/// tip | İpucu
-
-FastAPI'nin [VS Code için resmi bir eklentisi](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (ve Cursor) vardır; path operation gezgini, path operation araması, testlerde CodeLens ile gezinme (testlerden tanıma atlama) ve FastAPI Cloud deploy ve logları gibi pek çok özelliği doğrudan editörünüzden sunar.
-
-///
+Skill; Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI, Pi, OpenCode ve diğer çoğu kodlama agent'ı ile uyumludur. Claude Code için, skill'in nereye kurulacağı sorulduğunda `.claude/skills` seçeneğini seçin.
 
 ## İleri Düzey Kullanıcı Rehberi { #advanced-user-guide }
 

@@ -12,7 +12,7 @@ Oluşturulan JSON Schema’ya eklenecek şekilde bir Pydantic model için `examp
 
 Bu ek bilgi, o modelin çıktı **JSON Schema**’sına olduğu gibi eklenir ve API dokümanlarında kullanılır.
 
-[Pydantic dokümanları: Configuration](https://docs.pydantic.dev/latest/api/config/) bölümünde anlatıldığı gibi, bir `dict` alan `model_config` niteliğini kullanabilirsiniz.
+[Pydantic dokümanları: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/) bölümünde anlatıldığı gibi, bir `dict` alan `model_config` niteliğini kullanabilirsiniz.
 
 Üretilen JSON Schema’da görünmesini istediğiniz (ör. `examples` dahil) her türlü ek veriyi içeren bir `dict` ile `"json_schema_extra"` ayarlayabilirsiniz.
 

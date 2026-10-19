@@ -33,7 +33,7 @@ Pour renvoyer au client des réponses HTTP avec des erreurs, vous utilisez `HTTP
 
 Comme il s'agit d'une exception Python, vous ne la `return` pas, vous la `raise`.
 
-Cela signifie aussi que si vous êtes dans une fonction utilitaire appelée depuis votre fonction de chemin d'accès, et que vous levez la `HTTPException` à l'intérieur de cette fonction utilitaire, le reste du code de la fonction de chemin d'accès ne s'exécutera pas : la requête sera immédiatement interrompue et l'erreur HTTP issue de la `HTTPException` sera envoyée au client.
+Cela signifie aussi que si vous êtes dans une fonction utilitaire appelée depuis votre *fonction de chemin d'accès*, et que vous levez la `HTTPException` à l'intérieur de cette fonction utilitaire, le reste du code de la *fonction de chemin d'accès* ne s'exécutera pas : la requête sera immédiatement interrompue et l'erreur HTTP issue de la `HTTPException` sera envoyée au client.
 
 L'avantage de lever une exception plutôt que de retourner une valeur apparaîtra plus clairement dans la section sur les Dépendances et la Sécurité.
 
@@ -81,7 +81,7 @@ Mais si vous en aviez besoin pour un scénario avancé, vous pouvez ajouter des 
 
 ## Installer des gestionnaires d'exception personnalisés { #install-custom-exception-handlers }
 
-Vous pouvez ajouter des gestionnaires d'exception personnalisés avec [les mêmes utilitaires d'exception de Starlette](https://www.starlette.dev/exceptions/).
+Vous pouvez ajouter des gestionnaires d'exception personnalisés avec [les mêmes utilitaires d'exception de Starlette](https://starlette.dev/exceptions/).
 
 Supposons que vous ayez une exception personnalisée `UnicornException` que vous (ou une bibliothèque que vous utilisez) pourriez `raise`.
 
@@ -91,7 +91,7 @@ Vous pouvez ajouter un gestionnaire d'exception personnalisé avec `@app.excepti
 
 {* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
 
-Ici, si vous appelez `/unicorns/yolo`, le chemin d'accès va `raise` une `UnicornException`.
+Ici, si vous appelez `/unicorns/yolo`, le *chemin d'accès* va `raise` une `UnicornException`.
 
 Mais elle sera gérée par `unicorn_exception_handler`.
 

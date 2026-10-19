@@ -34,7 +34,7 @@
 
 {* ../../docs_src/async_tests/app_a_py310/main.py *}
 
-`test_main.py` は `main.py` のテストを持ち、次のようになります:
+`test_main.py` は `main.py` のテストを持ち、今は次のようになります:
 
 {* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
@@ -45,7 +45,7 @@
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ---> 100%
 ```
@@ -60,7 +60,7 @@ $ pytest
 
 /// tip | 豆知識
 
-`TestClient` を使っていたときと異なり、テスト関数は `async def` ではなく `def` になっている点に注意してください。
+`TestClient` を使っていたときのように単なる `def` ではなく、テスト関数は `async def` になっている点に注意してください。
 
 ///
 

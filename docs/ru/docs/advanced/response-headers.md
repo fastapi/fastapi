@@ -38,4 +38,4 @@
 
 Помните, что собственные проприетарные HTTP-заголовки можно добавлять, [используя префикс `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Но если у вас есть пользовательские HTTP-заголовки, которые вы хотите показывать клиенту в браузере, вам нужно добавить их в настройки CORS (подробнее см. в [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), используя параметр `expose_headers`, описанный в [документации Starlette по CORS](https://www.starlette.dev/middleware/#corsmiddleware).
+Но если у вас есть пользовательские HTTP-заголовки, которые вы хотите показывать клиенту в браузере, вам нужно добавить их в настройки CORS (подробнее см. в [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), используя параметр `expose_headers`, описанный в [документации Starlette по CORS](https://starlette.dev/middleware/#corsmiddleware).

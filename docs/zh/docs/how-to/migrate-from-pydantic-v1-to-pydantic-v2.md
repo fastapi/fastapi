@@ -24,7 +24,7 @@ FastAPI 0.128.0 也移除了对 `pydantic.v1` 的支持，因此最新版本的 
 
 ## 官方指南 { #official-guide }
 
-Pydantic 有一份从 v1 迁移到 v2 的官方[迁移指南](https://docs.pydantic.dev/latest/migration/)。
+Pydantic 有一份从 v1 迁移到 v2 的官方[迁移指南](https://pydantic.dev/docs/validation/latest/get-started/migration/)。
 
 其中包含变更内容、校验如何更准确更严格、可能的注意事项等。
 
@@ -80,7 +80,7 @@ Pydantic v2 以子模块 `pydantic.v1` 的形式包含了 Pydantic v1 的全部�
 
 ### 同一应用中同时使用 Pydantic v1 与 v2 { #pydantic-v1-and-v2-on-the-same-app }
 
-Pydantic 不支持在一个 Pydantic v2 模型的字段中定义 Pydantic v1 模型，反之亦然。
+Pydantic **不支持**在一个 Pydantic v2 模型的字段中定义 Pydantic v1 模型，反之亦然。
 
 ```mermaid
 graph TB
@@ -120,7 +120,7 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-在某些情况下，甚至可以在 FastAPI 应用的同一个路径操作中同时使用 Pydantic v1 和 v2 模型：
+在某些情况下，甚至可以在 FastAPI 应用的同一个 **路径操作** 中同时使用 Pydantic v1 和 v2 模型：
 
 {* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
 

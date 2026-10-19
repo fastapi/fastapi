@@ -33,11 +33,11 @@
 
 {* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
-/// tip
+/// tip | Порада
 
 Пам’ятайте, що власні пропрієтарні заголовки можна додавати [використовуючи префікс `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Але якщо у вас є власні заголовки, які ви хочете, щоб клієнт у браузері міг побачити, потрібно додати їх до ваших конфігурацій CORS ([CORS (Спільне використання ресурсів між джерелами)](cors.md)) за допомогою параметра `expose_headers`, описаного в [документації Starlette по CORS](https://www.starlette.dev/middleware/#corsmiddleware).
+Але якщо у вас є власні заголовки, які ви хочете, щоб клієнт у браузері міг побачити, потрібно додати їх до ваших конфігурацій CORS ([CORS (Спільне використання ресурсів між джерелами)](cors.md)) за допомогою параметра `expose_headers`, описаного в [документації Starlette по CORS](https://starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -59,7 +59,7 @@
 
 {* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
-/// tip
+/// tip | Порада
 
 Тут ми використовуємо [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) замість `time.time()` оскільки він може бути більш точним для таких випадків. 🤓
 

@@ -80,7 +80,7 @@ q: Annotated[str | None] = None
 Тепер FastAPI:
 
 * **Перевірить** дані, щоб переконатися, що їхня максимальна довжина - 50 символів
-* Покажe **чітку помилку** клієнту, якщо дані недійсні
+* Покаже **чітку помилку** клієнту, якщо дані недійсні
 * **Задокументує** параметр в *операції шляху* схеми OpenAPI (що відобразиться в **автоматичному інтерфейсі документації**)
 
 ## Альтернативний (застарілий) метод: `Query` як значення за замовчуванням { #alternative-old-query-as-the-default-value }
@@ -370,11 +370,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 У таких випадках ви можете використати **кастомну функцію-валідатор**, яка буде застосована після звичайної валідації (наприклад, після перевірки, що значення є типом `str`).
 
-Це можна досягти за допомогою [Pydantic's `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) всередині `Annotated`.
+Це можна досягти за допомогою [`AfterValidator` від Pydantic](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) всередині `Annotated`.
 
 /// tip | Порада
 
-Pydantic також має [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) та інші. 🤓
+Pydantic також має [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) та інші. 🤓
 
 ///
 

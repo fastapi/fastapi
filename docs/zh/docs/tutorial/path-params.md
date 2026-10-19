@@ -38,7 +38,7 @@
 
 注意，函数接收并返回的值是 `3`（ `int`），不是 `"3"`（`str`）。
 
-**FastAPI** 通过类型声明自动进行请求的<dfn title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</dfn>。
+**FastAPI** 通过类型声明自动进行请求的<dfn title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">“解析”</dfn>。
 
 ///
 
@@ -92,7 +92,7 @@
 
 ## 基于标准的好处，备选文档 { #standards-based-benefits-alternative-documentation }
 
-**FastAPI** 使用 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 生成概图，所以能兼容很多工具。
+**FastAPI** 使用 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 生成概图，所以能兼容很多工具。
 
 因此，**FastAPI** 还内置了 ReDoc 生成的备选 API 文档，可在此查看 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)：
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-所有数据校验都由 [Pydantic](https://docs.pydantic.dev/) 在幕后完成，因此你能从中获得所有好处。而且你可以放心。
+所有数据校验都由 [Pydantic](https://pydantic.dev/docs/) 在幕后完成，因此你能从中获得所有好处。而且你可以放心。
 
 同样，`str`、`float`、`bool` 以及很多复合数据类型都可以使用类型声明。
 
@@ -130,7 +130,7 @@
 
 ## 预设值 { #predefined-values }
 
-路径操作使用 Python 的 <abbr title="Enumeration - 枚举">`Enum`</abbr> 类型接收预设的路径参数。
+如果你的*路径操作*接收一个*路径参数*，但你希望可能有效的*路径参数*值是预设的，可以使用标准 Python <abbr title="Enumeration - 枚举">`Enum`</abbr>。
 
 ### 创建 `Enum` 类 { #create-an-enum-class }
 
@@ -144,33 +144,33 @@
 
 /// tip | 提示
 
-**AlexNet**、**ResNet**、**LeNet** 是机器学习<dfn title="技术上来说是深度学习模型架构">模型</dfn>的名字。
+如果你好奇，"AlexNet"、"ResNet" 和 "LeNet" 只是机器学习<dfn title="技术上来说是深度学习模型架构">模型</dfn>的名字。
 
 ///
 
-### 声明路径参数 { #declare-a-path-parameter }
+### 声明*路径参数* { #declare-a-path-parameter }
 
-使用 Enum 类（`ModelName`）创建使用类型注解的路径参数：
+使用你创建的枚举类（`ModelName`）创建带有类型注解的*路径参数*：
 
 {* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
 
 ### 查看文档 { #check-the-docs }
 
-API 文档会显示预定义路径参数的可用值：
+由于*路径参数*的可用值是预定义的，交互式文档可以很好地显示它们：
 
 <img src="/img/tutorial/path-params/image03.png">
 
-### 使用 Python 枚举 { #working-with-python-enumerations }
+### 使用 Python *枚举* { #working-with-python-enumerations }
 
-路径参数的值是一个枚举成员。
+*路径参数*的值是一个*枚举成员*。
 
-#### 比较枚举成员 { #compare-enumeration-members }
+#### 比较*枚举成员* { #compare-enumeration-members }
 
-可以将其与枚举类 `ModelName` 中的枚举成员进行比较：
+可以将其与你创建的枚举 `ModelName` 中的*枚举成员*进行比较：
 
 {* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
 
-#### 获取枚举值 { #get-the-enumeration-value }
+#### 获取*枚举值* { #get-the-enumeration-value }
 
 使用 `model_name.value` 或通用的 `your_enum_member.value` 获取实际的值（本例中为 `str`）：
 
@@ -182,11 +182,11 @@ API 文档会显示预定义路径参数的可用值：
 
 ///
 
-#### 返回枚举成员 { #return-enumeration-members }
+#### 返回*枚举成员* { #return-enumeration-members }
 
-即使嵌套在 JSON 请求体里（例如，`dict`），也可以从路径操作返回枚举成员。
+即使嵌套在 JSON 请求体里（例如，`dict`），也可以从你的*路径操作*返回*枚举成员*。
 
-返回给客户端之前，会把枚举成员转换为对应的值（本例中为字符串）：
+返回给客户端之前，会把它们转换为对应的值（本例中为字符串）：
 
 {* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
 
@@ -201,29 +201,29 @@ API 文档会显示预定义路径参数的可用值：
 
 ## 包含路径的路径参数 { #path-parameters-containing-paths }
 
-假设路径操作的路径为 `/files/{file_path}`。
+假设你有一个路径为 `/files/{file_path}` 的*路径操作*。
 
-但需要 `file_path` 中也包含路径，比如，`home/johndoe/myfile.txt`。
+但需要 `file_path` 本身也包含*路径*，比如，`home/johndoe/myfile.txt`。
 
-此时，该文件的 URL 是这样的：`/files/home/johndoe/myfile.txt`。
+因此，该文件的 URL 可能是这样的：`/files/home/johndoe/myfile.txt`。
 
 ### OpenAPI 支持 { #openapi-support }
 
-OpenAPI 不支持声明包含路径的路径参数，因为这会导致测试和定义更加困难。
+OpenAPI 不支持声明内部包含*路径*的*路径参数*，因为这会导致测试和定义更加困难。
 
-不过，仍可使用 Starlette 内置工具在 **FastAPI** 中实现这一功能。
+不过，仍可使用 Starlette 内部工具之一在 **FastAPI** 中实现这一功能。
 
-而且不影响文档正常运行，但是不会添加该参数包含路径的说明。
+而且不影响文档正常运行，但是不会添加该参数应包含路径的说明。
 
 ### 路径转换器 { #path-convertor }
 
-直接使用 Starlette 的选项声明包含路径的路径参数：
+直接使用 Starlette 的选项，就可以用如下 URL 声明包含*路径*的*路径参数*：
 
 ```
 /files/{file_path:path}
 ```
 
-本例中，参数名为 `file_path`，结尾部分的 `:path` 说明该参数应匹配路径。
+本例中，参数名为 `file_path`，结尾部分的 `:path` 说明该参数应匹配任意*路径*。
 
 用法如下：
 
@@ -241,10 +241,10 @@ OpenAPI 不支持声明包含路径的路径参数，因为这会导致测试和
 
 通过简短、直观的 Python 标准类型声明，**FastAPI** 可以获得：
 
-- 编辑器支持：错误检查，代码自动补全等
-- 数据 "<dfn title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</dfn>"
-- 数据校验
-- API 注解和自动文档
+* 编辑器支持：错误检查，代码自动补全等
+* 数据 "<dfn title="将来自 HTTP 请求中的字符串转换为 Python 数据类型">解析</dfn>"
+* 数据校验
+* API 注解和自动文档
 
 只需要声明一次即可。
 

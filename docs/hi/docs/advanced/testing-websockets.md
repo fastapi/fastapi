@@ -8,6 +8,6 @@
 
 /// note | नोट
 
-अधिक जानकारी के लिए, Starlette की documentation में [WebSockets की testing](https://www.starlette.dev/testclient/#testing-websocket-sessions) देखें।
+अधिक जानकारी के लिए, Starlette की documentation में [WebSockets की testing](https://starlette.dev/testclient/#testing-websocket-sessions) देखें।
 
 ///

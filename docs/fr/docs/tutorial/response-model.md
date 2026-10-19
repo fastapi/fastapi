@@ -76,16 +76,16 @@ Ici, nous déclarons un modèle `UserIn`, il contiendra un mot de passe en clair
 
 Pour utiliser `EmailStr`, installez d'abord [`email-validator`](https://github.com/JoshData/python-email-validator).
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md), de l'activer, puis de l'installer, par exemple :
+Ajoutez-le à votre projet :
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 ou avec :
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -258,7 +258,7 @@ Vous pouvez également utiliser :
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-comme décrit dans [la documentation Pydantic](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) pour `exclude_defaults` et `exclude_none`.
+comme décrit dans [les documents Pydantic](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value) pour `exclude_defaults` et `exclude_none`.
 
 ///
 

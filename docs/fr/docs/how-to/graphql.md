@@ -21,7 +21,7 @@ Voici quelques bibliothèques **GraphQL** qui prennent en charge **ASGI**. Vous 
 * [Strawberry](https://strawberry.rocks/) 🍓
     * Avec [les documents pour FastAPI](https://strawberry.rocks/docs/integrations/fastapi)
 * [Ariadne](https://ariadnegraphql.org/)
-    * Avec [les documents pour FastAPI](https://ariadnegraphql.org/docs/fastapi-integration)
+    * Avec [les documents pour FastAPI](https://ariadnegraphql.org/server/Integrations/fastapi-integration)
 * [Tartiflette](https://tartiflette.io/)
     * Avec [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) pour fournir l'intégration ASGI
 * [Graphene](https://graphene-python.org/)

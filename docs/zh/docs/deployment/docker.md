@@ -106,36 +106,32 @@ Docker 一直是创建和管理**容器镜像**与**容器**的主要工具之�
 
 ### 包依赖 { #package-requirements }
 
-通常你会把应用的**包依赖**放在某个文件里。
+当你使用 `uv` 管理项目时，它的直接依赖会声明在 `pyproject.toml` 中，而精确解析出的版本会存储在 `uv.lock` 中。
 
-这主要取决于你用来**安装**这些依赖的工具。
-
-最常见的方式是使用 `requirements.txt` 文件，每行一个包名及其版本范围。
-
-当然，你也可以参考你在[关于 FastAPI 版本](versions.md)中读到的思路来设置版本范围。
-
-例如，你的 `requirements.txt` 可能是：
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-通常你会用 `pip` 安装这些依赖，例如：
+你可以用以下命令添加应用所需的包：
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
 /// note | 注意
 
-还有其他格式和工具可以定义并安装包依赖。
+下面的 Dockerfile 在容器内使用 `pip`。你可以将 uv 项目中锁定的依赖导出为它所期望的 `requirements.txt` 格式：
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+生成的 `requirements.txt` 是用于容器构建的导出文件。继续使用 `uv add` 管理依赖，并在 `uv.lock` 变化时重新生成它。
 
 ///
 
@@ -373,7 +369,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 你还可以访问 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 或 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)（或其他等价地址，取决于你的 Docker 主机）。
 
-你将看到备选的自动文档（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你将看到备选的自动文档（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

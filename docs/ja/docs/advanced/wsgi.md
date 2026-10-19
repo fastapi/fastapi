@@ -9,7 +9,7 @@
 
 /// note | 備考
 
-これには `a2wsgi` のインストールが必要です。例: `pip install a2wsgi`。
+これにはプロジェクトに `a2wsgi` を追加する必要があります。例: `uv add a2wsgi`。
 
 ///
 

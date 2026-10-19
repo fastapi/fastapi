@@ -26,14 +26,14 @@ Güvenliği yönetmek için **FastAPI**’nin sunduğu araçları kullanalım.
 
 /// note | Not
 
-[`python-multipart`](https://github.com/Kludex/python-multipart) paketi, `pip install "fastapi[standard]"` komutunu çalıştırdığınızda **FastAPI** ile birlikte otomatik olarak kurulur.
+[`python-multipart`](https://github.com/Kludex/python-multipart) paketi, `uv add "fastapi[standard]"` komutunu çalıştırdığınızda **FastAPI** ile birlikte otomatik olarak kurulur.
 
-Ancak `pip install fastapi` komutunu kullanırsanız, `python-multipart` paketi varsayılan olarak dahil edilmez.
+Ancak `uv add fastapi` komutunu kullanırsanız, `python-multipart` paketi varsayılan olarak dahil edilmez.
 
-Elle kurmak için bir [Sanal ortam](../../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden emin olun ve ardından şununla kurun:
+Elle kurmak için projenize şununla ekleyin:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Bunun nedeni, **OAuth2**’nin `username` ve `password` göndermek için "form data" kullanmasıdır.
@@ -45,7 +45,7 @@ Bunun nedeni, **OAuth2**’nin `username` ve `password` göndermek için "form d
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

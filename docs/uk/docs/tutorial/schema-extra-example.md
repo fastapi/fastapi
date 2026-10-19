@@ -12,7 +12,7 @@
 
 Ця додаткова інформація буде додана як є до **Схеми JSON** для цієї моделі, і вона буде використана в документації до API.
 
-Ви можете використати атрибут `model_config`, який приймає `dict`, як описано в [документації Pydantic: Configuration](https://docs.pydantic.dev/latest/api/config/).
+Ви можете використати атрибут `model_config`, який приймає `dict`, як описано в [документації Pydantic: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/).
 
 Ви можете встановити `"json_schema_extra"` як `dict`, що містить будь-які додаткові дані, які ви хочете відобразити у згенерованій Схемі JSON, включаючи `examples`.
 

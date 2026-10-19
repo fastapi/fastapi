@@ -35,7 +35,7 @@
 
 /// tip
 
-`callback_url` 查詢參數使用的是 Pydantic 的 [Url](https://docs.pydantic.dev/latest/api/networks/) 型別。
+`callback_url` 查詢參數使用的是 Pydantic 的 [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) 型別。
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 和一般「路徑操作」相比有兩個主要差異：
 
 * 不需要任何實際程式碼，因為你的應用永遠不會呼叫這段程式。它只用來文件化「外部 API」。因此函式可以只有 `pass`。
-* 「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)（見下文），可使用參數與原始送到「你的 API」的請求中的部分欄位。
+* 「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)（見下文），可使用參數與原始送到「你的 API」的請求中的部分欄位。
 
 ### 回呼路徑表達式 { #the-callback-path-expression }
 
-回呼的「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)，能引用原本送到「你的 API」的請求中的部分內容。
+回呼的「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)，能引用原本送到「你的 API」的請求中的部分內容。
 
 在這個例子中，它是一個 `str`：
 

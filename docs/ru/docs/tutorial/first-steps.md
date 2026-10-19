@@ -6,12 +6,18 @@
 
 Скопируйте это в файл `main.py`.
 
+/// tip | Подсказка
+
+У FastAPI есть [официальное расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (и Cursor), которое предоставляет множество функций, включая обозреватель операций пути, поиск операций пути, навигацию CodeLens в тестах (переход к определению из тестов), а также развертывание и логи FastAPI Cloud — всё из вашего редактора кода.
+
+///
+
 Запустите сервер в режиме реального времени:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 И теперь перейдите по адресу [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Вы увидите альтернативную автоматически сгенерированную документацию (предоставлено [ReDoc](https://github.com/Rebilly/ReDoc)):
+Вы увидите альтернативную автоматически сгенерированную документацию (предоставлено [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 Вы также можете передать путь к файлу в команду `fastapi dev`, и она попытается определить объект приложения FastAPI для использования:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Или вы можете передать опцию `--entrypoint` команде `fastapi dev`:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 Но в этом случае вам придётся каждый раз помнить о передаче корректного пути/entrypoint при вызове команды `fastapi`.
@@ -205,7 +211,7 @@ $ fastapi dev --entrypoint main:app
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -232,7 +238,7 @@ CLI автоматически определит ваше приложение 
 
 `FastAPI` — это класс, который напрямую наследуется от `Starlette`.
 
-Вы можете использовать весь функционал [Starlette](https://www.starlette.dev/) и в `FastAPI`.
+Вы можете использовать весь функционал [Starlette](https://starlette.dev/) и в `FastAPI`.
 
 ///
 

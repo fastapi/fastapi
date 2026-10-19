@@ -487,7 +487,7 @@ from app.main import app
 आप command को path भी pass कर सकते हैं, जैसे:
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 लेकिन हर बार `fastapi` command call करते समय आपको सही path pass करना याद रखना होगा।
@@ -503,7 +503,7 @@ $ fastapi dev app/main.py
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

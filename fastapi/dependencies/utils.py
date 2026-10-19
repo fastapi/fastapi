@@ -145,74 +145,14 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
     )
 
 
-def get_flat_dependant(
-    dependant: Dependant,
-    *,
-    skip_repeats: bool = False,
-    visited: list[DependencyCacheKey] | None = None,
-    parent_oauth_scopes: list[str] | None = None,
-    _uses_scopes_cache: _UsesScopesCache | None = None,
-) -> Dependant:
-    if visited is None:
-        visited = []
-    if _uses_scopes_cache is None:
-        _uses_scopes_cache = {}
-    visited.append(
-        _get_cache_key(
-            dependant=dependant,
-            uses_scopes_cache=_uses_scopes_cache,
-        )
-    )
-    use_parent_oauth_scopes = (parent_oauth_scopes or []) + (
-        _get_oauth_scopes(dependant=dependant)
-    )
-
-    flat_dependant = Dependant(
-        path_params=dependant.path_params.copy(),
-        query_params=dependant.query_params.copy(),
-        header_params=dependant.header_params.copy(),
-        cookie_params=dependant.cookie_params.copy(),
-        body_params=dependant.body_params.copy(),
-        name=dependant.name,
-        call=dependant.call,
-        request_param_name=dependant.request_param_name,
-        websocket_param_name=dependant.websocket_param_name,
-        http_connection_param_name=dependant.http_connection_param_name,
-        response_param_name=dependant.response_param_name,
-        background_tasks_param_name=dependant.background_tasks_param_name,
-        security_scopes_param_name=dependant.security_scopes_param_name,
-        own_oauth_scopes=dependant.own_oauth_scopes,
-        parent_oauth_scopes=use_parent_oauth_scopes,
-        use_cache=dependant.use_cache,
-        path=dependant.path,
-        scope=dependant.scope,
-    )
-    for sub_dependant in dependant.dependencies:
-        if (
-            skip_repeats
-            and _get_cache_key(
-                dependant=sub_dependant,
-                uses_scopes_cache=_uses_scopes_cache,
-            )
-            in visited
-        ):
-            continue
-        flat_sub = get_flat_dependant(
-            sub_dependant,
-            skip_repeats=skip_repeats,
-            visited=visited,
-            parent_oauth_scopes=_get_oauth_scopes(dependant=flat_dependant),
-            _uses_scopes_cache=_uses_scopes_cache,
-        )
-        flat_dependant.dependencies.append(flat_sub)
-        flat_dependant.path_params.extend(flat_sub.path_params)
-        flat_dependant.query_params.extend(flat_sub.query_params)
-        flat_dependant.header_params.extend(flat_sub.header_params)
-        flat_dependant.cookie_params.extend(flat_sub.cookie_params)
-        flat_dependant.body_params.extend(flat_sub.body_params)
-        flat_dependant.dependencies.extend(flat_sub.dependencies)
-
-    return flat_dependant
+def _get_flat_body_params(dependant: Dependant) -> list[ModelField]:
+    body_params: list[ModelField] = []
+    dependants = [dependant]
+    while dependants:
+        current_dependant = dependants.pop()
+        body_params.extend(current_dependant.body_params)
+        dependants.extend(reversed(current_dependant.dependencies))
+    return body_params
 
 
 def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
@@ -228,11 +168,31 @@ def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
 
 
 def get_flat_params(dependant: Dependant) -> list[ModelField]:
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
-    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
-    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
-    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
+    path_params: list[ModelField] = []
+    query_params: list[ModelField] = []
+    header_params: list[ModelField] = []
+    cookie_params: list[ModelField] = []
+    visited: list[DependencyCacheKey] = []
+    uses_scopes_cache: _UsesScopesCache = {}
+    dependants = [dependant]
+    while dependants:
+        current_dependant = dependants.pop()
+        cache_key = _get_cache_key(
+            dependant=current_dependant,
+            uses_scopes_cache=uses_scopes_cache,
+        )
+        if cache_key in visited:
+            continue
+        visited.append(cache_key)
+        path_params.extend(current_dependant.path_params)
+        query_params.extend(current_dependant.query_params)
+        header_params.extend(current_dependant.header_params)
+        cookie_params.extend(current_dependant.cookie_params)
+        dependants.extend(reversed(current_dependant.dependencies))
+    path_params = _get_flat_fields_from_params(path_params)
+    query_params = _get_flat_fields_from_params(query_params)
+    header_params = _get_flat_fields_from_params(header_params)
+    cookie_params = _get_flat_fields_from_params(cookie_params)
     return path_params + query_params + header_params + cookie_params
 
 
@@ -970,7 +930,10 @@ async def _extract_form_body(
                 assert isinstance(value, sequence_types)
                 results: list[bytes | str] = []
                 for sub_value in value:
-                    results.append(await sub_value.read())
+                    if isinstance(sub_value, UploadFile):
+                        results.append(await sub_value.read())
+                    else:
+                        results.append(sub_value)
                 value = serialize_sequence_value(field=field, value=results)
             else:
                 value = [
@@ -1041,8 +1004,8 @@ async def request_body_to_args(
     return values, errors
 
 
-def get_body_field(
-    *, flat_dependant: Dependant, name: str, embed_body_fields: bool
+def _get_body_field(
+    *, body_params: list[ModelField], name: str, embed_body_fields: bool
 ) -> ModelField | None:
     """
     Get a ModelField representing the request body for a path operation, combining
@@ -1054,34 +1017,30 @@ def get_body_field(
     This is **not** used to validate/parse the request body, that's done with each
     individual body parameter.
     """
-    if not flat_dependant.body_params:
+    if not body_params:
         return None
-    first_param = flat_dependant.body_params[0]
+    first_param = body_params[0]
     if not embed_body_fields:
         return first_param
     model_name = "Body_" + name
-    BodyModel = create_body_model(
-        fields=flat_dependant.body_params, model_name=model_name
-    )
-    required = any(
-        True for f in flat_dependant.body_params if f.field_info.is_required()
-    )
+    BodyModel = create_body_model(fields=body_params, model_name=model_name)
+    required = any(True for f in body_params if f.field_info.is_required())
     BodyFieldInfo_kwargs: dict[str, Any] = {
         "annotation": BodyModel,
         "alias": "body",
     }
     if not required:
         BodyFieldInfo_kwargs["default"] = None
-    if any(isinstance(f.field_info, params.File) for f in flat_dependant.body_params):
+    if any(isinstance(f.field_info, params.File) for f in body_params):
         BodyFieldInfo: type[params.Body] = params.File
-    elif any(isinstance(f.field_info, params.Form) for f in flat_dependant.body_params):
+    elif any(isinstance(f.field_info, params.Form) for f in body_params):
         BodyFieldInfo = params.Form
     else:
         BodyFieldInfo = params.Body
 
         body_param_media_types = [
             f.field_info.media_type
-            for f in flat_dependant.body_params
+            for f in body_params
             if isinstance(f.field_info, params.Body)
         ]
         if len(set(body_param_media_types)) == 1:

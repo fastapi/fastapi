@@ -24,7 +24,7 @@ Les en-têtes du proxy sont :
 
 ### Activer les en-têtes transférés par le proxy { #enable-proxy-forwarded-headers }
 
-Vous pouvez démarrer FastAPI CLI avec l'option de CLI `--forwarded-allow-ips` et fournir les adresses IP à considérer comme fiables pour lire ces en‑têtes transférés.
+Vous pouvez démarrer FastAPI CLI avec l'*option de CLI* `--forwarded-allow-ips` et fournir les adresses IP à considérer comme fiables pour lire ces en‑têtes transférés.
 
 Si vous la définissez à `--forwarded-allow-ips="*"`, elle fera confiance à toutes les IP entrantes.
 
@@ -33,7 +33,7 @@ Si votre **serveur** est derrière un **proxy** de confiance et que seul le prox
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -48,7 +48,7 @@ Par exemple, disons que vous définissez un *chemin d'accès* `/items/` :
 
 Si le client essaie d'aller à `/items`, par défaut, il sera redirigé vers `/items/`.
 
-Mais avant de définir l'option de CLI `--forwarded-allow-ips`, il pourrait rediriger vers `http://localhost:8000/items/`.
+Mais avant de définir l'*option de CLI* `--forwarded-allow-ips`, il pourrait rediriger vers `http://localhost:8000/items/`.
 
 Mais peut‑être que votre application est hébergée à `https://mysuperapp.com`, et la redirection devrait être vers `https://mysuperapp.com/items/`.
 
@@ -170,7 +170,7 @@ Pour y parvenir, vous pouvez utiliser l'option de ligne de commande `--root-path
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ Ensuite, si vous démarrez Uvicorn avec :
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Dans un cas comme celui‑ci (sans préfixe de chemin supprimé), le proxy écou
 
 Vous pouvez facilement faire l'expérience en local avec un préfixe de chemin supprimé en utilisant [Traefik](https://docs.traefik.io/).
 
-[Téléchargez Traefik](https://github.com/containous/traefik/releases) ; c'est un binaire unique, vous pouvez extraire le fichier compressé et l'exécuter directement depuis le terminal.
+[Téléchargez Traefik](https://github.com/traefik/traefik/releases), c'est un binaire unique, vous pouvez extraire le fichier compressé et l'exécuter directement depuis le terminal.
 
 Créez ensuite un fichier `traefik.toml` avec :
 
@@ -321,7 +321,7 @@ Et démarrez maintenant votre application, en utilisant l'option `--root-path` :
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

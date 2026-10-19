@@ -12,7 +12,7 @@
 
 Для **клієнтів TypeScript** [Hey API](https://heyapi.dev/) - спеціалізоване рішення, що надає оптимізований досвід для екосистеми TypeScript.
 
-Більше генераторів SDK ви можете знайти на [OpenAPI.Tools](https://openapi.tools/#sdk).
+Більше генераторів SDK ви можете знайти на [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Порада
 

@@ -46,20 +46,6 @@ GitHubでFastAPIを「Watch」できます（右上の「Watch」ボタンをク
 * [**Bluesky** の @tiangolo.com](https://bsky.app/profile/tiangolo.com)
 * [**LinkedIn** の @tiangolo](https://www.linkedin.com/in/tiangolo/)。
 
-## GitHubで質問に困っている人を助ける { #help-others-with-questions-in-github }
-
-[GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered) で、他の人の質問を手助けできます。
-
-多くの場合、その質問の答えをすでに知っているかもしれません。🤓
-
-多くの人の質問に答えて助けてくれたなら、あなたは公式の[FastAPI Expert](fastapi-people.md#fastapi-experts)になります。🎉
-
-最も大事なポイントは「親切であること」を心がけることです。🤗
-
-### 手助けの方法 { #how-to-help }
-
-こちらの[ヘルプの仕方ガイド](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github)に従ってください。
-
 ## 質問する { #ask-questions }
 
 GitHubレポジトリで[新しい質問](https://github.com/fastapi/fastapi/discussions/new?category=questions)を作成できます。例えば:
@@ -69,7 +55,7 @@ GitHubレポジトリで[新しい質問](https://github.com/fastapi/fastapi/dis
 
 ## チャットに参加 { #join-the-chat }
 
-👥 [Discord チャットサーバー](https://discord.gg/VQjSZaeJmf) 👥 に参加し、FastAPI コミュニティのみんなと交流しましょう。
+👥 [Discord チャットサーバー](https://discord.com/invite/VQjSZaeJmf) 👥 に参加し、FastAPI コミュニティのみんなと交流しましょう。
 
 /// tip | 豆知識
 
@@ -86,3 +72,9 @@ GitHubレポジトリで[新しい質問](https://github.com/fastapi/fastapi/dis
 GitHub では、テンプレートが正しい形で質問を書くのを助けてくれるため、良い回答を得やすくなりますし、質問する前に自分で問題を解決できることもあります。
 
 また、チャットの会話は GitHub ほど検索しやすくなく、流れてしまいます。
+
+## FastAPI Cloud を試す { #try-fastapi-cloud }
+
+FastAPI とその仲間の主な資金源は、FastAPI アプリケーションをシンプルかつ高速に、単一のコマンド `fastapi deploy` でデプロイするためのプラットフォームである [**FastAPI Cloud**](https://fastapicloud.com) です。
+
+FastAPI Cloud は FastAPI を支える同じチームによって構築されています。試してみて、あなたのプロジェクトでの利用を検討できます。

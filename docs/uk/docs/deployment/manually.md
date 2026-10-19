@@ -52,7 +52,7 @@ FastAPI використовує стандарт для побудови Python
 
 Є кілька альтернатив, зокрема:
 
-* [Uvicorn](https://www.uvicorn.dev/): високопродуктивний ASGI-сервер.
+* [Uvicorn](https://uvicorn.dev): високопродуктивний ASGI-сервер.
 * [Hypercorn](https://hypercorn.readthedocs.io/): ASGI-сервер, сумісний з HTTP/2 і Trio, серед інших можливостей.
 * [Daphne](https://github.com/django/daphne): ASGI-сервер, створений для Django Channels.
 * [Granian](https://github.com/emmett-framework/granian): Rust HTTP-сервер для Python-застосунків.
@@ -73,14 +73,14 @@ FastAPI використовує стандарт для побудови Python
 
 Але ви також можете встановити ASGI-сервер вручну.
 
-Переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md), активували його, після чого можете встановити серверну програму.
+Додайте серверний застосунок до вашого проєкту.
 
 Наприклад, щоб установити Uvicorn:
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]"
+$ uv add "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -95,7 +95,7 @@ $ pip install "uvicorn[standard]"
 
 Зокрема `uvloop` - високопродуктивну заміну «без змін у коді» для `asyncio`, що суттєво підвищує рівночасність і продуктивність.
 
-Якщо ви встановлюєте FastAPI через `pip install "fastapi[standard]"`, ви вже отримаєте і `uvicorn[standard]`.
+Коли ви додаєте FastAPI за допомогою чогось на кшталт `uv add "fastapi[standard]"`, ви також уже отримуєте `uvicorn[standard]`.
 
 ///
 
@@ -106,7 +106,7 @@ $ pip install "uvicorn[standard]"
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+$ uv run uvicorn main:app --host 0.0.0.0 --port 80
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```

@@ -243,5 +243,5 @@ new_dict = {**old_dict, "new key": "new value"}
 
 Responses में आप ठीक-ठीक क्या शामिल कर सकते हैं, यह देखने के लिए आप OpenAPI specification में ये sections देख सकते हैं:
 
-* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), इसमें `Response Object` शामिल है।
-* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), आप इसमें से कुछ भी सीधे अपने `responses` parameter के अंदर प्रत्येक response में शामिल कर सकते हैं। जिसमें `description`, `headers`, `content` (इसी के अंदर आप अलग-अलग media types और JSON Schemas घोषित करते हैं), और `links` शामिल हैं।
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object), इसमें `Response Object` शामिल है।
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object), आप इसमें से कुछ भी सीधे अपने `responses` parameter के अंदर प्रत्येक response में शामिल कर सकते हैं। जिसमें `description`, `headers`, `content` (इसी के अंदर आप अलग-अलग media types और JSON Schemas घोषित करते हैं), और `links` शामिल हैं।

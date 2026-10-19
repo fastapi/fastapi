@@ -1,10 +1,10 @@
 # Test Etme { #testing }
 
-[Starlette](https://www.starlette.dev/testclient/) sayesinde **FastAPI** uygulamalarını test etmek kolay ve keyiflidir.
+[Starlette](https://starlette.dev/testclient/) sayesinde **FastAPI** uygulamalarını test etmek kolay ve keyiflidir.
 
 Temelde [HTTPX](https://www.python-httpx.org) üzerine kuruludur; HTTPX de Requests’i temel alarak tasarlandığı için oldukça tanıdık ve sezgiseldir.
 
-Bununla birlikte **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan kullanabilirsiniz.
+Bu sayede **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan kullanabilirsiniz.
 
 ## `TestClient` Kullanımı { #using-testclient }
 
@@ -12,10 +12,10 @@ Bununla birlikte **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan 
 
 `TestClient` kullanmak için önce [`httpx`](https://www.python-httpx.org)'i kurun.
 
-Bir [Sanal Ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
+Projenize ekleyin:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -156,12 +156,12 @@ Testinizde bir Pydantic model'iniz varsa ve test sırasında verisini uygulamaya
 
 Bundan sonra yapmanız gereken tek şey `pytest`'i kurmaktır.
 
-Bir [Sanal Ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
+Projenize ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ Testleri şu şekilde çalıştırın:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

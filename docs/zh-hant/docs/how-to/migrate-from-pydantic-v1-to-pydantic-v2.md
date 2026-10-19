@@ -24,7 +24,7 @@ Pydantic 團隊自 **Python 3.14** 起，已停止在最新的 Python 版本中�
 
 ## 官方指南 { #official-guide }
 
-Pydantic 提供從 v1 遷移到 v2 的官方[遷移指南](https://docs.pydantic.dev/latest/migration/)。
+Pydantic 提供從 v1 遷移到 v2 的官方[遷移指南](https://pydantic.dev/docs/validation/latest/get-started/migration/)。
 
 其中包含變更內容、驗證如何更正確且更嚴格、可能的注意事項等。
 

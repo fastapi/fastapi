@@ -4,12 +4,12 @@
 
 ## `websockets`のインストール { #install-websockets }
 
-[仮想環境](../virtual-environments.md)を作成し、それを有効化してから、「WebSocket」プロトコルを簡単に使えるようにするPythonライブラリの`websockets`をインストールしてください。
+「WebSocket」プロトコルを簡単に使えるようにするPythonライブラリの`websockets`をプロジェクトに追加します:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -36,19 +36,19 @@ $ pip install websockets
 
 本番環境では、上記の方法のいずれかの選択肢を採用することになるでしょう。
 
-しかし、これはWebSocketsのサーバーサイドに焦点を当て、動作する例を示す最も簡単な方法です。
+しかし、これはWebSocketsのサーバーサイドに焦点を当て、動作する例を示す最も簡単な方法です:
 
 {* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
 
 ## `websocket` を作成する { #create-a-websocket }
 
-**FastAPI** アプリケーションで、`websocket` を作成します。
+**FastAPI** アプリケーションで、`websocket` を作成します:
 
 {* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
 
 /// note | 技術詳細
 
-`from starlette.websockets import WebSocket` を使用しても構いません.
+`from starlette.websockets import WebSocket` を使用しても構いません。
 
 **FastAPI** は開発者の利便性のために、同じ `WebSocket` を提供します。しかし、こちらはStarletteから直接提供されるものです。
 
@@ -64,12 +64,12 @@ WebSocketルートでは、メッセージを待機して送信するために `
 
 ## 試してみる { #try-it }
 
-コードを `main.py` に入れて、アプリケーションを実行します。
+コードを `main.py` に入れて、アプリケーションを実行します:
 
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -107,7 +107,7 @@ WebSocketエンドポイントでは、`fastapi` から以下をインポート�
 * `Path`
 * `Query`
 
-これらは、他のFastAPI エンドポイント/*path operations* の場合と同じように機能します。
+これらは、他のFastAPI エンドポイント/*path operations* の場合と同じように機能します:
 
 {* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
 
@@ -121,12 +121,12 @@ WebSocketエンドポイントでは、`fastapi` から以下をインポート�
 
 ### 依存関係を用いてWebSocketsを試してみる { #try-the-websockets-with-dependencies }
 
-アプリケーションを実行します。
+アプリケーションを実行します:
 
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -146,7 +146,7 @@ $ fastapi dev
 
 ///
 
-これにより、WebSocketに接続してメッセージを送受信できます。
+これにより、WebSocketに接続してメッセージを送受信できます:
 
 <img src="/img/tutorial/websockets/image05.png">
 
@@ -156,13 +156,13 @@ WebSocket接続が閉じられると、 `await websocket.receive_text()` は例�
 
 {* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
 
-試してみるには、
+試してみるには:
 
 * いくつかのブラウザタブでアプリを開きます。
 * それらのタブでメッセージを記入してください。
 * そして、タブのうち1つを閉じてください。
 
-これにより例外 `WebSocketDisconnect` が発生し、他のすべてのクライアントは次のようなメッセージを受信します。
+これにより例外 `WebSocketDisconnect` が発生し、他のすべてのクライアントは次のようなメッセージを受信します:
 
 ```
 Client #1596980209979 left the chat
@@ -182,5 +182,5 @@ FastAPIと簡単に統合できて、RedisやPostgreSQLなどでサポートさ�
 
 オプションの詳細については、Starletteのドキュメントを確認してください。
 
-* [`WebSocket` クラス](https://www.starlette.dev/websockets/)。
-* [クラスベースのWebSocket処理](https://www.starlette.dev/endpoints/#websocketendpoint)。
+* [`WebSocket` クラス](https://starlette.dev/websockets/)。
+* [クラスベースのWebSocket処理](https://starlette.dev/endpoints/#websocketendpoint)。

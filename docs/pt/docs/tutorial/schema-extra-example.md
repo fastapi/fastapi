@@ -13,7 +13,7 @@ Você pode declarar `examples` para um modelo Pydantic que serão adicionados ao
 
 Essas informações extras serão adicionadas como estão ao **JSON Schema** de saída para esse modelo e serão usadas na documentação da API.
 
-Você pode usar o atributo `model_config`, que recebe um `dict`, conforme descrito na [documentação do Pydantic: Configuration](https://docs.pydantic.dev/latest/api/config/).
+Você pode usar o atributo `model_config`, que recebe um `dict`, conforme descrito na [documentação do Pydantic: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/).
 
 Você pode definir `"json_schema_extra"` com um `dict` contendo quaisquer dados adicionais que você queira que apareçam no JSON Schema gerado, incluindo `examples`.
 
