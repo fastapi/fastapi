@@ -9,6 +9,10 @@ hide:
 
 When no file is selected, browsers submit a file part with an empty filename and empty content. FastAPI now treats this as missing: required file fields return a validation error, and fields with defaults or default factories use them. Unselected inputs are ignored in lists of files. Named zero-byte files are still accepted.
 
+### Breaking Changes
+
+* 🐛 Treat unselected browser file inputs as missing. PR [#16534](https://github.com/fastapi/fastapi/pull/16534) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.149.0 (2026-10-19)
 
 Browsers submit empty text inputs as empty strings (`""`). FastAPI now treats empty scalar form values as missing in form models, matching individual `Form` parameters. Required fields return a validation error. Fields with defaults or default factories use them and remain unset in `model_dump(exclude_unset=True)`.
