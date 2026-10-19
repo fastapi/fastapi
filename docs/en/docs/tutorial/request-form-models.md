@@ -28,6 +28,8 @@ You just need to declare a **Pydantic model** with the fields you want to receiv
 
 **FastAPI** will **extract** the data for **each field** from the **form data** in the request and give you the Pydantic model you defined.
 
+Boolean fields follow the same [omission rules](request-forms.md#boolean-form-fields) as individual form parameters.
+
 ## Check the Docs { #check-the-docs }
 
 You can verify it in the docs UI at `/docs`:

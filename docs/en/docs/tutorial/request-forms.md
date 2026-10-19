@@ -44,6 +44,12 @@ To declare form bodies, you need to use `Form` explicitly, because without it th
 
 ///
 
+## Boolean Form Fields { #boolean-form-fields }
+
+Browsers omit unchecked checkboxes. **FastAPI** treats omitted `bool` and `bool | None` form fields as `False`, even when their default is `True` or `None`.
+
+For JSON requests and direct Pydantic validation, required fields and defaults work as usual.
+
 ## About "Form Fields" { #about-form-fields }
 
 The way HTML forms (`<form></form>`) send the data to the server normally uses a "special" encoding for that data, it's different from JSON.
