@@ -937,9 +937,12 @@ async def _extract_form_body(
                 value = serialize_sequence_value(field=field, value=results)
             else:
                 value = [
-                    FastAPIUploadFile.from_starlette(sub_value)
+                    (
+                        FastAPIUploadFile.from_starlette(sub_value)
+                        if isinstance(sub_value, UploadFile)
+                        else sub_value
+                    )
                     for sub_value in value
-                    if isinstance(sub_value, UploadFile)
                 ]
         if value is not None:
             values[get_validation_alias(field)] = value
