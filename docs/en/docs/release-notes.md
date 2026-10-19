@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ✅ Add tests for parameter defaults, nullability, and browser form behavior. PR [#14829](https://github.com/fastapi/fastapi/pull/14829) by [@YuriiMotov](https://github.com/YuriiMotov).
+
 ## 0.146.0 (2026-10-18)
 
 The `root_path` parameter in `FastAPI()` is deprecated. Configure the server with `fastapi run --root-path /api/v1` instead.
