@@ -7,6 +7,12 @@ hide:
 
 ## Latest Changes
 
+Defaults for omitted `Query`, `Header`, `Cookie`, and `Form` parameters and model fields are no longer treated as user input. Defaults are not validated unless `validate_default=True` is enabled. If you rely on validators running for omitted values, enable default validation with `Field(validate_default=True)` for model fields or, for example, `Query(validate_default=True)` for individual parameters. `Body(validate_default=True)` is now honored too.
+
+For parameter models, applying a default no longer marks a field as explicitly set, so `model_dump(exclude_unset=True)` excludes it. Default factories run once, and validation errors no longer include injected defaults in `input`.
+
+Omitted boolean form fields still become `False` and count as explicitly set.
+
 ## 0.147.0 (2026-10-19)
 
 Omitted `bool` and `bool | None` form fields are now interpreted as `False`, matching unchecked HTML checkboxes. This applies to individual `Form` parameters and form models, including required fields and fields with defaults of `True` or `None`. The inferred value is considered explicitly set, including in `model_dump(exclude_unset=True)`.
