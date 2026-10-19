@@ -13,6 +13,10 @@ For parameter models, applying a default no longer marks a field as explicitly s
 
 Omitted boolean form fields still become `False` and count as explicitly set.
 
+### Breaking Changes
+
+* 🐛 Fix default handling for request parameters and models. PR [#16527](https://github.com/fastapi/fastapi/pull/16527) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.147.0 (2026-10-19)
 
 Omitted `bool` and `bool | None` form fields are now interpreted as `False`, matching unchecked HTML checkboxes. This applies to individual `Form` parameters and form models, including required fields and fields with defaults of `True` or `None`. The inferred value is considered explicitly set, including in `model_dump(exclude_unset=True)`.
