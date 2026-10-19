@@ -11,6 +11,10 @@ Browsers submit empty text inputs as empty strings (`""`). FastAPI now treats em
 
 Empty strings inside lists are preserved. Omitted boolean form fields still become `False`. JSON requests and direct Pydantic validation are unchanged.
 
+### Breaking Changes
+
+* 🐛 Treat empty scalar values as missing in form models. PR [#16529](https://github.com/fastapi/fastapi/pull/16529) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.148.0 (2026-10-19)
 
 Defaults for omitted `Query`, `Header`, `Cookie`, and `Form` parameters and model fields are no longer treated as user input. Defaults are not validated unless `validate_default=True` is enabled. If you rely on validators running for omitted values, enable default validation with `Field(validate_default=True)` for model fields or, for example, `Query(validate_default=True)` for individual parameters. `Body(validate_default=True)` is now honored too.
