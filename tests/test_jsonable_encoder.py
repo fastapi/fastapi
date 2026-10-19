@@ -84,6 +84,28 @@ def test_encode_dict():
     }
 
 
+def test_encode_dict_with_custom_encoder_for_keys_and_values():
+    class CustomValue:
+        def __init__(self, value: str):
+            self.value = value
+
+    payload = {"item": CustomValue("encoded")}
+    assert jsonable_encoder(
+        payload, custom_encoder={CustomValue: lambda value: value.value}
+    ) == {"item": "encoded"}
+
+
+def test_encode_nested_collection_with_custom_encoder():
+    class CustomValue:
+        def __init__(self, value: str):
+            self.value = value
+
+    payload = {"items": [CustomValue("first"), CustomValue("second")]}
+    assert jsonable_encoder(
+        payload, custom_encoder={CustomValue: lambda value: value.value}
+    ) == {"items": ["first", "second"]}
+
+
 def test_encode_dict_include_exclude_list():
     pet = {"name": "Firulais", "owner": {"name": "Foo"}}
     assert jsonable_encoder(pet) == {"name": "Firulais", "owner": {"name": "Foo"}}
