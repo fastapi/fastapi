@@ -168,7 +168,11 @@ class ModelField:
     def get_default(self) -> Any:
         if self.field_info.is_required():
             return Undefined
-        return self.field_info.get_default(call_default_factory=True)
+        try:
+            return self.field_info.get_default(call_default_factory=True)
+        except ValueError:
+            # Data-aware default_factory requires 'validated_data' and is resolved during model validation
+            return Undefined
 
     def validate(
         self,
