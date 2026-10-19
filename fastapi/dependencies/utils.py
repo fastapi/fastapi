@@ -70,7 +70,7 @@ from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel, Json
+from pydantic import AliasChoices, BaseModel, Json
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -914,10 +914,42 @@ async def _extract_form_body(
     body_fields: list[ModelField],
     received_body: FormData,
 ) -> dict[str, Any]:
-    values = {}
+    values: dict[str, Any] = {}
+    field_aliases: set[str] = set()
 
     for field in body_fields:
-        value = _get_multidict_value(field, received_body)
+        alias = get_validation_alias(field)
+        validation_alias = field.field_info.validation_alias
+        # Interpret missing boolean form fields as unchecked HTML checkboxes.
+        infer_false_if_missing = field.field_info.annotation in (
+            bool,
+            bool | None,
+        ) and (
+            validation_alias is None
+            or isinstance(validation_alias, str)
+            or (
+                isinstance(validation_alias, AliasChoices)
+                and all(isinstance(choice, str) for choice in validation_alias.choices)
+            )
+        )
+        if infer_false_if_missing:
+            if isinstance(validation_alias, AliasChoices):
+                aliases = cast(list[str], validation_alias.choices)
+                alias = next(
+                    (name for name in aliases if name in received_body), aliases[0]
+                )
+            config = field.config or {}
+            if config.get(
+                "validate_by_name", config.get("populate_by_name", False)
+            ) and (
+                alias not in received_body or config.get("validate_by_alias") is False
+            ):
+                alias = field.name
+        field_aliases.add(alias)
+        if infer_false_if_missing and alias not in received_body:
+            value: Any = False
+        else:
+            value = _get_multidict_value(field, received_body, alias=alias)
         field_info = field.field_info
         if isinstance(field_info, params.File) and isinstance(value, UploadFile):
             if is_bytes_or_nonable_bytes_annotation(field.field_info.annotation):
@@ -944,9 +976,12 @@ async def _extract_form_body(
                     )
                     for sub_value in value
                 ]
+        if field.config is None:
+            # Individual parameters are later looked up by their declared alias.
+            alias = get_validation_alias(field)
+            field_aliases.add(alias)
         if value is not None:
-            values[get_validation_alias(field)] = value
-    field_aliases = {get_validation_alias(field) for field in body_fields}
+            values[alias] = value
     for key in received_body.keys():
         if key not in field_aliases:
             param_values = received_body.getlist(key)

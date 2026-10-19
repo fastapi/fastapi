@@ -7,6 +7,16 @@ hide:
 
 ## Latest Changes
 
+## 0.147.0 (2026-10-19)
+
+Omitted `bool` and `bool | None` form fields are now interpreted as `False`, matching unchecked HTML checkboxes. This applies to individual `Form` parameters and form models, including required fields and fields with defaults of `True` or `None`. The inferred value is considered explicitly set, including in `model_dump(exclude_unset=True)`.
+
+JSON requests and direct Pydantic validation are unchanged. See [Boolean Form Fields](https://fastapi.tiangolo.com/tutorial/request-forms/#boolean-form-fields).
+
+### Breaking Changes
+
+* 🐛 Treat omitted boolean form fields as False. PR [#16523](https://github.com/fastapi/fastapi/pull/16523) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * ✅ Add tests for parameter defaults, nullability, and browser form behavior. PR [#14829](https://github.com/fastapi/fastapi/pull/14829) by [@YuriiMotov](https://github.com/YuriiMotov).
