@@ -34,7 +34,7 @@ def test_exception_handler_body_access(client: TestClient):
                 {
                     "type": "list_type",
                     "loc": ["body"],
-                    "msg": "Input should be a valid list",
+                    "msg": "Input should be a valid array",
                     "input": {"numbers": [1, 2, 3]},
                 }
             ],
