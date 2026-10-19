@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.150.0 (2026-10-20)
+
 When no file is selected, browsers submit a file part with an empty filename and empty content. FastAPI now treats this as missing: required file fields return a validation error, and fields with defaults or default factories use them. Unselected inputs are ignored in lists of files. Named zero-byte files are still accepted.
 
 ### Breaking Changes
