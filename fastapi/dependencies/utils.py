@@ -587,7 +587,7 @@ async def solve_dependencies(
     *,
     request: Request | WebSocket,
     dependant: Dependant,
-    body: dict[str, Any] | FormData | bytes | None = None,
+    body: Any = Undefined,
     background_tasks: StarletteBackgroundTasks | None = None,
     response: Response | None = None,
     dependency_overrides_provider: Any | None = None,
@@ -734,7 +734,7 @@ async def solve_dependencies(
 def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
 ) -> tuple[Any, list[Any]]:
-    if value is None:
+    if value is Undefined:
         if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
         value = deepcopy(field.default)
@@ -780,7 +780,7 @@ def _get_multidict_value(
         )
     ):
         # Apply defaults during validation, not while extracting request data.
-        return None
+        return Undefined
     return value
 
 
@@ -826,7 +826,7 @@ def request_params_to_args(
                 if alias == field.name:
                     alias = alias.replace("_", "-")
         value = _get_multidict_value(field, received_params, alias=alias)
-        if value is not None:
+        if value is not Undefined:
             params_to_process[get_validation_alias(field)] = value
         processed_keys.add(alias or get_validation_alias(field))
         # For headers with convert_underscores=True, mark both the converted
@@ -950,7 +950,10 @@ async def _extract_form_body(
         if field.config is None or infer_false_if_missing:
             selected_alias = aliases[0]
             for alias in aliases:
-                if _get_multidict_value(field, received_body, alias=alias) is not None:
+                if (
+                    _get_multidict_value(field, received_body, alias=alias)
+                    is not Undefined
+                ):
                     selected_alias = alias
                     break
             aliases = [selected_alias]
@@ -985,7 +988,7 @@ async def _extract_form_body(
                 # Individual parameters are later looked up by their declared alias.
                 alias = get_validation_alias(field)
                 field_aliases.add(alias)
-            if value is not None:
+            if value is not Undefined:
                 values[alias] = value
     for key in received_body.keys():
         if key not in field_aliases:
@@ -999,7 +1002,7 @@ async def _extract_form_body(
 
 async def request_body_to_args(
     body_fields: list[ModelField],
-    received_body: dict[str, Any] | FormData | bytes | None,
+    received_body: Any,
     embed_body_fields: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
@@ -1029,11 +1032,11 @@ async def request_body_to_args(
         return {first_field.name: v_}, errors_
     for field in body_fields:
         loc = ("body", get_validation_alias(field))
-        value: Any | None = None
-        if body_to_process is not None and not isinstance(body_to_process, bytes):
+        value: Any = Undefined
+        if body_to_process is not Undefined and not isinstance(body_to_process, bytes):
             try:
-                value = body_to_process.get(get_validation_alias(field))
-            # If the received body is a list, not a dict
+                value = body_to_process.get(get_validation_alias(field), Undefined)
+            # Embedded fields require an object, not a list, scalar, or null.
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
                 continue
