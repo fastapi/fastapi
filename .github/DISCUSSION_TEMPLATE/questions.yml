@@ -32,7 +32,7 @@ body:
           required: true
         - label: I searched the FastAPI documentation, with the integrated search.
           required: true
-        - label: I already searched in Google "How to X in FastAPI" and didn't find any information.
+        - label: I already searched the Web e.g. "How to X in FastAPI" and didn't find any information.
           required: true
         - label: I already read and followed all the tutorial in the docs and didn't find an answer.
           required: true
