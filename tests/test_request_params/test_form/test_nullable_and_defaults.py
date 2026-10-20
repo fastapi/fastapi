@@ -228,10 +228,10 @@ def test_empty_form_model_value_uses_alias(field):
     [
         ConfigDict(populate_by_name=True, extra="forbid"),
         pytest.param(
-            ConfigDict(validate_by_name=True, validate_by_alias=False, extra="forbid"),
+            ConfigDict(validate_by_alias=False, extra="forbid"),
             marks=pytest.mark.skipif(
                 PYDANTIC_VERSION_MINOR_TUPLE < (2, 11),
-                reason="validate_by_name and validate_by_alias require Pydantic 2.11",
+                reason="validate_by_alias requires Pydantic 2.11",
             ),
         ),
     ],
@@ -394,6 +394,86 @@ def test_form_list_alias_choices_preserve_empty_items(path, data, expected):
     response = client.post(path, data=data)
     assert response.status_code == 200
     assert response.json() == {"value": expected}
+
+
+@pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
+def test_form_model_fields_can_share_an_unused_alias_choice(encoding):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        names: Annotated[
+            list[str], Field(validation_alias=AliasChoices("names", "legacy"))
+        ]
+        text: Annotated[str, Field(validation_alias=AliasChoices("text", "legacy"))]
+
+    @app.post("/")
+    def read_model(params: Annotated[Model, Form()]):
+        return params
+
+    client = TestClient(app)
+    if encoding == "urlencoded":
+        response = client.post("/", data={"legacy": ["one", "two"], "text": "hello"})
+    else:
+        response = client.post(
+            "/",
+            files=[
+                ("legacy", (None, "one")),
+                ("legacy", (None, "two")),
+                ("text", (None, "hello")),
+            ],
+        )
+    assert response.status_code == 200
+    assert response.json() == {"names": ["one", "two"], "text": "hello"}
+
+
+@pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
+@pytest.mark.parametrize("unused", ["unused", ""])
+def test_unused_form_alias_choice_keeps_extra_value_shape(encoding, unused):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        model_config = ConfigDict(extra="allow")
+        names: Annotated[
+            list[str], Field(validation_alias=AliasChoices("names", "legacy-names"))
+        ]
+        text: Annotated[
+            str, Field(validation_alias=AliasChoices("text", "legacy-text"))
+        ]
+
+    @app.post("/")
+    def read_model(params: Annotated[Model, Form()]):
+        return params
+
+    client = TestClient(app)
+    if encoding == "urlencoded":
+        response = client.post(
+            "/",
+            data={
+                "names": ["one", "two"],
+                "text": "hello",
+                "legacy-names": unused,
+                "legacy-text": ["", "unused"],
+            },
+        )
+    else:
+        response = client.post(
+            "/",
+            files=[
+                ("names", (None, "one")),
+                ("names", (None, "two")),
+                ("text", (None, "hello")),
+                ("legacy-names", (None, unused)),
+                ("legacy-text", (None, "")),
+                ("legacy-text", (None, "unused")),
+            ],
+        )
+    assert response.status_code == 200
+    assert response.json() == {
+        "names": ["one", "two"],
+        "text": "hello",
+        "legacy-names": unused,
+        "legacy-text": ["", "unused"],
+    }
 
 
 def test_empty_form_model_value_preserves_extra_and_json_strings():
@@ -749,10 +829,10 @@ def test_checkbox_uses_alias(path, alias, validation_alias, data, expected):
     [
         ConfigDict(populate_by_name=True, extra="forbid"),
         pytest.param(
-            ConfigDict(validate_by_name=True, validate_by_alias=False, extra="forbid"),
+            ConfigDict(validate_by_alias=False, extra="forbid"),
             marks=pytest.mark.skipif(
                 PYDANTIC_VERSION_MINOR_TUPLE < (2, 11),
-                reason="validate_by_name and validate_by_alias require Pydantic 2.11",
+                reason="validate_by_alias requires Pydantic 2.11",
             ),
         ),
     ],
@@ -820,11 +900,24 @@ def test_checkbox_with_alias_choices(path, data, expected):
     assert response.json() == {"value": expected}
 
 
-def test_unchecked_checkbox_with_alias_choices_overrides_defaults():
+@pytest.mark.parametrize(
+    "config",
+    [
+        ConfigDict(extra="forbid"),
+        pytest.param(
+            ConfigDict(validate_by_alias=False, extra="forbid"),
+            marks=pytest.mark.skipif(
+                PYDANTIC_VERSION_MINOR_TUPLE < (2, 11),
+                reason="validate_by_alias requires Pydantic 2.11",
+            ),
+        ),
+    ],
+)
+def test_unchecked_checkbox_with_alias_choices_overrides_defaults(config):
     app = FastAPI()
 
     class Model(BaseModel):
-        model_config = ConfigDict(extra="forbid")
+        model_config = config
         value: Annotated[
             bool, Field(validation_alias=AliasChoices("enabled", "checkbox"))
         ] = True

@@ -318,6 +318,37 @@ def test_model_bytes_files_use_validation_aliases(file_alias, files_alias):
     assert response.json() == {"file": "one", "files": ["two", "three"]}
 
 
+def test_model_files_can_share_an_unused_alias_choice():
+    app = FastAPI()
+
+    class FileModel(BaseModel):
+        files: Annotated[
+            list[UploadFile], Field(validation_alias=AliasChoices("files", "legacy"))
+        ]
+        file: Annotated[
+            UploadFile, Field(validation_alias=AliasChoices("file", "legacy"))
+        ]
+
+    @app.post("/")
+    def read_form(data: Annotated[FileModel, Form()]):
+        return {
+            "files": [file.filename for file in data.files],
+            "file": data.file.filename,
+        }
+
+    client = TestClient(app)
+    response = client.post(
+        "/",
+        files=[
+            ("legacy", ("one.txt", b"one")),
+            ("legacy", ("two.txt", b"two")),
+            ("file", ("hello.txt", b"hello")),
+        ],
+    )
+    assert response.status_code == 200
+    assert response.json() == {"files": ["one.txt", "two.txt"], "file": "hello.txt"}
+
+
 def test_openapi_schema():
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
