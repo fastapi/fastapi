@@ -33,12 +33,12 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
         *,
         default_factory: Callable[[], Any] | None = _Unset,
         annotation: Any | None = None,
-        alias: str | None = None,
+        alias: str | None = _Unset,
         alias_priority: int | None = _Unset,
-        validation_alias: str | AliasPath | AliasChoices | None = None,
-        serialization_alias: str | None = None,
-        title: str | None = None,
-        description: str | None = None,
+        validation_alias: str | AliasPath | AliasChoices | None = _Unset,
+        serialization_alias: str | None = _Unset,
+        title: str | None = _Unset,
+        description: str | None = _Unset,
         gt: float | None = None,
         ge: float | None = None,
         lt: float | None = None,
@@ -52,7 +52,7 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | Discriminator | None = None,
+        discriminator: str | Discriminator | None = _Unset,
         strict: bool | None = _Unset,
         validate_default: bool | None = _Unset,
         union_mode: Literal["smart", "left_to_right"] | None = _Unset,
@@ -61,7 +61,7 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
         decimal_places: int | None = _Unset,
-        examples: list[Any] | None = None,
+        examples: list[Any] | None = _Unset,
         example: Annotated[
             Any | None,
             deprecated(
@@ -70,11 +70,11 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
             ),
         ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
-        deprecated: deprecated | str | bool | None = None,
+        deprecated: deprecated | str | bool | None = _Unset,
         include_in_schema: bool = True,
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
-        | None = None,
+        | None = _Unset,
     ):
         if example is not _Unset:
             warnings.warn(
@@ -91,6 +91,7 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
             "alias": alias,
             "title": title,
             "description": description,
+            "examples": examples,
             "gt": gt,
             "ge": ge,
             "lt": lt,
@@ -106,8 +107,6 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
             "max_digits": max_digits,
             "decimal_places": decimal_places,
         }
-        if examples is not None:
-            kwargs["examples"] = examples
         if regex is not None:
             warnings.warn(
                 "`regex` has been deprecated, please use `pattern` instead",
@@ -149,12 +148,12 @@ class Path(Param):  # type: ignore[misc]
         *,
         default_factory: Callable[[], Any] | None = _Unset,
         annotation: Any | None = None,
-        alias: str | None = None,
+        alias: str | None = _Unset,
         alias_priority: int | None = _Unset,
-        validation_alias: str | AliasPath | AliasChoices | None = None,
-        serialization_alias: str | None = None,
-        title: str | None = None,
-        description: str | None = None,
+        validation_alias: str | AliasPath | AliasChoices | None = _Unset,
+        serialization_alias: str | None = _Unset,
+        title: str | None = _Unset,
+        description: str | None = _Unset,
         gt: float | None = None,
         ge: float | None = None,
         lt: float | None = None,
@@ -168,7 +167,7 @@ class Path(Param):  # type: ignore[misc]
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | Discriminator | None = None,
+        discriminator: str | Discriminator | None = _Unset,
         strict: bool | None = _Unset,
         validate_default: bool | None = _Unset,
         union_mode: Literal["smart", "left_to_right"] | None = _Unset,
@@ -177,7 +176,7 @@ class Path(Param):  # type: ignore[misc]
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
         decimal_places: int | None = _Unset,
-        examples: list[Any] | None = None,
+        examples: list[Any] | None = _Unset,
         example: Annotated[
             Any | None,
             deprecated(
@@ -186,11 +185,11 @@ class Path(Param):  # type: ignore[misc]
             ),
         ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
-        deprecated: deprecated | str | bool | None = None,
+        deprecated: deprecated | str | bool | None = _Unset,
         include_in_schema: bool = True,
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
-        | None = None,
+        | None = _Unset,
     ):
         assert default is ..., "Path parameters cannot have a default value"
         self.in_ = self.in_
@@ -239,12 +238,12 @@ class Query(Param):  # type: ignore[misc]
         *,
         default_factory: Callable[[], Any] | None = _Unset,
         annotation: Any | None = None,
-        alias: str | None = None,
+        alias: str | None = _Unset,
         alias_priority: int | None = _Unset,
-        validation_alias: str | AliasPath | AliasChoices | None = None,
-        serialization_alias: str | None = None,
-        title: str | None = None,
-        description: str | None = None,
+        validation_alias: str | AliasPath | AliasChoices | None = _Unset,
+        serialization_alias: str | None = _Unset,
+        title: str | None = _Unset,
+        description: str | None = _Unset,
         gt: float | None = None,
         ge: float | None = None,
         lt: float | None = None,
@@ -258,7 +257,7 @@ class Query(Param):  # type: ignore[misc]
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | Discriminator | None = None,
+        discriminator: str | Discriminator | None = _Unset,
         strict: bool | None = _Unset,
         validate_default: bool | None = _Unset,
         union_mode: Literal["smart", "left_to_right"] | None = _Unset,
@@ -267,7 +266,7 @@ class Query(Param):  # type: ignore[misc]
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
         decimal_places: int | None = _Unset,
-        examples: list[Any] | None = None,
+        examples: list[Any] | None = _Unset,
         example: Annotated[
             Any | None,
             deprecated(
@@ -276,11 +275,11 @@ class Query(Param):  # type: ignore[misc]
             ),
         ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
-        deprecated: deprecated | str | bool | None = None,
+        deprecated: deprecated | str | bool | None = _Unset,
         include_in_schema: bool = True,
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
-        | None = None,
+        | None = _Unset,
     ):
         super().__init__(
             default=default,
@@ -327,13 +326,13 @@ class Header(Param):  # type: ignore[misc]
         *,
         default_factory: Callable[[], Any] | None = _Unset,
         annotation: Any | None = None,
-        alias: str | None = None,
+        alias: str | None = _Unset,
         alias_priority: int | None = _Unset,
-        validation_alias: str | AliasPath | AliasChoices | None = None,
-        serialization_alias: str | None = None,
+        validation_alias: str | AliasPath | AliasChoices | None = _Unset,
+        serialization_alias: str | None = _Unset,
         convert_underscores: bool = True,
-        title: str | None = None,
-        description: str | None = None,
+        title: str | None = _Unset,
+        description: str | None = _Unset,
         gt: float | None = None,
         ge: float | None = None,
         lt: float | None = None,
@@ -347,7 +346,7 @@ class Header(Param):  # type: ignore[misc]
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | Discriminator | None = None,
+        discriminator: str | Discriminator | None = _Unset,
         strict: bool | None = _Unset,
         validate_default: bool | None = _Unset,
         union_mode: Literal["smart", "left_to_right"] | None = _Unset,
@@ -356,7 +355,7 @@ class Header(Param):  # type: ignore[misc]
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
         decimal_places: int | None = _Unset,
-        examples: list[Any] | None = None,
+        examples: list[Any] | None = _Unset,
         example: Annotated[
             Any | None,
             deprecated(
@@ -365,11 +364,11 @@ class Header(Param):  # type: ignore[misc]
             ),
         ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
-        deprecated: deprecated | str | bool | None = None,
+        deprecated: deprecated | str | bool | None = _Unset,
         include_in_schema: bool = True,
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
-        | None = None,
+        | None = _Unset,
     ):
         self.convert_underscores = convert_underscores
         super().__init__(
@@ -417,12 +416,12 @@ class Cookie(Param):  # type: ignore[misc]
         *,
         default_factory: Callable[[], Any] | None = _Unset,
         annotation: Any | None = None,
-        alias: str | None = None,
+        alias: str | None = _Unset,
         alias_priority: int | None = _Unset,
-        validation_alias: str | AliasPath | AliasChoices | None = None,
-        serialization_alias: str | None = None,
-        title: str | None = None,
-        description: str | None = None,
+        validation_alias: str | AliasPath | AliasChoices | None = _Unset,
+        serialization_alias: str | None = _Unset,
+        title: str | None = _Unset,
+        description: str | None = _Unset,
         gt: float | None = None,
         ge: float | None = None,
         lt: float | None = None,
@@ -436,7 +435,7 @@ class Cookie(Param):  # type: ignore[misc]
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | Discriminator | None = None,
+        discriminator: str | Discriminator | None = _Unset,
         strict: bool | None = _Unset,
         validate_default: bool | None = _Unset,
         union_mode: Literal["smart", "left_to_right"] | None = _Unset,
@@ -445,7 +444,7 @@ class Cookie(Param):  # type: ignore[misc]
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
         decimal_places: int | None = _Unset,
-        examples: list[Any] | None = None,
+        examples: list[Any] | None = _Unset,
         example: Annotated[
             Any | None,
             deprecated(
@@ -454,11 +453,11 @@ class Cookie(Param):  # type: ignore[misc]
             ),
         ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
-        deprecated: deprecated | str | bool | None = None,
+        deprecated: deprecated | str | bool | None = _Unset,
         include_in_schema: bool = True,
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
-        | None = None,
+        | None = _Unset,
     ):
         super().__init__(
             default=default,
@@ -505,12 +504,12 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
         annotation: Any | None = None,
         embed: bool | None = None,
         media_type: str = "application/json",
-        alias: str | None = None,
+        alias: str | None = _Unset,
         alias_priority: int | None = _Unset,
-        validation_alias: str | AliasPath | AliasChoices | None = None,
-        serialization_alias: str | None = None,
-        title: str | None = None,
-        description: str | None = None,
+        validation_alias: str | AliasPath | AliasChoices | None = _Unset,
+        serialization_alias: str | None = _Unset,
+        title: str | None = _Unset,
+        description: str | None = _Unset,
         gt: float | None = None,
         ge: float | None = None,
         lt: float | None = None,
@@ -524,7 +523,7 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | Discriminator | None = None,
+        discriminator: str | Discriminator | None = _Unset,
         strict: bool | None = _Unset,
         validate_default: bool | None = _Unset,
         union_mode: Literal["smart", "left_to_right"] | None = _Unset,
@@ -533,7 +532,7 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
         decimal_places: int | None = _Unset,
-        examples: list[Any] | None = None,
+        examples: list[Any] | None = _Unset,
         example: Annotated[
             Any | None,
             deprecated(
@@ -542,11 +541,11 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
             ),
         ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
-        deprecated: deprecated | str | bool | None = None,
+        deprecated: deprecated | str | bool | None = _Unset,
         include_in_schema: bool = True,
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
-        | None = None,
+        | None = _Unset,
     ):
         self.embed = embed
         self.media_type = media_type
@@ -565,6 +564,7 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
             "alias": alias,
             "title": title,
             "description": description,
+            "examples": examples,
             "gt": gt,
             "ge": ge,
             "lt": lt,
@@ -580,8 +580,6 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
             "max_digits": max_digits,
             "decimal_places": decimal_places,
         }
-        if examples is not None:
-            kwargs["examples"] = examples
         if regex is not None:
             warnings.warn(
                 "`regex` has been deprecated, please use `pattern` instead",
@@ -621,12 +619,12 @@ class Form(Body):  # type: ignore[misc]
         default_factory: Callable[[], Any] | None = _Unset,
         annotation: Any | None = None,
         media_type: str = "application/x-www-form-urlencoded",
-        alias: str | None = None,
+        alias: str | None = _Unset,
         alias_priority: int | None = _Unset,
-        validation_alias: str | AliasPath | AliasChoices | None = None,
-        serialization_alias: str | None = None,
-        title: str | None = None,
-        description: str | None = None,
+        validation_alias: str | AliasPath | AliasChoices | None = _Unset,
+        serialization_alias: str | None = _Unset,
+        title: str | None = _Unset,
+        description: str | None = _Unset,
         gt: float | None = None,
         ge: float | None = None,
         lt: float | None = None,
@@ -640,7 +638,7 @@ class Form(Body):  # type: ignore[misc]
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | Discriminator | None = None,
+        discriminator: str | Discriminator | None = _Unset,
         strict: bool | None = _Unset,
         validate_default: bool | None = _Unset,
         union_mode: Literal["smart", "left_to_right"] | None = _Unset,
@@ -649,7 +647,7 @@ class Form(Body):  # type: ignore[misc]
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
         decimal_places: int | None = _Unset,
-        examples: list[Any] | None = None,
+        examples: list[Any] | None = _Unset,
         example: Annotated[
             Any | None,
             deprecated(
@@ -658,11 +656,11 @@ class Form(Body):  # type: ignore[misc]
             ),
         ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
-        deprecated: deprecated | str | bool | None = None,
+        deprecated: deprecated | str | bool | None = _Unset,
         include_in_schema: bool = True,
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
-        | None = None,
+        | None = _Unset,
     ):
         super().__init__(
             default=default,
@@ -709,12 +707,12 @@ class File(Form):  # type: ignore[misc]
         default_factory: Callable[[], Any] | None = _Unset,
         annotation: Any | None = None,
         media_type: str = "multipart/form-data",
-        alias: str | None = None,
+        alias: str | None = _Unset,
         alias_priority: int | None = _Unset,
-        validation_alias: str | AliasPath | AliasChoices | None = None,
-        serialization_alias: str | None = None,
-        title: str | None = None,
-        description: str | None = None,
+        validation_alias: str | AliasPath | AliasChoices | None = _Unset,
+        serialization_alias: str | None = _Unset,
+        title: str | None = _Unset,
+        description: str | None = _Unset,
         gt: float | None = None,
         ge: float | None = None,
         lt: float | None = None,
@@ -728,7 +726,7 @@ class File(Form):  # type: ignore[misc]
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | Discriminator | None = None,
+        discriminator: str | Discriminator | None = _Unset,
         strict: bool | None = _Unset,
         validate_default: bool | None = _Unset,
         union_mode: Literal["smart", "left_to_right"] | None = _Unset,
@@ -737,7 +735,7 @@ class File(Form):  # type: ignore[misc]
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
         decimal_places: int | None = _Unset,
-        examples: list[Any] | None = None,
+        examples: list[Any] | None = _Unset,
         example: Annotated[
             Any | None,
             deprecated(
@@ -746,11 +744,11 @@ class File(Form):  # type: ignore[misc]
             ),
         ] = _Unset,
         openapi_examples: dict[str, Example] | None = None,
-        deprecated: deprecated | str | bool | None = None,
+        deprecated: deprecated | str | bool | None = _Unset,
         include_in_schema: bool = True,
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
-        | None = None,
+        | None = _Unset,
     ):
         super().__init__(
             default=default,
