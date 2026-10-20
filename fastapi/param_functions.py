@@ -46,7 +46,7 @@ def Path(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -63,7 +63,7 @@ def Path(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -73,7 +73,7 @@ def Path(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -84,7 +84,7 @@ def Path(  # noqa: N802
             [FastAPI docs for Path Parameters and Numeric Validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#declare-metadata)
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -92,7 +92,7 @@ def Path(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -182,7 +182,7 @@ def Path(  # noqa: N802
             Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
@@ -261,7 +261,7 @@ def Path(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -295,7 +295,7 @@ def Path(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -314,7 +314,7 @@ def Path(  # noqa: N802
             Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
+    ] = _Unset,
 ) -> Any:
     """
     Declare a path parameter for a *path operation*.
@@ -410,7 +410,7 @@ def Query(  # noqa: N802
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#alias-parameters)
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -427,7 +427,7 @@ def Query(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -437,7 +437,7 @@ def Query(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -448,7 +448,7 @@ def Query(  # noqa: N802
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#declare-more-metadata)
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -459,7 +459,7 @@ def Query(  # noqa: N802
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#declare-more-metadata)
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -558,7 +558,7 @@ def Query(  # noqa: N802
             Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
@@ -635,7 +635,7 @@ def Query(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -672,7 +672,7 @@ def Query(  # noqa: N802
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#deprecating-parameters)
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -694,7 +694,7 @@ def Query(  # noqa: N802
             Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
+    ] = _Unset,
 ) -> Any:
     return params.Query(
         default=default,
@@ -763,7 +763,7 @@ def Header(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -780,7 +780,7 @@ def Header(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -790,7 +790,7 @@ def Header(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     convert_underscores: Annotated[
         bool,
         Doc(
@@ -809,7 +809,7 @@ def Header(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -817,7 +817,7 @@ def Header(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -895,7 +895,7 @@ def Header(  # noqa: N802
             Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
@@ -972,7 +972,7 @@ def Header(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -1006,7 +1006,7 @@ def Header(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -1025,7 +1025,7 @@ def Header(  # noqa: N802
             Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
+    ] = _Unset,
 ) -> Any:
     return params.Header(
         default=default,
@@ -1095,7 +1095,7 @@ def Cookie(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -1112,7 +1112,7 @@ def Cookie(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -1122,7 +1122,7 @@ def Cookie(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -1130,7 +1130,7 @@ def Cookie(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -1138,7 +1138,7 @@ def Cookie(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -1216,7 +1216,7 @@ def Cookie(  # noqa: N802
             Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
@@ -1293,7 +1293,7 @@ def Cookie(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -1327,7 +1327,7 @@ def Cookie(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -1346,7 +1346,7 @@ def Cookie(  # noqa: N802
             Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
+    ] = _Unset,
 ) -> Any:
     return params.Cookie(
         default=default,
@@ -1438,7 +1438,7 @@ def Body(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -1455,7 +1455,7 @@ def Body(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -1465,7 +1465,7 @@ def Body(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -1473,7 +1473,7 @@ def Body(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -1481,7 +1481,7 @@ def Body(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -1559,7 +1559,7 @@ def Body(  # noqa: N802
             Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
@@ -1636,7 +1636,7 @@ def Body(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -1670,7 +1670,7 @@ def Body(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -1689,7 +1689,7 @@ def Body(  # noqa: N802
             Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
+    ] = _Unset,
 ) -> Any:
     return params.Body(
         default=default,
@@ -1769,7 +1769,7 @@ def Form(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -1786,7 +1786,7 @@ def Form(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -1796,7 +1796,7 @@ def Form(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -1804,7 +1804,7 @@ def Form(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -1812,7 +1812,7 @@ def Form(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -1890,7 +1890,7 @@ def Form(  # noqa: N802
             Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
@@ -1967,7 +1967,7 @@ def Form(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -2001,7 +2001,7 @@ def Form(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -2020,7 +2020,7 @@ def Form(  # noqa: N802
             Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
+    ] = _Unset,
 ) -> Any:
     return params.Form(
         default=default,
@@ -2099,7 +2099,7 @@ def File(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -2116,7 +2116,7 @@ def File(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -2126,7 +2126,7 @@ def File(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -2134,7 +2134,7 @@ def File(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -2142,7 +2142,7 @@ def File(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -2220,7 +2220,7 @@ def File(  # noqa: N802
             Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
@@ -2297,7 +2297,7 @@ def File(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -2331,7 +2331,7 @@ def File(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -2350,7 +2350,7 @@ def File(  # noqa: N802
             Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
+    ] = _Unset,
 ) -> Any:
     return params.File(
         default=default,
