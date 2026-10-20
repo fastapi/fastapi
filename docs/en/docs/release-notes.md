@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add Pydantic validation options to request parameters. PR [#16542](https://github.com/fastapi/fastapi/pull/16542) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.153.0 (2026-10-20)
 
 Unions of form models now apply the same browser form handling as individual models. Empty scalar fields use defaults or produce missing-field errors, empty list items are preserved, omitted boolean fields become `False`, and unselected files are treated as missing. JSON request bodies are unchanged.
