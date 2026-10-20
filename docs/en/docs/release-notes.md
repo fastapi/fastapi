@@ -9,6 +9,10 @@ hide:
 
 The deprecated `**extra` keyword arguments have been removed from `Path`, `Query`, `Header`, `Cookie`, `Body`, `Form`, and `File`. Unknown keyword arguments now raise `TypeError`. For additional JSON Schema properties, replace, for example, `Query(custom="value")` with `Query(json_schema_extra={"custom": "value"})`.
 
+### Breaking Changes
+
+* 🔥 Remove deprecated `**extra` from request parameters. PR [#16545](https://github.com/fastapi/fastapi/pull/16545) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.154.0 (2026-10-20)
 
 ### Features
