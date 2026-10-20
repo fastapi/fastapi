@@ -75,7 +75,6 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
         | None = None,
-        **extra: Any,
     ):
         if example is not _Unset:
             warnings.warn(
@@ -86,28 +85,27 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
         self.example = example
         self.include_in_schema = include_in_schema
         self.openapi_examples = openapi_examples
-        kwargs = dict(
-            default=default,
-            default_factory=default_factory,
-            alias=alias,
-            title=title,
-            description=description,
-            gt=gt,
-            ge=ge,
-            lt=lt,
-            le=le,
-            min_length=min_length,
-            max_length=max_length,
-            discriminator=discriminator,
-            validate_default=validate_default,
-            union_mode=union_mode,
-            fail_fast=fail_fast,
-            multiple_of=multiple_of,
-            allow_inf_nan=allow_inf_nan,
-            max_digits=max_digits,
-            decimal_places=decimal_places,
-            **extra,
-        )
+        kwargs = {
+            "default": default,
+            "default_factory": default_factory,
+            "alias": alias,
+            "title": title,
+            "description": description,
+            "gt": gt,
+            "ge": ge,
+            "lt": lt,
+            "le": le,
+            "min_length": min_length,
+            "max_length": max_length,
+            "discriminator": discriminator,
+            "validate_default": validate_default,
+            "union_mode": union_mode,
+            "fail_fast": fail_fast,
+            "multiple_of": multiple_of,
+            "allow_inf_nan": allow_inf_nan,
+            "max_digits": max_digits,
+            "decimal_places": decimal_places,
+        }
         if examples is not None:
             kwargs["examples"] = examples
         if regex is not None:
@@ -116,7 +114,6 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
                 category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
-        current_json_schema_extra = json_schema_extra or extra
         kwargs["deprecated"] = deprecated
 
         if serialization_alias in (_Unset, None) and isinstance(alias, str):
@@ -130,7 +127,7 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
                 "validation_alias": validation_alias,
                 "serialization_alias": serialization_alias,
                 "strict": strict,
-                "json_schema_extra": current_json_schema_extra,
+                "json_schema_extra": json_schema_extra,
             }
         )
         kwargs["pattern"] = pattern or regex
@@ -194,7 +191,6 @@ class Path(Param):  # type: ignore[misc]
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
         | None = None,
-        **extra: Any,
     ):
         assert default is ..., "Path parameters cannot have a default value"
         self.in_ = self.in_
@@ -231,7 +227,6 @@ class Path(Param):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
-            **extra,
         )
 
 
@@ -286,7 +281,6 @@ class Query(Param):  # type: ignore[misc]
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
         | None = None,
-        **extra: Any,
     ):
         super().__init__(
             default=default,
@@ -321,7 +315,6 @@ class Query(Param):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
-            **extra,
         )
 
 
@@ -377,7 +370,6 @@ class Header(Param):  # type: ignore[misc]
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
         | None = None,
-        **extra: Any,
     ):
         self.convert_underscores = convert_underscores
         super().__init__(
@@ -413,7 +405,6 @@ class Header(Param):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
-            **extra,
         )
 
 
@@ -468,7 +459,6 @@ class Cookie(Param):  # type: ignore[misc]
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
         | None = None,
-        **extra: Any,
     ):
         super().__init__(
             default=default,
@@ -503,7 +493,6 @@ class Cookie(Param):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
-            **extra,
         )
 
 
@@ -558,7 +547,6 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
         | None = None,
-        **extra: Any,
     ):
         self.embed = embed
         self.media_type = media_type
@@ -571,28 +559,27 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
         self.example = example
         self.include_in_schema = include_in_schema
         self.openapi_examples = openapi_examples
-        kwargs = dict(
-            default=default,
-            default_factory=default_factory,
-            alias=alias,
-            title=title,
-            description=description,
-            gt=gt,
-            ge=ge,
-            lt=lt,
-            le=le,
-            min_length=min_length,
-            max_length=max_length,
-            discriminator=discriminator,
-            validate_default=validate_default,
-            union_mode=union_mode,
-            fail_fast=fail_fast,
-            multiple_of=multiple_of,
-            allow_inf_nan=allow_inf_nan,
-            max_digits=max_digits,
-            decimal_places=decimal_places,
-            **extra,
-        )
+        kwargs = {
+            "default": default,
+            "default_factory": default_factory,
+            "alias": alias,
+            "title": title,
+            "description": description,
+            "gt": gt,
+            "ge": ge,
+            "lt": lt,
+            "le": le,
+            "min_length": min_length,
+            "max_length": max_length,
+            "discriminator": discriminator,
+            "validate_default": validate_default,
+            "union_mode": union_mode,
+            "fail_fast": fail_fast,
+            "multiple_of": multiple_of,
+            "allow_inf_nan": allow_inf_nan,
+            "max_digits": max_digits,
+            "decimal_places": decimal_places,
+        }
         if examples is not None:
             kwargs["examples"] = examples
         if regex is not None:
@@ -601,7 +588,6 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
                 category=FastAPIDeprecationWarning,
                 stacklevel=4,
             )
-        current_json_schema_extra = json_schema_extra or extra
         kwargs["deprecated"] = deprecated
         if serialization_alias in (_Unset, None) and isinstance(alias, str):
             serialization_alias = alias
@@ -614,7 +600,7 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
                 "validation_alias": validation_alias,
                 "serialization_alias": serialization_alias,
                 "strict": strict,
-                "json_schema_extra": current_json_schema_extra,
+                "json_schema_extra": json_schema_extra,
             }
         )
         kwargs["pattern"] = pattern or regex
@@ -677,7 +663,6 @@ class Form(Body):  # type: ignore[misc]
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
         | None = None,
-        **extra: Any,
     ):
         super().__init__(
             default=default,
@@ -713,7 +698,6 @@ class Form(Body):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
-            **extra,
         )
 
 
@@ -767,7 +751,6 @@ class File(Form):  # type: ignore[misc]
         json_schema_extra: dict[str, Any]
         | Callable[[dict[str, Any]], None]
         | None = None,
-        **extra: Any,
     ):
         super().__init__(
             default=default,
@@ -803,7 +786,6 @@ class File(Form):  # type: ignore[misc]
             openapi_examples=openapi_examples,
             include_in_schema=include_in_schema,
             json_schema_extra=json_schema_extra,
-            **extra,
         )
 
 
