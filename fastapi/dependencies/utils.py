@@ -810,6 +810,7 @@ def request_params_to_args(
         )
 
     params_to_process: dict[str, Any] = {}
+    header_aliases: dict[str, str] = {}
 
     processed_keys = set()
 
@@ -825,6 +826,7 @@ def request_params_to_args(
                 alias = get_validation_alias(field)
                 if alias == field.name:
                     alias = alias.replace("_", "-")
+                    header_aliases[field.name] = alias
         value = _get_multidict_value(field, received_params, alias=alias)
         if value is not Undefined:
             params_to_process[get_validation_alias(field)] = value
@@ -854,6 +856,18 @@ def request_params_to_args(
         v_, errors_ = _validate_value_with_model_field(
             field=first_field, value=params_to_process, values=values, loc=loc
         )
+        if header_aliases and cast(
+            type[BaseModel], first_field.field_info.annotation
+        ).model_config.get("loc_by_alias", True):
+            # Report the header names without changing model aliases or schema.
+            for error in errors_:
+                error_loc = error["loc"]
+                if len(error_loc) > 1 and error_loc[1] in header_aliases:
+                    error["loc"] = (
+                        error_loc[0],
+                        header_aliases[error_loc[1]],
+                        *error_loc[2:],
+                    )
         return {first_field.name: v_}, errors_
 
     for field in fields:
