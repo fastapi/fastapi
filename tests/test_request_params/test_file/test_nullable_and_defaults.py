@@ -1,10 +1,10 @@
 from typing import Annotated
 
 import pytest
-from fastapi import FastAPI, File, Form, UploadFile
+from fastapi import FastAPI, File, Form, UploadFile, params
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
-from pydantic import BaseModel, Field
+from pydantic import AliasChoices, BaseModel, ConfigDict, Field
 
 app = FastAPI()
 
@@ -279,6 +279,43 @@ def test_required_non_nullable_files():
     )
     assert response.status_code == 200
     assert response.json() == {"file": 0, "files": [0]}
+
+
+@pytest.mark.parametrize(
+    "file_alias,files_alias",
+    [("primary", "primary-files"), ("secondary", "secondary-files"), ("file", "files")],
+)
+def test_model_bytes_files_use_validation_aliases(file_alias, files_alias):
+    app = FastAPI()
+
+    class FileModel(BaseModel):
+        model_config = ConfigDict(populate_by_name=True)
+        file: Annotated[
+            bytes, File(validation_alias=AliasChoices("primary", "secondary"))
+        ]
+        files: Annotated[
+            list[bytes],
+            File(validation_alias=AliasChoices("primary-files", "secondary-files")),
+        ]
+
+    if not isinstance(FileModel.model_fields["file"], params.File):
+        pytest.skip("This Pydantic version does not preserve File metadata in models")
+
+    @app.post("/")
+    def read_form(data: Annotated[FileModel, Form()]):
+        return data
+
+    client = TestClient(app)
+    response = client.post(
+        "/",
+        files=[
+            (file_alias, ("one.txt", b"one")),
+            (files_alias, ("two.txt", b"two")),
+            (files_alias, ("three.txt", b"three")),
+        ],
+    )
+    assert response.status_code == 200
+    assert response.json() == {"file": "one", "files": ["two", "three"]}
 
 
 def test_openapi_schema():

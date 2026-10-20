@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+Unions of form models now apply the same browser form handling as individual models. Empty scalar fields use defaults or produce missing-field errors, empty list items are preserved, omitted boolean fields become `False`, and unselected files are treated as missing. JSON request bodies are unchanged.
+
 ## 0.152.0 (2026-10-20)
 
 Validation errors for header parameter models now report the HTTP header name, such as `int-val`, instead of the Python field name, `int_val`. Explicit aliases, `Header(convert_underscores=False)`, and Pydantic models with `loc_by_alias=False` keep their existing behavior.
