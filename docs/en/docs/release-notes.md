@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.152.0 (2026-10-20)
+
 Validation errors for header parameter models now report the HTTP header name, such as `int-val`, instead of the Python field name, `int_val`. Explicit aliases, `Header(convert_underscores=False)`, and Pydantic models with `loc_by_alias=False` keep their existing behavior.
 
 ### Fixes
