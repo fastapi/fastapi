@@ -769,9 +769,8 @@ def _is_empty_file_input(value: Any) -> bool:
 
 
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: str | None = None
+    field: ModelField, values: Mapping[str, Any], alias: str
 ) -> Any:
-    alias = alias or get_validation_alias(field)
     if (
         (not _is_json_field(field))
         and field_annotation_is_sequence(field.field_info.annotation)
@@ -831,26 +830,28 @@ def request_params_to_args(
     processed_keys = set()
 
     for field in fields_to_extract:
-        alias = None
-        if isinstance(received_params, Headers):
-            # Handle fields extracted from a Pydantic Model for a header, each field
-            # doesn't have a FieldInfo of type Header with the default convert_underscores=True
-            convert_underscores = getattr(
-                field.field_info, "convert_underscores", default_convert_underscores
-            )
-            if convert_underscores:
-                alias = get_validation_alias(field)
-                if alias == field.name:
-                    alias = alias.replace("_", "-")
-                    header_aliases[field.name] = alias
-        value = _get_multidict_value(field, received_params, alias=alias)
+        convert_underscores = isinstance(received_params, Headers) and getattr(
+            field.field_info, "convert_underscores", default_convert_underscores
+        )
+        aliases = _get_param_aliases(field, convert_underscores=convert_underscores)
+        alias, request_alias = next(
+            (pair for pair in aliases if pair[1] in received_params), aliases[0]
+        )
+        # Only reshape the selected alias. Unused choices can be extra fields
+        # or aliases used by other fields with different types.
+        value = _get_multidict_value(field, received_params, alias=request_alias)
         if value is not Undefined:
-            params_to_process[get_validation_alias(field)] = value
-        processed_keys.add(alias or get_validation_alias(field))
-        # For headers with convert_underscores=True, mark both the converted
-        # header name and the original field alias as processed to avoid
-        # accepting the original alias as an extra header.
-        processed_keys.add(get_validation_alias(field))
+            params_to_process[alias] = value
+        if isinstance(received_params, Headers):
+            processed_keys.add(request_alias.lower())
+            for validation_alias, header_alias in aliases:
+                if validation_alias != header_alias:
+                    # Do not accept an unconverted field name as an extra header.
+                    processed_keys.add(validation_alias.lower())
+            if alias != request_alias:
+                header_aliases[field.name] = request_alias
+        else:
+            processed_keys.add(request_alias)
 
     for key in received_params.keys():
         if key not in processed_keys:
@@ -887,12 +888,16 @@ def request_params_to_args(
         return {first_field.name: v_}, errors_
 
     for field in fields:
-        value = _get_multidict_value(field, received_params)
+        aliases = _get_param_aliases(field)
+        _, alias = next(
+            (pair for pair in aliases if pair[1] in received_params), aliases[0]
+        )
+        value = _get_multidict_value(field, received_params, alias=alias)
         field_info = field.field_info
         assert isinstance(field_info, params.Param), (
             "Params must be subclasses of Param"
         )
-        loc = (field_info.in_.value, get_validation_alias(field))
+        loc = (field_info.in_.value, alias)
         v_, errors_ = _validate_value_with_model_field(
             field=field, value=value, values=values, loc=loc
         )
@@ -1185,3 +1190,35 @@ def _get_body_field(
 def get_validation_alias(field: ModelField) -> str:
     va = getattr(field, "validation_alias", None)
     return va or field.alias
+
+
+def _get_param_aliases(
+    field: ModelField, *, convert_underscores: bool = False
+) -> list[tuple[str, str]]:
+    """Return (validation alias, request key) pairs in preference order."""
+    alias = get_validation_alias(field)
+    request_alias = alias
+    if convert_underscores and alias == field.name:
+        request_alias = alias.replace("_", "-")
+    validation_alias = field.field_info.validation_alias
+    if (
+        isinstance(field.field_info, params.Path)
+        or not isinstance(validation_alias, AliasChoices)
+        or any(isinstance(alias, AliasPath) for alias in validation_alias.choices)
+    ):
+        return [(alias, request_alias)]
+    choices = cast(list[str], validation_alias.choices)
+    # Explicit choices are literal names, including underscores in headers.
+    aliases = [(choice, choice) for choice in choices]
+    config = field.config or {}
+    if config.get("validate_by_alias") is False or config.get(
+        "validate_by_name", config.get("populate_by_name", False)
+    ):
+        request_name = field.name
+        if convert_underscores:
+            request_name = request_name.replace("_", "-")
+        if config.get("validate_by_alias") is False:
+            return [(field.name, request_name)]
+        if field.name not in choices:
+            aliases.append((field.name, request_name))
+    return aliases

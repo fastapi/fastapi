@@ -26,8 +26,8 @@ from fastapi.dependencies.models import (
 )
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
+    _get_param_aliases,
     get_flat_params,
-    get_validation_alias,
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import FastAPIDeprecationWarning
@@ -189,24 +189,19 @@ def _get_openapi_operation_parameters(
             # field_info = cast(Param, field_info)
             if not getattr(field_info, "include_in_schema", True):
                 continue
+            convert_underscores = param_type == ParamTypes.header and getattr(
+                field_info, "convert_underscores", default_convert_underscores
+            )
+            alias, name = _get_param_aliases(
+                param, convert_underscores=convert_underscores
+            )[0]
             param_schema = get_schema_from_model_field(
                 field=param,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
+                field_alias=alias,
             )
-            name = get_validation_alias(param)
-            convert_underscores = getattr(
-                param.field_info,
-                "convert_underscores",
-                default_convert_underscores,
-            )
-            if (
-                param_type == ParamTypes.header
-                and name == param.name
-                and convert_underscores
-            ):
-                name = param.name.replace("_", "-")
 
             parameter = {
                 "name": name,
