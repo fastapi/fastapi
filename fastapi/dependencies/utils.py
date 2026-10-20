@@ -504,6 +504,17 @@ def analyze_param(
             field_info = params.Body(annotation=use_annotation, default=default_value)
         else:
             field_info = params.Query(annotation=use_annotation, default=default_value)
+        if get_origin(use_annotation) is Annotated:
+            inferred_default = field_info.default
+            field_info = copy_field_info(
+                field_info=field_info,
+                annotation=use_annotation,
+            )
+            field_info.default = inferred_default
+            if is_path_param:
+                # A default factory can apply when this endpoint is used without the
+                # path parameter, but path parameters must always be required.
+                field_info.default_factory = None
 
     field = None
     # It's a field_info, not a dependency

@@ -247,6 +247,66 @@ def test_parameter_preserves_pydantic_validate_default(field, expected):
     assert response.json() == expected
 
 
+def test_inferred_parameter_preserves_pydantic_default_factory():
+    app = FastAPI()
+    default_factory = Mock(return_value=5)
+
+    @app.get("/")
+    def read_parameter(value: Annotated[int, Field(default_factory=default_factory)]):
+        return value
+
+    default_factory.assert_not_called()
+    client = TestClient(app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == 5
+    default_factory.assert_called_once_with()
+
+    response = client.get("/", params={"value": "10"})
+    assert response.status_code == 200
+    assert response.json() == 10
+    default_factory.assert_called_once_with()
+
+
+def test_inferred_parameters_validate_defaults():
+    app = FastAPI()
+
+    @app.post("/")
+    def read_parameters(
+        values: Annotated[
+            list[int], Field(default_factory=list, min_length=1, validate_default=True)
+        ],
+        count: Annotated[int, Field(gt=0, validate_default=True)] = -1,
+    ):
+        return {"count": count, "values": values}
+
+    client = TestClient(app)
+    response = client.post("/")
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "greater_than",
+                "loc": ["query", "count"],
+                "msg": "Input should be greater than 0",
+                "input": -1,
+                "ctx": {"gt": 0},
+            },
+            {
+                "type": "too_short",
+                "loc": ["body"],
+                "msg": "List should have at least 1 item after validation, not 0",
+                "input": [],
+                "ctx": {"field_type": "List", "min_length": 1, "actual_length": 0},
+            },
+        ]
+    }
+
+    response = client.post("/", params={"count": "2"}, json=[1, 2])
+    assert response.status_code == 200
+    assert response.json() == {"count": 2, "values": [1, 2]}
+
+
 def test_parameter_rejects_invalid_default():
     app = FastAPI()
 

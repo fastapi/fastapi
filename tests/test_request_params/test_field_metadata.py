@@ -2,7 +2,7 @@ from typing import Annotated, Literal
 
 import pytest
 from dirty_equals import IsOneOf
-from fastapi import Body, Cookie, FastAPI, File, Form, Header, Path, Query
+from fastapi import Body, Cookie, FastAPI, File, Form, Header, Path, Query, UploadFile
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, Field
@@ -44,6 +44,37 @@ def test_file_field_alias_is_preserved():
     @app.post("/")
     def read_file(value: Annotated[bytes, Field(alias="upload"), File()]):
         return value
+
+    client = TestClient(app)
+    response = client.post("/", files={"upload": ("example.txt", b"hello")})
+    assert response.status_code == 200
+    assert response.json() == "hello"
+
+
+def test_inferred_body_aliases_are_preserved():
+    app = FastAPI()
+
+    @app.post("/")
+    def read_values(
+        first: Annotated[list[int], Field(alias="numbers")],
+        second: Annotated[
+            list[int], Field(alias="unused", validation_alias="more_numbers")
+        ],
+    ):
+        return {"first": first, "second": second}
+
+    client = TestClient(app)
+    response = client.post("/", json={"numbers": [1], "more_numbers": [2]})
+    assert response.status_code == 200
+    assert response.json() == {"first": [1], "second": [2]}
+
+
+def test_inferred_file_alias_is_preserved():
+    app = FastAPI()
+
+    @app.post("/")
+    async def read_file(value: Annotated[UploadFile, Field(alias="upload")]):
+        return await value.read()
 
     client = TestClient(app)
     response = client.post("/", files={"upload": ("example.txt", b"hello")})
@@ -161,6 +192,22 @@ def read_body(
     return {"preserved": preserved, "replaced": replaced, "cleared": cleared}
 
 
+@app.get("/inferred")
+@app.get("/inferred/{item_id}")
+def read_inferred(
+    item_id: Annotated[
+        int,
+        Field(
+            default_factory=lambda: 5, title="Item ID", description="The item to read"
+        ),
+    ],
+    count: Annotated[
+        int, Field(alias="n", title="Count", description="Number of items")
+    ] = 10,
+):
+    return {"item_id": item_id, "count": count}
+
+
 client = TestClient(app)
 
 
@@ -178,6 +225,20 @@ def test_body_alias_overrides():
     )
     assert response.status_code == 200
     assert response.json() == {"preserved": 1, "replaced": 2, "cleared": 3}
+
+
+def test_inferred_query_alias_is_preserved():
+    response = client.get("/inferred/1", params={"n": "2"})
+    assert response.status_code == 200
+    assert response.json() == {"item_id": 1, "count": 2}
+
+    response = client.get("/inferred/1")
+    assert response.status_code == 200
+    assert response.json() == {"item_id": 1, "count": 10}
+
+    response = client.get("/inferred")
+    assert response.status_code == 200
+    assert response.json() == {"item_id": 5, "count": 10}
 
 
 def test_openapi_schema():
@@ -273,6 +334,100 @@ def test_openapi_schema():
                             },
                             "required": True,
                         },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/inferred/{item_id}": {
+                    "get": {
+                        "summary": "Read Inferred",
+                        "operationId": "read_inferred_inferred__item_id__get",
+                        "parameters": [
+                            {
+                                "name": "item_id",
+                                "in": "path",
+                                "required": True,
+                                "schema": {
+                                    "type": "integer",
+                                    "title": "Item ID",
+                                    "description": "The item to read",
+                                },
+                                "description": "The item to read",
+                            },
+                            {
+                                "name": "n",
+                                "in": "query",
+                                "required": False,
+                                "schema": {
+                                    "type": "integer",
+                                    "title": "Count",
+                                    "description": "Number of items",
+                                    "default": 10,
+                                },
+                                "description": "Number of items",
+                            },
+                        ],
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/inferred": {
+                    "get": {
+                        "summary": "Read Inferred",
+                        "operationId": "read_inferred_inferred_get",
+                        "parameters": [
+                            {
+                                "name": "item_id",
+                                "in": "query",
+                                "required": False,
+                                "schema": {
+                                    "type": "integer",
+                                    "title": "Item ID",
+                                    "description": "The item to read",
+                                },
+                                "description": "The item to read",
+                            },
+                            {
+                                "name": "n",
+                                "in": "query",
+                                "required": False,
+                                "schema": {
+                                    "type": "integer",
+                                    "title": "Count",
+                                    "description": "Number of items",
+                                    "default": 10,
+                                },
+                                "description": "Number of items",
+                            },
+                        ],
                         "responses": {
                             "200": {
                                 "description": "Successful Response",
