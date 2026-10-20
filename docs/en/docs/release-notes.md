@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.154.0 (2026-10-20)
+
 ### Features
 
 * ✨ Add Pydantic validation options to request parameters. PR [#16542](https://github.com/fastapi/fastapi/pull/16542) by [@tiangolo](https://github.com/tiangolo).
