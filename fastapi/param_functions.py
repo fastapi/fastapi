@@ -315,19 +315,6 @@ def Path(  # noqa: N802
             """
         ),
     ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
 ) -> Any:
     """
     Declare a path parameter for a *path operation*.
@@ -382,7 +369,6 @@ def Path(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -709,19 +695,6 @@ def Query(  # noqa: N802
             """
         ),
     ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
 ) -> Any:
     return params.Query(
         default=default,
@@ -755,7 +728,6 @@ def Query(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -1054,19 +1026,6 @@ def Header(  # noqa: N802
             """
         ),
     ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
 ) -> Any:
     return params.Header(
         default=default,
@@ -1101,7 +1060,6 @@ def Header(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -1389,19 +1347,6 @@ def Cookie(  # noqa: N802
             """
         ),
     ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
 ) -> Any:
     return params.Cookie(
         default=default,
@@ -1435,7 +1380,6 @@ def Cookie(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -1746,19 +1690,6 @@ def Body(  # noqa: N802
             """
         ),
     ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
 ) -> Any:
     return params.Body(
         default=default,
@@ -1794,7 +1725,6 @@ def Body(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -2091,19 +2021,6 @@ def Form(  # noqa: N802
             """
         ),
     ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
 ) -> Any:
     return params.Form(
         default=default,
@@ -2138,7 +2055,6 @@ def Form(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -2435,19 +2351,6 @@ def File(  # noqa: N802
             """
         ),
     ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
 ) -> Any:
     return params.File(
         default=default,
@@ -2482,7 +2385,6 @@ def File(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 

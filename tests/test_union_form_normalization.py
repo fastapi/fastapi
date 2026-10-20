@@ -370,15 +370,18 @@ def test_model_validator_does_not_mutate_other_branches():
     assert response.json() == {"value": ["", "hello"]}
 
 
-def test_embedded_union_still_rejects_a_string():
+def test_union_with_another_form_parameter_rejects_a_string():
     app = FastAPI()
 
     @app.post("/")
-    def read_form(data: Annotated[TextForm | ListForm, Form(embed=True)]):
+    def read_form(
+        data: Annotated[TextForm | ListForm, Form()],
+        token: Annotated[str, Form()],
+    ):
         pytest.fail("Invalid form data reached the endpoint")  # pragma: no cover
 
     client = TestClient(app)
-    response = client.post("/", data={"data": "hello"})
+    response = client.post("/", data={"data": "hello", "token": "example"})
     assert response.status_code == 422
     assert [error["loc"] for error in response.json()["detail"]] == [
         ["body", "data", "TextForm"],
