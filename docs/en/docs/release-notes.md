@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.156.4 (2026-10-21)
+
 ### Fixes
 
 * 🐛 Fix `AliasChoices` for named JSON body parameters. PR [#16559](https://github.com/fastapi/fastapi/pull/16559) by [@tiangolo](https://github.com/tiangolo).
