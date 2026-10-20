@@ -1211,7 +1211,9 @@ def _get_param_aliases(
     # Explicit choices are literal names, including underscores in headers.
     aliases = [(choice, choice) for choice in choices]
     config = field.config or {}
-    if config.get("validate_by_name", config.get("populate_by_name", False)):
+    if config.get("validate_by_alias") is False or config.get(
+        "validate_by_name", config.get("populate_by_name", False)
+    ):
         request_name = field.name
         if convert_underscores:
             request_name = request_name.replace("_", "-")
