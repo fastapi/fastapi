@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Preserve Pydantic `Field()` attributes in request parameters. PR [#16547](https://github.com/fastapi/fastapi/pull/16547) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.155.0 (2026-10-20)
 
 The deprecated `**extra` keyword arguments have been removed from `Path`, `Query`, `Header`, `Cookie`, `Body`, `Form`, and `File`. Unknown keyword arguments now raise `TypeError`. For additional JSON Schema properties, replace, for example, `Query(custom="value")` with `Query(json_schema_extra={"custom": "value"})`.
