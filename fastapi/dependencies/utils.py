@@ -1112,11 +1112,20 @@ async def request_body_to_args(
         )
         return {first_field.name: v_}, errors_
     for field in body_fields:
-        loc = ("body", get_validation_alias(field))
+        if isinstance(received_body, FormData):
+            # Form values have already been extracted using their canonical aliases.
+            aliases = [get_validation_alias(field)]
+        else:
+            aliases = [alias for alias, _ in _get_param_aliases(field)]
+        loc = ("body", aliases[0])
         value: Any = Undefined
         if body_to_process is not Undefined and not isinstance(body_to_process, bytes):
             try:
-                value = body_to_process.get(get_validation_alias(field), Undefined)
+                for alias in aliases:
+                    value = body_to_process.get(alias, Undefined)
+                    if value is not Undefined:
+                        loc = ("body", alias)
+                        break
             # Embedded fields require an object, not a list, scalar, or null.
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
