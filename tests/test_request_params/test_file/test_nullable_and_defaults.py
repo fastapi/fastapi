@@ -281,6 +281,25 @@ def test_required_non_nullable_files():
     assert response.json() == {"file": 0, "files": [0]}
 
 
+@pytest.mark.parametrize("alias", ["primary", "secondary"])
+def test_individual_file_alias_choices(alias: str):
+    app = FastAPI()
+
+    @app.post("/")
+    def read_file(
+        file: Annotated[
+            bytes,
+            File(alias="legacy", validation_alias=AliasChoices("primary", "secondary")),
+        ],
+    ):
+        return file.decode()
+
+    client = TestClient(app)
+    response = client.post("/", files={alias: ("hello.txt", b"hello")})
+    assert response.status_code == 200
+    assert response.json() == "hello"
+
+
 @pytest.mark.parametrize(
     "file_alias,files_alias",
     [("primary", "primary-files"), ("secondary", "secondary-files"), ("file", "files")],

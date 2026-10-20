@@ -11,6 +11,7 @@ hide:
 
 ### Fixes
 
+* 🐛 Fix `AliasChoices` for named JSON body parameters. PR [#16559](https://github.com/fastapi/fastapi/pull/16559) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix `AliasChoices` extraction for form models. PR [#16557](https://github.com/fastapi/fastapi/pull/16557) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.156.3 (2026-10-20)
