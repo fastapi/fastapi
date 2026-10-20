@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.156.2 (2026-10-20)
+
 ### Fixes
 
 * 🐛 Preserve Pydantic field metadata in inferred request parameters. PR [#16553](https://github.com/fastapi/fastapi/pull/16553) by [@tiangolo](https://github.com/tiangolo).
