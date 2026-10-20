@@ -251,12 +251,12 @@ def test_alias_choices_and_forbidden_extras(form):
     assert response.status_code == 200
     assert response.json() == {"kind": "aliased", "value": "hello", "enabled": False}
     response = client.post(
-        "/", data={"kind": "aliased", "primary": "hello", "extra": ""}
+        "/", data={"kind": "aliased", "primary": "hello", "secondary": ""}
     )
     assert response.status_code == 422
     errors = response.json()["detail"]
     assert any(
-        error["type"] == "extra_forbidden" and error["loc"][-1] == "extra"
+        error["type"] == "extra_forbidden" and error["loc"][-1] == "secondary"
         for error in errors
     )
 

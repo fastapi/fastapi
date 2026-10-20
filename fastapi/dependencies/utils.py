@@ -1013,27 +1013,19 @@ def _extract_form_items(
             if isinstance(validation_alias, AliasChoices):
                 aliases = list(cast(list[str], validation_alias.choices))
             config = field.config or {}
-            if config.get("validate_by_name", config.get("populate_by_name", False)):
-                if config.get("validate_by_alias") is False:
-                    aliases = [field.name]
-                elif field.name not in aliases:
-                    aliases.append(field.name)
+            if config.get("validate_by_alias") is False:
+                aliases = [field.name]
+            elif (
+                config.get("validate_by_name", config.get("populate_by_name", False))
+                and field.name not in aliases
+            ):
+                aliases.append(field.name)
         # Interpret missing boolean form fields as unchecked HTML checkboxes.
         infer_false_if_missing = (
             not has_alias_path
             and field.field_info.annotation in (bool, bool | None)
             and not any(alias in received_body for alias in aliases)
         )
-        if field.config is None or infer_false_if_missing:
-            selected_alias = aliases[0]
-            for alias in aliases:
-                if (
-                    _get_multidict_value(field, received_body, alias=alias)
-                    is not Undefined
-                ):
-                    selected_alias = alias
-                    break
-            aliases = [selected_alias]
         for alias in aliases:
             field_aliases.add(alias)
             if infer_false_if_missing:
@@ -1046,6 +1038,8 @@ def _extract_form_items(
                 field_aliases.add(alias)
             if value is not Undefined:
                 yield alias, value, field
+                # Leave later aliases unchanged for other fields or extra validation.
+                break
     for key in received_body.keys():
         if key not in field_aliases:
             param_values = received_body.getlist(key)
