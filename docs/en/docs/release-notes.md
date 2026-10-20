@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `AliasChoices` for query parameters, headers, and cookies. PR [#16555](https://github.com/fastapi/fastapi/pull/16555) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.156.2 (2026-10-20)
 
 ### Fixes
