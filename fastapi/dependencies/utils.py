@@ -15,6 +15,7 @@ from collections.abc import (
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
+from functools import partial
 from typing import (
     Annotated,
     Any,
@@ -69,7 +70,7 @@ from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import AliasChoices, AliasPath, BaseModel, Json
+from pydantic import AliasChoices, AliasPath, BaseModel, BeforeValidator, Json, Tag
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -521,6 +522,10 @@ def analyze_param(
         use_annotation_from_field_info = use_annotation
         if isinstance(field_info, params.Form):
             ensure_multipart_is_installed()
+            if is_union_of_base_models(field_info.annotation):
+                field_info.annotation = _add_form_union_validators(
+                    field_info.annotation
+                )
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
             alias = param_name.replace("_", "-")
         else:
@@ -900,10 +905,53 @@ def is_union_of_base_models(field_type: Any) -> bool:
     union_args = get_args(field_type)
 
     for arg in union_args:
+        if get_origin(arg) is Annotated:
+            arg = get_args(arg)[0]
         if not lenient_issubclass(arg, BaseModel):
             return False
 
     return True
+
+
+def _add_form_union_validators(annotation: Any) -> Any:
+    choices = []
+    for choice in get_args(annotation):
+        model = choice
+        metadata: Sequence[Any] = ()
+        if get_origin(choice) is Annotated:
+            model, *metadata = get_args(choice)
+        validator = BeforeValidator(partial(_normalize_form_model, model=model))
+        # Keep existing discriminator tags or model names in union errors.
+        tag = next(
+            (item for item in reversed(metadata) if isinstance(item, Tag)),
+            Tag(model.__name__),
+        )
+        choices.append(Annotated[choice, validator, tag])
+    return Union[tuple(choices)]  # noqa: UP007
+
+
+def _normalize_form_model(value: Any, *, model: type[BaseModel]) -> Any:
+    if isinstance(value, dict):
+        # Repeated form values must be interpreted separately by each union branch.
+        form_data = FormData(
+            [
+                (key, item)
+                for key, items in value.items()
+                for item in (items if isinstance(items, list) else [items])
+            ]
+        )
+        normalized = {
+            alias: item
+            for alias, item, _ in _extract_form_items(
+                get_cached_model_fields(model), form_data
+            )
+        }
+        # These cannot come from browser form entries, but a validator can supply them.
+        for key, item in value.items():
+            if item is None or (isinstance(item, list) and not item):
+                normalized[key] = item
+        return normalized
+    return value
 
 
 def _should_embed_body_fields(fields: list[ModelField]) -> bool:
@@ -930,11 +978,10 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     return False
 
 
-async def _extract_form_body(
+def _extract_form_items(
     body_fields: list[ModelField],
     received_body: FormData,
-) -> dict[str, Any]:
-    values: dict[str, Any] = {}
+) -> Iterator[tuple[str, Any, ModelField | None]]:
     field_aliases: set[str] = set()
 
     for field in body_fields:
@@ -977,19 +1024,35 @@ async def _extract_form_body(
                 value: Any = False
             else:
                 value = _get_multidict_value(field, received_body, alias=alias)
-            field_info = field.field_info
-            if (
-                isinstance(field_info, params.File)
-                and is_bytes_or_nonable_bytes_annotation(field.field_info.annotation)
-                and isinstance(value, UploadFile)
-            ):
+            if field.config is None:
+                # Individual parameters are later looked up by their declared alias.
+                alias = get_validation_alias(field)
+                field_aliases.add(alias)
+            if value is not Undefined:
+                yield alias, value, field
+    for key in received_body.keys():
+        if key not in field_aliases:
+            param_values = received_body.getlist(key)
+            if len(param_values) == 1:
+                yield key, param_values[0], None
+            else:
+                yield key, param_values, None
+
+
+async def _extract_form_body(
+    body_fields: list[ModelField],
+    received_body: FormData,
+) -> dict[str, Any]:
+    values: dict[str, Any] = {}
+    for alias, value, field in _extract_form_items(body_fields, received_body):
+        if field is not None and isinstance(field.field_info, params.File):
+            if is_bytes_or_nonable_bytes_annotation(
+                field.field_info.annotation
+            ) and isinstance(value, UploadFile):
                 value = await value.read()
-            elif (
-                is_bytes_sequence_annotation(field.field_info.annotation)
-                and isinstance(field_info, params.File)
-                and value_is_sequence(value)
-            ):
-                # For types
+            elif is_bytes_sequence_annotation(
+                field.field_info.annotation
+            ) and value_is_sequence(value):
                 assert isinstance(value, sequence_types)
                 results: list[bytes | str] = []
                 for sub_value in value:
@@ -998,19 +1061,7 @@ async def _extract_form_body(
                     else:
                         results.append(sub_value)
                 value = serialize_sequence_value(field=field, value=results)
-            if field.config is None:
-                # Individual parameters are later looked up by their declared alias.
-                alias = get_validation_alias(field)
-                field_aliases.add(alias)
-            if value is not Undefined:
-                values[alias] = value
-    for key in received_body.keys():
-        if key not in field_aliases:
-            param_values = received_body.getlist(key)
-            if len(param_values) == 1:
-                values[key] = param_values[0]
-            else:
-                values[key] = param_values
+        values[alias] = value
     return values
 
 
@@ -1036,6 +1087,12 @@ async def request_body_to_args(
         fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
 
     if isinstance(received_body, FormData):
+        if single_not_embedded_field and is_union_of_base_models(
+            first_field.field_info.annotation
+        ):
+            # Preserve all form values for validators around the union.
+            # Each branch applies its own model field extraction afterward.
+            fields_to_extract = []
         body_to_process = await _extract_form_body(fields_to_extract, received_body)
 
     if single_not_embedded_field:
