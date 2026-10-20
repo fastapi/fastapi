@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.156.1 (2026-10-20)
+
 ### Fixes
 
 * 🐛 Preserve Pydantic field metadata when request options are omitted. PR [#16549](https://github.com/fastapi/fastapi/pull/16549) by [@tiangolo](https://github.com/tiangolo).
