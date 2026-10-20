@@ -316,7 +316,8 @@ def test_callable_discriminator_preserves_tags():
 @pytest.mark.parametrize(
     "mode,expected_model", [("smart", "DetailedForm"), ("left_to_right", "SimpleForm")]
 )
-def test_pydantic_selects_union_branch(mode, expected_model):
+@pytest.mark.parametrize("path", ["/field", "/form"])
+def test_pydantic_selects_union_branch(mode, expected_model, path):
     app = FastAPI()
 
     class SimpleForm(BaseModel):
@@ -326,14 +327,20 @@ def test_pydantic_selects_union_branch(mode, expected_model):
         value: str
         count: int
 
-    @app.post("/")
-    def read_form(
+    @app.post("/field")
+    def read_field(
         data: Annotated[SimpleForm | DetailedForm, Field(union_mode=mode), Form()],
     ):
         return type(data).__name__
 
+    @app.post("/form")
+    def read_form(
+        data: Annotated[SimpleForm | DetailedForm, Form(union_mode=mode)],
+    ):
+        return type(data).__name__
+
     client = TestClient(app)
-    response = client.post("/", data={"value": "hello", "count": "2"})
+    response = client.post(path, data={"value": "hello", "count": "2"})
     assert response.status_code == 200
     assert response.json() == expected_model
 

@@ -1,3 +1,4 @@
+import re
 from collections.abc import Callable, Sequence
 from typing import Annotated, Any, Literal
 
@@ -6,7 +7,7 @@ from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.datastructures import _Unset
 from fastapi.openapi.models import Example
-from pydantic import AliasChoices, AliasPath
+from pydantic import AliasChoices, AliasPath, Discriminator
 from typing_extensions import deprecated
 
 
@@ -156,10 +157,10 @@ def Path(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -175,10 +176,10 @@ def Path(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
     ] = None,
@@ -187,6 +188,34 @@ def Path(  # noqa: N802
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+
+            This doesn't affect `Path` parameters as the value is always required.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -279,10 +308,10 @@ def Path(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
     ] = None,
@@ -340,6 +369,9 @@ def Path(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -512,10 +544,10 @@ def Query(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
 
             Read more about it in the
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#add-regular-expressions
@@ -534,10 +566,10 @@ def Query(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
     ] = None,
@@ -546,6 +578,32 @@ def Query(  # noqa: N802
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -644,10 +702,10 @@ def Query(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
     ] = None,
@@ -684,6 +742,9 @@ def Query(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -837,10 +898,10 @@ def Header(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -856,10 +917,10 @@ def Header(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
     ] = None,
@@ -868,6 +929,32 @@ def Header(  # noqa: N802
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -960,10 +1047,10 @@ def Header(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
     ] = None,
@@ -1001,6 +1088,9 @@ def Header(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -1143,10 +1233,10 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -1162,10 +1252,10 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
     ] = None,
@@ -1174,6 +1264,32 @@ def Cookie(  # noqa: N802
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -1266,10 +1382,10 @@ def Cookie(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
     ] = None,
@@ -1306,6 +1422,9 @@ def Cookie(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -1471,10 +1590,10 @@ def Body(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -1490,10 +1609,10 @@ def Body(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
     ] = None,
@@ -1502,6 +1621,32 @@ def Body(  # noqa: N802
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -1594,10 +1739,10 @@ def Body(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
     ] = None,
@@ -1636,6 +1781,9 @@ def Body(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -1787,10 +1935,10 @@ def Form(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -1806,10 +1954,10 @@ def Form(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
     ] = None,
@@ -1818,6 +1966,32 @@ def Form(  # noqa: N802
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -1910,10 +2084,10 @@ def Form(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
     ] = None,
@@ -1951,6 +2125,9 @@ def Form(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -2102,10 +2279,10 @@ def File(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -2121,10 +2298,10 @@ def File(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
     ] = None,
@@ -2133,6 +2310,32 @@ def File(  # noqa: N802
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -2225,10 +2428,10 @@ def File(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
     ] = None,
@@ -2266,6 +2469,9 @@ def File(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
