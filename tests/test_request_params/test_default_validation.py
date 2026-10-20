@@ -206,6 +206,47 @@ def test_parameter_validates_default_factory_once(parameter, default, expected):
     default_factory.assert_called_once_with()
 
 
+def test_parameter_preserves_pydantic_default_factory():
+    app = FastAPI()
+    default_factory = Mock(return_value=5)
+
+    @app.get("/")
+    def read_parameter(
+        value: Annotated[int, Field(default_factory=default_factory), Query()],
+    ):
+        return value
+
+    default_factory.assert_not_called()
+    client = TestClient(app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == 5
+    default_factory.assert_called_once_with()
+
+    response = client.get("/", params={"value": "10"})
+    assert response.status_code == 200
+    assert response.json() == 10
+    default_factory.assert_called_once_with()
+
+
+@pytest.mark.parametrize(
+    "field,expected", [(Query(), 20), (Query(validate_default=False), 10)]
+)
+def test_parameter_preserves_pydantic_validate_default(field, expected):
+    app = FastAPI()
+
+    @app.get("/")
+    def read_parameter(
+        value: Annotated[ValidatedInt, Field(validate_default=True), field] = 10,
+    ):
+        return value
+
+    client = TestClient(app)
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == expected
+
+
 def test_parameter_rejects_invalid_default():
     app = FastAPI()
 
