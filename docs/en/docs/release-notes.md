@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.156.0 (2026-10-20)
+
 ### Fixes
 
 * 🐛 Preserve Pydantic `Field()` attributes in request parameters. PR [#16547](https://github.com/fastapi/fastapi/pull/16547) by [@tiangolo](https://github.com/tiangolo).
