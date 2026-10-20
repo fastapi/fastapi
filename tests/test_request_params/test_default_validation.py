@@ -2,7 +2,7 @@ from typing import Annotated
 from unittest.mock import Mock
 
 import pytest
-from fastapi import Body, Cookie, FastAPI, Form, Header, Query
+from fastapi import Body, Cookie, FastAPI, File, Form, Header, Query
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, BeforeValidator, Field
 
@@ -230,3 +230,43 @@ def test_parameter_rejects_invalid_default():
     response = client.get("/", params={"value": "1"})
     assert response.status_code == 200
     assert response.json() == 1
+
+
+@pytest.mark.parametrize(
+    "validate_default,expected_status,expected",
+    [
+        (False, 200, "x"),
+        (
+            True,
+            422,
+            {
+                "detail": [
+                    {
+                        "type": "bytes_too_short",
+                        "loc": ["body", "value"],
+                        "msg": "Data should have at least 2 bytes",
+                        "input": "x",
+                        "ctx": {"min_length": 2},
+                    }
+                ]
+            },
+        ),
+    ],
+)
+def test_file_parameter_can_validate_default(
+    validate_default, expected_status, expected
+):
+    app = FastAPI()
+
+    @app.post("/")
+    def read_file(
+        value: Annotated[
+            bytes, File(min_length=2, validate_default=validate_default)
+        ] = b"x",
+    ):
+        return value
+
+    client = TestClient(app)
+    response = client.post("/")
+    assert response.status_code == expected_status
+    assert response.json() == expected

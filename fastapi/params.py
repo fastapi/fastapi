@@ -1,3 +1,4 @@
+import re
 import warnings
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
@@ -6,7 +7,7 @@ from typing import Annotated, Any, Literal
 
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
-from pydantic import AliasChoices, AliasPath
+from pydantic import AliasChoices, AliasPath, Discriminator
 from pydantic.fields import FieldInfo
 from typing_extensions import deprecated
 
@@ -44,15 +45,18 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
         le: float | None = None,
         min_length: int | None = None,
         max_length: int | None = None,
-        pattern: str | None = None,
+        pattern: str | re.Pattern[str] | None = None,
         regex: Annotated[
             str | None,
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | None = None,
+        discriminator: str | Discriminator | None = None,
         strict: bool | None = _Unset,
+        validate_default: bool | None = _Unset,
+        union_mode: Literal["smart", "left_to_right"] | None = _Unset,
+        fail_fast: bool | None = _Unset,
         multiple_of: float | None = _Unset,
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
@@ -68,7 +72,9 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
-        json_schema_extra: dict[str, Any] | None = None,
+        json_schema_extra: dict[str, Any]
+        | Callable[[dict[str, Any]], None]
+        | None = None,
         **extra: Any,
     ):
         if example is not _Unset:
@@ -93,6 +99,9 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
             min_length=min_length,
             max_length=max_length,
             discriminator=discriminator,
+            validate_default=validate_default,
+            union_mode=union_mode,
+            fail_fast=fail_fast,
             multiple_of=multiple_of,
             allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
@@ -155,15 +164,18 @@ class Path(Param):  # type: ignore[misc]
         le: float | None = None,
         min_length: int | None = None,
         max_length: int | None = None,
-        pattern: str | None = None,
+        pattern: str | re.Pattern[str] | None = None,
         regex: Annotated[
             str | None,
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | None = None,
+        discriminator: str | Discriminator | None = None,
         strict: bool | None = _Unset,
+        validate_default: bool | None = _Unset,
+        union_mode: Literal["smart", "left_to_right"] | None = _Unset,
+        fail_fast: bool | None = _Unset,
         multiple_of: float | None = _Unset,
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
@@ -179,7 +191,9 @@ class Path(Param):  # type: ignore[misc]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
-        json_schema_extra: dict[str, Any] | None = None,
+        json_schema_extra: dict[str, Any]
+        | Callable[[dict[str, Any]], None]
+        | None = None,
         **extra: Any,
     ):
         assert default is ..., "Path parameters cannot have a default value"
@@ -203,6 +217,9 @@ class Path(Param):  # type: ignore[misc]
             pattern=pattern,
             regex=regex,
             discriminator=discriminator,
+            validate_default=validate_default,
+            union_mode=union_mode,
+            fail_fast=fail_fast,
             strict=strict,
             multiple_of=multiple_of,
             allow_inf_nan=allow_inf_nan,
@@ -239,15 +256,18 @@ class Query(Param):  # type: ignore[misc]
         le: float | None = None,
         min_length: int | None = None,
         max_length: int | None = None,
-        pattern: str | None = None,
+        pattern: str | re.Pattern[str] | None = None,
         regex: Annotated[
             str | None,
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | None = None,
+        discriminator: str | Discriminator | None = None,
         strict: bool | None = _Unset,
+        validate_default: bool | None = _Unset,
+        union_mode: Literal["smart", "left_to_right"] | None = _Unset,
+        fail_fast: bool | None = _Unset,
         multiple_of: float | None = _Unset,
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
@@ -263,7 +283,9 @@ class Query(Param):  # type: ignore[misc]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
-        json_schema_extra: dict[str, Any] | None = None,
+        json_schema_extra: dict[str, Any]
+        | Callable[[dict[str, Any]], None]
+        | None = None,
         **extra: Any,
     ):
         super().__init__(
@@ -285,6 +307,9 @@ class Query(Param):  # type: ignore[misc]
             pattern=pattern,
             regex=regex,
             discriminator=discriminator,
+            validate_default=validate_default,
+            union_mode=union_mode,
+            fail_fast=fail_fast,
             strict=strict,
             multiple_of=multiple_of,
             allow_inf_nan=allow_inf_nan,
@@ -322,15 +347,18 @@ class Header(Param):  # type: ignore[misc]
         le: float | None = None,
         min_length: int | None = None,
         max_length: int | None = None,
-        pattern: str | None = None,
+        pattern: str | re.Pattern[str] | None = None,
         regex: Annotated[
             str | None,
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | None = None,
+        discriminator: str | Discriminator | None = None,
         strict: bool | None = _Unset,
+        validate_default: bool | None = _Unset,
+        union_mode: Literal["smart", "left_to_right"] | None = _Unset,
+        fail_fast: bool | None = _Unset,
         multiple_of: float | None = _Unset,
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
@@ -346,7 +374,9 @@ class Header(Param):  # type: ignore[misc]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
-        json_schema_extra: dict[str, Any] | None = None,
+        json_schema_extra: dict[str, Any]
+        | Callable[[dict[str, Any]], None]
+        | None = None,
         **extra: Any,
     ):
         self.convert_underscores = convert_underscores
@@ -369,6 +399,9 @@ class Header(Param):  # type: ignore[misc]
             pattern=pattern,
             regex=regex,
             discriminator=discriminator,
+            validate_default=validate_default,
+            union_mode=union_mode,
+            fail_fast=fail_fast,
             strict=strict,
             multiple_of=multiple_of,
             allow_inf_nan=allow_inf_nan,
@@ -405,15 +438,18 @@ class Cookie(Param):  # type: ignore[misc]
         le: float | None = None,
         min_length: int | None = None,
         max_length: int | None = None,
-        pattern: str | None = None,
+        pattern: str | re.Pattern[str] | None = None,
         regex: Annotated[
             str | None,
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | None = None,
+        discriminator: str | Discriminator | None = None,
         strict: bool | None = _Unset,
+        validate_default: bool | None = _Unset,
+        union_mode: Literal["smart", "left_to_right"] | None = _Unset,
+        fail_fast: bool | None = _Unset,
         multiple_of: float | None = _Unset,
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
@@ -429,7 +465,9 @@ class Cookie(Param):  # type: ignore[misc]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
-        json_schema_extra: dict[str, Any] | None = None,
+        json_schema_extra: dict[str, Any]
+        | Callable[[dict[str, Any]], None]
+        | None = None,
         **extra: Any,
     ):
         super().__init__(
@@ -451,6 +489,9 @@ class Cookie(Param):  # type: ignore[misc]
             pattern=pattern,
             regex=regex,
             discriminator=discriminator,
+            validate_default=validate_default,
+            union_mode=union_mode,
+            fail_fast=fail_fast,
             strict=strict,
             multiple_of=multiple_of,
             allow_inf_nan=allow_inf_nan,
@@ -487,15 +528,18 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
         le: float | None = None,
         min_length: int | None = None,
         max_length: int | None = None,
-        pattern: str | None = None,
+        pattern: str | re.Pattern[str] | None = None,
         regex: Annotated[
             str | None,
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | None = None,
+        discriminator: str | Discriminator | None = None,
         strict: bool | None = _Unset,
+        validate_default: bool | None = _Unset,
+        union_mode: Literal["smart", "left_to_right"] | None = _Unset,
+        fail_fast: bool | None = _Unset,
         multiple_of: float | None = _Unset,
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
@@ -511,7 +555,9 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
-        json_schema_extra: dict[str, Any] | None = None,
+        json_schema_extra: dict[str, Any]
+        | Callable[[dict[str, Any]], None]
+        | None = None,
         **extra: Any,
     ):
         self.embed = embed
@@ -538,6 +584,9 @@ class Body(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cla
             min_length=min_length,
             max_length=max_length,
             discriminator=discriminator,
+            validate_default=validate_default,
+            union_mode=union_mode,
+            fail_fast=fail_fast,
             multiple_of=multiple_of,
             allow_inf_nan=allow_inf_nan,
             max_digits=max_digits,
@@ -598,15 +647,18 @@ class Form(Body):  # type: ignore[misc]
         le: float | None = None,
         min_length: int | None = None,
         max_length: int | None = None,
-        pattern: str | None = None,
+        pattern: str | re.Pattern[str] | None = None,
         regex: Annotated[
             str | None,
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | None = None,
+        discriminator: str | Discriminator | None = None,
         strict: bool | None = _Unset,
+        validate_default: bool | None = _Unset,
+        union_mode: Literal["smart", "left_to_right"] | None = _Unset,
+        fail_fast: bool | None = _Unset,
         multiple_of: float | None = _Unset,
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
@@ -622,7 +674,9 @@ class Form(Body):  # type: ignore[misc]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
-        json_schema_extra: dict[str, Any] | None = None,
+        json_schema_extra: dict[str, Any]
+        | Callable[[dict[str, Any]], None]
+        | None = None,
         **extra: Any,
     ):
         super().__init__(
@@ -645,6 +699,9 @@ class Form(Body):  # type: ignore[misc]
             pattern=pattern,
             regex=regex,
             discriminator=discriminator,
+            validate_default=validate_default,
+            union_mode=union_mode,
+            fail_fast=fail_fast,
             strict=strict,
             multiple_of=multiple_of,
             allow_inf_nan=allow_inf_nan,
@@ -680,15 +737,18 @@ class File(Form):  # type: ignore[misc]
         le: float | None = None,
         min_length: int | None = None,
         max_length: int | None = None,
-        pattern: str | None = None,
+        pattern: str | re.Pattern[str] | None = None,
         regex: Annotated[
             str | None,
             deprecated(
                 "Deprecated in FastAPI 0.100.0 and Pydantic v2, use `pattern` instead."
             ),
         ] = None,
-        discriminator: str | None = None,
+        discriminator: str | Discriminator | None = None,
         strict: bool | None = _Unset,
+        validate_default: bool | None = _Unset,
+        union_mode: Literal["smart", "left_to_right"] | None = _Unset,
+        fail_fast: bool | None = _Unset,
         multiple_of: float | None = _Unset,
         allow_inf_nan: bool | None = _Unset,
         max_digits: int | None = _Unset,
@@ -704,7 +764,9 @@ class File(Form):  # type: ignore[misc]
         openapi_examples: dict[str, Example] | None = None,
         deprecated: deprecated | str | bool | None = None,
         include_in_schema: bool = True,
-        json_schema_extra: dict[str, Any] | None = None,
+        json_schema_extra: dict[str, Any]
+        | Callable[[dict[str, Any]], None]
+        | None = None,
         **extra: Any,
     ):
         super().__init__(
@@ -727,6 +789,9 @@ class File(Form):  # type: ignore[misc]
             pattern=pattern,
             regex=regex,
             discriminator=discriminator,
+            validate_default=validate_default,
+            union_mode=union_mode,
+            fail_fast=fail_fast,
             strict=strict,
             multiple_of=multiple_of,
             allow_inf_nan=allow_inf_nan,
