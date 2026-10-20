@@ -99,25 +99,12 @@ def test_explicit_value_equal_to_default_is_validated(parameter, path):
 
 
 @pytest.mark.parametrize("default", [None, 10])
-@pytest.mark.parametrize(
-    "path",
-    [
-        pytest.param(
-            "/parameter",
-            marks=pytest.mark.xfail(
-                reason="Explicit null is treated as missing for individual Body parameters",
-                raises=AssertionError,
-            ),
-        ),
-        "/model",
-    ],
-)
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
 def test_explicit_null_is_validated(default, path):
     app = FastAPI()
-    field = Body(embed=True)
 
     @app.post("/parameter")
-    def read_parameter(value: Annotated[ValidatedInt, field] = default):
+    def read_parameter(value: Annotated[ValidatedInt, Body(embed=True)] = default):
         return value
 
     class Model(BaseModel):
@@ -134,9 +121,6 @@ def test_explicit_null_is_validated(default, path):
 
 
 @pytest.mark.parametrize("default", [None, 10])
-@pytest.mark.xfail(
-    reason="Explicit null-body is treated as missing", raises=AssertionError
-)
 def test_explicit_null_body_is_validated(default):
     app = FastAPI()
 

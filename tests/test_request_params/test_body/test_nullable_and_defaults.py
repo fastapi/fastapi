@@ -1,7 +1,9 @@
 from typing import Annotated
 
 import pytest
-from fastapi import Body, FastAPI
+from fastapi import Body, Depends, FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -102,25 +104,11 @@ client = TestClient(app)
 @pytest.mark.parametrize(
     "path,fields_set",
     [
-        pytest.param(
-            "/required",
-            None,
-            marks=pytest.mark.xfail(
-                reason="Explicit null is treated as missing for a required Body parameter",
-                raises=AssertionError,
-            ),
-        ),
+        ("/required", None),
         ("/required-model", ["value"]),
         ("/none-default", None),
         ("/none-default-model", ["value"]),
-        pytest.param(
-            "/non-null-default",
-            None,
-            marks=pytest.mark.xfail(
-                reason="Explicit null is replaced with the Body parameter default",
-                raises=AssertionError,
-            ),
-        ),
+        ("/non-null-default", None),
         ("/non-null-default-model", ["value"]),
     ],
 )
@@ -192,19 +180,8 @@ def test_absent_bare_body_uses_default(path, expected):
     "path",
     [
         "/bare-none-default",
-        pytest.param(
-            "/bare-required",
-            marks=pytest.mark.xfail(
-                reason="Explicit null-body is treated as missing", raises=AssertionError
-            ),
-        ),
-        pytest.param(
-            "/bare-int-default",
-            marks=pytest.mark.xfail(
-                reason="Explicit null-body is replaced with the default",
-                raises=AssertionError,
-            ),
-        ),
+        "/bare-required",
+        "/bare-int-default",
     ],
 )
 def test_explicit_null_bare_body(path):
@@ -253,25 +230,9 @@ def test_omitted_non_nullable_field_uses_default(path):
 @pytest.mark.parametrize(
     "path,content,location",
     [
-        pytest.param(
-            "/non-nullable-default",
-            '{"value": null}',
-            ["body", "value"],
-            marks=pytest.mark.xfail(
-                reason="Explicit null is replaced with the Body parameter default",
-                raises=AssertionError,
-            ),
-        ),
+        ("/non-nullable-default", '{"value": null}', ["body", "value"]),
         ("/non-nullable-default-model", '{"value": null}', ["body", "value"]),
-        pytest.param(
-            "/bare-non-nullable-default",
-            "null",
-            ["body"],
-            marks=pytest.mark.xfail(
-                reason="Explicit null-body is replaced with the default",
-                raises=AssertionError,
-            ),
-        ),
+        ("/bare-non-nullable-default", "null", ["body"]),
     ],
 )
 def test_explicit_null_for_non_nullable_body_with_default(path, content, location):
@@ -285,3 +246,179 @@ def test_explicit_null_for_non_nullable_body_with_default(path, content, locatio
     ] == [
         ("int_type", location, None),
     ]
+
+
+@pytest.mark.parametrize(
+    "path",
+    ["/required", "/none-default", "/non-null-default", "/non-nullable-default"],
+)
+def test_explicit_null_is_not_an_embedded_body_object(path):
+    response = client.post(
+        path, content="null", headers={"content-type": "application/json"}
+    )
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["body", "value"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
+    }
+
+
+def test_explicit_null_is_not_an_object_for_multiple_body_parameters():
+    app = FastAPI()
+
+    @app.post("/")
+    def read_values(
+        value: Annotated[int | None, Body()] = 10,
+        other: Annotated[int | None, Body()] = 20,
+    ):
+        return {"value": value, "other": other}
+
+    client = TestClient(app)
+    response = client.post(
+        "/", content="null", headers={"content-type": "application/json"}
+    )
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "value"]),
+        ("missing", ["body", "other"]),
+    ]
+
+    response = client.post("/")
+    assert response.status_code == 200
+    assert response.json() == {"value": 10, "other": 20}
+
+    response = client.post("/", json={})
+    assert response.status_code == 200
+    assert response.json() == {"value": 10, "other": 20}
+
+    response = client.post("/", json={"value": None, "other": None})
+    assert response.status_code == 200
+    assert response.json() == {"value": None, "other": None}
+
+
+@pytest.mark.parametrize(
+    "embed,null_content,missing_content",
+    [(False, "null", ""), (True, '{"value": null}', "{}")],
+)
+def test_explicit_null_does_not_call_default_factory(
+    embed, null_content, missing_content
+):
+    app = FastAPI()
+    calls = 0
+
+    def default_factory():
+        nonlocal calls
+        calls += 1
+        return "10"
+
+    @app.post("/")
+    def read_value(
+        value: Annotated[
+            int | None,
+            Body(embed=embed, default_factory=default_factory, validate_default=True),
+        ],
+    ):
+        return value
+
+    client = TestClient(app)
+    response = client.post(
+        "/", content=null_content, headers={"content-type": "application/json"}
+    )
+    assert response.status_code == 200
+    assert response.json() is None
+    assert calls == 0
+
+    response = client.post(
+        "/", content=missing_content, headers={"content-type": "application/json"}
+    )
+    assert response.status_code == 200
+    assert response.json() == 10
+    assert calls == 1
+
+
+def test_explicit_null_in_body_dependency_uses_alias():
+    app = FastAPI()
+
+    def dependency(value: Annotated[int | None, Body(alias="input")] = 10):
+        return value
+
+    @app.post("/")
+    def read_values(
+        value: Annotated[int | None, Depends(dependency)],
+        other: Annotated[int, Body()] = 20,
+    ):
+        return {"value": value, "other": other}
+
+    client = TestClient(app)
+    response = client.post("/", json={"input": None})
+    assert response.status_code == 200
+    assert response.json() == {"value": None, "other": 20}
+
+    response = client.post("/", json={})
+    assert response.status_code == 200
+    assert response.json() == {"value": 10, "other": 20}
+
+
+@pytest.mark.parametrize(
+    "embed,null_content,missing_content",
+    [(False, "null", ""), (True, '{"params": null}', "{}")],
+)
+def test_explicit_null_for_nullable_model_body(embed, null_content, missing_content):
+    app = FastAPI()
+
+    @app.post("/")
+    def read_model(
+        params: Annotated[RequiredModel | None, Body(embed=embed)] = RequiredModel(
+            value=10
+        ),
+    ):
+        return params
+
+    client = TestClient(app)
+    response = client.post(
+        "/", content=null_content, headers={"content-type": "application/json"}
+    )
+    assert response.status_code == 200
+    assert response.json() is None
+
+    response = client.post(
+        "/", content=missing_content, headers={"content-type": "application/json"}
+    )
+    assert response.status_code == 200
+    assert response.json() == {"value": 10}
+
+
+@pytest.mark.parametrize("content,error_type", [("", "missing"), ("null", "int_type")])
+def test_validation_error_body_for_missing_and_null(content, error_type):
+    app = FastAPI()
+
+    @app.post("/")
+    def read_value(value: Annotated[int, Body()]):
+        return value
+
+    @app.exception_handler(RequestValidationError)
+    def handle_error(request: Request, exc: RequestValidationError):
+        return JSONResponse(
+            status_code=422, content={"body": exc.body, "detail": exc.errors()}
+        )
+
+    client = TestClient(app)
+    response = client.post("/", json=1)
+    assert response.status_code == 200
+    assert response.json() == 1
+
+    response = client.post(
+        "/", content=content, headers={"content-type": "application/json"}
+    )
+    assert response.status_code == 422
+    assert response.json()["body"] is None
+    assert [
+        (error["type"], error["loc"], error["input"])
+        for error in response.json()["detail"]
+    ] == [(error_type, ["body"], None)]

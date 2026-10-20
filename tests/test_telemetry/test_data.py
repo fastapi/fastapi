@@ -1,10 +1,11 @@
 import asyncio
 import gc
 import weakref
+from typing import Annotated
 
 import anyio
 import pytest
-from fastapi import Depends, FastAPI, HTTPException, Request, WebSocket
+from fastapi import Body, Depends, FastAPI, HTTPException, Request, WebSocket
 from fastapi.telemetry import get_telemetry_data
 from fastapi.testclient import TestClient
 from httpx import ASGITransport, AsyncClient
@@ -425,3 +426,23 @@ def test_request_objects_are_not_exported():
         finally:
             tracer.shutdown()
             logger.shutdown()
+
+
+@pytest.mark.parametrize("content,expected", [("", 10), ("null", None)])
+def test_missing_and_null_body_in_telemetry(telemetry, content, expected):
+    config, _, _ = telemetry
+    app = FastAPI(telemetry=config)
+
+    @app.post("/")
+    def read_value(value: Annotated[int | None, Body()] = 10):
+        data = get_telemetry_data()
+        assert data is not None
+        assert data.body is None
+        return value
+
+    with TestClient(app) as client:
+        response = client.post(
+            "/", content=content, headers={"content-type": "application/json"}
+        )
+    assert response.status_code == 200
+    assert response.json() == expected
