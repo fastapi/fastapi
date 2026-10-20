@@ -70,7 +70,7 @@ from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import AliasChoices, BaseModel, Json
+from pydantic import AliasChoices, AliasPath, BaseModel, Json
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -738,13 +738,19 @@ def _validate_value_with_model_field(
     if value is None:
         if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
-        else:
-            return deepcopy(field.default), []
+        value = deepcopy(field.default)
+        if not field.field_info.validate_default:
+            return value, []
     return field.validate(value, values, loc=loc)
 
 
 def _is_json_field(field: ModelField) -> bool:
     return any(type(item) is Json for item in field.field_info.metadata)
+
+
+def _is_empty_file_input(value: Any) -> bool:
+    # Browsers send an empty filename and content when no file is selected.
+    return isinstance(value, UploadFile) and value.filename == "" and value.size == 0
 
 
 def _get_multidict_value(
@@ -757,24 +763,25 @@ def _get_multidict_value(
         and isinstance(values, (ImmutableMultiDict, Headers))
     ):
         value = values.getlist(alias)
+        if isinstance(values, FormData):
+            value = [item for item in value if not _is_empty_file_input(item)]
     else:
         value = values.get(alias, None)
     if (
         value is None
         or (
-            isinstance(field.field_info, params.Form)
-            and isinstance(value, str)  # For type checks
-            and value == ""
+            isinstance(values, FormData)
+            and (
+                (isinstance(value, str) and value == "") or _is_empty_file_input(value)
+            )
         )
         or (
             field_annotation_is_sequence(field.field_info.annotation)
             and len(value) == 0
         )
     ):
-        if field.field_info.is_required():
-            return
-        else:
-            return deepcopy(field.default)
+        # Apply defaults during validation, not while extracting request data.
+        return None
     return value
 
 
@@ -918,70 +925,78 @@ async def _extract_form_body(
     field_aliases: set[str] = set()
 
     for field in body_fields:
-        alias = get_validation_alias(field)
+        aliases = [get_validation_alias(field)]
         validation_alias = field.field_info.validation_alias
-        # Interpret missing boolean form fields as unchecked HTML checkboxes.
-        infer_false_if_missing = field.field_info.annotation in (
-            bool,
-            bool | None,
-        ) and (
-            validation_alias is None
-            or isinstance(validation_alias, str)
-            or (
-                isinstance(validation_alias, AliasChoices)
-                and all(isinstance(choice, str) for choice in validation_alias.choices)
+        has_alias_path = isinstance(validation_alias, AliasPath) or (
+            isinstance(validation_alias, AliasChoices)
+            and any(
+                isinstance(choice, AliasPath) for choice in validation_alias.choices
             )
         )
-        if infer_false_if_missing:
+        if not has_alias_path:
             if isinstance(validation_alias, AliasChoices):
-                aliases = cast(list[str], validation_alias.choices)
-                alias = next(
-                    (name for name in aliases if name in received_body), aliases[0]
-                )
+                aliases = list(cast(list[str], validation_alias.choices))
             config = field.config or {}
-            if config.get(
-                "validate_by_name", config.get("populate_by_name", False)
-            ) and (
-                alias not in received_body or config.get("validate_by_alias") is False
-            ):
-                alias = field.name
-        field_aliases.add(alias)
-        if infer_false_if_missing and alias not in received_body:
-            value: Any = False
-        else:
-            value = _get_multidict_value(field, received_body, alias=alias)
-        field_info = field.field_info
-        if isinstance(field_info, params.File) and isinstance(value, UploadFile):
-            if is_bytes_or_nonable_bytes_annotation(field.field_info.annotation):
-                value = await value.read()
-            else:
-                value = FastAPIUploadFile.from_starlette(value)
-        elif isinstance(field_info, params.File) and value_is_sequence(value):
-            if is_bytes_sequence_annotation(field.field_info.annotation):
-                # For types
-                assert isinstance(value, sequence_types)
-                results: list[bytes | str] = []
-                for sub_value in value:
-                    if isinstance(sub_value, UploadFile):
-                        results.append(await sub_value.read())
-                    else:
-                        results.append(sub_value)
-                value = serialize_sequence_value(field=field, value=results)
-            else:
-                value = [
-                    (
-                        FastAPIUploadFile.from_starlette(sub_value)
-                        if isinstance(sub_value, UploadFile)
-                        else sub_value
-                    )
-                    for sub_value in value
-                ]
-        if field.config is None:
-            # Individual parameters are later looked up by their declared alias.
-            alias = get_validation_alias(field)
+            if config.get("validate_by_name", config.get("populate_by_name", False)):
+                if config.get("validate_by_alias") is False:
+                    aliases = [field.name]
+                elif field.name not in aliases:
+                    aliases.append(field.name)
+        # Interpret missing boolean form fields as unchecked HTML checkboxes.
+        infer_false_if_missing = (
+            not has_alias_path
+            and field.field_info.annotation in (bool, bool | None)
+            and not any(alias in received_body for alias in aliases)
+        )
+        if field.config is None or infer_false_if_missing:
+            selected_alias = aliases[0]
+            for alias in aliases:
+                if _get_multidict_value(field, received_body, alias=alias) is not None:
+                    selected_alias = alias
+                    break
+            aliases = [selected_alias]
+        for alias in aliases:
             field_aliases.add(alias)
-        if value is not None:
-            values[alias] = value
+            if infer_false_if_missing:
+                value: Any = False
+            else:
+                value = _get_multidict_value(field, received_body, alias=alias)
+            field_info = field.field_info
+            if (
+                isinstance(field_info, params.File) and isinstance(value, UploadFile)
+            ):
+                if is_bytes_or_nonable_bytes_annotation(field.field_info.annotation):
+                    value = await value.read()
+                else:
+                    value = FastAPIUploadFile.from_starlette(value)
+            elif (
+                isinstance(field_info, params.File) and value_is_sequence(value)
+            ):
+                if is_bytes_sequence_annotation(field.field_info.annotation):
+                    # For types
+                    assert isinstance(value, sequence_types)
+                    results: list[bytes | str] = []
+                    for sub_value in value:
+                        if isinstance(sub_value, UploadFile):
+                            results.append(await sub_value.read())
+                        else:
+                            results.append(sub_value)
+                    value = serialize_sequence_value(field=field, value=results)
+                else:
+                    value = [
+                        (
+                            FastAPIUploadFile.from_starlette(sub_value)
+                            if isinstance(sub_value, UploadFile)
+                            else sub_value
+                        )
+                        for sub_value in value
+                    ]
+            if field.config is None:
+                # Individual parameters are later looked up by their declared alias.
+                alias = get_validation_alias(field)
+                field_aliases.add(alias)
+            if value is not None:
+                values[alias] = value
     for key in received_body.keys():
         if key not in field_aliases:
             param_values = received_body.getlist(key)
