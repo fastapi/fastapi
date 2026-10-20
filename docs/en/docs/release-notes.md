@@ -9,6 +9,10 @@ hide:
 
 Validation errors for header parameter models now report the HTTP header name, such as `int-val`, instead of the Python field name, `int_val`. Explicit aliases, `Header(convert_underscores=False)`, and Pydantic models with `loc_by_alias=False` keep their existing behavior.
 
+### Fixes
+
+* 🐛 Fix header model validation errors to report HTTP header names. PR [#16538](https://github.com/fastapi/fastapi/pull/16538) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.151.0 (2026-10-20)
 
 JSON request bodies now distinguish an explicit `null` from an omitted value. For individual `Body` parameters, `null` is validated as `None`: nullable types accept it, and non-nullable types reject it even when a default is defined. Defaults and default factories apply only when the value is omitted. This applies both to parameters inside JSON objects and to parameters representing the entire body. Clients that used `null` to request a default should omit the value instead.
