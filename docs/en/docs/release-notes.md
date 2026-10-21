@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add support for optional unions of form models. PR [#16586](https://github.com/fastapi/fastapi/pull/16586) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.159.0 (2026-10-21)
 
 ### Features
