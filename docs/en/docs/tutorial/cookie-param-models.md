@@ -77,6 +77,16 @@ You can combine multiple cookie parameter models with individual cookie paramete
 
 Parameters declared elsewhere in the same operation or its dependencies are not treated as extra fields of a model. Undeclared cookie parameters still follow the model's `extra` configuration.
 
+## Optional Cookie Parameter Models { #optional-cookie-parameter-models }
+
+Declare a cookie parameter model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+If neither `theme` nor `locale` is sent, `preferences` is `None`. If either is sent, FastAPI validates the model and requires both fields.
+
+The same rules for defaults, extra fields, and OpenAPI apply as for [optional query parameter models](query-param-models.md#optional-query-parameter-models).
+
 ## Summary { #summary }
 
 You can use **Pydantic models** to declare <dfn title="Have a last cookie before you go. 🍪">**cookies**</dfn> in **FastAPI**. 😎

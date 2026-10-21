@@ -163,12 +163,31 @@ def _get_flat_body_params(dependant: Dependant) -> list[ModelField]:
     return body_params
 
 
+def _get_model_type(annotation: Any) -> type[BaseModel] | None:
+    if get_origin(annotation) in (Union, UnionType):
+        args = get_args(annotation)
+        if len(args) == 2 and type(None) in args:
+            annotation = next(arg for arg in args if arg is not type(None))
+    if lenient_issubclass(annotation, BaseModel):
+        return annotation
+    return None
+
+
+def _get_param_model(field: ModelField) -> type[BaseModel] | None:
+    annotation = field.field_info.annotation
+    if isinstance(field.field_info, (params.Query, params.Header, params.Cookie)):
+        annotation = _get_model_type(annotation)
+    if lenient_issubclass(annotation, BaseModel) and not _is_json_field(field):
+        return annotation
+    return None
+
+
 def _get_flat_fields_from_params(fields: Sequence[ModelField]) -> list[ModelField]:
     flat_fields: list[ModelField] = []
     for field in fields:
-        annotation = _get_form_model(field) or field.field_info.annotation
-        if lenient_issubclass(annotation, BaseModel) and not _is_json_field(field):
-            flat_fields.extend(get_cached_model_fields(annotation))
+        model = _get_form_model(field) or _get_param_model(field)
+        if model is not None:
+            flat_fields.extend(get_cached_model_fields(model))
         else:
             flat_fields.append(field)
     return flat_fields
@@ -637,7 +656,7 @@ def analyze_param(
             assert (
                 is_scalar_field(field)
                 or field_annotation_is_scalar_sequence(field.field_info.annotation)
-                or lenient_issubclass(field.field_info.annotation, BaseModel)
+                or _get_model_type(field.field_info.annotation) is not None
             ), f"Query parameter {param_name!r} must be one of the supported types"
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
@@ -899,10 +918,10 @@ def _get_multidict_value(
 
 def _request_param_model_to_args(
     model_field: ModelField,
+    model: type[BaseModel],
     received_params: Mapping[str, Any],
     known_param_names: set[str],
 ) -> tuple[Any, list[Any]]:
-    model = cast(type[BaseModel], model_field.field_info.annotation)
     fields_to_extract = get_cached_model_fields(model)
     default_convert_underscores = getattr(
         model_field.field_info, "convert_underscores", True
@@ -959,8 +978,14 @@ def _request_param_model_to_args(
     field_info = model_field.field_info
     assert isinstance(field_info, params.Param), "Params must be subclasses of Param"
     loc: tuple[str, ...] = (field_info.in_.value,)
+    value = params_to_process
+    if field_info.annotation is not model and not (
+        own_names.intersection(received_params)
+        or (model.model_config.get("extra") in ("allow", "forbid") and value)
+    ):
+        value = Undefined
     v_, errors_ = _validate_value_with_model_field(
-        field=model_field, value=params_to_process, values={}, loc=loc
+        field=model_field, value=value, values={}, loc=loc
     )
     if header_aliases and model.model_config.get("loc_by_alias", True):
         # Report the header names without changing model aliases or schema.
@@ -988,11 +1013,9 @@ def request_params_to_args(
     if known_param_names is None:
         known_param_names = set()
     for field in fields:
-        if lenient_issubclass(
-            field.field_info.annotation, BaseModel
-        ) and not _is_json_field(field):
+        if (model := _get_param_model(field)) is not None:
             v_, errors_ = _request_param_model_to_args(
-                field, received_params, known_param_names
+                field, model, received_params, known_param_names
             )
         else:
             aliases = _get_param_aliases(field)
@@ -1082,14 +1105,7 @@ def _get_form_model(field: ModelField) -> type[BaseModel] | None:
         or _is_json_field(field)
     ):
         return None
-    annotation = field.field_info.annotation
-    if get_origin(annotation) in (Union, UnionType):
-        args = get_args(annotation)
-        if len(args) == 2 and type(None) in args:
-            annotation = next(arg for arg in args if arg is not type(None))
-    if lenient_issubclass(annotation, BaseModel):
-        return annotation
-    return None
+    return _get_model_type(field.field_info.annotation)
 
 
 def _should_embed_body_fields(fields: list[ModelField]) -> bool:
