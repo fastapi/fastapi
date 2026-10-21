@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Respect model alias settings for query, header, and cookie parameters. PR [#16562](https://github.com/fastapi/fastapi/pull/16562) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.156.5 (2026-10-21)
 
 ### Fixes
