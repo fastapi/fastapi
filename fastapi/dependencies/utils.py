@@ -1217,15 +1217,18 @@ def _get_param_aliases(
     if convert_underscores and alias == field.name:
         request_alias = alias.replace("_", "-")
     validation_alias = field.field_info.validation_alias
-    if (
-        isinstance(field.field_info, params.Path)
-        or not isinstance(validation_alias, AliasChoices)
-        or any(isinstance(alias, AliasPath) for alias in validation_alias.choices)
+    if isinstance(field.field_info, params.Path) or isinstance(
+        validation_alias, AliasPath
     ):
         return [(alias, request_alias)]
-    choices = cast(list[str], validation_alias.choices)
-    # Explicit choices are literal names, including underscores in headers.
-    aliases = [(choice, choice) for choice in choices]
+    aliases = [(alias, request_alias)]
+    if isinstance(validation_alias, AliasChoices):
+        if any(isinstance(choice, AliasPath) for choice in validation_alias.choices):
+            return aliases
+        # Explicit choices are literal names, including underscores in headers.
+        aliases = [
+            (choice, choice) for choice in cast(list[str], validation_alias.choices)
+        ]
     config = field.config or {}
     if config.get("validate_by_alias") is False or config.get(
         "validate_by_name", config.get("populate_by_name", False)
@@ -1235,6 +1238,6 @@ def _get_param_aliases(
             request_name = request_name.replace("_", "-")
         if config.get("validate_by_alias") is False:
             return [(field.name, request_name)]
-        if field.name not in choices:
+        if field.name not in [alias for alias, _ in aliases]:
             aliases.append((field.name, request_name))
     return aliases

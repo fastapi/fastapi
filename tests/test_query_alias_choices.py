@@ -201,42 +201,84 @@ def test_model_unused_alias_choice_keeps_extra_value_shape():
 
 
 @pytest.mark.parametrize(
-    "validation_alias", [AliasChoices("item", "tag"), AliasChoices("item", "items")]
+    "field_info",
+    [
+        Field(alias="item"),
+        Field(validation_alias="item"),
+        Field(validation_alias=AliasChoices("item", "tag")),
+        Field(validation_alias=AliasChoices("item", "items")),
+    ],
 )
-def test_model_list_populated_by_name(validation_alias: AliasChoices):
+@pytest.mark.parametrize(
+    "config",
+    [
+        ConfigDict(populate_by_name=True),
+        pytest.param(
+            ConfigDict(validate_by_name=True),
+            marks=pytest.mark.skipif(
+                PYDANTIC_VERSION_MINOR_TUPLE < (2, 11),
+                reason="validate_by_name requires Pydantic 2.11",
+            ),
+        ),
+    ],
+)
+def test_model_list_populated_by_name(field_info, config):
     app = FastAPI()
 
     class Model(BaseModel):
-        model_config = ConfigDict(populate_by_name=True)
-        items: Annotated[list[str], Field(validation_alias=validation_alias)]
+        model_config = config
+        items: Annotated[list[int], field_info]
 
     @app.get("/")
     def read(data: Annotated[Model, Query()]):
-        return data
+        return {"items": data.items}
 
     client = TestClient(app)
-    response = client.get("/", params={"items": "one"})
+    response = client.get("/", params={"items": "1"})
     assert response.status_code == 200
-    assert response.json() == {"items": ["one"]}
-    response = client.get("/", params={"items": "one", "item": "two"})
+    assert response.json() == {"items": [1]}
+    response = client.get("/", params={"items": "1", "item": "2"})
     assert response.status_code == 200
-    assert response.json() == {"items": ["two"]}
+    assert response.json() == {"items": [2]}
+    response = client.get("/", params={"items": "invalid"})
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "int_parsing",
+                "loc": ["query", "items", 0],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "input": "invalid",
+            }
+        ]
+    }
+    response = client.get("/", params={"items": "1", "item": "invalid"})
+    assert response.status_code == 422
+    assert response.json()["detail"][0]["loc"] == ["query", "item", 0]
 
 
 @pytest.mark.skipif(
     PYDANTIC_VERSION_MINOR_TUPLE < (2, 11),
     reason="validate_by_name and validate_by_alias require Pydantic 2.11",
 )
-def test_model_can_disable_validation_by_alias():
+@pytest.mark.parametrize(
+    "field_info",
+    [
+        Field(alias="tag"),
+        Field(validation_alias="tag"),
+        Field(validation_alias=AliasChoices("item", "tag")),
+    ],
+)
+def test_model_can_disable_validation_by_alias(field_info):
     app = FastAPI()
 
     class Model(BaseModel):
         model_config = ConfigDict(validate_by_alias=False, extra="forbid")
-        items: Annotated[list[str], Field(validation_alias=AliasChoices("item", "tag"))]
+        items: Annotated[list[str], field_info]
 
     @app.get("/")
     def read(data: Annotated[Model, Query()]):
-        return data
+        return {"items": data.items}
 
     client = TestClient(app)
     response = client.get("/", params={"items": "one"})
