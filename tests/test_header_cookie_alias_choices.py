@@ -423,7 +423,7 @@ def test_cookie_model_name_fallback(config, expected_value):
     assert response.json() == {"value": expected_value}
 
 
-def test_path_alias_choices_are_unchanged():
+def test_unmatched_path_alias_choices_preserve_parameter_name():
     response = client.get("/path/1")
     assert response.status_code == 200
     assert response.json() == 1
