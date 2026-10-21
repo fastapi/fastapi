@@ -293,12 +293,11 @@ def get_dependant(
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
     for param_name, param in signature_params.items():
-        is_path_param = param_name in path_param_names
         param_details = analyze_param(
             param_name=param_name,
             annotation=param.annotation,
             value=param.default,
-            is_path_param=is_path_param,
+            path_param_names=path_param_names,
         )
         if param_details.depends is not None:
             assert param_details.depends.dependency
@@ -384,8 +383,9 @@ def analyze_param(
     param_name: str,
     annotation: Any,
     value: Any,
-    is_path_param: bool,
+    path_param_names: set[str],
 ) -> ParamDetails:
+    is_path_param = param_name in path_param_names
     field_info = None
     depends = None
     type_annotation: Any = Any
@@ -537,6 +537,19 @@ def analyze_param(
                 field_info.annotation = _add_form_union_validators(
                     field_info.annotation
                 )
+        validation_alias = field_info.validation_alias
+        if (
+            isinstance(field_info, params.Path)
+            and isinstance(validation_alias, AliasChoices)
+            and all(isinstance(choice, str) for choice in validation_alias.choices)
+        ):
+            for choice in cast(list[str], validation_alias.choices):
+                if choice in path_param_names:
+                    # Resolve the route name for both validation and OpenAPI without
+                    # changing metadata shared with other routes.
+                    field_info = copy(field_info)
+                    field_info.validation_alias = choice
+                    break
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
             alias = param_name.replace("_", "-")
         else:
