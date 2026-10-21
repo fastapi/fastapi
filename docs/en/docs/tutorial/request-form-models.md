@@ -85,6 +85,20 @@ The client sends `name`, `tags`, and `token` as form fields. Each model receives
 
 If multiple declarations use the same form field name, each validates that field's value. Use compatible types and constraints for shared fields so the OpenAPI schema can describe them consistently.
 
+## Optional Form Models { #optional-form-models }
+
+Declare a form model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+
+If neither `name` nor `age` is sent, `profile` is `None`. If either is sent, FastAPI validates the model and requires both fields. An empty submitted value also counts as supplying a field.
+
+Using `| None` without a default still makes the parameter required.
+
+Unknown fields follow the model's `extra` configuration. Ignored extras do not make the model present.
+
+An optional model containing only unchecked checkboxes is omitted. Send a value such as `enabled=false` to supply it explicitly.
+
 ## Form Models and Files { #form-models-and-files }
 
 You can also combine a form model with [file parameters](request-files.md).
