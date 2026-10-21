@@ -70,7 +70,15 @@ from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
 from fastapi.types import DependencyCacheKey
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import AliasChoices, AliasPath, BaseModel, BeforeValidator, Json, Tag
+from pydantic import (
+    AliasChoices,
+    AliasPath,
+    BaseModel,
+    BeforeValidator,
+    ConfigDict,
+    Json,
+    Tag,
+)
 from pydantic.fields import FieldInfo
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
@@ -171,7 +179,12 @@ def _get_request_param_names(
     dependant: Dependant, dependency_overrides_provider: Any | None = None
 ) -> dict[str, set[str]]:
     """Collect accepted names across the effective dependency graph, by location."""
-    names: dict[str, set[str]] = {"query": set(), "header": set(), "cookie": set()}
+    names: dict[str, set[str]] = {
+        "query": set(),
+        "header": set(),
+        "cookie": set(),
+        "form": set(),
+    }
     overrides = (
         getattr(dependency_overrides_provider, "dependency_overrides", None) or {}
     )
@@ -182,9 +195,22 @@ def _get_request_param_names(
             ("query", current.query_params),
             ("header", current.header_params),
             ("cookie", current.cookie_params),
+            (
+                "form",
+                [
+                    f
+                    for f in current.body_params
+                    if isinstance(f.field_info, params.Form)
+                ],
+            ),
         ):
             for field in fields:
-                for param in _get_flat_fields_from_params([field]):
+                model_fields = (
+                    [field]
+                    if location == "form" and not _is_form_model(field)
+                    else _get_flat_fields_from_params([field])
+                )
+                for param in model_fields:
                     convert_underscores = location == "header" and getattr(
                         param.field_info,
                         "convert_underscores",
@@ -791,6 +817,7 @@ async def solve_dependencies(
             body_fields=dependant.body_params,
             received_body=body,
             embed_body_fields=embed_body_fields,
+            known_param_names=_request_param_names["form"],
         )
         values.update(body_values)
         errors.extend(body_errors)
@@ -1051,6 +1078,15 @@ def _normalize_form_model(value: Any, *, model: type[BaseModel]) -> Any:
     return value
 
 
+def _is_form_model(field: ModelField) -> bool:
+    return (
+        isinstance(field.field_info, params.Form)
+        and not field.field_info.embed
+        and lenient_issubclass(field.field_info.annotation, BaseModel)
+        and not _is_json_field(field)
+    )
+
+
 def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     if not fields:
         return False
@@ -1061,6 +1097,13 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     if len(body_param_names_set) > 1:
         return True
     first_field = fields[0]
+    # Dependencies can use the same parameter name for different form models.
+    if _is_form_model(first_field) and any(
+        not _is_form_model(field)
+        or field.field_info.annotation is not first_field.field_info.annotation
+        for field in fields[1:]
+    ):
+        return True
     # If it explicitly specifies it is embedded, it has to be embedded
     if getattr(first_field.field_info, "embed", None):
         return True
@@ -1078,11 +1121,14 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
 def _extract_form_items(
     body_fields: list[ModelField],
     received_body: FormData,
+    known_param_names: set[str] | None = None,
 ) -> Iterator[tuple[str, Any, ModelField | None]]:
     field_aliases: set[str] = set()
+    own_names: set[str] = set()
+    if known_param_names is None:
+        known_param_names = set()
 
     for field in body_fields:
-        aliases = [get_validation_alias(field)]
         validation_alias = field.field_info.validation_alias
         has_alias_path = isinstance(validation_alias, AliasPath) or (
             isinstance(validation_alias, AliasChoices)
@@ -1090,17 +1136,8 @@ def _extract_form_items(
                 isinstance(choice, AliasPath) for choice in validation_alias.choices
             )
         )
-        if not has_alias_path:
-            if isinstance(validation_alias, AliasChoices):
-                aliases = list(cast(list[str], validation_alias.choices))
-            config = field.config or {}
-            if config.get("validate_by_alias") is False:
-                aliases = [field.name]
-            elif (
-                config.get("validate_by_name", config.get("populate_by_name", False))
-                and field.name not in aliases
-            ):
-                aliases.append(field.name)
+        aliases = [alias for alias, _ in _get_param_aliases(field)]
+        own_names.update(aliases)
         # Interpret missing boolean form fields as unchecked HTML checkboxes.
         infer_false_if_missing = (
             not has_alias_path
@@ -1118,7 +1155,9 @@ def _extract_form_items(
                 # Leave later aliases unchanged for other fields or extra validation.
                 break
     for key in received_body.keys():
-        if key not in field_aliases:
+        if key not in field_aliases and (
+            key not in known_param_names or key in own_names
+        ):
             param_values = received_body.getlist(key)
             if len(param_values) == 1:
                 yield key, param_values[0], None
@@ -1138,8 +1177,11 @@ async def _read_file_bytes(file: UploadFile) -> bytes:
 async def _extract_form_body(
     body_fields: list[ModelField],
     received_body: FormData,
+    known_param_names: set[str] | None = None,
 ) -> AsyncIterator[tuple[str, Any, ModelField | None]]:
-    for alias, value, field in _extract_form_items(body_fields, received_body):
+    for alias, value, field in _extract_form_items(
+        body_fields, received_body, known_param_names
+    ):
         if field is not None and isinstance(field.field_info, params.File):
             if is_bytes_or_nonable_bytes_annotation(
                 field.field_info.annotation
@@ -1163,16 +1205,21 @@ async def request_body_to_args(
     body_fields: list[ModelField],
     received_body: Any,
     embed_body_fields: bool,
+    known_param_names: set[str] | None = None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
     errors: list[dict[str, Any]] = []
     assert body_fields, "request_body_to_args() should be called with fields"
-    single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
+    single_not_embedded_field = (
+        len(body_fields) == 1
+        and not embed_body_fields
+        and not _should_embed_body_fields(body_fields)
+    )
     first_field = body_fields[0]
     body_to_process = received_body
     form_values: dict[str, tuple[str, Any]] = {}
 
-    fields_to_extract: list[ModelField] = body_fields
+    fields_to_extract = [field for field in body_fields if not _is_form_model(field)]
 
     if (
         single_not_embedded_field
@@ -1190,7 +1237,11 @@ async def request_body_to_args(
             fields_to_extract = []
         body_to_process = {}
         async for alias, value, field in _extract_form_body(
-            fields_to_extract, received_body
+            fields_to_extract,
+            received_body,
+            known_param_names
+            if single_not_embedded_field and _is_form_model(first_field)
+            else None,
         ):
             if single_not_embedded_field:
                 body_to_process[alias] = value
@@ -1208,7 +1259,20 @@ async def request_body_to_args(
         aliases = [alias for alias, _ in _get_param_aliases(field)]
         loc = ("body", aliases[0])
         value = Undefined
-        if isinstance(received_body, FormData):
+        if isinstance(received_body, FormData) and _is_form_model(field):
+            # Extract each model independently from the original form values.
+            value = {
+                alias: item
+                async for alias, item, _ in _extract_form_body(
+                    get_cached_model_fields(
+                        cast(type[BaseModel], field.field_info.annotation)
+                    ),
+                    received_body,
+                    known_param_names,
+                )
+            }
+            loc = ("body",)
+        elif isinstance(received_body, FormData):
             alias, value = form_values.get(field.name, (aliases[0], Undefined))
             loc = ("body", alias)
         elif body_to_process is not Undefined and not isinstance(
@@ -1253,7 +1317,41 @@ def _get_body_field(
     if not embed_body_fields:
         return first_param
     model_name = "Body_" + name
-    BodyModel = create_body_model(fields=body_params, model_name=model_name)
+    fields = body_params
+    config: ConfigDict | None = None
+    if any(_is_form_model(field) for field in body_params):
+        fields_by_alias: dict[str, ModelField] = {}
+        config = {}
+        for field in body_params:
+            model_fields = [field]
+            if _is_form_model(field):
+                model = cast(type[BaseModel], field.field_info.annotation)
+                model_fields = get_cached_model_fields(model)
+                extra = model.model_config.get("extra")
+                if extra in ("allow", "forbid") and config.get("extra") != "forbid":
+                    config["extra"] = extra
+            for model_field in model_fields:
+                alias = _get_param_aliases(model_field)[0][0]
+                previous = fields_by_alias.get(alias)
+                if previous is not None and (
+                    previous.field_info.is_required()
+                    or not model_field.field_info.is_required()
+                ):
+                    continue
+                # Unique internal names keep identically named fields from different
+                # models. Copies leave cached fields and their aliases unchanged.
+                field_info = copy(model_field.field_info)
+                field_info.alias = alias
+                field_info.validation_alias = alias
+                field_info.serialization_alias = alias
+                fields_by_alias[alias] = ModelField(
+                    name=previous.name
+                    if previous is not None
+                    else f"field_{len(fields_by_alias)}",
+                    field_info=field_info,
+                )
+        fields = list(fields_by_alias.values())
+    BodyModel = create_body_model(fields=fields, model_name=model_name, config=config)
     required = any(True for f in body_params if f.field_info.is_required())
     BodyFieldInfo_kwargs: dict[str, Any] = {
         "annotation": BodyModel,
