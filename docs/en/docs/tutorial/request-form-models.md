@@ -75,6 +75,24 @@ They will receive an error response telling them that the field `extra` is not a
 }
 ```
 
+## Combine Form Models { #combine-form-models }
+
+You can combine multiple form models with individual `Form` parameters.
+
+{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+
+The client sends `name`, `tags`, and `token` as form fields. Each model receives its own fields and validates them independently.
+
+If multiple declarations use the same form field name, each validates that field's value. Use compatible types and constraints for shared fields so the OpenAPI schema can describe them consistently.
+
+## Form Models and Files { #form-models-and-files }
+
+You can also combine a form model with [file parameters](request-files.md).
+
+{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+
+Here the client sends the `name` field and the `avatar` file using `multipart/form-data`.
+
 ## Summary { #summary }
 
 You can use Pydantic models to declare form fields in FastAPI. 😎
