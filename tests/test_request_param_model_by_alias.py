@@ -101,6 +101,15 @@ def test_openapi_with_validation_by_alias_disabled():
         return data
 
     client = TestClient(app)
+    response = client.get("/query", params={"int_value": "1"})
+    assert response.status_code == 200
+    assert response.json() == {"legacy": 1}
+    response = client.get("/header", headers={"int-value": "1"})
+    assert response.status_code == 200
+    assert response.json() == {"legacy": 1}
+    response = client.get("/cookie", headers={"cookie": "int_value=1"})
+    assert response.status_code == 200
+    assert response.json() == {"legacy": 1}
     response = client.get("/openapi.json")
     assert response.status_code == 200
     assert response.json() == snapshot(
