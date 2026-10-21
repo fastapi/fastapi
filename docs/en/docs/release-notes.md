@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix validation error locations for form and file `AliasChoices`. PR [#16564](https://github.com/fastapi/fastapi/pull/16564) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.156.6 (2026-10-21)
 
 ### Fixes
