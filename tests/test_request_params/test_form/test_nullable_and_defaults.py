@@ -295,10 +295,8 @@ def test_empty_form_values_with_alias_choices(path, data, expected):
     assert response.json() == {"value": expected}
 
 
-@pytest.mark.parametrize(
-    "path,error_alias", [("/parameter", "value"), ("/model", "first")]
-)
-def test_required_form_alias_choices_preserve_validation_precedence(path, error_alias):
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+def test_required_form_alias_choices_preserve_validation_precedence(path):
     app = FastAPI()
 
     class Model(BaseModel):
@@ -322,13 +320,31 @@ def test_required_form_alias_choices_preserve_validation_precedence(path, error_
     response = client.post(path, data={"first": "invalid", "second": "5"})
     assert response.status_code == 422
     assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
-        ("int_parsing", ["body", error_alias]),
+        ("int_parsing", ["body", "first"]),
     ]
 
     response = client.post(path, data={"first": "", "second": ""})
     assert response.status_code == 422
     assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
-        ("missing", ["body", error_alias]),
+        ("missing", ["body", "first"]),
+    ]
+
+    response = client.post(path, data={"first": "", "second": "invalid"})
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("int_parsing", ["body", "second"]),
+    ]
+
+    response = client.post(path, data={"second": "invalid"})
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("int_parsing", ["body", "second"]),
+    ]
+
+    response = client.post(path)
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "first"]),
     ]
 
 
@@ -394,6 +410,71 @@ def test_form_list_alias_choices_preserve_empty_items(path, data, expected):
     response = client.post(path, data=data)
     assert response.status_code == 200
     assert response.json() == {"value": expected}
+
+
+@pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
+def test_form_list_alias_choices_error_uses_selected_alias(encoding):
+    app = FastAPI()
+
+    @app.post("/")
+    def read_form(
+        values: Annotated[
+            list[int],
+            Form(alias="legacy", validation_alias=AliasChoices("first", "second")),
+        ],
+    ):
+        return values
+
+    client = TestClient(app)
+    if encoding == "urlencoded":
+        response = client.post("/", data={"second": ["1", "2"]})
+    else:
+        response = client.post(
+            "/", files=[("second", (None, "1")), ("second", (None, "2"))]
+        )
+    assert response.status_code == 200
+    assert response.json() == [1, 2]
+
+    if encoding == "urlencoded":
+        response = client.post("/", data={"second": ["1", "invalid"], "legacy": "3"})
+    else:
+        response = client.post(
+            "/",
+            files=[
+                ("second", (None, "1")),
+                ("second", (None, "invalid")),
+                ("legacy", (None, "3")),
+            ],
+        )
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "int_parsing",
+                "loc": ["body", "second", 1],
+                "msg": "Input should be a valid integer, unable to parse string as an integer",
+                "input": "invalid",
+            }
+        ]
+    }
+
+
+def test_individual_form_parameters_can_share_an_alias_choice():
+    app = FastAPI()
+
+    @app.post("/")
+    def read_form(
+        values: Annotated[
+            list[int], Form(validation_alias=AliasChoices("values", "shared"))
+        ],
+        value: Annotated[int, Form(validation_alias=AliasChoices("value", "shared"))],
+    ):
+        return {"values": values, "value": value}
+
+    client = TestClient(app)
+    response = client.post("/", data={"shared": ["1", "2"]})
+    assert response.status_code == 200
+    assert response.json() == {"values": [1, 2], "value": 2}
 
 
 @pytest.mark.parametrize("encoding", ["urlencoded", "multipart"])
@@ -935,10 +1016,8 @@ def test_unchecked_checkbox_with_alias_choices_overrides_defaults(config):
     assert response.json() == {"value": False, "nullable": False}
 
 
-@pytest.mark.parametrize(
-    "path,error_alias", [("/parameter", "legacy"), ("/model", "enabled")]
-)
-def test_checkbox_alias_choices_preserve_validation_precedence(path, error_alias):
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+def test_checkbox_alias_choices_preserve_validation_precedence(path):
     app = FastAPI()
 
     class Model(BaseModel):
@@ -976,7 +1055,7 @@ def test_checkbox_alias_choices_preserve_validation_precedence(path, error_alias
         "detail": [
             {
                 "type": "bool_parsing",
-                "loc": ["body", error_alias],
+                "loc": ["body", "enabled"],
                 "msg": "Input should be a valid boolean, unable to interpret input",
                 "input": "invalid",
             }

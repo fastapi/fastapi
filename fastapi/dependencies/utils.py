@@ -1045,10 +1045,6 @@ def _extract_form_items(
                 value: Any = False
             else:
                 value = _get_multidict_value(field, received_body, alias=alias)
-            if field.config is None:
-                # Individual parameters are later looked up by their declared alias.
-                alias = get_validation_alias(field)
-                field_aliases.add(alias)
             if value is not Undefined:
                 yield alias, value, field
                 # Leave later aliases unchanged for other fields or extra validation.
@@ -1065,8 +1061,7 @@ def _extract_form_items(
 async def _extract_form_body(
     body_fields: list[ModelField],
     received_body: FormData,
-) -> dict[str, Any]:
-    values: dict[str, Any] = {}
+) -> AsyncIterator[tuple[str, Any, ModelField | None]]:
     for alias, value, field in _extract_form_items(body_fields, received_body):
         if field is not None and isinstance(field.field_info, params.File):
             if is_bytes_or_nonable_bytes_annotation(
@@ -1084,8 +1079,7 @@ async def _extract_form_body(
                     else:
                         results.append(sub_value)
                 value = serialize_sequence_value(field=field, value=results)
-        values[alias] = value
-    return values
+        yield alias, value, field
 
 
 async def request_body_to_args(
@@ -1099,6 +1093,7 @@ async def request_body_to_args(
     single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
     first_field = body_fields[0]
     body_to_process = received_body
+    form_values: dict[str, tuple[str, Any]] = {}
 
     fields_to_extract: list[ModelField] = body_fields
 
@@ -1116,7 +1111,15 @@ async def request_body_to_args(
             # Preserve all form values for validators around the union.
             # Each branch applies its own model field extraction afterward.
             fields_to_extract = []
-        body_to_process = await _extract_form_body(fields_to_extract, received_body)
+        body_to_process = {}
+        async for alias, value, field in _extract_form_body(
+            fields_to_extract, received_body
+        ):
+            if single_not_embedded_field:
+                body_to_process[alias] = value
+            elif field is not None:
+                # Keep each parameter's selected alias and scalar/list shape.
+                form_values[field.name] = (alias, value)
 
     if single_not_embedded_field:
         loc: tuple[str, ...] = ("body",)
@@ -1125,14 +1128,15 @@ async def request_body_to_args(
         )
         return {first_field.name: v_}, errors_
     for field in body_fields:
-        if isinstance(received_body, FormData):
-            # Form values have already been extracted using their canonical aliases.
-            aliases = [get_validation_alias(field)]
-        else:
-            aliases = [alias for alias, _ in _get_param_aliases(field)]
+        aliases = [alias for alias, _ in _get_param_aliases(field)]
         loc = ("body", aliases[0])
-        value: Any = Undefined
-        if body_to_process is not Undefined and not isinstance(body_to_process, bytes):
+        value = Undefined
+        if isinstance(received_body, FormData):
+            alias, value = form_values.get(field.name, (aliases[0], Undefined))
+            loc = ("body", alias)
+        elif body_to_process is not Undefined and not isinstance(
+            body_to_process, bytes
+        ):
             try:
                 for alias in aliases:
                     value = body_to_process.get(alias, Undefined)
