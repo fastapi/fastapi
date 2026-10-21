@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.158.1 (2026-10-21)
+
 ### Fixes
 
 * 🐛 Preserve form media types in OpenAPI. PR [#16579](https://github.com/fastapi/fastapi/pull/16579) by [@tiangolo](https://github.com/tiangolo).
