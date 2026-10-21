@@ -253,6 +253,9 @@ def _model_has_computed_fields(model_or_enum: Any) -> bool:
 
 
 def _has_computed_fields(field: ModelField) -> bool:
+    type_adapter_core_schema = field._type_adapter.core_schema
+    if type_adapter_core_schema.get("schema", {}).get("computed_fields", []):
+        return True
     models = get_flat_models_from_field(field, known_models=set())
     return any(_model_has_computed_fields(model) for model in models)
 
