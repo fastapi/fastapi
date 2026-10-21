@@ -259,20 +259,22 @@ def get_schema_from_model_field(
         tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
     ],
     separate_input_output_schemas: bool = True,
+    field_alias: str | None = None,
 ) -> dict[str, Any]:
     override_mode: Literal["validation"] | None = (
         None
         if (separate_input_output_schemas or _has_computed_fields(field))
         else "validation"
     )
-    field_alias = (
-        (field.validation_alias or field.alias)
-        if field.mode == "validation"
-        else (field.serialization_alias or field.alias)
-    )
+    if field_alias is None:
+        field_alias = (
+            (field.validation_alias or field.alias)
+            if field.mode == "validation"
+            else (field.serialization_alias or field.alias)
+        )
 
     # This expects that GenerateJsonSchema was already used to generate the definitions
-    json_schema = field_mapping[(field, override_mode or field.mode)]
+    json_schema = field_mapping[(field, override_mode or field.mode)].copy()
     if "$ref" not in json_schema:
         # TODO remove when deprecating Pydantic v1
         # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
@@ -358,6 +360,9 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
     cls = type(field_info)
     merged_field_info = cls.from_annotation(annotation)
     new_field_info = copy(field_info)
+    for name, value in asdict(merged_field_info)["attributes"].items():
+        setattr(new_field_info, name, value)
+    new_field_info._attributes_set = merged_field_info._attributes_set.copy()
     new_field_info.metadata = merged_field_info.metadata
     new_field_info.annotation = merged_field_info.annotation
     return new_field_info

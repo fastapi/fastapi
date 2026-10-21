@@ -10,7 +10,7 @@
 
 它讓你以最少的投入，簡化 **建置**、**部署** 與 **存取** API 的流程。
 
-它把使用 FastAPI 開發應用的同樣**優秀的開發者體驗**，帶到將它們**部署**到雲端的過程中。🎉
+它把使用 FastAPI 開發應用的同樣**開發者體驗**，帶到將它們**部署**到雲端的過程中。🎉
 
 FastAPI Cloud 是 *FastAPI and friends* 開源專案的主要贊助與資金提供者。✨
 
@@ -20,5 +20,4 @@ FastAPI Cloud 是 *FastAPI and friends* 開源專案的主要贊助與資金提�
 
 你也可以參考他們的指南並試用其服務：
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

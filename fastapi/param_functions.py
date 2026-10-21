@@ -1,3 +1,4 @@
+import re
 from collections.abc import Callable, Sequence
 from typing import Annotated, Any, Literal
 
@@ -6,7 +7,7 @@ from fastapi import params
 from fastapi._compat import Undefined
 from fastapi.datastructures import _Unset
 from fastapi.openapi.models import Example
-from pydantic import AliasChoices, AliasPath
+from pydantic import AliasChoices, AliasPath, Discriminator
 from typing_extensions import deprecated
 
 
@@ -45,7 +46,7 @@ def Path(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -62,7 +63,7 @@ def Path(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -72,7 +73,7 @@ def Path(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -83,7 +84,7 @@ def Path(  # noqa: N802
             [FastAPI docs for Path Parameters and Numeric Validations](https://fastapi.tiangolo.com/tutorial/path-params-numeric-validations/#declare-metadata)
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -91,7 +92,7 @@ def Path(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -156,10 +157,10 @@ def Path(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -175,18 +176,46 @@ def Path(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+
+            This doesn't affect `Path` parameters as the value is always required.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -232,7 +261,7 @@ def Path(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -266,7 +295,7 @@ def Path(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -279,26 +308,13 @@ def Path(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
+    ] = _Unset,
 ) -> Any:
     """
     Declare a path parameter for a *path operation*.
@@ -340,6 +356,9 @@ def Path(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -350,7 +369,6 @@ def Path(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -392,7 +410,7 @@ def Query(  # noqa: N802
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#alias-parameters)
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -409,7 +427,7 @@ def Query(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -419,7 +437,7 @@ def Query(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -430,7 +448,7 @@ def Query(  # noqa: N802
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#declare-more-metadata)
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -441,7 +459,7 @@ def Query(  # noqa: N802
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#declare-more-metadata)
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -512,10 +530,10 @@ def Query(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
 
             Read more about it in the
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#add-regular-expressions
@@ -534,18 +552,44 @@ def Query(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -591,7 +635,7 @@ def Query(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -628,7 +672,7 @@ def Query(  # noqa: N802
             [FastAPI docs about Query parameters](https://fastapi.tiangolo.com/tutorial/query-params-str-validations/#deprecating-parameters)
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -644,26 +688,13 @@ def Query(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
+    ] = _Unset,
 ) -> Any:
     return params.Query(
         default=default,
@@ -684,6 +715,9 @@ def Query(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -694,7 +728,6 @@ def Query(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -730,7 +763,7 @@ def Header(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -747,7 +780,7 @@ def Header(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -757,7 +790,7 @@ def Header(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     convert_underscores: Annotated[
         bool,
         Doc(
@@ -776,7 +809,7 @@ def Header(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -784,7 +817,7 @@ def Header(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -837,10 +870,10 @@ def Header(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -856,18 +889,44 @@ def Header(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -913,7 +972,7 @@ def Header(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -947,7 +1006,7 @@ def Header(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -960,26 +1019,13 @@ def Header(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
+    ] = _Unset,
 ) -> Any:
     return params.Header(
         default=default,
@@ -1001,6 +1047,9 @@ def Header(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -1011,7 +1060,6 @@ def Header(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -1047,7 +1095,7 @@ def Cookie(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -1064,7 +1112,7 @@ def Cookie(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -1074,7 +1122,7 @@ def Cookie(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -1082,7 +1130,7 @@ def Cookie(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -1090,7 +1138,7 @@ def Cookie(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -1143,10 +1191,10 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -1162,18 +1210,44 @@ def Cookie(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -1219,7 +1293,7 @@ def Cookie(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -1253,7 +1327,7 @@ def Cookie(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -1266,26 +1340,13 @@ def Cookie(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
+    ] = _Unset,
 ) -> Any:
     return params.Cookie(
         default=default,
@@ -1306,6 +1367,9 @@ def Cookie(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -1316,7 +1380,6 @@ def Cookie(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -1375,7 +1438,7 @@ def Body(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -1392,7 +1455,7 @@ def Body(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -1402,7 +1465,7 @@ def Body(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -1410,7 +1473,7 @@ def Body(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -1418,7 +1481,7 @@ def Body(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -1471,10 +1534,10 @@ def Body(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -1490,18 +1553,44 @@ def Body(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -1547,7 +1636,7 @@ def Body(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -1581,7 +1670,7 @@ def Body(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -1594,26 +1683,13 @@ def Body(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
+    ] = _Unset,
 ) -> Any:
     return params.Body(
         default=default,
@@ -1636,6 +1712,9 @@ def Body(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -1646,7 +1725,6 @@ def Body(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -1691,7 +1769,7 @@ def Form(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -1708,7 +1786,7 @@ def Form(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -1718,7 +1796,7 @@ def Form(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -1726,7 +1804,7 @@ def Form(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -1734,7 +1812,7 @@ def Form(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -1787,10 +1865,10 @@ def Form(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -1806,18 +1884,44 @@ def Form(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -1863,7 +1967,7 @@ def Form(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -1897,7 +2001,7 @@ def Form(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -1910,26 +2014,13 @@ def Form(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
+    ] = _Unset,
 ) -> Any:
     return params.Form(
         default=default,
@@ -1951,6 +2042,9 @@ def Form(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -1961,7 +2055,6 @@ def Form(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 
@@ -2006,7 +2099,7 @@ def File(  # noqa: N802
             is a Python reserved keyword or similar.
             """
         ),
-    ] = None,
+    ] = _Unset,
     alias_priority: Annotated[
         int | None,
         Doc(
@@ -2023,7 +2116,7 @@ def File(  # noqa: N802
             allowed by the alias or set of aliases defined.
             """
         ),
-    ] = None,
+    ] = _Unset,
     serialization_alias: Annotated[
         str | None,
         Doc(
@@ -2033,7 +2126,7 @@ def File(  # noqa: N802
             fields will be ignored at serialization time.
             """
         ),
-    ] = None,
+    ] = _Unset,
     title: Annotated[
         str | None,
         Doc(
@@ -2041,7 +2134,7 @@ def File(  # noqa: N802
             Human-readable title.
             """
         ),
-    ] = None,
+    ] = _Unset,
     description: Annotated[
         str | None,
         Doc(
@@ -2049,7 +2142,7 @@ def File(  # noqa: N802
             Human-readable description.
             """
         ),
-    ] = None,
+    ] = _Unset,
     gt: Annotated[
         float | None,
         Doc(
@@ -2102,10 +2195,10 @@ def File(  # noqa: N802
         ),
     ] = None,
     pattern: Annotated[
-        str | None,
+        str | re.Pattern[str] | None,
         Doc(
             """
-            RegEx pattern for strings.
+            Regular expression pattern for strings, as a string or compiled pattern.
             """
         ),
     ] = None,
@@ -2121,18 +2214,44 @@ def File(  # noqa: N802
         ),
     ] = None,
     discriminator: Annotated[
-        str | None,
+        str | Discriminator | None,
         Doc(
             """
-            Parameter field name for discriminating the type in a tagged union.
+            Field name or Pydantic `Discriminator` for selecting a tagged union member.
             """
         ),
-    ] = None,
+    ] = _Unset,
     strict: Annotated[
         bool | None,
         Doc(
             """
             If `True`, strict validation is applied to the field.
+            """
+        ),
+    ] = _Unset,
+    validate_default: Annotated[
+        bool | None,
+        Doc(
+            """
+            Validate the default value. By default, defaults are not validated.
+            """
+        ),
+    ] = _Unset,
+    union_mode: Annotated[
+        Literal["smart", "left_to_right"] | None,
+        Doc(
+            """
+            Strategy for validating unions. By default, Pydantic uses smart matching.
+            Use `left_to_right` to try each type in order.
+            """
+        ),
+    ] = _Unset,
+    fail_fast: Annotated[
+        bool | None,
+        Doc(
+            """
+            Stop collection validation at the first invalid item instead of collecting
+            all errors. Only applies to lists, tuples, sets, and frozensets.
             """
         ),
     ] = _Unset,
@@ -2178,7 +2297,7 @@ def File(  # noqa: N802
             [FastAPI docs for Declare Request Example Data](https://fastapi.tiangolo.com/tutorial/schema-extra-example/)
             """
         ),
-    ] = None,
+    ] = _Unset,
     example: Annotated[
         Any | None,
         deprecated(
@@ -2212,7 +2331,7 @@ def File(  # noqa: N802
             It will affect the generated OpenAPI (e.g. visible at `/docs`).
             """
         ),
-    ] = None,
+    ] = _Unset,
     include_in_schema: Annotated[
         bool,
         Doc(
@@ -2225,26 +2344,13 @@ def File(  # noqa: N802
         ),
     ] = True,
     json_schema_extra: Annotated[
-        dict[str, Any] | None,
+        dict[str, Any] | Callable[[dict[str, Any]], None] | None,
         Doc(
             """
-            Any additional JSON schema data.
+            Additional JSON Schema properties, or a callable that modifies the schema.
             """
         ),
-    ] = None,
-    **extra: Annotated[
-        Any,
-        Doc(
-            """
-            Include extra fields used by the JSON Schema.
-            """
-        ),
-        deprecated(
-            """
-            The `extra` kwargs is deprecated. Use `json_schema_extra` instead.
-            """
-        ),
-    ],
+    ] = _Unset,
 ) -> Any:
     return params.File(
         default=default,
@@ -2266,6 +2372,9 @@ def File(  # noqa: N802
         regex=regex,
         discriminator=discriminator,
         strict=strict,
+        validate_default=validate_default,
+        union_mode=union_mode,
+        fail_fast=fail_fast,
         multiple_of=multiple_of,
         allow_inf_nan=allow_inf_nan,
         max_digits=max_digits,
@@ -2276,7 +2385,6 @@ def File(  # noqa: N802
         deprecated=deprecated,
         include_in_schema=include_in_schema,
         json_schema_extra=json_schema_extra,
-        **extra,
     )
 
 

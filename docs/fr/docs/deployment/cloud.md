@@ -20,5 +20,4 @@ Certains autres fournisseurs cloud ✨ [**parrainent FastAPI**](https://github.c
 
 Vous pouvez également envisager ces fournisseurs pour suivre leurs guides et essayer leurs services :
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

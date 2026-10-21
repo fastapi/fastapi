@@ -220,13 +220,21 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### Required, can be `None` { #required-can-be-none }
+### Required parameters and `None` { #required-parameters-and-none }
 
-You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
-
-To do that, you can declare that `None` is a valid type but simply do not declare a default value:
+The type `str | None` allows `None` as a Python value, but it does not make a query parameter optional. Without a default value, the parameter is still required:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+Query parameter values arrive as strings and have no built-in representation of `None`. Sending `?q=None` or `?q=null` sends the strings `"None"` and `"null"`, respectively. Sending `?q=` sends an empty string, which fails the `min_length=3` validation in this example.
+
+To allow clients to omit `q` and use `None` as its value, give it a default of `None`:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+JSON request bodies, unlike query parameters, can contain an explicit `null` value.
 
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 

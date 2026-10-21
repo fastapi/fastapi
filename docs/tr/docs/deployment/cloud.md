@@ -20,5 +20,4 @@ Diğer bazı bulut sağlayıcılar da ✨ [**FastAPI'ye sponsor olur**](https://
 
 Kılavuzlarını takip etmek ve servislerini denemek için onları da değerlendirmek isteyebilirsiniz:
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

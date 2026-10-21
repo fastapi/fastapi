@@ -61,6 +61,7 @@ def test_discriminator_pydantic_v2() -> None:
                                     "description": "Query string",
                                     "title": "Q",
                                 },
+                                "description": "Query string",
                             }
                         ],
                         "requestBody": {
