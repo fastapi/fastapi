@@ -184,6 +184,8 @@ def _get_openapi_operation_parameters(
             )
             for param in _get_flat_fields_from_params([parent]):
                 field_info = param.field_info
+                if not getattr(field_info, "include_in_schema", True):
+                    continue
                 convert_underscores = param_type == ParamTypes.header and getattr(
                     field_info,
                     "convert_underscores",
