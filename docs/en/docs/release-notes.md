@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix `AliasChoices` for path parameters. PR [#16560](https://github.com/fastapi/fastapi/pull/16560) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.156.4 (2026-10-21)
 
 ### Fixes
