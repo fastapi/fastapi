@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.158.2 (2026-10-21)
+
 ### Features
 
 * ✨ Add support for optional form models. PR [#16582](https://github.com/fastapi/fastapi/pull/16582) by [@tiangolo](https://github.com/tiangolo).
