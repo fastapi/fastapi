@@ -1058,6 +1058,15 @@ def _extract_form_items(
                 yield key, param_values, None
 
 
+async def _read_file_bytes(file: UploadFile) -> bytes:
+    # Automatic conversion must not consume a file shared with other parameters.
+    position = file.file.tell()
+    try:
+        return await file.read()
+    finally:
+        await file.seek(position)
+
+
 async def _extract_form_body(
     body_fields: list[ModelField],
     received_body: FormData,
@@ -1067,7 +1076,7 @@ async def _extract_form_body(
             if is_bytes_or_nonable_bytes_annotation(
                 field.field_info.annotation
             ) and isinstance(value, UploadFile):
-                value = await value.read()
+                value = await _read_file_bytes(value)
             elif is_bytes_sequence_annotation(
                 field.field_info.annotation
             ) and value_is_sequence(value):
@@ -1075,7 +1084,7 @@ async def _extract_form_body(
                 results: list[bytes | str] = []
                 for sub_value in value:
                     if isinstance(sub_value, UploadFile):
-                        results.append(await sub_value.read())
+                        results.append(await _read_file_bytes(sub_value))
                     else:
                         results.append(sub_value)
                 value = serialize_sequence_value(field=field, value=results)
