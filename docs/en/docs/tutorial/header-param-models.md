@@ -67,6 +67,14 @@ Before setting `convert_underscores` to `False`, bear in mind that some HTTP pro
 
 ///
 
+## Combine Parameter Models { #combine-parameter-models }
+
+You can combine multiple header parameter models with individual header parameters and dependencies. Each model is extracted and validated independently, as explained for [query parameter models](query-param-models.md#combine-parameter-models).
+
+Parameters declared elsewhere in the same operation or its dependencies are not treated as extra fields of a model. Undeclared header parameters still follow the model's `extra` configuration.
+
+Each model uses its own `Header(convert_underscores=...)` setting, both when reading the request and when generating OpenAPI. Explicit field aliases remain literal header names.
+
 ## Summary { #summary }
 
 You can use **Pydantic models** to declare **headers** in **FastAPI**. 😎

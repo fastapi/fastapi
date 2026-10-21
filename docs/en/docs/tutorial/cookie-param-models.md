@@ -71,6 +71,12 @@ For example, if the client tries to send a `santa_tracker` cookie with a value o
 }
 ```
 
+## Combine Parameter Models { #combine-parameter-models }
+
+You can combine multiple cookie parameter models with individual cookie parameters and dependencies. Each model is extracted and validated independently, as explained for [query parameter models](query-param-models.md#combine-parameter-models).
+
+Parameters declared elsewhere in the same operation or its dependencies are not treated as extra fields of a model. Undeclared cookie parameters still follow the model's `extra` configuration.
+
 ## Summary { #summary }
 
 You can use **Pydantic models** to declare <dfn title="Have a last cookie before you go. 🍪">**cookies**</dfn> in **FastAPI**. 😎

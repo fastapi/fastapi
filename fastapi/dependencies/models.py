@@ -49,6 +49,7 @@ class Dependant:
     use_cache: bool = True
     path: str | None = None
     scope: Literal["function", "request"] | None = None
+    _request_param_names: dict[str, set[str]] | None = None
 
 
 _UsesScopesCache = dict[int, tuple[Dependant, bool]]
