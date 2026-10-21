@@ -1366,12 +1366,18 @@ def _get_body_field(
     else:
         BodyFieldInfo = params.Body
 
+    if BodyFieldInfo is not params.File:
         body_param_media_types = [
             f.field_info.media_type
             for f in body_params
-            if isinstance(f.field_info, params.Body)
+            if isinstance(f.field_info, BodyFieldInfo)
         ]
-        if len(set(body_param_media_types)) == 1:
+        if (
+            BodyFieldInfo is params.Form
+            and "multipart/form-data" in body_param_media_types
+        ):
+            BodyFieldInfo_kwargs["media_type"] = "multipart/form-data"
+        elif len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
     final_field = create_model_field(
         name="body",

@@ -62,6 +62,8 @@ Data from forms is normally encoded using the "media type" `application/x-www-fo
 
 But when the form includes files, it is encoded as `multipart/form-data`. You'll read about handling files in the next chapter.
 
+You can use `Form(media_type="multipart/form-data")` to describe a multipart form in OpenAPI. Setting it on one parameter is enough when combining form parameters or models.
+
 If you want to read more about these encodings and form fields, head to the [<abbr title="Mozilla Developer Network">MDN</abbr> web docs for `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
