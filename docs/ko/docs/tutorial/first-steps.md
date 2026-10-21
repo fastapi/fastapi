@@ -6,12 +6,18 @@
 
 위 코드를 `main.py`에 복사합니다.
 
+/// tip | 팁
+
+FastAPI에는 VS Code(및 Cursor)를 위한 [공식 확장](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)이 있으며, 에디터에서 바로 경로 처리 탐색기, 경로 처리 검색, 테스트에서의 CodeLens 탐색(테스트에서 정의로 이동), FastAPI Cloud 배포와 로그를 포함한 많은 기능을 제공합니다.
+
+///
+
 라이브 서버를 실행합니다:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 그리고 이제, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 가봅니다.
 
-대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Rebilly/ReDoc) 제공):
+대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Redocly/redoc) 제공):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 `fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI 애플리케이션 객체를 추정합니다:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 또는 `fastapi dev` 명령어에 `--entrypoint` 옵션을 전달할 수도 있습니다:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 하지만 매번 `fastapi` 명령어를 호출할 때마다 올바른 path\entrypoint를 전달해야 합니다.
@@ -205,7 +211,7 @@ $ fastapi dev --entrypoint main:app
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -232,7 +238,7 @@ CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하고 클�
 
 `FastAPI`는 `Starlette`를 직접 상속하는 클래스입니다.
 
-`FastAPI`로 [Starlette](https://www.starlette.dev/)의 모든 기능을 사용할 수 있습니다.
+`FastAPI`로 [Starlette](https://starlette.dev/)의 모든 기능을 사용할 수 있습니다.
 
 ///
 

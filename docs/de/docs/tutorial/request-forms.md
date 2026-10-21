@@ -7,10 +7,10 @@ Wenn Sie Felder aus Formularen statt JSON empfangen müssen, können Sie `Form` 
 
 Um Formulare zu verwenden, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Erstellen Sie unbedingt eine [virtuelle Umgebung](../virtual-environments.md), aktivieren Sie diese und installieren Sie dann das Paket, zum Beispiel:
+Fügen Sie es Ihrem Projekt hinzu:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

@@ -12,7 +12,7 @@
 
 वह अतिरिक्त जानकारी उस model के output **JSON Schema** में जैसी है वैसी ही जोड़ी जाएगी, और API docs में उपयोग की जाएगी।
 
-आप `model_config` attribute का उपयोग कर सकते हैं, जो एक `dict` लेता है, जैसा कि [Pydantic के docs: Configuration](https://docs.pydantic.dev/latest/api/config/) में बताया गया है।
+आप `model_config` attribute का उपयोग कर सकते हैं, जो एक `dict` लेता है, जैसा कि [Pydantic के docs: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/) में बताया गया है।
 
 आप `"json_schema_extra"` को एक `dict` के साथ set कर सकते हैं जिसमें कोई भी अतिरिक्त data हो जिसे आप generated JSON Schema में दिखाना चाहते हैं, जिसमें `examples` भी शामिल हैं।
 
@@ -169,7 +169,7 @@ OpenAPI ने specification के अन्य हिस्सों में
 
 और अब यह नया `examples` field पुराने single (और custom) `example` field पर precedence लेता है, जो अब deprecated है।
 
-JSON Schema में यह नया `examples` field OpenAPI में अन्य जगहों (ऊपर वर्णित) की तरह अतिरिक्त metadata वाला dict नहीं है, यह **सिर्फ एक `list`** है।
+JSON Schema में यह नया `examples` field OpenAPI में अन्य जगहों (ऊपर वर्णित) की तरह अतिरिक्त metadata वाला dict नहीं है, यह **सिर्फ examples की एक `list`** है।
 
 /// note | नोट
 

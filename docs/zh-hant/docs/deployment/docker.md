@@ -105,40 +105,36 @@ Docker 是用來建立與管理容器映像與容器的主要工具之一。
 
 ### 套件需求 { #package-requirements }
 
-你的應用通常會把「套件需求」放在某個檔案中。
+當你使用 `uv` 管理專案時，它的直接相依會宣告在 `pyproject.toml` 中，而精確解析出的版本會儲存在 `uv.lock`。
 
-這主要取決於你用什麼工具來安裝那些需求。
-
-最常見的方式是準備一個 `requirements.txt` 檔案，逐行列出套件名稱與版本。
-
-當然，你會用與在 [關於 FastAPI 版本](versions.md) 中讀到的相同概念，來設定版本範圍。
-
-例如，你的 `requirements.txt` 可能像這樣：
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-接著你通常會用 `pip` 來安裝這些套件相依，例如：
+你可以用以下指令加入你的應用需要的套件：
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
 /// note | 注意
 
-還有其他格式與工具可以用來定義與安裝套件相依。
+下面的 Dockerfile 會在容器內使用 `pip`。你可以從你的 uv 專案匯出鎖定的相依，轉成它預期的 `requirements.txt` 格式：
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+產生的 `requirements.txt` 是用於容器建置的匯出檔。請繼續使用 `uv add` 管理相依，並在 `uv.lock` 變更時重新產生它。
 
 ///
 
-### 建立 FastAPI 程式碼 { #create-the-fastapi-code }
+### 建立 **FastAPI** 程式碼 { #create-the-fastapi-code }
 
 * 建立一個 `app` 目錄並進入。
 * 建立一個空的 `__init__.py` 檔案。
@@ -372,7 +368,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 你也可以前往 [http://192.168.99.100/redoc](http://192.168.99.100/redoc) 或 [http://127.0.0.1/redoc](http://127.0.0.1/redoc)（或等效的、使用你的 Docker 主機）。
 
-你會看到另一種自動產生的文件（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你會看到另一種自動產生的文件（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

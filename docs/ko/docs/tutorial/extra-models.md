@@ -166,7 +166,7 @@ OpenAPI에서는 이를 `anyOf`로 정의합니다.
 
 /// note | 참고
 
-[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions)을 정의할 때는 더 구체적인 타입을 먼저 포함하고, 덜 구체적인 타입을 그 뒤에 나열해야 합니다. 아래 예제에서는 `Union[PlaneItem, CarItem]`에서 더 구체적인 `PlaneItem`이 `CarItem`보다 앞에 위치합니다.
+[`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/)을 정의할 때는 더 구체적인 타입을 먼저 포함하고, 덜 구체적인 타입을 그 뒤에 나열해야 합니다. 아래 예제에서는 `Union[PlaneItem, CarItem]`에서 더 구체적인 `PlaneItem`이 `CarItem`보다 앞에 위치합니다.
 
 ///
 

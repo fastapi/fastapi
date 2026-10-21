@@ -15,7 +15,7 @@ FastAPI 애플리케이션에서 `uvicorn`을 직접 임포트하여 실행합�
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ from myapp import app
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>

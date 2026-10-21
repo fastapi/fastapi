@@ -82,7 +82,7 @@ Pythonの例外なので、`return`ではなく、`raise`です。
 
 ## カスタム例外ハンドラのインストール { #install-custom-exception-handlers }
 
-カスタム例外ハンドラは[Starletteと同じ例外ユーティリティ](https://www.starlette.dev/exceptions/)を使用して追加することができます。
+カスタム例外ハンドラは[Starletteと同じ例外ユーティリティ](https://starlette.dev/exceptions/)を使用して追加することができます。
 
 あなた（または使用しているライブラリ）が`raise`するかもしれないカスタム例外`UnicornException`があるとしましょう。
 

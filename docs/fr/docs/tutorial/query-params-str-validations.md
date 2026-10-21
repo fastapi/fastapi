@@ -133,7 +133,7 @@ Par exemple, ceci n’est pas autorisé :
 q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
-... parce qu’il n’est pas clair si la valeur par défaut doit être « rick » ou « morty ».
+... parce qu’il n’est pas clair si la valeur par défaut doit être `"rick"` ou `"morty"`.
 
 Donc, vous utiliseriez (de préférence) :
 
@@ -185,7 +185,7 @@ Désormais, vous savez que, lorsque vous en aurez besoin, vous pourrez les utili
 
 Vous pouvez, bien sûr, utiliser des valeurs par défaut autres que `None`.
 
-Disons que vous voulez déclarer le paramètre de requête `q` avec un `min_length` de `3`, et avec une valeur par défaut de « fixedquery » :
+Disons que vous voulez déclarer le paramètre de requête `q` avec un `min_length` de `3`, et avec une valeur par défaut de `"fixedquery"` :
 
 {* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
@@ -369,15 +369,15 @@ Il peut y avoir des cas où vous devez faire une **validation personnalisée** q
 
 Dans ces cas, vous pouvez utiliser une **fonction de validation personnalisée** qui est appliquée après la validation normale (par ex. après avoir validé que la valeur est une `str`).
 
-Vous pouvez y parvenir en utilisant [`AfterValidator` de Pydantic](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) à l’intérieur de `Annotated`.
+Vous pouvez y parvenir en utilisant [`AfterValidator` de Pydantic](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) à l’intérieur de `Annotated`.
 
 /// tip | Astuce
 
-Pydantic a aussi [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) et d’autres. 🤓
+Pydantic a aussi [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) et d’autres. 🤓
 
 ///
 
-Par exemple, ce validateur personnalisé vérifie que l’ID d’item commence par `isbn-` pour un numéro de livre <abbr title="International Standard Book Number - Numéro international normalisé du livre">ISBN</abbr> ou par `imdb-` pour un ID d’URL de film <abbr title="Internet Movie Database - Base de données de films sur Internet: un site web contenant des informations sur les films">IMDB</abbr> :
+Par exemple, ce validateur personnalisé vérifie que l’ID d’item commence par `isbn-` pour un numéro de livre <abbr title="International Standard Book Number - Numéro international normalisé du livre">ISBN</abbr> ou par `imdb-` pour un ID d’URL de film <abbr title="Internet Movie Database - Base de données de films sur Internet : un site web contenant des informations sur les films">IMDB</abbr> :
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 

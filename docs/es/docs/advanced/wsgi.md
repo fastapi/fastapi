@@ -9,7 +9,7 @@ Para eso, puedes usar el `WSGIMiddleware` y usarlo para envolver tu aplicación 
 
 /// note | Nota
 
-Esto requiere instalar `a2wsgi`, por ejemplo con `pip install a2wsgi`.
+Esto requiere agregar `a2wsgi` a tu proyecto, por ejemplo con `uv add a2wsgi`.
 
 ///
 

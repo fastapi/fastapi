@@ -92,7 +92,7 @@ Nota que el parámetro de path está declarado como un entero.
 
 ## Beneficios basados en estándares, documentación alternativa { #standards-based-benefits-alternative-documentation }
 
-Y porque el esquema generado es del estándar [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md), hay muchas herramientas compatibles.
+Y porque el esquema generado es del estándar [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md), hay muchas herramientas compatibles.
 
 Debido a esto, el propio **FastAPI** proporciona una documentación de API alternativa (usando ReDoc), a la cual puedes acceder en [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc):
 
@@ -102,7 +102,7 @@ De la misma manera, hay muchas herramientas compatibles. Incluyendo herramientas
 
 ## Pydantic { #pydantic }
 
-Toda la validación de datos se realiza internamente con [Pydantic](https://docs.pydantic.dev/), así que obtienes todos los beneficios de esta. Y sabes que estás en buenas manos.
+Toda la validación de datos se realiza internamente con [Pydantic](https://pydantic.dev/docs/), así que obtienes todos los beneficios de esta. Y sabes que estás en buenas manos.
 
 Puedes usar las mismas declaraciones de tipo con `str`, `float`, `bool` y muchos otros tipos de datos complejos.
 

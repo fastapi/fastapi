@@ -52,7 +52,7 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 
 除此之外，还有其他一些可选的 ASGI 服务器，例如：
 
-* [Uvicorn](https://www.uvicorn.dev/): 高性能 ASGI 服务器。
+* [Uvicorn](https://uvicorn.dev): 高性能 ASGI 服务器。
 * [Hypercorn](https://hypercorn.readthedocs.io/): 与 HTTP/2 和 Trio 等兼容的 ASGI 服务器。
 * [Daphne](https://github.com/django/daphne): 为 Django Channels 构建的 ASGI 服务器。
 * [Granian](https://github.com/emmett-framework/granian): 基于 Rust 的 HTTP 服务器，专为 Python 应用设计。
@@ -73,14 +73,14 @@ FastAPI 使用了一种用于构建 Python Web 框架和服务器的标准，称
 
 不过，你也可以手动安装 ASGI 服务器。
 
-请确保你创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装服务器应用程序。
+将服务器应用程序添加到你的项目中。
 
-例如，要安装 Uvicorn，可以运行以下命令：
+例如，要安装 Uvicorn：
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]"
+$ uv add "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -91,11 +91,11 @@ $ pip install "uvicorn[standard]"
 
 /// tip | 提示
 
-通过添加 `standard` 选项，Uvicorn 将安装并使用一些推荐的额外依赖项。
+通过添加 `standard`，Uvicorn 将安装并使用一些推荐的额外依赖项。
 
 其中包括 `uvloop`，这是 `asyncio` 的高性能替代方案，能够显著提升并发性能。
 
-当你使用 `pip install "fastapi[standard]"` 安装 FastAPI 时，实际上也会安装 `uvicorn[standard]`。
+当你使用类似 `uv add "fastapi[standard]"` 的命令添加 FastAPI 时，也已经会同时得到 `uvicorn[standard]`。
 
 ///
 
@@ -106,7 +106,7 @@ $ pip install "uvicorn[standard]"
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+$ uv run uvicorn main:app --host 0.0.0.0 --port 80
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```

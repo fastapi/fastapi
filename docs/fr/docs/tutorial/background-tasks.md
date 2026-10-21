@@ -23,11 +23,11 @@ Pour commencer, importez `BackgroundTasks` et définissez un paramètre dans vot
 
 Créez une fonction à exécuter comme tâche d'arrière-plan.
 
-Une fonction à exécuter comme tâche d'arrière-plan est juste une fonction standard qui peut recevoir des paramètres.
+C'est simplement une fonction standard qui peut recevoir des paramètres.
 
 Elle peut être une fonction asynchrone (`async def`) ou une fonction normale (`def`), **FastAPI** saura la gérer correctement.
 
-Dans cet exemple, la fonction de tâche écrira dans un fichier (afin de simuler un envoi d'email).
+Dans ce cas, la fonction de tâche écrira dans un fichier (afin de simuler un envoi d'email).
 
 L'opération d'écriture n'utilisant ni `async` ni `await`, on définit la fonction avec un `def` normal.
 
@@ -35,15 +35,15 @@ L'opération d'écriture n'utilisant ni `async` ni `await`, on définit la fonct
 
 ## Ajouter une tâche d'arrière-plan { #add-the-background-task }
 
-Dans votre *fonction de chemin d'accès*, passez votre fonction de tâche à l'objet de type `BackgroundTasks` (`background_tasks` ici) grâce à la méthode `.add_task()` :
+Dans votre *fonction de chemin d'accès*, passez votre fonction de tâche à l'objet *tâches d'arrière-plan* avec la méthode `.add_task()` :
 
 {* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
 
 `.add_task()` reçoit comme arguments :
 
 * Une fonction de tâche à exécuter en arrière-plan (`write_notification`).
-* Les arguments positionnels à passer à la fonction de tâche dans l'ordre (`email`).
-* Les arguments nommés à passer à la fonction de tâche (`message="some notification"`).
+* Toute séquence d'arguments à passer à la fonction de tâche dans l'ordre (`email`).
+* Tous les arguments nommés à passer à la fonction de tâche (`message="some notification"`).
 
 ## Injection de dépendances { #dependency-injection }
 
@@ -51,34 +51,36 @@ Utiliser `BackgroundTasks` fonctionne aussi avec le système d'injection de dép
 
 **FastAPI** sait quoi faire dans chaque cas et comment réutiliser le même objet, afin que toutes les tâches d'arrière-plan soient fusionnées et que les tâches soient ensuite exécutées en arrière-plan :
 
+
 {* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
 
-Dans cet exemple, les messages seront écrits dans le fichier `log.txt` après que la réponse soit envoyée.
+
+Dans cet exemple, les messages seront écrits dans le fichier `log.txt` *après* l'envoi de la réponse.
 
 S'il y avait un paramètre de requête dans la requête, alors il sera écrit dans le journal via une tâche d'arrière-plan.
 
-Et ensuite une autre tâche d'arrière-plan (générée dans la *fonction de chemin d'accès*) écrira un message comprenant le paramètre de chemin `email`.
+Et ensuite une autre tâche d'arrière-plan (générée dans la *fonction de chemin d'accès*) écrira un message en utilisant le paramètre de chemin `email`.
 
 ## Détails techniques { #technical-details }
 
-La classe `BackgroundTasks` provient directement de [`starlette.background`](https://www.starlette.dev/background/).
+La classe `BackgroundTasks` provient directement de [`starlette.background`](https://starlette.dev/background/).
 
-Elle est importée/incluse directement dans **FastAPI** pour que vous puissiez l'importer depuis `fastapi` et éviter d'importer accidentellement `BackgroundTask` (sans `s` à la fin) depuis `starlette.background`.
+Elle est importée/incluse directement dans FastAPI pour que vous puissiez l'importer depuis `fastapi` et éviter d'importer accidentellement l'alternative `BackgroundTask` (sans `s` à la fin) depuis `starlette.background`.
 
 En utilisant seulement `BackgroundTasks` (et non `BackgroundTask`), il est possible de l'utiliser en tant que paramètre de *fonction de chemin d'accès* et de laisser **FastAPI** gérer le reste pour vous, comme en utilisant l'objet `Request` directement.
 
-Il est tout de même possible d'utiliser `BackgroundTask` seul dans **FastAPI**, mais dans ce cas il faut créer l'objet dans le code et renvoyer une `Response` Starlette l'incluant.
+Il est tout de même possible d'utiliser `BackgroundTask` seul dans FastAPI, mais dans ce cas il faut créer l'objet dans le code et renvoyer une `Response` Starlette l'incluant.
 
-Plus de détails sont disponibles dans [la documentation officielle de Starlette sur les tâches d'arrière-plan](https://www.starlette.dev/background/).
+Plus de détails sont disponibles dans [la documentation officielle de Starlette sur les tâches d'arrière-plan](https://starlette.dev/background/).
 
 ## Avertissement { #caveat }
 
-Si vous avez besoin de réaliser des traitements lourds en tâche d'arrière-plan et que vous n'avez pas besoin que ces traitements aient lieu dans le même process (par exemple, pas besoin de partager la mémoire, les variables, etc.), il peut s'avérer profitable d'utiliser des outils plus importants tels que [Celery](https://docs.celeryq.dev).
+Si vous avez besoin de réaliser des calculs lourds en tâche d'arrière-plan et que vous n'avez pas nécessairement besoin que ces calculs aient lieu dans le même process (par exemple, pas besoin de partager la mémoire, les variables, etc.), il peut s'avérer profitable d'utiliser des outils plus importants tels que [Celery](https://docs.celeryq.dev).
 
-Ces outils nécessitent généralement des configurations plus complexes ainsi qu'un gestionnaire de queue de message, comme RabbitMQ ou Redis, mais ils permettent d'exécuter des tâches d'arrière-plan dans différents process, et surtout, sur plusieurs serveurs.
+Ces outils nécessitent généralement des configurations plus complexes ainsi qu'un gestionnaire de queue de messages/jobs, comme RabbitMQ ou Redis, mais ils permettent d'exécuter des tâches d'arrière-plan dans différents process, et surtout, sur plusieurs serveurs.
 
 Mais si vous avez besoin d'accéder aux variables et objets de la même application **FastAPI**, ou si vous avez besoin d'effectuer de petites tâches d'arrière-plan (comme envoyer des notifications par email), vous pouvez simplement vous contenter d'utiliser `BackgroundTasks`.
 
 ## Résumé { #recap }
 
-Importez et utilisez `BackgroundTasks` grâce aux paramètres de *fonction de chemin d'accès* et les dépendances pour ajouter des tâches d'arrière-plan.
+Importez et utilisez `BackgroundTasks` avec des paramètres dans les *fonctions de chemin d'accès* et les dépendances pour ajouter des tâches d'arrière-plan.

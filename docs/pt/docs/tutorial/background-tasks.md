@@ -54,6 +54,7 @@ O **FastAPI** sabe o que fazer em cada caso e como reutilizar o mesmo objeto, de
 
 {* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
 
+
 Neste exemplo, as mensagens serão escritas no arquivo `log.txt` *após* o envio da resposta.
 
 Se houver uma query na request, ela será registrada em uma tarefa em segundo plano.
@@ -62,7 +63,7 @@ E então outra tarefa em segundo plano gerada na *função de operação de rota
 
 ## Detalhes técnicos { #technical-details }
 
-A classe `BackgroundTasks` vem diretamente de [`starlette.background`](https://www.starlette.dev/background/).
+A classe `BackgroundTasks` vem diretamente de [`starlette.background`](https://starlette.dev/background/).
 
 Ela é importada/incluída diretamente no FastAPI para que você possa importá-la de `fastapi` e evitar importar acidentalmente a alternativa `BackgroundTask` (sem o `s` no final) de `starlette.background`.
 
@@ -70,7 +71,7 @@ Usando apenas `BackgroundTasks` (e não `BackgroundTask`), é possível usá-la 
 
 Ainda é possível usar `BackgroundTask` sozinho no FastAPI, mas você precisa criar o objeto no seu código e retornar uma `Response` da Starlette incluindo-o.
 
-Você pode ver mais detalhes na [documentação oficial da Starlette para tarefas em segundo plano](https://www.starlette.dev/background/).
+Você pode ver mais detalhes na [documentação oficial da Starlette para tarefas em segundo plano](https://starlette.dev/background/).
 
 ## Ressalva { #caveat }
 

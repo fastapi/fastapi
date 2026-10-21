@@ -52,7 +52,7 @@ Bunun için `fallback="index.html"` kullanın:
 
 {* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
 
-**FastAPI** bu fallback'i yalnızca tarayıcı gezinmesi gibi görünen `GET` ve `HEAD` request'leri için kullanır. JavaScript, CSS ve görseller gibi eksik dosyalar yine `404` döndürür.
+**FastAPI** bu fallback'i yalnızca, tarayıcı gezinme request'lerinin normalde yaptığı gibi `Accept: text/html` veya `Accept: application/xhtml+xml` ile HTML'i açıkça kabul eden `GET` ve `HEAD` request'leri için kullanır. JavaScript, CSS ve görseller gibi eksik dosyalar yine `404` döndürür.
 
 `POST` veya `PUT` gibi diğer metotlarla, yalnızca frontend fallback'i ile eşleşen path'lere yapılan request'ler de `404` döndürür. Normal **FastAPI** *path operation*'ları frontend route'larından yine daha yüksek önceliğe sahiptir.
 
@@ -106,9 +106,13 @@ Bundan sonra bulunamayan frontend path'leri normal `404` döndürür.
 
 ## Dizini Kontrol Etme { #check-directory }
 
-Varsayılan olarak `app.frontend()`, uygulama oluşturulduğunda dizinin var olduğunu kontrol eder.
+Varsayılan olarak `app.frontend()`, `check_dir="auto"` kullanır.
 
-Bu, yapılandırma hatalarını erken yakalamaya yardımcı olur. Örneğin frontend build çıktısı dizini yoksa, **FastAPI** başlangıçta hata verir.
+`FASTAPI_ENV` ortam değişkeni `development` olarak ayarlandığında, frontend build çıktısı dizini eksikse **FastAPI** yalnızca bir uyarı gösterir. [`fastapi dev` komutu](https://github.com/fastapi/fastapi-cli#fastapi-dev), bu ortam değişkeni zaten ayarlı değilse sizin için ayarlar. Bu, development sırasında frontend'i build etmeden veya başlatmadan önce backend'i başlatmanıza olanak tanır.
+
+Diğer tüm ortamlarda, app oluşturulduğunda **FastAPI** bir hata verir. Bu, frontend dosyaları olmadan bir app deploy etmeden önce yapılandırma hatalarını erken yakalamaya yardımcı olur.
+
+App oluşturulduğunda dizini her zaman kontrol etmek için `check_dir=True` de ayarlayabilirsiniz.
 
 Frontend dosyalarınız daha sonra oluşturuluyorsa, örneğin app nesnesi oluşturulduktan sonra ayrı bir build adımıyla, `check_dir=False` ayarlayın:
 
@@ -131,6 +135,8 @@ Uygulamadaki herhangi bir normal *path operation*, diğer router'larda olanlar d
 Frontend response'ları normal **FastAPI** uygulaması içinde çalışır, bu yüzden HTTP middleware onlara uygulanır.
 
 Uygulamadan, bir `APIRouter`'dan ve `include_router()`'dan gelen dependencies de frontend response'larına uygulanır. Bu, bir frontend'i cookie authentication veya benzeri bir yöntemle korumak için kullanışlı olabilir.
+
+Dependencies, normal *path operation*'larda olduğu gibi response header'larını değiştirebilir ve background task'lar ekleyebilir.
 
 ## Yalnızca Statik Build Çıktısı { #static-build-output-only }
 

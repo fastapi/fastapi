@@ -6,12 +6,18 @@ Le fichier **FastAPI** le plus simple possible pourrait ressembler à ceci :
 
 Copiez cela dans un fichier `main.py`.
 
+/// tip | Astuce
+
+FastAPI a une [extension officielle pour VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (et Cursor), qui fournit de nombreuses fonctionnalités, notamment un explorateur de chemins d’accès, la recherche de chemins d’accès, la navigation CodeLens dans les tests (aller à la définition depuis les tests), ainsi que le déploiement et les logs FastAPI Cloud, le tout depuis votre éditeur.
+
+///
+
 Démarrez le serveur en direct :
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ Vous verrez la documentation interactive de l’API générée automatiquement (
 
 Et maintenant, allez sur [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Vous verrez la documentation automatique alternative (fournie par [ReDoc](https://github.com/Rebilly/ReDoc)) :
+Vous verrez la documentation automatique alternative (fournie par [ReDoc](https://github.com/Redocly/redoc)) :
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 Vous pouvez également passer le chemin du fichier à la commande `fastapi dev`, et elle devinera l’objet d’application FastAPI à utiliser :
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Ou bien, vous pouvez aussi passer l’option `--entrypoint` à la commande `fastapi dev` :
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 Mais vous devez vous souvenir de passer le chemin\entrypoint correct à chaque exécution de la commande `fastapi`.
@@ -205,7 +211,7 @@ Vous pouvez éventuellement déployer votre application FastAPI sur [FastAPI Clo
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -232,7 +238,7 @@ C’est tout ! Vous pouvez maintenant accéder à votre application à cette URL
 
 `FastAPI` est une classe qui hérite directement de `Starlette`.
 
-Vous pouvez donc aussi utiliser toutes les fonctionnalités de [Starlette](https://www.starlette.dev/) avec `FastAPI`.
+Vous pouvez donc aussi utiliser toutes les fonctionnalités de [Starlette](https://starlette.dev/) avec `FastAPI`.
 
 ///
 

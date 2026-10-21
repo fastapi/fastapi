@@ -45,7 +45,7 @@ parameter `summary` OpenAPI 3.1.0 और उससे ऊपर में उप
 
 ऊपर दी गई जानकारी का उपयोग करके, आप OpenAPI schema generate करने और अपनी ज़रूरत के अनुसार प्रत्येक हिस्से को override करने के लिए उसी utility function का उपयोग कर सकते हैं।
 
-उदाहरण के लिए, आइए [custom logo शामिल करने के लिए ReDoc का OpenAPI extension](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo) जोड़ें।
+उदाहरण के लिए, आइए [custom logo शामिल करने के लिए ReDoc का OpenAPI extension](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo) जोड़ें।
 
 ### सामान्य **FastAPI** { #normal-fastapi }
 

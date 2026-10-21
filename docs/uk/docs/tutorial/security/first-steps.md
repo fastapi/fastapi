@@ -26,14 +26,14 @@
 
 /// note | Примітка
 
-Пакет [`python-multipart`](https://github.com/Kludex/python-multipart) автоматично встановлюється з **FastAPI**, коли ви виконуєте команду `pip install "fastapi[standard]"`.
+Пакет [`python-multipart`](https://github.com/Kludex/python-multipart) автоматично встановлюється з **FastAPI**, коли ви виконуєте команду `uv add "fastapi[standard]"`.
 
-Однак, якщо ви використовуєте команду `pip install fastapi`, пакет `python-multipart` за замовчуванням не включено.
+Однак, якщо ви використовуєте команду `uv add fastapi`, пакет `python-multipart` за замовчуванням не включено.
 
-Щоб встановити його вручну, переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md), активували його, а потім встановили:
+Щоб встановити його вручну, додайте його до вашого проєкту за допомогою:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Це тому, що **OAuth2** використовує «form data» для надсилання `username` та `password`.
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

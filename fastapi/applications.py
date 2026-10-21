@@ -1,4 +1,5 @@
 import os
+import warnings
 from collections.abc import Awaitable, Callable, Coroutine, Sequence
 from enum import Enum
 from typing import Annotated, Any, Literal, TypeVar
@@ -11,8 +12,11 @@ from fastapi.exception_handlers import (
     request_validation_exception_handler,
     websocket_request_validation_exception_handler,
 )
-from fastapi.exceptions import RequestValidationError, WebSocketRequestValidationError
-from fastapi.logger import logger
+from fastapi.exceptions import (
+    FastAPIDeprecationWarning,
+    RequestValidationError,
+    WebSocketRequestValidationError,
+)
 from fastapi.middleware.asyncexitstack import AsyncExitStackMiddleware
 from fastapi.openapi.docs import (
     get_redoc_html,
@@ -21,6 +25,12 @@ from fastapi.openapi.docs import (
 )
 from fastapi.openapi.utils import get_openapi
 from fastapi.params import Depends
+from fastapi.telemetry import TelemetryConfig
+from fastapi.telemetry._asgi import (
+    ExceptionTelemetryMiddleware,
+    NativeTelemetry,
+    _legacy_otel,
+)
 from fastapi.types import DecoratedCallable, IncEx
 from fastapi.utils import generate_unique_id
 from starlette.applications import Starlette
@@ -58,6 +68,19 @@ class FastAPI(Starlette):
     def __init__(
         self: AppType,
         *,
+        telemetry: Annotated[
+            TelemetryConfig | None,
+            Doc(
+                """
+                Native OpenTelemetry configuration as a dictionary. Uses global
+                providers by default. Omitted options keep their defaults.
+
+                ```python
+                app = FastAPI(telemetry={"tracing": False})
+                ```
+                """
+            ),
+        ] = None,
         debug: Annotated[
             bool,
             Doc(
@@ -622,38 +645,22 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
-        openapi_prefix: Annotated[
-            str,
-            Doc(
-                """
-                A URL prefix for the OpenAPI URL.
-                """
-            ),
-            deprecated(
-                """
-                "openapi_prefix" has been deprecated in favor of "root_path", which
-                follows more closely the ASGI standard, is simpler, and more
-                automatic.
-                """
-            ),
-        ] = "",
         root_path: Annotated[
             str,
             Doc(
                 """
-                A path prefix handled by a proxy that is not seen by the application
-                but is seen by external clients, which affects things like Swagger UI.
+                Deprecated. Configure the server with
+                `fastapi run --root-path /api/v1` instead.
 
-                Read more about it at the
+                Read more in the
                 [FastAPI docs for Behind a Proxy](https://fastapi.tiangolo.com/advanced/behind-a-proxy/).
-
-                **Example**
-
-                ```python
-                from fastapi import FastAPI
-
-                app = FastAPI(root_path="/api/v1")
-                ```
+                """
+            ),
+            deprecated(
+                """
+                The `root_path` parameter is deprecated. Configure the server's
+                root path instead, for example with
+                `fastapi run --root-path /api/v1`.
                 """
             ),
         ] = "",
@@ -860,15 +867,6 @@ class FastAPI(Starlette):
                 """
             ),
         ] = True,
-        **extra: Annotated[
-            Any,
-            Doc(
-                """
-                Extra keyword arguments to be stored in the app, not used by FastAPI
-                anywhere.
-                """
-            ),
-        ],
     ) -> None:
         self.debug = debug
         self.title = title
@@ -889,7 +887,6 @@ class FastAPI(Starlette):
         self.servers = servers or []
         self.separate_input_output_schemas = separate_input_output_schemas
         self.openapi_external_docs = openapi_external_docs
-        self.extra = extra
         self.openapi_version: Annotated[
             str,
             Doc(
@@ -926,14 +923,6 @@ class FastAPI(Starlette):
         if self.openapi_url:
             assert self.title, "A title must be provided for OpenAPI, e.g.: 'My API'"
             assert self.version, "A version must be provided for OpenAPI, e.g.: '2.1.0'"
-        # TODO: remove when discarding the openapi_prefix parameter
-        if openapi_prefix:
-            logger.warning(
-                '"openapi_prefix" has been deprecated in favor of "root_path", which '
-                "follows more closely the ASGI standard, is simpler, and more "
-                "automatic. Check the docs at "
-                "https://fastapi.tiangolo.com/advanced/sub-applications/"
-            )
         self.webhooks: Annotated[
             routing.APIRouter,
             Doc(
@@ -946,7 +935,15 @@ class FastAPI(Starlette):
                 """
             ),
         ] = webhooks or routing.APIRouter()
-        self.root_path = root_path or openapi_prefix
+        if root_path:
+            warnings.warn(
+                "The `root_path` parameter is deprecated. Configure the "
+                "server's root path instead, for example with "
+                "`fastapi run --root-path /api/v1`.",
+                category=FastAPIDeprecationWarning,
+                stacklevel=2,
+            )
+        self.root_path = root_path
         self.state: Annotated[
             State,
             Doc(
@@ -1011,6 +1008,21 @@ class FastAPI(Starlette):
             websocket_request_validation_exception_handler,  # type: ignore[arg-type]
         )  # ty: ignore[no-matching-overload]
 
+        self._telemetry: TelemetryConfig = {
+            "tracer_provider": None,
+            "meter_provider": None,
+            "logger_provider": None,
+            "tracing": True,
+            "metrics": True,
+            "logs": True,
+            "operation_spans": True,
+            "auto_configure": os.getenv("FASTAPI_OTEL_AUTO_CONFIGURE", "").lower()
+            == "true",
+            "exclude": None,
+            **(telemetry if telemetry is not None else {}),
+        }
+        self._native_telemetry = NativeTelemetry(self._telemetry)
+
         self.user_middleware: list[Middleware] = (
             [] if middleware is None else list(middleware)
         )
@@ -1031,7 +1043,10 @@ class FastAPI(Starlette):
                 exception_handlers[key] = value
 
         middleware = (
-            [Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug)]
+            [
+                Middleware(ServerErrorMiddleware, handler=error_handler, debug=debug),
+                Middleware(ExceptionTelemetryMiddleware),
+            ]
             + self.user_middleware
             + [
                 Middleware(
@@ -1160,7 +1175,34 @@ class FastAPI(Starlette):
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         if self.root_path:
             scope["root_path"] = self.root_path
-        await super().__call__(scope, receive, send)
+        if scope["type"] == "lifespan":
+            from fastapi.telemetry._runtime import lifespan
+
+            await lifespan(
+                config=self._telemetry,
+                app=super().__call__,
+                scope=scope,
+                receive=receive,
+                send=send,
+            )
+            return
+        if (
+            scope["type"] not in ("http", "websocket")
+            or "fastapi.telemetry" in scope
+            or not self._native_telemetry.enabled()
+        ):
+            await super().__call__(scope, receive, send)
+            return
+        if self.middleware_stack is None:
+            self.middleware_stack = self.build_middleware_stack()
+        scope["app"] = self
+        await self._native_telemetry(
+            app=super().__call__,
+            scope=scope,
+            receive=receive,
+            send=send,
+            legacy_otel=_legacy_otel(self.middleware_stack),
+        )
 
     def add_api_route(
         self,

@@ -35,7 +35,7 @@
 
 /// tip | 提示
 
-`callback_url` 查询参数使用 Pydantic 的 [Url](https://docs.pydantic.dev/latest/api/networks/) 类型。
+`callback_url` 查询参数使用 Pydantic 的 [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) 类型。
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 它与普通*路径操作*有 2 个主要区别：
 
 * 它不需要任何实际代码，因为你的应用永远不会调用这段代码。它只用于记录*外部 API*。因此，函数可以只有 `pass`。
-* *路径*可以包含 [OpenAPI 3 表达式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)（见下文），其中可以使用带参数的变量，以及发送到*你的 API*的原始请求的部分内容。
+* *路径*可以包含 [OpenAPI 3 表达式](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)（见下文），其中可以使用带参数的变量，以及发送到*你的 API*的原始请求的部分内容。
 
 ### 回调路径表达式 { #the-callback-path-expression }
 
-回调*路径*可以有一个 [OpenAPI 3 表达式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)，其中可以包含发送到*你的 API*的原始请求的部分内容。
+回调*路径*可以有一个 [OpenAPI 3 表达式](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)，其中可以包含发送到*你的 API*的原始请求的部分内容。
 
 在这个例子中，它是这个 `str`：
 

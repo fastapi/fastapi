@@ -30,12 +30,12 @@ Si vous voulez expérimenter avec des jetons JWT et voir comment ils fonctionnen
 
 Nous devons installer `PyJWT` pour générer et vérifier les jetons JWT en Python.
 
-Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis d'installer `pyjwt` :
+Ajoutez `pyjwt` à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ Il prend en charge de nombreux algorithmes de hachage sécurisés et des utilita
 
 L'algorithme recommandé est « Argon2 ».
 
-Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis d'installer pwdlib avec Argon2 :
+Ajoutez `pwdlib` avec Argon2 à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```

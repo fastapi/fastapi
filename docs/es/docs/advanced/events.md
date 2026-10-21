@@ -154,7 +154,7 @@ Por debajo, en la especificación técnica ASGI, esto es parte del [Protocolo de
 
 /// note | Nota
 
-Puedes leer más sobre los manejadores `lifespan` de Starlette en [la documentación de `Lifespan` de Starlette](https://www.starlette.dev/lifespan/).
+Puedes leer más sobre los manejadores `lifespan` de Starlette en [la documentación de Lifespan de Starlette](https://starlette.dev/lifespan/).
 
 Incluyendo cómo manejar el estado de lifespan que puede ser usado en otras áreas de tu código.
 

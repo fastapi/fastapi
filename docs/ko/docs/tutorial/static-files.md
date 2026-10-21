@@ -45,4 +45,4 @@
 
 ## 추가 정보 { #more-info }
 
-자세한 내용과 옵션은 [Starlette의 정적 파일 문서](https://www.starlette.dev/staticfiles/)를 확인하세요.
+자세한 내용과 옵션은 [Starlette의 정적 파일 문서](https://starlette.dev/staticfiles/)를 확인하세요.

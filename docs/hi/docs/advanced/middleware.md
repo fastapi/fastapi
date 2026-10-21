@@ -91,7 +91,7 @@ middleware standard और streaming दोनों responses को handle क
 
 उदाहरण के लिए:
 
-* [Uvicorn का `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [Uvicorn का `ProxyHeadersMiddleware`](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-अन्य उपलब्ध middleware देखने के लिए [Starlette के Middleware docs](https://www.starlette.dev/middleware/) और [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi) देखें।
+अन्य उपलब्ध middleware देखने के लिए [Starlette के Middleware docs](https://starlette.dev/middleware/) और [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi) देखें।

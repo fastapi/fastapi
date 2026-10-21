@@ -8,12 +8,12 @@
 
 ## 安裝相依套件 { #install-dependencies }
 
-請先建立一個[虛擬環境](../virtual-environments.md)、啟用它，然後安裝 `jinja2`：
+將 `jinja2` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -22,10 +22,10 @@ $ pip install jinja2
 
 ## 使用 `Jinja2Templates` { #using-jinja2templates }
 
-- 匯入 `Jinja2Templates`。
-- 建立一個可重複使用的 `templates` 物件。
-- 在會回傳模板的「*路徑操作（path operation）*」中宣告一個 `Request` 參數。
-- 使用你建立的 `templates` 來渲染並回傳 `TemplateResponse`，傳入模板名稱、`request` 物件，以及在 Jinja2 模板中使用的「context」鍵值對字典。
+* 匯入 `Jinja2Templates`。
+* 建立一個可重複使用的 `templates` 物件。
+* 在會回傳模板的「*路徑操作（path operation）*」中宣告一個 `Request` 參數。
+* 使用你建立的 `templates` 來渲染並回傳 `TemplateResponse`，傳入模板名稱、`request` 物件，以及在 Jinja2 模板中使用的「context」鍵值對字典。
 
 {* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## 更多細節 { #more-details }
 
-想了解更多細節（包含如何測試模板），請參考 [Starlette 的模板說明文件](https://www.starlette.dev/templates/)。
+想了解更多細節（包含如何測試模板），請參考 [Starlette 的模板說明文件](https://starlette.dev/templates/)。

@@ -27,14 +27,14 @@
 
 /// note | 참고
 
-[`python-multipart`](https://github.com/Kludex/python-multipart) 패키지는 `pip install "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
+[`python-multipart`](https://github.com/Kludex/python-multipart) 패키지는 `uv add "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
 
-하지만 `pip install fastapi` 명령을 사용하면 `python-multipart` 패키지가 기본으로 포함되지 않습니다.
+하지만 `uv add fastapi` 명령을 사용하면 `python-multipart` 패키지가 기본으로 포함되지 않습니다.
 
-수동으로 설치하려면, [가상 환경](../../virtual-environments.md)을 만들고 활성화한 다음, 아래로 설치하세요:
+수동으로 설치하려면, 프로젝트에 아래로 추가하세요:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 이는 **OAuth2**가 `username`과 `password`를 보내기 위해 "form data"를 사용하기 때문입니다.
@@ -46,7 +46,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

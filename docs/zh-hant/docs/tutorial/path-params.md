@@ -92,7 +92,7 @@
 
 ## 基於標準的優勢與替代文件 { #standards-based-benefits-alternative-documentation }
 
-而且因為產生的 schema 來自 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 標準，有很多相容的工具可用。
+而且因為產生的 schema 來自 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 標準，有很多相容的工具可用。
 
 因此，**FastAPI** 本身也提供另一種 API 文件（使用 ReDoc），你可以在 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 存取：
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-所有資料驗證都由 [Pydantic](https://docs.pydantic.dev/) 在底層處理，因此你能直接受惠。而且你可以放心使用。
+所有資料驗證都由 [Pydantic](https://pydantic.dev/docs/) 在底層處理，因此你能直接受惠。而且你可以放心使用。
 
 你可以用相同的型別宣告搭配 `str`、`float`、`bool` 與許多更複雜的資料型別。
 
@@ -248,4 +248,4 @@ OpenAPI 並不支援直接宣告一個「路徑參數」內再包含一個「路
 
 而且你只要宣告一次就好。
 
-這大概是 **FastAPI** 相較於其他框架最明顯的優勢之一（除了原始效能之外）。
+這大概是 **FastAPI** 相較於其他框架最明顯的優勢（除了原始效能之外）。

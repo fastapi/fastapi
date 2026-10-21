@@ -1,15 +1,18 @@
 # Ayarlar ve Ortam Değişkenleri { #settings-and-environment-variables }
 
-
 Birçok durumda uygulamanızın bazı harici ayarlara veya konfigürasyonlara ihtiyacı olabilir; örneğin secret key'ler, veritabanı kimlik bilgileri, e-posta servisleri için kimlik bilgileri vb.
 
 Bu ayarların çoğu değişkendir (değişebilir); örneğin veritabanı URL'leri. Ayrıca birçoğu hassas olabilir; örneğin secret'lar.
 
 Bu nedenle bunları, uygulama tarafından okunan environment variable'lar ile sağlamak yaygındır.
 
+Bir **environment variable** (**env var** olarak da bilinir), Python kodunun dışında, işletim sisteminde yaşayan ve uygulamanız ile diğer programlar tarafından okunabilen bir değerdir.
+
+Bir komutu çalıştırırken o komut için bir environment variable oluşturabilirsiniz. Platforma özel komutları aşağıda göreceksiniz.
+
 /// tip | İpucu
 
-Environment variable'ları anlamak için [Ortam Değişkenleri](../environment-variables.md) dokümanını okuyabilirsiniz.
+Environment variable'ların nasıl çalıştığına dair ayrıntılı bir açıklama için [Environment Variables rehberini](https://tiangolo.com/guides/environment-variables/) okuyabilirsiniz.
 
 ///
 
@@ -21,16 +24,16 @@ Bu da, Python içinde bir environment variable'dan okunan herhangi bir değerin 
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Neyse ki Pydantic, environment variable'lardan gelen bu ayarları yönetmek için [Pydantic: Settings yönetimi](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) ile çok iyi bir yardımcı araç sunar.
+Neyse ki Pydantic, environment variable'lardan gelen bu ayarları yönetmek için [Pydantic: Settings yönetimi](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) ile çok iyi bir yardımcı araç sunar.
 
 ### `pydantic-settings`'i kurun { #install-pydantic-settings }
 
-Önce, [Sanal ortam](../virtual-environments.md) oluşturduğunuzdan, aktive ettiğinizden emin olun ve ardından `pydantic-settings` paketini kurun:
+`pydantic-settings` paketini projenize ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -41,7 +44,7 @@ Ayrıca `all` extras'ını şu şekilde kurduğunuzda da dahil gelir:
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -77,19 +80,39 @@ Daha sonra uygulamanızda yeni `settings` nesnesini kullanabilirsiniz:
 
 Sonraki adımda server'ı çalıştırırken konfigürasyonları environment variable olarak geçersiniz; örneğin `ADMIN_EMAIL` ve `APP_NAME` şu şekilde ayarlanabilir:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | İpucu
 
-Tek bir komut için birden fazla env var ayarlamak istiyorsanız aralarına boşluk koyun ve hepsini komuttan önce yazın.
+Bash'te, tek bir komut için birden fazla env var ayarlamak istiyorsanız aralarına boşluk koyun ve hepsini komuttan önce yazın.
 
 ///
 
@@ -173,11 +196,11 @@ Ancak dotenv dosyasının mutlaka bu dosya adına sahip olması gerekmez.
 
 ///
 
-Pydantic, harici bir kütüphane kullanarak bu tür dosyalardan okuma desteğine sahiptir. Daha fazlası için: [Pydantic Settings: Dotenv (.env) desteği](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
+Pydantic, harici bir kütüphane kullanarak bu tür dosyalardan okuma desteğine sahiptir. Daha fazlası için: [Pydantic Settings: Dotenv (.env) desteği](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | İpucu
 
-Bunun çalışması için `pip install python-dotenv` yapmanız gerekir.
+Bunun çalışması için `uv add python-dotenv` ile `python-dotenv` paketini projenize ekleyin.
 
 ///
 
@@ -198,7 +221,7 @@ Ardından `config.py` dosyanızı şöyle güncelleyin:
 
 /// tip | İpucu
 
-`model_config` attribute'u yalnızca Pydantic konfigürasyonu içindir. Daha fazlası için [Pydantic: Kavramlar: Konfigürasyon](https://docs.pydantic.dev/latest/concepts/config/).
+`model_config` attribute'u yalnızca Pydantic konfigürasyonu içindir. Daha fazlası için [Pydantic: Kavramlar: Konfigürasyon](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 

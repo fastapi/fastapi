@@ -6,41 +6,45 @@
 
 З цієї причини поширено надавати їх у змінних оточення, які зчитуються застосунком.
 
+**Змінна оточення** (також відома як **env var**) - це значення, яке існує поза кодом Python, в операційній системі, і може бути прочитане вашим застосунком та іншими програмами.
+
+Ви можете створити змінну оточення для команди під час її запуску. Нижче ви побачите команди для конкретних платформ.
+
 /// tip | Порада
 
-Щоб зрозуміти змінні оточення, ви можете прочитати [Змінні оточення](../environment-variables.md).
+Прочитайте [посібник зі змінних оточення](https://tiangolo.com/guides/environment-variables/) для докладного пояснення того, як працюють змінні оточення.
 
 ///
 
 ## Типи та перевірка { #types-and-validation }
 
-Ці змінні оточення можуть містити лише текстові строки, оскільки вони зовнішні до Python і мають бути сумісні з іншими програмами та рештою системи (і навіть з різними операційними системами, як-от Linux, Windows, macOS).
+Ці змінні оточення можуть містити лише текстові строки, оскільки вони зовнішні до Python і мають бути сумісні з іншими програмами та рештою системи (і навіть з різними операційними системами, як-от Linux, Windows і macOS).
 
 Це означає, що будь-яке значення, прочитане в Python зі змінної оточення, буде `str`, і будь-яке перетворення в інший тип або будь-яка перевірка мають виконуватися в коді.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-На щастя, Pydantic надає чудовий інструмент для обробки цих налаштувань із змінних оточення - [Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
+На щастя, Pydantic надає чудовий інструмент для обробки цих налаштувань із змінних оточення - [Pydantic: Settings management](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/).
 
 ### Встановіть `pydantic-settings` { #install-pydantic-settings }
 
-Спершу переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md), активували його, а потім встановили пакет `pydantic-settings`:
+Додайте пакет `pydantic-settings` до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-Він також входить у склад, якщо ви встановлюєте додаткові можливості «all» за допомогою:
+Він також входить у склад, якщо ви встановлюєте додаткові можливості `all` за допомогою:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -76,19 +80,39 @@ $ pip install "fastapi[all]"
 
 Далі ви б запустили сервер, передаючи конфігурації як змінні оточення, наприклад, ви можете встановити `ADMIN_EMAIL` і `APP_NAME` так:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | Порада
 
-Щоб встановити кілька змінних оточення для однієї команди, просто розділіть їх пробілами і розмістіть усі перед командою.
+У Bash, щоб встановити кілька змінних оточення для однієї команди, розділіть їх пробілом і розмістіть усі перед командою.
 
 ///
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic має підтримку читання з таких типів файлів за допомогою зовнішньої бібліотеки. Ви можете дізнатися більше тут: [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
+Pydantic має підтримку читання з таких типів файлів за допомогою зовнішньої бібліотеки. Ви можете дізнатися більше тут: [Pydantic Settings: Dotenv (.env) support](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Порада
 
-Щоб це працювало, потрібно виконати `pip install python-dotenv`.
+Щоб це працювало, додайте `python-dotenv` до вашого проєкту за допомогою `uv add python-dotenv`.
 
 ///
 
@@ -197,7 +221,7 @@ APP_NAME="ChimichangApp"
 
 /// tip | Порада
 
-Атрибут `model_config` використовується лише для конфігурації Pydantic. Докладніше: [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
+Атрибут `model_config` використовується лише для конфігурації Pydantic. Докладніше: [Pydantic: Concepts: Configuration](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 

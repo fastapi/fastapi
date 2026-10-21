@@ -6,7 +6,7 @@
 
 आपकी API को लगभग हमेशा **response** body भेजनी होती है। लेकिन clients को हर समय **request bodies** भेजने की ज़रूरत नहीं होती, कभी-कभी वे केवल एक path request करते हैं, शायद कुछ query parameters के साथ, लेकिन body नहीं भेजते।
 
-**request** body घोषित करने के लिए, आप [Pydantic](https://docs.pydantic.dev/) models का उनकी पूरी शक्ति और लाभों के साथ उपयोग करते हैं।
+**request** body घोषित करने के लिए, आप [Pydantic](https://pydantic.dev/docs/) models का उनकी पूरी शक्ति और लाभों के साथ उपयोग करते हैं।
 
 /// note | नोट
 

@@ -37,7 +37,7 @@ Middleware fonksiyonu şunları alır:
 
 Özel (proprietary) header'lar [`X-` prefix'i kullanılarak](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) eklenebilir, bunu aklınızda tutun.
 
-Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS konfigürasyonlarınıza ([CORS (Cross-Origin Resource Sharing)](cors.md)) eklemeniz gerekir. Bunun için, [Starlette'ın CORS dokümanlarında](https://www.starlette.dev/middleware/#corsmiddleware) belgelenen `expose_headers` parametresini kullanın.
+Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS konfigürasyonlarınıza ([CORS (Cross-Origin Resource Sharing)](cors.md)) eklemeniz gerekir. Bunun için, [Starlette'ın CORS dokümanlarında](https://starlette.dev/middleware/#corsmiddleware) belgelenen `expose_headers` parametresini kullanın.
 
 ///
 

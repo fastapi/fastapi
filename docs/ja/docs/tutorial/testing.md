@@ -1,6 +1,6 @@
 # テスト { #testing }
 
-[Starlette](https://www.starlette.dev/testclient/) のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
+[Starlette](https://starlette.dev/testclient/) のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
 
 [HTTPX](https://www.python-httpx.org) がベースで、さらにその設計は Requests をベースにしているため、とても馴染みがあり直感的です。
 
@@ -12,10 +12,10 @@
 
 `TestClient` を使用するには、まず [`httpx`](https://www.python-httpx.org) をインストールします。
 
-[仮想環境](../virtual-environments.md) を作成し、それを有効化してから、例えば以下のようにインストールしてください:
+プロジェクトに追加します:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -156,12 +156,12 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 その後、`pytest` をインストールするだけです。
 
-[仮想環境](../virtual-environments.md) を作成し、それを有効化してから、例えば以下のようにインストールしてください:
+プロジェクトに追加します:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ $ pip install pytest
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

@@ -41,6 +41,15 @@ def client_fixture() -> TestClient:
     async def create_pet_annotated(pet: Annotated[Pet, Body()]):
         return pet
 
+    @app.post("/pet/discriminator")
+    async def create_pet_discriminator(
+        pet: Annotated[
+            Annotated[Cat, Tag("cat")] | Annotated[Dog, Tag("dog")],
+            Body(discriminator=Discriminator(get_pet_type)),
+        ],
+    ):
+        return pet
+
     client = TestClient(app)
     return client
 
@@ -55,6 +64,16 @@ def test_union_body_discriminator_annotated(client: TestClient) -> None:
     response = client.post("/pet/annotated", json={"pet_type": "dog", "barks": 3.5})
     assert response.status_code == 200, response.text
     assert response.json() == {"pet_type": "dog", "barks": 3.5}
+
+
+@pytest.mark.parametrize(
+    "pet",
+    [{"pet_type": "cat", "meows": 5}, {"pet_type": "dog", "barks": 3.5}],
+)
+def test_union_body_discriminator_parameter(client: TestClient, pet) -> None:
+    response = client.post("/pet/discriminator", json=pet)
+    assert response.status_code == 200
+    assert response.json() == pet
 
 
 def test_openapi_schema(client: TestClient) -> None:
@@ -105,6 +124,42 @@ def test_openapi_schema(client: TestClient) -> None:
                     "post": {
                         "summary": "Create Pet Annotated",
                         "operationId": "create_pet_annotated_pet_annotated_post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "oneOf": [
+                                            {"$ref": "#/components/schemas/Cat"},
+                                            {"$ref": "#/components/schemas/Dog"},
+                                        ],
+                                        "title": "Pet",
+                                    }
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {"application/json": {"schema": {}}},
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    }
+                },
+                "/pet/discriminator": {
+                    "post": {
+                        "summary": "Create Pet Discriminator",
+                        "operationId": "create_pet_discriminator_pet_discriminator_post",
                         "requestBody": {
                             "content": {
                                 "application/json": {

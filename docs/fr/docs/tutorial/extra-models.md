@@ -166,7 +166,7 @@ Pour ce faire, utilisez l'annotation de type Python standard [`typing.Union`](ht
 
 /// note | Remarque
 
-Lors de la définition d'une [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions), incluez d'abord le type le plus spécifique, suivi du type le moins spécifique. Dans l'exemple ci-dessous, le type le plus spécifique `PlaneItem` précède `CarItem` dans `Union[PlaneItem, CarItem]`.
+Lors de la définition d'une [`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/), incluez d'abord le type le plus spécifique, suivi du type le moins spécifique. Dans l'exemple ci-dessous, le type le plus spécifique `PlaneItem` précède `CarItem` dans `Union[PlaneItem, CarItem]`.
 
 ///
 

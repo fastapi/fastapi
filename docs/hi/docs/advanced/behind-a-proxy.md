@@ -33,7 +33,7 @@ Proxy headers हैं:
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -170,7 +170,7 @@ Docs UI को OpenAPI schema में यह declare करने की भ�
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ ASGI specification इस use case के लिए `root_path` define करत
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Uvicorn अपेक्षा करेगा कि proxy Uvicorn को `http:
 
 आप [Traefik](https://docs.traefik.io/) का उपयोग करके stripped path prefix के साथ experiment आसानी से locally चला सकते हैं।
 
-[Traefik download करें](https://github.com/containous/traefik/releases), यह एक single binary है, आप compressed file extract कर सकते हैं और इसे सीधे terminal से चला सकते हैं।
+[Traefik download करें](https://github.com/traefik/traefik/releases), यह एक single binary है, आप compressed file extract कर सकते हैं और इसे सीधे terminal से चला सकते हैं।
 
 फिर `traefik.toml` नाम की file बनाएँ जिसमें यह हो:
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

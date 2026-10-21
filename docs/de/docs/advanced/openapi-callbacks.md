@@ -35,7 +35,7 @@ Dieser Teil ist ziemlich normal, der größte Teil des Codes ist Ihnen wahrschei
 
 /// tip | Tipp
 
-Der Query-Parameter `callback_url` verwendet einen Pydantic-[Url](https://docs.pydantic.dev/latest/api/networks/)-Typ.
+Der Query-Parameter `callback_url` verwendet einen Pydantic-[Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/)-Typ.
 
 ///
 
@@ -106,11 +106,11 @@ Sie sollte wie eine normale FastAPI-*Pfadoperation* aussehen:
 Es gibt zwei Hauptunterschiede zu einer normalen *Pfadoperation*:
 
 * Es muss kein tatsächlicher Code vorhanden sein, da Ihre Anwendung diesen Code niemals aufruft. Sie wird nur zur Dokumentation der *externen API* verwendet. Die Funktion könnte also einfach `pass` enthalten.
-* Der *Pfad* kann einen [OpenAPI-3-Ausdruck](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) enthalten (mehr dazu weiter unten), wo er Variablen mit Parametern und Teilen des ursprünglichen Requests verwenden kann, der an *Ihre API* gesendet wurde.
+* Der *Pfad* kann einen [OpenAPI-3-Ausdruck](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) enthalten (mehr dazu weiter unten), wo er Variablen mit Parametern und Teilen des ursprünglichen Requests verwenden kann, der an *Ihre API* gesendet wurde.
 
 ### Der Callback-Pfadausdruck { #the-callback-path-expression }
 
-Der Callback-*Pfad* kann einen [OpenAPI-3-Ausdruck](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) enthalten, welcher Teile des ursprünglichen Requests enthalten kann, der an *Ihre API* gesendet wurde.
+Der Callback-*Pfad* kann einen [OpenAPI-3-Ausdruck](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) enthalten, welcher Teile des ursprünglichen Requests enthalten kann, der an *Ihre API* gesendet wurde.
 
 In diesem Fall ist es der `str`:
 

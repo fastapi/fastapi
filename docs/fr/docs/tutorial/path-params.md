@@ -36,7 +36,7 @@ Si vous exécutez cet exemple et ouvrez votre navigateur sur [http://127.0.0.1:8
 
 /// tip | Astuce
 
-Remarquez que la valeur reçue par votre fonction (et renvoyée) est `3`, en tant qu'entier (`int`) Python, pas la chaîne de caractères « 3 ».
+Remarquez que la valeur reçue par votre fonction (et renvoyée) est `3`, en tant qu'entier (`int`) Python, pas une chaîne de caractères `"3"`.
 
 Ainsi, avec cette déclaration de type, **FastAPI** vous fournit automatiquement le <dfn title="conversion de la chaîne de caractères provenant d'une requête HTTP en données Python">« parsing »</dfn> de la requête.
 
@@ -62,7 +62,7 @@ Mais si vous allez dans le navigateur sur [http://127.0.0.1:8000/items/foo](http
 }
 ```
 
-car le paramètre de chemin `item_id` a pour valeur « foo », qui n'est pas un `int`.
+car le paramètre de chemin `item_id` a pour valeur `"foo"`, qui n'est pas un `int`.
 
 La même erreur apparaîtrait si vous fournissiez un `float` au lieu d'un `int`, comme ici : [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
@@ -92,7 +92,7 @@ Remarquez que le paramètre de chemin est déclaré comme entier.
 
 ## Les avantages d'une norme, documentation alternative { #standards-based-benefits-alternative-documentation }
 
-Et comme le schéma généré suit la norme [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md), il existe de nombreux outils compatibles.
+Et comme le schéma généré suit la norme [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md), il existe de nombreux outils compatibles.
 
 Grâce à cela, **FastAPI** fournit lui-même une documentation d'API alternative (utilisant ReDoc), accessible sur [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) :
 
@@ -102,7 +102,7 @@ De la même façon, il existe de nombreux outils compatibles, y compris des outi
 
 ## Pydantic { #pydantic }
 
-Toute la validation de données est effectuée sous le capot par [Pydantic](https://docs.pydantic.dev/), vous en bénéficiez donc pleinement. Vous savez ainsi que vous êtes entre de bonnes mains.
+Toute la validation de données est effectuée sous le capot par [Pydantic](https://pydantic.dev/docs/), vous en bénéficiez donc pleinement. Vous savez ainsi que vous êtes entre de bonnes mains.
 
 Vous pouvez utiliser les mêmes déclarations de type avec `str`, `float`, `bool` et de nombreux autres types de données complexes.
 
@@ -120,7 +120,7 @@ Comme les *chemins d'accès* sont évalués dans l'ordre, vous devez vous assure
 
 {* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
 
-Sinon, le chemin `/users/{user_id}` correspondrait aussi à `/users/me`, « pensant » qu'il reçoit un paramètre `user_id` avec la valeur « me ».
+Sinon, le chemin `/users/{user_id}` correspondrait aussi à `/users/me`, « pensant » qu'il reçoit un paramètre `user_id` avec la valeur `"me"`.
 
 De même, vous ne pouvez pas redéfinir un chemin d'accès :
 
@@ -154,7 +154,7 @@ Créez ensuite un *paramètre de chemin* avec une annotation de type utilisant l
 
 {* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
 
-### Consulter la documentation { #check-the-docs }
+### Consultez les documents { #check-the-docs }
 
 Comme les valeurs disponibles pour le *paramètre de chemin* sont prédéfinies, la documentation interactive peut les afficher clairement :
 
@@ -178,7 +178,7 @@ Vous pouvez obtenir la valeur réelle (une `str` dans ce cas) avec `model_name.v
 
 /// tip | Astuce
 
-Vous pouvez aussi accéder à la valeur « lenet » avec `ModelName.lenet.value`.
+Vous pouvez aussi accéder à la valeur `"lenet"` avec `ModelName.lenet.value`.
 
 ///
 
@@ -205,7 +205,7 @@ Disons que vous avez un *chemin d'accès* avec un chemin `/files/{file_path}`.
 
 Mais vous avez besoin que `file_path` lui-même contienne un *chemin*, comme `home/johndoe/myfile.txt`.
 
-Ainsi, l'URL pour ce fichier serait : `/files/home/johndoe/myfile.txt`.
+Ainsi, l'URL pour ce fichier serait quelque chose comme : `/files/home/johndoe/myfile.txt`.
 
 ### Support d'OpenAPI { #openapi-support }
 
@@ -244,7 +244,7 @@ Avec **FastAPI**, en utilisant des déclarations de type Python courtes, intuiti
 * Support de l'éditeur : vérifications d'erreurs, autocomplétion, etc.
 * Données « <dfn title="conversion de la chaîne de caractères provenant d'une requête HTTP en données Python">parsing</dfn> »
 * Validation de données
-* Annotations d'API et documentation automatique
+* Annotation d'API et documentation automatique
 
 Et vous n'avez besoin de les déclarer qu'une seule fois.
 

@@ -107,7 +107,13 @@ or
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
+or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`.
+
+Values such as `0`, `false`, `off`, and `no` (including case variations) are converted to `False`.
+
+If `short` is omitted, **FastAPI** uses its default value, which is `False` in this example.
+
+An empty value (`?short=`) or an unrecognized value (for example, `?short=maybe`) produces a `422` validation error.
 
 
 ## Multiple path and query parameters { #multiple-path-and-query-parameters }

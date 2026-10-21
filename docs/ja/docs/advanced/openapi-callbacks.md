@@ -35,7 +35,7 @@
 
 /// tip | 豆知識
 
-`callback_url` クエリパラメータは、Pydantic の [Url](https://docs.pydantic.dev/latest/api/networks/) 型を使用します。
+`callback_url` クエリパラメータは、Pydantic の [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) 型を使用します。
 
 ///
 
@@ -106,11 +106,11 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 通常の *path operation* と異なる主な点が 2 つあります:
 
 * 実際のコードは不要です。あなたのアプリはこのコードを決して呼びません。これは *外部 API* をドキュメント化するためだけに使われます。したがって、関数本体は `pass` で構いません。
-* *パス* には、*あなたの API* に送られた元のリクエストのパラメータや一部を変数として使える [OpenAPI 3 の式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)（後述）を含められます。
+* *パス* には、*あなたの API* に送られた元のリクエストのパラメータや一部を変数として使える [OpenAPI 3 の式](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)（後述）を含められます。
 
 ### コールバックのパス式 { #the-callback-path-expression }
 
-コールバックの *パス* には、*あなたの API* に送られた元のリクエストの一部を含められる [OpenAPI 3 の式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)を使用できます。
+コールバックの *パス* には、*あなたの API* に送られた元のリクエストの一部を含められる [OpenAPI 3 の式](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)を使用できます。
 
 この例では、`str` は次のとおりです:
 

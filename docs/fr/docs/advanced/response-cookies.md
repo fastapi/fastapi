@@ -1,6 +1,5 @@
 # Cookies de réponse { #response-cookies }
 
-
 ## Utiliser un paramètre `Response` { #use-a-response-parameter }
 
 Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de chemin d'accès*.
@@ -49,4 +48,4 @@ Et comme `Response` peut être utilisé fréquemment pour définir des en-têtes
 
 ///
 
-Pour voir tous les paramètres et options disponibles, consultez la [documentation de Starlette](https://www.starlette.dev/responses/#set-cookie).
+Pour voir tous les paramètres et options disponibles, consultez la [documentation de Starlette](https://starlette.dev/responses/#set-cookie).

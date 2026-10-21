@@ -2,7 +2,7 @@
 
 Python prend en charge des « annotations de type » (aussi appelées « type hints ») facultatives.
 
-Ces **« annotations de type »** sont une syntaxe spéciale qui permet de déclarer le <dfn title="par exemple : str, int, float, bool">type</dfn> d'une variable.
+Ces **« annotations de type »**, ou annotations, sont une syntaxe spéciale qui permet de déclarer le <dfn title="par exemple : str, int, float, bool">type</dfn> d'une variable.
 
 En déclarant les types de vos variables, les éditeurs et outils peuvent vous offrir un meilleur support.
 
@@ -269,7 +269,7 @@ Cela ne signifie pas « `one_person` est la **classe** appelée `Person` ».
 
 ## Modèles Pydantic { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) est une bibliothèque Python pour effectuer de la validation de données.
+[Pydantic](https://pydantic.dev/docs/) est une bibliothèque Python pour effectuer de la validation de données.
 
 Vous déclarez la « forme » de la donnée sous forme de classes avec des attributs.
 
@@ -285,7 +285,7 @@ Un exemple tiré des documents officiels de Pydantic :
 
 /// note | Remarque
 
-Pour en savoir plus à propos de [Pydantic, consultez ses documents](https://docs.pydantic.dev/).
+Pour en savoir plus à propos de [Pydantic, consultez ses documents](https://pydantic.dev/docs/).
 
 ///
 

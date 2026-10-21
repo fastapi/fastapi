@@ -12,7 +12,7 @@
 
 对于 **TypeScript 客户端**，[Hey API](https://heyapi.dev/) 是为 TypeScript 生态打造的专用方案，提供优化的使用体验。
 
-你还可以在 [OpenAPI.Tools](https://openapi.tools/#sdk) 上发现更多 SDK 生成器。
+你还可以在 [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) 上发现更多 SDK 生成器。
 
 /// tip | 提示
 

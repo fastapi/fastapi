@@ -48,4 +48,4 @@
 
 ///
 
-Щоб побачити всі доступні параметри та опції, перегляньте [документацію в Starlette](https://www.starlette.dev/responses/#set-cookie).
+Щоб побачити всі доступні параметри та опції, перегляньте [документацію в Starlette](https://starlette.dev/responses/#set-cookie).

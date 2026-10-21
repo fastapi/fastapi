@@ -12,7 +12,7 @@
 
 針對 **TypeScript 用戶端**，[Hey API](https://heyapi.dev/) 是專門打造的解決方案，為 TypeScript 生態系提供最佳化的體驗。
 
-你可以在 [OpenAPI.Tools](https://openapi.tools/#sdk) 找到更多 SDK 產生器。
+你可以在 [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) 找到更多 SDK 產生器。
 
 /// tip
 
@@ -179,9 +179,9 @@ npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 
 使用自動產生的用戶端時，你會得到以下項目的**自動完成**：
 
-* 方法
-* Body 中的請求有效載荷、查詢參數等
-* 回應的有效載荷
+* 方法。
+* Body 中的請求有效載荷、查詢參數等。
+* 回應的有效載荷。
 
 你也會對所有內容獲得**行內錯誤**提示。
 

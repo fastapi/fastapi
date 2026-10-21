@@ -63,10 +63,9 @@ def test_header_param_model_invalid(client: TestClient):
             "detail": [
                 {
                     "type": "missing",
-                    "loc": ["header", "save_data"],
+                    "loc": ["header", "save-data"],
                     "msg": "Field required",
                     "input": {
-                        "x_tag": [],
                         "host": "testserver",
                         "accept": "*/*",
                         "accept-encoding": IsOneOf(

@@ -66,7 +66,7 @@
 
 创建一个新的 `Request` 实例需要这两样：`scope` 和 `receive`。
 
-想了解更多关于 `Request` 的信息，请查看 [Starlette 的 Request 文档](https://www.starlette.dev/requests/)。
+想了解更多关于 `Request` 的信息，请查看 [Starlette 的 Request 文档](https://starlette.dev/requests/)。
 
 ///
 

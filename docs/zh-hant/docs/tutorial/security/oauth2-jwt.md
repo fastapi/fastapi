@@ -30,12 +30,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 我們需要安裝 `PyJWT` 才能在 Python 中產生與驗證 JWT 權杖。
 
-請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，然後安裝 `pyjwt`：
+將 `pyjwt` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ pwdlib 是一個很棒的 Python 套件，用來處理密碼雜湊。
 
 建議使用的演算法是「Argon2」。
 
-請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，然後以 Argon2 支援安裝 pwdlib：
+將帶有 Argon2 的 `pwdlib` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```

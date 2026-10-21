@@ -8,12 +8,12 @@ Starlette によって提供され、**FastAPI** アプリで直接使える、�
 
 ## 依存関係のインストール { #install-dependencies }
 
-[仮想環境](../virtual-environments.md) を作成して有効化し、`jinja2` をインストールします:
+プロジェクトに `jinja2` を追加します:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -24,7 +24,7 @@ $ pip install jinja2
 
 * `Jinja2Templates` をインポートします。
 * 後で再利用できる `templates` オブジェクトを作成します。
-* テンプレートを返す path operation に `Request` パラメータを宣言します。
+* テンプレートを返す *path operation* に `Request` パラメータを宣言します。
 * 作成した `templates` を使って `TemplateResponse` をレンダリングして返します。テンプレート名、リクエストオブジェクト、Jinja2 テンプレート内で使用するキーと値のペアからなる "context" の辞書を渡します。
 
 {* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
@@ -85,7 +85,7 @@ Item ID: 42
 
 ### テンプレートの `url_for` の引数 { #template-url-for-arguments }
 
-テンプレート内でも `url_for()` を使用できます。引数には、対応する path operation 関数で使われるのと同じ引数を取ります。
+テンプレート内でも `url_for()` を使用できます。引数には、対応する *path operation 関数* で使われるのと同じ引数を取ります。
 
 したがって、次の部分は:
 
@@ -97,7 +97,7 @@ Item ID: 42
 
 {% endraw %}
 
-...path operation 関数 `read_item(id=id)` が処理するのと同じ URL へのリンクを生成します。
+...*path operation 関数* `read_item(id=id)` が処理するのと同じ URL へのリンクを生成します。
 
 例えば、ID が `42` の場合は次のようにレンダリングされます:
 
@@ -123,4 +123,4 @@ Item ID: 42
 
 ## さらに詳しく { #more-details }
 
-より詳しい内容（テンプレートのテスト方法など）については、[Starlette のテンプレートに関するドキュメント](https://www.starlette.dev/templates/)を参照してください。
+より詳しい内容（テンプレートのテスト方法など）については、[Starlette のテンプレートに関するドキュメント](https://starlette.dev/templates/)を参照してください。

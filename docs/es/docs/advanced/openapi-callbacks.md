@@ -35,7 +35,7 @@ Esta parte es bastante normal, probablemente ya estés familiarizado con la mayo
 
 /// tip | Consejo
 
-El parámetro de query `callback_url` utiliza un tipo [Url](https://docs.pydantic.dev/latest/api/networks/) de Pydantic.
+El parámetro de query `callback_url` utiliza un tipo [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) de Pydantic.
 
 ///
 
@@ -106,11 +106,11 @@ Debería verse como una *path operation* normal de FastAPI:
 Hay 2 diferencias principales respecto a una *path operation* normal:
 
 * No necesita tener ningún código real, porque tu aplicación nunca llamará a este código. Solo se usa para documentar la *API externa*. Así que, la función podría simplemente tener `pass`.
-* El *path* puede contener una [expresión OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (ver más abajo) donde puede usar variables con parámetros y partes del request original enviado a *tu API*.
+* El *path* puede contener una [expresión OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (ver más abajo) donde puede usar variables con parámetros y partes del request original enviado a *tu API*.
 
 ### La expresión del path del callback { #the-callback-path-expression }
 
-El *path* del callback puede tener una [expresión OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) que puede contener partes del request original enviado a *tu API*.
+El *path* del callback puede tener una [expresión OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) que puede contener partes del request original enviado a *tu API*.
 
 En este caso, es el `str`:
 
@@ -165,7 +165,7 @@ Observa cómo la URL del callback utilizada contiene la URL recibida como parám
 
 ### Agrega el router de callback { #add-the-callback-router }
 
-En este punto tienes las *path operation(s)* del callback necesarias (las que el *desarrollador externo* debería implementar en la *API externa*) en el router de callback que creaste arriba.
+En este punto tienes las *callback path operation(s)* necesarias (las que el *desarrollador externo* debería implementar en la *API externa*) en el router de callback que creaste arriba.
 
 Ahora usa el parámetro `callbacks` en el *decorador de path operation de tu API* para pasar el atributo `.routes` de ese router de callback:
 

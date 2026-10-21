@@ -110,7 +110,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">“我们采用了 <strong>FastAPI</strong> 库来启动一个可查询获取<strong>预测结果</strong>的 <strong>REST</strong> 服务器。” <em>[用于 Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino，Yaroslav Dudin，Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(参考)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino，Yaroslav Dudin，Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(参考)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">“<strong>Netflix</strong> 很高兴宣布开源我们的<strong>危机管理</strong>编排框架：<strong>Dispatch</strong>！” <em>[使用 FastAPI 构建]</em></blockquote>
@@ -133,7 +133,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
 
 「_我们采用 **FastAPI** 库来启动一个可查询以获取**预测结果**的 **REST** 服务器。[用于 Ludwig]_」
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino，Yaroslav Dudin，Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(参考)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino，Yaroslav Dudin，Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(参考)</small></a></div>
 
 ---
 
@@ -150,12 +150,6 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
 ---
 
 </div>
-
-## FastAPI 大会 { #fastapi-conf }
-
-[**FastAPI Conf '26**](https://fastapiconf.com) 将于 **2026 年 10 月 28 日** 在 **荷兰阿姆斯特丹** 举行。来自源头的 FastAPI 干货。🎤
-
-<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - 2026 年 10 月 28 日 - 荷兰阿姆斯特丹"></a>
 
 ## FastAPI 迷你纪录片 { #fastapi-mini-documentary }
 
@@ -175,17 +169,17 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
 
 FastAPI 站在巨人的肩膀之上：
 
-* [Starlette](https://www.starlette.dev/) 负责 Web 部分。
-* [Pydantic](https://docs.pydantic.dev/) 负责数据部分。
+* [Starlette](https://starlette.dev/) 负责 Web 部分。
+* [Pydantic](https://pydantic.dev/docs/) 负责数据部分。
 
 ## 安装 { #installation }
 
-创建并激活一个 [虚拟环境](https://fastapi.tiangolo.com/zh/virtual-environments/)，然后安装 FastAPI：
+首先，[安装 `uv`](https://docs.astral.sh/uv/getting-started/installation/)，然后将 FastAPI 添加到你的项目中：
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -193,6 +187,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **注意**: 请确保把 `"fastapi[standard]"` 用引号包起来，以保证在所有终端中都能正常工作。
+
+如果你更喜欢使用 `pip`，请在虚拟环境中安装 `fastapi[standard]`。请参阅[安装指南](tutorial/#install-fastapi)了解替代步骤。
 
 ## 示例 { #example }
 
@@ -250,7 +246,7 @@ async def read_item(item_id: int, q: str | None = None):
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -277,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>关于命令 <code>fastapi dev</code>...</summary>
 
-`fastapi dev` 命令会读取你的 `main.py` 文件，检测其中的 **FastAPI** 应用，并使用 [Uvicorn](https://www.uvicorn.dev) 启动服务器。
+`fastapi dev` 命令会自动读取你的 `main.py` 文件，检测其中的 **FastAPI** 应用，并使用 [Uvicorn](https://uvicorn.dev) 启动服务器。
 
 默认情况下，`fastapi dev` 会在本地开发时启用自动重载。
 
@@ -314,7 +310,7 @@ INFO:     Application startup complete.
 
 然后访问 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你会看到另一个自动生成的文档（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你会看到另一个自动生成的文档（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -497,7 +493,7 @@ item: Item
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -520,7 +516,7 @@ CLI 会自动检测你的 FastAPI 应用并将其部署到云端。如果你尚�
 
 它把用 FastAPI 构建应用时的**开发者体验**带到了部署到云上的过程。🎉
 
-FastAPI Cloud 是「FastAPI and friends」开源项目的主要赞助方和资金提供者。✨
+FastAPI Cloud 是 *FastAPI and friends* 开源项目的主要赞助方和资金提供者。✨
 
 #### 部署到其他云厂商 { #deploy-to-other-cloud-providers }
 
@@ -540,7 +536,7 @@ FastAPI 依赖 Pydantic 和 Starlette。
 
 ### `standard` 依赖 { #standard-dependencies }
 
-当你通过 `pip install "fastapi[standard]"` 安装 FastAPI 时，会包含 `standard` 组的一些可选依赖：
+当你通过 `uv add "fastapi[standard]"` 安装 FastAPI 时，会包含 `standard` 组的一些可选依赖：
 
 Pydantic 使用：
 
@@ -554,17 +550,17 @@ Starlette 使用：
 
 FastAPI 使用：
 
-* [`uvicorn`](https://www.uvicorn.dev) - 加载并提供你的应用的服务器。包含 `uvicorn[standard]`，其中包含高性能服务所需的一些依赖（例如 `uvloop`）。
+* [`uvicorn`](https://uvicorn.dev) - 加载并提供你的应用的服务器。包含 `uvicorn[standard]`，其中包含高性能服务所需的一些依赖（例如 `uvloop`）。
 * `fastapi-cli[standard]` - 提供 `fastapi` 命令。
     * 其中包含 `fastapi-cloud-cli`，它允许你将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)。
 
 ### 不包含 `standard` 依赖 { #without-standard-dependencies }
 
-如果你不想包含这些 `standard` 可选依赖，可以使用 `pip install fastapi`，而不是 `pip install "fastapi[standard]"`。
+如果你不想包含这些 `standard` 可选依赖，可以使用 `uv add fastapi`，而不是 `uv add "fastapi[standard]"`。
 
 ### 不包含 `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
-如果你想安装带有 standard 依赖但不包含 `fastapi-cloud-cli` 的 FastAPI，可以使用 `pip install "fastapi[standard-no-fastapi-cloud-cli]"`。
+如果你想安装带有 standard 依赖但不包含 `fastapi-cloud-cli` 的 FastAPI，可以使用 `uv add "fastapi[standard-no-fastapi-cloud-cli]"`。
 
 ### 其他可选依赖 { #additional-optional-dependencies }
 
@@ -572,13 +568,13 @@ FastAPI 使用：
 
 额外的 Pydantic 可选依赖：
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - 用于配置管理。
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - 用于在 Pydantic 中使用的额外类型。
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - 用于配置管理。
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - 用于在 Pydantic 中使用的额外类型。
 
 额外的 FastAPI 可选依赖：
 
 * [`orjson`](https://github.com/ijl/orjson) - 使用 `ORJSONResponse` 时需要。
-* [`ujson`](https://github.com/esnme/ultrajson) - 使用 `UJSONResponse` 时需要。
+* [`ujson`](https://github.com/ultrajson/ultrajson) - 使用 `UJSONResponse` 时需要。
 
 ## 许可协议 { #license }
 

@@ -370,11 +370,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 그런 경우에는 일반적인 검증(예: 값이 `str`인지 검증한 뒤) 이후에 적용되는 **커스텀 검증 함수**를 사용할 수 있습니다.
 
-`Annotated` 안에서 [Pydantic의 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator)를 사용하면 이를 구현할 수 있습니다.
+`Annotated` 안에서 [Pydantic의 `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator)를 사용하면 이를 구현할 수 있습니다.
 
 /// tip | 팁
 
-Pydantic에는 [BeforeValidator](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator)와 같은 다른 것들도 있습니다. 🤓
+Pydantic에는 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator)와 같은 다른 것들도 있습니다. 🤓
 
 ///
 

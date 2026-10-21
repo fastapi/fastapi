@@ -21,7 +21,7 @@
 * [Strawberry](https://strawberry.rocks/) 🍓
     * 提供 [FastAPI 文件](https://strawberry.rocks/docs/integrations/fastapi)
 * [Ariadne](https://ariadnegraphql.org/)
-    * 提供 [FastAPI 文件](https://ariadnegraphql.org/docs/fastapi-integration)
+    * 提供 [FastAPI 文件](https://ariadnegraphql.org/server/Integrations/fastapi-integration)
 * [Tartiflette](https://tartiflette.io/)
     * 使用 [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) 提供 ASGI 整合
 * [Graphene](https://graphene-python.org/)

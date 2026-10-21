@@ -45,4 +45,4 @@ Bu parametrelerin hepsi "`static`" ile aynı olmak zorunda değildir; kendi uygu
 
 ## Daha Fazla Bilgi { #more-info }
 
-Daha fazla detay ve seçenek için [Starlette'in Statik Dosyalar hakkındaki dokümanlarını](https://www.starlette.dev/staticfiles/) inceleyin.
+Daha fazla detay ve seçenek için [Starlette'in Statik Dosyalar hakkındaki dokümanlarını](https://starlette.dev/staticfiles/) inceleyin.

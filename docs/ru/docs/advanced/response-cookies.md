@@ -1,6 +1,5 @@
 # Cookies в ответе { #response-cookies }
 
-
 ## Использование параметра `Response` { #use-a-response-parameter }
 
 Вы можете объявить параметр типа `Response` в вашей функции-обработчике пути.
@@ -19,7 +18,7 @@
 
 ## Возвращение `Response` напрямую { #return-a-response-directly }
 
-Вы также можете установить Cookies, если возвращаете `Response` напрямую в вашем коде.
+Вы также можете создать cookies, если возвращаете `Response` напрямую в вашем коде.
 
 Для этого создайте объект `Response`, как описано в разделе [Возвращение ответа напрямую](response-directly.md).
 
@@ -49,4 +48,4 @@
 
 ///
 
-Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с [документацией Starlette](https://www.starlette.dev/responses/#set-cookie).
+Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с [документацией Starlette](https://starlette.dev/responses/#set-cookie).

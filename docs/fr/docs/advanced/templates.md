@@ -8,12 +8,12 @@ Il existe des utilitaires pour le configurer facilement que vous pouvez utiliser
 
 ## Installer les dépendances { #install-dependencies }
 
-Vous devez créer un [environnement virtuel](../virtual-environments.md), l'activer, puis installer `jinja2` :
+Ajoutez `jinja2` à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -22,10 +22,10 @@ $ pip install jinja2
 
 ## Utiliser `Jinja2Templates` { #using-jinja2templates }
 
-- Importez `Jinja2Templates`.
-- Créez un objet `templates` que vous pourrez réutiliser par la suite.
-- Déclarez un paramètre `Request` dans le *chemin d'accès* qui renverra un template.
-- Utilisez l'objet `templates` que vous avez créé pour rendre et retourner une `TemplateResponse`, en transmettant le nom du template, l'objet de requête et un dictionnaire de « context » avec des paires clé-valeur à utiliser dans le template Jinja2.
+* Importez `Jinja2Templates`.
+* Créez un objet `templates` que vous pourrez réutiliser par la suite.
+* Déclarez un paramètre `Request` dans le *chemin d'accès* qui renverra un template.
+* Utilisez l'objet `templates` que vous avez créé pour rendre et retourner une `TemplateResponse`, en transmettant le nom du template, l'objet de requête et un dictionnaire de « context » avec des paires clé-valeur à utiliser dans le template Jinja2.
 
 {* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
@@ -123,4 +123,4 @@ Et comme vous utilisez `StaticFiles`, ce fichier CSS est servi automatiquement p
 
 ## En savoir plus { #more-details }
 
-Pour plus de détails, y compris sur la façon de tester des templates, consultez [la documentation de Starlette sur les templates](https://www.starlette.dev/templates/).
+Pour plus de détails, y compris sur la façon de tester des templates, consultez [la documentation de Starlette sur les templates](https://starlette.dev/templates/).

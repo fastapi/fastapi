@@ -1,6 +1,5 @@
 # 커스텀 Request 및 APIRoute 클래스 { #custom-request-and-apiroute-class }
 
-
 일부 경우에는 `Request`와 `APIRoute` 클래스에서 사용되는 로직을 오버라이드하고 싶을 수 있습니다.
 
 특히, 이는 middleware에 있는 로직의 좋은 대안이 될 수 있습니다.
@@ -67,7 +66,7 @@
 
 그리고 이 두 가지, `scope`와 `receive`가 새로운 `Request` 인스턴스를 만드는 데 필요한 것들입니다.
 
-`Request`에 대해 더 알아보려면 [Starlette의 Requests 문서](https://www.starlette.dev/requests/)를 확인하세요.
+`Request`에 대해 더 알아보려면 [Starlette의 Requests 문서](https://starlette.dev/requests/)를 확인하세요.
 
 ///
 

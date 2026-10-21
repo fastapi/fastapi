@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic-модели { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) — это библиотека Python для валидации данных.
+[Pydantic](https://pydantic.dev/docs/) — это библиотека Python для валидации данных.
 
 Вы объявляете «форму» данных как классы с атрибутами.
 
@@ -285,7 +285,7 @@ def some_function(data: Any):
 
 /// note | Примечание
 
-Чтобы узнать больше о [Pydantic, ознакомьтесь с его документацией](https://docs.pydantic.dev/).
+Чтобы узнать больше о [Pydantic, ознакомьтесь с его документацией](https://pydantic.dev/docs/).
 
 ///
 

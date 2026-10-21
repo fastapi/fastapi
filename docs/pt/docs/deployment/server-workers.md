@@ -9,9 +9,9 @@ Vamos rever os conceitos de implantação anteriores:
 * Memória
 * Etapas anteriores antes de iniciar
 
-Até este ponto, com todos os tutoriais nos documentos, você provavelmente estava executando um **programa de servidor**, por exemplo, usando o comando `fastapi`, que executa o Uvicorn, executando um **único processo**.
+Até este ponto, com todos os tutoriais na documentação, você provavelmente estava executando um **programa de servidor**, por exemplo, usando o comando `fastapi`, que executa o Uvicorn, executando um **único processo**.
 
-Ao implantar aplicativos, você provavelmente desejará ter alguma **replicação de processos** para aproveitar **vários núcleos** e poder lidar com mais solicitações.
+Ao implantar aplicativos, você provavelmente desejará ter alguma **replicação de processos** para aproveitar **vários núcleos** e poder lidar com mais requests.
 
 Como você viu no capítulo anterior sobre [Conceitos de implantação](concepts.md), há várias estratégias que você pode usar.
 
@@ -21,7 +21,7 @@ Aqui mostrarei como usar o **Uvicorn** com **processos de trabalho** usando o co
 
 Se você estiver usando contêineres, por exemplo com Docker ou Kubernetes, falarei mais sobre isso no próximo capítulo: [FastAPI em contêineres - Docker](docker.md).
 
-Em particular, ao executar no **Kubernetes** você provavelmente **não** vai querer usar vários trabalhadores e, em vez disso, executar **um único processo Uvicorn por contêiner**, mas falarei sobre isso mais adiante neste capítulo.
+Em particular, ao executar no **Kubernetes** você provavelmente **não** vai querer usar trabalhadores e, em vez disso, executar **um único processo Uvicorn por contêiner**, mas falarei sobre isso mais adiante naquele capítulo.
 
 ///
 
@@ -86,7 +86,7 @@ Se você preferir usar o comando `uvicorn` diretamente:
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
+$ uv run uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 <font color="#A6E22E">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8080</b> (Press CTRL+C to quit)
 <font color="#A6E22E">INFO</font>:     Started parent process [<font color="#A1EFE4"><b>27365</b></font>]
 <font color="#A6E22E">INFO</font>:     Started server process [<font color="#A1EFE4">27368</font>]
@@ -113,7 +113,7 @@ Você também pode ver que ele mostra o **PID** de cada processo, `27365` para o
 
 ## Conceitos de Implantação { #deployment-concepts }
 
-Aqui você viu como usar vários **trabalhadores** para **paralelizar** a execução do aplicativo, aproveitar **vários núcleos** na CPU e conseguir atender **mais solicitações**.
+Aqui você viu como usar vários **trabalhadores** para **paralelizar** a execução do aplicativo, aproveitar **vários núcleos** na CPU e conseguir atender **mais requests**.
 
 Da lista de conceitos de implantação acima, o uso de trabalhadores ajudaria principalmente com a parte da **replicação** e um pouco com as **reinicializações**, mas você ainda precisa cuidar dos outros:
 

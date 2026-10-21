@@ -38,4 +38,4 @@
 
 ध्यान रखें कि custom proprietary headers को [`X-` prefix का उपयोग करके](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) जोड़ा जा सकता है।
 
-लेकिन अगर आपके पास custom headers हैं जिन्हें आप चाहते हैं कि browser में कोई client देख सके, तो आपको उन्हें अपनी CORS configurations में जोड़ना होगा ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) में और पढ़ें), इसके लिए [Starlette के CORS docs](https://www.starlette.dev/middleware/#corsmiddleware) में documented parameter `expose_headers` का उपयोग करें।
+लेकिन अगर आपके पास custom headers हैं जिन्हें आप चाहते हैं कि browser में कोई client देख सके, तो आपको उन्हें अपनी CORS configurations में जोड़ना होगा ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) में और पढ़ें), इसके लिए [Starlette के CORS docs](https://starlette.dev/middleware/#corsmiddleware) में documented parameter `expose_headers` का उपयोग करें।

@@ -155,8 +155,7 @@ As the path of each *path operation* has to start with `/`, like in:
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...the prefix must not include a final `/`.

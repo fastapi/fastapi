@@ -48,4 +48,4 @@ Ve `Response`, header ve cookie set etmek için sık kullanıldığından, **Fas
 
 ///
 
-Mevcut tüm parametreleri ve seçenekleri görmek için [Starlette dokümantasyonu](https://www.starlette.dev/responses/#set-cookie)'na bakın.
+Mevcut tüm parametreleri ve seçenekleri görmek için [Starlette dokümantasyonu](https://starlette.dev/responses/#set-cookie)'na bakın.

@@ -154,7 +154,7 @@ Sous le capot, dans la spécification technique ASGI, cela fait partie du [proto
 
 /// note | Remarque
 
-Vous pouvez en lire plus sur les gestionnaires `lifespan` de Starlette dans la [documentation « Lifespan » de Starlette](https://www.starlette.dev/lifespan/).
+Vous pouvez en lire plus sur les gestionnaires `lifespan` de Starlette dans les [documents « Lifespan » de Starlette](https://starlette.dev/lifespan/).
 
 Y compris comment gérer l'état de cycle de vie qui peut être utilisé dans d'autres parties de votre code.
 

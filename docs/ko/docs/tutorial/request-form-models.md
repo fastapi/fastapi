@@ -6,10 +6,10 @@ FastAPI에서 **Pydantic 모델**을 이용하여 **폼 필드**를 선언할 �
 
 폼을 사용하려면, 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치하세요.
 
-[가상 환경](../virtual-environments.md)을 생성하고 활성화한 다음, 예를 들어 아래와 같이 설치하세요:
+프로젝트에 추가하세요:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

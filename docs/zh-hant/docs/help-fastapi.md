@@ -46,20 +46,6 @@
 * [**Bluesky** 上的 @tiangolo.com](https://bsky.app/profile/tiangolo.com)
 * [**LinkedIn** 上的 @tiangolo](https://www.linkedin.com/in/tiangolo/)。
 
-## 在 GitHub 幫助他人解答問題 { #help-others-with-questions-in-github }
-
-你可以嘗試在 [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered) 幫助他人回答問題。
-
-很多時候你可能已經知道這些問題的答案。🤓
-
-如果你經常幫大家解決問題，你會成為官方的 [FastAPI 專家](fastapi-people.md#fastapi-experts)。🎉
-
-請記得，最重要的是：盡量友善。🤗
-
-### 如何協助 { #how-to-help }
-
-請依照這裡的[協助指南](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github)。
-
 ## 提問 { #ask-questions }
 
 你可以在 GitHub 儲存庫[建立一個新的問題（Question）](https://github.com/fastapi/fastapi/discussions/new?category=questions)，例如用來：
@@ -69,7 +55,7 @@
 
 ## 加入聊天室 { #join-the-chat }
 
-加入 👥 [Discord 聊天伺服器](https://discord.gg/VQjSZaeJmf) 👥，與 FastAPI 社群的其他人一起交流。
+加入 👥 [Discord 聊天伺服器](https://discord.com/invite/VQjSZaeJmf) 👥，與 FastAPI 社群的其他人一起交流。
 
 /// tip
 
@@ -86,3 +72,9 @@
 在 GitHub 上，模板會引導你寫出合適的提問，讓你更容易得到好的解答，甚至在提問前就自己解決問題。
 
 聊天系統中的對話也不像 GitHub 那樣容易被搜尋，常常會淹沒在對話中。
+
+## 試用 FastAPI Cloud { #try-fastapi-cloud }
+
+FastAPI 與夥伴的主要資金來自 [**FastAPI Cloud**](https://fastapicloud.com)，這是一個能以簡單快速的方式部署 FastAPI 應用程式的平台，只需一個指令 `fastapi deploy`。
+
+FastAPI Cloud 由 FastAPI 背後的同一個團隊打造。你可以試用它，並考慮在你的專案中使用。

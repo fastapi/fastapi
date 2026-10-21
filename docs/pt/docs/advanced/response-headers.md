@@ -1,6 +1,5 @@
 # Cabeçalhos de resposta { #response-headers }
 
-
 ## Use um parâmetro `Response` { #use-a-response-parameter }
 
 Você pode declarar um parâmetro do tipo `Response` na sua *função de operação de rota* (assim como você pode fazer para cookies).
@@ -39,4 +38,4 @@ E como a `Response` pode ser usada frequentemente para definir cabeçalhos e coo
 
 Tenha em mente que cabeçalhos personalizados proprietários podem ser adicionados [usando o prefixo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Porém, se você tiver cabeçalhos personalizados que deseja que um cliente no navegador possa ver, você precisa adicioná-los às suas configurações de CORS (saiba mais em [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), usando o parâmetro `expose_headers` descrito na [documentação de CORS do Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Porém, se você tiver cabeçalhos personalizados que deseja que um cliente no navegador possa ver, você precisa adicioná-los às suas configurações de CORS (saiba mais em [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), usando o parâmetro `expose_headers` descrito na [documentação de CORS do Starlette](https://starlette.dev/middleware/#corsmiddleware).

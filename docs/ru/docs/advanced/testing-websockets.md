@@ -8,6 +8,6 @@
 
 /// note | Примечание
 
-Подробности смотрите в документации Starlette по [тестированию WebSocket](https://www.starlette.dev/testclient/#testing-websocket-sessions).
+Подробности смотрите в документации Starlette по [тестированию WebSocket](https://starlette.dev/testclient/#testing-websocket-sessions).
 
 ///

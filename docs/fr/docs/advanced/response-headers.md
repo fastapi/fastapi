@@ -38,4 +38,4 @@ Et comme `Response` peut être utilisée fréquemment pour définir des en-tête
 
 Gardez à l'esprit que des en-têtes propriétaires personnalisés peuvent être ajoutés [en utilisant le préfixe `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mais si vous avez des en-têtes personnalisés que vous voulez qu'un client dans un navigateur puisse voir, vous devez les ajouter à vos configurations CORS (en savoir plus dans [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Mais si vous avez des en-têtes personnalisés que vous voulez qu'un client dans un navigateur puisse voir, vous devez les ajouter à vos configurations CORS (en savoir plus dans [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://starlette.dev/middleware/#corsmiddleware).

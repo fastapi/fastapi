@@ -105,36 +105,32 @@ Das ist, was Sie in **den meisten Fällen** tun möchten, zum Beispiel:
 
 ### Paketanforderungen { #package-requirements }
 
-Normalerweise befinden sich die **Paketanforderungen** für Ihre Anwendung in einer Datei.
+Wenn Sie Ihr Projekt mit `uv` verwalten, werden dessen direkte Abhängigkeiten in `pyproject.toml` deklariert und die exakt aufgelösten Versionen in `uv.lock` gespeichert.
 
-Dies hängt hauptsächlich von dem Tool ab, mit dem Sie diese Anforderungen **installieren**.
-
-Die gebräuchlichste Methode besteht darin, eine Datei `requirements.txt` mit den Namen der Packages und deren Versionen zu erstellen, eine pro Zeile.
-
-Sie würden natürlich die gleichen Ideen verwenden, die Sie in [Über FastAPI-Versionen](versions.md) gelesen haben, um die Versionsbereiche festzulegen.
-
-Ihre `requirements.txt` könnte beispielsweise so aussehen:
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-Und normalerweise würden Sie diese Paketabhängigkeiten mit `pip` installieren, zum Beispiel:
+Sie können die Packages, die Ihre Anwendung benötigt, hinzufügen mit:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
 /// note | Hinweis
 
-Es gibt andere Formate und Tools zum Definieren und Installieren von Paketabhängigkeiten.
+Das Dockerfile unten verwendet `pip` innerhalb des Containers. Sie können die gelockten Abhängigkeiten aus Ihrem uv-Projekt in das erwartete Format `requirements.txt` exportieren:
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+Die generierte `requirements.txt` ist ein Export für den Container-Build. Verwalten Sie Abhängigkeiten weiterhin mit `uv add` und generieren Sie sie neu, wenn sich `uv.lock` ändert.
 
 ///
 
@@ -372,7 +368,7 @@ Sie sehen die automatische interaktive API-Dokumentation (bereitgestellt von [Sw
 
 Sie können auch auf [http://192.168.99.100/redoc](http://192.168.99.100/redoc) oder [http://127.0.0.1/redoc](http://127.0.0.1/redoc) gehen (oder ähnlich, unter Verwendung Ihres Docker-Hosts).
 
-Sie sehen die alternative automatische Dokumentation (bereitgestellt von [ReDoc](https://github.com/Rebilly/ReDoc)):
+Sie sehen die alternative automatische Dokumentation (bereitgestellt von [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -529,7 +525,7 @@ Dann möchten Sie vielleicht **einen einzelnen Container** mit einem **Prozessma
 
 ---
 
-Der Hauptpunkt ist, dass **keine** dieser Regeln **in Stein gemeißelt** ist, der man blind folgen muss. Sie können diese Ideen verwenden, um **I Ihren eigenen Anwendungsfall zu evaluieren**, zu entscheiden, welcher Ansatz für Ihr System am besten geeignet ist und herauszufinden, wie Sie folgende Konzepte verwalten:
+Der Hauptpunkt ist, dass **keine** dieser Regeln **in Stein gemeißelt** ist, der man blind folgen muss. Sie können diese Ideen verwenden, um **Ihren eigenen Anwendungsfall zu evaluieren**, zu entscheiden, welcher Ansatz für Ihr System am besten geeignet ist und herauszufinden, wie Sie folgende Konzepte verwalten:
 
 * Sicherheit – HTTPS
 * Beim Hochfahren ausführen

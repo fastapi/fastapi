@@ -30,12 +30,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 我们需要安装 `PyJWT`，以便在 Python 中生成和校验 JWT 令牌。
 
-请确保创建并激活一个[虚拟环境](../../virtual-environments.md)，然后安装 `pyjwt`：
+将 `pyjwt` 添加到你的项目：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ pwdlib 是一个用于处理密码哈希的优秀 Python 包。
 
 推荐的算法是 “Argon2”。
 
-请确保创建并激活一个[虚拟环境](../../virtual-environments.md)，然后安装带 Argon2 的 pwdlib：
+将带 Argon2 的 `pwdlib` 添加到你的项目：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```

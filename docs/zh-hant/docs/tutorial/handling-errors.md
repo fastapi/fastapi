@@ -81,7 +81,7 @@
 
 ## 安裝自訂例外處理器 { #install-custom-exception-handlers }
 
-你可以使用 [Starlette 的相同例外工具](https://www.starlette.dev/exceptions/) 來加入自訂例外處理器。
+你可以使用 [Starlette 的相同例外工具](https://starlette.dev/exceptions/) 來加入自訂例外處理器。
 
 假設你有一個自訂例外 `UnicornException`，你（或你使用的函式庫）可能會 `raise` 它。
 

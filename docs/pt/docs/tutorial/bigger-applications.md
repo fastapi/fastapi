@@ -186,7 +186,7 @@ O resultado final é que os paths dos itens agora são:
 * Todas essas *operações de rota* terão a list de `dependencies` avaliada/executada antes delas.
     * Se você também declarar dependências em uma *operação de rota* específica, **elas também serão executadas**.
     * As dependências do router são executadas primeiro, depois as [`dependencies` no decorador](dependencies/dependencies-in-path-operation-decorators.md) e, em seguida, as dependências de parâmetros normais.
-    * Você também pode adicionar [dependências de `Segurança` com `scopes`](../advanced/security/oauth2-scopes.md).
+    * Você também pode adicionar [dependências de `Security` com `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Dica
 
@@ -487,7 +487,7 @@ Dessa forma o comando `fastapi` saberá onde encontrar sua aplicação.
 Você também poderia passar o path para o comando, como:
 
 ```console
-$ fastapi dev app/main.py
+$ uv run fastapi dev app/main.py
 ```
 
 Mas você teria que lembrar de passar o path correto toda vez que chamar o comando `fastapi`.
@@ -503,7 +503,7 @@ Agora, execute sua aplicação:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

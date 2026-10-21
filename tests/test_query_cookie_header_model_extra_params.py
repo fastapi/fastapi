@@ -123,7 +123,7 @@ def test_header_model_rejects_underscore_header_with_convert_underscores():
     )
 
     assert resp.status_code == 422
-    assert resp.json()["detail"][0]["loc"] == ["header", "x_user_id"]
+    assert resp.json()["detail"][0]["loc"] == ["header", "x-user-id"]
 
 
 def test_cookie_pass_extra_list():

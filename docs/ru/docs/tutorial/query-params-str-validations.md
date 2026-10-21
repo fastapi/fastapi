@@ -369,11 +369,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 В таких случаях можно использовать **кастомную функцию-валидатор**, которая применяется после обычной валидации (например, после проверки, что значение — это `str`).
 
-Этого можно добиться, используя [Pydantic `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) внутри `Annotated`.
+Этого можно добиться, используя [Pydantic `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) внутри `Annotated`.
 
 /// tip | Совет
 
-В Pydantic также есть [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) и другие. 🤓
+В Pydantic также есть [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) и другие. 🤓
 
 ///
 

@@ -105,36 +105,32 @@ Container में सामान्यतः **single process** होता 
 
 ### Package Requirements { #package-requirements }
 
-आपकी application के लिए **package requirements** सामान्यतः किसी file में होंगे।
+जब आप अपना project `uv` से manage करते हैं, तो इसकी direct dependencies `pyproject.toml` में declared होती हैं और exact resolved versions `uv.lock` में stored होते हैं।
 
-यह मुख्य रूप से उस tool पर निर्भर करेगा जिसका उपयोग आप उन requirements को **install** करने के लिए करते हैं।
-
-इसे करने का सबसे आम तरीका है `requirements.txt` file रखना, जिसमें package names और उनके versions हों, प्रति line एक।
-
-आप versions की ranges set करने के लिए निश्चित रूप से वही ideas उपयोग करेंगे जो आपने [FastAPI versions के बारे में](versions.md) में पढ़े हैं।
-
-उदाहरण के लिए, आपका `requirements.txt` ऐसा दिख सकता है:
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-और आप सामान्यतः उन package dependencies को `pip` से install करेंगे, उदाहरण के लिए:
+आप अपनी application के लिए required packages इस तरह जोड़ सकते हैं:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
 /// note | नोट
 
-Package dependencies define और install करने के लिए अन्य formats और tools भी हैं।
+नीचे दिया गया Dockerfile container के अंदर `pip` उपयोग करता है। आप अपने uv project से locked dependencies को उसके expected `requirements.txt` format में export कर सकते हैं:
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+Generated `requirements.txt` container build के लिए एक export है। Dependencies को `uv add` से manage करना जारी रखें और जब `uv.lock` change हो तो इसे regenerate करें।
 
 ///
 
@@ -372,7 +368,7 @@ $ docker run -d --name mycontainer -p 80:80 myimage
 
 और आप [http://192.168.99.100/redoc](http://192.168.99.100/redoc) या [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (या equivalent, अपने Docker host का उपयोग करके) पर भी जा सकते हैं।
 
-आप alternative automatic documentation देखेंगे ([ReDoc](https://github.com/Rebilly/ReDoc) द्वारा provided):
+आप alternative automatic documentation देखेंगे ([ReDoc](https://github.com/Redocly/redoc) द्वारा provided):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

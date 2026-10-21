@@ -66,7 +66,7 @@
 
 और ये दो चीजें, `scope` और `receive`, नई `Request` instance बनाने के लिए आवश्यक हैं।
 
-`Request` के बारे में अधिक जानने के लिए [Requests के बारे में Starlette के docs](https://www.starlette.dev/requests/) देखें।
+`Request` के बारे में अधिक जानने के लिए [Requests के बारे में Starlette के docs](https://starlette.dev/requests/) देखें।
 
 ///
 

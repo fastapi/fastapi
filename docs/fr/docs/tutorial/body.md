@@ -6,7 +6,7 @@ Le corps d'une **requête** est de la donnée envoyée par le client à votre AP
 
 Votre API aura presque toujours à envoyer un corps de **réponse**. Mais un client n'a pas toujours à envoyer un **corps de la requête** : parfois il demande seulement un chemin, peut-être avec quelques paramètres de requête, mais n'envoie pas de corps.
 
-Pour déclarer un corps de **requête**, on utilise les modèles de [Pydantic](https://docs.pydantic.dev/) en profitant de tous leurs avantages et fonctionnalités.
+Pour déclarer un corps de **requête**, on utilise les modèles de [Pydantic](https://pydantic.dev/docs/) avec toute leur puissance et leurs avantages.
 
 /// note | Remarque
 
@@ -14,7 +14,7 @@ Pour envoyer de la donnée, vous devez utiliser l'une de ces méthodes : `POST` 
 
 Envoyer un corps dans une requête `GET` a un comportement non défini dans les spécifications, cela est néanmoins supporté par FastAPI, seulement pour des cas d'utilisation très complexes/extrêmes.
 
-Ceci étant découragé, la documentation interactive générée par Swagger UI ne montrera pas de documentation pour le corps d'une requête `GET`, et les proxys intermédiaires risquent de ne pas le supporter.
+Ceci étant découragé, la documentation interactive avec Swagger UI ne montrera pas de documentation pour le corps d'une requête `GET`, et les proxys intermédiaires risquent de ne pas le supporter.
 
 ///
 
@@ -67,7 +67,7 @@ Pour l'ajouter à votre *chemin d'accès*, déclarez-le comme vous déclareriez 
 
 En utilisant uniquement les déclarations de type Python, **FastAPI** réussit à :
 
-* Lire le contenu de la requête en tant que JSON.
+* Lire le corps de la requête en tant que JSON.
 * Convertir les types correspondants (si nécessaire).
 * Valider la donnée.
     * Si la donnée est invalide, une erreur propre et claire sera renvoyée, indiquant exactement où et quelle était la donnée incorrecte.
@@ -163,4 +163,4 @@ Mais ajouter ces annotations de type permettra à votre éditeur de vous offrir 
 
 ## Sans Pydantic { #without-pydantic }
 
-Si vous ne voulez pas utiliser des modèles Pydantic, vous pouvez aussi utiliser des paramètres de **Body**. Pour cela, allez voir la documentation sur [Corps de la requête - Paramètres multiples : Valeurs singulières dans le corps](body-multiple-params.md#singular-values-in-body).
+Si vous ne voulez pas utiliser des modèles Pydantic, vous pouvez aussi utiliser des paramètres de **Body**. Consultez les documents pour [Corps de la requête - Paramètres multiples : Valeurs singulières dans le corps](body-multiple-params.md#singular-values-in-body).

@@ -6,10 +6,10 @@
 
 Щоб використовувати форми, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, і потім встановили бібліотеку, наприклад:
+Додайте його до вашого проєкту:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///

@@ -135,7 +135,7 @@ Adopter et utiliser une norme ouverte pour les spécifications des API, au lieu 
 Et intégrer des outils d'interface utilisateur basés sur des normes :
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 Ces deux-là ont été choisis parce qu'ils sont populaires et stables, mais en faisant une recherche rapide, vous pourriez trouver des dizaines d'interfaces utilisateur alternatives pour OpenAPI (que vous pouvez utiliser avec **FastAPI**).
 
@@ -254,7 +254,7 @@ Générer le schéma OpenAPI automatiquement, à partir du même code qui défin
 
 ///
 
-### [NestJS](https://nestjs.com/) (et [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (et [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 Ce n'est même pas du Python, NestJS est un framework JavaScript (TypeScript) NodeJS inspiré d'Angular.
 
@@ -362,7 +362,7 @@ Comme il est basé sur l'ancienne norme pour les frameworks web Python synchrone
 
 /// note | Remarque
 
-Hug a été créé par Timothy Crosley, le même créateur de [`isort`](https://github.com/timothycrosley/isort), un excellent outil pour trier automatiquement les imports dans les fichiers Python.
+Hug a été créé par Timothy Crosley, le même créateur de [`isort`](https://github.com/PyCQA/isort), un excellent outil pour trier automatiquement les imports dans les fichiers Python.
 
 ///
 
@@ -429,7 +429,7 @@ Je considère **FastAPI** comme un « successeur spirituel » d'APIStar, tout en
 
 ## Utilisés par **FastAPI** { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic est une bibliothèque permettant de définir la validation, la sérialisation et la documentation des données (à l'aide de JSON Schema) en se basant sur les annotations de type Python.
 
@@ -446,7 +446,7 @@ Gérer toute la validation des données, leur sérialisation et la documentation
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette est un framework/toolkit léger <dfn title="La nouvelle norme pour créer des applications web Python asynchrones">ASGI</dfn>, qui est idéal pour construire des services asyncio performants.
 
@@ -491,7 +491,7 @@ Ainsi, tout ce que vous pouvez faire avec Starlette, vous pouvez le faire direct
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn est un serveur ASGI rapide comme l'éclair, basé sur uvloop et httptools.
 

@@ -45,7 +45,7 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 * **Швидкий**: дуже висока продуктивність, на рівні з **NodeJS** та **Go** (завдяки Starlette та Pydantic). [Один із найшвидших Python-фреймворків](#performance).
 * **Швидке написання коду**: пришвидшує розробку функціоналу приблизно на 200%–300%. *
 * **Менше помилок**: зменшує приблизно на 40% кількість помилок, спричинених людиною (розробником). *
-* **Інтуїтивний**: чудова підтримка редакторами коду. <dfn title="також відоме як: авто-доповнення, автозавершення, IntelliSense">Автодоповнення</dfn> всюди. Менше часу на налагодження.
+* **Інтуїтивний**: чудова підтримка редакторами коду. <dfn title="також відоме як автодоповнення, автозавершення, IntelliSense">Автодоповнення</dfn> всюди. Менше часу на налагодження.
 * **Простий**: спроєктований так, щоб бути простим у використанні та вивченні. Менше часу на читання документації.
 * **Короткий**: мінімізує дублювання коду. Кілька можливостей з кожного оголошення параметра. Менше помилок.
 * **Надійний**: ви отримуєте код, готовий до продакшну. З автоматичною інтерактивною документацією.
@@ -110,7 +110,7 @@ FastAPI - це сучасний, швидкий (високопродуктив�
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">«Ми прийняли бібліотеку <strong>FastAPI</strong>, щоб запустити сервер <strong>REST</strong>, до якого можна надсилати запити для отримання <strong>прогнозів</strong>». <em>[для Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">- Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(джерело)</a></div>
+    <div class="fastapi-opinions__attr">- Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(джерело)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">«<strong>Netflix</strong> із задоволенням оголошує про випуск з відкритим кодом нашого фреймворку оркестрації <strong>керування кризами</strong>: <strong>Dispatch</strong>!» <em>[побудовано з FastAPI]</em></blockquote>
@@ -133,7 +133,7 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 
 "_Ми прийняли бібліотеку **FastAPI**, щоб запустити сервер **REST**, до якого можна надсилати запити для отримання **прогнозів**. [для Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(джерело)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(джерело)</small></a></div>
 
 ---
 
@@ -150,12 +150,6 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 ---
 
 </div>
-
-## Конференція FastAPI { #fastapi-conf }
-
-[**FastAPI Conf '26**](https://fastapiconf.com) відбудеться **28 жовтня 2026 року** в **Амстердамі, Нідерланди**. Усе про FastAPI з першоджерела. 🎤
-
-<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"></a>
 
 ## Міні-документальний фільм про FastAPI { #fastapi-mini-documentary }
 
@@ -175,17 +169,17 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 
 FastAPI стоїть на плечах гігантів:
 
-* [Starlette](https://www.starlette.dev/) для вебчастини.
-* [Pydantic](https://docs.pydantic.dev/) для частини даних.
+* [Starlette](https://starlette.dev/) для вебчастини.
+* [Pydantic](https://pydantic.dev/docs/) для частини даних.
 
 ## Встановлення { #installation }
 
-Створіть і активуйте [віртуальне середовище](https://fastapi.tiangolo.com/uk/virtual-environments/), а потім встановіть FastAPI:
+Спочатку [встановіть `uv`](https://docs.astral.sh/uv/getting-started/installation/), а потім додайте FastAPI до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -193,6 +187,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **Примітка**: переконайтеся, що ви взяли `"fastapi[standard]"` у лапки, щоб це працювало в усіх терміналах.
+
+Якщо ви віддаєте перевагу `pip`, встановіть `fastapi[standard]` у віртуальному середовищі. Дивіться [посібник зі встановлення](tutorial/#install-fastapi) для альтернативних кроків.
 
 ## Приклад { #example }
 
@@ -250,7 +246,7 @@ async def read_item(item_id: int, q: str | None = None):
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -277,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Про команду <code>fastapi dev</code>...</summary>
 
-Команда `fastapi dev` автоматично читає ваш файл `main.py`, знаходить у ньому застосунок **FastAPI** і запускає сервер за допомогою [Uvicorn](https://www.uvicorn.dev).
+Команда `fastapi dev` автоматично читає ваш файл `main.py`, знаходить у ньому застосунок **FastAPI** і запускає сервер за допомогою [Uvicorn](https://uvicorn.dev).
 
 За замовчуванням `fastapi dev` запускається з авто-перезавантаженням для локальної розробки.
 
@@ -314,7 +310,7 @@ INFO:     Application startup complete.
 
 А тепер перейдіть на [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Ви побачите альтернативну автоматичну документацію (надану [ReDoc](https://github.com/Rebilly/ReDoc)):
+Ви побачите альтернативну автоматичну документацію (надану [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -479,7 +475,7 @@ item: Item
 
 * Оголошення **параметрів** з інших різних місць, як-от: **заголовки**, **кукі**, **поля форми** та **файли**.
 * Як встановлювати **обмеження валідації** як `maximum_length` або `regex`.
-* Дуже потужну і просту у використанні систему **<dfn title="також відоме як: компоненти, ресурси, провайдери, сервіси, інжектовані залежності">Впровадження залежностей</dfn>**.
+* Дуже потужну і просту у використанні систему **<dfn title="також відоме як компоненти, ресурси, провайдери, сервіси, інжектовані залежності">Впровадження залежностей</dfn>**.
 * Безпеку та автентифікацію, включно з підтримкою **OAuth2** з **токенами JWT** та **базовою автентифікацією HTTP**.
 * Досконаліші (але однаково прості) техніки для оголошення **глибоко вкладених моделей JSON** (завдяки Pydantic).
 * Інтеграцію **GraphQL** з [Strawberry](https://strawberry.rocks) та іншими бібліотеками.
@@ -497,7 +493,7 @@ item: Item
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -540,7 +536,7 @@ FastAPI залежить від Pydantic і Starlette.
 
 ### Залежності `standard` { #standard-dependencies }
 
-Коли ви встановлюєте FastAPI за допомогою `pip install "fastapi[standard]"`, ви отримуєте групу необовʼязкових залежностей `standard`:
+Коли ви встановлюєте FastAPI за допомогою `uv add "fastapi[standard]"`, ви отримуєте групу необовʼязкових залежностей `standard`:
 
 Використовується Pydantic:
 
@@ -554,17 +550,17 @@ FastAPI залежить від Pydantic і Starlette.
 
 Використовується FastAPI:
 
-* [`uvicorn`](https://www.uvicorn.dev) - для сервера, який завантажує та обслуговує ваш застосунок. Це включає `uvicorn[standard]`, до якого входять деякі залежності (наприклад, `uvloop`), потрібні для високопродуктивної роботи сервера.
+* [`uvicorn`](https://uvicorn.dev) - для сервера, який завантажує та обслуговує ваш застосунок. Це включає `uvicorn[standard]`, до якого входять деякі залежності (наприклад, `uvloop`), потрібні для високопродуктивної роботи сервера.
 * `fastapi-cli[standard]` - щоб надати команду `fastapi`.
     * Це включає `fastapi-cloud-cli`, який дозволяє розгортати ваш застосунок FastAPI у [FastAPI Cloud](https://fastapicloud.com).
 
 ### Без залежностей `standard` { #without-standard-dependencies }
 
-Якщо ви не хочете включати необовʼязкові залежності `standard`, ви можете встановити через `pip install fastapi` замість `pip install "fastapi[standard]"`.
+Якщо ви не хочете включати необовʼязкові залежності `standard`, ви можете встановити через `uv add fastapi` замість `uv add "fastapi[standard]"`.
 
 ### Без `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
-Якщо ви хочете встановити FastAPI зі стандартними залежностями, але без `fastapi-cloud-cli`, ви можете встановити через `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+Якщо ви хочете встановити FastAPI зі стандартними залежностями, але без `fastapi-cloud-cli`, ви можете встановити через `uv add "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ### Додаткові необовʼязкові залежності { #additional-optional-dependencies }
 
@@ -572,13 +568,13 @@ FastAPI залежить від Pydantic і Starlette.
 
 Додаткові необовʼязкові залежності Pydantic:
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - для керування налаштуваннями.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - для додаткових типів, що можуть бути використані з Pydantic.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - для керування налаштуваннями.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - для додаткових типів, що можуть бути використані з Pydantic.
 
 Додаткові необовʼязкові залежності FastAPI:
 
 * [`orjson`](https://github.com/ijl/orjson) - потрібно, якщо ви хочете використовувати `ORJSONResponse`.
-* [`ujson`](https://github.com/esnme/ultrajson) - потрібно, якщо ви хочете використовувати `UJSONResponse`.
+* [`ujson`](https://github.com/ultrajson/ultrajson) - потрібно, якщо ви хочете використовувати `UJSONResponse`.
 
 ## Ліцензія { #license }
 

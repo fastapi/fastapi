@@ -125,7 +125,7 @@ def read_url():
 そして、標準に基づくユーザーインターフェースツールを統合しています。
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 この二つは人気で安定したものとして選択されましたが、少し検索してみると、 (**FastAPI**と同時に使用できる) OpenAPIのための多くの代替となるツールを見つけることができます。
 
@@ -237,7 +237,7 @@ Flask-apispecはMarshmallowと同じ開発者により作成されました。
 
 ///
 
-### [NestJS](https://nestjs.com/) (と[Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (と[Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 NestJSはAngularにインスパイアされたJavaScript (TypeScript) NodeJSフレームワークで、Pythonですらありません。
 
@@ -337,7 +337,7 @@ OpenAPIやJSON Schemaのような標準に基づいたものではありませ�
 
 /// note | 備考
 
-HugはTimothy Crosleyにより作成されました。彼は[`isort`](https://github.com/timothycrosley/isort)など、Pythonのファイル内のインポートの並び替えを自動的に行う素晴らしいツールの開発者です。
+HugはTimothy Crosleyにより作成されました。彼は[`isort`](https://github.com/PyCQA/isort)など、Pythonのファイル内のインポートの並び替えを自動的に行う素晴らしいツールの開発者です。
 
 ///
 
@@ -401,7 +401,7 @@ APIStarはTom Christieにより開発されました。以下の開発者でも�
 
 ## **FastAPI**が利用しているもの { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydanticは、Pythonの型ヒントを元にデータのバリデーション、シリアライゼーション、 (JSON Schemaを使用した) ドキュメントを定義するライブラリです。
 
@@ -417,7 +417,7 @@ Marshmallowに匹敵しますが、ベンチマークではMarshmallowよりも�
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starletteは、軽量な<dfn title="非同期Python Webアプリケーションを構築するための新しい標準">ASGI</dfn>フレームワーク/ツールキットで、高性能な非同期サービスの構築に最適です。
 
@@ -462,7 +462,7 @@ webに関するコアな部分を全て扱います。その上に機能を追�
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicornは非常に高速なASGIサーバーで、uvloopとhttptoolsにより構成されています。
 

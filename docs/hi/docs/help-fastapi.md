@@ -45,20 +45,6 @@ Star जोड़ने से, अन्य users इसे अधिक आस
 * [**Bluesky** पर @tiangolo.com](https://bsky.app/profile/tiangolo.com)
 * [**LinkedIn** पर @tiangolo](https://www.linkedin.com/in/tiangolo/).
 
-## GitHub में प्रश्नों के साथ दूसरों की मदद करें { #help-others-with-questions-in-github }
-
-आप [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered) में दूसरों के प्रश्नों में मदद करने की कोशिश कर सकते हैं।
-
-कई मामलों में आपको उन प्रश्नों का उत्तर पहले से पता हो सकता है। 🤓
-
-यदि आप बहुत से लोगों के प्रश्नों में उनकी मदद कर रहे हैं, तो आप आधिकारिक [FastAPI Expert](fastapi-people.md#fastapi-experts) बन जाएंगे। 🎉
-
-बस याद रखें, सबसे महत्वपूर्ण बात है: विनम्र रहने की कोशिश करें। 🤗
-
-### मदद कैसे करें { #how-to-help }
-
-यहाँ [मदद कैसे करें वाली गाइड](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github) का पालन करें।
-
 ## प्रश्न पूछें { #ask-questions }
 
 आप GitHub repository में [एक नया प्रश्न बना सकते हैं](https://github.com/fastapi/fastapi/discussions/new?category=questions), उदाहरण के लिए:
@@ -68,7 +54,7 @@ Star जोड़ने से, अन्य users इसे अधिक आस
 
 ## Chat से जुड़ें { #join-the-chat }
 
-👥 [Discord chat server](https://discord.gg/VQjSZaeJmf) 👥 से जुड़ें और FastAPI community में दूसरों के साथ बातचीत करें।
+👥 [Discord chat server](https://discord.com/invite/VQjSZaeJmf) 👥 से जुड़ें और FastAPI community में दूसरों के साथ बातचीत करें।
 
 /// tip | सुझाव
 
@@ -85,3 +71,9 @@ Chat का उपयोग केवल अन्य सामान्य ब�
 GitHub में, template आपको सही प्रश्न लिखने में मार्गदर्शन करेगा ताकि आप अधिक आसानी से अच्छा उत्तर पा सकें, या पूछने से पहले ही समस्या को स्वयं भी हल कर सकें।
 
 Chat systems में बातचीत GitHub जितनी आसानी से searchable भी नहीं होती, वे खो जाती हैं।
+
+## FastAPI Cloud आज़माएँ { #try-fastapi-cloud }
+
+FastAPI और friends के लिए मुख्य funding [**FastAPI Cloud**](https://fastapicloud.com) से आती है, यह FastAPI applications को सरल और तेज़ तरीके से, एक ही command, `fastapi deploy`, के साथ deploy करने का platform है।
+
+FastAPI Cloud उसी team द्वारा बनाया गया है जो FastAPI के पीछे है। आप इसे आज़मा सकते हैं और अपने projects के लिए इस पर विचार कर सकते हैं।

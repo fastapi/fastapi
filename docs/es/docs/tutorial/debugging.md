@@ -16,7 +16,7 @@ El objetivo principal de `__name__ == "__main__"` es tener algo de código que s
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -36,7 +36,7 @@ Si lo ejecutas con:
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>

@@ -154,7 +154,7 @@ async with lifespan(app):
 
 /// note | 참고
 
-Starlette `lifespan` 핸들러에 대해서는 [Starlette의 Lifespan 문서](https://www.starlette.dev/lifespan/)에서 더 읽어볼 수 있습니다.
+Starlette `lifespan` 핸들러에 대해서는 [Starlette의 Lifespan 문서](https://starlette.dev/lifespan/)에서 더 읽어볼 수 있습니다.
 
 또한 코드의 다른 영역에서 사용할 수 있는 lifespan 상태를 처리하는 방법도 포함되어 있습니다.
 

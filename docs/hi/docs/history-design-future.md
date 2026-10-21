@@ -54,11 +54,11 @@
 
 ## Requirements { #requirements }
 
-कई विकल्पों का परीक्षण करने के बाद, मैंने तय किया कि मैं इसके लाभों के लिए [**Pydantic**](https://docs.pydantic.dev/) का उपयोग करूँगा।
+कई विकल्पों का परीक्षण करने के बाद, मैंने तय किया कि मैं इसके लाभों के लिए [**Pydantic**](https://pydantic.dev/docs/) का उपयोग करूँगा।
 
 फिर मैंने इसमें योगदान दिया, ताकि इसे JSON Schema के साथ पूरी तरह compliant बनाया जा सके, constraint declarations को define करने के अलग-अलग तरीकों का समर्थन किया जा सके, और कई editors में tests के आधार पर editor support (type checks, autocompletion) को बेहतर बनाया जा सके।
 
-Development के दौरान, मैंने [**Starlette**](https://www.starlette.dev/) में भी योगदान दिया, जो दूसरी मुख्य requirement थी।
+Development के दौरान, मैंने [**Starlette**](https://starlette.dev/) में भी योगदान दिया, जो दूसरी मुख्य requirement थी।
 
 ## Development { #development }
 

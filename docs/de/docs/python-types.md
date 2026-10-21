@@ -269,7 +269,7 @@ Es bedeutet nicht: „`one_person` ist die **Klasse** namens `Person`“.
 
 ## Pydantic-Modelle { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) ist eine Python-Bibliothek für die Validierung von Daten.
+[Pydantic](https://pydantic.dev/docs/) ist eine Python-Bibliothek für die Validierung von Daten.
 
 Sie deklarieren die „Form“ der Daten als Klassen mit Attributen.
 
@@ -285,7 +285,7 @@ Ein Beispiel aus der offiziellen Pydantic-Dokumentation:
 
 /// note | Hinweis
 
-Um mehr über [Pydantic zu erfahren, schauen Sie sich dessen Dokumentation an](https://docs.pydantic.dev/).
+Um mehr über [Pydantic zu erfahren, schauen Sie sich dessen Dokumentation an](https://pydantic.dev/docs/).
 
 ///
 

@@ -1,6 +1,6 @@
 # Testando { #testing }
 
-Graças ao [Starlette](https://www.starlette.dev/testclient/), testar aplicações **FastAPI** é fácil e agradável.
+Graças ao [Starlette](https://starlette.dev/testclient/), testar aplicações **FastAPI** é fácil e agradável.
 
 Ele é baseado no [HTTPX](https://www.python-httpx.org), que por sua vez é projetado com base em Requests, por isso é muito familiar e intuitivo.
 
@@ -12,10 +12,10 @@ Com ele, você pode usar o [pytest](https://docs.pytest.org/) diretamente com **
 
 Para usar o `TestClient`, primeiro instale [`httpx`](https://www.python-httpx.org).
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e instalá-lo, por exemplo:
+Adicione-o ao seu projeto:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -156,12 +156,12 @@ Se você tiver um modelo Pydantic em seu teste e quiser enviar seus dados para a
 
 Depois disso, você só precisa instalar o `pytest`.
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e instalá-lo, por exemplo:
+Adicione-o ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ Execute os testes com:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

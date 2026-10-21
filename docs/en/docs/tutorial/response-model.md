@@ -266,6 +266,7 @@ as described in [the Pydantic docs](https://pydantic.dev/docs/validation/latest/
 
 But if your data has values for the model's fields with default values, like the item with ID `bar`:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ But if your data has values for the model's fields with default values, like the
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 they will be included in the response.
 
@@ -281,6 +283,7 @@ they will be included in the response.
 
 If the data has the same values as the default ones, like the item with ID `baz`:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ If the data has the same values as the default ones, like the item with ID `baz`
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI is smart enough (actually, Pydantic is smart enough) to realize that, even though `description`, `tax`, and `tags` have the same values as the defaults, they were set explicitly (instead of taken from the defaults).
 

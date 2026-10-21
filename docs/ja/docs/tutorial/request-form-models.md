@@ -6,10 +6,10 @@ FastAPI では、フォームフィールドを宣言するために **Pydantic 
 
 フォームを使うには、まず [`python-multipart`](https://github.com/Kludex/python-multipart) をインストールします。
 
-まず [仮想環境](../virtual-environments.md) を作成して有効化し、そのうえでインストールしてください。例えば:
+プロジェクトに追加します:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -54,9 +54,9 @@ Pydantic のモデル設定で、`extra` フィールドを `forbid` にでき�
 
 例えば、クライアントが次のフォームフィールドを送ろうとした場合:
 
-- `username`: `Rick`
-- `password`: `Portal Gun`
-- `extra`: `Mr. Poopybutthole`
+* `username`: `Rick`
+* `password`: `Portal Gun`
+* `extra`: `Mr. Poopybutthole`
 
 フィールド `extra` は許可されていない旨のエラーレスポンスが返されます:
 

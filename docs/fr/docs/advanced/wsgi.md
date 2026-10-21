@@ -9,7 +9,7 @@ Pour cela, vous pouvez utiliser `WSGIMiddleware` et l'utiliser pour envelopper v
 
 /// note | Remarque
 
-Cela nécessite l'installation de `a2wsgi`, par exemple avec `pip install a2wsgi`.
+Cela nécessite d'ajouter `a2wsgi` à votre projet, par exemple avec `uv add a2wsgi`.
 
 ///
 
@@ -27,7 +27,7 @@ Auparavant, il était recommandé d'utiliser `WSGIMiddleware` depuis `fastapi.mi
 
 Il est conseillé d'utiliser le package `a2wsgi` à la place. L'utilisation reste la même.
 
-Assurez-vous simplement que le package `a2wsgi` est installé et importez `WSGIMiddleware` correctement depuis `a2wsgi`.
+Vous devez simplement vous assurer que le package `a2wsgi` est installé et importer `WSGIMiddleware` correctement depuis `a2wsgi`.
 
 ///
 

@@ -26,14 +26,14 @@
 
 /// note | नोट
 
-[`python-multipart`](https://github.com/Kludex/python-multipart) package **FastAPI** के साथ अपने-आप install हो जाता है जब आप `pip install "fastapi[standard]"` command चलाते हैं।
+[`python-multipart`](https://github.com/Kludex/python-multipart) package **FastAPI** के साथ अपने-आप install हो जाता है जब आप `uv add "fastapi[standard]"` command चलाते हैं।
 
-हालाँकि, अगर आप `pip install fastapi` command का उपयोग करते हैं, तो `python-multipart` package default रूप से शामिल नहीं होता।
+हालाँकि, अगर आप `uv add fastapi` command का उपयोग करते हैं, तो `python-multipart` package default रूप से शामिल नहीं होता।
 
-इसे manually install करने के लिए, सुनिश्चित करें कि आप एक [virtual environment](../../virtual-environments.md) बनाएँ, उसे activate करें, और फिर इसे इस तरह install करें:
+इसे manually install करने के लिए, इसे अपने project में इस तरह जोड़ें:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ऐसा इसलिए है क्योंकि **OAuth2**, `username` और `password` भेजने के लिए "form data" का उपयोग करता है।
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

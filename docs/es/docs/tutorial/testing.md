@@ -1,6 +1,6 @@
 # Pruebas { #testing }
 
-Gracias a [Starlette](https://www.starlette.dev/testclient/), escribir pruebas para aplicaciones de **FastAPI** es fácil y agradable.
+Gracias a [Starlette](https://starlette.dev/testclient/), escribir pruebas para aplicaciones de **FastAPI** es fácil y agradable.
 
 Está basado en [HTTPX](https://www.python-httpx.org), que a su vez está diseñado basado en Requests, por lo que es muy familiar e intuitivo.
 
@@ -12,10 +12,10 @@ Con él, puedes usar [pytest](https://docs.pytest.org/) directamente con **FastA
 
 Para usar `TestClient`, primero instala [`httpx`](https://www.python-httpx.org).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo y luego instalarlo, por ejemplo:
+Añádelo a tu proyecto:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -94,11 +94,12 @@ Debido a que este archivo está en el mismo paquete, puedes usar imports relativ
 
 {* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
+
 ...y tener el código para las pruebas tal como antes.
 
 ## Pruebas: ejemplo extendido { #testing-extended-example }
 
-Ahora extiende este ejemplo y añade más detalles para ver cómo escribir pruebas para diferentes partes.
+Ahora extendamos este ejemplo y añade más detalles para ver cómo escribir pruebas para diferentes partes.
 
 ### Archivo de aplicación **FastAPI** extendido { #extended-fastapi-app-file }
 
@@ -128,6 +129,7 @@ Podrías entonces actualizar `test_main.py` con las pruebas extendidas:
 
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
+
 Cada vez que necesites que el cliente pase información en el request y no sepas cómo, puedes buscar (Googlear) cómo hacerlo en `httpx`, o incluso cómo hacerlo con `requests`, dado que el diseño de HTTPX está basado en el diseño de Requests.
 
 Luego simplemente haces lo mismo en tus pruebas.
@@ -154,12 +156,12 @@ Si tienes un modelo de Pydantic en tu prueba y quieres enviar sus datos a la apl
 
 Después de eso, solo necesitas instalar `pytest`.
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo y luego instalarlo, por ejemplo:
+Añádelo a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -173,7 +175,7 @@ Ejecuta las pruebas con:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

@@ -7,10 +7,10 @@ Vous pouvez définir des fichiers à téléverser par le client en utilisant `Fi
 
 Pour recevoir des fichiers téléversés, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md), de l'activer, puis d'installer le paquet, par exemple :
+Ajoutez-le à votre projet :
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 C'est parce que les fichiers téléversés sont envoyés en « données de formulaire ».
@@ -174,4 +174,4 @@ Et de la même manière que précédemment, vous pouvez utiliser `File()` pour d
 
 ## Récapitulatif { #recap }
 
-Utilisez `File`, `bytes` et `UploadFile` pour déclarer des fichiers à téléverser dans la requête, envoyés en « données de formulaire ».
+Utilisez `File`, `bytes` et `UploadFile` pour déclarer des fichiers à téléverser dans la requête, envoyés en données de formulaire.

@@ -57,6 +57,26 @@ They will receive an **error** response telling them that the query parameter `t
 }
 ```
 
+## Combine Parameter Models { #combine-parameter-models }
+
+You can declare multiple query parameter models, and combine them with individual query parameters or dependencies.
+
+{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+
+The request parameters stay at the same level.
+
+```http
+https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
+```
+
+There are no `pagination` or `filters` keys in the query string. Each model receives its own fields, and Pydantic applies its defaults, field validators, and model validators. The same applies when the models or individual parameters are declared in dependencies.
+
+If models share a parameter name or alias, each model validates that request parameter independently. Use distinct names or aliases for independent values. OpenAPI lists a shared parameter once, as it does for parameters shared with dependencies, so shared declarations should describe the same type and constraints.
+
+With `extra="forbid"`, parameters declared elsewhere in the same operation or its dependencies are allowed. Undeclared parameters are still rejected. With `extra="allow"`, undeclared parameters are included as model extras. Parameters belonging only to other declarations are not included. An unused alternative alias of a model's own field still follows that model's extra-field policy.
+
+This also works for `Header` and `Cookie` models.
+
 ## Summary { #summary }
 
 You can use **Pydantic models** to declare **query parameters** in **FastAPI**. 😎

@@ -21,7 +21,7 @@
 * [Strawberry](https://strawberry.rocks/) 🍓
     * [FastAPI용 문서](https://strawberry.rocks/docs/integrations/fastapi) 제공
 * [Ariadne](https://ariadnegraphql.org/)
-    * [FastAPI용 문서](https://ariadnegraphql.org/docs/fastapi-integration) 제공
+    * [FastAPI용 문서](https://ariadnegraphql.org/server/Integrations/fastapi-integration) 제공
 * [Tartiflette](https://tartiflette.io/)
     * ASGI 통합을 제공하기 위해 [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) 사용
 * [Graphene](https://graphene-python.org/)

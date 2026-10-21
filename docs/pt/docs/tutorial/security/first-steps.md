@@ -16,7 +16,7 @@ Vamos usar as ferramentas fornecidas pelo **FastAPI** para lidar com segurança.
 
 Vamos primeiro usar o código e ver como funciona, e depois voltaremos para entender o que está acontecendo.
 
-## Crie um `main.py` { #create-main-py }
+## Crie `main.py` { #create-main-py }
 
 Copie o exemplo em um arquivo `main.py`:
 
@@ -26,14 +26,14 @@ Copie o exemplo em um arquivo `main.py`:
 
 /// note | Nota
 
-O pacote [`python-multipart`](https://github.com/Kludex/python-multipart) é instalado automaticamente com o **FastAPI** quando você executa o comando `pip install "fastapi[standard]"`.
+O pacote [`python-multipart`](https://github.com/Kludex/python-multipart) é instalado automaticamente com o **FastAPI** quando você executa o comando `uv add "fastapi[standard]"`.
 
-Entretanto, se você usar o comando `pip install fastapi`, o pacote `python-multipart` não é incluído por padrão.
+Entretanto, se você usar o comando `uv add fastapi`, o pacote `python-multipart` não é incluído por padrão.
 
-Para instalá-lo manualmente, certifique-se de criar um [ambiente virtual](../../virtual-environments.md), ativá-lo e então instalá-lo com:
+Para instalá-lo manualmente, adicione-o ao seu projeto com:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Isso ocorre porque o **OAuth2** usa "form data" para enviar o `username` e o `password`.
@@ -45,7 +45,7 @@ Execute o exemplo com:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -172,7 +172,7 @@ Agora você pode passar esse `oauth2_scheme` em uma dependência com `Depends`.
 
 {* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
-Essa dependência fornecerá uma `str` que é atribuída ao parâmetro `token` da função de operação de rota.
+Essa dependência fornecerá uma `str` que é atribuída ao parâmetro `token` da *função de operação de rota*.
 
 O **FastAPI** saberá que pode usar essa dependência para definir um "esquema de segurança" no esquema OpenAPI (e na documentação automática da API).
 

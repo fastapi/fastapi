@@ -18,7 +18,7 @@ Für diese zusätzlichen Responses müssen Sie jedoch sicherstellen, dass Sie ei
 
 Sie können Ihren *Pfadoperation-Dekoratoren* einen Parameter `responses` übergeben.
 
-Der nimmt ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> entgegen, die Schlüssel sind Statuscodes für jede Response, wie etwa `200`, und die Werte sind andere `dict`s mit den Informationen für jede Response.
+Der nimmt ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> entgegen: Die Schlüssel sind Statuscodes für jede Response (wie etwa `200`), und die Werte sind andere `dict`s mit den Informationen für jede Response.
 
 Jedes dieser Response-`dict`s kann einen Schlüssel `model` haben, welcher ein Pydantic-Modell enthält, genau wie `response_model`.
 
@@ -185,7 +185,7 @@ Beachten Sie, dass Sie das Bild direkt mit einer `FileResponse` zurückgeben mü
 
 /// note | Hinweis
 
-Sofern Sie in Ihrem Parameter `responses` nicht explizit einen anderen Medientyp angeben, geht FastAPI davon aus, dass die Response denselben Medientyp wie die Haupt-Response-Klasse hat (Standardmäßig `application/json`).
+Sofern Sie in Ihrem Parameter `responses` nicht explizit einen anderen Medientyp angeben, geht FastAPI davon aus, dass die Response denselben Medientyp wie die Haupt-Response-Klasse hat (standardmäßig `application/json`).
 
 Wenn Sie jedoch eine benutzerdefinierte Response-Klasse mit `None` als Medientyp angegeben haben, verwendet FastAPI `application/json` für jede zusätzliche Response, die über ein zugehöriges Modell verfügt.
 
@@ -195,7 +195,7 @@ Wenn Sie jedoch eine benutzerdefinierte Response-Klasse mit `None` als Medientyp
 
 Sie können auch Response-Informationen von mehreren Stellen kombinieren, einschließlich der Parameter `response_model`, `status_code` und `responses`.
 
-Sie können ein `response_model` deklarieren, indem Sie den Standardstatuscode `200` (oder bei Bedarf einen benutzerdefinierten) verwenden und dann zusätzliche Informationen für dieselbe Response in `responses` direkt im OpenAPI-Schema deklarieren.
+Sie können ein `response_model` deklarieren, indem Sie den Defaultstatuscode `200` (oder bei Bedarf einen benutzerdefinierten) verwenden und dann zusätzliche Informationen für dieselbe Response in `responses` direkt im OpenAPI-Schema deklarieren.
 
 **FastAPI** behält die zusätzlichen Informationen aus `responses` und kombiniert sie mit dem JSON-Schema aus Ihrem Modell.
 
@@ -243,5 +243,5 @@ Zum Beispiel:
 
 Um zu sehen, was genau Sie in die Responses aufnehmen können, können Sie die folgenden Abschnitte in der OpenAPI-Spezifikation überprüfen:
 
-* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), enthält das `Response Object`.
-* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), Sie können alles davon direkt in jede Response innerhalb Ihres `responses`-Parameter einfügen. Einschließlich `description`, `headers`, `content` (darin deklarieren Sie verschiedene Medientypen und JSON-Schemas) und `links`.
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object), enthält das `Response Object`.
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object), Sie können alles davon direkt in jede Response innerhalb Ihres `responses`-Parameters einfügen. Einschließlich `description`, `headers`, `content` (darin deklarieren Sie verschiedene Medientypen und JSON-Schemas) und `links`.

@@ -24,7 +24,7 @@ Pydantic v1 kullanan eski bir FastAPI uygulamanız varsa, burada onu Pydantic v2
 
 ## Resmi Kılavuz { #official-guide }
 
-Pydantic'in v1'den v2'ye resmi bir [Migration Guide](https://docs.pydantic.dev/latest/migration/)'ı vardır.
+Pydantic'in v1'den v2'ye resmi bir [Geçiş Kılavuzu](https://pydantic.dev/docs/validation/latest/get-started/migration/) vardır.
 
 Ayrıca nelerin değiştiğini, validasyonların artık nasıl daha doğru ve katı olduğunu, olası dikkat edilmesi gereken noktaları (caveat) vb. de içerir.
 

@@ -1,6 +1,5 @@
 # OAuth2 con Password (y hashing), Bearer con tokens JWT { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-
 Ahora que tenemos todo el flujo de seguridad, hagamos que la aplicación sea realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> y hashing de contraseñas seguras.
 
 Este código es algo que puedes usar realmente en tu aplicación, guardar los hashes de las contraseñas en tu base de datos, etc.
@@ -31,12 +30,12 @@ Si quieres jugar con tokens JWT y ver cómo funcionan, revisa [https://jwt.io](h
 
 Necesitamos instalar `PyJWT` para generar y verificar los tokens JWT en Python.
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo y luego instalar `pyjwt`:
+Añade `pyjwt` a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -73,12 +72,12 @@ Soporta muchos algoritmos de hashing seguros y utilidades para trabajar con ello
 
 El algoritmo recomendado es "Argon2".
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo y luego instalar pwdlib con Argon2:
+Añade `pwdlib` con Argon2 a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```

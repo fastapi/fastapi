@@ -28,14 +28,14 @@ Se você quiser brincar com tokens JWT e ver como eles funcionam, visite [https:
 
 ## Instalar `PyJWT` { #install-pyjwt }
 
-Nós precisamos instalar o `PyJWT` para criar e verificar os tokens JWT em Python.
+Nós precisamos instalar o `PyJWT` para gerar e verificar os tokens JWT em Python.
 
-Certifique-se de criar um [ambiente virtual](../../virtual-environments.md), ativá-lo e então instalar o `pyjwt`:
+Adicione `pyjwt` ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -62,9 +62,9 @@ Mas não é possível converter os caracteres sem sentido de volta para a senha 
 
 Se o seu banco de dados for roubado, o invasor não terá as senhas em texto puro dos seus usuários, apenas os hashes.
 
-Então, o invasor não poderá tentar usar essas senhas em outro sistema (como muitos usuários utilizam a mesma senha em vários lugares, isso seria perigoso).
+Então, o invasor não poderá tentar usar essa senha em outro sistema (como muitos usuários utilizam a mesma senha em vários lugares, isso seria perigoso).
 
-## Instalar o `pwdlib` { #install-pwdlib }
+## Instalar `pwdlib` { #install-pwdlib }
 
 pwdlib é um excelente pacote Python para lidar com hashes de senhas.
 
@@ -72,12 +72,12 @@ Ele suporta muitos algoritmos de hashing seguros e utilitários para trabalhar c
 
 O algoritmo recomendado é o "Argon2".
 
-Certifique-se de criar um [ambiente virtual](../../virtual-environments.md), ativá-lo e então instalar o pwdlib com Argon2:
+Adicione `pwdlib` com Argon2 ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -215,7 +215,7 @@ Password: `secret`
 
 /// tip | Dica
 
-Observe que em nenhuma parte do código está a senha em texto puro "`secret`", nós temos apenas o hash.
+Observe que em nenhuma parte do código está a senha em texto puro "`secret`", nós temos apenas a versão com hash.
 
 ///
 
@@ -234,7 +234,7 @@ Chame o endpoint `/users/me/`, você receberá o retorno como:
 
 <img src="/img/tutorial/security/image09.png">
 
-Se você abrir as ferramentas de desenvolvedor, poderá ver que os dados enviados incluem apenas o token. A senha é enviada apenas na primeira requisição para autenticar o usuário e obter o token de acesso, mas não é enviada nas próximas requisições:
+Se você abrir as ferramentas de desenvolvedor, poderá ver que os dados enviados incluem apenas o token. A senha é enviada apenas na primeira requisição para autenticar o usuário e obter o token de acesso, mas não depois:
 
 <img src="/img/tutorial/security/image10.png">
 

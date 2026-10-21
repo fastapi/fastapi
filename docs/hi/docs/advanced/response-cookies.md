@@ -48,4 +48,4 @@
 
 ///
 
-सभी उपलब्ध parameters और options देखने के लिए, [Starlette में documentation](https://www.starlette.dev/responses/#set-cookie) देखें।
+सभी उपलब्ध parameters और options देखने के लिए, [Starlette में documentation](https://starlette.dev/responses/#set-cookie) देखें।

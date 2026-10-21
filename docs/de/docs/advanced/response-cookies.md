@@ -1,6 +1,5 @@
 # Response-Cookies { #response-cookies }
 
-
 ## Einen `Response`-Parameter verwenden { #use-a-response-parameter }
 
 Sie können einen Parameter vom Typ `Response` in Ihrer *Pfadoperation-Funktion* deklarieren.
@@ -49,4 +48,4 @@ Und da die `Response` häufig zum Setzen von Headern und Cookies verwendet wird,
 
 ///
 
-Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren [Dokumentation in Starlette](https://www.starlette.dev/responses/#set-cookie) an.
+Um alle verfügbaren Parameter und Optionen anzuzeigen, sehen Sie sich deren [Dokumentation in Starlette](https://starlette.dev/responses/#set-cookie) an.

@@ -269,7 +269,7 @@ Types के बिना, इसे हासिल करना लगभग �
 
 ## Pydantic models { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) data validation करने के लिए एक Python library है।
+[Pydantic](https://pydantic.dev/docs/) data validation करने के लिए एक Python library है।
 
 आप data की "shape" को attributes वाली classes के रूप में declare करते हैं।
 
@@ -285,7 +285,7 @@ Official Pydantic docs से एक उदाहरण:
 
 /// note | नोट
 
-अधिक जानने के लिए [Pydantic, इसके docs देखें](https://docs.pydantic.dev/)।
+अधिक जानने के लिए [Pydantic, इसके docs देखें](https://pydantic.dev/docs/)।
 
 ///
 

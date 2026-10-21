@@ -24,7 +24,7 @@ Et cette fonction `get_openapi()` reçoit comme paramètres :
 * `version` : La version de votre API, p. ex. `2.5.0`.
 * `openapi_version` : La version de la spécification OpenAPI utilisée. Par défaut, la plus récente : `3.1.0`.
 * `summary` : Un court résumé de l'API.
-* `description` : La description de votre API ; elle peut inclure du markdown et sera affichée dans la documentation.
+* `description` : La description de votre API ; elle peut inclure du markdown et sera affichée dans les documents.
 * `routes` : Les routes de l'application, extraites de `app.routes`. FastAPI les utilise pour collecter les *chemins d'accès* enregistrés, y compris ceux provenant des routeurs inclus.
 
 /// tip | Détails techniques
@@ -45,7 +45,7 @@ Le paramètre `summary` est disponible à partir d'OpenAPI 3.1.0, pris en charge
 
 En vous appuyant sur les informations ci-dessus, vous pouvez utiliser la même fonction utilitaire pour générer le schéma OpenAPI et remplacer chaque partie dont vous avez besoin.
 
-Par exemple, ajoutons [l’extension OpenAPI de ReDoc pour inclure un logo personnalisé](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
+Par exemple, ajoutons [l’extension OpenAPI de ReDoc pour inclure un logo personnalisé](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo).
 
 ### **FastAPI** normal { #normal-fastapi }
 

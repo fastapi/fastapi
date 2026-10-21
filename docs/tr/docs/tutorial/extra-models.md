@@ -167,7 +167,7 @@ Bunu yapmak için standart Python type hint'i olan [`typing.Union`](https://docs
 
 /// note | Not
 
-Bir [`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) tanımlarken en spesifik type'ı önce, daha az spesifik olanı sonra ekleyin. Aşağıdaki örnekte daha spesifik olan `PlaneItem`, `Union[PlaneItem, CarItem]` içinde `CarItem`'dan önce gelir.
+Bir [`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/) tanımlarken en spesifik type'ı önce, daha az spesifik olanı sonra ekleyin. Aşağıdaki örnekte daha spesifik olan `PlaneItem`, `Union[PlaneItem, CarItem]` içinde `CarItem`'dan önce gelir.
 
 ///
 
@@ -209,4 +209,4 @@ Bu durumda `dict` kullanabilirsiniz:
 
 Her duruma göre birden fazla Pydantic modeli kullanın ve gerekirse özgürce inheritance uygulayın.
 
-Bir entity'nin farklı "state"lere sahip olması gerekiyorsa, o entity için tek bir veri modeli kullanmak zorunda değilsiniz. Örneğin `password` içeren, `password_hash` içeren ve `password` içermeyen state'lere sahip kullanıcı "entity"si gibi.
+Bir entity'nin farklı "state"lere sahip olması gerekiyorsa, o entity için tek bir veri modeli kullanmak zorunda değilsiniz. **user** "entity"si buna örnektir; `password`, `password_hash` içeren veya password içermeyen state'lere sahip olabilir.
