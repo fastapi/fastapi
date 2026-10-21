@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add support for combining query, header, and cookie parameter models. PR [#16573](https://github.com/fastapi/fastapi/pull/16573) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 📝 Clarify boolean query parameter parsing. PR [#16569](https://github.com/fastapi/fastapi/pull/16569) by [@tiangolo](https://github.com/tiangolo).
