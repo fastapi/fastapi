@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add support for optional query, header, and cookie parameter models. PR [#16584](https://github.com/fastapi/fastapi/pull/16584) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.158.2 (2026-10-21)
 
 ### Features
