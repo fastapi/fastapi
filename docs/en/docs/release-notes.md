@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.157.0 (2026-10-21)
+
 ### Features
 
 * ✨ Add support for combining query, header, and cookie parameter models. PR [#16573](https://github.com/fastapi/fastapi/pull/16573) by [@tiangolo](https://github.com/tiangolo).
