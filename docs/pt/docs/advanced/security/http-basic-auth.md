@@ -20,7 +20,7 @@ Então, quando você digitar o usuário e senha, o navegador os envia automatica
 * Isso retorna um objeto do tipo `HTTPBasicCredentials`:
     * Isto contém o `username` e o `password` enviado.
 
-{* ../../docs_src/security/tutorial006_an_py39.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
 
 Quando você tentar abrir a URL pela primeira vez (ou clicar no botão "Executar" na documentação) o navegador vai pedir pelo seu usuário e senha:
 
@@ -32,7 +32,7 @@ Aqui está um exemplo mais completo.
 
 Utilize uma dependência para verificar se o usuário e a senha estão corretos.
 
-Para isso, utilize o módulo padrão do Python <a href="https://docs.python.org/3/library/secrets.html" class="external-link" target="_blank">`secrets`</a> para verificar o usuário e senha.
+Para isso, utilize o módulo padrão do Python [`secrets`](https://docs.python.org/3/library/secrets.html) para verificar o usuário e senha.
 
 O `secrets.compare_digest()` necessita receber `bytes` ou `str` que possuem apenas caracteres ASCII (os em inglês). Isso significa que não funcionaria com caracteres como o `á`, como em `Sebastián`.
 
@@ -40,7 +40,7 @@ Para lidar com isso, primeiramente nós convertemos o `username` e o `password` 
 
 Então nós podemos utilizar o `secrets.compare_digest()` para garantir que o `credentials.username` é `"stanleyjobson"`, e que o `credentials.password` é `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
 Isso seria parecido com:
 
@@ -50,11 +50,11 @@ if not (credentials.username == "stanleyjobson") or not (credentials.password ==
     ...
 ```
 
-Porém, ao utilizar o `secrets.compare_digest()`, isso estará seguro contra um tipo de ataque chamado "timing attacks" (ataques de temporização).
+Porém, ao utilizar o `secrets.compare_digest()`, isso estará seguro contra um tipo de ataque chamado "timing attacks".
 
 ### Ataques de Temporização { #timing-attacks }
 
-Mas o que é um "timing attack" (ataque de temporização)?
+Mas o que é um "timing attack"?
 
 Vamos imaginar que alguns invasores estão tentando adivinhar o usuário e a senha.
 
@@ -104,4 +104,4 @@ Deste modo, ao utilizar `secrets.compare_digest()` no código de sua aplicação
 
 Após detectar que as credenciais estão incorretas, retorne um `HTTPException` com o status 401 (o mesmo retornado quando nenhuma credencial foi informada) e adicione o cabeçalho `WWW-Authenticate` para fazer com que o navegador mostre o prompt de login novamente:
 
-{* ../../docs_src/security/tutorial007_an_py39.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}

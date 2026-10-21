@@ -18,7 +18,7 @@ Essa mesma técnica se aplica para `Query`, `Cookie`, e `Header`. 😎
 
 ## Cookies com Modelos Pydantic { #cookies-with-a-pydantic-model }
 
-Declare o parâmetro de **cookie** que você precisa em um **modelo Pydantic**, e depois declare o parâmetro como um `Cookie`:
+Declare os parâmetros de **cookie** de que você precisa em um **modelo Pydantic**, e depois declare o parâmetro como `Cookie`:
 
 {* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
 
@@ -32,7 +32,7 @@ Você pode ver os cookies definidos na IU da documentação em `/docs`:
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | Informação
+/// note | Nota
 
 Tenha em mente que, como os **navegadores lidam com cookies** de maneira especial e por baixo dos panos, eles **não** permitem facilmente que o **JavaScript** lidem com eles.
 
@@ -46,7 +46,7 @@ Mas mesmo que você **adicionar os dados** e clicar em "Executar", pelo motivo d
 
 Em alguns casos especiais (provavelmente não muito comuns), você pode querer **restringir** os cookies que você deseja receber.
 
-Agora a sua API possui o poder de controlar o seu próprio <abbr title="Isso é uma brincadeira, só por precaução. Isso não tem nada a ver com consentimentos de cookies, mas é engraçado que até a API consegue rejeitar os coitados dos cookies. Coma um biscoito. 🍪">consentimento de cookie</abbr>. 🤪🍪
+Agora a sua API possui o poder de controlar o seu próprio <dfn title="Isso é uma brincadeira, só por precaução. Isso não tem nada a ver com consentimentos de cookies, mas é engraçado que até a API consegue rejeitar os coitados dos cookies. Coma um biscoito. 🍪">consentimento de cookie</dfn>. 🤪🍪
 
 Você pode utilizar a configuração do modelo Pydantic para `proibir` qualquer campo `extra`:
 
@@ -54,9 +54,9 @@ Você pode utilizar a configuração do modelo Pydantic para `proibir` qualquer 
 
 Se o cliente tentar enviar alguns **cookies extras**, eles receberão um retorno de **erro**.
 
-Coitados dos banners de cookies com todo o seu esforço para obter o seu consentimento para a <abbr title="Isso é uma outra piada. Não preste atenção em mim. Beba um café com o seu cookie. ☕">API rejeitá-lo</abbr>. 🍪
+Coitados dos banners de cookies com todo o seu esforço para obter o seu consentimento para a <dfn title="Isso é uma outra piada. Não preste atenção em mim. Beba um café com o seu cookie. ☕">API rejeitá-lo</dfn>. 🍪
 
-Por exemplo, se o cliente tentar enviar um cookie `santa_tracker` com o valor de `good-list-please`, o cliente receberá uma resposta de **erro** informando que o `santa_tracker` <abbr title="O papai noel desaprova a falta de biscoitos. 🎅 Ok, chega de piadas com os cookies.">cookie não é permitido</abbr>:
+Por exemplo, se o cliente tentar enviar um cookie `santa_tracker` com o valor de `good-list-please`, o cliente receberá uma resposta de **erro** informando que o `santa_tracker` <dfn title="O papai noel desaprova a falta de biscoitos. 🎅 Ok, chega de piadas com os cookies.">cookie não é permitido</dfn>:
 
 ```json
 {
@@ -73,4 +73,4 @@ Por exemplo, se o cliente tentar enviar um cookie `santa_tracker` com o valor de
 
 ## Resumo { #summary }
 
-Você consegue utilizar **modelos Pydantic** para declarar <abbr title="Coma um último biscoito antes de você ir embora. 🍪">**cookies**</abbr> no **FastAPI**. 😎
+Você consegue utilizar **modelos Pydantic** para declarar <dfn title="Coma um último biscoito antes de você ir embora. 🍪">**cookies**</dfn> no **FastAPI**. 😎

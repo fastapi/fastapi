@@ -1,8 +1,8 @@
 name: Translate
 
 on:
-  # schedule:
-  #   - cron: "0 5 15 * *"  # Run at 05:00 on the 15 of every month
+  schedule:
+    - cron: "0 5 1,15 * *"  # Run at 05:00 on the 1st and 15th of every month
 
   workflow_dispatch:
     inputs:
@@ -13,6 +13,7 @@ on:
       command:
         description: Command to run
         type: choice
+        required: true
         options:
           - translate-page
           - translate-lang
@@ -23,23 +24,19 @@ on:
       language:
         description: Language to translate to as a letter code (e.g. "es" for Spanish)
         type: string
-        required: false
-        default: ""
+        required: true
       en_path:
         description: File path in English to translate (e.g. docs/en/docs/index.md)
         type: string
         required: false
         default: ""
-      commit_in_place:
-        description: Commit changes directly instead of making a PR
-        type: boolean
-        required: false
-        default: false
       max:
         description: Maximum number of items to translate (e.g. 10)
         type: number
         required: false
         default: 10
+
+permissions: {}
 
 jobs:
   langs:
@@ -48,14 +45,17 @@ jobs:
       langs: ${{ steps.show-langs.outputs.langs }}
       commands: ${{ steps.show-langs.outputs.commands }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
+          version: "latest-known"
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
@@ -74,27 +74,30 @@ jobs:
     if: github.repository_owner == 'fastapi'
     needs: langs
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     strategy:
       matrix:
         lang: ${{ fromJson(needs.langs.outputs.langs) }}
         command: ${{ fromJson(needs.langs.outputs.commands) }}
-    permissions:
-      contents: write
     steps:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
+          version: "latest-known"
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
@@ -102,22 +105,44 @@ jobs:
         run: uv sync --locked --no-dev --group github-actions --group translations
       # Allow debugging with tmate
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@35b54afac29c97fb54faba5b513f8fbd1882f113 # v3.24
         if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.debug_enabled == 'true' }}
         with:
           limit-access-to-actor: true
         env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # zizmor: ignore[secrets-outside-env]
       - name: FastAPI Translate
-        run: |
-          uv run ./scripts/translate.py ${{ matrix.command }}
-          uv run ./scripts/translate.py make-pr
+        run: uv run ./scripts/translate.py "$COMMAND"
         env:
-          GITHUB_TOKEN: ${{ secrets.FASTAPI_TRANSLATIONS }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # zizmor: ignore[secrets-outside-env]
           LANGUAGE: ${{ matrix.lang }}
           EN_PATH: ${{ github.event.inputs.en_path }}
           COMMAND: ${{ matrix.command }}
-          COMMIT_IN_PLACE: ${{ github.event.inputs.commit_in_place }}
           MAX: ${{ github.event.inputs.max }}
+      - name: Get PR Submit token
+        if: github.event_name == 'schedule'
+        id: pr-submit
+        uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
+      - name: Create pull request
+        if: github.event_name == 'schedule'
+        run: |
+          gh auth setup-git
+          uv run ./scripts/translate.py make-pr
+        env:
+          GITHUB_TOKEN: ${{ steps.pr-submit.outputs.token }}
+          LANGUAGE: ${{ matrix.lang }}
+          COMMAND: ${{ matrix.command }}
+      - name: Get PR Push token
+        if: github.event_name == 'workflow_dispatch'
+        id: pr-push
+        uses: tiangolo/pr-push@f336b3817f32ea9b8273a8c15f8ecb739ac38167 # 0.0.4
+      - name: Commit and push changes
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          COMMAND: ${{ matrix.command }}
+          GH_TOKEN: ${{ steps.pr-push.outputs.token }}
+          LANGUAGE: ${{ matrix.lang }}
+        run: |
+          gh auth setup-git
+          uv run ./scripts/translate.py push

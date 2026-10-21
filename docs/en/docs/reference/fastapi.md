@@ -18,6 +18,7 @@ from fastapi import FastAPI
             - openapi
             - websocket
             - include_router
+            - frontend
             - get
             - put
             - post

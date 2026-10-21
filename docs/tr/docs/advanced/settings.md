@@ -6,9 +6,13 @@ Bu ayarların çoğu değişkendir (değişebilir); örneğin veritabanı URL'le
 
 Bu nedenle bunları, uygulama tarafından okunan environment variable'lar ile sağlamak yaygındır.
 
+Bir **environment variable** (**env var** olarak da bilinir), Python kodunun dışında, işletim sisteminde yaşayan ve uygulamanız ile diğer programlar tarafından okunabilen bir değerdir.
+
+Bir komutu çalıştırırken o komut için bir environment variable oluşturabilirsiniz. Platforma özel komutları aşağıda göreceksiniz.
+
 /// tip | İpucu
 
-Environment variable'ları anlamak için [Environment Variables](../environment-variables.md){.internal-link target=_blank} dokümanını okuyabilirsiniz.
+Environment variable'ların nasıl çalıştığına dair ayrıntılı bir açıklama için [Environment Variables rehberini](https://tiangolo.com/guides/environment-variables/) okuyabilirsiniz.
 
 ///
 
@@ -20,16 +24,16 @@ Bu da, Python içinde bir environment variable'dan okunan herhangi bir değerin 
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-Neyse ki Pydantic, environment variable'lardan gelen bu ayarları yönetmek için <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a> ile çok iyi bir yardımcı araç sunar.
+Neyse ki Pydantic, environment variable'lardan gelen bu ayarları yönetmek için [Pydantic: Settings yönetimi](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) ile çok iyi bir yardımcı araç sunar.
 
 ### `pydantic-settings`'i kurun { #install-pydantic-settings }
 
-Önce, [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, aktive ettiğinizden emin olun ve ardından `pydantic-settings` paketini kurun:
+`pydantic-settings` paketini projenize ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ Ayrıca `all` extras'ını şu şekilde kurduğunuzda da dahil gelir:
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -54,7 +58,7 @@ Pydantic model'lerinde olduğu gibi, type annotation'larla (ve gerekirse default
 
 Pydantic model'lerinde kullandığınız aynı doğrulama özelliklerini ve araçlarını burada da kullanabilirsiniz; örneğin farklı veri tipleri ve `Field()` ile ek doğrulamalar.
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | İpucu
 
@@ -70,25 +74,45 @@ Sonrasında veriyi dönüştürür ve doğrular. Böylece `settings` nesnesini k
 
 Daha sonra uygulamanızda yeni `settings` nesnesini kullanabilirsiniz:
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### Server'ı çalıştırın { #run-the-server }
 
 Sonraki adımda server'ı çalıştırırken konfigürasyonları environment variable olarak geçersiniz; örneğin `ADMIN_EMAIL` ve `APP_NAME` şu şekilde ayarlanabilir:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | İpucu
 
-Tek bir komut için birden fazla env var ayarlamak istiyorsanız aralarına boşluk koyun ve hepsini komuttan önce yazın.
+Bash'te, tek bir komut için birden fazla env var ayarlamak istiyorsanız aralarına boşluk koyun ve hepsini komuttan önce yazın.
 
 ///
 
@@ -100,19 +124,19 @@ Böylece `admin_email` ayarı `"deadpool@example.com"` olur.
 
 ## Ayarları başka bir module'de tutma { #settings-in-another-module }
 
-[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank} bölümünde gördüğünüz gibi, bu ayarları başka bir module dosyasına koyabilirsiniz.
+[Daha Büyük Uygulamalar - Birden Fazla Dosya](../tutorial/bigger-applications.md) bölümünde gördüğünüz gibi, bu ayarları başka bir module dosyasına koyabilirsiniz.
 
 Örneğin `config.py` adında bir dosyanız şu şekilde olabilir:
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 Ve ardından bunu `main.py` dosyasında kullanabilirsiniz:
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | İpucu
 
-[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank} bölümünde gördüğünüz gibi, ayrıca bir `__init__.py` dosyasına da ihtiyacınız olacak.
+[Daha Büyük Uygulamalar - Birden Fazla Dosya](../tutorial/bigger-applications.md) bölümünde gördüğünüz gibi, ayrıca bir `__init__.py` dosyasına da ihtiyacınız olacak.
 
 ///
 
@@ -126,7 +150,7 @@ Bu özellikle test sırasında çok işe yarar; çünkü bir dependency'yi kendi
 
 Bir önceki örnekten devam edersek, `config.py` dosyanız şöyle görünebilir:
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 Dikkat edin, artık default bir instance `settings = Settings()` oluşturmuyoruz.
 
@@ -134,7 +158,7 @@ Dikkat edin, artık default bir instance `settings = Settings()` oluşturmuyoruz
 
 Şimdi, yeni bir `config.Settings()` döndüren bir dependency oluşturuyoruz.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | İpucu
 
@@ -146,13 +170,13 @@ Dikkat edin, artık default bir instance `settings = Settings()` oluşturmuyoruz
 
 Sonra bunu dependency olarak *path operation function*'dan talep edebilir ve ihtiyaç duyduğumuz her yerde kullanabiliriz.
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### Ayarlar ve test { #settings-and-testing }
 
 Ardından, `get_settings` için bir dependency override oluşturarak test sırasında farklı bir settings nesnesi sağlamak çok kolay olur:
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 Dependency override içinde, yeni `Settings` nesnesini oluştururken `admin_email` için yeni bir değer ayarlarız ve sonra bu yeni nesneyi döndürürüz.
 
@@ -172,11 +196,11 @@ Ancak dotenv dosyasının mutlaka bu dosya adına sahip olması gerekmez.
 
 ///
 
-Pydantic, harici bir kütüphane kullanarak bu tür dosyalardan okuma desteğine sahiptir. Daha fazlası için: <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a>.
+Pydantic, harici bir kütüphane kullanarak bu tür dosyalardan okuma desteğine sahiptir. Daha fazlası için: [Pydantic Settings: Dotenv (.env) desteği](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | İpucu
 
-Bunun çalışması için `pip install python-dotenv` yapmanız gerekir.
+Bunun çalışması için `uv add python-dotenv` ile `python-dotenv` paketini projenize ekleyin.
 
 ///
 
@@ -193,11 +217,11 @@ APP_NAME="ChimichangApp"
 
 Ardından `config.py` dosyanızı şöyle güncelleyin:
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | İpucu
 
-`model_config` attribute'u yalnızca Pydantic konfigürasyonu içindir. Daha fazlası için <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a>.
+`model_config` attribute'u yalnızca Pydantic konfigürasyonu içindir. Daha fazlası için [Pydantic: Kavramlar: Konfigürasyon](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 
@@ -226,7 +250,7 @@ bu nesneyi her request için oluştururduk ve `.env` dosyasını her request'te 
 
 Fakat en üstte `@lru_cache` decorator'ünü kullandığımız için `Settings` nesnesi yalnızca bir kez, ilk çağrıldığı anda oluşturulur. ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 Sonraki request'lerde dependency'ler içinden `get_settings()` çağrıldığında, `get_settings()`'in iç kodu tekrar çalıştırılıp yeni bir `Settings` nesnesi yaratılmak yerine, ilk çağrıda döndürülen aynı nesne tekrar tekrar döndürülür.
 
@@ -291,7 +315,7 @@ Bizim `get_settings()` dependency'miz özelinde ise fonksiyon hiç argüman alma
 
 Bu şekilde, neredeyse global bir değişken gibi davranır. Ancak bir dependency fonksiyonu kullandığı için testte kolayca override edebiliriz.
 
-`@lru_cache`, Python standart kütüphanesinin bir parçası olan `functools` içindedir. Daha fazla bilgi için: <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python docs for `@lru_cache`</a>.
+`@lru_cache`, Python standart kütüphanesinin bir parçası olan `functools` içindedir. Daha fazla bilgi için: [Python dokümanları: `@lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
 
 ## Özet { #recap }
 

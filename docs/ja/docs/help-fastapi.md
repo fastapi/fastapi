@@ -1,102 +1,80 @@
-# FastAPIを応援 - ヘルプの入手
+# ヘルプ { #help }
 
-**FastAPI** は気に入りましたか？
 
-FastAPIやユーザーや開発者を応援したいですか？
+FastAPI を手助けしたい、または FastAPI についてヘルプが必要ですか？
 
-もしくは、 **FastAPI** についてヘルプが必要ですか？
+応援したりヘルプを得たりする簡単な方法がいくつかあります。
 
-とても簡単に応援できます (ただ1、2回クリックするだけのものもあります)。
+## ニュースレターを購読 { #subscribe-to-the-newsletter }
 
-また、ヘルプを入手する手段がいくつかあります。
+最新情報を受け取るために、（配信はまれな）[**FastAPI and friends** ニュースレター](newsletter.md)を購読できます:
 
-## GitHubで **FastAPI** にStar
+* FastAPI と関連プロジェクトのニュース 🚀
+* ガイド 📝
+* 機能 ✨
+* 互換性に影響する変更 🚨
+* ヒントやコツ ✅
 
-GitHubでFastAPIに「Star」をつけることができます (右上部のStarボタンをクリック): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. ⭐️
+## オンラインで FastAPI をフォロー { #follow-fastapi-online }
 
-スターを増やすことで、他のユーザーの目につきやすくなり、多くの人にとって便利なものであることを示せます。
+以下の場所で **FastAPI** をフォローできます:
 
-## GitHubレポジトリのリリースをWatch
+* [**X / Twitter** の @fastapi](https://x.com/fastapi)
+* [**Bluesky** の @fastapi.tiangolo.com](https://bsky.app/profile/fastapi.tiangolo.com)
+* [**LinkedIn** の FastAPI](https://www.linkedin.com/company/fastapi/)
 
-GitHubでFastAPIを「Watch」できます (右上部のWatchボタンをクリック): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
+## GitHubで **FastAPI** にStar { #star-fastapi-in-github }
+
+GitHubでFastAPIに「Star」をつけることができます（右上のStarボタンをクリック）: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。⭐️
+
+スターが増えると、他のユーザーが見つけやすくなり、すでに多くの人に役立っていることが伝わります。
+
+## GitHubレポジトリのリリースをWatch { #watch-the-github-repository-for-releases }
+
+GitHubでFastAPIを「Watch」できます（右上の「Watch」ボタンをクリック）: [https://github.com/fastapi/fastapi](https://github.com/fastapi/fastapi)。👀
 
 そこで「Releases only」を選択できます。
 
-これを行うと、**FastAPI** バグ修正や新機能の実装などの新しいリリース (新しいバージョン) があるたびに (メールで) 通知を受け取れます。
+これを行うと、バグ修正や新機能を含む **FastAPI** の新しいリリース（新バージョン）があるたびに、メールで通知を受け取れます。
 
-## 開発者とつながる
+## 作者をフォロー { #follow-the-author }
 
-以下で、<a href="https://tiangolo.com" class="external-link" target="_blank">開発者 (Sebastián Ramírez / `tiangolo`)</a> とコンタクトをとれます:
+作者である[私（Sebastián Ramírez / `tiangolo`）](https://tiangolo.com)をいくつかの場所でフォローして、FastAPI とその仲間に関するニュースを受け取れます:
 
-* <a href="https://github.com/tiangolo" class="external-link" target="_blank">**GitHub** でフォロー</a>。
-    * 他のオープンソースプロジェクトを確認できます。何かの助けになるものが見つかるかもしれません。
-    * 新たなオープンソースプロジェクトを作成したときに通知されます。
-* <a href="https://x.com/tiangolo" class="external-link" target="_blank">**X (Twitter)** でフォロー</a>。
-    * FastAPIの使用用途を教えてください (聞いてみたいです)。
-    * 新たなツールの発表やリリースが聞けます。
-* <a href="https://www.linkedin.com/in/tiangolo/" class="external-link" target="_blank">**Linkedin** でつながる</a>。
-    * 新たなツールの発表やリリースが聞けます (ただしX (Twitter)の方が利用頻度が高いですが 🤷‍♂)。
-* <a href="https://dev.to/tiangolo" class="external-link" target="_blank">**Dev.to**</a> や <a href="https://medium.com/@tiangolo" class="external-link" target="_blank">**Medium**</a> で著作物を読む (またはフォロー)。
-    * アイデアや作成ツールについての記事が読めます。
-    * 新規記事の執筆を通知してくれます。
+* [**GitHub** の @tiangolo](https://github.com/tiangolo)。
+* [**X (Twitter)** の @tiangolo](https://x.com/tiangolo)
+* [**Bluesky** の @tiangolo.com](https://bsky.app/profile/tiangolo.com)
+* [**LinkedIn** の @tiangolo](https://www.linkedin.com/in/tiangolo/)。
 
-## **FastAPI** に関するツイート
+## 質問する { #ask-questions }
 
-<a href="https://x.com/compose/tweet?text=I'm loving FastAPI because... https://github.com/fastapi/fastapi cc @tiangolo" class="external-link" target="_blank">**FastAPI** についてツイート</a>し、開発者や他の人にどこが気に入ったのか教えてください。🎉
+GitHubレポジトリで[新しい質問](https://github.com/fastapi/fastapi/discussions/new?category=questions)を作成できます。例えば:
 
-**FastAPI** がどのように使われ、どこが気に入られ、どんなプロジェクト/会社で使われているかなどについて知りたいです。
+* **質問**をする、または**問題**について尋ねる。
+* 新しい**機能**を提案する。
 
-## FastAPIに投票
+## チャットに参加 { #join-the-chat }
 
-* <a href="https://www.slant.co/options/34241/~fastapi-review" class="external-link" target="_blank">Slantで **FastAPI** に投票</a>
-* <a href="https://alternativeto.net/software/fastapi/" class="external-link" target="_blank">AlternativeToで **FastAPI** に投票</a>
-* <a href="https://github.com/marmelab/awesome-rest/pull/93" class="external-link" target="_blank">awesome-restで **FastAPI** に投票</a>
+👥 [Discord チャットサーバー](https://discord.com/invite/VQjSZaeJmf) 👥 に参加し、FastAPI コミュニティのみんなと交流しましょう。
 
-## GitHub issuesで他の人を助ける
+/// tip | 豆知識
 
-<a href="https://github.com/fastapi/fastapi/issues" class="external-link" target="_blank">既存のissues</a>を確認して、他の人を助けてみてください。皆さんが回答を知っているかもしれない質問がほとんどです。🤓
+質問は GitHub Discussions に投稿してください。その方が助けを受けられる可能性がずっと高いです。
 
-## GitHubレポジトリをWatch
+チャットは一般的な会話のみに使いましょう。
 
-GitHubでFastAPIを「watch」できます (右上部の「watch」ボタンをクリック): <a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">https://github.com/fastapi/fastapi</a>. 👀
+///
 
-「Releases only」ではなく「Watching」を選択すると、新たなissueが立てられた際に通知されます。
+### 質問でチャットを使わない { #dont-use-the-chat-for-questions }
 
-そして、issueを解決し他の人を助けることができます。
+チャットは「自由な会話」がしやすいため、一般的すぎて答えにくい質問になりがちです。そのため、回答が得られない可能性があります。
 
-## issuesを立てる
+GitHub では、テンプレートが正しい形で質問を書くのを助けてくれるため、良い回答を得やすくなりますし、質問する前に自分で問題を解決できることもあります。
 
-GitHubレポジトリで<a href="https://github.com/fastapi/fastapi/issues/new/choose" class="external-link" target="_blank">新たなissueを立てられます</a>。例えば:
+また、チャットの会話は GitHub ほど検索しやすくなく、流れてしまいます。
 
-* 質問、または、問題の報告
-* 新機能の提案
+## FastAPI Cloud を試す { #try-fastapi-cloud }
 
-**Note**: issueを立てた人は、他の人の手助けもお願いします。😉
+FastAPI とその仲間の主な資金源は、FastAPI アプリケーションをシンプルかつ高速に、単一のコマンド `fastapi deploy` でデプロイするためのプラットフォームである [**FastAPI Cloud**](https://fastapicloud.com) です。
 
-## プルリクエストをする
-
-以下の様な<a href="https://github.com/fastapi/fastapi" class="external-link" target="_blank">プルリクエストを作成</a>できます:
-
-* ドキュメントのタイプミスを修正。
-* 新たなドキュメントセクションを提案。
-* 既存のissue/バグを修正。
-* 新機能を追加。
-
-## 開発者のスポンサーになる
-
-<a href="https://github.com/sponsors/tiangolo" class="external-link" target="_blank">GitHub sponsors</a>を通して開発者を経済的にサポートできます。
-
-そこで、感謝の気持ちを伝えるためにコーヒー☕️を買うことができます 😄。
-
-## FastAPIを強化するツールのスポンサーになる
-
-ドキュメントで見たように、FastAPIはStarletteとPydanticという巨人の肩に乗っています。
-
-以下のスポンサーになることもできます:
-
-* <a href="https://github.com/sponsors/samuelcolvin" class="external-link" target="_blank">Samuel Colvin (Pydantic)</a>
-* <a href="https://github.com/sponsors/encode" class="external-link" target="_blank">Encode (Starlette, Uvicorn)</a>
-
----
-
-Thanks! 🚀
+FastAPI Cloud は FastAPI を支える同じチームによって構築されています。試してみて、あなたのプロジェクトでの利用を検討できます。

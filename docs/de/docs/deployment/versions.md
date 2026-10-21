@@ -4,7 +4,7 @@
 
 Es werden regelmäßig neue Funktionen hinzugefügt, Fehler werden regelmäßig behoben und der Code wird weiterhin kontinuierlich verbessert.
 
-Aus diesem Grund sind die aktuellen Versionen immer noch `0.x.x`, was darauf hindeutet, dass jede Version möglicherweise nicht abwärtskompatible Änderungen haben könnte. Dies folgt den Konventionen der <a href="https://semver.org/" class="external-link" target="_blank">semantischen Versionierung</a>.
+Aus diesem Grund sind die aktuellen Versionen immer noch `0.x.x`, was darauf hindeutet, dass jede Version möglicherweise nicht abwärtskompatible Änderungen haben könnte. Dies folgt den Konventionen der [Semantische Versionierung](https://semver.org/).
 
 Sie können jetzt Produktionsanwendungen mit **FastAPI** erstellen (und das tun Sie wahrscheinlich schon seit einiger Zeit), Sie müssen nur sicherstellen, dass Sie eine Version verwenden, die korrekt mit dem Rest Ihres Codes funktioniert.
 
@@ -34,7 +34,7 @@ Wenn Sie zum Verwalten Ihrer Installationen andere Tools wie `uv`, Poetry, Pipen
 
 ## Verfügbare Versionen { #available-versions }
 
-Die verfügbaren Versionen können Sie in den [Versionshinweisen](../release-notes.md){.internal-link target=_blank} einsehen (z. B. um zu überprüfen, welches die neueste Version ist).
+Die verfügbaren Versionen können Sie in den [Versionshinweisen](../release-notes.md) einsehen (z. B. um zu überprüfen, welches die neueste Version ist).
 
 ## Über Versionen { #about-versions }
 
@@ -66,7 +66,7 @@ Nicht abwärtskompatible Änderungen und neue Funktionen werden in „MINOR“-V
 
 Sie sollten Tests für Ihre App hinzufügen.
 
-Mit **FastAPI** ist das sehr einfach (dank Starlette), schauen Sie sich die Dokumentation an: [Testen](../tutorial/testing.md){.internal-link target=_blank}
+Mit **FastAPI** ist das sehr einfach (dank Starlette), schauen Sie sich die Dokumentation an: [Testen](../tutorial/testing.md)
 
 Nachdem Sie Tests erstellt haben, können Sie die **FastAPI**-Version auf eine neuere Version aktualisieren und sicherstellen, dass Ihr gesamter Code ordnungsgemäß funktioniert, indem Sie Ihre Tests ausführen.
 

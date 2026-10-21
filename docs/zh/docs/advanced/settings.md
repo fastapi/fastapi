@@ -6,9 +6,13 @@
 
 因此，通常会将它们提供为由应用程序读取的环境变量。
 
+**环境变量**（也称为 **env var**）是存在于 Python 代码之外、操作系统中的值，可以由你的应用和其他程序读取。
+
+你可以在运行命令时为该命令创建环境变量。你将在下面看到特定于平台的命令。
+
 /// tip | 提示
 
-要理解环境变量，你可以阅读[环境变量](../environment-variables.md){.internal-link target=_blank}。
+阅读[环境变量指南](https://tiangolo.com/guides/environment-variables/)以详细了解环境变量的工作方式。
 
 ///
 
@@ -20,16 +24,16 @@
 
 ## Pydantic 的 `Settings` { #pydantic-settings }
 
-幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的这些设置：<a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/" class="external-link" target="_blank">Pydantic: Settings management</a>。
+幸运的是，Pydantic 提供了一个很好的工具来处理来自环境变量的这些设置：[Pydantic：Settings 管理](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/)。
 
 ### 安装 `pydantic-settings` { #install-pydantic-settings }
 
-首先，确保你创建并激活了[虚拟环境](../virtual-environments.md){.internal-link target=_blank}，然后安装 `pydantic-settings` 包：
+将 `pydantic-settings` 包添加到你的项目：
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ $ pip install pydantic-settings
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -54,7 +58,7 @@ $ pip install "fastapi[all]"
 
 你可以使用与 Pydantic 模型相同的验证功能和工具，例如不同的数据类型，以及使用 `Field()` 进行附加验证。
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
 
 /// tip | 提示
 
@@ -70,25 +74,45 @@ $ pip install "fastapi[all]"
 
 然后你可以在应用中使用新的 `settings` 对象：
 
-{* ../../docs_src/settings/tutorial001_py39.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
 
 ### 运行服务器 { #run-the-server }
 
 接下来，运行服务器，并把配置作为环境变量传入，例如你可以设置 `ADMIN_EMAIL` 和 `APP_NAME`：
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | 提示
 
-要为单个命令设置多个环境变量，只需用空格分隔它们，并把它们都放在命令前面。
+在 Bash 中，要为单个命令设置多个环境变量，只需用空格分隔它们，并把它们都放在命令前面。
 
 ///
 
@@ -100,19 +124,19 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ## 在另一个模块中放置设置 { #settings-in-another-module }
 
-你可以把这些设置放在另一个模块文件中，就像你在[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+你可以把这些设置放在另一个模块文件中，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md)中看到的那样。
 
 例如，可以有一个 `config.py` 文件：
 
-{* ../../docs_src/settings/app01_py39/config.py *}
+{* ../../docs_src/settings/app01_py310/config.py *}
 
 然后在 `main.py` 文件中使用它：
 
-{* ../../docs_src/settings/app01_py39/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
 
 /// tip | 提示
 
-你还需要一个 `__init__.py` 文件，就像你在[Bigger Applications - Multiple Files](../tutorial/bigger-applications.md){.internal-link target=_blank}中看到的那样。
+你还需要一个 `__init__.py` 文件，就像你在[更大的应用 - 多个文件](../tutorial/bigger-applications.md)中看到的那样。
 
 ///
 
@@ -126,7 +150,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 延续上一个示例，你的 `config.py` 文件可能如下所示：
 
-{* ../../docs_src/settings/app02_an_py39/config.py hl[10] *}
+{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
 
 注意，现在我们不再创建默认实例 `settings = Settings()`。
 
@@ -134,7 +158,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 现在我们创建一个依赖项，返回一个新的 `config.Settings()`。
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
 
 /// tip | 提示
 
@@ -144,15 +168,15 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-然后我们可以在“路径操作函数”中将其作为依赖项引入，并在需要的任何地方使用它。
+然后我们可以在路径操作函数中将其作为依赖项引入，并在需要的任何地方使用它。
 
-{* ../../docs_src/settings/app02_an_py39/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
 
 ### 设置与测试 { #settings-and-testing }
 
 接着，在测试期间，通过为 `get_settings` 创建依赖项覆盖，就可以很容易地提供一个不同的设置对象：
 
-{* ../../docs_src/settings/app02_an_py39/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
 
 在依赖项覆盖中，我们在创建新的 `Settings` 对象时为 `admin_email` 设置了一个新值，然后返回该新对象。
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic 支持使用一个外部库来从这类文件中读取。你可以在 <a href="https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support" class="external-link" target="_blank">Pydantic Settings: Dotenv (.env) support</a> 中阅读更多信息。
+Pydantic 支持使用一个外部库来从这类文件中读取。你可以在 [Pydantic Settings：Dotenv（.env）支持](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support) 中阅读更多信息。
 
 /// tip | 提示
 
-要使其工作，你需要执行 `pip install python-dotenv`。
+要使其工作，请使用 `uv add python-dotenv` 将 `python-dotenv` 添加到你的项目。
 
 ///
 
@@ -193,11 +217,11 @@ APP_NAME="ChimichangApp"
 
 然后更新 `config.py`：
 
-{* ../../docs_src/settings/app03_an_py39/config.py hl[9] *}
+{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
 
 /// tip | 提示
 
-`model_config` 属性仅用于 Pydantic 配置。你可以在 <a href="https://docs.pydantic.dev/latest/concepts/config/" class="external-link" target="_blank">Pydantic: Concepts: Configuration</a> 中阅读更多信息。
+`model_config` 属性仅用于 Pydantic 配置。你可以在 [Pydantic：概念：配置](https://pydantic.dev/docs/validation/latest/concepts/config/) 中阅读更多信息。
 
 ///
 
@@ -226,7 +250,7 @@ def get_settings():
 
 但由于我们在顶部使用了 `@lru_cache` 装饰器，`Settings` 对象只会在第一次调用时创建一次。 ✔️
 
-{* ../../docs_src/settings/app03_an_py39/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
 
 接着，对于后续请求中依赖项里对 `get_settings()` 的任何调用，它不会再次执行 `get_settings()` 的内部代码并创建新的 `Settings` 对象，而是会一遍又一遍地返回第一次调用时返回的那个相同对象。
 
@@ -291,12 +315,12 @@ participant execute as Execute function
 
 这样，它的行为几乎就像是一个全局变量。但由于它使用了依赖项函数，我们可以在测试时很容易地覆盖它。
 
-`@lru_cache` 是 `functools` 的一部分，它属于 Python 标准库。你可以在 <a href="https://docs.python.org/3/library/functools.html#functools.lru_cache" class="external-link" target="_blank">Python 文档中关于 `@lru_cache` 的章节</a>阅读更多信息。
+`@lru_cache` 是 `functools` 的一部分，它属于 Python 标准库。你可以在 [Python 文档中关于 `@lru_cache` 的章节](https://docs.python.org/3/library/functools.html#functools.lru_cache)阅读更多信息。
 
 ## 小结 { #recap }
 
 你可以使用 Pydantic Settings 来处理应用的设置或配置，享受 Pydantic 模型的全部能力。
 
-- 通过使用依赖项，你可以简化测试。
-- 你可以与它一起使用 `.env` 文件。
-- 使用 `@lru_cache` 可以避免为每个请求反复读取 dotenv 文件，同时允许你在测试时进行覆盖。
+* 通过使用依赖项，你可以简化测试。
+* 你可以与它一起使用 `.env` 文件。
+* 使用 `@lru_cache` 可以避免为每个请求反复读取 dotenv 文件，同时允许你在测试时进行覆盖。

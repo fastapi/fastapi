@@ -1,6 +1,6 @@
 # 依存関係 { #dependencies }
 
-**FastAPI** は非常に強力でありながら直感的な **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** システムを持っています。
+**FastAPI** は非常に強力でありながら直感的な **<dfn title="別名: コンポーネント、リソース、プロバイダ、サービス、インジェクタブル">依存性注入</dfn>** システムを持っています。
 
 それは非常にシンプルに使用できるように設計されており、開発者が他のコンポーネント **FastAPI** と統合するのが非常に簡単になるように設計されています。
 
@@ -51,13 +51,13 @@
 
 そして、これらの値を含む`dict`を返します。
 
-/// info | 情報
+/// note | 備考
 
 FastAPI はバージョン 0.95.0 で `Annotated` のサポートを追加し（そして推奨し始めました）。
 
 古いバージョンを使用している場合、`Annotated` を使おうとするとエラーになります。
 
-`Annotated` を使用する前に、少なくとも 0.95.1 まで [FastAPI のバージョンをアップグレード](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank} してください。
+`Annotated` を使用する前に、少なくとも 0.95.1 まで [FastAPI のバージョンをアップグレード](../../deployment/versions.md#upgrading-the-fastapi-versions) してください。
 
 ///
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 この方法では、共有されるコードを一度書き、**FastAPI** が*path operation*のための呼び出しを行います。
 
-/// check | 確認
+/// tip | 豆知識
 
 特別なクラスを作成してどこかで **FastAPI** に渡して「登録」する必要はないことに注意してください。
 
@@ -152,7 +152,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 /// note | 備考
 
-わからない場合は、ドキュメントの[Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank}の中の`async`と`await`についてのセクションを確認してください。
+わからない場合は、ドキュメントの[Async: *「急いでいますか？」*](../../async.md#in-a-hurry)の中の`async`と`await`についてのセクションを確認してください。
 
 ///
 

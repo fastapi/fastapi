@@ -1,6 +1,6 @@
 # CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS oder <abbr title="Ressourcenfreigabe zwischen Ursprüngen">„Cross-Origin Resource Sharing“</abbr></a> bezieht sich auf Situationen, in denen ein Frontend, das in einem Browser läuft, JavaScript-Code enthält, der mit einem Backend kommuniziert, und das Backend sich in einem anderen „Origin“ als das Frontend befindet.
+[CORS oder <abbr title="Ressourcenfreigabe zwischen Ursprüngen">„Cross-Origin Resource Sharing“</abbr>](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) bezieht sich auf Situationen, in denen ein Frontend, das in einem Browser läuft, JavaScript-Code enthält, der mit einem Backend kommuniziert, und das Backend sich in einem anderen „Origin“ als das Frontend befindet.
 
 ## Origin { #origin }
 
@@ -46,7 +46,7 @@ Sie können auch angeben, ob Ihr Backend erlaubt:
 * Bestimmte HTTP-Methoden (`POST`, `PUT`) oder alle mit der Wildcard `"*"`.
 * Bestimmte HTTP-Header oder alle mit der Wildcard `"*"`.
 
-{* ../../docs_src/cors/tutorial001_py39.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
 
 Die von der `CORSMiddleware`-Implementierung verwendeten Defaultparameter sind standardmäßig restriktiv, daher müssen Sie bestimmte Origins, Methoden oder Header ausdrücklich aktivieren, damit Browser sie in einem Cross-Domain-Kontext verwenden dürfen.
 
@@ -55,10 +55,10 @@ Die folgenden Argumente werden unterstützt:
 * `allow_origins` – Eine Liste von Origins, die Cross-Origin-Requests machen dürfen. z. B. `['https://example.org', 'https://www.example.org']`. Sie können `['*']` verwenden, um jedes Origin zuzulassen.
 * `allow_origin_regex` – Ein Regex-String zum Abgleichen gegen Origins, die Cross-Origin-Requests machen dürfen. z. B. `'https://.*\.example\.org'`.
 * `allow_methods` – Eine Liste von HTTP-Methoden, die für Cross-Origin-Requests erlaubt sein sollen. Standardmäßig `['GET']`. Sie können `['*']` verwenden, um alle Standardmethoden zu erlauben.
-* `allow_headers` – Eine Liste von HTTP-Requestheadern, die für Cross-Origin-Requests unterstützt werden sollten. Standardmäßig `[]`. Sie können `['*']` verwenden, um alle Header zu erlauben. Die Header `Accept`, `Accept-Language`, `Content-Language` und `Content-Type` sind immer für <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">einfache CORS-Requests</a> erlaubt.
+* `allow_headers` – Eine Liste von HTTP-Requestheadern, die für Cross-Origin-Requests unterstützt werden sollten. Standardmäßig `[]`. Sie können `['*']` verwenden, um alle Header zu erlauben. Die Header `Accept`, `Accept-Language`, `Content-Language` und `Content-Type` sind immer für [einfache CORS-Requests](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) erlaubt.
 * `allow_credentials` – Anzeigen, dass Cookies für Cross-Origin-Requests unterstützt werden sollten. Standardmäßig `False`.
 
-    Keines der `allow_origins`, `allow_methods` und `allow_headers` kann auf `['*']` gesetzt werden, wenn `allow_credentials` auf `True` gesetzt ist. Alle müssen <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">explizit angegeben</a> werden.
+    Keines der `allow_origins`, `allow_methods` und `allow_headers` kann auf `['*']` gesetzt werden, wenn `allow_credentials` auf `True` gesetzt ist. Alle müssen [explizit angegeben](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards) werden.
 
 * `expose_headers` – Angabe der Responseheader, auf die der Browser zugreifen können soll. Standardmäßig `[]`.
 * `max_age` – Legt eine maximale Zeit in Sekunden fest, die Browser CORS-Responses zwischenspeichern dürfen. Standardmäßig `600`.
@@ -77,7 +77,7 @@ Jeder Request mit einem `Origin`-Header. In diesem Fall wird die Middleware den 
 
 ## Weitere Informationen { #more-info }
 
-Weitere Informationen zu <abbr title="Cross-Origin Resource Sharing – Ressourcenfreigabe zwischen Ursprüngen">CORS</abbr> finden Sie in der <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS-Dokumentation</a>.
+Weitere Informationen zu <abbr title="Cross-Origin Resource Sharing – Ressourcenfreigabe zwischen Ursprüngen">CORS</abbr> finden Sie in der [Mozilla CORS-Dokumentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
 /// note | Technische Details
 

@@ -3,14 +3,17 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
+from tests.utils import workdir_lock
+
 
 @pytest.fixture(name="app", scope="module")
 def get_app():
     with pytest.warns(DeprecationWarning):
-        from docs_src.events.tutorial002_py39 import app
+        from docs_src.events.tutorial002_py310 import app
     yield app
 
 
+@workdir_lock
 def test_events(app: FastAPI):
     with TestClient(app) as client:
         response = client.get("/items/")
@@ -20,6 +23,7 @@ def test_events(app: FastAPI):
         assert "Application shutdown" in log.read()
 
 
+@workdir_lock
 def test_openapi_schema(app: FastAPI):
     with TestClient(app) as client:
         response = client.get("/openapi.json")

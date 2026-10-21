@@ -1,6 +1,6 @@
 # CORS (Cross-Origin Resource Sharing) { #cors-cross-origin-resource-sharing }
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">CORS veya "Cross-Origin Resource Sharing"</a>, tarayıcıda çalışan bir frontend’in JavaScript kodunun bir backend ile iletişim kurduğu ve backend’in frontend’den farklı bir "origin"de olduğu durumları ifade eder.
+[CORS veya "Cross-Origin Resource Sharing"](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), tarayıcıda çalışan bir frontend’in JavaScript kodunun bir backend ile iletişim kurduğu ve backend’in frontend’den farklı bir "origin"de olduğu durumları ifade eder.
 
 ## Origin { #origin }
 
@@ -46,7 +46,7 @@ Ayrıca backend’in şunlara izin verip vermediğini de belirtebilirsiniz:
 * Belirli HTTP method’ları (`POST`, `PUT`) veya wildcard `"*"` ile hepsini.
 * Belirli HTTP header’ları veya wildcard `"*"` ile hepsini.
 
-{* ../../docs_src/cors/tutorial001_py39.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
 
 
 `CORSMiddleware` implementasyonu tarafından kullanılan varsayılan parametreler kısıtlayıcıdır; bu nedenle tarayıcıların Cross-Domain bağlamında kullanmasına izin vermek için belirli origin’leri, method’ları veya header’ları açıkça etkinleştirmeniz gerekir.
@@ -56,10 +56,10 @@ Aşağıdaki argümanlar desteklenir:
 * `allow_origins` - Cross-origin request yapmasına izin verilmesi gereken origin’lerin listesi. Örn. `['https://example.org', 'https://www.example.org']`. Herhangi bir origin’e izin vermek için `['*']` kullanabilirsiniz.
 * `allow_origin_regex` - Cross-origin request yapmasına izin verilmesi gereken origin’lerle eşleşecek bir regex string’i. Örn. `'https://.*\.example\.org'`.
 * `allow_methods` - Cross-origin request’lerde izin verilmesi gereken HTTP method’larının listesi. Varsayılanı `['GET']`. Tüm standart method’lara izin vermek için `['*']` kullanabilirsiniz.
-* `allow_headers` - Cross-origin request’lerde desteklenmesi gereken HTTP request header’larının listesi. Varsayılanı `[]`. Tüm header’lara izin vermek için `['*']` kullanabilirsiniz. `Accept`, `Accept-Language`, `Content-Language` ve `Content-Type` header’larına <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests" class="external-link" rel="noopener" target="_blank">basit CORS request'leri</a> için her zaman izin verilir.
+* `allow_headers` - Cross-origin request’lerde desteklenmesi gereken HTTP request header’larının listesi. Varsayılanı `[]`. Tüm header’lara izin vermek için `['*']` kullanabilirsiniz. `Accept`, `Accept-Language`, `Content-Language` ve `Content-Type` header’larına [basit CORS request'leri](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#simple_requests) için her zaman izin verilir.
 * `allow_credentials` - Cross-origin request’ler için cookie desteği olup olmayacağını belirtir. Varsayılanı `False`.
 
-    `allow_credentials` `True` olarak ayarlanmışsa, `allow_origins`, `allow_methods` ve `allow_headers` değerlerinin hiçbiri `['*']` olamaz. Hepsinin <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards" class="external-link" rel="noopener" target="_blank">açıkça belirtilmesi</a> gerekir.
+    `allow_credentials` `True` olarak ayarlanmışsa, `allow_origins`, `allow_methods` ve `allow_headers` değerlerinin hiçbiri `['*']` olamaz. Hepsinin [açıkça belirtilmesi](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#credentialed_requests_and_wildcards) gerekir.
 
 * `expose_headers` - Tarayıcının erişebilmesi gereken response header’larını belirtir. Varsayılanı `[]`.
 * `max_age` - Tarayıcıların CORS response’larını cache’lemesi için saniye cinsinden azami süreyi ayarlar. Varsayılanı `600`.
@@ -78,7 +78,7 @@ Bu durumda middleware gelen request’i intercept eder ve uygun CORS header’la
 
 ## Daha Fazla Bilgi { #more-info }
 
-<abbr title="Cross-Origin Resource Sharing">CORS</abbr> hakkında daha fazla bilgi için <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" class="external-link" target="_blank">Mozilla CORS dokümantasyonu</a>na bakın.
+<abbr title="Cross-Origin Resource Sharing - Kökenler Arası Kaynak Paylaşımı">CORS</abbr> hakkında daha fazla bilgi için [Mozilla CORS dokümantasyonu](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)na bakın.
 
 /// note | Teknik Detaylar
 

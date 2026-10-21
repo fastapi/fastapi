@@ -2,27 +2,27 @@
 
 `File` 과 `Form` 을 사용하여 파일과 폼 필드를 동시에 정의할 수 있습니다.
 
-/// info | 정보
+/// note | 참고
 
-업로드된 파일 및/또는 폼 데이터를 받으려면 먼저 <a href="https://github.com/Kludex/python-multipart" class="external-link" target="_blank">`python-multipart`</a>를 설치해야 합니다.
+업로드된 파일 및/또는 폼 데이터를 받으려면 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치해야 합니다.
 
-[가상 환경](../virtual-environments.md){.internal-link target=_blank}을 생성하고, 활성화한 다음 설치해야 합니다. 예:
+프로젝트에 추가하세요:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
 
 ## `File` 및 `Form` 임포트 { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
 
 ## `File` 및 `Form` 매개변수 정의 { #define-file-and-form-parameters }
 
 `Body` 및 `Query`와 동일한 방식으로 파일과 폼의 매개변수를 생성합니다:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py39.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
 
 파일과 폼 필드는 폼 데이터로 업로드되며, 파일과 폼 필드를 받게 됩니다.
 

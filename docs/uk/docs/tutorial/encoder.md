@@ -12,7 +12,7 @@
 
 Наприклад, вона не приймає об'єкти типу `datetime`, оскільки вони не сумісні з JSON.
 
-Отже, об'єкт типу `datetime` потрібно перетворити на `str`, який містить дані в <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link" target="_blank">форматі ISO</a>.
+Отже, об'єкт типу `datetime` потрібно перетворити на `str`, який містить дані в [форматі ISO](https://en.wikipedia.org/wiki/ISO_8601).
 
 Так само ця база даних не прийматиме модель Pydantic (об'єкт з атрибутами), а лише `dict`.
 
@@ -24,7 +24,7 @@
 
 У цьому прикладі вона конвертує модель Pydantic у `dict`, а `datetime` у `str`.
 
-Результат виклику цієї функції — це щось, що можна кодувати з використанням стандарту Python <a href="https://docs.python.org/3/library/json.html#json.dumps" class="external-link" target="_blank">`json.dumps()`</a>.
+Результат виклику цієї функції — це щось, що можна кодувати з використанням стандарту Python [`json.dumps()`](https://docs.python.org/3/library/json.html#json.dumps).
 
 Вона не повертає великий `str`, який містить дані у форматі JSON (як рядок). Вона повертає стандартну структуру даних Python (наприклад, `dict`) зі значеннями та підзначеннями, які є сумісними з JSON.
 

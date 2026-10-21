@@ -1,4 +1,4 @@
-from docs_src.python_types.tutorial004_py39 import get_name_with_age
+from docs_src.python_types.tutorial004_py310 import get_name_with_age
 
 
 def test_get_name_with_age_pass_int():

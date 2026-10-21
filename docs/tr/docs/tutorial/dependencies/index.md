@@ -1,6 +1,6 @@
 # Bağımlılıklar { #dependencies }
 
-**FastAPI**, çok güçlü ama aynı zamanda sezgisel bir **<abbr title="also known as components, resources, providers, services, injectables">Dependency Injection</abbr>** sistemine sahiptir.
+**FastAPI**, çok güçlü ama aynı zamanda sezgisel bir **<dfn title="diğer adları: bileşenler, kaynaklar, sağlayıcılar, servisler, enjekte edilebilenler">Bağımlılık Enjeksiyonu</dfn>** sistemine sahiptir.
 
 Kullanımı çok basit olacak şekilde tasarlanmıştır ve herhangi bir geliştiricinin diğer bileşenleri **FastAPI** ile entegre etmesini kolaylaştırır.
 
@@ -51,13 +51,13 @@ Bu örnekte, bu dependency şunları bekler:
 
 Sonra da bu değerleri içeren bir `dict` döndürür.
 
-/// info | Bilgi
+/// note | Not
 
 FastAPI, `Annotated` desteğini 0.95.0 sürümünde ekledi (ve önermeye başladı).
 
 Daha eski bir sürüm kullanıyorsanız `Annotated` kullanmaya çalıştığınızda hata alırsınız.
 
-`Annotated` kullanmadan önce **FastAPI** sürümünü en az 0.95.1'e yükseltmek için [FastAPI sürümünü yükseltin](../../deployment/versions.md#upgrading-the-fastapi-versions){.internal-link target=_blank}.
+`Annotated` kullanmadan önce **FastAPI** sürümünü en az 0.95.1'e yükseltmek için [FastAPI sürümünü yükseltin](../../deployment/versions.md#upgrading-the-fastapi-versions).
 
 ///
 
@@ -106,7 +106,7 @@ common_parameters --> read_users
 
 Bu şekilde paylaşılan kodu bir kez yazarsınız ve onu *path operation*'larda çağırma işini **FastAPI** halleder.
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Dikkat edin: Bunu "register" etmek ya da benzeri bir şey yapmak için özel bir class oluşturup **FastAPI**'ye bir yere geçirmeniz gerekmez.
 
@@ -152,7 +152,7 @@ Fark etmez. **FastAPI** ne yapacağını bilir.
 
 /// note | Not
 
-Eğer bilmiyorsanız, dokümanlarda `async` ve `await` için [Async: *"In a hurry?"*](../../async.md#in-a-hurry){.internal-link target=_blank} bölümüne bakın.
+Eğer bilmiyorsanız, dokümanlarda `async` ve `await` için [Async: *"In a hurry?"*](../../async.md#in-a-hurry) bölümüne bakın.
 
 ///
 

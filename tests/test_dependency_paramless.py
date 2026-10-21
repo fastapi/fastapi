@@ -1,4 +1,4 @@
-from typing import Annotated, Union
+from typing import Annotated
 
 from fastapi import FastAPI, HTTPException, Security
 from fastapi.security import (
@@ -13,7 +13,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def process_auth(
-    credentials: Annotated[Union[str, None], Security(oauth2_scheme)],
+    credentials: Annotated[str | None, Security(oauth2_scheme)],
     security_scopes: SecurityScopes,
 ):
     # This is an incorrect way of using it, this is not checking if the scopes are

@@ -8,8 +8,8 @@ from inline_snapshot import snapshot
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001_03_py39",
-        "tutorial001_03_an_py39",
+        "tutorial001_03_py310",
+        "tutorial001_03_an_py310",
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -123,7 +123,7 @@ def test_openapi_schema(client: TestClient):
                                 "title": "File",
                                 "type": "string",
                                 "description": "A file read as bytes",
-                                "format": "binary",
+                                "contentMediaType": "application/octet-stream",
                             }
                         },
                     },
@@ -134,9 +134,9 @@ def test_openapi_schema(client: TestClient):
                         "properties": {
                             "file": {
                                 "title": "File",
+                                "contentMediaType": "application/octet-stream",
                                 "type": "string",
                                 "description": "A file read as UploadFile",
-                                "format": "binary",
                             }
                         },
                     },

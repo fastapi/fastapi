@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Templates { #templates }
 
 You can use any template engine you want with **FastAPI**.
@@ -8,12 +12,12 @@ There are utilities to configure it easily that you can use directly in your **F
 
 ## Install dependencies { #install-dependencies }
 
-Make sure you create a [virtual environment](../virtual-environments.md){.internal-link target=_blank}, activate it, and install `jinja2`:
+Add `jinja2` to your project:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -27,7 +31,7 @@ $ pip install jinja2
 * Declare a `Request` parameter in the *path operation* that will return a template.
 * Use the `templates` you created to render and return a `TemplateResponse`, pass the name of the template, the request object, and a "context" dictionary with key-value pairs to be used inside of the Jinja2 template.
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note
 
@@ -63,13 +67,9 @@ Then you can write a template at `templates/item.html` with, for example:
 
 In the HTML that contains:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...it will show the `id` taken from the "context" `dict` you passed:
 
@@ -89,21 +89,47 @@ You can also use `url_for()` inside of the template, it takes as arguments the s
 
 So, the section with:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ...will generate a link to the same URL that would be handled by the *path operation function* `read_item(id=id)`.
 
-For example, with an ID of `42`, this would render:
+`url_for()` returns an absolute URL, including the scheme and host, based on the current request.
+
+For example, if your application is served at `https://example.com`, with an ID of `42`, this would render:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### URL paths in templates { #url-paths-in-templates }
+
+For links to the same site, you can use the `.path` attribute to get only the URL path, for example, in `templates/item_path.html`:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Pass the template's name to `TemplateResponse`:
+
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+With the same example, the item link would render:
 
 ```html
 <a href="/items/42">
 ```
+
+The leading `/` makes this path relative to the root of the current site.
+
+The `.path` attribute excludes the scheme, host, query parameters, and fragment. Use the full URL for links to another host.
+
+/// tip
+
+If your application is behind a proxy, configure forwarded headers and `root_path` as described in [Behind a Proxy](behind-a-proxy.md).
+
+///
 
 ## Templates and static files { #templates-and-static-files }
 
@@ -123,4 +149,4 @@ And because you are using `StaticFiles`, that CSS file would be served automatic
 
 ## More details { #more-details }
 
-For more details, including how to test templates, check <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette's docs on templates</a>.
+For more details, including how to test templates, check [Starlette's docs on templates](https://starlette.dev/templates/).

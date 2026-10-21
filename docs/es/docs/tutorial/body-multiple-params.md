@@ -104,17 +104,11 @@ Como, por defecto, los valores singulares se interpretan como parámetros de que
 q: str | None = None
 ```
 
-O en Python 3.9:
-
-```Python
-q: Union[str, None] = None
-```
-
 Por ejemplo:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info | Información
+/// note | Nota
 
 `Body` también tiene todos los mismos parámetros de validación y metadatos extras que `Query`, `Path` y otros que verás luego.
 
@@ -129,7 +123,7 @@ Por defecto, **FastAPI** esperará su cuerpo directamente.
 Pero si deseas que espere un JSON con una clave `item` y dentro de ella los contenidos del modelo, como lo hace cuando declaras parámetros de cuerpo extra, puedes usar el parámetro especial `Body` `embed`:
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 como en:

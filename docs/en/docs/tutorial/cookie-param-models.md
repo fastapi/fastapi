@@ -32,7 +32,7 @@ You can see the defined cookies in the docs UI at `/docs`:
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info
+/// note
 
 Have in mind that, as **browsers handle cookies** in special ways and behind the scenes, they **don't** easily allow **JavaScript** to touch them.
 

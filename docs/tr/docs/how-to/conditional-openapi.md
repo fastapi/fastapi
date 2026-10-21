@@ -4,13 +4,13 @@ Gerekirse, ayarlar ve environment variable'ları kullanarak OpenAPI'yi ortama g�
 
 ## Güvenlik, API'ler ve dokümantasyon hakkında { #about-security-apis-and-docs }
 
-Production ortamında dokümantasyon arayüzlerini gizlemek, API'nizi korumanın yolu *olmamalıdır*.
+Production ortamında dokümantasyon arayüzlerini gizlemek, API'nizi korumanın yolu olmamalıdır.
 
-Bu, API'nize ekstra bir güvenlik katmanı eklemez; *path operation*'lar bulundukları yerde yine erişilebilir olacaktır.
+Bu, API'nize ekstra bir güvenlik katmanı eklemez; path operation'lar bulundukları yerde yine erişilebilir olacaktır.
 
 Kodunuzda bir güvenlik açığı varsa, o açık yine var olmaya devam eder.
 
-Dokümantasyonu gizlemek, API'nizle nasıl etkileşime geçileceğini anlamayı zorlaştırır ve production'da debug etmeyi de daha zor hale getirebilir. Bu yaklaşım, basitçe <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Security through obscurity</a> olarak değerlendirilebilir.
+Dokümantasyonu gizlemek, API'nizle nasıl etkileşime geçileceğini anlamayı zorlaştırır ve production'da debug etmeyi de daha zor hale getirebilir. Bu yaklaşım, basitçe [Security through obscurity](https://en.wikipedia.org/wiki/Security_through_obscurity) olarak değerlendirilebilir.
 
 API'nizi güvence altına almak istiyorsanız, yapabileceğiniz daha iyi birçok şey var; örneğin:
 
@@ -29,7 +29,7 @@ Yine de, bazı ortamlarda (örn. production) veya environment variable'lardan ge
 
 Örneğin:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py39.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
 Burada `openapi_url` ayarını, varsayılanı `"/openapi.json"` olacak şekilde tanımlıyoruz.
 

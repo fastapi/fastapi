@@ -1,4 +1,4 @@
-from typing import Optional
+from collections.abc import Iterable
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -8,23 +8,23 @@ app = FastAPI()
 
 
 class SubModel(BaseModel):
-    a: Optional[str] = "foo"
+    a: str | None = "foo"
 
 
 class Model(BaseModel):
-    x: Optional[int] = None
+    x: int | None = None
     sub: SubModel
 
 
 class ModelSubclass(Model):
     y: int
     z: int = 0
-    w: Optional[int] = None
+    w: int | None = None
 
 
 class ModelDefaults(BaseModel):
-    w: Optional[str] = None
-    x: Optional[str] = None
+    w: str | None = None
+    x: str | None = None
     y: str = "y"
     z: str = "z"
 
@@ -67,6 +67,21 @@ def get_exclude_unset_none() -> ModelDefaults:
     return ModelDefaults(x=None, y="y")
 
 
+@app.get("/iterable_exclude_unset", response_model_exclude_unset=True)
+def get_iterable_exclude_unset() -> Iterable[ModelDefaults]:
+    return [ModelDefaults(x=None, y="y")]
+
+
+@app.get("/iterable_exclude_defaults", response_model_exclude_defaults=True)
+def get_iterable_exclude_defaults() -> Iterable[ModelDefaults]:
+    return [ModelDefaults(x=None, y="y")]
+
+
+@app.get("/iterable_exclude_none", response_model_exclude_none=True)
+def get_iterable_exclude_none() -> Iterable[ModelDefaults]:
+    return [ModelDefaults(x=None, y="y")]
+
+
 client = TestClient(app)
 
 
@@ -93,3 +108,18 @@ def test_return_exclude_none():
 def test_return_exclude_unset_none():
     response = client.get("/exclude_unset_none")
     assert response.json() == {"y": "y"}
+
+
+def test_return_iterable_exclude_unset():
+    response = client.get("/iterable_exclude_unset")
+    assert response.json() == [{"x": None, "y": "y"}]
+
+
+def test_return_iterable_exclude_defaults():
+    response = client.get("/iterable_exclude_defaults")
+    assert response.json() == [{}]
+
+
+def test_return_iterable_exclude_none():
+    response = client.get("/iterable_exclude_none")
+    assert response.json() == [{"y": "y", "z": "z"}]

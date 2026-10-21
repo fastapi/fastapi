@@ -1,7 +1,7 @@
 # Eine Datenbank testen { #testing-a-database }
 
-Sie können sich über Datenbanken, SQL und SQLModel in der <a href="https://sqlmodel.tiangolo.com/" class="external-link" target="_blank">SQLModel-Dokumentation</a> informieren. 🤓
+Sie können sich über Datenbanken, SQL und SQLModel in der [SQLModel-Dokumentation](https://sqlmodel.tiangolo.com/) informieren. 🤓
 
-Es gibt ein kurzes <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/" class="external-link" target="_blank">Tutorial zur Verwendung von SQLModel mit FastAPI</a>. ✨
+Es gibt ein kurzes [Tutorial zur Verwendung von SQLModel mit FastAPI](https://sqlmodel.tiangolo.com/tutorial/fastapi/). ✨
 
-Dieses Tutorial enthält einen Abschnitt über das <a href="https://sqlmodel.tiangolo.com/tutorial/fastapi/tests/" class="external-link" target="_blank">Testen von SQL-Datenbanken</a>. 😎
+Dieses Tutorial enthält einen Abschnitt über das [Testen von SQL-Datenbanken](https://sqlmodel.tiangolo.com/tutorial/fastapi/tests/). 😎

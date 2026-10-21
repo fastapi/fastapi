@@ -2,7 +2,7 @@
 
 Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injection System basiert) der *Pfadoperation-Funktion* einen `token` vom Typ `str` überreicht:
 
-{* ../../docs_src/security/tutorial001_an_py39.py hl[12] *}
+{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
 
 Aber das ist immer noch nicht so nützlich.
 
@@ -14,7 +14,7 @@ Erstellen wir zunächst ein Pydantic-Benutzermodell.
 
 So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch überall sonst verwenden:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:6] *}
+{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
 
 ## Eine `get_current_user`-Abhängigkeit erstellen { #create-a-get-current-user-dependency }
 
@@ -52,7 +52,7 @@ Weil Sie `Depends` verwenden, wird **FastAPI** hier aber nicht verwirrt.
 
 ///
 
-/// check | Testen
+/// tip | Tipp
 
 Die Art und Weise, wie dieses System von Abhängigkeiten konzipiert ist, ermöglicht es uns, verschiedene Abhängigkeiten (verschiedene „Dependables“) zu haben, die alle ein `User`-Modell zurückgeben.
 

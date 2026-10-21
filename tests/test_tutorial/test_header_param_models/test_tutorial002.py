@@ -10,9 +10,7 @@ from tests.utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial002_py39"),
         pytest.param("tutorial002_py310", marks=[needs_py310]),
-        pytest.param("tutorial002_an_py39"),
         pytest.param("tutorial002_an_py310", marks=[needs_py310]),
     ],
 )
@@ -65,9 +63,9 @@ def test_header_param_model_invalid(client: TestClient):
             "detail": [
                 {
                     "type": "missing",
-                    "loc": ["header", "save_data"],
+                    "loc": ["header", "save-data"],
                     "msg": "Field required",
-                    "input": {"x_tag": [], "host": "testserver"},
+                    "input": {"host": "testserver"},
                 }
             ]
         }

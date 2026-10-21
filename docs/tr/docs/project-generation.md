@@ -4,13 +4,13 @@
 
 Bu şablonu başlangıç için kullanabilirsiniz; çünkü ilk kurulumun, güvenliğin, veritabanının ve bazı API endpoint'lerinin önemli bir kısmı sizin için zaten hazırlanmıştır.
 
-GitHub Repository: <a href="https://github.com/tiangolo/full-stack-fastapi-template" class="external-link" target="_blank">Full Stack FastAPI Template</a>
+GitHub Repository: [Full Stack FastAPI Şablonu](https://github.com/fastapi/full-stack-fastapi-template)
 
 ## Full Stack FastAPI Şablonu - Teknoloji Yığını ve Özellikler { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ Python backend API için [**FastAPI**](https://fastapi.tiangolo.com/tr).
   - 🧰 Python SQL veritabanı etkileşimleri (ORM) için [SQLModel](https://sqlmodel.tiangolo.com).
-  - 🔍 FastAPI'nin kullandığı; veri doğrulama ve ayarlar yönetimi için [Pydantic](https://docs.pydantic.dev).
+  - 🔍 FastAPI'nin kullandığı; veri doğrulama ve ayarlar yönetimi için [Pydantic](https://pydantic.dev/docs/).
   - 💾 SQL veritabanı olarak [PostgreSQL](https://www.postgresql.org).
 - 🚀 frontend için [React](https://react.dev).
   - 💃 TypeScript, hooks, Vite ve modern bir frontend stack'inin diğer parçalarını kullanır.

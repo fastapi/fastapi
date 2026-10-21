@@ -8,12 +8,12 @@ Bunu kolayca yapılandırmak için, doğrudan **FastAPI** uygulamanızda kullana
 
 ## Bağımlılıkları Yükleme { #install-dependencies }
 
-Bir [virtual environment](../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan, etkinleştirdiğinizden ve `jinja2`'yi yüklediğinizden emin olun:
+Projenize `jinja2` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -27,7 +27,7 @@ $ pip install jinja2
 * Template döndürecek *path operation* içinde bir `Request` parametresi tanımlayın.
 * Oluşturduğunuz `templates` nesnesini kullanarak bir `TemplateResponse` render edip döndürün; template'in adını, request nesnesini ve Jinja2 template'i içinde kullanılacak anahtar-değer çiftlerini içeren bir "context" sözlüğünü (dict) iletin.
 
-{* ../../docs_src/templates/tutorial001_py39.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note | Not
 
@@ -123,4 +123,4 @@ Ve `StaticFiles` kullandığınız için, bu CSS dosyası **FastAPI** uygulaman�
 
 ## Daha fazla detay { #more-details }
 
-Template'leri nasıl test edeceğiniz dahil daha fazla detay için <a href="https://www.starlette.dev/templates/" class="external-link" target="_blank">Starlette'in template dokümantasyonuna</a> bakın.
+Template'leri nasıl test edeceğiniz dahil daha fazla detay için [Starlette'in template dokümantasyonuna](https://starlette.dev/templates/) bakın.

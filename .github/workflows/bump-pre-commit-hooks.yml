@@ -1,0 +1,71 @@
+name: Bump pre-commit hooks
+
+on:
+  schedule:
+    - cron: "0 12 1 * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  bump-pre-commit-hooks:
+    if: github.repository_owner == 'fastapi'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version-file: ".python-version"
+      - name: Setup uv
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "latest-known"
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - name: Bump pre-commit hooks
+        run: uv run prek update --freeze --cooldown-days 7
+      - name: Get PR Submit token
+        id: pr-submit
+        uses: tiangolo/pr-submit@d802fdf59bde80bc3eb8bd3259f4cbeec63de4aa # 0.0.1
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ steps.pr-submit.outputs.token }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo "No pre-commit hook updates available"
+            exit 0
+          fi
+          git config user.name "pr-submit[bot]"
+          git config user.email "pr-submit[bot]@users.noreply.github.com"
+          branch="bump-pre-commit-hooks"
+          git switch -C "$branch"
+          git add .pre-commit-config.yaml
+          git commit -m "⬆ Bump pre-commit hooks"
+          gh auth setup-git
+          git push --force origin "$branch"
+          if [ -z "$(gh pr list --head "$branch" --state open --json number --jq '.[].number')" ]; then
+            gh pr create \
+              --base "$BASE_BRANCH" \
+              --head "$branch" \
+              --title "⬆ Bump pre-commit hooks" \
+              --body "Bump pre-commit hook versions via \`prek update --freeze --cooldown-days 7\`." \
+              --label internal \
+              --label dependencies \
+              --label pre-commit
+          else
+            echo "PR for \"$branch\" already open; branch updated in place."
+          fi

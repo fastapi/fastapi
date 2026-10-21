@@ -4,7 +4,7 @@
 
 Se añaden nuevas funcionalidades con frecuencia, se corrigen bugs regularmente, y el código sigue mejorando continuamente.
 
-Por eso las versiones actuales siguen siendo `0.x.x`, esto refleja que cada versión podría tener potencialmente cambios incompatibles. Esto sigue las convenciones de <a href="https://semver.org/" class="external-link" target="_blank">Semantic Versioning</a>.
+Por eso las versiones actuales siguen siendo `0.x.x`, esto refleja que cada versión podría tener potencialmente cambios incompatibles. Esto sigue las convenciones de [Semantic Versioning](https://semver.org/).
 
 Puedes crear aplicaciones de producción con **FastAPI** ahora mismo (y probablemente ya lo has estado haciendo desde hace algún tiempo), solo debes asegurarte de que utilizas una versión que funciona correctamente con el resto de tu código.
 
@@ -34,7 +34,7 @@ Si utilizas cualquier otra herramienta para gestionar tus instalaciones, como `u
 
 ## Versiones disponibles { #available-versions }
 
-Puedes ver las versiones disponibles (por ejemplo, para revisar cuál es la más reciente) en las [Release Notes](../release-notes.md){.internal-link target=_blank}.
+Puedes ver las versiones disponibles (por ejemplo, para revisar cuál es la más reciente) en las [Release Notes](../release-notes.md).
 
 ## Sobre las versiones { #about-versions }
 
@@ -66,7 +66,7 @@ El "MINOR" es el número en el medio, por ejemplo, en `0.2.3`, la versión MINOR
 
 Deberías añadir tests para tu aplicación.
 
-Con **FastAPI** es muy fácil (gracias a Starlette), revisa la documentación: [Testing](../tutorial/testing.md){.internal-link target=_blank}
+Con **FastAPI** es muy fácil (gracias a Starlette), revisa la documentación: [Escribir pruebas](../tutorial/testing.md)
 
 Después de tener tests, puedes actualizar la versión de **FastAPI** a una más reciente, y asegurarte de que todo tu código está funcionando correctamente ejecutando tus tests.
 

@@ -12,7 +12,7 @@ from pytest import MonkeyPatch
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("app01_py39"),
+        pytest.param("app01_py310"),
     ],
 )
 def get_mod_name(request: pytest.FixtureRequest):
@@ -22,7 +22,7 @@ def get_mod_name(request: pytest.FixtureRequest):
 @pytest.fixture(name="client")
 def get_test_client(mod_name: str, monkeypatch: MonkeyPatch) -> TestClient:
     if mod_name in sys.modules:
-        del sys.modules[mod_name]
+        del sys.modules[mod_name]  # pragma: no cover
     monkeypatch.setenv("ADMIN_EMAIL", "admin@example.com")
     main_mod = importlib.import_module(mod_name)
     return TestClient(main_mod.app)

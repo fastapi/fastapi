@@ -127,27 +127,29 @@ class Termynal {
     }
 
     generateRestart() {
-        const restart = document.createElement('a')
-        restart.onclick = (e) => {
-            e.preventDefault()
+        const restart = document.createElement('button')
+        restart.type = 'button'
+
+        restart.onclick = () => {
             this.container.innerHTML = ''
             this.init()
         }
-        restart.href = "javascript:void(0)"
+
         restart.setAttribute('data-terminal-control', '')
         restart.innerHTML = "restart ↻"
         return restart
     }
 
     generateFinish() {
-        const finish = document.createElement('a')
-        finish.onclick = (e) => {
-            e.preventDefault()
+        const finish = document.createElement('button')
+        finish.type = 'button'
+
+        finish.onclick = () => {
             this.lineDelay = 0
             this.typeDelay = 0
             this.startDelay = 0
         }
-        finish.href = "javascript:void(0)"
+
         finish.setAttribute('data-terminal-control', '')
         finish.innerHTML = "fast →"
         this.finishElement = finish

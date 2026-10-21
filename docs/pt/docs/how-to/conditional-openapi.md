@@ -10,11 +10,11 @@ Isso não adiciona nenhuma segurança extra à sua API; as *operações de rota*
 
 Se houver uma falha de segurança no seu código, ela ainda existirá.
 
-Ocultar a documentação apenas torna mais difícil entender como interagir com sua API e pode dificultar sua depuração na produção. Pode ser considerado simplesmente uma forma de <a href="https://en.wikipedia.org/wiki/Security_through_obscurity" class="external-link" target="_blank">Segurança através da obscuridade</a>.
+Ocultar a documentação apenas torna mais difícil entender como interagir com sua API e pode dificultar sua depuração na produção. Pode ser considerado simplesmente uma forma de [Segurança através da obscuridade](https://en.wikipedia.org/wiki/Security_through_obscurity).
 
 Se você quiser proteger sua API, há várias coisas melhores que você pode fazer, por exemplo:
 
-* Certifique-se de ter modelos Pydantic bem definidos para seus corpos de solicitação e respostas.
+* Certifique-se de ter modelos Pydantic bem definidos para seus corpos de request e respostas.
 * Configure quaisquer permissões e funções necessárias usando dependências.
 * Nunca armazene senhas em texto simples, apenas hashes de senha.
 * Implemente e use ferramentas criptográficas bem conhecidas, como pwdlib e tokens JWT, etc.
@@ -29,13 +29,13 @@ Você pode usar facilmente as mesmas configurações do Pydantic para configurar
 
 Por exemplo:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py39.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
 
 Aqui declaramos a configuração `openapi_url` com o mesmo padrão de `"/openapi.json"`.
 
 E então a usamos ao criar a aplicação `FastAPI`.
 
-Então você pode desabilitar o OpenAPI (incluindo a documentação da interface do usuário) definindo a variável de ambiente `OPENAPI_URL` como uma string vazia, como:
+Então você pode desabilitar o OpenAPI (incluindo a documentação da interface do usuário) definindo a variável de ambiente `OPENAPI_URL` como a string vazia, como:
 
 <div class="termy">
 

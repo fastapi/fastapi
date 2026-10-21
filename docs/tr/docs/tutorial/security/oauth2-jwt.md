@@ -1,6 +1,6 @@
 # Password ile OAuth2 (ve hashing), JWT token'ları ile Bearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-Artık tüm security flow elimizde olduğuna göre, uygulamayı gerçekten güvenli hâle getirelim: <abbr title="JSON Web Tokens">JWT</abbr> token'ları ve güvenli password hashing kullanacağız.
+Artık tüm security flow elimizde olduğuna göre, uygulamayı gerçekten güvenli hâle getirelim: <abbr title="JSON Web Token'lar">JWT</abbr> token'ları ve güvenli password hashing kullanacağız.
 
 Bu kodu uygulamanızda gerçekten kullanabilirsiniz; password hash'lerini veritabanınıza kaydedebilirsiniz, vb.
 
@@ -24,29 +24,29 @@ Bu şekilde, örneğin 1 haftalık süre sonu (expiration) olan bir token oluşt
 
 Bir hafta sonra token'ın süresi dolar; kullanıcı yetkilendirilmez ve yeni bir token almak için tekrar giriş yapmak zorunda kalır. Ayrıca kullanıcı (veya üçüncü bir taraf) token'ı değiştirip süre sonunu farklı göstermek isterse bunu tespit edebilirsiniz; çünkü imzalar eşleşmez.
 
-JWT token'larıyla oynayıp nasıl çalıştıklarını görmek isterseniz <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a> adresine bakın.
+JWT token'larıyla oynayıp nasıl çalıştıklarını görmek isterseniz [https://jwt.io](https://jwt.io/) adresine bakın.
 
 ## `PyJWT` Kurulumu { #install-pyjwt }
 
 Python'da JWT token'larını üretmek ve doğrulamak için `PyJWT` kurmamız gerekiyor.
 
-Bir [virtual environment](../../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan emin olun, aktif edin ve ardından `pyjwt` kurun:
+Projenize `pyjwt` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | Bilgi
+/// note | Not
 
 RSA veya ECDSA gibi dijital imza algoritmaları kullanmayı planlıyorsanız, `pyjwt[crypto]` bağımlılığı olan `cryptography` kütüphanesini kurmalısınız.
 
-Daha fazla bilgi için <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a> sayfasını okuyabilirsiniz.
+Daha fazla bilgi için [PyJWT Kurulum dokümantasyonu](https://pyjwt.readthedocs.io/en/latest/installation.html) sayfasını okuyabilirsiniz.
 
 ///
 
@@ -72,12 +72,12 @@ Birçok güvenli hashing algoritmasını ve bunlarla çalışmak için yardımc�
 
 Önerilen algoritma "Argon2"dir.
 
-Bir [virtual environment](../../virtual-environments.md){.internal-link target=_blank} oluşturduğunuzdan emin olun, aktif edin ve sonra Argon2 ile birlikte pwdlib'i kurun:
+Projenize Argon2 ile birlikte `pwdlib` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -116,7 +116,11 @@ Sonra, alınan password'ün kayıttaki hash ile eşleşip eşleşmediğini doğr
 
 Bir tane de kullanıcıyı authenticate edip geri döndüren bir yardımcı fonksiyon ekleyelim.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+
+`authenticate_user`, veritabanında var olmayan bir username ile çağrıldığında, yine de sahte (dummy) bir hash'e karşı `verify_password` çalıştırıyoruz.
+
+Bu, username geçerli olsun ya da olmasın endpoint'in yaklaşık aynı sürede yanıt vermesini sağlar; böylece mevcut username'leri saymaya yarayabilecek **timing attacks** saldırılarını engeller.
 
 /// note | Not
 
@@ -152,7 +156,7 @@ Response için token endpoint'inde kullanılacak bir Pydantic Model tanımlayın
 
 Yeni bir access token üretmek için bir yardımcı fonksiyon oluşturun.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Dependency'leri güncelleme { #update-the-dependencies }
 
@@ -162,7 +166,7 @@ Gelen token'ı decode edin, doğrulayın ve mevcut kullanıcıyı döndürün.
 
 Token geçersizse, hemen bir HTTP hatası döndürün.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
 ## `/token` *path operation*'ını güncelleme { #update-the-token-path-operation }
 
@@ -170,7 +174,7 @@ Token'ın süre sonu için bir `timedelta` oluşturun.
 
 Gerçek bir JWT access token üretip döndürün.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
 
 ### JWT "subject" `sub` Hakkında Teknik Detaylar { #technical-details-about-the-jwt-subject-sub }
 
@@ -196,7 +200,7 @@ Unutmamanız gereken önemli nokta şudur: `sub` anahtarı, tüm uygulama geneli
 
 ## Kontrol Edelim { #check-it }
 
-Server'ı çalıştırın ve docs'a gidin: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Server'ı çalıştırın ve docs'a gidin: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Şuna benzer bir arayüz göreceksiniz:
 
@@ -209,7 +213,7 @@ Uygulamayı, öncekiyle aynı şekilde authorize edin.
 Username: `johndoe`
 Password: `secret`
 
-/// check | Ek bilgi
+/// tip | İpucu
 
 Kodun hiçbir yerinde düz metin password "`secret`" yok; sadece hash'lenmiş hâli var.
 

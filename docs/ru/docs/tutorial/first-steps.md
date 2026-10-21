@@ -2,16 +2,22 @@
 
 Самый простой файл FastAPI может выглядеть так:
 
-{* ../../docs_src/first_steps/tutorial001_py39.py *}
+{* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Скопируйте это в файл `main.py`.
+
+/// tip | Подсказка
+
+У FastAPI есть [официальное расширение для VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (и Cursor), которое предоставляет множество функций, включая обозреватель операций пути, поиск операций пути, навигацию CodeLens в тестах (переход к определению из тестов), а также развертывание и логи FastAPI Cloud — всё из вашего редактора кода.
+
+///
 
 Запустите сервер в режиме реального времени:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev <u style="text-decoration-style:solid">main.py</u>
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -58,7 +64,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### Проверьте { #check-it }
 
-Откройте браузер по адресу: <a href="http://127.0.0.1:8000" class="external-link" target="_blank">http://127.0.0.1:8000</a>.
+Откройте браузер по адресу: [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Вы увидите JSON-ответ вида:
 
@@ -68,17 +74,17 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 ### Интерактивная документация API { #interactive-api-docs }
 
-Теперь перейдите по адресу: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+Теперь перейдите по адресу: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-Вы увидите автоматически сгенерированную интерактивную документацию по API (предоставлено <a href="https://github.com/swagger-api/swagger-ui" class="external-link" target="_blank">Swagger UI</a>):
+Вы увидите автоматически сгенерированную интерактивную документацию по API (предоставлено [Swagger UI](https://github.com/swagger-api/swagger-ui)):
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-01-swagger-ui-simple.png)
 
 ### Альтернативная документация API { #alternative-api-docs }
 
-И теперь перейдите по адресу <a href="http://127.0.0.1:8000/redoc" class="external-link" target="_blank">http://127.0.0.1:8000/redoc</a>.
+И теперь перейдите по адресу [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Вы увидите альтернативную автоматически сгенерированную документацию (предоставлено <a href="https://github.com/Rebilly/ReDoc" class="external-link" target="_blank">ReDoc</a>):
+Вы увидите альтернативную автоматически сгенерированную документацию (предоставлено [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -92,15 +98,15 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### «Схема» API { #api-schema }
 
-В данном случае <a href="https://github.com/OAI/OpenAPI-Specification" class="external-link" target="_blank">OpenAPI</a> — это спецификация, которая определяет, как описывать схему вашего API.
+В данном случае [OpenAPI](https://github.com/OAI/OpenAPI-Specification) — это спецификация, которая определяет, как описывать схему вашего API.
 
-Это определение схемы включает пути вашего API, возможные параметры, которые они принимают, и т. п.
+Это определение схемы включает пути вашего API, возможные параметры, которые они принимают, и т.п.
 
 #### «Схема» данных { #data-schema }
 
 Термин «схема» также может относиться к форме некоторых данных, например, к содержимому JSON.
 
-В таком случае это будут атрибуты JSON, их типы данных и т. п.
+В таком случае это будут атрибуты JSON, их типы данных и т.п.
 
 #### OpenAPI и JSON Schema { #openapi-and-json-schema }
 
@@ -110,7 +116,7 @@ OpenAPI определяет схему API для вашего API. И эта �
 
 Если вам интересно, как выглядит исходная схема OpenAPI, FastAPI автоматически генерирует JSON (схему) с описанием всего вашего API.
 
-Вы можете посмотреть её напрямую по адресу: <a href="http://127.0.0.1:8000/openapi.json" class="external-link" target="_blank">http://127.0.0.1:8000/openapi.json</a>.
+Вы можете посмотреть её напрямую по адресу: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json).
 
 Вы увидите JSON, начинающийся примерно так:
 
@@ -143,30 +149,69 @@ OpenAPI определяет схему API для вашего API. И эта �
 
 Вы также можете использовать её для автоматической генерации кода для клиентов, которые взаимодействуют с вашим API. Например, для фронтенд-, мобильных или IoT-приложений.
 
-### Разверните приложение (необязательно) { #deploy-your-app-optional }
+### Настройте app `entrypoint` в `pyproject.toml` { #configure-the-app-entrypoint-in-pyproject-toml }
 
-При желании вы можете развернуть своё приложение FastAPI в <a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>, перейдите и присоединитесь к списку ожидания, если ещё не сделали этого. 🚀
+Вы можете указать расположение вашего приложения в файле `pyproject.toml`, например:
 
-Если у вас уже есть аккаунт **FastAPI Cloud** (мы пригласили вас из списка ожидания 😉), вы можете развернуть приложение одной командой.
-
-Перед развертыванием убедитесь, что вы вошли в систему:
-
-<div class="termy">
-
-```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
+```toml
+[tool.fastapi]
+entrypoint = "main:app"
 ```
 
-</div>
+Этот `entrypoint` подскажет команде `fastapi`, что приложение нужно импортировать так:
 
-Затем разверните приложение:
+```python
+from main import app
+```
+
+Если структура вашего кода выглядит так:
+
+```
+.
+├── backend
+│   ├── main.py
+│   ├── __init__.py
+```
+
+Тогда следует указать такой `entrypoint`:
+
+```toml
+[tool.fastapi]
+entrypoint = "backend.main:app"
+```
+
+что будет эквивалентно:
+
+```python
+from backend.main import app
+```
+
+### `fastapi dev` с путём или с опцией CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
+
+Вы также можете передать путь к файлу в команду `fastapi dev`, и она попытается определить объект приложения FastAPI для использования:
+
+```console
+$ uv run fastapi dev main.py
+```
+
+Или вы можете передать опцию `--entrypoint` команде `fastapi dev`:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+Но в этом случае вам придётся каждый раз помнить о передаче корректного пути/entrypoint при вызове команды `fastapi`.
+
+Кроме того, другие инструменты могут его не найти, например [Расширение VS Code](../editor-support.md) или [FastAPI Cloud](https://fastapicloud.com), поэтому рекомендуется использовать `entrypoint` в `pyproject.toml`.
+
+### Разверните приложение (необязательно) { #deploy-your-app-optional }
+
+При желании вы можете развернуть своё приложение FastAPI в [FastAPI Cloud](https://fastapicloud.com) одной командой. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -177,13 +222,15 @@ Deploying to FastAPI Cloud...
 
 </div>
 
+CLI автоматически определит ваше приложение FastAPI и развернёт его в облаке. Если вы не вошли в систему, откроется браузер для завершения процесса аутентификации.
+
 Готово! Теперь вы можете открыть своё приложение по этому URL. ✨
 
 ## Рассмотрим поэтапно { #recap-step-by-step }
 
 ### Шаг 1: импортируйте `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
 
 `FastAPI` — это класс на Python, который предоставляет всю функциональность для вашего API.
 
@@ -191,21 +238,21 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` — это класс, который напрямую наследуется от `Starlette`.
 
-Вы можете использовать весь функционал <a href="https://www.starlette.dev/" class="external-link" target="_blank">Starlette</a> и в `FastAPI`.
+Вы можете использовать весь функционал [Starlette](https://starlette.dev/) и в `FastAPI`.
 
 ///
 
 ### Шаг 2: создайте экземпляр `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
 Здесь переменная `app` будет экземпляром класса `FastAPI`.
 
 Это будет основная точка взаимодействия для создания всего вашего API.
 
-### Шаг 3: создайте *операцию пути (path operation)* { #step-3-create-a-path-operation }
+### Шаг 3: создайте *операцию пути* { #step-3-create-a-path-operation }
 
-#### Путь (path) { #path }
+#### Путь { #path }
 
 Здесь «путь» — это последняя часть URL, начиная с первого символа `/`.
 
@@ -221,7 +268,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Информация
+/// note | Примечание
 
 «Путь» также часто называют «эндпоинт» или «маршрут».
 
@@ -229,7 +276,7 @@ https://example.com/items/foo
 
 При создании API «путь» — это основной способ разделения «задач» и «ресурсов».
 
-#### Операция (operation) { #operation }
+#### Операция { #operation }
 
 «Операция» здесь — это один из HTTP-«методов».
 
@@ -262,18 +309,18 @@ https://example.com/items/foo
 
 Таким образом, в OpenAPI каждый HTTP-метод называется «операцией».
 
-Мы тоже будем называть их «операциями».
+Мы тоже будем называть их «**операциями**».
 
-#### Определите *декоратор операции пути (path operation decorator)* { #define-a-path-operation-decorator }
+#### Определите *декоратор операции пути* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
-`@app.get("/")` сообщает **FastAPI**, что функция прямо под ним отвечает за обработку запросов, поступающих:
+`@app.get("/")` сообщает **FastAPI**, что функция прямо под ним отвечает за обработку HTTP-запросов, поступающих:
 
 * по пути `/`
-* с использованием <abbr title="метод HTTP GET"><code>get</code> операции</abbr>
+* с использованием <dfn title="HTTP-метод GET">операции <code>get</code></dfn>
 
-/// info | Информация о `@decorator`
+/// note | Информация о `@decorator`
 
 Синтаксис `@something` в Python называется «декоратор».
 
@@ -312,19 +359,19 @@ https://example.com/items/foo
 
 ///
 
-### Шаг 4: определите **функцию операции пути** { #step-4-define-the-path-operation-function }
+### Шаг 4: определите **функцию-обработчик пути** { #step-4-define-the-path-operation-function }
 
-Вот наша «функция операции пути»:
+Вот наша «**функция-обработчик пути**»:
 
 * **путь**: `/`.
 * **операция**: `get`.
 * **функция**: функция ниже «декоратора» (ниже `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
 
 Это функция на Python.
 
-**FastAPI** будет вызывать её каждый раз, когда получает запрос к URL «`/`» с операцией `GET`.
+**FastAPI** будет вызывать её каждый раз, когда получает HTTP-запрос к URL «`/`» с операцией `GET`.
 
 В данном случае это асинхронная (`async`) функция.
 
@@ -332,37 +379,37 @@ https://example.com/items/foo
 
 Вы также можете определить её как обычную функцию вместо `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py39.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
 /// note | Примечание
 
-Если вы не знаете, в чём разница, посмотрите [Асинхронность: *"Нет времени?"*](../async.md#in-a-hurry){.internal-link target=_blank}.
+Если вы не знаете, в чём разница, посмотрите [Асинхронность: *"Нет времени?"*](../async.md#in-a-hurry).
 
 ///
 
 ### Шаг 5: верните содержимое { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py39.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
 
 Вы можете вернуть `dict`, `list`, отдельные значения `str`, `int` и т.д.
 
 Также можно вернуть модели Pydantic (подробнее об этом позже).
 
-Многие другие объекты и модели будут автоматически преобразованы в JSON (включая ORM и т. п.). Попробуйте использовать те, что вам привычнее, с высокой вероятностью они уже поддерживаются.
+Многие другие объекты и модели будут автоматически преобразованы в JSON (включая ORM и т.п.). Попробуйте использовать те, что вам привычнее, с высокой вероятностью они уже поддерживаются.
 
 ### Шаг 6: разверните приложение { #step-6-deploy-it }
 
-Разверните приложение в **<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** одной командой: `fastapi deploy`. 🎉
+Разверните приложение в **[FastAPI Cloud](https://fastapicloud.com)** одной командой: `fastapi deploy`. 🎉
 
 #### О FastAPI Cloud { #about-fastapi-cloud }
 
-**<a href="https://fastapicloud.com" class="external-link" target="_blank">FastAPI Cloud</a>** создан тем же автором и командой, что и **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** создан тем же автором и командой, что и **FastAPI**.
 
 Он упрощает процесс **создания образа**, **развертывания** и **доступа** к API с минимальными усилиями.
 
 Он переносит тот же **опыт разработчика** при создании приложений с FastAPI на их **развертывание** в облаке. 🎉
 
-FastAPI Cloud — основной спонсор и источник финансирования для open-source проектов «FastAPI и друзья». ✨
+FastAPI Cloud — основной спонсор и источник финансирования для open-source проектов *FastAPI и друзья*. ✨
 
 #### Развертывание у других облачных провайдеров { #deploy-to-other-cloud-providers }
 
@@ -375,6 +422,6 @@ FastAPI — open-source и основан на стандартах. Вы мож
 * Импортируйте `FastAPI`.
 * Создайте экземпляр `app`.
 * Напишите **декоратор операции пути**, например `@app.get("/")`.
-* Определите **функцию операции пути**; например, `def root(): ...`.
+* Определите **функцию-обработчик пути**; например, `def root(): ...`.
 * Запустите сервер разработки командой `fastapi dev`.
 * При желании разверните приложение командой `fastapi deploy`.

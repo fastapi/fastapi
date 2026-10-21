@@ -1,6 +1,7 @@
 # 패스워드(해싱 포함)를 사용하는 OAuth2, JWT 토큰을 사용하는 Bearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-모든 보안 흐름을 구성했으므로, 이제 <abbr title="JSON Web Tokens">JWT</abbr> 토큰과 안전한 패스워드 해싱을 사용해 애플리케이션을 실제로 안전하게 만들겠습니다.
+
+모든 보안 흐름을 구성했으므로, 이제 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰과 안전한 패스워드 해싱을 사용해 애플리케이션을 실제로 안전하게 만들겠습니다.
 
 이 코드는 실제로 애플리케이션에서 사용할 수 있으며, 패스워드 해시를 데이터베이스에 저장하는 등의 작업에 활용할 수 있습니다.
 
@@ -24,29 +25,29 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 1주일 뒤에는 토큰이 만료되고 사용자는 인가되지 않으므로 새 토큰을 받기 위해 다시 로그인해야 합니다. 그리고 사용자(또는 제3자)가 만료 시간을 바꾸기 위해 토큰을 수정하려고 하면, 서명이 일치하지 않기 때문에 이를 알아챌 수 있습니다.
 
-JWT 토큰을 직접 다뤄보고 동작 방식을 확인해보고 싶다면 <a href="https://jwt.io/" class="external-link" target="_blank">https://jwt.io</a>를 확인하십시오.
+JWT 토큰을 직접 다뤄보고 동작 방식을 확인해보고 싶다면 [https://jwt.io](https://jwt.io/)를 확인하십시오.
 
 ## `PyJWT` 설치 { #install-pyjwt }
 
 Python에서 JWT 토큰을 생성하고 검증하려면 `PyJWT`를 설치해야 합니다.
 
-[가상환경](../../virtual-environments.md){.internal-link target=_blank}을 만들고 활성화한 다음 `pyjwt`를 설치하십시오:
+프로젝트에 `pyjwt`를 추가하십시오:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info
+/// note | 참고
 
 RSA나 ECDSA 같은 전자 서명 알고리즘을 사용할 계획이라면, cryptography 라이브러리 의존성인 `pyjwt[crypto]`를 설치해야 합니다.
 
-자세한 내용은 <a href="https://pyjwt.readthedocs.io/en/latest/installation.html" class="external-link" target="_blank">PyJWT Installation docs</a>에서 확인할 수 있습니다.
+자세한 내용은 [PyJWT 설치 문서](https://pyjwt.readthedocs.io/en/latest/installation.html)에서 확인할 수 있습니다.
 
 ///
 
@@ -72,19 +73,19 @@ pwdlib는 패스워드 해시를 다루기 위한 훌륭한 Python 패키지입�
 
 추천 알고리즘은 "Argon2"입니다.
 
-[가상환경](../../virtual-environments.md){.internal-link target=_blank}을 만들고 활성화한 다음 Argon2와 함께 pwdlib를 설치하십시오:
+프로젝트에 Argon2와 함께 `pwdlib`를 추가하십시오:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
 
 </div>
 
-/// tip
+/// tip | 팁
 
 `pwdlib`를 사용하면 **Django**, **Flask** 보안 플러그인 또는 다른 여러 도구로 생성한 패스워드를 읽을 수 있도록 설정할 수도 있습니다.
 
@@ -100,7 +101,7 @@ $ pip install "pwdlib[argon2]"
 
 권장 설정으로 PasswordHash 인스턴스를 생성합니다. 이는 패스워드를 해싱하고 검증하는 데 사용됩니다.
 
-/// tip
+/// tip | 팁
 
 pwdlib는 bcrypt 해싱 알고리즘도 지원하지만 레거시 알고리즘은 포함하지 않습니다. 오래된 해시로 작업해야 한다면 passlib 라이브러리를 사용하는 것을 권장합니다.
 
@@ -116,9 +117,13 @@ pwdlib는 bcrypt 해싱 알고리즘도 지원하지만 레거시 알고리즘�
 
 그리고 사용자를 인증하고 반환하는 또 다른 함수도 생성합니다.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,56:57,60:61,70:76] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
 
-/// note
+`authenticate_user`가 데이터베이스에 존재하지 않는 사용자이름으로 호출되더라도, 여전히 `verify_password`를 더미 해시에 대해 실행합니다.
+
+이렇게 하면 사용자이름이 유효하든 아니든 엔드포인트가 응답하는 데 걸리는 시간이 대략 동일해져, 기존 사용자이름을 열거하는 데 악용될 수 있는 **타이밍 공격**을 방지합니다.
+
+/// note | 참고
 
 새로운 (가짜) 데이터베이스 `fake_users_db`를 확인하면, 이제 해시 처리된 패스워드가 어떻게 생겼는지 볼 수 있습니다: `"$argon2id$v=19$m=65536,t=3,p=4$wagCPXjifgvUFBzq4hqe3w$CYaIb8sB+wtD+Vu/P4uod1+Qof8h+1g7bbDlBID48Rc"`.
 
@@ -130,7 +135,7 @@ pwdlib는 bcrypt 해싱 알고리즘도 지원하지만 레거시 알고리즘�
 
 JWT 토큰을 서명하는 데 사용할 임의의 비밀 키를 생성합니다.
 
-안전한 임의의 비밀 키를 생성하려면 다음 명령을 사용하십시오:
+안전한 임의의 비밀 키를 생성하려면 다음 명령어를 사용하십시오:
 
 <div class="termy">
 
@@ -152,7 +157,7 @@ JWT 토큰을 서명하는 데 사용될 알고리즘을 위한 변수 `ALGORITH
 
 새 액세스 토큰을 생성하기 위한 유틸리티 함수를 생성합니다.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,79:87] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
 
 ## 의존성 업데이트 { #update-the-dependencies }
 
@@ -162,7 +167,7 @@ JWT 토큰을 서명하는 데 사용될 알고리즘을 위한 변수 `ALGORITH
 
 토큰이 유효하지 않다면 즉시 HTTP 오류를 반환합니다.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[90:107] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
 ## `/token` *경로 처리* 업데이트 { #update-the-token-path-operation }
 
@@ -170,7 +175,7 @@ JWT 토큰을 서명하는 데 사용될 알고리즘을 위한 변수 `ALGORITH
 
 실제 JWT 액세스 토큰을 생성하여 반환합니다.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[118:133] *}
+{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
 
 ### JWT "주체(subject)" `sub`에 대한 기술 세부사항 { #technical-details-about-the-jwt-subject-sub }
 
@@ -196,7 +201,7 @@ JWT는 사용자를 식별하고 사용자가 API에서 직접 작업을 수행�
 
 ## 확인하기 { #check-it }
 
-서버를 실행하고 문서로 이동하십시오: <a href="http://127.0.0.1:8000/docs" class="external-link" target="_blank">http://127.0.0.1:8000/docs</a>.
+서버를 실행하고 문서로 이동하십시오: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 다음과 같은 사용자 인터페이스가 보일 것입니다:
 
@@ -209,7 +214,7 @@ JWT는 사용자를 식별하고 사용자가 API에서 직접 작업을 수행�
 Username: `johndoe`
 Password: `secret`
 
-/// check
+/// tip | 팁
 
 코드 어디에도 평문 패스워드 "`secret`"은 없고, 해시된 버전만 있다는 점에 유의하십시오.
 
@@ -234,7 +239,7 @@ Password: `secret`
 
 <img src="/img/tutorial/security/image10.png">
 
-/// note
+/// note | 참고
 
 `Bearer `로 시작하는 값을 가진 `Authorization` 헤더에 주목하십시오.
 

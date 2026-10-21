@@ -1,28 +1,28 @@
 # テスト { #testing }
 
-<a href="https://www.starlette.dev/testclient/" class="external-link" target="_blank">Starlette</a> のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
+[Starlette](https://starlette.dev/testclient/) のおかげで、**FastAPI** アプリケーションのテストは簡単で楽しいものになっています。
 
-<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPX</a> がベースで、さらにその設計は Requests をベースにしているため、とても馴染みがあり直感的です。
+[HTTPX](https://www.python-httpx.org) がベースで、さらにその設計は Requests をベースにしているため、とても馴染みがあり直感的です。
 
-これを使用すると、**FastAPI** と共に <a href="https://docs.pytest.org/" class="external-link" target="_blank">pytest</a> を直接利用できます。
+これを使用すると、**FastAPI** と共に [pytest](https://docs.pytest.org/) を直接利用できます。
 
 ## `TestClient` を使用 { #using-testclient }
 
-/// info | 情報
+/// note | 備考
 
-`TestClient` を使用するには、まず <a href="https://www.python-httpx.org" class="external-link" target="_blank">`httpx`</a> をインストールします。
+`TestClient` を使用するには、まず [`httpx`](https://www.python-httpx.org) をインストールします。
 
-[仮想環境](../virtual-environments.md){.internal-link target=_blank} を作成し、それを有効化してから、例えば以下のようにインストールしてください:
+プロジェクトに追加します:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
 
 `TestClient` をインポートします。
 
-`TestClient` を作成し、**FastAPI** に渡します。
+**FastAPI** アプリケーションを渡して `TestClient` を作成します。
 
 `test_` から始まる名前の関数を作成します (これは `pytest` の標準的なコンベンションです)。
 
@@ -30,7 +30,7 @@ $ pip install httpx
 
 チェックしたい Python の標準的な式と共に、シンプルに `assert` 文を記述します (これも `pytest` の標準です)。
 
-{* ../../docs_src/app_testing/tutorial001_py39.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
 
 /// tip | 豆知識
 
@@ -52,7 +52,7 @@ $ pip install httpx
 
 /// tip | 豆知識
 
-FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[Async Tests](../advanced/async-tests.md){.internal-link target=_blank} を参照してください。
+FastAPIアプリケーションへのリクエストの送信とは別に、テストで `async` 関数 (非同期データベース関数など) を呼び出したい場合は、高度なチュートリアルの[非同期テスト](../advanced/async-tests.md) を参照してください。
 
 ///
 
@@ -64,7 +64,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 ### **FastAPI** アプリファイル { #fastapi-app-file }
 
-[Bigger Applications](bigger-applications.md){.internal-link target=_blank} で説明されている、次のようなファイル構成があるとします:
+[大規模なアプリケーション](bigger-applications.md) で説明されている、次のようなファイル構成があるとします:
 
 ```
 .
@@ -76,7 +76,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 ファイル `main.py` に **FastAPI** アプリがあります:
 
 
-{* ../../docs_src/app_testing/app_a_py39/main.py *}
+{* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### テストファイル { #testing-file }
 
@@ -92,7 +92,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 このファイルは同じパッケージ内にあるため、相対インポートを使って `main` モジュール (`main.py`) からオブジェクト `app` をインポートできます:
 
-{* ../../docs_src/app_testing/app_a_py39/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
 
 
 ...そして、これまでと同じようにテストコードを書けます。
@@ -113,7 +113,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 │   └── test_main.py
 ```
 
-ここで、**FastAPI** アプリがある `main.py` ファイルには、他の path operation があります。
+ここで、**FastAPI** アプリがある `main.py` ファイルには、他の **path operations** がいくつかあります。
 
 エラーを返す可能性のある `GET` オペレーションがあります。
 
@@ -142,13 +142,13 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 * *ヘッダー* を渡すには、`headers` パラメータに `dict` を渡します。
 * *cookies* の場合、 `cookies` パラメータに `dict` です。
 
-(`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、<a href="https://www.python-httpx.org" class="external-link" target="_blank">HTTPXのドキュメント</a>を確認してください。
+(`httpx` または `TestClient` を使用して) バックエンドにデータを渡す方法の詳細は、[HTTPXのドキュメント](https://www.python-httpx.org)を確認してください。
 
-/// info | 情報
+/// note | 備考
 
 `TestClient` は、Pydanticモデルではなく、JSONに変換できるデータを受け取ることに注意してください。
 
-テストにPydanticモデルがあり、テスト中にそのデータをアプリケーションに送信したい場合は、[JSON互換エンコーダ](encoder.md){.internal-link target=_blank} で説明されている `jsonable_encoder` が利用できます。
+テストにPydanticモデルがあり、テスト中にそのデータをアプリケーションに送信したい場合は、[JSON互換エンコーダ](encoder.md) で説明されている `jsonable_encoder` が利用できます。
 
 ///
 
@@ -156,12 +156,12 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 その後、`pytest` をインストールするだけです。
 
-[仮想環境](../virtual-environments.md){.internal-link target=_blank} を作成し、それを有効化してから、例えば以下のようにインストールしてください:
+プロジェクトに追加します:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ $ pip install pytest
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

@@ -24,13 +24,13 @@ Aber denken Sie daran, dass, wenn Sie `Query`, `Path`, `Cookie` und andere von `
 
 ///
 
-/// info | Info
+/// note | Hinweis
 
 Um Cookies zu deklarieren, müssen Sie `Cookie` verwenden, da die Parameter sonst als Query-Parameter interpretiert würden.
 
 ///
 
-/// info | Info
+/// note | Hinweis
 
 Beachten Sie, dass **Browser Cookies auf besondere Weise und hinter den Kulissen handhaben** und **JavaScript** **nicht** ohne Weiteres erlauben, auf sie zuzugreifen.
 
