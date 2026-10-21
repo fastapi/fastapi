@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Docs
+
+* 📝 Clarify nullable query parameters and path parameter defaults. PR [#16568](https://github.com/fastapi/fastapi/pull/16568) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.156.8 (2026-10-21)
 
 ### Fixes
