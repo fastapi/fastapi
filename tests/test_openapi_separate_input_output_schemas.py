@@ -55,6 +55,10 @@ def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
     ) -> WithComputedField:
         return with_computed_field
 
+    @app.get("/list-with-computed-field/")
+    def read_list_with_computed_field() -> list[WithComputedField]:
+        return [WithComputedField(name="example")]
+
     client = TestClient(app)
     return client
 
@@ -137,6 +141,19 @@ def test_read_items():
             },
             {"name": "Plumbus", "description": None, "sub": None},
         ]
+    )
+
+
+def test_read_list_with_computed_field():
+    client = get_app_client()
+    client_no = get_app_client(separate_input_output_schemas=False)
+    response = client.get("/list-with-computed-field/")
+    response2 = client_no.get("/list-with-computed-field/")
+    assert response.status_code == response2.status_code == 200, response.text
+    assert (
+        response.json()
+        == response2.json()
+        == [{"name": "example", "computed_field": "computed example"}]
     )
 
 
@@ -306,6 +323,28 @@ def test_openapi_schema():
                             },
                         },
                     },
+                },
+                "/list-with-computed-field/": {
+                    "get": {
+                        "summary": "Read List With Computed Field",
+                        "operationId": "read_list_with_computed_field_list_with_computed_field__get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/WithComputedField-Output"
+                                            },
+                                            "type": "array",
+                                            "title": "Response Read List With Computed Field List With Computed Field  Get",
+                                        }
+                                    }
+                                },
+                            }
+                        },
+                    }
                 },
             },
             "components": {
@@ -580,6 +619,28 @@ def test_openapi_schema_no_separate():
                             },
                         },
                     },
+                },
+                "/list-with-computed-field/": {
+                    "get": {
+                        "summary": "Read List With Computed Field",
+                        "operationId": "read_list_with_computed_field_list_with_computed_field__get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/WithComputedField-Output"
+                                            },
+                                            "type": "array",
+                                            "title": "Response Read List With Computed Field List With Computed Field  Get",
+                                        }
+                                    }
+                                },
+                            }
+                        },
+                    }
                 },
             },
             "components": {
