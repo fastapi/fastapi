@@ -60,6 +60,7 @@ from fastapi.dependencies.utils import (
     SolvedDependency,
     _get_body_field,
     _get_flat_body_params,
+    _get_request_param_names,
     _should_embed_body_fields,
     get_dependant,
     get_parameterless_sub_dependant,
@@ -917,6 +918,7 @@ def _build_dependant_with_parameterless_dependencies(
             0,
             get_parameterless_sub_dependant(depends=depends, path=path),
         )
+    dependant._request_param_names = _get_request_param_names(dependant)
     body_params = _get_flat_body_params(dependant)
     embed_body_fields = _should_embed_body_fields(body_params)
     return dependant, body_params, embed_body_fields
