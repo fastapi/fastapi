@@ -77,6 +77,22 @@ With `extra="forbid"`, parameters declared elsewhere in the same operation or it
 
 This also works for `Header` and `Cookie` models.
 
+## Optional Query Parameter Models { #optional-query-parameter-models }
+
+Declare a query parameter model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+
+If neither `start` nor `end` is sent, `date_range` is `None`. If either is sent, FastAPI validates the model and requires both fields.
+
+Using `| None` without a default still makes the parameter required.
+
+Unknown parameters follow the model's `extra` configuration. Ignored extras do not make the model present.
+
+OpenAPI lists the group's fields individually and marks them as optional.
+
+You can also declare optional [header parameter models](header-param-models.md#optional-header-parameter-models) and [cookie parameter models](cookie-param-models.md#optional-cookie-parameter-models).
+
 ## Summary { #summary }
 
 You can use **Pydantic models** to declare **query parameters** in **FastAPI**. 😎

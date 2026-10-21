@@ -75,6 +75,18 @@ Parameters declared elsewhere in the same operation or its dependencies are not 
 
 Each model uses its own `Header(convert_underscores=...)` setting, both when reading the request and when generating OpenAPI. Explicit field aliases remain literal header names.
 
+## Optional Header Parameter Models { #optional-header-parameter-models }
+
+Declare a header parameter model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+
+If neither `x-client-name` nor `x-client-version` is sent, `client` is `None`. If either is sent, FastAPI validates the model and requires both fields.
+
+The same rules for defaults, extra fields, and OpenAPI apply as for [optional query parameter models](query-param-models.md#optional-query-parameter-models).
+
+Headers such as `Host` also follow the model's `extra` configuration. With `extra="allow"`, they make the model present even if neither declared field is supplied.
+
 ## Summary { #summary }
 
 You can use **Pydantic models** to declare **headers** in **FastAPI**. 😎

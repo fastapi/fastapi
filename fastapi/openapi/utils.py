@@ -27,6 +27,7 @@ from fastapi.dependencies.models import (
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
     _get_param_aliases,
+    _get_param_model,
     get_flat_params,
 )
 from fastapi.encoders import jsonable_encoder
@@ -175,6 +176,12 @@ def _get_openapi_operation_parameters(
         for parent in param_group:
             if not getattr(parent.field_info, "include_in_schema", True):
                 continue
+            model = _get_param_model(parent)
+            optional_model = (
+                model is not None
+                and parent.field_info.annotation is not model
+                and not parent.field_info.is_required()
+            )
             for param in _get_flat_fields_from_params([parent]):
                 field_info = param.field_info
                 convert_underscores = param_type == ParamTypes.header and getattr(
@@ -196,7 +203,7 @@ def _get_openapi_operation_parameters(
                 parameter = {
                     "name": name,
                     "in": param_type.value,
-                    "required": param.field_info.is_required(),
+                    "required": param.field_info.is_required() and not optional_model,
                     "schema": param_schema,
                 }
                 if field_info.description:
