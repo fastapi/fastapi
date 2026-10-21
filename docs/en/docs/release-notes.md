@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Preserve uploaded file positions when converting to `bytes`. PR [#16566](https://github.com/fastapi/fastapi/pull/16566) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.156.7 (2026-10-21)
 
 ### Fixes
