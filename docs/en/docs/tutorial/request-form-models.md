@@ -99,6 +99,14 @@ Unknown fields follow the model's `extra` configuration. Ignored extras do not m
 
 An optional model containing only unchecked checkboxes is omitted. Send a value such as `enabled=false` to supply it explicitly.
 
+## Optional Unions of Form Models { #optional-unions-of-form-models }
+
+For forms declared as a single parameter, you can also use an optional union of models.
+
+{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+
+If no form fields are sent, `contact` is `None`. Send `kind=person` with `name`, or `kind=company` with `company_name`. The discriminator selects which model to validate.
+
 ## Form Models and Files { #form-models-and-files }
 
 You can also combine a form model with [file parameters](request-files.md).

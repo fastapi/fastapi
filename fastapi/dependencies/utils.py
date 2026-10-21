@@ -619,7 +619,7 @@ def analyze_param(
         use_annotation_from_field_info = use_annotation
         if isinstance(field_info, params.Form):
             ensure_multipart_is_installed()
-            if is_union_of_base_models(field_info.annotation):
+            if _get_form_union_models(field_info.annotation):
                 field_info.annotation = _add_form_union_validators(
                     field_info.annotation
                 )
@@ -1038,28 +1038,28 @@ def request_params_to_args(
     return values, errors
 
 
-def is_union_of_base_models(field_type: Any) -> bool:
-    """Check if field type is a Union where all members are BaseModel subclasses."""
-    origin = get_origin(field_type)
-
-    # Check if it's a Union type (covers both typing.Union and types.UnionType in Python 3.10+)
-    if origin is not Union and origin is not UnionType:
-        return False
-
-    union_args = get_args(field_type)
-
-    for arg in union_args:
+def _get_form_union_models(annotation: Any) -> list[type[BaseModel]]:
+    if get_origin(annotation) not in (Union, UnionType):
+        return []
+    models = []
+    for arg in get_args(annotation):
+        if arg is type(None):
+            continue
         if get_origin(arg) is Annotated:
             arg = get_args(arg)[0]
         if not lenient_issubclass(arg, BaseModel):
-            return False
-
-    return True
+            return []
+        models.append(arg)
+    # A nullable single model uses the regular form model extraction.
+    return models if len(models) > 1 else []
 
 
 def _add_form_union_validators(annotation: Any) -> Any:
-    choices = []
+    choices: list[Any] = []
     for choice in get_args(annotation):
+        if choice is type(None):
+            choices.append(choice)
+            continue
         model = choice
         metadata: Sequence[Any] = ()
         if get_origin(choice) is Annotated:
@@ -1134,7 +1134,7 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
         isinstance(first_field.field_info, params.Form)
         and not lenient_issubclass(first_field.field_info.annotation, BaseModel)
         and _get_form_model(first_field) is None
-        and not is_union_of_base_models(first_field.field_info.annotation)
+        and not _get_form_union_models(first_field.field_info.annotation)
     ):
         return True
     return False
@@ -1223,28 +1223,40 @@ async def _extract_form_body(
         yield alias, value, field
 
 
+def _is_form_model_supplied(
+    model: type[BaseModel],
+    received_body: FormData,
+    known_param_names: set[str] | None = None,
+) -> bool:
+    # Check raw keys before empty fields are removed or checkboxes inferred.
+    own_names = {
+        alias
+        for item in get_cached_model_fields(model)
+        for alias, _ in _get_param_aliases(item)
+    }
+    return bool(
+        own_names.intersection(received_body)
+        or (
+            model.model_config.get("extra") in ("allow", "forbid")
+            and received_body.keys() - (known_param_names or own_names)
+        )
+    )
+
+
 async def _extract_form_model(
     field: ModelField,
     model: type[BaseModel],
     received_body: FormData,
     known_param_names: set[str] | None,
 ) -> Any:
-    model_fields = get_cached_model_fields(model)
-    if field.field_info.annotation is not model:
-        # Check raw keys before empty fields are removed or checkboxes inferred.
-        own_names = {
-            alias for item in model_fields for alias, _ in _get_param_aliases(item)
-        }
-        supplied = own_names.intersection(received_body)
-        extras = received_body.keys() - (known_param_names or own_names)
-        if not supplied and (
-            model.model_config.get("extra") not in ("allow", "forbid") or not extras
-        ):
-            return Undefined
+    if field.field_info.annotation is not model and not _is_form_model_supplied(
+        model, received_body, known_param_names
+    ):
+        return Undefined
     return {
         alias: item
         async for alias, item, _ in _extract_form_body(
-            model_fields, received_body, known_param_names
+            get_cached_model_fields(model), received_body, known_param_names
         )
     }
 
@@ -1267,14 +1279,18 @@ async def request_body_to_args(
     first_field = body_fields[0]
     body_to_process = received_body
     form_values: dict[str, tuple[str, Any]] = {}
+    form_union_absent = False
 
     if isinstance(received_body, FormData):
         fields_to_extract = [
             field for field in body_fields if _get_form_model(field) is None
         ]
-        if single_not_embedded_field and is_union_of_base_models(
-            first_field.field_info.annotation
-        ):
+        union_models = (
+            _get_form_union_models(first_field.field_info.annotation)
+            if single_not_embedded_field
+            else []
+        )
+        if union_models:
             # Preserve all form values for validators around the union.
             # Each branch applies its own model field extraction afterward.
             fields_to_extract = []
@@ -1288,11 +1304,21 @@ async def request_body_to_args(
             elif field is not None:
                 # Keep each parameter's selected alias and scalar/list shape.
                 form_values[field.name] = (alias, value)
+        form_union_absent = (
+            bool(union_models)
+            and type(None) in get_args(first_field.field_info.annotation)
+            and not any(
+                _is_form_model_supplied(model, received_body) for model in union_models
+            )
+        )
 
     if single_not_embedded_field:
         loc: tuple[str, ...] = ("body",)
         v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=body_to_process, values=values, loc=loc
+            field=first_field,
+            value=Undefined if form_union_absent else body_to_process,
+            values=values,
+            loc=loc,
         )
         return {first_field.name: v_}, errors_
     for field in body_fields:
