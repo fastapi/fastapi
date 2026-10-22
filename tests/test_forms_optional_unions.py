@@ -125,15 +125,27 @@ def test_nullable_union_without_default_is_required():
         return data
 
     client = TestClient(app)
-    response = client.post("/")
-    assert response.status_code == 422
-    assert response.json()["detail"] == [
-        {"type": "missing", "loc": ["body"], "msg": "Field required", "input": None}
-    ]
+    for fields in ({}, {"unknown": "ignored"}):
+        response = client.post("/", data=fields)
+        assert response.status_code == 422
+        assert response.json()["detail"] == [
+            {"type": "missing", "loc": ["body"], "msg": "Field required", "input": None}
+        ]
     response = client.post("/", data={"count": "2"})
     assert response.status_code == 200, response.text
     assert response.json() == {"count": 2}
-    assert app.openapi()["paths"]["/"]["post"]["requestBody"]["required"] is True
+    schema = app.openapi()
+    assert schema["paths"]["/"]["post"]["requestBody"]["required"] is True
+    assert schema["components"]["schemas"]["Body_read__post"]["allOf"] == [
+        {"not": {"not": {"anyOf": [{"required": ["count"]}, {"required": ["label"]}]}}},
+        {
+            "anyOf": [
+                {"$ref": "#/components/schemas/Count"},
+                {"$ref": "#/components/schemas/Label"},
+            ],
+            "title": "Data",
+        },
+    ]
 
 
 @pytest.mark.parametrize("extra", ["ignore", "allow", "forbid"])
@@ -173,6 +185,27 @@ def test_unknown_fields(extra):
         assert response.json() == (
             {"count": 1, "unknown": ["a", "b"]} if extra == "allow" else None
         )
+    schema = app.openapi()
+    assert "required" not in schema["paths"]["/"]["post"]["requestBody"]
+    absent = (
+        {"maxProperties": 0}
+        if extra in ("allow", "forbid")
+        else {"not": {"anyOf": [{"required": ["count"]}, {"required": ["label"]}]}}
+    )
+    assert schema["components"]["schemas"]["Body_read__post"]["allOf"] == [
+        {
+            "anyOf": [
+                absent,
+                {
+                    "anyOf": [
+                        {"$ref": "#/components/schemas/Count"},
+                        {"$ref": "#/components/schemas/Label"},
+                    ],
+                    "title": "Data",
+                },
+            ]
+        }
+    ]
 
 
 def test_mixed_extra_configurations_activate_union():
@@ -345,6 +378,10 @@ def test_defaults_factories_and_validators():
     response = client.post("/validated-default")
     assert response.status_code == 200, response.text
     assert calls == ["validated"]
+    schema = app.openapi()
+    for path in ("/default", "/factory", "/validated-default"):
+        assert "required" not in schema["paths"][path]["post"]["requestBody"]
+    assert calls == ["validated"]
 
 
 def test_optional_union_in_dependency():
@@ -370,24 +407,51 @@ def test_optional_union_in_dependency():
 
 def test_openapi():
     schema = app.openapi()
+    schemas = schema["components"]["schemas"]
+    absent = {
+        "not": {
+            "anyOf": [
+                {"required": ["enabled"]},
+                {"required": ["kind"]},
+                {"required": ["value"]},
+            ]
+        }
+    }
     assert schema["paths"]["/union"]["post"]["requestBody"] == {
         "content": {
             "application/x-www-form-urlencoded": {
-                "schema": {
-                    "anyOf": [
-                        {"$ref": "#/components/schemas/TextForm"},
-                        {"$ref": "#/components/schemas/ListForm"},
-                        {"type": "null"},
-                    ],
-                    "title": "Data",
-                }
+                "schema": {"$ref": "#/components/schemas/Body_read_union_union_post"}
             }
         }
     }
+    assert schemas["Body_read_union_union_post"]["allOf"] == [
+        {
+            "anyOf": [
+                absent,
+                {
+                    "anyOf": [
+                        {"$ref": "#/components/schemas/TextForm"},
+                        {"$ref": "#/components/schemas/ListForm"},
+                    ],
+                    "title": "Data",
+                },
+            ]
+        }
+    ]
     assert schema["paths"]["/discriminated"]["post"]["requestBody"] == {
         "content": {
             "application/x-www-form-urlencoded": {
                 "schema": {
+                    "$ref": "#/components/schemas/Body_read_discriminated_discriminated_post"
+                }
+            }
+        }
+    }
+    assert schemas["Body_read_discriminated_discriminated_post"]["allOf"] == [
+        {
+            "anyOf": [
+                absent,
+                {
                     "anyOf": [
                         {
                             "oneOf": [
@@ -402,12 +466,11 @@ def test_openapi():
                                 },
                             },
                         },
-                        {"type": "null"},
                     ],
                     "title": "Data",
-                }
-            }
+                },
+            ]
         }
-    }
-    assert schema["components"]["schemas"]["TextForm"]["required"] == ["kind", "value"]
-    assert schema["components"]["schemas"]["ListForm"]["required"] == ["kind", "value"]
+    ]
+    assert schemas["TextForm"] == TextForm.model_json_schema()
+    assert schemas["ListForm"] == ListForm.model_json_schema()
