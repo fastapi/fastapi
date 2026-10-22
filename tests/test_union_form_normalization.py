@@ -3,7 +3,7 @@ from typing import Annotated, Any, Literal
 
 import pytest
 from dirty_equals import IsOneOf
-from fastapi import FastAPI, Form, UploadFile
+from fastapi import Depends, FastAPI, Form, UploadFile
 from fastapi._compat import PYDANTIC_VERSION_MINOR_TUPLE
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
@@ -287,14 +287,19 @@ def test_aliased_discriminator():
     assert response.json() == {"kind": "list", "value": [""]}
 
 
-def test_callable_discriminator_preserves_tags():
+@pytest.mark.parametrize("path", ["/", "/composed"])
+def test_callable_discriminator_preserves_tags(path):
     app = FastAPI()
 
     def get_kind(value: Any):
         assert isinstance(value, Mapping)
         return value.get("kind")
 
+    def require_token(token: Annotated[str, Form()]):
+        return token
+
     @app.post("/")
+    @app.post("/composed", dependencies=[Depends(require_token)])
     def read_form(
         data: Annotated[
             Annotated[TextForm, Tag("text")] | Annotated[ListForm, Tag("list")],
@@ -305,10 +310,10 @@ def test_callable_discriminator_preserves_tags():
         return data.model_dump(exclude_unset=True)
 
     client = TestClient(app)
-    response = client.post("/", data={"kind": "list", "value": ""})
+    response = client.post(path, data={"kind": "list", "value": "", "token": "secret"})
     assert response.status_code == 200
     assert response.json() == {"kind": "list", "value": [""]}
-    response = client.post("/", data={"kind": "text", "value": ""})
+    response = client.post(path, data={"kind": "text", "value": "", "token": "secret"})
     assert response.status_code == 422
     assert response.json()["detail"][0]["loc"] == ["body", "text", "value"]
 
@@ -370,7 +375,7 @@ def test_model_validator_does_not_mutate_other_branches():
     assert response.json() == {"value": ["", "hello"]}
 
 
-def test_union_with_another_form_parameter_rejects_a_string():
+def test_union_with_another_form_parameter_requires_model_fields():
     app = FastAPI()
 
     @app.post("/")
@@ -384,9 +389,12 @@ def test_union_with_another_form_parameter_rejects_a_string():
     response = client.post("/", data={"data": "hello", "token": "example"})
     assert response.status_code == 422
     assert [error["loc"] for error in response.json()["detail"]] == [
-        ["body", "data", "TextForm"],
-        ["body", "data", "ListForm"],
+        ["body", "TextForm", "kind"],
+        ["body", "TextForm", "value"],
+        ["body", "ListForm", "kind"],
+        ["body", "ListForm", "value"],
     ]
+    assert all(error["type"] == "missing" for error in response.json()["detail"])
 
 
 def test_file_placeholders_and_selected_files():

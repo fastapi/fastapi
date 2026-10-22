@@ -103,11 +103,21 @@ An optional model containing only unchecked checkboxes is omitted. Send a value 
 
 ## Optional Unions of Form Models { #optional-unions-of-form-models }
 
-For forms declared as a single parameter, you can also use an optional union of models.
+You can also use an optional union of models.
 
 {* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
 
 If no form fields are sent, `contact` is `None`. Send `kind=person` with `name`, or `kind=company` with `company_name`. The discriminator selects which model to validate.
+
+## Combine Unions of Form Models { #combine-unions-of-form-models }
+
+You can combine unions with other form models, individual `Form` parameters, and `File` parameters. Each union is validated independently.
+
+{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+
+Send all fields in the same form. For example, send `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com`, and `token=secret`.
+
+Omit the notification fields to leave `notification` as `None`.
 
 ## Form Models and Files { #form-models-and-files }
 

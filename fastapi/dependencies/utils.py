@@ -1015,14 +1015,22 @@ def _normalize_form_model(value: Any, *, model: type[BaseModel]) -> Any:
     return value
 
 
-def _get_form_model(field: ModelField) -> type[BaseModel] | None:
+def _get_form_models(field: ModelField) -> list[type[BaseModel]]:
     if (
         not isinstance(field.field_info, params.Form)
         or field.field_info.embed
         or _is_json_field(field)
     ):
-        return None
-    return _get_model_type(field.field_info.annotation)
+        return []
+    model = _get_model_type(field.field_info.annotation)
+    if model is not None:
+        return [model]
+    return _get_form_union_models(field.field_info.annotation)
+
+
+def _get_form_model(field: ModelField) -> type[BaseModel] | None:
+    models = _get_form_models(field)
+    return models[0] if len(models) == 1 else None
 
 
 def _should_embed_body_fields(fields: list[ModelField]) -> bool:
@@ -1036,8 +1044,8 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
         return True
     first_field = fields[0]
     # Dependencies can use the same parameter name for different form models.
-    if _get_form_model(first_field) is not None and any(
-        _get_form_model(field) is None
+    if _get_form_models(first_field) and any(
+        not _get_form_models(field)
         or field.field_info.annotation is not first_field.field_info.annotation
         for field in fields[1:]
     ):
@@ -1050,8 +1058,7 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     if (
         isinstance(first_field.field_info, params.Form)
         and not lenient_issubclass(first_field.field_info.annotation, BaseModel)
-        and _get_form_model(first_field) is None
-        and not _get_form_union_models(first_field.field_info.annotation)
+        and not _get_form_models(first_field)
     ):
         return True
     return False
@@ -1148,18 +1155,18 @@ def _is_form_model_supplied(
 
 async def _extract_form_model(
     field: ModelField,
-    model: type[BaseModel],
+    models: list[type[BaseModel]],
     received_body: FormData,
 ) -> Any:
-    if field.field_info.annotation is not model and not _is_form_model_supplied(
-        model, received_body
+    if type(None) in get_args(field.field_info.annotation) and not any(
+        _is_form_model_supplied(model, received_body) for model in models
     ):
         return Undefined
+    # Union validators normalize each branch from the original form values.
+    model_fields = get_cached_model_fields(models[0]) if len(models) == 1 else []
     return {
         alias: item
-        async for alias, item, _ in _extract_form_body(
-            get_cached_model_fields(model), received_body
-        )
+        async for alias, item, _ in _extract_form_body(model_fields, received_body)
     }
 
 
@@ -1175,49 +1182,31 @@ async def request_body_to_args(
         len(body_fields) == 1
         and not embed_body_fields
         and not _should_embed_body_fields(body_fields)
-        and _get_form_model(body_fields[0]) is None
+        and not _get_form_models(body_fields[0])
     )
     first_field = body_fields[0]
     body_to_process = received_body
     form_values: dict[str, tuple[str, Any]] = {}
-    form_union_absent = False
 
     if isinstance(received_body, FormData):
         fields_to_extract = [
-            field for field in body_fields if _get_form_model(field) is None
+            field for field in body_fields if not _get_form_models(field)
         ]
-        union_models = (
-            _get_form_union_models(first_field.field_info.annotation)
-            if single_not_embedded_field
-            else []
-        )
-        if union_models:
-            # Preserve all form values for validators around the union.
-            # Each branch applies its own model field extraction afterward.
-            fields_to_extract = []
         body_to_process = {}
         async for alias, value, field in _extract_form_body(
             fields_to_extract,
             received_body,
         ):
-            if single_not_embedded_field:
-                body_to_process[alias] = value
-            elif field is not None:
+            body_to_process[alias] = value
+            if field is not None:
                 # Keep each parameter's selected alias and scalar/list shape.
                 form_values[field.name] = (alias, value)
-        form_union_absent = (
-            bool(union_models)
-            and type(None) in get_args(first_field.field_info.annotation)
-            and not any(
-                _is_form_model_supplied(model, received_body) for model in union_models
-            )
-        )
 
     if single_not_embedded_field:
         loc: tuple[str, ...] = ("body",)
         v_, errors_ = _validate_value_with_model_field(
             field=first_field,
-            value=Undefined if form_union_absent else body_to_process,
+            value=body_to_process,
             values=values,
             loc=loc,
         )
@@ -1226,12 +1215,9 @@ async def request_body_to_args(
         aliases = [alias for alias, _ in _get_param_aliases(field)]
         loc = ("body", aliases[0])
         value = Undefined
-        if (
-            isinstance(received_body, FormData)
-            and (model := _get_form_model(field)) is not None
-        ):
+        if isinstance(received_body, FormData) and (models := _get_form_models(field)):
             # Extract each model independently from the original form values.
-            value = await _extract_form_model(field, model, received_body)
+            value = await _extract_form_model(field, models, received_body)
             loc = ("body",)
         elif isinstance(received_body, FormData):
             alias, value = form_values.get(field.name, (aliases[0], Undefined))
@@ -1313,8 +1299,8 @@ def _apply_form_body_schema(
     conditions: list[dict[str, Any]] = []
     for index, param in enumerate(body_params):
         field_schema = parameter_schemas[f"field_{index}"]
-        model = _get_form_model(param)
-        if model is None:
+        models = _get_form_models(param)
+        if not models:
             alias = _get_param_aliases(param)[0][0]
             if alias in properties:
                 conditions.append({"properties": {alias: field_schema}})
@@ -1325,19 +1311,23 @@ def _apply_form_body_schema(
             continue
 
         field_schema.pop("default", None)
-        if param.field_info.annotation is not model:
+        if type(None) in get_args(param.field_info.annotation):
             # A flat form group is omitted through absent fields, not a null body.
             field_schema["anyOf"] = [
                 choice
                 for choice in field_schema["anyOf"]
                 if choice.get("type") != "null"
             ]
-            if model.model_config.get("extra") in ("allow", "forbid"):
+            if any(
+                model.model_config.get("extra") in ("allow", "forbid")
+                for model in models
+            ):
                 absent: dict[str, Any] = {"maxProperties": 0}
             else:
                 names = sorted(
                     {
                         alias
+                        for model in models
                         for item in get_cached_model_fields(model)
                         for alias, _ in _get_param_aliases(item)
                     }
@@ -1385,7 +1375,7 @@ def _get_body_field(
     model_name = "Body_" + name
     fields = body_params
     config: ConfigDict | None = None
-    if any(_get_form_model(field) is not None for field in body_params):
+    if any(_get_form_models(field) for field in body_params):
         fields = []
         for index, field in enumerate(body_params):
             field_info = copy(field.field_info)
