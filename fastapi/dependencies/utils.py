@@ -1366,8 +1366,7 @@ def _get_body_field(
         return None
     first_param = body_params[0]
     has_nullable_form_model = any(
-        (model := _get_form_model(field)) is not None
-        and field.field_info.annotation is not model
+        _get_form_models(field) and type(None) in get_args(field.field_info.annotation)
         for field in body_params
     )
     if not embed_body_fields and not has_nullable_form_model:
@@ -1402,6 +1401,9 @@ def _get_body_field(
     if not embed_body_fields:
         field_info = copy(first_param.field_info)
         field_info.annotation = BodyModel
+        # The original form field already carries the validation metadata.
+        field_info.metadata = []
+        field_info.discriminator = None
         return ModelField(name=first_param.name, field_info=field_info)
     required = any(True for f in body_params if f.field_info.is_required())
     BodyFieldInfo_kwargs: dict[str, Any] = {
