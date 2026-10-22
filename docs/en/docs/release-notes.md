@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆ Bump certifi from 2026.1.4 to 2026.10.19. PR [#16571](https://github.com/fastapi/fastapi/pull/16571) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
 ## 0.159.1 (2026-10-21)
 
 ### Features
