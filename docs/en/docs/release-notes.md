@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix OpenAPI schemas for standalone nullable form unions. PR [#16598](https://github.com/fastapi/fastapi/pull/16598) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.161.0 (2026-10-22)
 
 ### Features
