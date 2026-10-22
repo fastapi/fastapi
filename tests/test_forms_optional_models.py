@@ -630,8 +630,8 @@ def test_form_model_schema_with_disabled_aliases(field_info):
     composed_model = composed_schema["allOf"][0]
     assert optional_model == composed_model
     schemas = app.openapi()["components"]["schemas"]
-    if "$ref" in composed_model:
-        composed_model = schemas[composed_model["$ref"].rsplit("/", 1)[-1]]
+    ref_name = composed_model.get("$ref", "").rsplit("/", 1)[-1]
+    composed_model = schemas.get(ref_name, composed_model)
     assert set(composed_model["properties"]) == {"name", "department"}
     assert composed_model["required"] == ["name"]
     assert schemas["Profile"] == Profile.model_json_schema()
