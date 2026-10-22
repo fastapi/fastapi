@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.161.0 (2026-10-22)
+
 ### Features
 
 * ✨ Add support for combining unions of form models. PR [#16596](https://github.com/fastapi/fastapi/pull/16596) by [@tiangolo](https://github.com/tiangolo).
