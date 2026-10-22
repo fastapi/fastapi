@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add support for combining unions of form models. PR [#16596](https://github.com/fastapi/fastapi/pull/16596) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.160.0 (2026-10-22)
 
 Query, header, cookie, and form parameter models now apply their `extra` configuration to all submitted fields in the same parameter location, consistent with Pydantic behavior. This includes fields declared in other models, individual parameters, or dependencies, which were previously excluded.
