@@ -533,6 +533,9 @@ def test_shared_alias_activates_group_in_schema(alias_choices, required):
         return profile
 
     client = TestClient(app)
+    response = client.post("/json", json={"name": "Rick", "department": "Science"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"display_name": "Rick", "department": "Science"}
     response = client.post("/", data={"name": "Rick"})
     assert response.status_code == 422
     assert response.json()["detail"][0]["loc"] == ["body", "department"]
@@ -613,6 +616,9 @@ def test_form_model_schema_with_disabled_aliases(field_info):
         return profile
 
     client = TestClient(app)
+    response = client.post("/json", json={"name": "Rick"})
+    assert response.status_code == 200, response.text
+    assert response.json() == Profile(name="Rick").model_dump(by_alias=True)
     for path in ("/optional", "/composed"):
         response = client.post(path, data={"name": "Rick"})
         assert response.status_code == 200, response.text
@@ -623,11 +629,12 @@ def test_form_model_schema_with_disabled_aliases(field_info):
     optional_model = optional_schema["allOf"][0]["anyOf"][1]["anyOf"][0]
     composed_model = composed_schema["allOf"][0]
     assert optional_model == composed_model
+    schemas = app.openapi()["components"]["schemas"]
+    if "$ref" in composed_model:
+        composed_model = schemas[composed_model["$ref"].rsplit("/", 1)[-1]]
     assert set(composed_model["properties"]) == {"name", "department"}
     assert composed_model["required"] == ["name"]
-    assert app.openapi()["components"]["schemas"]["Profile"]["required"] == [
-        "display_name"
-    ]
+    assert schemas["Profile"] == Profile.model_json_schema()
 
 
 def test_dependency_override_names():

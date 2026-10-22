@@ -125,10 +125,10 @@ def test_composed_parameter_models_forbid_extras(marker, location, path):
         pagination: Annotated[Pagination, marker()],
         host: Annotated[str, marker()] = "testserver",
     ):
-        return {"filters": filters, "pagination": pagination, "host": host}
+        pytest.fail("Invalid parameters reached the endpoint")  # pragma: no cover
 
     def filters_dependency(filters: Annotated[Filters, marker()]):
-        return filters
+        pytest.fail("Invalid parameters reached the dependency")  # pragma: no cover
 
     @app.get("/dependency")
     def read_dependency(
@@ -136,7 +136,7 @@ def test_composed_parameter_models_forbid_extras(marker, location, path):
         pagination: Annotated[Pagination, marker()],
         host: Annotated[str, marker()] = "testserver",
     ):
-        return {"filters": filters, "pagination": pagination, "host": host}
+        pytest.fail("Invalid parameters reached the endpoint")  # pragma: no cover
 
     client = TestClient(app)
     client.headers.clear()

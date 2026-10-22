@@ -192,10 +192,10 @@ def test_composed_form_models_forbid_extras(multipart, path):
         preferences: Annotated[Preferences, Form()],
         token: Annotated[str, Form()],
     ):
-        return {"profile": profile, "preferences": preferences, "token": token}
+        pytest.fail("Invalid form data reached the endpoint")  # pragma: no cover
 
     def profile_dependency(profile: Annotated[Profile, Form()]):
-        return profile
+        pytest.fail("Invalid form data reached the dependency")  # pragma: no cover
 
     @app.post("/dependency")
     def submit_dependency(
@@ -203,7 +203,7 @@ def test_composed_form_models_forbid_extras(multipart, path):
         preferences: Annotated[Preferences, Form()],
         token: Annotated[str, Form()],
     ):
-        return {"profile": profile, "preferences": preferences, "token": token}
+        pytest.fail("Invalid form data reached the endpoint")  # pragma: no cover
 
     response = post_form(
         TestClient(app),
