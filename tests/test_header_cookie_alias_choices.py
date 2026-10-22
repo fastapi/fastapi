@@ -661,3 +661,28 @@ def test_openapi():
             },
         }
     )
+
+
+def test_header_model_name_choice_supports_hyphen():
+    app = FastAPI()
+
+    class HeaderModel(BaseModel):
+        model_config = ConfigDict(populate_by_name=True)
+        custom_val: Annotated[
+            str, Field(validation_alias=AliasChoices("custom_val", "other_val"))
+        ]
+
+    @app.get("/header")
+    def read_header(data: Annotated[HeaderModel, Header()]):
+        return data
+
+    client = TestClient(app)
+    # Underscore choice works
+    r1 = client.get("/header", headers={"custom_val": "foo"})
+    assert r1.status_code == 200
+    assert r1.json() == {"custom_val": "foo"}
+
+    # Converted hyphenated header also works under populate_by_name=True
+    r2 = client.get("/header", headers={"custom-val": "foo"})
+    assert r2.status_code == 200
+    assert r2.json() == {"custom_val": "foo"}

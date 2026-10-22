@@ -1476,6 +1476,6 @@ def _get_param_aliases(
             request_name = request_name.replace("_", "-")
         if config.get("validate_by_alias") is False:
             return [(field.name, request_name)]
-        if field.name not in [alias for alias, _ in aliases]:
+        if (field.name, request_name) not in aliases:
             aliases.append((field.name, request_name))
     return aliases
