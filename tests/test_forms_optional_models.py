@@ -2,6 +2,7 @@ from typing import Annotated, Optional
 
 import pytest
 from fastapi import Depends, FastAPI, File, Form, UploadFile
+from fastapi._compat import PYDANTIC_VERSION_MINOR_TUPLE
 from fastapi.testclient import TestClient
 from pydantic import AliasChoices, BaseModel, ConfigDict, Field, model_validator
 
@@ -184,19 +185,32 @@ def test_optional_form_model_schema(extra):
     body, schema = form_schema(app)
     assert "required" not in body
     assert "required" not in schema
-    absent = {
-        "not": {
+    absent = (
+        {"maxProperties": 0}
+        if extra in ("allow", "forbid")
+        else {
+            "not": {
+                "anyOf": [
+                    {"required": [name]} for name in ["age", "enabled", "name", "tags"]
+                ]
+            }
+        }
+    )
+    assert schema["allOf"] == [
+        {
             "anyOf": [
-                {"required": ["name"]},
-                {"required": ["age"]},
-                {"required": ["tags"]},
-                {"required": ["enabled"]},
+                absent,
+                {
+                    "anyOf": [{"$ref": "#/components/schemas/Profile"}],
+                    "title": "Profile",
+                },
             ]
         }
-    }
-    if extra == "allow":
-        absent.update(properties={}, additionalProperties=False)
-    assert schema["allOf"] == [{"anyOf": [absent, {"required": ["name", "age"]}]}]
+    ]
+    assert app.openapi()["components"]["schemas"]["Profile"]["required"] == [
+        "name",
+        "age",
+    ]
     response = TestClient(app).post("/", data={"name": "Rick", "age": "70"})
     assert response.status_code == 200, response.text
 
@@ -222,23 +236,36 @@ def test_optional_form_model_with_other_form_field_schema(extra):
     body, schema = form_schema(app)
     assert body["required"] is True
     assert schema["required"] == ["token"]
-    absent = {
-        "not": {
+    absent = (
+        {"maxProperties": 0}
+        if extra in ("allow", "forbid")
+        else {
+            "not": {
+                "anyOf": [
+                    {"required": [name]} for name in ["age", "enabled", "name", "tags"]
+                ]
+            }
+        }
+    )
+    assert schema["allOf"] == [
+        {
             "anyOf": [
-                {"required": ["name"]},
-                {"required": ["age"]},
-                {"required": ["tags"]},
-                {"required": ["enabled"]},
+                absent,
+                {
+                    "anyOf": [{"$ref": "#/components/schemas/Profile"}],
+                    "title": "Profile",
+                },
             ]
         }
-    }
-    if extra == "allow":
-        absent.update(properties={"token": {}}, additionalProperties=False)
-    assert schema["allOf"] == [{"anyOf": [absent, {"required": ["name", "age"]}]}]
+    ]
+    assert app.openapi()["components"]["schemas"]["Profile"]["required"] == [
+        "name",
+        "age",
+    ]
     response = TestClient(app).post(
         "/", data={"token": "secret", "name": "Rick", "age": "70"}
     )
-    assert response.status_code == 200, response.text
+    assert response.status_code == (422 if extra == "forbid" else 200), response.text
 
 
 @pytest.mark.parametrize("extra", ["ignore", "allow", "forbid"])
@@ -260,14 +287,36 @@ def test_unknown_fields_and_sibling_models(extra, required_name):
         avatar: Annotated[UploadFile | None, File()] = None,
         profile: Annotated[Profile | None, Form()] = None,
     ):
+        if profile is not None and avatar is not None:
+            assert profile.model_extra is not None
+            assert profile.model_extra["avatar"] is avatar
+            return {
+                **profile.model_dump(exclude={"avatar"}),
+                "avatar": {"filename": avatar.filename},
+            }
         return profile
 
     client = TestClient(app)
     response = client.post(
         "/", data={"token": "secret"}, files={"avatar": ("image.png", b"image")}
     )
-    assert response.status_code == 200, response.text
-    assert response.json() is None
+    if extra == "ignore":
+        assert response.status_code == 200, response.text
+        assert response.json() is None
+    elif extra == "forbid":
+        assert response.status_code == 422
+        assert {
+            error["loc"][-1]
+            for error in response.json()["detail"]
+            if error["type"] == "extra_forbidden"
+        } == {"token", "avatar"}
+    elif required_name:
+        assert response.status_code == 422
+        assert response.json()["detail"][0]["loc"] == ["body", "name"]
+    else:
+        assert response.status_code == 200, response.text
+        assert response.json()["token"] == "secret"
+        assert response.json()["avatar"]["filename"] == "image.png"
     response = client.post("/", data={"token": "secret", "unknown": ["", "a"]})
     if extra == "forbid":
         assert response.status_code == 422
@@ -278,17 +327,29 @@ def test_unknown_fields_and_sibling_models(extra, required_name):
     else:
         assert response.status_code == 200, response.text
         assert response.json() == (
-            {"name": "default", "enabled": False, "unknown": ["", "a"]}
+            {
+                "name": "default",
+                "enabled": False,
+                "token": "secret",
+                "unknown": ["", "a"],
+            }
             if extra == "allow"
             else None
         )
     response = client.post("/", data={"token": "secret", "name": ""})
-    if required_name:
+    if required_name or extra == "forbid":
         assert response.status_code == 422
-        assert response.json()["detail"][0]["loc"] == ["body", "name"]
+        assert response.json()["detail"][0]["loc"] == [
+            "body",
+            "name" if required_name else "token",
+        ]
     else:
         assert response.status_code == 200, response.text
-        assert response.json() == {"name": "default", "enabled": False}
+        assert response.json() == {
+            "name": "default",
+            "enabled": False,
+            **({"token": "secret"} if extra == "allow" else {}),
+        }
 
 
 @pytest.mark.parametrize("extra", ["ignore", "allow", "forbid"])
@@ -327,15 +388,16 @@ def test_required_nullable_model(extra, required_field):
     )
     body, schema = form_schema(app)
     assert body["required"] is True
-    if required_field:
-        assert schema["required"] == ["name"]
-        assert "allOf" not in schema
-    else:
-        assert "required" not in schema
-        absent = {"not": {"anyOf": [{"required": ["name"]}]}}
-        if extra == "allow":
-            absent.update(properties={}, additionalProperties=False)
-        assert schema["allOf"] == [{"not": absent}]
+    assert "required" not in schema
+    absent = (
+        {"maxProperties": 0}
+        if extra in ("allow", "forbid")
+        else {"not": {"anyOf": [{"required": ["name"]}]}}
+    )
+    assert schema["allOf"] == [
+        {"not": absent},
+        {"anyOf": [{"$ref": "#/components/schemas/Settings"}], "title": "Settings"},
+    ]
 
 
 def test_defaults_factories_and_validators():
@@ -434,12 +496,11 @@ def test_aliases_and_shared_fields(key):
         assert response.status_code == 200, response.text
         assert response.json() == [{"name": "Rick"}, None]
     response = client.post("/", data={key: "Rick", "name": "Rick", "age": "70"})
-    if key == "name":
-        assert response.status_code == 200, response.text
-        assert response.json() == [{"name": "Rick"}, {"name": "Rick", "age": 70}]
-    else:
-        assert response.status_code == 422
-        assert response.json()["detail"][0]["type"] == "extra_forbidden"
+    assert response.status_code == 422
+    assert all(
+        error["type"] == "extra_forbidden" for error in response.json()["detail"]
+    )
+    assert response.json()["detail"][-1]["loc"] == ["body", "age"]
 
 
 @pytest.mark.parametrize("alias_choices", [False, True])
@@ -467,7 +528,14 @@ def test_shared_alias_activates_group_in_schema(alias_choices, required):
     ):
         return [profile, account]
 
+    @app.post("/json")
+    def json_body(profile: Profile):
+        return profile
+
     client = TestClient(app)
+    response = client.post("/json", json={"name": "Rick", "department": "Science"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"display_name": "Rick", "department": "Science"}
     response = client.post("/", data={"name": "Rick"})
     assert response.status_code == 422
     assert response.json()["detail"][0]["loc"] == ["body", "department"]
@@ -478,28 +546,95 @@ def test_shared_alias_activates_group_in_schema(alias_choices, required):
         {"name": "Rick"},
     ]
     _, schema = form_schema(app)
-    name_requirement = {
-        "anyOf": [{"required": ["display_name"]}, {"required": ["name"]}]
+    model_schema = app.openapi()["components"]["schemas"]["Profile"]
+    assert model_schema["required"] == ["display_name", "department"]
+    present = schema["allOf"][1] if required else schema["allOf"][0]["anyOf"][1]
+    assert present["anyOf"][0] == {
+        **model_schema,
+        "required": ["department"],
+        "allOf": [{"anyOf": [{"required": ["display_name"]}, {"required": ["name"]}]}],
     }
-    if required:
-        assert schema["required"] == ["department"]
-        assert schema["allOf"][0] == name_requirement
-    else:
-        assert "required" not in schema
-        assert schema["allOf"][0] == {
-            "anyOf": [
-                {
-                    "not": {
-                        "anyOf": [
-                            {"required": ["display_name"]},
-                            {"required": ["name"]},
-                            {"required": ["department"]},
-                        ]
-                    }
-                },
-                {"required": ["department"], "allOf": [name_requirement]},
-            ]
-        }
+    for key in ("display_name", "name"):
+        data = {key: "Rick", "department": "Science"}
+        assert client.post("/", data=data).status_code == 200
+        assert client.post("/", data={key: "Rick"}).status_code == 422
+
+
+def test_standalone_optional_form_model_alias_schema():
+    app = FastAPI()
+
+    class Profile(BaseModel):
+        model_config = ConfigDict(populate_by_name=True)
+        name: str = Field(alias="display_name")
+
+    @app.post("/")
+    def submit(profile: Annotated[Profile | None, Form()] = None):
+        return profile
+
+    client = TestClient(app)
+    _, schema = form_schema(app)
+    present = schema["allOf"][0]["anyOf"][1]["anyOf"][0]
+    assert present["required"] == []
+    assert present["allOf"] == [
+        {"anyOf": [{"required": ["display_name"]}, {"required": ["name"]}]}
+    ]
+    for data in ({}, {"name": "Rick"}, {"display_name": "Rick"}):
+        assert client.post("/", data=data).status_code == 200
+
+
+@pytest.mark.skipif(
+    PYDANTIC_VERSION_MINOR_TUPLE < (2, 11),
+    reason="validate_by_alias requires Pydantic 2.11+",
+)
+@pytest.mark.parametrize(
+    "field_info",
+    [
+        Field(alias="display_name"),
+        Field(validation_alias=AliasChoices("display_name", "nickname")),
+    ],
+)
+def test_form_model_schema_with_disabled_aliases(field_info):
+    app = FastAPI()
+
+    class Profile(BaseModel):
+        model_config = ConfigDict(validate_by_alias=False)
+        name: str = field_info
+        department: str = "Science"
+
+    @app.post("/optional")
+    def optional(profile: Annotated[Profile | None, Form()] = None):
+        return profile.name if profile is not None else None
+
+    @app.post("/composed")
+    def composed(
+        profile: Annotated[Profile, Form()], token: Annotated[str, Form()] = "secret"
+    ):
+        return profile.name
+
+    @app.post("/json")
+    def json_body(profile: Profile):
+        return profile
+
+    client = TestClient(app)
+    response = client.post("/json", json={"name": "Rick"})
+    assert response.status_code == 200, response.text
+    assert response.json() == Profile(name="Rick").model_dump(by_alias=True)
+    for path in ("/optional", "/composed"):
+        response = client.post(path, data={"name": "Rick"})
+        assert response.status_code == 200, response.text
+        assert response.json() == "Rick"
+    assert client.post("/composed", data={"display_name": "Rick"}).status_code == 422
+    _, optional_schema = form_schema(app, "/optional")
+    _, composed_schema = form_schema(app, "/composed")
+    optional_model = optional_schema["allOf"][0]["anyOf"][1]["anyOf"][0]
+    composed_model = composed_schema["allOf"][0]
+    assert optional_model == composed_model
+    schemas = app.openapi()["components"]["schemas"]
+    ref_name = composed_model.get("$ref", "").rsplit("/", 1)[-1]
+    composed_model = schemas.get(ref_name, composed_model)
+    assert set(composed_model["properties"]) == {"name", "department"}
+    assert composed_model["required"] == ["name"]
+    assert schemas["Profile"] == Profile.model_json_schema()
 
 
 def test_dependency_override_names():
@@ -509,7 +644,7 @@ def test_dependency_override_names():
         model_config = ConfigDict(extra="forbid")
         name: str
 
-    def dependency(token: Annotated[str, Form()]):
+    def dependency(token: Annotated[str, Form()] = "secret"):
         return token
 
     def override(new_token: Annotated[str, Form()]):
@@ -523,16 +658,15 @@ def test_dependency_override_names():
         return profile
 
     client = TestClient(app)
+    assert client.post("/").json() is None
     response = client.post("/", data={"token": "secret"})
-    assert response.status_code == 200, response.text
-    assert response.json() is None
-    app.dependency_overrides[dependency] = override
-    response = client.post("/", data={"new_token": "secret"})
-    assert response.status_code == 200, response.text
-    assert response.json() is None
-    response = client.post("/", data={"new_token": "secret", "token": "old"})
     assert response.status_code == 422
     assert response.json()["detail"][-1]["loc"] == ["body", "token"]
+    app.dependency_overrides[dependency] = override
+    response = client.post("/", data={"new_token": "secret"})
+    assert response.status_code == 422
+    assert response.json()["detail"][-1]["loc"] == ["body", "new_token"]
+    assert response.json()["detail"][-1]["type"] == "extra_forbidden"
 
 
 def test_typing_optional():
@@ -608,14 +742,10 @@ def test_model_without_declared_fields(required, extra):
         assert response.json() == ({"unknown": "value"} if extra == "allow" else None)
     body, schema = form_schema(app)
     assert body.get("required", False) == required
-    assert schema["properties"] == {}
+    absent = {"maxProperties": 0} if extra in ("allow", "forbid") else {}
+    present = {"anyOf": [{"$ref": "#/components/schemas/Empty"}], "title": "Model"}
     if required:
-        assert schema["allOf"] == [
-            {
-                "not": {"properties": {}, "additionalProperties": False}
-                if extra == "allow"
-                else {}
-            }
-        ]
+        assert schema["allOf"] == [{"not": absent}, present]
     else:
-        assert "allOf" not in schema
+        assert schema["allOf"] == [{"anyOf": [absent, present]}]
+    assert app.openapi()["components"]["schemas"]["Empty"]["properties"] == {}

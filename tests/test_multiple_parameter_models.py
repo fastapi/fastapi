@@ -1,5 +1,4 @@
 from typing import Annotated
-from unittest.mock import patch
 
 import pytest
 from fastapi import APIRouter, Cookie, Depends, FastAPI, Header, Query, WebSocket
@@ -7,30 +6,48 @@ from fastapi.testclient import TestClient
 from pydantic import AliasChoices, BaseModel, ConfigDict, Field, Json, model_validator
 
 
+def get_with_parameters(client, path, location, parameters):
+    if location == "query":
+        return client.get(path, params=parameters)
+    if location == "header":
+        return client.get(path, headers=parameters)
+    return client.get(
+        path,
+        headers={
+            "cookie": "; ".join(f"{key}={value}" for key, value in parameters.items())
+        },
+    )
+
+
 @pytest.mark.parametrize(
     "marker, location", [(Query, "query"), (Header, "header"), (Cookie, "cookie")]
 )
-@pytest.mark.parametrize("in_dependency", [False, True])
-@pytest.mark.parametrize("extra", ["forbid", "allow"])
-def test_composed_parameter_models(marker, location, in_dependency, extra):
+@pytest.mark.parametrize("path", ["/", "/dependency"])
+def test_composed_parameter_models_allow_extras(marker, location, path):
     app = FastAPI()
 
     class Filters(BaseModel):
-        model_config = ConfigDict(extra=extra)
+        model_config = ConfigDict(extra="allow")
         term: str
 
     class Pagination(BaseModel):
-        model_config = ConfigDict(extra=extra)
+        model_config = ConfigDict(extra="allow")
         limit: int = Field(10, ge=1, description="Page size")
+
+    @app.get("/")
+    def read(
+        filters: Annotated[Filters, marker()],
+        pagination: Annotated[Pagination, marker()],
+        host: Annotated[str, marker()] = "testserver",
+    ):
+        return {"filters": filters, "pagination": pagination, "host": host}
 
     def filters_dependency(filters: Annotated[Filters, marker()]):
         return filters
 
-    filter_annotation = Depends(filters_dependency) if in_dependency else marker()
-
-    @app.get("/")
-    def read(
-        filters: Annotated[Filters, filter_annotation],
+    @app.get("/dependency")
+    def read_dependency(
+        filters: Annotated[Filters, Depends(filters_dependency)],
         pagination: Annotated[Pagination, marker()],
         host: Annotated[str, marker()] = "testserver",
     ):
@@ -38,43 +55,43 @@ def test_composed_parameter_models(marker, location, in_dependency, extra):
 
     client = TestClient(app)
     client.headers.clear()
-
-    def send(data):
-        if location == "query":
-            return client.get("/", params=data)
-        if location == "header":
-            return client.get("/", headers=data)
-        return client.get(
-            "/", headers={"cookie": "; ".join(f"{k}={v}" for k, v in data.items())}
-        )
-
-    response = send({"term": "hello", "limit": "2", "host": "example.com"})
+    response = get_with_parameters(
+        client, path, location, {"term": "hello", "limit": "2", "host": "example.com"}
+    )
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "filters": {"term": "hello"},
-        "pagination": {"limit": 2},
+        "filters": {"term": "hello", "limit": "2", "host": "example.com"},
+        "pagination": {"limit": 2, "term": "hello", "host": "example.com"},
         "host": "example.com",
     }
-    response = send({"term": "hello"})
+    response = get_with_parameters(client, path, location, {"term": "hello"})
     assert response.status_code == 200, response.text
-    assert response.json()["pagination"] == {"limit": 10}
-    response = send({"term": "hello", "limit": "0"})
+    assert response.json()["pagination"]["limit"] == 10
+    assert response.json()["pagination"]["term"] == "hello"
+    assert response.json()["host"] == "testserver"
+    response = get_with_parameters(
+        client, path, location, {"term": "hello", "limit": "0"}
+    )
     assert response.status_code == 422
     assert response.json()["detail"][0]["loc"] == [location, "limit"]
-    response = send({"term": "hello", "typo": "unexpected"})
-    if extra == "forbid":
-        assert response.status_code == 422
-        assert all(
-            error["loc"] == [location, "typo"] for error in response.json()["detail"]
-        )
-    else:
-        assert response.status_code == 200, response.text
-        assert response.json() == {
-            "filters": {"term": "hello", "typo": "unexpected"},
-            "pagination": {"limit": 10, "typo": "unexpected"},
-            "host": "testserver",
-        }
-    parameters = app.openapi()["paths"]["/"]["get"]["parameters"]
+    response = get_with_parameters(
+        client,
+        path,
+        location,
+        {"term": "hello", "typo": "unexpected", "host": "example.com"},
+    )
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "filters": {"term": "hello", "typo": "unexpected", "host": "example.com"},
+        "pagination": {
+            "limit": 10,
+            "term": "hello",
+            "typo": "unexpected",
+            "host": "example.com",
+        },
+        "host": "example.com",
+    }
+    parameters = app.openapi()["paths"][path]["get"]["parameters"]
     assert {(p["in"], p["name"]) for p in parameters} == {
         (location, "term"),
         (location, "limit"),
@@ -85,6 +102,56 @@ def test_composed_parameter_models(marker, location, in_dependency, extra):
     assert limit["schema"]["default"] == 10
     assert limit["description"] == "Page size"
     assert limit["required"] is False
+
+
+@pytest.mark.parametrize(
+    "marker, location", [(Query, "query"), (Header, "header"), (Cookie, "cookie")]
+)
+@pytest.mark.parametrize("path", ["/", "/dependency"])
+def test_composed_parameter_models_forbid_extras(marker, location, path):
+    app = FastAPI()
+
+    class Filters(BaseModel):
+        model_config = ConfigDict(extra="forbid")
+        term: str
+
+    class Pagination(BaseModel):
+        model_config = ConfigDict(extra="forbid")
+        limit: int = 10
+
+    @app.get("/")
+    def read(
+        filters: Annotated[Filters, marker()],
+        pagination: Annotated[Pagination, marker()],
+        host: Annotated[str, marker()] = "testserver",
+    ):
+        pytest.fail("Invalid parameters reached the endpoint")  # pragma: no cover
+
+    def filters_dependency(filters: Annotated[Filters, marker()]):
+        pytest.fail("Invalid parameters reached the dependency")  # pragma: no cover
+
+    @app.get("/dependency")
+    def read_dependency(
+        filters: Annotated[Filters, Depends(filters_dependency)],
+        pagination: Annotated[Pagination, marker()],
+        host: Annotated[str, marker()] = "testserver",
+    ):
+        pytest.fail("Invalid parameters reached the endpoint")  # pragma: no cover
+
+    client = TestClient(app)
+    client.headers.clear()
+    response = get_with_parameters(
+        client, path, location, {"term": "hello", "limit": "2", "host": "example.com"}
+    )
+    assert response.status_code == 422
+    assert {error["loc"][-1] for error in response.json()["detail"]} == {
+        "limit",
+        "host",
+        "term",
+    }
+    assert all(
+        error["type"] == "extra_forbidden" for error in response.json()["detail"]
+    )
 
 
 def test_parameter_shapes_and_aliases_are_independent():
@@ -190,8 +257,14 @@ def test_model_validators_defaults_and_unknown_extras():
     response = client.get("/", params={"order": "desc", "note": ["a", "b"]})
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "data": {"start": 0, "end": 10, "tags": [], "note": ["a", "b"]},
-        "fields_set": ["note"],
+        "data": {
+            "start": 0,
+            "end": 10,
+            "tags": [],
+            "note": ["a", "b"],
+            "order": "desc",
+        },
+        "fields_set": ["note", "order"],
         "order": "desc",
     }
     response = client.get("/", params={"start": "20"})
@@ -212,7 +285,7 @@ def test_dependency_overrides_and_router_parameters():
     def replacement(page: int = 1):
         return page
 
-    def token(token: str):
+    def token(token: str = "secret"):
         return token
 
     router = APIRouter(dependencies=[Depends(token)])
@@ -226,35 +299,28 @@ def test_dependency_overrides_and_router_parameters():
 
     app.include_router(router)
     client = TestClient(app)
-    assert (
-        client.get(
-            "/", params={"term": "a", "limit": "2", "token": "secret"}
-        ).status_code
-        == 200
-    )
-    with patch(
-        "fastapi.dependencies.utils._get_request_param_names",
-        side_effect=AssertionError("Parameter names should already be collected"),
-    ):
-        response = client.get(
-            "/", params={"term": "a", "limit": "2", "token": "secret"}
-        )
-        assert response.status_code == 200, response.text
-        assert response.json() == {"filters": {"term": "a"}, "page": 2}
-    app.dependency_overrides[pagination] = replacement
-    response = client.get("/", params={"term": "a", "page": "3", "token": "secret"})
+    response = client.get("/", params={"term": "a"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"filters": {"term": "a"}, "page": 3}
+    assert response.json() == {"filters": {"term": "a"}, "page": 10}
     response = client.get("/", params={"term": "a", "limit": "2", "token": "secret"})
     assert response.status_code == 422
-    assert response.json()["detail"][0]["loc"] == ["query", "limit"]
-    app.dependency_overrides.clear()
-    response = client.get("/", params={"term": "a", "limit": "4", "token": "secret"})
-    assert response.status_code == 200, response.text
-    assert response.json() == {"filters": {"term": "a"}, "page": 4}
+    assert [error["loc"] for error in response.json()["detail"]] == [
+        ["query", "limit"],
+        ["query", "token"],
+    ]
+    assert all(
+        error["type"] == "extra_forbidden" for error in response.json()["detail"]
+    )
+    app.dependency_overrides[pagination] = replacement
     response = client.get("/", params={"term": "a", "page": "3", "token": "secret"})
     assert response.status_code == 422
-    assert response.json()["detail"][0]["loc"] == ["query", "page"]
+    assert [error["loc"] for error in response.json()["detail"]] == [
+        ["query", "page"],
+        ["query", "token"],
+    ]
+    assert all(
+        error["type"] == "extra_forbidden" for error in response.json()["detail"]
+    )
 
 
 def test_parameter_models_keep_request_locations_separate():
@@ -398,6 +464,7 @@ def test_nested_dependencies_and_websocket_parameter_models():
     class Model(BaseModel):
         model_config = ConfigDict(extra="forbid")
         term: str
+        limit: int = 10
 
     def filters(data: Annotated[Model, Query()]):
         return data

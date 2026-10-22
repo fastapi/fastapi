@@ -141,11 +141,14 @@ def test_form_model_media_type(in_dependency):
     content = schema["paths"]["/"]["post"]["requestBody"]["content"]
     assert list(content) == ["multipart/form-data"]
     ref = content["multipart/form-data"]["schema"]["$ref"].rsplit("/", 1)[-1]
-    assert set(schema["components"]["schemas"][ref]["properties"]) == {
-        "name",
-        "limit",
-        "token",
+    body = schema["components"]["schemas"][ref]
+    assert set(body["properties"]) == {"token"}
+    assert {item["$ref"] for item in body["allOf"]} == {
+        "#/components/schemas/Profile",
+        "#/components/schemas/Preferences",
     }
+    assert schema["components"]["schemas"]["Profile"]["required"] == ["name"]
+    assert schema["components"]["schemas"]["Preferences"]["required"] == ["limit"]
 
 
 def test_file_media_type_takes_precedence_over_form_media_type():

@@ -380,6 +380,7 @@ alls = "alls"
 
 [tool.typos.default.extend-words]
 ba = "ba"
+certifi = "certifi"
 fo = "fo"
 havin = "havin"
 Ines = "Ines"

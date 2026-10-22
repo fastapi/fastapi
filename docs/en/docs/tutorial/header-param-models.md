@@ -71,7 +71,7 @@ Before setting `convert_underscores` to `False`, bear in mind that some HTTP pro
 
 You can combine multiple header parameter models with individual header parameters and dependencies. Each model is extracted and validated independently, as explained for [query parameter models](query-param-models.md#combine-parameter-models).
 
-Parameters declared elsewhere in the same operation or its dependencies are not treated as extra fields of a model. Undeclared header parameters still follow the model's `extra` configuration.
+Each model's `extra` configuration applies to all header parameters, including those declared in other models or dependencies. With `extra="forbid"`, any header outside that model is rejected. With `extra="allow"`, those headers are included as model extras.
 
 Each model uses its own `Header(convert_underscores=...)` setting, both when reading the request and when generating OpenAPI. Explicit field aliases remain literal header names.
 

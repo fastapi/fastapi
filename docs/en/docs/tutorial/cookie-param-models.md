@@ -75,7 +75,7 @@ For example, if the client tries to send a `santa_tracker` cookie with a value o
 
 You can combine multiple cookie parameter models with individual cookie parameters and dependencies. Each model is extracted and validated independently, as explained for [query parameter models](query-param-models.md#combine-parameter-models).
 
-Parameters declared elsewhere in the same operation or its dependencies are not treated as extra fields of a model. Undeclared cookie parameters still follow the model's `extra` configuration.
+Each model's `extra` configuration applies to all cookie parameters, including those declared in other models or dependencies. With `extra="forbid"`, any cookie outside that model is rejected. With `extra="allow"`, those cookies are included as model extras.
 
 ## Optional Cookie Parameter Models { #optional-cookie-parameter-models }
 

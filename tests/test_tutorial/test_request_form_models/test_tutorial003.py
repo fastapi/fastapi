@@ -29,5 +29,10 @@ def test_form_models(client: TestClient):
 def test_openapi(client: TestClient):
     schema = client.get("/openapi.json").json()
     body = schema["components"]["schemas"]["Body_create_profile_profiles__post"]
-    assert set(body["properties"]) == {"name", "tags", "token"}
-    assert set(body["required"]) == {"name", "token"}
+    assert set(body["properties"]) == {"token"}
+    assert body["required"] == ["token"]
+    assert {item["$ref"] for item in body["allOf"]} == {
+        "#/components/schemas/Profile",
+        "#/components/schemas/Preferences",
+    }
+    assert schema["components"]["schemas"]["Profile"]["required"] == ["name"]

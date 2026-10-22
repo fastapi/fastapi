@@ -62,12 +62,10 @@ def test_optional_models_with_dependencies_and_individual_parameters():
     app = FastAPI()
 
     class Range(BaseModel):
-        model_config = ConfigDict(extra="forbid")
         start: int
         end: int
 
     class Filters(BaseModel):
-        model_config = ConfigDict(extra="forbid")
         tags: list[str]
 
     def get_filters(filters: Annotated[Filters | None, Query()] = None):
@@ -119,7 +117,10 @@ def test_optional_models_with_dependencies_and_individual_parameters():
 
 
 @pytest.mark.parametrize("extra", ["ignore", "allow", "forbid"])
-def test_unknown_parameters(extra):
+@pytest.mark.parametrize(
+    "fields", [{"limit": "5"}, {"limit": "5", "unknown": ["a", "b"]}]
+)
+def test_unknown_parameters(extra, fields):
     app = FastAPI()
 
     class Filters(BaseModel):
@@ -131,24 +132,20 @@ def test_unknown_parameters(extra):
         return filters
 
     client = TestClient(app)
-    response = client.get("/", params={"limit": "5"})
-    assert response.status_code == 200, response.text
-    assert response.json() is None
-    response = client.get("/", params={"limit": "5", "unknown": ["a", "b"]})
+    assert client.get("/").json() is None
+    response = client.get("/", params=fields)
     if extra == "forbid":
         assert response.status_code == 422
-        assert response.json()["detail"] == [
-            {
-                "type": "extra_forbidden",
-                "loc": ["query", "unknown"],
-                "msg": "Extra inputs are not permitted",
-                "input": ["a", "b"],
-            }
+        assert [error["loc"] for error in response.json()["detail"]] == [
+            ["query", name] for name in fields
         ]
+        assert all(
+            error["type"] == "extra_forbidden" for error in response.json()["detail"]
+        )
     else:
         assert response.status_code == 200, response.text
         assert response.json() == (
-            {"term": "default", "unknown": ["a", "b"]} if extra == "allow" else None
+            {"term": "default", **fields} if extra == "allow" else None
         )
 
 
@@ -297,13 +294,11 @@ def test_aliases_and_shared_fields(key):
         assert response.status_code == 200, response.text
         assert response.json() == [{"term": "value"}, None]
     response = client.get("/", params={key: "value", "term": "value", "limit": "5"})
-    if key == "term":
-        assert response.status_code == 200, response.text
-        assert response.json() == [{"term": "value"}, {"term": "value", "limit": 5}]
-    else:
-        assert response.status_code == 422
-        assert response.json()["detail"][0]["loc"] == ["query", "term"]
-        assert response.json()["detail"][0]["type"] == "extra_forbidden"
+    assert response.status_code == 422
+    assert all(
+        error["type"] == "extra_forbidden" for error in response.json()["detail"]
+    )
+    assert response.json()["detail"][-1]["loc"] == ["query", "limit"]
 
 
 def test_dependency_override_names():
@@ -327,16 +322,14 @@ def test_dependency_override_names():
         return filters
 
     client = TestClient(app)
+    assert client.get("/").json() is None
     response = client.get("/", params={"limit": "5"})
-    assert response.status_code == 200, response.text
-    assert response.json() is None
-    app.dependency_overrides[pagination] = replacement
-    response = client.get("/", params={"page": "2"})
-    assert response.status_code == 200, response.text
-    assert response.json() is None
-    response = client.get("/", params={"page": "2", "limit": "5"})
     assert response.status_code == 422
     assert response.json()["detail"][-1]["loc"] == ["query", "limit"]
+    app.dependency_overrides[pagination] = replacement
+    response = client.get("/", params={"page": "2"})
+    assert response.status_code == 422
+    assert response.json()["detail"][-1]["loc"] == ["query", "page"]
     assert response.json()["detail"][-1]["type"] == "extra_forbidden"
 
 

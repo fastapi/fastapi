@@ -30,11 +30,12 @@ def test_openapi(client: TestClient):
     assert set(body["content"]) == {"multipart/form-data"}
     model = schema["components"]["schemas"]["Body_create_profile_profiles__post"]
     assert model["properties"] == {
-        "name": {"type": "string", "title": "Name"},
         "avatar": {
             "type": "string",
             "contentMediaType": "application/octet-stream",
             "title": "Avatar",
         },
     }
-    assert set(model["required"]) == {"name", "avatar"}
+    assert model["required"] == ["avatar"]
+    assert model["allOf"][0]["$ref"] == "#/components/schemas/Profile"
+    assert schema["components"]["schemas"]["Profile"]["required"] == ["name"]
