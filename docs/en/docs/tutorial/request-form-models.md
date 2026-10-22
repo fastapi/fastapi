@@ -81,7 +81,9 @@ You can combine multiple form models with individual `Form` parameters.
 
 {* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
 
-The client sends `name`, `tags`, and `token` as form fields. Each model receives its own fields and validates them independently.
+The client sends `name`, `tags`, and `token` as form fields. Each model validates the form fields independently.
+
+Each model's `extra` configuration applies to all form fields, including fields and files declared in other parameters or dependencies. With `extra="forbid"`, any field outside that model is rejected. With `extra="allow"`, those fields are included as model extras.
 
 If multiple declarations use the same form field name, each validates that field's value. Use compatible types and constraints for shared fields so the OpenAPI schema can describe them consistently.
 
@@ -95,7 +97,7 @@ If neither `name` nor `age` is sent, `profile` is `None`. If either is sent, Fas
 
 Using `| None` without a default still makes the parameter required.
 
-Unknown fields follow the model's `extra` configuration. Ignored extras do not make the model present.
+Extra fields follow the model's `extra` configuration. Ignored extras do not make the model present.
 
 An optional model containing only unchecked checkboxes is omitted. Send a value such as `enabled=false` to supply it explicitly.
 

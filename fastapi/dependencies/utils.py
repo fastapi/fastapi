@@ -76,10 +76,13 @@ from pydantic import (
     BaseModel,
     BeforeValidator,
     ConfigDict,
+    GetJsonSchemaHandler,
+    GetPydanticSchema,
     Json,
     Tag,
 )
 from pydantic.fields import FieldInfo
+from pydantic_core import CoreSchema
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import (
@@ -185,72 +188,11 @@ def _get_param_model(field: ModelField) -> type[BaseModel] | None:
 def _get_flat_fields_from_params(fields: Sequence[ModelField]) -> list[ModelField]:
     flat_fields: list[ModelField] = []
     for field in fields:
-        model = _get_form_model(field) or _get_param_model(field)
-        if model is not None:
+        if (model := _get_param_model(field)) is not None:
             flat_fields.extend(get_cached_model_fields(model))
         else:
             flat_fields.append(field)
     return flat_fields
-
-
-def _get_request_param_names(
-    dependant: Dependant, dependency_overrides_provider: Any | None = None
-) -> dict[str, set[str]]:
-    """Collect accepted names across the effective dependency graph, by location."""
-    names: dict[str, set[str]] = {
-        "query": set(),
-        "header": set(),
-        "cookie": set(),
-        "form": set(),
-    }
-    overrides = (
-        getattr(dependency_overrides_provider, "dependency_overrides", None) or {}
-    )
-    dependants = [dependant]
-    while dependants:
-        current = dependants.pop()
-        for location, fields in (
-            ("query", current.query_params),
-            ("header", current.header_params),
-            ("cookie", current.cookie_params),
-            (
-                "form",
-                [
-                    f
-                    for f in current.body_params
-                    if isinstance(f.field_info, params.Form)
-                ],
-            ),
-        ):
-            for field in fields:
-                model_fields = (
-                    [field]
-                    if location == "form" and _get_form_model(field) is None
-                    else _get_flat_fields_from_params([field])
-                )
-                for param in model_fields:
-                    convert_underscores = location == "header" and getattr(
-                        param.field_info,
-                        "convert_underscores",
-                        getattr(field.field_info, "convert_underscores", True),
-                    )
-                    for _, name in _get_param_aliases(
-                        param, convert_underscores=convert_underscores
-                    ):
-                        names[location].add(
-                            name.lower() if location == "header" else name
-                        )
-        for sub_dependant in current.dependencies:
-            if sub_dependant.call in overrides:
-                sub_dependant = get_dependant(
-                    path=cast(str, sub_dependant.path),
-                    call=overrides[sub_dependant.call],
-                    name=sub_dependant.name,
-                    parent_oauth_scopes=_get_oauth_scopes(dependant=sub_dependant),
-                    scope=sub_dependant.scope,
-                )
-            dependants.append(sub_dependant)
-    return names
 
 
 def get_flat_params(dependant: Dependant) -> list[ModelField]:
@@ -712,7 +654,6 @@ async def solve_dependencies(
     async_exit_stack: AsyncExitStack,
     embed_body_fields: bool,
     _uses_scopes_cache: _UsesScopesCache | None = None,
-    _request_param_names: dict[str, set[str]] | None = None,
 ) -> SolvedDependency:
     request_astack = request.scope.get("fastapi_inner_astack")
     assert isinstance(request_astack, AsyncExitStack), (
@@ -732,15 +673,6 @@ async def solve_dependencies(
         dependency_cache = {}
     if _uses_scopes_cache is None:
         _uses_scopes_cache = {}
-    if _request_param_names is None:
-        _request_param_names = dependant._request_param_names
-        if _request_param_names is None or (
-            dependency_overrides_provider
-            and dependency_overrides_provider.dependency_overrides
-        ):
-            _request_param_names = _get_request_param_names(
-                dependant, dependency_overrides_provider
-            )
     for sub_dependant in dependant.dependencies:
         sub_dependant.call = cast(Callable[..., Any], sub_dependant.call)
         call = sub_dependant.call
@@ -773,7 +705,6 @@ async def solve_dependencies(
             async_exit_stack=async_exit_stack,
             embed_body_fields=embed_body_fields,
             _uses_scopes_cache=_uses_scopes_cache,
-            _request_param_names=_request_param_names,
         )
         background_tasks = solved_result.background_tasks
         if solved_result.errors:
@@ -810,17 +741,14 @@ async def solve_dependencies(
     query_values, query_errors = request_params_to_args(
         dependant.query_params,
         request.query_params,
-        known_param_names=_request_param_names["query"],
     )
     header_values, header_errors = request_params_to_args(
         dependant.header_params,
         request.headers,
-        known_param_names=_request_param_names["header"],
     )
     cookie_values, cookie_errors = request_params_to_args(
         dependant.cookie_params,
         request.cookies,
-        known_param_names=_request_param_names["cookie"],
     )
     values.update(path_values)
     values.update(query_values)
@@ -835,7 +763,6 @@ async def solve_dependencies(
             body_fields=dependant.body_params,
             received_body=body,
             embed_body_fields=embed_body_fields,
-            known_param_names=_request_param_names["form"],
         )
         values.update(body_values)
         errors.extend(body_errors)
@@ -920,7 +847,6 @@ def _request_param_model_to_args(
     model_field: ModelField,
     model: type[BaseModel],
     received_params: Mapping[str, Any],
-    known_param_names: set[str],
 ) -> tuple[Any, list[Any]]:
     fields_to_extract = get_cached_model_fields(model)
     default_convert_underscores = getattr(
@@ -960,12 +886,9 @@ def _request_param_model_to_args(
         else:
             processed_keys.add(request_alias)
 
-    # Parameters declared elsewhere are not extras of this model. Keep unknown
-    # inputs and unused aliases of its own fields for Pydantic to validate.
+    # Let each model apply its extra policy to all remaining inputs.
     for key in received_params.keys():
-        if key not in processed_keys and (
-            key not in known_param_names or key in own_names
-        ):
+        if key not in processed_keys:
             if isinstance(received_params, (ImmutableMultiDict, Headers)):
                 value = received_params.getlist(key)
                 if isinstance(value, list) and (len(value) == 1):
@@ -1003,20 +926,14 @@ def _request_param_model_to_args(
 def request_params_to_args(
     fields: Sequence[ModelField],
     received_params: Mapping[str, Any] | QueryParams | Headers,
-    *,
-    known_param_names: set[str] | None = None,
 ) -> tuple[dict[str, Any], list[Any]]:
     values: dict[str, Any] = {}
     errors: list[Any] = []
     if not fields:
         return values, errors
-    if known_param_names is None:
-        known_param_names = set()
     for field in fields:
         if (model := _get_param_model(field)) is not None:
-            v_, errors_ = _request_param_model_to_args(
-                field, model, received_params, known_param_names
-            )
+            v_, errors_ = _request_param_model_to_args(field, model, received_params)
         else:
             aliases = _get_param_aliases(field)
             _, alias = next(
@@ -1143,12 +1060,8 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
 def _extract_form_items(
     body_fields: list[ModelField],
     received_body: FormData,
-    known_param_names: set[str] | None = None,
 ) -> Iterator[tuple[str, Any, ModelField | None]]:
     field_aliases: set[str] = set()
-    own_names: set[str] = set()
-    if known_param_names is None:
-        known_param_names = set()
 
     for field in body_fields:
         validation_alias = field.field_info.validation_alias
@@ -1159,7 +1072,6 @@ def _extract_form_items(
             )
         )
         aliases = [alias for alias, _ in _get_param_aliases(field)]
-        own_names.update(aliases)
         # Interpret missing boolean form fields as unchecked HTML checkboxes.
         infer_false_if_missing = (
             not has_alias_path
@@ -1177,9 +1089,7 @@ def _extract_form_items(
                 # Leave later aliases unchanged for other fields or extra validation.
                 break
     for key in received_body.keys():
-        if key not in field_aliases and (
-            key not in known_param_names or key in own_names
-        ):
+        if key not in field_aliases:
             param_values = received_body.getlist(key)
             if len(param_values) == 1:
                 yield key, param_values[0], None
@@ -1199,11 +1109,8 @@ async def _read_file_bytes(file: UploadFile) -> bytes:
 async def _extract_form_body(
     body_fields: list[ModelField],
     received_body: FormData,
-    known_param_names: set[str] | None = None,
 ) -> AsyncIterator[tuple[str, Any, ModelField | None]]:
-    for alias, value, field in _extract_form_items(
-        body_fields, received_body, known_param_names
-    ):
+    for alias, value, field in _extract_form_items(body_fields, received_body):
         if field is not None and isinstance(field.field_info, params.File):
             if is_bytes_or_nonable_bytes_annotation(
                 field.field_info.annotation
@@ -1226,7 +1133,6 @@ async def _extract_form_body(
 def _is_form_model_supplied(
     model: type[BaseModel],
     received_body: FormData,
-    known_param_names: set[str] | None = None,
 ) -> bool:
     # Check raw keys before empty fields are removed or checkboxes inferred.
     own_names = {
@@ -1236,10 +1142,7 @@ def _is_form_model_supplied(
     }
     return bool(
         own_names.intersection(received_body)
-        or (
-            model.model_config.get("extra") in ("allow", "forbid")
-            and received_body.keys() - (known_param_names or own_names)
-        )
+        or (model.model_config.get("extra") in ("allow", "forbid") and received_body)
     )
 
 
@@ -1247,16 +1150,15 @@ async def _extract_form_model(
     field: ModelField,
     model: type[BaseModel],
     received_body: FormData,
-    known_param_names: set[str] | None,
 ) -> Any:
     if field.field_info.annotation is not model and not _is_form_model_supplied(
-        model, received_body, known_param_names
+        model, received_body
     ):
         return Undefined
     return {
         alias: item
         async for alias, item, _ in _extract_form_body(
-            get_cached_model_fields(model), received_body, known_param_names
+            get_cached_model_fields(model), received_body
         )
     }
 
@@ -1265,7 +1167,6 @@ async def request_body_to_args(
     body_fields: list[ModelField],
     received_body: Any,
     embed_body_fields: bool,
-    known_param_names: set[str] | None = None,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
     errors: list[dict[str, Any]] = []
@@ -1330,9 +1231,7 @@ async def request_body_to_args(
             and (model := _get_form_model(field)) is not None
         ):
             # Extract each model independently from the original form values.
-            value = await _extract_form_model(
-                field, model, received_body, known_param_names
-            )
+            value = await _extract_form_model(field, model, received_body)
             loc = ("body",)
         elif isinstance(received_body, FormData):
             alias, value = form_values.get(field.name, (aliases[0], Undefined))
@@ -1360,67 +1259,104 @@ async def request_body_to_args(
     return values, errors
 
 
-def _apply_form_model_optionality(
+def _get_form_model_schema(
+    model: type[BaseModel], core_schema: CoreSchema, handler: GetJsonSchemaHandler
+) -> dict[str, Any]:
+    schema = handler(core_schema)
+    model_schema = handler.resolve_ref_schema(schema)
+    properties = model_schema.get("properties", {})
+    required = model_schema.get("required", [])
+    aliases = {}
+    for field in get_cached_model_fields(model):
+        validation_alias = field.field_info.validation_alias
+        schema_name = (
+            validation_alias.choices[0]
+            if isinstance(validation_alias, AliasChoices)
+            else get_validation_alias(field)
+        )
+        names = [alias for alias, _ in _get_param_aliases(field)]
+        if (
+            isinstance(schema_name, str)
+            and schema_name in properties
+            and (
+                names[0] != schema_name or (len(names) > 1 and schema_name in required)
+            )
+        ):
+            aliases[schema_name] = names
+    if not aliases:
+        return schema
+    # Adjust only this form's aliases, leaving shared model schemas intact.
+    model_schema = deepcopy(model_schema)
+    model_schema["properties"] = {
+        aliases.get(name, [name])[0]: value
+        for name, value in model_schema["properties"].items()
+    }
+    model_schema["required"] = []
+    for name in required:
+        names = aliases.get(name, [name])
+        if len(names) == 1:
+            model_schema["required"].append(names[0])
+        else:
+            model_schema.setdefault("allOf", []).append(
+                {"anyOf": [{"required": [name]} for name in names]}
+            )
+    return model_schema
+
+
+def _apply_form_body_schema(
     body_params: list[ModelField], schema: dict[str, Any]
 ) -> None:
-    required: set[str] = set()
-    conditions: list[dict[str, Any]] = []
-    for field in body_params:
-        model = _get_form_model(field)
-        model_fields = get_cached_model_fields(model) if model is not None else [field]
-        aliases = [
-            [alias for alias, _ in _get_param_aliases(item)] for item in model_fields
-        ]
-        if model is None or field.field_info.annotation is model:
-            required.update(
-                names[0]
-                for names, item in zip(aliases, model_fields, strict=True)
-                if item.field_info.is_required()
-            )
-            continue
-
-        required_names = []
-        required_choices = []
-        for names, item in zip(aliases, model_fields, strict=True):
-            if item.field_info.is_required():
-                if len(names) == 1:
-                    required_names.append(names[0])
-                else:
-                    required_choices.append(
-                        {"anyOf": [{"required": [name]} for name in names]}
-                    )
-        requirements: dict[str, Any] = {}
-        if required_names:
-            requirements["required"] = required_names
-        if required_choices:
-            requirements["allOf"] = required_choices
-        if field.field_info.is_required():
-            required.update(required_names)
-            conditions.extend(required_choices)
-            if requirements:
-                continue
-        elif not requirements:
-            continue
-
-        # An optional group is either absent or has all its required fields.
-        names = list(dict.fromkeys(name for choices in aliases for name in choices))
-        absent: dict[str, Any] = {}
-        if names:
-            absent["not"] = {"anyOf": [{"required": [name]} for name in names]}
-        if model.model_config.get("extra") == "allow":
-            absent["properties"] = {
-                name: {} for name in schema["properties"] if name not in names
-            }
-            absent["additionalProperties"] = False
-        if field.field_info.is_required():
-            conditions.append({"not": absent})
-        else:
-            conditions.append({"anyOf": [absent, requirements]})
+    parameter_schemas = schema.pop("properties")
     schema.pop("required", None)
+    properties: dict[str, Any] = {}
+    required: list[str] = []
+    conditions: list[dict[str, Any]] = []
+    for index, param in enumerate(body_params):
+        field_schema = parameter_schemas[f"field_{index}"]
+        model = _get_form_model(param)
+        if model is None:
+            alias = _get_param_aliases(param)[0][0]
+            if alias in properties:
+                conditions.append({"properties": {alias: field_schema}})
+            else:
+                properties[alias] = field_schema
+            if param.field_info.is_required() and alias not in required:
+                required.append(alias)
+            continue
+
+        field_schema.pop("default", None)
+        if param.field_info.annotation is not model:
+            # A flat form group is omitted through absent fields, not a null body.
+            field_schema["anyOf"] = [
+                choice
+                for choice in field_schema["anyOf"]
+                if choice.get("type") != "null"
+            ]
+            if model.model_config.get("extra") in ("allow", "forbid"):
+                absent: dict[str, Any] = {"maxProperties": 0}
+            else:
+                names = sorted(
+                    {
+                        alias
+                        for item in get_cached_model_fields(model)
+                        for alias, _ in _get_param_aliases(item)
+                    }
+                )
+                absent = (
+                    {"not": {"anyOf": [{"required": [name]} for name in names]}}
+                    if names
+                    else {}
+                )
+            if param.field_info.is_required():
+                conditions.append({"not": absent})
+            else:
+                field_schema = {"anyOf": [absent, field_schema]}
+        conditions.append(field_schema)
+    if properties:
+        schema["properties"] = properties
     if required:
-        schema["required"] = [name for name in schema["properties"] if name in required]
-    if conditions:
-        schema["allOf"] = conditions
+        schema["required"] = required
+    schema["allOf"] = conditions
 
 
 def _get_body_field(
@@ -1450,40 +1386,28 @@ def _get_body_field(
     fields = body_params
     config: ConfigDict | None = None
     if any(_get_form_model(field) is not None for field in body_params):
-        fields_by_alias: dict[str, ModelField] = {}
-        config = {}
-        for field in body_params:
-            model_fields = [field]
+        fields = []
+        for index, field in enumerate(body_params):
+            field_info = copy(field.field_info)
             if (model := _get_form_model(field)) is not None:
-                model_fields = get_cached_model_fields(model)
-                extra = model.model_config.get("extra")
-                if extra in ("allow", "forbid") and config.get("extra") != "forbid":
-                    config["extra"] = extra
-            for model_field in model_fields:
-                alias = _get_param_aliases(model_field)[0][0]
-                previous = fields_by_alias.get(alias)
-                if previous is not None and (
-                    previous.field_info.is_required()
-                    or not model_field.field_info.is_required()
-                ):
-                    continue
-                # Unique internal names keep identically named fields from different
-                # models. Copies leave cached fields and their aliases unchanged.
-                field_info = copy(model_field.field_info)
-                field_info.alias = alias
-                field_info.validation_alias = alias
-                field_info.serialization_alias = alias
-                fields_by_alias[alias] = ModelField(
-                    name=previous.name
-                    if previous is not None
-                    else f"field_{len(fields_by_alias)}",
-                    field_info=field_info,
+                model_annotation: Any = model
+                model_annotation = Annotated[
+                    model_annotation,
+                    GetPydanticSchema(
+                        get_pydantic_json_schema=partial(_get_form_model_schema, model)
+                    ),
+                ]
+                field_info.annotation = cast(
+                    Any,
+                    model_annotation
+                    if field_info.annotation is model
+                    else model_annotation | None,
                 )
-        fields = list(fields_by_alias.values())
-        if has_nullable_form_model:
-            config["json_schema_extra"] = partial(
-                _apply_form_model_optionality, body_params
-            )
+            field_info.alias = field_info.validation_alias = f"field_{index}"
+            field_info.serialization_alias = f"field_{index}"
+            field_info.title = field_info.title or field.name.replace("_", " ").title()
+            fields.append(ModelField(name=f"field_{index}", field_info=field_info))
+        config = {"json_schema_extra": partial(_apply_form_body_schema, body_params)}
     BodyModel = create_body_model(fields=fields, model_name=model_name, config=config)
     if not embed_body_fields:
         field_info = copy(first_param.field_info)
