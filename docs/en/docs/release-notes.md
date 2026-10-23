@@ -13,6 +13,10 @@ Omitted boolean model fields are excluded from `model_dump(exclude_unset=True)`,
 
 For HTML checkboxes, declare a boolean with a default of `False`. See [Boolean Form Fields](https://fastapi.tiangolo.com/tutorial/request-forms/#boolean-form-fields).
 
+### Breaking Changes
+
+* 🐛 Restore default handling for omitted boolean form fields. PR [#16605](https://github.com/fastapi/fastapi/pull/16605) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.161.1 (2026-10-22)
 
 ### Fixes
