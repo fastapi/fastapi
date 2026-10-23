@@ -232,7 +232,7 @@ def test_composed_form_models_forbid_extras(multipart, path):
     assert models["Preferences"]["additionalProperties"] is False
 
 
-def test_model_defaults_checkboxes_and_validators_are_independent():
+def test_model_defaults_and_validators_are_independent():
     app = FastAPI()
     inputs = []
 
@@ -274,9 +274,9 @@ def test_model_defaults_checkboxes_and_validators_are_independent():
     response = client.post("/")
     assert response.status_code == 200, response.text
     assert response.json() == {
-        "settings": {"label": "default", "enabled": False, "tags": []},
+        "settings": {"label": "default", "enabled": True, "tags": []},
         "other": {"label": "other", "enabled": "other"},
-        "fields_set": ["enabled"],
+        "fields_set": [],
         "other_fields_set": [],
     }
     response = client.post(

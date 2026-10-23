@@ -18,7 +18,7 @@ class Person(BaseModel):
     kind: Literal["person"] = Field(alias="contact_type")
     name: str
     tags: list[str] = Field(default_factory=list)
-    enabled: bool = True
+    enabled: bool = False
 
 
 class Company(BaseModel):
@@ -704,7 +704,7 @@ def test_json_and_original_model_schemas_are_unchanged():
         json={"contact": {"contact_type": "person", "name": "Rick"}, "token": "secret"},
     )
     assert response.status_code == 200, response.text
-    assert response.json()["enabled"] is True
+    assert response.json()["enabled"] is False
     schemas = app.openapi()["components"]["schemas"]
     assert set(schemas["Person"]["properties"]) == {
         "contact_type",

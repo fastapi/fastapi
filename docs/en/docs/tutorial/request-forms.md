@@ -46,9 +46,11 @@ To declare form bodies, you need to use `Form` explicitly, because without it th
 
 ## Boolean Form Fields { #boolean-form-fields }
 
-Browsers omit unchecked checkboxes. **FastAPI** treats omitted `bool` and `bool | None` form fields as `False`, even when their default is `True` or `None`.
+Browsers omit unchecked checkboxes when submitting HTML forms. Declare a boolean form parameter with a default of `False` to receive `False` when unchecked:
 
-For JSON requests and direct Pydantic validation, required fields and defaults work as usual.
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+A checked checkbox sends its value, which defaults to `"on"`. **FastAPI** accepts `"on"` as `True`.
 
 ## About "Form Fields" { #about-form-fields }
 
