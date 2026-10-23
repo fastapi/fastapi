@@ -1,11 +1,11 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.15'",
     "python_full_version == '3.14.*'",
     "python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform == 'emscripten'",
-    "(python_full_version < '3.14' and sys_platform != 'emscripten') or (python_full_version < '3.12' and sys_platform == 'emscripten')",
+    "python_full_version < '3.12' or (python_full_version >= '3.12' and python_full_version < '3.14' and sys_platform != 'emscripten')",
 ]
 
 [[package]]
@@ -1391,7 +1391,7 @@ wheels = [
 
 [[package]]
 name = "fastmcp-slim"
-version = "3.3.1"
+version = "3.4.10"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "platformdirs" },
@@ -1401,9 +1401,9 @@ dependencies = [
     { name = "rich" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d1/a0/627103e517e1d0d6f1eec633d5662d13e776f01b45ad188e4f5f7478b438/fastmcp_slim-3.3.1.tar.gz", hash = "sha256:0957835fc59452e143ab2f4b7836d2d2df9b2d9958408edc79ba8b56232b2a88", size = 567007, upload-time = "2026-05-15T15:50:10.426Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/98/3b/28be7f0963fee1c848e78898d801e1232dd2e05b6e37026c400a788caa9a/fastmcp_slim-3.4.10.tar.gz", hash = "sha256:d80ae606ead8dfefa1f21b009929824210ea87eb4b422653a1be8dca61797ccd", size = 610326, upload-time = "2026-10-20T14:49:15.096Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7a/ee/97047f4cc2d7b1d46670d08d8ad01a96e7a748cc01c0b4b351ad8eddbc7a/fastmcp_slim-3.3.1-py3-none-any.whl", hash = "sha256:6cf1c2d77e3adb0d409d6825ed6b0b2a999062973e00b8eea03bd48bf9b4c043", size = 738644, upload-time = "2026-05-15T15:50:08.336Z" },
+    { url = "https://files.pythonhosted.org/packages/7c/28/1e0681b524191ee170f40e8e800fd3785084e12806fc46675c70d7f8fa43/fastmcp_slim-3.4.10-py3-none-any.whl", hash = "sha256:f388941db8bdf38999e6c9d2536c4cd59a6571908d851cee2d10ee59f4e53532", size = 785895, upload-time = "2026-10-20T14:49:13.466Z" },
 ]
 
 [package.optional-dependencies]
@@ -1414,6 +1414,7 @@ client = [
     { name = "mcp" },
     { name = "opentelemetry-api" },
     { name = "py-key-value-aio", extra = ["filetree", "keyring", "memory"] },
+    { name = "starlette" },
 ]
 
 [[package]]
