@@ -25,7 +25,7 @@ app = FastAPI()
 @app.get(
     "/simple_include",
     response_model=Model2,
-    response_model_include={"baz": ..., "ref": {"foo"}},
+    response_model_include={"baz": True, "ref": {"foo"}},
 )
 def simple_include():
     return Model2(
@@ -37,7 +37,7 @@ def simple_include():
 @app.get(
     "/simple_include_dict",
     response_model=Model2,
-    response_model_include={"baz": ..., "ref": {"foo"}},
+    response_model_include={"baz": True, "ref": {"foo"}},
 )
 def simple_include_dict():
     return {
