@@ -19,7 +19,7 @@ app = FastAPI()
 class TextForm(BaseModel):
     kind: Literal["text"]
     value: str
-    enabled: bool = True
+    enabled: bool = False
 
 
 class ListForm(BaseModel):
@@ -372,7 +372,7 @@ def test_defaults_factories_and_validators():
     calls.clear()
     response = client.post("/factory", data={"kind": "defaults"})
     assert response.status_code == 200, response.text
-    assert response.json() == {"kind": "defaults", "tags": [], "enabled": False}
+    assert response.json() == {"kind": "defaults", "tags": [], "enabled": True}
     assert calls == ["validated"]
     calls.clear()
     response = client.post("/validated-default")

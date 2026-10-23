@@ -22,7 +22,7 @@ def test_optional_form_model():
         name: str
         age: int
         tags: list[str] = Field(default_factory=list)
-        enabled: bool = True
+        enabled: bool = False
 
     @app.post("/")
     def submit(profile: Annotated[Profile | None, Form()] = None):
@@ -114,7 +114,7 @@ def test_optional_form_model_multipart():
         name: str
         age: int
         tags: list[str] = Field(default_factory=list)
-        enabled: bool = True
+        enabled: bool = False
 
     @app.post("/")
     def submit(
@@ -176,7 +176,7 @@ def test_optional_form_model_schema(extra):
         name: str
         age: int
         tags: list[str] = Field(default_factory=list)
-        enabled: bool = True
+        enabled: bool = False
 
     @app.post("/")
     def submit(profile: Annotated[Profile | None, Form()] = None):
@@ -224,7 +224,7 @@ def test_optional_form_model_with_other_form_field_schema(extra):
         name: str
         age: int
         tags: list[str] = Field(default_factory=list)
-        enabled: bool = True
+        enabled: bool = False
 
     @app.post("/")
     def submit(
@@ -276,7 +276,7 @@ def test_unknown_fields_and_sibling_models(extra, required_name):
     class Profile(BaseModel):
         model_config = ConfigDict(extra=extra)
         name: str = Field() if required_name else Field("default")
-        enabled: bool = True
+        enabled: bool = False
 
     class Credentials(BaseModel):
         token: str
@@ -458,7 +458,7 @@ def test_defaults_factories_and_validators():
     calls.clear()
     response = client.post("/factory", data={"name": "submitted"})
     assert response.status_code == 200, response.text
-    assert response.json()["enabled"] is False
+    assert response.json()["enabled"] is True
     assert calls == ["submitted"]
     calls.clear()
     response = client.post("/validated-default")

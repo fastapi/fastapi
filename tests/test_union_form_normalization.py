@@ -52,6 +52,96 @@ def read_json(data: TextForm | ListForm):
 client = TestClient(app)
 
 
+@pytest.mark.parametrize("path", ["/form", "/optional"])
+@pytest.mark.parametrize("multipart", [False, True])
+def test_defaulted_boolean_does_not_influence_union_selection(path, multipart):
+    app = FastAPI()
+
+    class Newsletter(BaseModel):
+        email: str
+        subscribe: bool = False
+
+    class Contact(BaseModel):
+        email: str
+        phone: str
+
+    @app.post("/form")
+    def read_form(data: Annotated[Newsletter | Contact, Form()]):
+        return data
+
+    @app.post("/optional")
+    def read_optional(data: Annotated[Newsletter | Contact | None, Form()] = None):
+        return data
+
+    client = TestClient(app)
+    if multipart:
+        response = client.post(
+            path, files={"email": (None, "a@b.c"), "phone": (None, "123")}
+        )
+    else:
+        response = client.post(path, data={"email": "a@b.c", "phone": "123"})
+    assert response.status_code == 200
+    assert response.json() == {"email": "a@b.c", "phone": "123"}
+
+
+def test_multiple_boolean_defaults_do_not_influence_union_selection():
+    app = FastAPI()
+
+    class Contact(BaseModel):
+        email: str
+        phone: str
+
+    class Newsletter(BaseModel):
+        email: str
+        subscribe: bool = True
+        offers: bool | None = None
+
+    @app.post("/")
+    def read_form(data: Annotated[Contact | Newsletter, Form()]):
+        return {"data": data.model_dump(), "fields_set": sorted(data.model_fields_set)}
+
+    client = TestClient(app)
+    response = client.post("/", data={"email": "a@b.c", "phone": "123"})
+    assert response.status_code == 200
+    assert response.json() == {
+        "data": {"email": "a@b.c", "phone": "123"},
+        "fields_set": ["email", "phone"],
+    }
+    response = client.post("/", data={"email": "a@b.c"})
+    assert response.status_code == 200
+    assert response.json() == {
+        "data": {"email": "a@b.c", "subscribe": True, "offers": None},
+        "fields_set": ["email"],
+    }
+
+
+def test_required_boolean_is_missing_in_union():
+    app = FastAPI()
+
+    class Newsletter(BaseModel):
+        email: str
+        subscribe: bool
+
+    class Contact(BaseModel):
+        email: str
+        phone: str
+
+    @app.post("/")
+    def read_form(data: Annotated[Newsletter | Contact, Form()]):
+        return data
+
+    client = TestClient(app)
+    response = client.post("/", data={"email": "a@b.c", "phone": "123"})
+    assert response.status_code == 200
+    assert response.json() == {"email": "a@b.c", "phone": "123"}
+    response = client.post("/", data={"email": "a@b.c"})
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "Newsletter", "subscribe"]),
+        ("missing", ["body", "Contact", "phone"]),
+    ]
+
+
 @pytest.mark.parametrize(
     "path,branch", [("/union", "TextForm"), ("/discriminated", "text")]
 )
@@ -105,10 +195,10 @@ def test_omitted_list_is_missing():
 
 
 @pytest.mark.parametrize("path", ["/union", "/discriminated"])
-def test_omitted_boolean_is_explicit_false(path):
+def test_omitted_boolean_is_not_explicitly_set(path):
     response = client.post(path, data={"kind": "text", "value": "hello"})
     assert response.status_code == 200
-    assert response.json() == {"kind": "text", "value": "hello", "enabled": False}
+    assert response.json() == {"kind": "text", "value": "hello"}
 
 
 @pytest.mark.parametrize("path", ["/union", "/discriminated"])
@@ -153,7 +243,7 @@ def test_missing_fields_use_model_defaults(form):
         kind: Literal["defaults"]
         value: str = "default"
         items: Annotated[list[str], Field(default_factory=lambda: ["default"])]
-        enabled: bool
+        enabled: bool = False
         nullable: bool | None = None
 
     @app.post("/")
@@ -172,9 +262,9 @@ def test_missing_fields_use_model_defaults(form):
             "value": "default",
             "items": ["default"],
             "enabled": False,
-            "nullable": False,
+            "nullable": None,
         },
-        "set": {"kind": "defaults", "enabled": False, "nullable": False},
+        "set": {"kind": "defaults"},
     }
 
 
@@ -249,7 +339,7 @@ def test_alias_choices_and_forbidden_extras(form):
         "/", data={"kind": "aliased", "primary": "", "secondary": "hello"}
     )
     assert response.status_code == 200
-    assert response.json() == {"kind": "aliased", "value": "hello", "enabled": False}
+    assert response.json() == {"kind": "aliased", "value": "hello"}
     response = client.post(
         "/", data={"kind": "aliased", "primary": "hello", "secondary": ""}
     )
@@ -475,7 +565,7 @@ def test_before_validator_can_rename_form_fields(path):
     client = TestClient(app)
     response = client.post(path, data={"kind": "text", "legacy": "hello"})
     assert response.status_code == 200
-    assert response.json() == {"kind": "text", "value": "hello", "enabled": False}
+    assert response.json() == {"kind": "text", "value": "hello"}
 
 
 @pytest.mark.parametrize("form", [Form(), Form(discriminator="kind")])
@@ -503,7 +593,7 @@ def test_union_before_validator_can_copy_form_data(form):
 
     response = client.post("/", data={"kind": "text", "value": "hello"})
     assert response.status_code == 200
-    assert response.json() == {"kind": "text", "value": "hello", "enabled": False}
+    assert response.json() == {"kind": "text", "value": "hello"}
 
     response = client.post("/", data={"kind": "text", "value": ""})
     assert response.status_code == 422

@@ -1071,26 +1071,9 @@ def _extract_form_items(
     field_aliases: set[str] = set()
 
     for field in body_fields:
-        validation_alias = field.field_info.validation_alias
-        has_alias_path = isinstance(validation_alias, AliasPath) or (
-            isinstance(validation_alias, AliasChoices)
-            and any(
-                isinstance(choice, AliasPath) for choice in validation_alias.choices
-            )
-        )
-        aliases = [alias for alias, _ in _get_param_aliases(field)]
-        # Interpret missing boolean form fields as unchecked HTML checkboxes.
-        infer_false_if_missing = (
-            not has_alias_path
-            and field.field_info.annotation in (bool, bool | None)
-            and not any(alias in received_body for alias in aliases)
-        )
-        for alias in aliases:
+        for alias, _ in _get_param_aliases(field):
             field_aliases.add(alias)
-            if infer_false_if_missing:
-                value: Any = False
-            else:
-                value = _get_multidict_value(field, received_body, alias=alias)
+            value = _get_multidict_value(field, received_body, alias=alias)
             if value is not Undefined:
                 yield alias, value, field
                 # Leave later aliases unchanged for other fields or extra validation.
@@ -1141,7 +1124,7 @@ def _is_form_model_supplied(
     model: type[BaseModel],
     received_body: FormData,
 ) -> bool:
-    # Check raw keys before empty fields are removed or checkboxes inferred.
+    # Check raw keys before empty fields are removed.
     own_names = {
         alias
         for item in get_cached_model_fields(model)
