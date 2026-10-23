@@ -284,11 +284,15 @@ _endpoint_context_cache: dict[int, EndpointContext] = {}
 
 
 def _extract_endpoint_context(func: Any) -> EndpointContext:
-    """Extract endpoint context with caching to avoid repeated file I/O."""
+    """Extract endpoint context with caching to avoid repeated file I/O.
+
+    Returns a new dict each time, callers add request specific data to it (e.g.
+    the path) and the same endpoint can handle concurrent requests.
+    """
     func_id = id(func)
 
     if func_id in _endpoint_context_cache:
-        return _endpoint_context_cache[func_id]
+        return _endpoint_context_cache[func_id].copy()
 
     try:
         ctx: EndpointContext = {}
@@ -303,7 +307,7 @@ def _extract_endpoint_context(func: Any) -> EndpointContext:
         ctx = EndpointContext()
 
     _endpoint_context_cache[func_id] = ctx
-    return ctx
+    return ctx.copy()
 
 
 def _normalize_non_finite_floats(data: Any) -> Any:
