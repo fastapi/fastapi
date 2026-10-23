@@ -100,7 +100,7 @@ If there is no such user, we return an error saying "Incorrect username or passw
 
 For the error, we use the exception `HTTPException`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003_an_py310.py ln[3:5,76:87] hl[3,79:81] *}
 
 ### Check the password { #check-the-password }
 
@@ -126,7 +126,7 @@ If your database is stolen, the thief won't have your users' plaintext passwords
 
 So, the thief won't be able to try to use those same passwords in another system (as many users use the same password everywhere, this would be dangerous).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003_an_py310.py ln[76:87] hl[82:85] *}
 
 #### About `**user_dict` { #about-user-dict }
 
@@ -168,7 +168,7 @@ But for now, let's focus on the specific details we need.
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003_an_py310.py ln[76:87] hl[87] *}
 
 /// tip
 
@@ -194,7 +194,7 @@ Both of these dependencies will just return an HTTP error if the user doesn't ex
 
 So, in our endpoint, we will only get a user if the user exists, was correctly authenticated, and is active:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003_an_py310.py ln[58:74,90:94] hl[58:66,69:74,92,94] *}
 
 /// note
 

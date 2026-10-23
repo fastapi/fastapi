@@ -135,7 +135,7 @@ def get_swagger_ui_html(
     ] = None,
 ) -> HTMLResponse:
     """
-    Generate and return the HTML  that loads Swagger UI for the interactive
+    Generate and return the HTML that loads Swagger UI for the interactive
     API docs (normally served at `/docs`).
 
     You would only call this function yourself if you needed to override some parts,
