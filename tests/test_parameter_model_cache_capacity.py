@@ -48,14 +48,14 @@ def test_openapi_parameter_models_survive_cache_capacity(
         assert response.status_code == 200, response.text
         assert response.json() == {"value": 1}
         for supplied, status in [(2, 200), (0, 422)]:
-            options = {}
+            values = {"value": str(supplied)}
             if location == "cookie":
                 client.cookies.set("value", str(supplied))
-            else:
-                options["params" if location == "query" else "headers"] = {
-                    "value": str(supplied)
-                }
-            response = client.get(f"/items/{index}", **options)
+            response = client.get(
+                f"/items/{index}",
+                params=values if location == "query" else None,
+                headers=values if location == "header" else None,
+            )
             assert response.status_code == status, response.text
             if status == 200:
                 assert response.json() == {"value": supplied}
