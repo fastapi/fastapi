@@ -4,7 +4,7 @@ from collections.abc import Sequence
 from copy import copy
 from dataclasses import dataclass, is_dataclass
 from enum import Enum
-from functools import lru_cache
+from functools import cache
 from typing import (
     Annotated,
     Any,
@@ -417,7 +417,7 @@ def get_model_fields(model: type[BaseModel]) -> list[ModelField]:
     return model_fields
 
 
-@lru_cache
+@cache
 def get_cached_model_fields(model: type[BaseModel]) -> list[ModelField]:
     return get_model_fields(model)
 
