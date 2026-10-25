@@ -67,6 +67,26 @@ FastAPI 會從請求的標頭為每個欄位擷取資料，並交給你已定義
 
 ///
 
+## 合併參數模型 { #combine-parameter-models }
+
+你可以將多個標頭參數模型與個別的標頭參數及相依性合併使用。每個模型都會獨立擷取與驗證，如[查詢參數模型](query-param-models.md#combine-parameter-models)所述。
+
+每個模型的 `extra` 設定會套用至所有標頭參數，包括在其他模型或相依性中宣告的參數。使用 `extra="forbid"` 時，任何不在該模型內的標頭都會被拒絕。使用 `extra="allow"` 時，這些標頭會以模型額外欄位的形式納入。
+
+每個模型會使用自己的 `Header(convert_underscores=...)` 設定，無論是讀取請求或產生 OpenAPI 時都一樣。明確的欄位別名仍會是實際的標頭名稱。
+
+## 可選的標頭參數模型 { #optional-header-parameter-models }
+
+將標頭參數模型宣告為 `| None` 並將預設值設為 `None`，即可讓整組參數成為可選。
+
+{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+
+如果 `x-client-name` 和 `x-client-version` 都沒有傳送，`client` 會是 `None`。如果其中任一有傳送，FastAPI 會驗證模型並要求兩個欄位都提供。
+
+預設值、額外欄位與 OpenAPI 的規則，與[可選的查詢參數模型](query-param-models.md#optional-query-parameter-models)相同。
+
+`Host` 這類標頭也會遵循模型的 `extra` 設定。使用 `extra="allow"` 時，即使兩個已宣告的欄位都沒有提供，它們也會讓模型被視為已提供。
+
 ## 摘要 { #summary }
 
 你可以在 FastAPI 中使用 Pydantic 模型宣告標頭。😎

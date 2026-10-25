@@ -99,11 +99,41 @@ Item ID: 42
 
 ...會產生指向與「*路徑操作函式*」`read_item(id=id)` 相同 URL 的連結。
 
-例如，若 ID 為 `42`，會渲染為：
+`url_for()` 會根據目前的請求回傳包含 scheme 與主機的絕對 URL。
+
+例如，若你的應用程式在 `https://example.com` 提供服務，且 ID 為 `42`，會渲染為：
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### 模板中的 URL 路徑 { #url-paths-in-templates }
+
+對於指向同一個網站的連結，你可以使用 `.path` 屬性只取得 URL 路徑，例如在 `templates/item_path.html` 中：
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+將模板名稱傳入 `TemplateResponse`：
+
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+以相同的範例來說，項目連結會渲染為：
 
 ```html
 <a href="/items/42">
 ```
+
+開頭的 `/` 會讓此路徑相對於目前網站的根路徑。
+
+`.path` 屬性不包含 scheme、主機、查詢參數與片段。若要連結到其他主機，請使用完整 URL。
+
+/// tip
+
+如果你的應用程式位於代理之後，請依照[代理後面](behind-a-proxy.md)的說明設定 forwarded headers 與 `root_path`。
+
+///
 
 ## 模板與靜態檔案 { #templates-and-static-files }
 

@@ -57,6 +57,42 @@ https://example.com/items/?limit=10&tool=plumbus
 }
 ```
 
+## 合併參數模型 { #combine-parameter-models }
+
+你可以宣告多個查詢參數模型，並將它們與個別的查詢參數或相依性合併使用。
+
+{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+
+請求參數會維持在同一層級。
+
+```http
+https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
+```
+
+查詢字串中不會有 `pagination` 或 `filters` 鍵。每個模型會以自己的預設值、欄位驗證器與模型驗證器獨立驗證查詢參數。當模型或個別參數是在相依性中宣告時，也是如此。
+
+如果多個模型共用參數名稱或別名，每個模型都會獨立驗證該請求參數。請為各自獨立的值使用不同的名稱或別名。OpenAPI 對於共用的參數只會列出一次，就像對在相依性中共用的參數一樣，因此共用的宣告應描述相同的型別與限制條件。
+
+每個模型的 `extra` 設定會套用至所有查詢參數，包括在其他模型或相依性中宣告的參數。使用 `extra="forbid"` 時，任何不在該模型內的參數都會被拒絕。使用 `extra="allow"` 時，這些參數會以模型額外欄位的形式納入。
+
+這也適用於 `Header` 與 `Cookie` 模型。
+
+## 可選的查詢參數模型 { #optional-query-parameter-models }
+
+將查詢參數模型宣告為 `| None` 並將預設值設為 `None`，即可讓整組參數成為可選。
+
+{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+
+如果 `start` 和 `end` 都沒有傳送，`date_range` 會是 `None`。如果其中任一有傳送，FastAPI 會驗證模型並要求兩個欄位都提供。
+
+使用 `| None` 但沒有預設值，仍會讓該參數成為必填。
+
+額外參數會遵循模型的 `extra` 設定。被忽略的額外參數不會讓模型被視為已提供。
+
+OpenAPI 會個別列出該組的欄位，並將它們標示為可選。
+
+你也可以宣告可選的[標頭參數模型](header-param-models.md#optional-header-parameter-models)與 [Cookie 參數模型](cookie-param-models.md#optional-cookie-parameter-models)。
+
 ## 總結 { #summary }
 
 你可以使用 **Pydantic 模型**在 **FastAPI** 中聲明**查詢參數**。😎

@@ -71,6 +71,22 @@
 }
 ```
 
+## 合併參數模型 { #combine-parameter-models }
+
+你可以將多個 Cookie 參數模型與個別的 Cookie 參數及相依性合併使用。每個模型都會獨立擷取與驗證，如[查詢參數模型](query-param-models.md#combine-parameter-models)所述。
+
+每個模型的 `extra` 設定會套用至所有 Cookie 參數，包括在其他模型或相依性中宣告的參數。使用 `extra="forbid"` 時，任何不在該模型內的 Cookie 都會被拒絕。使用 `extra="allow"` 時，這些 Cookie 會以模型額外欄位的形式納入。
+
+## 可選的 Cookie 參數模型 { #optional-cookie-parameter-models }
+
+將 Cookie 參數模型宣告為 `| None` 並將預設值設為 `None`，即可讓整組參數成為可選。
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+如果 `theme` 和 `locale` 都沒有傳送，`preferences` 會是 `None`。如果其中任一有傳送，FastAPI 會驗證模型並要求兩個欄位都提供。
+
+預設值、額外欄位與 OpenAPI 的規則，與[可選的查詢參數模型](query-param-models.md#optional-query-parameter-models)相同。
+
 ## 摘要 { #summary }
 
 你可以在 **FastAPI** 中使用 **Pydantic 模型**來宣告 <dfn title="走之前再來一塊餅乾吧。🍪">**Cookie**</dfn>。😎
