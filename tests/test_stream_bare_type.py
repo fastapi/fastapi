@@ -6,6 +6,7 @@ import pytest
 from fastapi import APIRouter, FastAPI
 from fastapi.datastructures import Default
 from fastapi.responses import EventSourceResponse, JSONResponse
+from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
@@ -102,7 +103,9 @@ def test_stream_bare_collections_abc(annotation, is_async, response_class):
     endpoint = stream_async if is_async else stream_sync
     endpoint.__annotations__["return"] = annotation
     app.add_api_route("/stream", endpoint, response_class=response_class)
-    assert app.routes[-1].stream_item_type is Any
+    route = app.routes[-1]
+    assert isinstance(route, APIRoute)
+    assert route.stream_item_type is Any
 
     with TestClient(app) as client:
         response = client.get("/stream")
