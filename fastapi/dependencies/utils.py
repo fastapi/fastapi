@@ -289,6 +289,8 @@ _STREAM_ORIGINS = {
 
 def get_stream_item_type(annotation: Any) -> Any | None:
     origin = get_origin(annotation)
+    if origin is None and isinstance(annotation, type):
+        origin = annotation
     if origin is not None and origin in _STREAM_ORIGINS:
         type_args = get_args(annotation)
         if type_args:
