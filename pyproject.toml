@@ -202,7 +202,7 @@ tests = [
 ]
 translations = [
     "gitpython >=3.1.46",
-    "pydantic-ai >=0.4.10",
+    "pydantic-ai-slim[openai] >=2.0.0",
     "pygithub >=2.8.1",
 ]
 
