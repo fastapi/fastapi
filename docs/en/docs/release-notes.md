@@ -7,6 +7,12 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ⬆ Bump black from 26.5.1 to 26.10.1. PR [#16611](https://github.com/fastapi/fastapi/pull/16611) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump gitpython from 3.1.62 to 3.2.1. PR [#16612](https://github.com/fastapi/fastapi/pull/16612) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump opentelemetry-api from 1.44.0 to 1.45.1. PR [#16610](https://github.com/fastapi/fastapi/pull/16610) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
 ## 0.162.0 (2026-10-23)
 
 Omitted `bool` and `bool | None` form fields now use their declared defaults or produce missing-field errors, consistent with other fields and Pydantic behavior. FastAPI no longer infers `False` for omitted booleans. This applies to individual form parameters, form models, and unions of form models.
