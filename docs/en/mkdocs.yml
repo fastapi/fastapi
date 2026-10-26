@@ -314,6 +314,8 @@ extra:
     name: pt - português
   - link: /ru/
     name: ru - русский язык
+  - link: /sw/
+    name: sw - Kiswahili
   - link: /tr/
     name: tr - Türkçe
   - link: /uk/
