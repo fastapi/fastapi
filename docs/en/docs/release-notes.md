@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump gitpython from 3.1.62 to 3.2.1. PR [#16612](https://github.com/fastapi/fastapi/pull/16612) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump opentelemetry-api from 1.44.0 to 1.45.1. PR [#16610](https://github.com/fastapi/fastapi/pull/16610) by [@dependabot[bot]](https://github.com/apps/dependabot).
 
 ## 0.162.0 (2026-10-23)
