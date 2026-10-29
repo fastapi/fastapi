@@ -490,8 +490,7 @@ def analyze_param(
             f" together for {param_name!r}"
         )
         field_info = value
-        if isinstance(field_info, FieldInfo):
-            field_info.annotation = type_annotation
+        field_info.annotation = type_annotation
 
     # Get Depends from type annotation
     if depends is not None and depends.dependency is None:
