@@ -180,15 +180,13 @@ If you need something easy to integrate with FastAPI but that is more robust, su
 
 ## Blocking and long-running work { #blocking-and-long-running-work }
 
-WebSocket handlers are always `async def`. Unlike *path operation functions*, there's no option to declare them with a plain `def` and let **FastAPI** run them in an external threadpool, as described in [Async and Await](../async.md#async-and-await).
+WebSocket handlers are always `async def`: unlike *path operation functions*, there's no plain `def` option where **FastAPI** runs the code in an external threadpool, as described in [Async and Await](../async.md#async-and-await). Blocking code in a handler therefore stops the event loop, and every other connection in your app freezes with it.
 
-That means that if you run blocking code in a WebSocket handler (for example, a call to a library that doesn't have async support) or some heavy computation, the event loop stops until that code finishes. And while it's stopped, every other WebSocket connection in your app freezes: no messages in or out.
-
-To run blocking (I/O) code from a handler, send it to the threadpool yourself, for example with `await run_in_threadpool(the_function, some_argument)` from `fastapi.concurrency`, the same utility that **FastAPI** uses internally for *path operation functions* declared with `def`.
+For blocking (I/O) code, hand the work to the threadpool yourself with `await run_in_threadpool(the_function, some_argument)` from `fastapi.concurrency`.
 
 /// tip
 
-A threadpool doesn't help for long CPU-bound work. Move that to a separate process (for example with a process pool or a task queue) and send progress back to the WebSocket, so the event loop stays free for other connections.
+A threadpool doesn't help with long CPU-bound work. Move that to a separate process (for example a process pool or a task queue) and send progress back over the WebSocket.
 
 ///
 
