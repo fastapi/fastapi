@@ -11,6 +11,7 @@ import stat
 import threading
 import types
 import warnings
+import weakref
 from collections.abc import (
     AsyncIterator,
     Awaitable,
@@ -895,6 +896,7 @@ _FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY = "effective_route_context"
 _FASTAPI_FRONTEND_PATH_KEY = "frontend_path"
 _FASTAPI_FRONTEND_SPECIFICITY_KEY = "frontend_specificity"
 _FASTAPI_INCLUDED_ROUTER_KEY = "included_router"
+_FASTAPI_INCLUDED_ROUTE_MATCH_KEY = "fastapi.included_route_match"
 _effective_route_context_var: ContextVar[Any | None] = ContextVar(
     "fastapi_effective_route_context", default=None
 )
@@ -1641,6 +1643,96 @@ class RouteContext:
         return getattr(self._effective_route, name)
 
 
+async def _handle_effective_route(
+    scope: Scope,
+    receive: Receive,
+    send: Send,
+    route: BaseRoute,
+    effective_context: _EffectiveRouteContext,
+) -> None:
+    _route_selected(
+        scope=scope,
+        path=getattr(effective_context.starlette_route, "path_format", None)
+        or effective_context.path_format,
+        mount=isinstance(route, routing.Mount),
+    )
+    _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = effective_context
+    original_route = effective_context.original_route
+    if isinstance(original_route, APIRoute):
+        scope["route"] = original_route
+        await original_route.handle(scope, receive, send)
+        return
+    await route.handle(scope, receive, send)
+
+
+def _has_default_dispatch(router: "APIRouter") -> bool:
+    router_class = type(router)
+    return (
+        router_class.matches is APIRouter.matches
+        and router_class.handle is APIRouter.handle
+    )
+
+
+@dataclass
+class _FlatRouteCandidate:
+    included_router: "_IncludedRouter" = field(repr=False, compare=False)
+    effective_context: _EffectiveRouteContext
+    route: BaseRoute
+    api_route: APIRoute | None = None
+    calls_route_matches: bool = False
+    path_regex: Any = None
+
+    @classmethod
+    def from_effective_context(
+        cls,
+        included_router: "_IncludedRouter",
+        effective_context: _EffectiveRouteContext,
+    ) -> "_FlatRouteCandidate":
+        original_route = effective_context.original_route
+        if isinstance(original_route, APIRoute):
+            calls_route_matches = type(original_route).matches is not APIRoute.matches
+            return cls(
+                included_router=included_router,
+                effective_context=effective_context,
+                route=original_route,
+                api_route=original_route,
+                calls_route_matches=calls_route_matches,
+                path_regex=None
+                if calls_route_matches
+                else effective_context.path_regex,
+            )
+        return cls(
+            included_router=included_router,
+            effective_context=effective_context,
+            route=effective_context.starlette_route or original_route,
+        )
+
+    def matches(self, scope: Scope) -> tuple[Match, Scope]:
+        effective_context = self.effective_context
+        if self.calls_route_matches:
+            fastapi_scope = _get_fastapi_scope(scope)
+            previous_context = fastapi_scope.get(
+                _FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY, _SCOPE_MISSING
+            )
+            fastapi_scope[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = effective_context
+            try:
+                return self.route.matches(scope)
+            finally:
+                _restore_fastapi_scope_key(
+                    scope, _FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY, previous_context
+                )
+        match, child_scope = effective_context.matches(scope)
+        if match != Match.NONE and self.api_route is not None:
+            child_scope["route"] = self.api_route
+        return match, child_scope
+
+    async def handle(self, scope: Scope, receive: Receive, send: Send) -> None:
+        _get_fastapi_scope(scope)[_FASTAPI_INCLUDED_ROUTER_KEY] = self.included_router
+        await _handle_effective_route(
+            scope, receive, send, self.route, self.effective_context
+        )
+
+
 @dataclass
 class _IncludedRouter(BaseRoute):
     original_router: "APIRouter"
@@ -1656,6 +1748,28 @@ class _IncludedRouter(BaseRoute):
         default_factory=list
     )
     _effective_low_priority_routes_version: int | None = None
+    _flat_candidates: tuple[int, list["_FlatCandidate"]] | None = field(
+        default=None, repr=False, compare=False
+    )
+
+    def flat_candidates(self) -> list["_FlatCandidate"]:
+        routes_version = self.original_router._get_routes_version()
+        flat_cache = self._flat_candidates
+        if flat_cache is not None and flat_cache[0] == routes_version:
+            return flat_cache[1]
+        flat_candidates: list[_FlatCandidate] = []
+        for candidate in self.effective_candidates():
+            if not isinstance(candidate, _IncludedRouter):
+                flat_candidate = _FlatRouteCandidate.from_effective_context(
+                    self, candidate
+                )
+                flat_candidates.append((flat_candidate.path_regex, flat_candidate))
+            elif _has_default_dispatch(candidate.original_router):
+                flat_candidates.extend(candidate.flat_candidates())
+            else:
+                flat_candidates.append((None, candidate))
+        self._flat_candidates = (routes_version, flat_candidates)
+        return flat_candidates
 
     def effective_candidates(self) -> list["_EffectiveRouteContext | _IncludedRouter"]:
         routes_version = self.original_router._get_routes_version()
@@ -1821,20 +1935,46 @@ class _IncludedRouter(BaseRoute):
         return Match.NONE, {}, None, None
 
     def matches(self, scope: Scope) -> tuple[Match, Scope]:
-        fastapi_scope = _get_fastapi_scope(scope)
-        previous_router = fastapi_scope.get(
-            _FASTAPI_INCLUDED_ROUTER_KEY, _SCOPE_MISSING
-        )
-        fastapi_scope[_FASTAPI_INCLUDED_ROUTER_KEY] = self
-        try:
-            match, _ = self.original_router.matches(scope)
-            return match, {}
-        finally:
-            _restore_fastapi_scope_key(
-                scope, _FASTAPI_INCLUDED_ROUTER_KEY, previous_router
+        if not _has_default_dispatch(self.original_router):
+            fastapi_scope = _get_fastapi_scope(scope)
+            previous_router = fastapi_scope.get(
+                _FASTAPI_INCLUDED_ROUTER_KEY, _SCOPE_MISSING
             )
+            fastapi_scope[_FASTAPI_INCLUDED_ROUTER_KEY] = self
+            try:
+                match, _ = self.original_router.matches(scope)
+                return match, {}
+            finally:
+                _restore_fastapi_scope_key(
+                    scope, _FASTAPI_INCLUDED_ROUTER_KEY, previous_router
+                )
+        partial: tuple[_FlatRouteCandidate | _IncludedRouter, Scope] | None = None
+        route_path = get_route_path(scope)
+        for path_regex, candidate in self.flat_candidates():
+            if path_regex is not None and path_regex.match(route_path) is None:
+                continue
+            match, child_scope = candidate.matches(scope)
+            if match == Match.FULL:
+                return match, {
+                    **child_scope,
+                    _FASTAPI_INCLUDED_ROUTE_MATCH_KEY: (self, candidate),
+                }
+            if match == Match.PARTIAL and partial is None:
+                partial = (candidate, child_scope)
+        if partial is not None:
+            candidate, child_scope = partial
+            return Match.PARTIAL, {
+                **child_scope,
+                _FASTAPI_INCLUDED_ROUTE_MATCH_KEY: (self, candidate),
+            }
+        return Match.NONE, {}
 
     async def handle(self, scope: Scope, receive: Receive, send: Send) -> None:
+        route_match = scope.get(_FASTAPI_INCLUDED_ROUTE_MATCH_KEY)
+        if route_match is not None and route_match[0] is self:
+            del scope[_FASTAPI_INCLUDED_ROUTE_MATCH_KEY]
+            await route_match[1].handle(scope, receive, send)
+            return
         _get_fastapi_scope(scope)[_FASTAPI_INCLUDED_ROUTER_KEY] = self
         await self.original_router.handle(scope, receive, send)
 
@@ -1849,22 +1989,8 @@ class _IncludedRouter(BaseRoute):
         if isinstance(route, _IncludedRouter):
             await route.handle(scope, receive, send)
             return
-        if effective_context is not None:
-            _route_selected(
-                scope=scope,
-                path=getattr(effective_context.starlette_route, "path_format", None)
-                or effective_context.path_format,
-                mount=isinstance(route, routing.Mount),
-            )
-            _get_fastapi_scope(scope)[_FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY] = (
-                effective_context
-            )
-            original_route = effective_context.original_route
-            if isinstance(original_route, APIRoute):
-                scope["route"] = original_route
-                await original_route.handle(scope, receive, send)
-                return
-        await route.handle(scope, receive, send)
+        assert effective_context is not None
+        await _handle_effective_route(scope, receive, send, route, effective_context)
 
     def effective_route_contexts(self) -> Iterator[_EffectiveRouteContext]:
         for candidate in self.effective_candidates():
@@ -1880,6 +2006,9 @@ class _IncludedRouter(BaseRoute):
             except routing.NoMatchFound:
                 pass
         raise routing.NoMatchFound(name, path_params)
+
+
+_FlatCandidate = tuple[Any, _FlatRouteCandidate | _IncludedRouter]
 
 
 def _iter_included_route_candidates(routes: Sequence[BaseRoute]) -> Iterator[BaseRoute]:
@@ -2636,24 +2765,24 @@ class APIRouter(routing.Router):
         self.generate_unique_id_function = generate_unique_id_function
         self.strict_content_type = strict_content_type
         self._routes_version = 0
+        self._parent_routers: weakref.WeakValueDictionary[int, APIRouter] = (
+            weakref.WeakValueDictionary()
+        )
         self._low_priority_routes: list[BaseRoute] = []
         self._frontend_routes: _FrontendRouteGroup | None = None
 
     def _mark_routes_changed(self) -> None:
-        self._routes_version += 1
+        pending: list[APIRouter] = [self]
+        seen: set[int] = set()
+        while pending:
+            router = pending.pop()
+            if id(router) not in seen:
+                seen.add(id(router))
+                router._routes_version += 1
+                pending.extend(router._parent_routers.values())
 
-    def _get_routes_version(self, seen: set[int] | None = None) -> int:
-        if seen is None:
-            seen = set()
-        router_id = id(self)
-        if router_id in seen:
-            return self._routes_version
-        seen.add(router_id)
-        version = self._routes_version
-        for route in self.routes:
-            if isinstance(route, _IncludedRouter):
-                version += route.original_router._get_routes_version(seen)
-        return version
+    def _get_routes_version(self) -> int:
+        return self._routes_version
 
     def _contains_router(
         self, router: "APIRouter", seen: set[int] | None = None
@@ -3414,6 +3543,7 @@ class APIRouter(routing.Router):
         self.routes.append(
             _IncludedRouter(original_router=router, include_context=include_context)
         )
+        router._parent_routers[id(self)] = self
         self._mark_routes_changed()
         for handler in router.on_startup:
             self.add_event_handler("startup", handler)

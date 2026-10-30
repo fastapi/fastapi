@@ -1,4 +1,6 @@
+import gc
 import threading
+import weakref
 from collections.abc import Sequence
 from typing import Annotated, cast
 
@@ -1160,3 +1162,189 @@ async def test_apirouter_handle_fallback_without_include_context():
     assert messages[0]["type"] == "http.response.start"
     assert messages[0]["status"] == 200
     assert messages[1]["body"] == b"items"
+
+
+def test_route_added_to_nested_router_after_first_request_is_live():
+    parent_router = APIRouter()
+    child_router = APIRouter()
+    grandchild_router = APIRouter()
+
+    @grandchild_router.get("/items")
+    def read_items():
+        return ["item"]
+
+    child_router.include_router(grandchild_router, prefix="/grandchild")
+    parent_router.include_router(child_router, prefix="/child")
+    app = FastAPI()
+    app.include_router(parent_router, prefix="/api")
+    client = TestClient(app)
+
+    assert client.get("/api/child/grandchild/items").json() == ["item"]
+    assert client.get("/api/child/grandchild/users").status_code == 404
+
+    @grandchild_router.get("/users")
+    def read_users():
+        return ["user"]
+
+    response = client.get("/api/child/grandchild/users")
+
+    assert response.status_code == 200
+    assert response.json() == ["user"]
+
+
+def test_route_added_to_shared_router_after_first_request_is_live_in_every_parent():
+    shared_router = APIRouter()
+    first_router = APIRouter()
+    second_router = APIRouter()
+    first_router.include_router(shared_router, prefix="/shared")
+    second_router.include_router(shared_router, prefix="/shared")
+    app = FastAPI()
+    app.include_router(first_router, prefix="/first")
+    app.include_router(second_router, prefix="/second")
+    client = TestClient(app)
+
+    assert client.get("/first/shared/items").status_code == 404
+
+    @shared_router.get("/items")
+    def read_items():
+        return ["item"]
+
+    assert client.get("/first/shared/items").json() == ["item"]
+    assert client.get("/second/shared/items").json() == ["item"]
+
+
+def test_custom_router_matches_is_called_when_nested_in_plain_routers():
+    class HeaderRouter(APIRouter):
+        calls = 0
+
+        def matches(self, scope):
+            self.calls += 1
+            headers = dict(scope.get("headers", []))
+            if headers.get(b"x-router-match") != b"yes":
+                return Match.NONE, {}
+            return super().matches(scope)
+
+    header_router = HeaderRouter()
+    fallback_router = APIRouter()
+
+    @header_router.get("/items")
+    def read_header_items():
+        return {"source": "header"}
+
+    @fallback_router.get("/items")
+    def read_fallback_items():
+        return {"source": "fallback"}
+
+    parent_router = APIRouter()
+    parent_router.include_router(header_router)
+    parent_router.include_router(fallback_router)
+    app = FastAPI()
+    app.include_router(parent_router, prefix="/api")
+    client = TestClient(app)
+
+    assert client.get("/api/items").json() == {"source": "fallback"}
+    response = client.get("/api/items", headers={"x-router-match": "yes"})
+    assert response.json() == {"source": "header"}
+    assert header_router.calls >= 2
+
+
+def test_nested_partial_match_returns_405_unless_a_later_route_fully_matches():
+    get_router = APIRouter()
+    post_router = APIRouter()
+
+    @get_router.get("/items")
+    def read_items():  # pragma: no cover
+        return {"method": "get"}
+
+    @post_router.post("/items")
+    def create_item():
+        return {"method": "post"}
+
+    get_parent_router = APIRouter()
+    get_parent_router.include_router(get_router, prefix="/nested")
+    app = FastAPI()
+    app.include_router(get_parent_router, prefix="/api")
+    client = TestClient(app)
+
+    response = client.post("/api/nested/items")
+    assert response.status_code == 405
+    assert response.headers["allow"] == "GET"
+
+    post_parent_router = APIRouter()
+    post_parent_router.include_router(post_router, prefix="/nested")
+    app.include_router(post_parent_router, prefix="/api")
+
+    response = client.post("/api/nested/items")
+    assert response.status_code == 200
+    assert response.json() == {"method": "post"}
+
+
+def test_nested_included_route_is_matched_once_per_request():
+    class CountingRoute(APIRoute):
+        calls = 0
+
+        def matches(self, scope):
+            self.calls += 1
+            return super().matches(scope)
+
+    router = APIRouter(route_class=CountingRoute)
+
+    @router.get("/items")
+    def read_items():
+        return []
+
+    original_route = router.routes[0]
+    assert isinstance(original_route, CountingRoute)
+    parent_router = APIRouter()
+    parent_router.include_router(router, prefix="/child")
+    app = FastAPI()
+    app.include_router(parent_router, prefix="/api")
+
+    response = TestClient(app).get("/api/child/items")
+
+    assert response.status_code == 200
+    assert original_route.calls == 1
+
+
+def test_included_router_does_not_keep_the_including_app_alive():
+    router = APIRouter()
+
+    @router.get("/items")
+    def read_items():  # pragma: no cover
+        return []
+
+    app = FastAPI()
+    app.include_router(router)
+    app_ref = weakref.ref(app)
+    del app
+    gc.collect()
+
+    assert app_ref() is None
+
+
+def test_custom_router_handle_returns_405_for_a_partial_match():
+    class TrackingRouter(APIRouter):
+        calls = 0
+
+        async def handle(self, scope, receive, send):
+            self.calls += 1
+            await super().handle(scope, receive, send)
+
+    router = TrackingRouter()
+
+    @router.get("/items")
+    def read_items():  # pragma: no cover
+        return []
+
+    @router.get("/users")
+    def read_users():  # pragma: no cover
+        return []
+
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+
+    response = TestClient(app).post("/api/items")
+
+    assert response.status_code == 405
+    assert response.headers["allow"] == "GET"
+    assert router.calls == 1
