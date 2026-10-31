@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: add MicroAuth. PR [#16641](https://github.com/fastapi/fastapi/pull/16641) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Pin pytest below 9.2 for pytest-xdist compatibility. PR [#16642](https://github.com/fastapi/fastapi/pull/16642) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump graphql-core from 3.2.7 to 3.3.1. PR [#16613](https://github.com/fastapi/fastapi/pull/16613) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump black from 26.5.1 to 26.10.1. PR [#16611](https://github.com/fastapi/fastapi/pull/16611) by [@dependabot[bot]](https://github.com/apps/dependabot).
