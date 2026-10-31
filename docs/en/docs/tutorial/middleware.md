@@ -82,9 +82,20 @@ app.add_middleware(MiddlewareB)
 
 This results in the following execution order:
 
-* **Request**: MiddlewareB → MiddlewareA → route
+```mermaid
+sequenceDiagram
+    participant Client
+    participant B as Middleware B<br/>(added last · outermost)
+    participant A as Middleware A<br/>(added first · innermost)
+    participant App as FastAPI app
 
-* **Response**: route → MiddlewareA → MiddlewareB
+    Client ->> B: Request
+    B ->> A: Request
+    A ->> App: Request
+    App -->> A: Response
+    A -->> B: Response
+    B -->> Client: Response
+```
 
 This stacking behavior ensures that middlewares are executed in a predictable and controllable order.
 
