@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 from pydantic import BaseModel, computed_field
+from pydantic.dataclasses import dataclass
 
 
 class SubItem(BaseModel):
@@ -19,6 +20,16 @@ class Item(BaseModel):
 
 
 class WithComputedField(BaseModel):
+    name: str
+
+    @computed_field
+    @property
+    def computed_field(self) -> str:
+        return f"computed {self.name}"
+
+
+@dataclass
+class DataclassWithComputedField:
     name: str
 
     @computed_field
@@ -54,6 +65,16 @@ def get_app_client(separate_input_output_schemas: bool = True) -> TestClient:
         with_computed_field: WithComputedField,
     ) -> WithComputedField:
         return with_computed_field
+
+    @app.get("/list-with-computed-field/")
+    def read_list_with_computed_field() -> list[WithComputedField]:
+        return [WithComputedField(name="example")]
+
+    @app.post("/dataclass-with-computed-field/")
+    def create_dataclass_with_computed_field(
+        dataclass_with_computed_field: DataclassWithComputedField,
+    ) -> DataclassWithComputedField:
+        return dataclass_with_computed_field
 
     client = TestClient(app)
     return client
@@ -140,6 +161,19 @@ def test_read_items():
     )
 
 
+def test_read_list_with_computed_field():
+    client = get_app_client()
+    client_no = get_app_client(separate_input_output_schemas=False)
+    response = client.get("/list-with-computed-field/")
+    response2 = client_no.get("/list-with-computed-field/")
+    assert response.status_code == response2.status_code == 200, response.text
+    assert (
+        response.json()
+        == response2.json()
+        == [{"name": "example", "computed_field": "computed example"}]
+    )
+
+
 def test_with_computed_field():
     client = get_app_client()
     client_no = get_app_client(separate_input_output_schemas=False)
@@ -153,6 +187,21 @@ def test_with_computed_field():
             "name": "example",
             "computed_field": "computed example",
         }
+    )
+
+
+def test_dataclass_with_computed_field():
+    client = get_app_client()
+    client_no = get_app_client(separate_input_output_schemas=False)
+    response = client.post("/dataclass-with-computed-field/", json={"name": "example"})
+    response2 = client_no.post(
+        "/dataclass-with-computed-field/", json={"name": "example"}
+    )
+    assert response.status_code == response2.status_code == 200, response.text
+    assert (
+        response.json()
+        == response2.json()
+        == {"name": "example", "computed_field": "computed example"}
     )
 
 
@@ -307,6 +356,66 @@ def test_openapi_schema():
                         },
                     },
                 },
+                "/dataclass-with-computed-field/": {
+                    "post": {
+                        "summary": "Create Dataclass With Computed Field",
+                        "operationId": "create_dataclass_with_computed_field_dataclass_with_computed_field__post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/DataclassWithComputedField-Input"
+                                    }
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/DataclassWithComputedField-Output"
+                                        }
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    },
+                },
+                "/list-with-computed-field/": {
+                    "get": {
+                        "summary": "Read List With Computed Field",
+                        "operationId": "read_list_with_computed_field_list_with_computed_field__get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/WithComputedField-Output"
+                                            },
+                                            "type": "array",
+                                            "title": "Response Read List With Computed Field List With Computed Field  Get",
+                                        }
+                                    }
+                                },
+                            }
+                        },
+                    }
+                },
             },
             "components": {
                 "schemas": {
@@ -413,6 +522,25 @@ def test_openapi_schema():
                         "type": "object",
                         "required": ["name", "computed_field"],
                         "title": "WithComputedField",
+                    },
+                    "DataclassWithComputedField-Input": {
+                        "properties": {"name": {"type": "string", "title": "Name"}},
+                        "type": "object",
+                        "required": ["name"],
+                        "title": "DataclassWithComputedField",
+                    },
+                    "DataclassWithComputedField-Output": {
+                        "properties": {
+                            "name": {"type": "string", "title": "Name"},
+                            "computed_field": {
+                                "type": "string",
+                                "title": "Computed Field",
+                                "readOnly": True,
+                            },
+                        },
+                        "type": "object",
+                        "required": ["name", "computed_field"],
+                        "title": "DataclassWithComputedField",
                     },
                     "ValidationError": {
                         "properties": {
@@ -581,6 +709,66 @@ def test_openapi_schema_no_separate():
                         },
                     },
                 },
+                "/dataclass-with-computed-field/": {
+                    "post": {
+                        "summary": "Create Dataclass With Computed Field",
+                        "operationId": "create_dataclass_with_computed_field_dataclass_with_computed_field__post",
+                        "requestBody": {
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/DataclassWithComputedField-Input"
+                                    }
+                                }
+                            },
+                            "required": True,
+                        },
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/DataclassWithComputedField-Output"
+                                        }
+                                    }
+                                },
+                            },
+                            "422": {
+                                "description": "Validation Error",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "$ref": "#/components/schemas/HTTPValidationError"
+                                        }
+                                    }
+                                },
+                            },
+                        },
+                    },
+                },
+                "/list-with-computed-field/": {
+                    "get": {
+                        "summary": "Read List With Computed Field",
+                        "operationId": "read_list_with_computed_field_list_with_computed_field__get",
+                        "responses": {
+                            "200": {
+                                "description": "Successful Response",
+                                "content": {
+                                    "application/json": {
+                                        "schema": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/WithComputedField-Output"
+                                            },
+                                            "type": "array",
+                                            "title": "Response Read List With Computed Field List With Computed Field  Get",
+                                        }
+                                    }
+                                },
+                            }
+                        },
+                    }
+                },
             },
             "components": {
                 "schemas": {
@@ -651,6 +839,25 @@ def test_openapi_schema_no_separate():
                         "type": "object",
                         "required": ["name", "computed_field"],
                         "title": "WithComputedField",
+                    },
+                    "DataclassWithComputedField-Input": {
+                        "properties": {"name": {"type": "string", "title": "Name"}},
+                        "type": "object",
+                        "required": ["name"],
+                        "title": "DataclassWithComputedField",
+                    },
+                    "DataclassWithComputedField-Output": {
+                        "properties": {
+                            "name": {"type": "string", "title": "Name"},
+                            "computed_field": {
+                                "type": "string",
+                                "title": "Computed Field",
+                                "readOnly": True,
+                            },
+                        },
+                        "type": "object",
+                        "required": ["name", "computed_field"],
+                        "title": "DataclassWithComputedField",
                     },
                     "ValidationError": {
                         "properties": {

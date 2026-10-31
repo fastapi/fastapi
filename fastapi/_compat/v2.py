@@ -244,11 +244,20 @@ class ModelField:
         return id(self)
 
 
+def _model_has_computed_fields(model_or_enum: Any) -> bool:
+    if lenient_issubclass(model_or_enum, BaseModel):
+        model_schema = model_or_enum.__pydantic_core_schema__.get("schema", {})
+        computed_fields = model_schema.get("computed_fields", [])
+        return len(computed_fields) > 0
+    return False  # pragma: no cover
+
+
 def _has_computed_fields(field: ModelField) -> bool:
-    computed_fields = field._type_adapter.core_schema.get("schema", {}).get(
-        "computed_fields", []
-    )
-    return len(computed_fields) > 0
+    type_adapter_core_schema = field._type_adapter.core_schema
+    if type_adapter_core_schema.get("schema", {}).get("computed_fields", []):
+        return True
+    models = get_flat_models_from_field(field, known_models=set())
+    return any(_model_has_computed_fields(model) for model in models)
 
 
 def get_schema_from_model_field(
@@ -261,11 +270,13 @@ def get_schema_from_model_field(
     separate_input_output_schemas: bool = True,
     field_alias: str | None = None,
 ) -> dict[str, Any]:
-    override_mode: Literal["validation"] | None = (
-        None
-        if (separate_input_output_schemas or _has_computed_fields(field))
-        else "validation"
-    )
+    override_mode: Literal["validation"] | None = None
+    if not separate_input_output_schemas:
+        override_mode = (
+            None
+            if (separate_input_output_schemas or _has_computed_fields(field))
+            else "validation"
+        )
     if field_alias is None:
         field_alias = (
             (field.validation_alias or field.alias)
