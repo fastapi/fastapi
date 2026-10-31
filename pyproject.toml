@@ -187,7 +187,9 @@ tests = [
     "mypy >=1.14.1",
     "pwdlib[argon2] >=0.2.1",
     "pyjwt >=2.9.0",
-    "pytest >=9.0.0",
+    # Remove this cap after requiring a pytest-xdist release with the fix for
+    # pytest >=9.2 loadgroup compatibility: https://github.com/pytest-dev/pytest-xdist/pull/1388
+    "pytest >=9.0.0,<9.2",
     "pytest-codspeed >=4.3.0",
     "pyyaml >=5.3.1,<7.0.0",
     "sqlmodel >=0.0.31",
