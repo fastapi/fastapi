@@ -58,6 +58,7 @@ The key features are:
 <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" target="_blank" title="Deploy enterprise applications at startup speed"><img src="https://fastapi.tiangolo.com/img/sponsors/railway.png"></a>
 <a href="https://serpapi.com/?utm_source=fastapi_website" target="_blank" title="SerpApi: Web Search API"><img src="https://fastapi.tiangolo.com/img/sponsors/serpapi.png"></a>
 <a href="https://www.greptile.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=fastapi_sponsor_page" target="_blank" title="Greptile: The AI Code Reviewer"><img src="https://fastapi.tiangolo.com/img/sponsors/greptile.png"></a>
+<a href="https://microauth.com/fastapi?utm_source=fastapi" target="_blank" title="MicroAuth - Launch an API business in minutes: branded developer portals, rate limiting, and billing for your API"><img src="https://fastapi.tiangolo.com/img/sponsors/microauth.png"></a>
 
 ### Silver Sponsors
 

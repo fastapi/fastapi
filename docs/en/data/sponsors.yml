@@ -34,6 +34,10 @@ gold:
     title: "Greptile: The AI Code Reviewer"
     img: /img/sponsors/greptile.png
     banner_img: /img/sponsors/greptile-banner.png
+  - url: https://microauth.com/fastapi?utm_source=fastapi
+    title: "MicroAuth - Launch an API business in minutes: branded developer portals, rate limiting, and billing for your API"
+    img: /img/sponsors/microauth.png
+    banner_img: /img/sponsors/microauth-banner.png
 silver:
   - url: https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display
     title: Pay as you go for market data
