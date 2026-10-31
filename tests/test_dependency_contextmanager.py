@@ -6,7 +6,7 @@ from fastapi.responses import StreamingResponse
 from fastapi.testclient import TestClient
 
 app = FastAPI()
-state = {
+initial_state = {
     "/async": "asyncgen not started",
     "/sync": "generator not started",
     "/async_raise": "asyncgen raise not started",
@@ -17,7 +17,16 @@ state = {
     "sync_bg": "not set",
 }
 
+state = initial_state.copy()
+
 errors = []
+
+
+@pytest.fixture(autouse=True)
+def reset_state_and_errors():
+    global state
+    state = initial_state.copy()
+    errors.clear()
 
 
 async def get_state():
