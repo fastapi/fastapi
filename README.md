@@ -32,7 +32,7 @@ FastAPI is a modern, fast (high-performance), web framework for building APIs wi
 The key features are:
 
 * **Fast**: Very high performance, on par with **NodeJS** and **Go** (thanks to Starlette and Pydantic). [One of the fastest Python frameworks available](#performance).
-* **Fast to code**: Increase the speed to develop features by about 200% to 300%. *
+* **Fast to code**: Increase feature development speed by about 200% to 300%. *
 * **Fewer bugs**: Reduce about 40% of human (developer) induced errors. *
 * **Intuitive**: Great editor support. <dfn title="also known as auto-complete, autocompletion, IntelliSense">Completion</dfn> everywhere. Less time debugging.
 * **Easy**: Designed to be easy to use and learn. Less time reading docs.
@@ -140,7 +140,7 @@ $ uv add "fastapi[standard]"
 
 **Note**: Make sure you put `"fastapi[standard]"` in quotes to ensure it works in all terminals.
 
-If you prefer to use `pip`, install `fastapi[standard]` inside a virtual environment. See the [installation guide](tutorial/#install-fastapi) for the alternative steps.
+If you prefer to use `pip`, install `fastapi[standard]` inside a virtual environment. See the [installation guide](https://fastapi.tiangolo.com/tutorial/#install-fastapi) for the alternative steps.
 
 ## Example
 
@@ -426,7 +426,7 @@ For a more complete example including more features, see the <a href="https://fa
 **Spoiler alert**: the tutorial - user guide includes:
 
 * Declaration of **parameters** from other different places such as: **headers**, **cookies**, **form fields** and **files**.
-* How to set **validation constraints** such as `maximum_length` or `regex`.
+* How to set **validation constraints** such as `max_length` or `pattern`.
 * A very powerful and easy to use **<dfn title="also known as components, resources, providers, services, injectables">Dependency Injection</dfn>** system.
 * Security and authentication, including support for **OAuth2** with **JWT tokens** and **HTTP Basic** auth.
 * More advanced (but equally easy) techniques for declaring **deeply nested JSON models** (thanks to Pydantic).

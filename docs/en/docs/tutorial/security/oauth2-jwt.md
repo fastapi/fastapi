@@ -156,7 +156,7 @@ Define a Pydantic Model that will be used in the token endpoint for the response
 
 Create a utility function to generate a new access token.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004_an_py310.py ln[4:9,11:15,29:31,82:90] hl[4,7,13:15,29:31,82:90] *}
 
 ## Update the dependencies { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ Decode the received token, verify it, and return the current user.
 
 If the token is invalid, return an HTTP error right away.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004_an_py310.py ln[34:35,93:110] hl[34:35,93:110] *}
 
 ## Update the `/token` *path operation* { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ Create a `timedelta` with the expiration time of the token.
 
 Create a real JWT access token and return it.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004_an_py310.py ln[121:132] hl[121:132] *}
 
 ### Technical details about the JWT "subject" `sub` { #technical-details-about-the-jwt-subject-sub }
 
