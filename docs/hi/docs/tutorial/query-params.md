@@ -107,7 +107,13 @@ http://127.0.0.1:8000/items/foo?short=on
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-या कोई भी दूसरी case variation (uppercase, पहले अक्षर को uppercase, आदि), आपका function parameter `short` को `True` के `bool` value के साथ देखेगा। अन्यथा `False` के रूप में।
+या कोई भी दूसरी case variation (uppercase, पहले अक्षर को uppercase, आदि), आपका function parameter `short` को `True` के `bool` value के साथ देखेगा।
+
+`0`, `false`, `off`, और `no` जैसी values (case variations सहित) `False` में convert की जाती हैं।
+
+अगर `short` नहीं दिया जाता है, तो **FastAPI** उसकी default value का उपयोग करता है, जो इस उदाहरण में `False` है।
+
+खाली value (`?short=`) या कोई अपरिचित value (उदाहरण के लिए, `?short=maybe`) से `422` validation error आती है।
 
 
 ## कई path और query parameters { #multiple-path-and-query-parameters }

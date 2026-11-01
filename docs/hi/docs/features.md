@@ -1,14 +1,14 @@
-# विशेषताएँ { #features }
+# Features { #features }
 
-## FastAPI की विशेषताएँ { #fastapi-features }
+## FastAPI के features { #fastapi-features }
 
 **FastAPI** आपको निम्नलिखित देता है:
 
-### खुले मानकों पर आधारित { #based-on-open-standards }
+### खुले standards पर आधारित { #based-on-open-standards }
 
 * API बनाने के लिए [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification), जिसमें <dfn title="इन्हें भी कहा जाता है: endpoints, routes">path</dfn> <dfn title="इन्हें HTTP methods भी कहा जाता है, जैसे POST, GET, PUT, DELETE">operations</dfn>, parameters, request bodies, security, आदि की घोषणाएँ शामिल हैं।
 * [**JSON Schema**](https://json-schema.org/) के साथ automatic data model documentation (क्योंकि OpenAPI स्वयं JSON Schema पर आधारित है)।
-* इन मानकों के इर्द-गिर्द डिज़ाइन किया गया, एक बहुत सावधानीपूर्वक अध्ययन के बाद। ऊपर से बाद में जोड़ी गई परत की तरह नहीं।
+* इन standards के इर्द-गिर्द डिज़ाइन किया गया, एक बहुत सावधानीपूर्वक अध्ययन के बाद। ऊपर से बाद में जोड़ी गई परत की तरह नहीं।
 * यह कई भाषाओं में automatic **client code generation** का उपयोग करने की भी अनुमति देता है।
 
 ### Automatic docs { #automatic-docs }
@@ -35,6 +35,7 @@ Interactive API documentation और exploration web user interfaces। क्�
 from datetime import date
 
 from pydantic import BaseModel
+
 
 # किसी variable को str के रूप में घोषित करें
 # और function के अंदर editor support पाएँ
@@ -75,7 +76,7 @@ my_second_user: User = User(**second_user_data)
 
 पूरे framework को उपयोग में आसान और सहज बनाने के लिए डिज़ाइन किया गया था, development शुरू करने से पहले ही सभी निर्णयों को कई editors पर test किया गया, ताकि सबसे अच्छा development experience सुनिश्चित किया जा सके।
 
-Python developer surveys में, यह स्पष्ट है [कि सबसे अधिक उपयोग की जाने वाली सुविधाओं में से एक "autocompletion" है](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features)।
+Python developer surveys में, यह स्पष्ट है [कि सबसे अधिक उपयोग किए जाने वाले features में से एक "autocompletion" है](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features)।
 
 पूरा **FastAPI** framework इसे पूरा करने के लिए डिज़ाइन किया गया है। Autocompletion हर जगह काम करता है।
 
@@ -157,7 +158,7 @@ FastAPI में एक बेहद आसान, लेकिन बेहद
 * 100% <dfn title="Python type annotations, जिनसे आपका editor और external tools आपको बेहतर support दे सकते हैं">type annotated</dfn> code base।
 * Production applications में उपयोग किया गया।
 
-## Starlette की विशेषताएँ { #starlette-features }
+## Starlette के features { #starlette-features }
 
 **FastAPI** [**Starlette**](https://starlette.dev/) के साथ पूरी तरह compatible है (और उसी पर आधारित है)। इसलिए, आपके पास जो भी अतिरिक्त Starlette code है, वह भी काम करेगा।
 
@@ -175,7 +176,7 @@ FastAPI में एक बेहद आसान, लेकिन बेहद
 * 100% test coverage।
 * 100% type annotated codebase।
 
-## Pydantic की विशेषताएँ { #pydantic-features }
+## Pydantic के features { #pydantic-features }
 
 **FastAPI** [**Pydantic**](https://pydantic.dev/docs/) के साथ पूरी तरह compatible है (और उसी पर आधारित है)। इसलिए, आपके पास जो भी अतिरिक्त Pydantic code है, वह भी काम करेगा।
 

@@ -71,6 +71,22 @@
 }
 ```
 
+## Parameter Models को संयोजित करें { #combine-parameter-models }
+
+आप कई cookie parameter models को अलग-अलग cookie parameters और dependencies के साथ संयोजित कर सकते हैं। हर model को स्वतंत्र रूप से extract और validate किया जाता है, जैसा कि [query parameter models](query-param-models.md#combine-parameter-models) के लिए समझाया गया है।
+
+हर model का `extra` configuration सभी cookie parameters पर लागू होता है, जिनमें अन्य models या dependencies में declare किए गए parameters भी शामिल हैं। `extra="forbid"` के साथ, उस model के बाहर की किसी भी cookie को reject कर दिया जाता है। `extra="allow"` के साथ, उन cookies को model extras के रूप में शामिल किया जाता है।
+
+## वैकल्पिक Cookie Parameter Models { #optional-cookie-parameter-models }
+
+समूह को वैकल्पिक बनाने के लिए cookie parameter model को `| None` और `None` की default value के साथ declare करें।
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+अगर न तो `theme` और न ही `locale` भेजा जाता है, तो `preferences` की value `None` होती है। अगर इनमें से कोई भी भेजा जाता है, तो FastAPI model को validate करता है और दोनों fields को required मानता है।
+
+defaults, extra fields और OpenAPI के लिए वही नियम लागू होते हैं जो [वैकल्पिक query parameter models](query-param-models.md#optional-query-parameter-models) के लिए लागू होते हैं।
+
 ## सारांश { #summary }
 
 आप **FastAPI** में <dfn title="जाने से पहले एक आखिरी cookie लीजिए। 🍪">**cookies**</dfn> declare करने के लिए **Pydantic models** का उपयोग कर सकते हैं। 😎

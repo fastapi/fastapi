@@ -44,6 +44,14 @@ form bodies declare करने के लिए, आपको स्पष्�
 
 ///
 
+## Boolean Form Fields { #boolean-form-fields }
+
+HTML forms submit करते समय browsers unchecked checkboxes को छोड़ देते हैं। unchecked होने पर `False` प्राप्त करने के लिए `False` default वाला boolean form parameter declare करें:
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+एक checked checkbox अपनी value भेजता है, जो default रूप से `"on"` होती है। **FastAPI** `"on"` को `True` के रूप में स्वीकार करता है।
+
 ## "Form Fields" के बारे में { #about-form-fields }
 
 HTML forms (`<form></form>`) आमतौर पर data को server पर भेजने के लिए उस data के लिए एक "special" encoding का उपयोग करते हैं, यह JSON से अलग होता है।
@@ -55,6 +63,8 @@ HTML forms (`<form></form>`) आमतौर पर data को server पर �
 forms से आने वाला data आमतौर पर "media type" `application/x-www-form-urlencoded` का उपयोग करके encoded होता है।
 
 लेकिन जब form में files शामिल होती हैं, तो इसे `multipart/form-data` के रूप में encoded किया जाता है। files को handle करने के बारे में आप अगले chapter में पढ़ेंगे।
+
+OpenAPI में multipart form का वर्णन करने के लिए आप `Form(media_type="multipart/form-data")` का उपयोग कर सकते हैं। form parameters या models को मिलाते समय इसे एक parameter पर सेट करना पर्याप्त है।
 
 अगर आप इन encodings और form fields के बारे में अधिक पढ़ना चाहते हैं, तो [`POST` के लिए <abbr title="Mozilla Developer Network - मोज़िला डेवलपर नेटवर्क">MDN</abbr> web docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) देखें।
 
