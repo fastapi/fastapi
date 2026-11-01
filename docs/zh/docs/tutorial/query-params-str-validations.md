@@ -220,13 +220,21 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### 必填，但可以为 `None` { #required-can-be-none }
+### 必填参数与 `None` { #required-parameters-and-none }
 
-你可以声明一个参数可以接收 `None`，但它仍然是必填的。这将强制客户端必须发送一个值，即使该值是 `None`。
-
-为此，你可以声明 `None` 是有效类型，但不声明默认值：
+类型 `str | None` 允许使用 Python 值 `None`，但不会让查询参数变为可选。没有默认值时，该参数仍然是必填的：
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+查询参数值以字符串形式传入，没有内置的 `None` 表示方式。发送 `?q=None` 或 `?q=null` 分别传入的是字符串 `"None"` 和 `"null"`。发送 `?q=` 传入的是空字符串，在此示例中无法通过 `min_length=3` 校验。
+
+要允许客户端省略 `q` 并使用 `None` 作为其值，请将其默认值设为 `None`：
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+与查询参数不同，JSON 请求体可以包含显式的 `null` 值。
 
 ## 查询参数列表 / 多个值 { #query-parameter-list-multiple-values }
 

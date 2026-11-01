@@ -44,6 +44,14 @@ $ uv add python-multipart
 
 ///
 
+## 布尔表单字段 { #boolean-form-fields }
+
+浏览器在提交 HTML 表单时会忽略未选中的复选框。将布尔表单参数的默认值声明为 `False`，即可在复选框未选中时接收到 `False`：
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+选中的复选框会发送其值，默认值为 `"on"`。**FastAPI** 会将 `"on"` 解析为 `True`。
+
 ## 关于 "表单字段" { #about-form-fields }
 
 HTML 表单（`<form></form>`）向服务器发送数据时通常会对数据使用一种“特殊”的编码方式，这与 JSON 不同。
@@ -55,6 +63,8 @@ HTML 表单（`<form></form>`）向服务器发送数据时通常会对数据使
 表单数据通常使用“媒体类型” `application/x-www-form-urlencoded` 进行编码。
 
 但当表单包含文件时，会编码为 `multipart/form-data`。你将在下一章阅读如何处理文件。
+
+你可以使用 `Form(media_type="multipart/form-data")` 在 OpenAPI 中描述多部分表单。组合使用表单参数或模型时，只需在一个参数上设置即可。
 
 如果你想了解更多关于这些编码和表单字段的信息，请参阅 [<abbr title="Mozilla Developer Network - Mozilla 开发者网络">MDN</abbr> Web 文档的 `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)。
 
