@@ -26,7 +26,7 @@ Puedes ver los parámetros query en la UI de documentación en `/docs`:
 <img src="/img/tutorial/query-param-models/image01.png">
 </div>
 
-## Prohibir Parámetros Query Extras { #forbid-extra-query-parameters }
+## Prohíbe Parámetros Query Extras { #forbid-extra-query-parameters }
 
 En algunos casos de uso especiales (probablemente no muy comunes), podrías querer **restringir** los parámetros query que deseas recibir.
 
@@ -34,7 +34,7 @@ Puedes usar la configuración del modelo de Pydantic para `forbid` cualquier cam
 
 {* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
 
-Si un cliente intenta enviar algunos datos **extra** en los **parámetros query**, recibirán un response de **error**.
+Si un cliente intenta enviar algunos datos **extra** en los **parámetros query**, recibirá un response de **error**.
 
 Por ejemplo, si el cliente intenta enviar un parámetro query `tool` con un valor de `plumbus`, como:
 
@@ -42,7 +42,7 @@ Por ejemplo, si el cliente intenta enviar un parámetro query `tool` con un valo
 https://example.com/items/?limit=10&tool=plumbus
 ```
 
-Recibirán un response de **error** que les indica que el parámetro query `tool` no está permitido:
+Recibirá un response de **error** que le indica que el parámetro query `tool` no está permitido:
 
 ```json
 {
@@ -56,6 +56,42 @@ Recibirán un response de **error** que les indica que el parámetro query `tool
     ]
 }
 ```
+
+## Combina Modelos de Parámetros { #combine-parameter-models }
+
+Puedes declarar múltiples modelos de parámetros query y combinarlos con parámetros query individuales o dependencias.
+
+{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+
+Los parámetros del request permanecen en el mismo nivel.
+
+```http
+https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
+```
+
+No hay claves `pagination` ni `filters` en el query string. Cada modelo valida los parámetros query de forma independiente, con sus propios valores por defecto, validadores de campos y validadores de modelo. Lo mismo se aplica cuando los modelos o los parámetros individuales se declaran en dependencias.
+
+Si los modelos comparten un nombre de parámetro o un alias, cada modelo valida ese parámetro del request de forma independiente. Usa nombres o alias distintos para valores independientes. OpenAPI muestra un parámetro compartido una sola vez, como hace con los parámetros compartidos con dependencias, por lo que las declaraciones compartidas deben describir el mismo tipo y las mismas restricciones.
+
+La configuración `extra` de cada modelo se aplica a todos los parámetros query, incluidos los declarados en otros modelos o dependencias. Con `extra="forbid"`, se rechaza cualquier parámetro ajeno a ese modelo. Con `extra="allow"`, esos parámetros se incluyen como extras del modelo.
+
+Esto también funciona para los modelos de `Header` y `Cookie`.
+
+## Modelos Opcionales de Parámetros Query { #optional-query-parameter-models }
+
+Declara un modelo de parámetros query con `| None` y un valor por defecto de `None` para hacer que el grupo sea opcional.
+
+{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+
+Si no se envía ni `start` ni `end`, `date_range` es `None`. Si se envía cualquiera de los dos, FastAPI valida el modelo y requiere ambos campos.
+
+Usar `| None` sin un valor por defecto sigue haciendo que el parámetro sea obligatorio.
+
+Los parámetros extra siguen la configuración `extra` del modelo. Los extras ignorados no hacen que el modelo se considere presente.
+
+OpenAPI muestra los campos del grupo individualmente y los marca como opcionales.
+
+También puedes declarar [modelos de parámetros header](header-param-models.md#optional-header-parameter-models) y [modelos de parámetros cookie](cookie-param-models.md#optional-cookie-parameter-models) opcionales.
 
 ## Resumen { #summary }
 

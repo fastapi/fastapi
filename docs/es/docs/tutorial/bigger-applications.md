@@ -142,7 +142,7 @@ Pero queremos ser más inteligentes y simplificar un poco el código.
 
 Sabemos que todas las *path operations* en este módulo tienen el mismo:
 
-* Prefijo de path: `/items`.
+* `prefix` de path: `/items`.
 * `tags`: (solo una etiqueta: `items`).
 * `responses` extra.
 * `dependencies`: todas necesitan esa dependencia `X-Token` que creamos.
@@ -155,8 +155,7 @@ Como el path de cada *path operation* tiene que empezar con `/`, como en:
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...el prefijo no debe incluir un `/` final.

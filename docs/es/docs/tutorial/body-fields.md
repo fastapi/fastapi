@@ -2,11 +2,12 @@
 
 De la misma manera que puedes declarar validaciones adicionales y metadatos en los parámetros de las *path operation function* con `Query`, `Path` y `Body`, puedes declarar validaciones y metadatos dentro de los modelos de Pydantic usando `Field` de Pydantic.
 
-## Importar `Field` { #import-field }
+## Importa `Field` { #import-field }
 
 Primero, tienes que importarlo:
 
 {* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+
 
 /// warning | Advertencia
 
@@ -14,7 +15,7 @@ Fíjate que `Field` se importa directamente desde `pydantic`, no desde `fastapi`
 
 ///
 
-## Declarar atributos del modelo { #declare-model-attributes }
+## Declara atributos del modelo { #declare-model-attributes }
 
 Después puedes utilizar `Field` con los atributos del modelo:
 
@@ -40,15 +41,15 @@ Observa cómo cada atributo del modelo con un tipo, un valor por defecto y `Fiel
 
 ///
 
-## Agregar información extra { #add-extra-information }
+## Agrega información extra { #add-extra-information }
 
-Puedes declarar información extra en `Field`, `Query`, `Body`, etc. Y será incluida en el JSON Schema generado.
+Puedes declarar información extra con `json_schema_extra` en `Field`, `Query`, `Body`, etc. Y será incluida en el JSON Schema generado.
 
 Aprenderás más sobre cómo agregar información extra más adelante en la documentación, cuando aprendamos a declarar ejemplos.
 
 /// warning | Advertencia
 
-Las claves extra pasadas a `Field` también estarán presentes en el esquema de OpenAPI resultante para tu aplicación.
+Las claves extra pasadas en `json_schema_extra` también estarán presentes en el esquema de OpenAPI resultante para tu aplicación.
 Como estas claves no necesariamente tienen que ser parte de la especificación de OpenAPI, algunas herramientas de OpenAPI, por ejemplo [el validador de OpenAPI](https://validator.swagger.io/), podrían no funcionar con tu esquema generado.
 
 ///
@@ -57,4 +58,4 @@ Como estas claves no necesariamente tienen que ser parte de la especificación d
 
 Puedes utilizar `Field` de Pydantic para declarar validaciones adicionales y metadatos para los atributos del modelo.
 
-También puedes usar los argumentos de palabra clave extra para pasar metadatos adicionales del JSON Schema.
+También puedes usar `json_schema_extra` para pasar metadatos adicionales del JSON Schema.
