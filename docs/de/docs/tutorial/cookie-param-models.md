@@ -71,6 +71,22 @@ Wenn der Client beispielsweise versucht, ein `santa_tracker`-Cookie mit einem We
 }
 ```
 
+## Parametermodelle kombinieren { #combine-parameter-models }
+
+Sie können mehrere Cookie-Parameter-Modelle mit einzelnen Cookie-Parametern und Abhängigkeiten kombinieren. Jedes Modell wird unabhängig extrahiert und validiert, wie für [Query-Parameter-Modelle](query-param-models.md#combine-parameter-models) erklärt.
+
+Die `extra`-Konfiguration jedes Modells gilt für alle Cookie-Parameter, einschließlich derjenigen, die in anderen Modellen oder Abhängigkeiten deklariert sind. Mit `extra="forbid"` wird jedes Cookie außerhalb dieses Modells abgelehnt. Mit `extra="allow"` werden diese Cookies als zusätzliche Felder in das Modell aufgenommen.
+
+## Optionale Cookie-Parameter-Modelle { #optional-cookie-parameter-models }
+
+Deklarieren Sie ein Cookie-Parameter-Modell mit `| None` und einem Defaultwert von `None`, um die Gruppe optional zu machen.
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+Wenn weder `theme` noch `locale` gesendet wird, ist `preferences` gleich `None`. Wenn eines davon gesendet wird, validiert FastAPI das Modell und erfordert beide Felder.
+
+Es gelten dieselben Regeln für Defaultwerte, zusätzliche Felder und OpenAPI wie für [optionale Query-Parameter-Modelle](query-param-models.md#optional-query-parameter-models).
+
 ## Zusammenfassung { #summary }
 
 Sie können **Pydantic-Modelle** verwenden, um <dfn title="Nehmen Sie einen letzten Keks, bevor Sie gehen. 🍪">**Cookies**</dfn> in **FastAPI** zu deklarieren. 😎

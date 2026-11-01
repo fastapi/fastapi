@@ -155,8 +155,7 @@ Da der Pfad jeder *Pfadoperation* mit `/` beginnen muss, wie in:
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ... darf das Präfix kein abschließendes `/` enthalten.
@@ -180,7 +179,7 @@ Das Endergebnis ist, dass die Pfade für diese Artikel jetzt wie folgt lauten:
 
 ... wie wir es beabsichtigt hatten.
 
-* Sie werden mit einer Liste von Tags gekennzeichnet, die einen einzelnen String „items“ enthält.
+* Sie werden mit einer Liste von Tags gekennzeichnet, die einen einzelnen String `"items"` enthält.
     * Diese „Tags“ sind besonders nützlich für die automatischen interaktiven Dokumentationssysteme (unter Verwendung von OpenAPI).
 * Alle enthalten die vordefinierten `responses`.
 * Für alle diese *Pfadoperationen* wird die Liste der `dependencies` ausgewertet/ausgeführt, bevor sie selbst ausgeführt werden.
@@ -542,6 +541,6 @@ Vermeiden Sie es, `router.routes` direkt zu mutieren, nachdem ein Router inkludi
 
 Verwenden Sie dokumentierte APIs wie Pfadoperation-Dekoratoren und `.include_router()`, um Routen und Router hinzuzufügen.
 
-Betrachten Sie `router.routes` als eine Low-Level-Routenstruktur, die sowohl Routendefinitionen als auch inkludierte Router enthalten kann, und verlassen Sie sich nicht darauf als flache Liste endgültiger Pfadoperationen.
+Betrachten Sie `router.routes` als einen Low-Level-Routenbaum, der sowohl Routendefinitionen als auch inkludierte Router enthalten kann, und verlassen Sie sich nicht darauf als flache Liste endgültiger Pfadoperationen.
 
 ///

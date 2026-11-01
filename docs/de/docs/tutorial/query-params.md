@@ -107,7 +107,13 @@ oder
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-gehen, oder zu irgendeiner anderen Variante der Groß-/Kleinschreibung (Alles groß, Anfangsbuchstabe groß, usw.), dann wird Ihre Funktion den Parameter `short` mit dem `bool`-Wert `True` sehen, ansonsten mit dem Wert `False`.
+gehen, oder zu irgendeiner anderen Variante der Groß-/Kleinschreibung (Alles groß, Anfangsbuchstabe groß, usw.), dann wird Ihre Funktion den Parameter `short` mit dem `bool`-Wert `True` sehen.
+
+Werte wie `0`, `false`, `off` und `no` (einschließlich Varianten der Groß-/Kleinschreibung) werden zu `False` konvertiert.
+
+Wenn `short` weggelassen wird, verwendet **FastAPI** dessen Defaultwert, der in diesem Beispiel `False` ist.
+
+Ein leerer Wert (`?short=`) oder ein nicht erkannter Wert (zum Beispiel `?short=maybe`) führt zu einem `422`-Validierungsfehler.
 
 
 ## Mehrere Pfad- und Query-Parameter { #multiple-path-and-query-parameters }
