@@ -43,13 +43,13 @@
 
 ## 加入額外資訊 { #add-extra-information }
 
-你可以在 `Field`、`Query`、`Body` 等中宣告額外資訊。這些資訊會被包含在產生的 JSON Schema 中。
+你可以在 `Field`、`Query`、`Body` 等中使用 `json_schema_extra` 宣告額外資訊。這些資訊會被包含在產生的 JSON Schema 中。
 
 你會在後續文件中學到更多關於加入額外資訊的內容，特別是在宣告範例時。
 
 /// warning
 
-傳入 `Field` 的額外鍵也會出現在你的應用程式所產生的 OpenAPI schema 中。
+透過 `json_schema_extra` 傳入的額外鍵也會出現在你的應用程式所產生的 OpenAPI schema 中。
 由於這些鍵不一定屬於 OpenAPI 規格的一部分，一些 OpenAPI 工具（例如 [OpenAPI 驗證器](https://validator.swagger.io/)）可能無法處理你產生的 schema。
 
 ///
@@ -58,4 +58,4 @@
 
 你可以使用 Pydantic 的 `Field` 為模型屬性宣告額外的驗證與中繼資料。
 
-你也可以使用額外的關鍵字引數來傳遞額外的 JSON Schema 中繼資料。
+你也可以使用 `json_schema_extra` 來傳遞額外的 JSON Schema 中繼資料。

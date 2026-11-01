@@ -155,8 +155,7 @@ from app.routers import items
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...所以 prefix 末尾不能帶有 `/`。
