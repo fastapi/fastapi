@@ -16,7 +16,7 @@ results = await some_library()
 다음처럼 *경로 처리 함수*를 `async def`를 사용해 선언하십시오:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -33,7 +33,7 @@ async def read_results():
 데이터베이스, API, 파일시스템 등과 의사소통하는 제3자 라이브러리를 사용하고, 그것이 `await` 사용을 지원하지 않는 경우(현재 대부분의 데이터베이스 라이브러리가 그러합니다), *경로 처리 함수*를 일반적인 `def`를 사용해 선언하십시오:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -194,7 +194,7 @@ def results():
 
 <img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
-그러다 점원/요리사 👨‍🍳 가 카운터 앞에서 오랫동안 기다린 🕙 끝에 마침내 햄버거를 가지고 돌아옵니다.
+여러분이 카운터 앞에서 오랫동안 기다린 🕙 끝에, 점원/요리사 👨‍🍳 가 마침내 햄버거를 가지고 돌아옵니다.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
 
@@ -288,7 +288,7 @@ CPU bound 작업의 흔한 예시는 복잡한 수학 처리가 필요한 것들
 
 * **오디오** 또는 **이미지** 처리
 * **컴퓨터 비전**: 이미지는 수백만 개의 픽셀로 구성되며, 각 픽셀은 3개의 값/색을 갖습니다. 보통 그 픽셀들에 대해 동시에 무언가를 계산해야 합니다.
-* **머신러닝**: 보통 많은 "matrix"와 "vector" 곱셈이 필요합니다. 숫자가 있는 거대한 스프레드시트를 생각하고, 그 모든 수를 동시에 곱한다고 생각해보세요.
+* **머신러닝**: 보통 많은 "행렬"과 "벡터" 곱셈이 필요합니다. 숫자가 있는 거대한 스프레드시트를 생각하고, 그 모든 수를 동시에 곱한다고 생각해보세요.
 * **딥러닝**: 머신러닝의 하위 분야이므로 동일하게 적용됩니다. 다만 곱해야 할 숫자가 있는 스프레드시트가 하나가 아니라, 아주 큰 집합이며, 많은 경우 그 모델을 만들고/또는 사용하기 위해 특별한 프로세서를 사용합니다.
 
 ### 동시성 + 병렬성: 웹 + 머신러닝 { #concurrency-parallelism-web-machine-learning }
@@ -344,7 +344,7 @@ burgers = get_burgers(2)
 따라서, `await`로 호출할 수 있다고 말하는 라이브러리를 사용한다면, 다음과 같이 그것을 사용하는 *경로 처리 함수*를 `async def`로 만들어야 합니다:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
@@ -384,7 +384,7 @@ Starlette(그리고 **FastAPI**)는 [AnyIO](https://anyio.readthedocs.io/en/stab
 
 이전 버전의 파이썬에서는 스레드 또는 [Gevent](https://www.gevent.org/)를 사용할 수 있었을 것입니다. 하지만 코드를 이해하고, 디버깅하고, 이에 대해 생각하는 것이 훨씬 더 복잡합니다.
 
-이전 버전의 NodeJS/브라우저 JavaScript에서는 "callback"을 사용했을 것입니다. 이는 "callback hell"로 이어집니다.
+이전 버전의 NodeJS/브라우저 JavaScript에서는 "콜백"을 사용했을 것입니다. 이는 "콜백 지옥"으로 이어집니다.
 
 ## 코루틴 { #coroutines }
 
