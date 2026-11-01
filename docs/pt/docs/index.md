@@ -544,7 +544,7 @@ Utilizado pelo Pydantic:
 
 Utilizado pelo Starlette:
 
-* [`httpx`](https://www.python-httpx.org) - Obrigatório caso você queira utilizar o `TestClient`.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (ou `httpx`) - Utilizado pelo `TestClient`.
 * [`jinja2`](https://jinja.palletsprojects.com) - Obrigatório se você quer utilizar a configuração padrão de templates.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - Obrigatório se você deseja suporte a <dfn title="convertendo a string que vem de uma requisição HTTP em dados Python">"parsing"</dfn> de formulário, com `request.form()`.
 

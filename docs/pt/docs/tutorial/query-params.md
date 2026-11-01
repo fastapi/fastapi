@@ -30,7 +30,7 @@ Todo o processo que era aplicado para parâmetros de rota também é aplicado pa
 
 ## Valores padrão { #defaults }
 
-Como os parâmetros de consulta não são uma parte fixa da rota, eles podem ser opcionais e podem ter valores padrão.
+Como os parâmetros de consulta não são uma parte fixa de um path, eles podem ser opcionais e podem ter valores padrão.
 
 No exemplo acima eles tem valores padrão de `skip=0` e `limit=10`.
 
@@ -107,7 +107,13 @@ ou
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-ou qualquer outra variação (tudo em maiúscula, primeira letra em maiúscula, etc), a sua função vai ver o parâmetro `short` com um valor `bool` de `True`. Caso contrário `False`.
+ou qualquer outra variação (tudo em maiúscula, primeira letra em maiúscula, etc), a sua função vai ver o parâmetro `short` com um valor `bool` de `True`.
+
+Valores como `0`, `false`, `off` e `no` (incluindo variações de maiúsculas e minúsculas) são convertidos para `False`.
+
+Se `short` for omitido, o **FastAPI** usa seu valor padrão, que é `False` neste exemplo.
+
+Um valor vazio (`?short=`) ou não reconhecido (por exemplo, `?short=maybe`) produz um erro de validação `422`.
 
 
 ## Múltiplos parâmetros de rota e consulta { #multiple-path-and-query-parameters }
@@ -126,7 +132,7 @@ Quando você declara um valor padrão para parâmetros que não são de rota (at
 
 Caso você não queira adicionar um valor específico mas queira apenas torná-lo opcional, defina o valor padrão como `None`.
 
-Porém, quando você quiser fazer com que o parâmetro de consulta seja obrigatório, você pode simplesmente não declarar nenhum valor como padrão.
+Porém, quando você quiser fazer com que o parâmetro de consulta seja obrigatório, você pode simplesmente não declarar nenhum valor como padrão:
 
 {* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 

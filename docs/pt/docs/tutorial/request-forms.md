@@ -44,6 +44,14 @@ Para declarar corpos de formulário, você precisa usar `Form` explicitamente, p
 
 ///
 
+## Campos booleanos de formulário { #boolean-form-fields }
+
+Os navegadores omitem caixas de seleção desmarcadas ao enviar formulários HTML. Declare um parâmetro booleano de formulário com o valor padrão `False` para receber `False` quando a caixa estiver desmarcada:
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+Uma caixa de seleção marcada envia seu valor, que por padrão é `"on"`. O **FastAPI** aceita `"on"` como `True`.
+
 ## Sobre "Campos de formulário" { #about-form-fields }
 
 A forma como os formulários HTML (`<form></form>`) enviam os dados para o servidor normalmente usa uma codificação "especial" para esses dados, é diferente do JSON.
@@ -55,6 +63,8 @@ O **FastAPI** fará a leitura desses dados no lugar certo em vez de JSON.
 Os dados dos formulários são normalmente codificados usando o "media type" `application/x-www-form-urlencoded`.
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Você lerá sobre como lidar com arquivos no próximo capítulo.
+
+Você pode usar `Form(media_type="multipart/form-data")` para descrever um formulário multipart no OpenAPI. Configurá-lo em um parâmetro é suficiente ao combinar parâmetros de formulário ou modelos.
 
 Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a [documentação web da <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
