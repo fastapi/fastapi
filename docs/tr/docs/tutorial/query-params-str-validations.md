@@ -7,11 +7,11 @@
 
 {* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
 
-Query parametresi `q`, `str | None` tipindedir. Yani tipi `str`’dir ama `None` da olabilir. Nitekim varsayılan değer `None` olduğu için FastAPI bunun zorunlu olmadığını anlar.
+Query parametresi `q`, `str | None` tipindedir. Yani tipi `str`'dir ama `None` da olabilir. Nitekim varsayılan değer `None` olduğu için FastAPI bunun zorunlu olmadığını anlar.
 
 /// note | Not
 
-FastAPI, `q`’nun zorunlu olmadığını `= None` varsayılan değerinden anlar.
+FastAPI, `q`'nun zorunlu olmadığını `= None` varsayılan değerinden anlar.
 
 `str | None` kullanmak, editörünüzün daha iyi destek vermesini ve hataları yakalamasını sağlar.
 
@@ -36,7 +36,7 @@ FastAPI, 0.95.0 sürümünde `Annotated` desteğini ekledi (ve önermeye başlad
 
 Daha eski bir sürüm kullanıyorsanız `Annotated` kullanmaya çalışırken hata alırsınız.
 
-`Annotated` kullanmadan önce FastAPI sürümünü en az 0.95.1’e yükseltmek için [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions).
+`Annotated` kullanmadan önce FastAPI sürümünü en az 0.95.1'e yükseltmek için [FastAPI sürümünü yükseltin](../deployment/versions.md#upgrading-the-fastapi-versions).
 
 ///
 
@@ -58,19 +58,19 @@ q: str | None = None
 q: Annotated[str | None] = None
 ```
 
-Bu iki sürüm de aynı anlama gelir: `q`, `str` veya `None` olabilen bir parametredir ve varsayılan olarak `None`’dır.
+Bu iki sürüm de aynı anlama gelir: `q`, `str` veya `None` olabilen bir parametredir ve varsayılan olarak `None`'dır.
 
 Şimdi işin eğlenceli kısmına geçelim. 🎉
 
 ## `q` parametresindeki `Annotated` içine `Query` ekleyin { #add-query-to-annotated-in-the-q-parameter }
 
-Artık ek bilgi (bu durumda ek doğrulama) koyabildiğimiz bir `Annotated`’ımız olduğuna göre, `Annotated` içine `Query` ekleyin ve `max_length` parametresini `50` olarak ayarlayın:
+Artık ek bilgi (bu durumda ek doğrulama) koyabildiğimiz bir `Annotated`'ımız olduğuna göre, `Annotated` içine `Query` ekleyin ve `max_length` parametresini `50` olarak ayarlayın:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
 
 Varsayılan değerin hâlâ `None` olduğuna dikkat edin; yani parametre hâlâ opsiyonel.
 
-Ama şimdi `Annotated` içinde `Query(max_length=50)` kullanarak FastAPI’ye bu değer için **ek doğrulama** istediğimizi söylüyoruz: en fazla 50 karakter. 😎
+Ama şimdi `Annotated` içinde `Query(max_length=50)` kullanarak FastAPI'ye bu değer için **ek doğrulama** istediğimizi söylüyoruz: en fazla 50 karakter. 😎
 
 /// tip | İpucu
 
@@ -86,7 +86,7 @@ FastAPI artık şunları yapacak:
 
 ## Alternatif (eski): Varsayılan değer olarak `Query` { #alternative-old-query-as-the-default-value }
 
-FastAPI’nin önceki sürümlerinde ( <dfn title="2023-03’ten önce">0.95.0</dfn> öncesi) `Query`’yi `Annotated` içine koymak yerine, parametrenizin varsayılan değeri olarak kullanmanız gerekiyordu. Etrafta bu şekilde yazılmış kod görme ihtimaliniz yüksek; bu yüzden açıklayalım.
+FastAPI'nin önceki sürümlerinde ( <dfn title="2023-03'ten önce">0.95.0</dfn> öncesi) `Query`'yi `Annotated` içine koymak yerine, parametrenizin varsayılan değeri olarak kullanmanız gerekiyordu. Etrafta bu şekilde yazılmış kod görme ihtimaliniz yüksek; bu yüzden açıklayalım.
 
 /// tip | İpucu
 
@@ -115,7 +115,7 @@ q: str | None = None
 
 Ancak `Query` sürümü bunun bir query parametresi olduğunu açıkça belirtir.
 
-Sonrasında `Query`’ye daha fazla parametre geçebiliriz. Bu örnekte string’ler için geçerli olan `max_length`:
+Sonrasında `Query`'ye daha fazla parametre geçebiliriz. Bu örnekte string'ler için geçerli olan `max_length`:
 
 ```Python
 q: str | None = Query(default=None, max_length=50)
@@ -149,15 +149,15 @@ q: Annotated[str, Query()] = "rick"
 q: str = Query(default="rick")
 ```
 
-### `Annotated`’ın avantajları { #advantages-of-annotated }
+### `Annotated`'ın avantajları { #advantages-of-annotated }
 
 Fonksiyon parametrelerindeki varsayılan değer stiline göre **`Annotated` kullanmanız önerilir**; birden fazla nedenle **daha iyidir**. 🤓
 
 **Fonksiyon parametresinin** **varsayılan** değeri, **gerçek varsayılan** değerdir; bu genel olarak Python açısından daha sezgiseldir. 😌
 
-Aynı fonksiyonu FastAPI olmadan **başka yerlerde** de **çağırabilirsiniz** ve **beklendiği gibi çalışır**. Eğer **zorunlu** bir parametre varsa (varsayılan değer yoksa) editörünüz hata ile bunu belirtir; ayrıca gerekli parametreyi vermeden çalıştırırsanız **Python** da şikayet eder.
+Aynı fonksiyonu FastAPI olmadan **başka yerlerde** de **çağırabilirsiniz** ve **beklendiği gibi çalışır**. Eğer **zorunlu** bir parametre varsa (varsayılan değer yoksa) **editörünüz** hata ile bunu belirtir; ayrıca gerekli parametreyi vermeden çalıştırırsanız **Python** da şikayet eder.
 
-`Annotated` kullanmayıp bunun yerine **(eski) varsayılan değer stilini** kullanırsanız, o fonksiyonu FastAPI olmadan **başka yerlerde** çağırdığınızda doğru çalışması için argümanları geçmeniz gerektiğini **hatırlamak** zorunda kalırsınız; yoksa değerler beklediğinizden farklı olur (ör. `QueryInfo` veya benzeri). Üstelik editörünüz de şikayet etmez ve Python da fonksiyonu çalıştırırken şikayet etmez; ancak içerideki operasyonlar hata verince ortaya çıkar.
+`Annotated` kullanmayıp bunun yerine **(eski) varsayılan değer stilini** kullanırsanız, o fonksiyonu FastAPI olmadan **başka yerlerde** çağırdığınızda doğru çalışması için argümanları geçmeniz gerektiğini **hatırlamak** zorunda kalırsınız; yoksa değerler beklediğinizden farklı olur (ör. `str` yerine `QueryInfo` veya benzeri). Üstelik editörünüz de şikayet etmez ve Python da fonksiyonu çalıştırırken şikayet etmez; ancak içerideki operasyonlar hata verince ortaya çıkar.
 
 `Annotated` birden fazla metadata anotasyonu alabildiği için, artık aynı fonksiyonu [Typer](https://typer.tiangolo.com/) gibi başka araçlarla da kullanabilirsiniz. 🚀
 
@@ -169,17 +169,17 @@ Aynı fonksiyonu FastAPI olmadan **başka yerlerde** de **çağırabilirsiniz** 
 
 ## Regular expression ekleyin { #add-regular-expressions }
 
-Parametrenin eşleşmesi gereken bir `pattern` <dfn title="String'ler için arama deseni tanımlayan karakter dizisi">düzenli ifade</dfn> tanımlayabilirsiniz:
+Parametrenin eşleşmesi gereken bir `pattern` <dfn title="Düzenli ifade, regex veya regexp, string'ler için arama deseni tanımlayan bir karakter dizisidir.">düzenli ifade</dfn> tanımlayabilirsiniz:
 
 {* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
 
-Bu özel regular expression pattern’i, gelen parametre değerinin şunları sağladığını kontrol eder:
+Bu özel regular expression pattern'i, gelen parametre değerinin şunları sağladığını kontrol eder:
 
 * `^`: Aşağıdaki karakterlerle başlar; öncesinde karakter yoktur.
 * `fixedquery`: Tam olarak `fixedquery` değerine sahiptir.
 * `$`: Orada biter; `fixedquery` sonrasında başka karakter yoktur.
 
-Bu **"regular expression"** konuları gözünüzü korkutuyorsa sorun değil. Birçok kişi için zor bir konudur. Regular expression’lara ihtiyaç duymadan da pek çok şey yapabilirsiniz.
+Bu **"regular expression"** konuları gözünüzü korkutuyorsa sorun değil. Birçok kişi için zor bir konudur. Regular expression'lara ihtiyaç duymadan da pek çok şey yapabilirsiniz.
 
 Artık ihtiyaç duyduğunuzda **FastAPI** içinde kullanabileceğinizi biliyorsunuz.
 
@@ -221,19 +221,27 @@ Dolayısıyla `Query` kullanırken bir değeri zorunlu yapmak istediğinizde, va
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### Zorunlu ama `None` olabilir { #required-can-be-none }
+### Zorunlu parametreler ve `None` { #required-parameters-and-none }
 
-Bir parametrenin `None` kabul edebileceğini söyleyip yine de zorunlu olmasını sağlayabilirsiniz. Bu, client’ların değer göndermesini zorunlu kılar; değer `None` olsa bile.
-
-Bunu yapmak için `None`’ı geçerli bir tip olarak tanımlayın ama varsayılan değer vermeyin:
+`str | None` tipi, Python değeri olarak `None` kullanılmasına izin verir ancak query parametresini opsiyonel yapmaz. Varsayılan bir değer yoksa parametre hâlâ zorunludur:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+Query parametrelerinin değerleri string olarak gelir ve `None` için yerleşik bir gösterimleri yoktur. `?q=None` veya `?q=null` göndermek, sırasıyla `"None"` ve `"null"` string'lerini gönderir. `?q=` göndermek ise boş bir string gönderir; bu da bu örnekteki `min_length=3` doğrulamasından geçemez.
+
+Client'ların `q` parametresini göndermemesine ve bu durumda değerinin `None` olmasına izin vermek için varsayılan değerini `None` yapın:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+JSON request body'leri, query parametrelerinin aksine açıkça belirtilmiş bir `null` değeri içerebilir.
 
 ## Query parametresi listesi / birden fazla değer { #query-parameter-list-multiple-values }
 
 Bir query parametresini `Query` ile açıkça tanımladığınızda, bir değer listesi alacak şekilde (başka bir deyişle, birden fazla değer alacak şekilde) de tanımlayabilirsiniz.
 
-Örneğin URL’de `q` query parametresinin birden fazla kez görünebilmesini istiyorsanız şöyle yazabilirsiniz:
+Örneğin URL'de `q` query parametresinin birden fazla kez görünebilmesini istiyorsanız şöyle yazabilirsiniz:
 
 {* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
 
@@ -243,9 +251,9 @@ Sonra şu URL ile:
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-*path operation function* içinde, *function parameter* olan `q` parametresinde, birden fazla `q` *query parameters* değerini (`foo` ve `bar`) bir Python `list`’i olarak alırsınız.
+*path operation function* içinde, *function parameter* olan `q` parametresinde, birden fazla `q` *query parametresinin* değerini (`foo` ve `bar`) bir Python `list`'i olarak alırsınız.
 
-Dolayısıyla bu URL’ye response şöyle olur:
+Dolayısıyla bu URL'ye response şöyle olur:
 
 ```JSON
 {
@@ -258,7 +266,7 @@ Dolayısıyla bu URL’ye response şöyle olur:
 
 /// tip | İpucu
 
-Yukarıdaki örnekte olduğu gibi tipi `list` olan bir query parametresi tanımlamak için `Query`’yi açıkça kullanmanız gerekir; aksi halde request body olarak yorumlanır.
+Yukarıdaki örnekte olduğu gibi tipi `list` olan bir query parametresi tanımlamak için `Query`'yi açıkça kullanmanız gerekir; aksi halde request body olarak yorumlanır.
 
 ///
 
@@ -278,7 +286,7 @@ Hiç değer verilmezse varsayılan bir `list` de tanımlayabilirsiniz:
 http://localhost:8000/items/
 ```
 
-`q`’nun varsayılanı `["foo", "bar"]` olur ve response şöyle olur:
+`q`'nun varsayılanı `["foo", "bar"]` olur ve response şöyle olur:
 
 ```JSON
 {
@@ -307,7 +315,7 @@ Bu durumda FastAPI, listenin içeriğini kontrol etmez.
 
 Parametre hakkında daha fazla bilgi ekleyebilirsiniz.
 
-Bu bilgiler oluşturulan OpenAPI’a dahil edilir ve dokümantasyon arayüzleri ile harici araçlar tarafından kullanılır.
+Bu bilgiler oluşturulan OpenAPI'ye dahil edilir ve dokümantasyon arayüzleri ile harici araçlar tarafından kullanılır.
 
 /// note | Not
 
@@ -349,9 +357,9 @@ O zaman bir `alias` tanımlayabilirsiniz; bu alias, parametre değerini bulmak i
 
 Diyelim ki artık bu parametreyi istemiyorsunuz.
 
-Bazı client’lar hâlâ kullandığı için bir süre tutmanız gerekiyor, ama dokümanların bunu açıkça <dfn title="kullanımdan kalkmış, kullanmamanız önerilir">kullanımdan kalkmış</dfn> olarak göstermesini istiyorsunuz.
+Bazı client'lar hâlâ kullandığı için bir süre tutmanız gerekiyor, ama dokümanların bunu açıkça <dfn title="kullanımdan kalkmış, kullanmamanız önerilir">kullanımdan kalkmış</dfn> olarak göstermesini istiyorsunuz.
 
-O zaman `Query`’ye `deprecated=True` parametresini geçin:
+O zaman `Query`'ye `deprecated=True` parametresini geçin:
 
 {* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
 
@@ -359,9 +367,9 @@ Dokümanlarda şöyle görünür:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Parametreleri OpenAPI’dan hariç tutun { #exclude-parameters-from-openapi }
+## Parametreleri OpenAPI'den hariç tutun { #exclude-parameters-from-openapi }
 
-Oluşturulan OpenAPI şemasından (dolayısıyla otomatik dokümantasyon sistemlerinden) bir query parametresini hariç tutmak için `Query`’nin `include_in_schema` parametresini `False` yapın:
+Oluşturulan OpenAPI şemasından (dolayısıyla otomatik dokümantasyon sistemlerinden) bir query parametresini hariç tutmak için `Query`'nin `include_in_schema` parametresini `False` yapın:
 
 {* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
 
@@ -371,15 +379,15 @@ Yukarıdaki parametrelerle yapılamayan bazı **özel doğrulama** ihtiyaçları
 
 Bu durumlarda, normal doğrulamadan sonra (ör. değerin `str` olduğunun doğrulanmasından sonra) uygulanacak bir **custom validator function** kullanabilirsiniz.
 
-Bunu, `Annotated` içinde [Pydantic’in `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator)’ını kullanarak yapabilirsiniz.
+Bunu, `Annotated` içinde [Pydantic'in `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator)'ını kullanarak yapabilirsiniz.
 
 /// tip | İpucu
 
-Pydantic’te [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) ve başka validator’lar da vardır. 🤓
+Pydantic'te [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) ve başka validator'lar da vardır. 🤓
 
 ///
 
-Örneğin bu custom validator, bir item ID’sinin <abbr title="International Standard Book Number - Uluslararası Standart Kitap Numarası">ISBN</abbr> kitap numarası için `isbn-` ile veya <abbr title="Internet Movie Database - İnternet Film Veritabanı: filmler hakkında bilgi içeren bir web sitesi">IMDB</abbr> film URL ID’si için `imdb-` ile başladığını kontrol eder:
+Örneğin bu custom validator, bir item ID'sinin <abbr title="International Standard Book Number - Uluslararası Standart Kitap Numarası">ISBN</abbr> kitap numarası için `isbn-` ile veya <abbr title="Internet Movie Database - İnternet Film Veritabanı: filmler hakkında bilgi içeren bir web sitesi">IMDB</abbr> film URL ID'si için `imdb-` ile başladığını kontrol eder:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
@@ -393,7 +401,7 @@ Bu özellik Pydantic 2 ve üzeri sürümlerde mevcuttur. 😎
 
 Veritabanı veya başka bir API gibi herhangi bir **harici bileşen** ile iletişim gerektiren bir doğrulama yapmanız gerekiyorsa, bunun yerine **FastAPI Dependencies** kullanmalısınız; onları ileride öğreneceksiniz.
 
-Bu custom validator’lar, request’te sağlanan **yalnızca** **aynı veri** ile kontrol edilebilen şeyler içindir.
+Bu custom validator'lar, request'te sağlanan **yalnızca** **aynı veri** ile kontrol edilebilen şeyler içindir.
 
 ///
 
@@ -413,17 +421,17 @@ Fark ettiniz mi? `value.startswith()` ile bir string, tuple alabilir ve tuple i�
 
 #### Rastgele Bir Item { #a-random-item }
 
-`data.items()` ile, her dictionary öğesi için key ve value içeren tuple’lardan oluşan bir <dfn title="for döngüsüyle üzerinde gezinebileceğimiz bir şey; list, set vb.">yinelemeli nesne</dfn> elde ederiz.
+`data.items()` ile, her dictionary öğesi için key ve value içeren tuple'lardan oluşan bir <dfn title="for döngüsüyle üzerinde gezinebileceğimiz bir şey; list, set vb.">yinelenebilir nesne</dfn> elde ederiz.
 
-Bu yinelemeli nesneyi `list(data.items())` ile düzgün bir `list`’e çeviririz.
+Bu yinelenebilir nesneyi `list(data.items())` ile düzgün bir `list`'e çeviririz.
 
-Ardından `random.choice()` ile list’ten **rastgele bir değer** alırız; yani `(id, name)` içeren bir tuple elde ederiz. Şuna benzer: `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
+Ardından `random.choice()` ile list'ten **rastgele bir değer** alırız; yani `(id, name)` içeren bir tuple elde ederiz. Şuna benzer: `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
 
 Sonra tuple içindeki bu **iki değeri** `id` ve `name` değişkenlerine **atarız**.
 
-Böylece kullanıcı bir item ID’si vermemiş olsa bile yine de rastgele bir öneri alır.
+Böylece kullanıcı bir item ID'si vermemiş olsa bile yine de rastgele bir öneri alır.
 
-...bütün bunları **tek bir basit satırda** yapıyoruz. 🤯 Python’u sevmemek elde mi? 🐍
+...bütün bunları **tek bir basit satırda** yapıyoruz. 🤯 Python'u sevmemek elde mi? 🐍
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
 
@@ -438,7 +446,7 @@ Genel doğrulamalar ve metadata:
 * `description`
 * `deprecated`
 
-String’lere özel doğrulamalar:
+String'lere özel doğrulamalar:
 
 * `min_length`
 * `max_length`
