@@ -58,17 +58,17 @@ from app.routers import items
 
 ```bash
 .
-├── app                  # «app» - це пакет Python
-│   ├── __init__.py      # цей файл робить «app» «пакетом Python»
-│   ├── main.py          # модуль «main», напр. import app.main
-│   ├── dependencies.py  # модуль «dependencies», напр. import app.dependencies
-│   └── routers          # «routers» - це «підпакет Python»
-│   │   ├── __init__.py  # робить «routers» «підпакетом Python»
-│   │   ├── items.py     # підмодуль «items», напр. import app.routers.items
-│   │   └── users.py     # підмодуль «users», напр. import app.routers.users
-│   └── internal         # «internal» - це «підпакет Python»
-│       ├── __init__.py  # робить «internal» «підпакетом Python»
-│       └── admin.py     # підмодуль «admin», напр. import app.internal.admin
+├── app                  # "app" - це пакет Python
+│   ├── __init__.py      # цей файл робить "app" "пакетом Python"
+│   ├── main.py          # модуль "main", напр. import app.main
+│   ├── dependencies.py  # модуль "dependencies", напр. import app.dependencies
+│   └── routers          # "routers" - це "підпакет Python"
+│   │   ├── __init__.py  # робить "routers" "підпакетом Python"
+│   │   ├── items.py     # підмодуль "items", напр. import app.routers.items
+│   │   └── users.py     # підмодуль "users", напр. import app.routers.users
+│   └── internal         # "internal" - це "підпакет Python"
+│       ├── __init__.py  # робить "internal" "підпакетом Python"
+│       └── admin.py     # підмодуль "admin", напр. import app.internal.admin
 ```
 
 ## `APIRouter` { #apirouter }
@@ -95,7 +95,7 @@ from app.routers import items
 
 {* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
-Можете думати про `APIRouter` як про «міні `FastAPI`».
+Можете думати про `APIRouter` як про клас «міні `FastAPI`».
 
 Підтримуються ті самі опції.
 
@@ -129,7 +129,7 @@ from app.routers import items
 
 ## Інший модуль з `APIRouter` { #another-module-with-apirouter }
 
-Припустімо, у вас також є кінцеві точки для обробки «items» у модулі `app/routers/items.py`.
+Припустімо, у вас також є кінцеві точки для обробки «предметів» вашого застосунку в модулі `app/routers/items.py`.
 
 У вас є *операції шляху* для:
 
@@ -155,8 +155,7 @@ from app.routers import items
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...префікс не має містити кінцевий `/`.
@@ -180,7 +179,7 @@ async def read_item(item_id: str):
 
 ...як ми і планували.
 
-* Вони будуть позначені списком міток, що містить один рядок `"items"`.
+* Вони будуть позначені списком міток, що містить одну строку `"items"`.
     * Ці «мітки» особливо корисні для автоматичної інтерактивної документації (за допомогою OpenAPI).
 * Усі вони включатимуть наперед визначені `responses`.
 * Для всіх цих *операцій шляху* список `dependencies` буде оцінений/виконаний перед ними.
