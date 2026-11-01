@@ -1,6 +1,6 @@
 # フォームデータ { #form-data }
 
-JSONの代わりにフィールドを受け取る場合は、`Form`を使用します。
+JSONの代わりにフォームフィールドを受け取る場合は、`Form`を使用します。
 
 /// note | 備考
 
@@ -44,6 +44,14 @@ $ uv add python-multipart
 
 ///
 
+## ブール型のフォームフィールド { #boolean-form-fields }
+
+ブラウザはHTMLフォームを送信する際、チェックされていないチェックボックスを省略します。チェックされていない場合に`False`を受け取るには、デフォルト値を`False`にしたブール型のフォームパラメータを宣言します:
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+チェックされたチェックボックスはその値を送信し、デフォルトの値は`"on"`です。**FastAPI**は`"on"`を`True`として受け付けます。
+
 ## 「フォームフィールド」について { #about-form-fields }
 
 HTMLフォーム（`<form></form>`）がサーバにデータを送信する方法は、通常、そのデータに「特別な」エンコーディングを使用していますが、これはJSONとは異なります。
@@ -56,13 +64,15 @@ HTMLフォーム（`<form></form>`）がサーバにデータを送信する方�
 
 しかし、フォームがファイルを含む場合は、`multipart/form-data`としてエンコードされます。ファイルの扱いについては次の章で説明します。
 
+`Form(media_type="multipart/form-data")`を使用すると、OpenAPIでマルチパートフォームを記述できます。フォームパラメータやモデルを組み合わせる場合は、１つのパラメータに設定するだけで十分です。
+
 これらのエンコーディングやフォームフィールドの詳細については、[<abbr title="Mozilla Developer Network - Mozilla 開発者ネットワーク">MDN</abbr> の `POST` のウェブドキュメント](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)を参照してください。
 
 ///
 
 /// warning | 注意
 
-*path operation*で複数の`Form`パラメータを宣言することができますが、JSONとして受け取ることを期待している`Body`フィールドを宣言することはできません。なぜなら、リクエストは`application/x-www-form-urlencoded`の代わりに`application/json`を使ってボディをエンコードするからです。
+*path operation*で複数の`Form`パラメータを宣言することができますが、JSONとして受け取ることを期待している`Body`フィールドを宣言することはできません。なぜなら、リクエストは`application/json`の代わりに`application/x-www-form-urlencoded`を使ってボディをエンコードするからです。
 
 これは **FastAPI**の制限ではなく、HTTPプロトコルの一部です。
 

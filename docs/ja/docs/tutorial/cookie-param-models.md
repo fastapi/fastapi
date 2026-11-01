@@ -71,6 +71,22 @@ Pydanticのモデルの Configuration を利用して、 `extra` フィールド
 }
 ```
 
+## パラメータモデルの組み合わせ { #combine-parameter-models }
+
+複数のクッキーパラメータモデルを、個別のクッキーパラメータや依存関係と組み合わせることができます。[クエリパラメータモデル](query-param-models.md#combine-parameter-models)で説明されているように、各モデルは独立して抽出・バリデーションされます。
+
+各モデルの `extra` 設定は、他のモデルや依存関係で宣言されたものを含め、すべてのクッキーパラメータに適用されます。`extra="forbid"` の場合、そのモデルに含まれないクッキーはすべて拒否されます。`extra="allow"` の場合、それらのクッキーはモデルの追加フィールドとして含まれます。
+
+## 任意のクッキーパラメータモデル { #optional-cookie-parameter-models }
+
+クッキーパラメータモデルに `| None` とデフォルト値 `None` を指定して宣言すると、グループを任意にできます。
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+`theme` も `locale` も送信されない場合、`preferences` は `None` になります。どちらかが送信されると、FastAPIはモデルをバリデーションし、両方のフィールドを必須とします。
+
+デフォルト値、追加フィールド、OpenAPIについては、[任意のクエリパラメータモデル](query-param-models.md#optional-query-parameter-models)と同じルールが適用されます。
+
 ## まとめ { #summary }
 
 **FastAPI**では、<dfn title="帰る前に最後のクッキーをどうぞ。🍪">**クッキー**</dfn>を宣言するために、**Pydanticモデル**を使用できます。😎
