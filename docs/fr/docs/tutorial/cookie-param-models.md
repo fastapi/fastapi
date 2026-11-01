@@ -24,9 +24,9 @@ Déclarez les paramètres de **cookie** dont vous avez besoin dans un **modèle 
 
 **FastAPI** va **extraire** les données pour **chaque champ** à partir des **cookies** reçus dans la requête et vous fournir le modèle Pydantic que vous avez défini.
 
-## Consulter la documentation { #check-the-docs }
+## Consultez les documents { #check-the-docs }
 
-Vous pouvez voir les cookies définis dans l'interface de la documentation à `/docs` :
+Vous pouvez voir les cookies définis dans l'interface des documents à `/docs` :
 
 <div class="screenshot">
 <img src="/img/tutorial/cookie-param-models/image01.png">
@@ -36,9 +36,9 @@ Vous pouvez voir les cookies définis dans l'interface de la documentation à `/
 
 Gardez à l'esprit que, comme les **navigateurs gèrent les cookies** de manière particulière et en arrière-plan, ils **n'autorisent pas** facilement **JavaScript** à y accéder.
 
-Si vous allez dans **l'interface de la documentation de l'API** à `/docs`, vous pourrez voir la **documentation** des cookies pour vos *chemins d'accès*.
+Si vous allez dans **l'interface des documents de l'API** à `/docs`, vous pourrez voir la **documentation** des cookies pour vos *chemins d'accès*.
 
-Mais même si vous **remplissez les données** et cliquez sur « Execute », comme l'interface de la documentation fonctionne avec **JavaScript**, les cookies ne seront pas envoyés et vous verrez un **message d'erreur** comme si vous n'aviez saisi aucune valeur.
+Mais même si vous **remplissez les données** et cliquez sur « Execute », comme l'interface des documents fonctionne avec **JavaScript**, les cookies ne seront pas envoyés et vous verrez un **message d'erreur** comme si vous n'aviez saisi aucune valeur.
 
 ///
 
@@ -54,9 +54,9 @@ Vous pouvez utiliser la configuration du modèle de Pydantic pour `forbid` tout 
 
 Si un client tente d'envoyer des **cookies supplémentaires**, il recevra une **réponse d'erreur**.
 
-Pauvres bannières de cookies, avec tous leurs efforts pour obtenir votre consentement pour que l'<dfn title="C'est encore une blague. Ne faites pas attention à moi. Prenez un café avec votre cookie. ☕">API pour le rejeter</dfn>. 🍪
+Pauvres bannières de cookies, avec tous leurs efforts pour obtenir votre consentement pour que l'<dfn title="C'est encore une blague. Ne faites pas attention à moi. Prenez un café avec votre cookie. ☕">API le rejette</dfn>. 🍪
 
-Par exemple, si le client tente d'envoyer un cookie `santa_tracker` avec la valeur `good-list-please`, il recevra une **réponse d'erreur** lui indiquant que le `santa_tracker` <dfn title="Le Père Noël désapprouve le manque de cookies. 🎅 D'accord, plus de blagues de cookies.">le cookie n'est pas autorisé</dfn> :
+Par exemple, si le client tente d'envoyer un cookie `santa_tracker` avec la valeur `good-list-please`, il recevra une **réponse d'erreur** lui indiquant que le <dfn title="Le Père Noël désapprouve le manque de cookies. 🎅 D'accord, plus de blagues de cookies.">cookie `santa_tracker` n'est pas autorisé</dfn> :
 
 ```json
 {
@@ -70,6 +70,22 @@ Par exemple, si le client tente d'envoyer un cookie `santa_tracker` avec la vale
     ]
 }
 ```
+
+## Combiner des modèles de paramètres { #combine-parameter-models }
+
+Vous pouvez combiner plusieurs modèles de paramètres de cookies avec des paramètres de cookies individuels et des dépendances. Chaque modèle est extrait et validé indépendamment, comme expliqué pour les [modèles de paramètres de requête](query-param-models.md#combine-parameter-models).
+
+La configuration `extra` de chaque modèle s'applique à tous les paramètres de cookies, y compris ceux déclarés dans d'autres modèles ou dépendances. Avec `extra="forbid"`, tout cookie en dehors de ce modèle est rejeté. Avec `extra="allow"`, ces cookies sont inclus comme champs supplémentaires du modèle.
+
+## Modèles de paramètres de cookies optionnels { #optional-cookie-parameter-models }
+
+Déclarez un modèle de paramètres de cookies avec `| None` et une valeur par défaut de `None` pour rendre le groupe optionnel.
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+Si ni `theme` ni `locale` ne sont envoyés, `preferences` vaut `None`. Si l'un des deux est envoyé, FastAPI valide le modèle et exige les deux champs.
+
+Les mêmes règles concernant les valeurs par défaut, les champs supplémentaires et OpenAPI s'appliquent que pour les [modèles de paramètres de requête optionnels](query-param-models.md#optional-query-parameter-models).
 
 ## Récapitulatif { #summary }
 

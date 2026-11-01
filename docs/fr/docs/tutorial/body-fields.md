@@ -1,6 +1,6 @@
 # Corps - Champs { #body-fields }
 
-De la même manière que vous pouvez déclarer des validations supplémentaires et des métadonnées dans les paramètres d'une fonction de chemin d'accès avec `Query`, `Path` et `Body`, vous pouvez déclarer des validations et des métadonnées à l'intérieur des modèles Pydantic en utilisant `Field` de Pydantic.
+De la même manière que vous pouvez déclarer des validations supplémentaires et des métadonnées dans les paramètres d'une *fonction de chemin d'accès* avec `Query`, `Path` et `Body`, vous pouvez déclarer des validations et des métadonnées à l'intérieur des modèles Pydantic en utilisant `Field` de Pydantic.
 
 ## Importer `Field` { #import-field }
 
@@ -37,19 +37,19 @@ Rappelez-vous que lorsque vous importez `Query`, `Path` et d'autres depuis `fast
 
 /// tip | Astuce
 
-Remarquez comment chaque attribut de modèle avec un type, une valeur par défaut et `Field` a la même structure qu'un paramètre de fonction de chemin d'accès, avec `Field` au lieu de `Path`, `Query` et `Body`.
+Remarquez comment chaque attribut de modèle avec un type, une valeur par défaut et `Field` a la même structure qu'un paramètre de *fonction de chemin d'accès*, avec `Field` au lieu de `Path`, `Query` et `Body`.
 
 ///
 
 ## Ajouter des informations supplémentaires { #add-extra-information }
 
-Vous pouvez déclarer des informations supplémentaires dans `Field`, `Query`, `Body`, etc. Elles seront incluses dans le JSON Schema généré.
+Vous pouvez déclarer des informations supplémentaires avec `json_schema_extra` dans `Field`, `Query`, `Body`, etc. Elles seront incluses dans le JSON Schema généré.
 
 Vous en apprendrez davantage sur l'ajout d'informations supplémentaires plus loin dans les documents, lorsque vous apprendrez à déclarer des exemples.
 
 /// warning | Alertes
 
-Les clés supplémentaires passées à `Field` seront également présentes dans le schéma OpenAPI résultant pour votre application.
+Les clés supplémentaires passées dans `json_schema_extra` seront également présentes dans le schéma OpenAPI résultant pour votre application.
 Comme ces clés ne font pas nécessairement partie de la spécification OpenAPI, certains outils OpenAPI, par exemple [le validateur OpenAPI](https://validator.swagger.io/), peuvent ne pas fonctionner avec votre schéma généré.
 
 ///
@@ -58,4 +58,4 @@ Comme ces clés ne font pas nécessairement partie de la spécification OpenAPI,
 
 Vous pouvez utiliser `Field` de Pydantic pour déclarer des validations supplémentaires et des métadonnées pour les attributs de modèle.
 
-Vous pouvez également utiliser des arguments nommés supplémentaires pour transmettre des métadonnées JSON Schema additionnelles.
+Vous pouvez également utiliser `json_schema_extra` pour transmettre des métadonnées JSON Schema additionnelles.

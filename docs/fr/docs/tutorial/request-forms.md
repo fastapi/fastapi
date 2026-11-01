@@ -44,6 +44,14 @@ Pour déclarer des corps de formulaire, vous devez utiliser `Form` explicitement
 
 ///
 
+## Champs de formulaire booléens { #boolean-form-fields }
+
+Les navigateurs omettent les cases à cocher non cochées lors de l'envoi des formulaires HTML. Déclarez un paramètre de formulaire booléen avec une valeur par défaut de `False` pour recevoir `False` lorsque la case n'est pas cochée :
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+Une case cochée envoie sa valeur, qui est par défaut `"on"`. **FastAPI** accepte `"on"` comme `True`.
+
 ## À propos des « champs de formulaire » { #about-form-fields }
 
 La manière dont les formulaires HTML (`<form></form>`) envoient les données au serveur utilise normalement un encodage « spécial » pour ces données, différent de JSON.
@@ -56,13 +64,15 @@ Les données issues des formulaires sont normalement encodées avec le « type d
 
 Mais lorsque le formulaire inclut des fichiers, il est encodé en `multipart/form-data`. Vous lirez la gestion des fichiers dans le chapitre suivant.
 
+Vous pouvez utiliser `Form(media_type="multipart/form-data")` pour décrire un formulaire multipart dans OpenAPI. Le définir sur un seul paramètre suffit lorsque vous combinez des paramètres ou des modèles de formulaire.
+
 Si vous voulez en savoir plus sur ces encodages et les champs de formulaire, consultez les [documents web de la <abbr title="Mozilla Developer Network - Réseau des développeurs Mozilla">MDN</abbr> pour `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 
 /// warning | Alertes
 
-Vous pouvez déclarer plusieurs paramètres `Form` dans un chemin d'accès, mais vous ne pouvez pas aussi déclarer des champs `Body` que vous vous attendez à recevoir en JSON, car la requête aura le corps encodé en `application/x-www-form-urlencoded` au lieu de `application/json`.
+Vous pouvez déclarer plusieurs paramètres `Form` dans un *chemin d'accès*, mais vous ne pouvez pas aussi déclarer des champs `Body` que vous vous attendez à recevoir en JSON, car la requête aura le corps encodé en `application/x-www-form-urlencoded` au lieu de `application/json`.
 
 Ce n'est pas une limitation de **FastAPI**, cela fait partie du protocole HTTP.
 
