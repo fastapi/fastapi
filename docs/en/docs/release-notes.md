@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump authlib from 1.7.2 to 1.9.1. PR [#16637](https://github.com/fastapi/fastapi/pull/16637) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors: add MicroAuth. PR [#16641](https://github.com/fastapi/fastapi/pull/16641) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Pin pytest below 9.2 for pytest-xdist compatibility. PR [#16642](https://github.com/fastapi/fastapi/pull/16642) by [@tiangolo](https://github.com/tiangolo).
 * ⬆ Bump graphql-core from 3.2.7 to 3.3.1. PR [#16613](https://github.com/fastapi/fastapi/pull/16613) by [@dependabot[bot]](https://github.com/apps/dependabot).
