@@ -13,20 +13,20 @@ include_yaml:
   <a href="https://fastapi.tiangolo.com/sw"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>Framework ya FastAPI, yenye utendaji wa juu, rahisi kujifunza, ya haraka kuandika msimbo, tayari kwa matumizi halisi</em>
+    <em>Framework ya FastAPI, yenye utendaji wa juu, rahisi kujifunza, ya haraka kuandika msimbo, tayari kwa mazingira ya matumizi halisi</em>
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster">
     <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Majaribio">
 </a>
 <a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Kiwango cha msimbo unaopimwa">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Toleo la kifurushi">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Toleo la package">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Matoleo ya Python yanayoungwa mkono">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Matoleo ya Python yanayotumika">
 </a>
 </p>
 
@@ -38,26 +38,26 @@ include_yaml:
 
 ---
 
-FastAPI ni framework ya wavuti ya kisasa, ya haraka (yenye utendaji wa juu), ya kujenga API kwa Python kwa kutumia vidokezo vya aina vya kawaida vya Python.
+FastAPI ni framework ya wavuti ya kisasa, yenye kasi (utendaji wa juu), kwa ajili ya kuunda API kwa Python kwa kutumia type hints za kawaida za Python.
 
 Vipengele vyake muhimu ni:
 
-* **Haraka**: Utendaji wa juu sana, sawa na **NodeJS** na **Go** (shukrani kwa Starlette na Pydantic). [Mojawapo ya framework za Python zenye kasi kubwa zaidi zinazopatikana](#performance).
-* **Haraka kuandika msimbo**: Ongeza kasi ya kuunda vipengele kwa takribani 200% hadi 300%. *
-* **Hitilafu chache**: Punguza takribani 40% ya makosa yanayosababishwa na binadamu (waundaji wa programu). *
-* **Rahisi kuelewa**: Usaidizi mzuri katika kihariri. <dfn title="pia hujulikana kama ukamilishaji otomatiki, autocompletion, IntelliSense">Ukamilishaji</dfn> kila mahali. Muda mchache wa kutafuta na kurekebisha hitilafu.
-* **Rahisi**: Imebuniwa kuwa rahisi kutumia na kujifunza. Muda mchache wa kusoma nyaraka.
-* **Fupi**: Punguza urudiaji wa msimbo. Vipengele vingi kutokana na kila tamko la kigezo. Hitilafu chache.
-* **Imara**: Pata msimbo ulio tayari kwa matumizi halisi. Pamoja na nyaraka shirikishi zinazozalishwa kiotomatiki.
-* **Inafuata viwango**: Inategemea (na inaendana kikamilifu na) viwango huria vya API: [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (iliyokuwa ikijulikana kama Swagger) na [JSON Schema](https://json-schema.org/).
+* **Yenye kasi**: Utendaji wa juu sana, sawa na **NodeJS** na **Go** (shukrani kwa Starlette na Pydantic). [Mojawapo ya framework za Python zenye kasi zaidi zinazopatikana](#performance).
+* **Ya haraka kuandika msimbo**: Ongeza kasi ya kuunda vipengele kwa takriban 200% hadi 300%. *
+* **Bugs chache zaidi**: Punguza takriban 40% ya makosa yanayosababishwa na binadamu (waundaji wa programu). *
+* **Rahisi kuelewa**: Usaidizi mzuri sana wa editor. <dfn title="pia hujulikana kama auto-complete, autocompletion, IntelliSense">Completion</dfn> kila mahali. Muda mchache zaidi wa debugging.
+* **Rahisi**: Imeundwa ili iwe rahisi kutumia na kujifunza. Muda mchache zaidi wa kusoma nyaraka.
+* **Fupi**: Punguza kurudia msimbo. Vipengele vingi kutoka kwa kila tamko la kigezo. Bugs chache zaidi.
+* **Imara**: Pata msimbo ulio tayari kwa mazingira ya matumizi halisi. Ukiwa na nyaraka shirikishi zinazozalishwa kiotomatiki.
+* **Inayozingatia viwango**: Inategemea (na inaendana kikamilifu na) viwango wazi vya API: [OpenAPI](https://github.com/OAI/OpenAPI-Specification) (zamani ilijulikana kama Swagger) na [JSON Schema](https://json-schema.org/).
 
-<small>* makadirio yanayotokana na majaribio yaliyofanywa na timu ya ndani ya uundaji wa programu, ikijenga programu kwa matumizi halisi.</small>
+<small>* makadirio yanayotokana na majaribio yaliyofanywa na timu ya ndani ya uundaji wa programu, ikitengeneza programu kwa mazingira ya matumizi halisi.</small>
 
 ## Wadhamini { #sponsors }
 
 <!-- sponsors -->
 
-### Mdhamini Mkuu { #keystone-sponsor }
+### Mdhamini wa Ngazi ya Keystone { #keystone-sponsor }
 
 <div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
@@ -65,7 +65,7 @@ Vipengele vyake muhimu ni:
 {% endfor -%}
 </div>
 
-### Wadhamini wa Dhahabu { #gold-sponsors }
+### Wadhamini wa Ngazi ya Dhahabu { #gold-sponsors }
 
 <div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
@@ -73,7 +73,7 @@ Vipengele vyake muhimu ni:
 {% endfor -%}
 </div>
 
-### Wadhamini wa Fedha { #silver-sponsors }
+### Wadhamini wa Ngazi ya Fedha { #silver-sponsors }
 
 <div class="fastapi-sponsors fastapi-sponsors--silver">
 {% for sponsor in sponsors.silver -%}
@@ -109,15 +109,15 @@ Vipengele vyake muhimu ni:
     <div class="fastapi-opinions__attr">— Kabir Khan, <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(rejea)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
-    <blockquote class="fastapi-opinions__quote">"Tulichagua maktaba ya <strong>FastAPI</strong> kuanzisha seva ya <strong>REST</strong> inayoweza kuulizwa ili kupata <strong>utabiri</strong>." <em>[kwa Ludwig]</em></blockquote>
+    <blockquote class="fastapi-opinions__quote">"Tulianza kutumia library ya <strong>FastAPI</strong> kuanzisha server ya <strong>REST</strong> inayoweza kupokea query ili kupata <strong>utabiri</strong>." <em>[kwa Ludwig]</em></blockquote>
     <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(rejea)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
-    <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong> inafuraha kutangaza kutolewa kwa framework yetu ya uratibu wa <strong>usimamizi wa migogoro</strong> kama programu ya msimbo huria: <strong>Dispatch</strong>!" <em>[imejengwa kwa FastAPI]</em></blockquote>
+    <blockquote class="fastapi-opinions__quote">"<strong>Netflix</strong> inafuraha kutangaza kutolewa kwa framework yetu ya kuratibu <strong>usimamizi wa migogoro</strong> kama programu ya msimbo wazi: <strong>Dispatch</strong>!" <em>[imeundwa kwa FastAPI]</em></blockquote>
     <div class="fastapi-opinions__attr">— Kevin Glisson, Marc Vilanova, Forest Monsen, <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072">(rejea)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-cisco" role="tabpanel" aria-labelledby="fo-tab-cisco" tabindex="0" hidden>
-    <blockquote class="fastapi-opinions__quote">"Ikiwa mtu yeyote anataka kujenga API ya Python kwa matumizi halisi, ningependekeza sana <strong>FastAPI</strong>. <strong>Imebuniwa kwa ustadi</strong>, ni <strong>rahisi kutumia</strong> na <strong>ina uwezo mkubwa wa kukua kulingana na mahitaji</strong> — imekuwa <strong>sehemu muhimu</strong> ya mkakati wetu wa uundaji wa programu unaotanguliza API."</blockquote>
+    <blockquote class="fastapi-opinions__quote">"Ikiwa mtu yeyote anataka kuunda API ya Python kwa mazingira ya matumizi halisi, ningependekeza sana <strong>FastAPI</strong>. <strong>Imeundwa vizuri sana</strong>, <strong>ni rahisi kutumia</strong> na <strong>ina uwezo mkubwa wa kukua kulingana na mahitaji</strong> — imekuwa <strong>kipengele muhimu</strong> katika mkakati wetu wa uundaji wa programu unaotanguliza API."</blockquote>
     <div class="fastapi-opinions__attr">— Deon Pillsbury, <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(rejea)</a></div>
   </div>
 </div>
@@ -131,19 +131,19 @@ Vipengele vyake muhimu ni:
 
 ---
 
-"_Tulichagua maktaba ya **FastAPI** kuanzisha seva ya **REST** inayoweza kuulizwa ili kupata **utabiri**. [kwa Ludwig]_"
+"_Tulianza kutumia library ya **FastAPI** kuanzisha server ya **REST** inayoweza kupokea query ili kupata **utabiri**. [kwa Ludwig]_"
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, na Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(rejea)</small></a></div>
 
 ---
 
-"_**Netflix** inafuraha kutangaza kutolewa kwa framework yetu ya uratibu wa **usimamizi wa migogoro** kama programu ya msimbo huria: **Dispatch**! [imejengwa kwa **FastAPI**]_"
+"_**Netflix** inafuraha kutangaza kutolewa kwa framework yetu ya kuratibu **usimamizi wa migogoro** kama programu ya msimbo wazi: **Dispatch**! [imeundwa kwa **FastAPI**]_"
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(rejea)</small></a></div>
 
 ---
 
-"_Ikiwa mtu yeyote anataka kujenga API ya Python kwa matumizi halisi, ningependekeza sana **FastAPI**. **Imebuniwa kwa ustadi**, ni **rahisi kutumia** na **ina uwezo mkubwa wa kukua kulingana na mahitaji**, imekuwa **sehemu muhimu** ya mkakati wetu wa uundaji wa programu unaotanguliza API na inaendesha kazi nyingi za kiotomatiki na huduma kama vile Virtual TAC Engineer yetu._"
+"_Ikiwa mtu yeyote anataka kuunda API ya Python kwa mazingira ya matumizi halisi, ningependekeza sana **FastAPI**. **Imeundwa vizuri sana**, **ni rahisi kutumia** na **ina uwezo mkubwa wa kukua kulingana na mahitaji**, imekuwa **kipengele muhimu** katika mkakati wetu wa uundaji wa programu unaotanguliza API na inaendesha mifumo mingi ya kufanya kazi kiotomatiki na huduma kama vile Virtual TAC Engineer yetu._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(rejea)</small></a></div>
 
@@ -161,13 +161,13 @@ Kuna [filamu fupi ya makala kuhusu FastAPI](https://www.youtube.com/watch?v=mpR8
 
 <a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-Ikiwa unajenga programu ya <abbr title="Command Line Interface - Kiolesura cha Mstari wa Amri">CLI</abbr> itakayotumika kwenye terminal badala ya API ya wavuti, angalia [**Typer**](https://typer.tiangolo.com/).
+Ikiwa unaunda programu ya <abbr title="Command Line Interface - Kiolesura cha Mstari wa Amri">CLI</abbr> itakayotumika kwenye terminal badala ya API ya wavuti, angalia [**Typer**](https://typer.tiangolo.com/).
 
 **Typer** ni mdogo wake FastAPI. Na imekusudiwa kuwa **FastAPI ya CLI**. ⌨️ 🚀
 
 ## Mahitaji { #requirements }
 
-FastAPI imejengwa juu ya kazi kubwa za wengine:
+FastAPI inajengwa juu ya kazi bora za wengine:
 
 * [Starlette](https://starlette.dev/) kwa sehemu za wavuti.
 * [Pydantic](https://pydantic.dev/docs/) kwa sehemu za data.
@@ -186,9 +186,9 @@ $ uv add "fastapi[standard]"
 
 </div>
 
-**Kumbuka**: Hakikisha unaweka `"fastapi[standard]"` ndani ya alama za kunukuu ili ifanye kazi katika terminal zote.
+**Kumbuka**: Hakikisha umeweka `"fastapi[standard]"` ndani ya alama za kunukuu ili ifanye kazi katika terminal zote.
 
-Ikiwa unapendelea kutumia `pip`, sakinisha `fastapi[standard]` ndani ya mazingira pepe. Angalia [mwongozo wa usakinishaji](tutorial/#install-fastapi) kwa hatua mbadala.
+Ikiwa unapendelea kutumia `pip`, sakinisha `fastapi[standard]` ndani ya virtual environment. Angalia [mwongozo wa usakinishaji](tutorial/#install-fastapi) kwa hatua mbadala.
 
 ## Mfano { #example }
 
@@ -235,13 +235,13 @@ async def read_item(item_id: int, q: str | None = None):
 
 **Kumbuka**:
 
-Ikiwa huna uhakika, angalia sehemu ya _"Una haraka?"_ kuhusu [`async` na `await` kwenye nyaraka](https://fastapi.tiangolo.com/sw/async/#in-a-hurry).
+Ikiwa hujui, angalia sehemu ya _"Una haraka?"_ kuhusu [`async` na `await` katika nyaraka](https://fastapi.tiangolo.com/sw/async/#in-a-hurry).
 
 </details>
 
 ### Iendeshe { #run-it }
 
-Endesha seva kwa:
+Endesha server kwa:
 
 <div class="termy">
 
@@ -273,11 +273,11 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Kuhusu amri <code>fastapi dev</code>...</summary>
 
-Amri `fastapi dev` husoma faili lako la `main.py` kiotomatiki, hutambua programu ya **FastAPI** iliyomo, na huanzisha seva kwa kutumia [Uvicorn](https://uvicorn.dev).
+Amri `fastapi dev` husoma faili yako ya `main.py` kiotomatiki, hutambua programu ya **FastAPI** ndani yake, na kuanzisha server kwa kutumia [Uvicorn](https://uvicorn.dev).
 
-Kwa chaguo-msingi, `fastapi dev` huanza ikiwa na upakiaji upya wa kiotomatiki uliowezeshwa kwa uundaji wa programu kwenye kompyuta yako.
+Kwa chaguo-msingi, `fastapi dev` itaanza ikiwa na auto-reload iliyowezeshwa kwa uundaji wa programu kwenye kompyuta yako.
 
-Unaweza kusoma zaidi kuihusu kwenye [nyaraka za FastAPI CLI](https://fastapi.tiangolo.com/sw/fastapi-cli/).
+Unaweza kusoma zaidi kuihusu katika [nyaraka za FastAPI CLI](https://fastapi.tiangolo.com/sw/fastapi-cli/).
 
 </details>
 
@@ -285,7 +285,7 @@ Unaweza kusoma zaidi kuihusu kwenye [nyaraka za FastAPI CLI](https://fastapi.tia
 
 Fungua kivinjari chako kwenye [http://127.0.0.1:8000/items/5?q=somequery](http://127.0.0.1:8000/items/5?q=somequery).
 
-Utaona jibu la JSON kama:
+Utaona response ya JSON kama:
 
 ```JSON
 {"item_id": 5, "q": "somequery"}
@@ -293,10 +293,10 @@ Utaona jibu la JSON kama:
 
 Tayari umeunda API ambayo:
 
-* Inapokea maombi ya HTTP kwenye _njia_ `/` na `/items/{item_id}`.
-* _Njia_ zote mbili zinakubali <em>operesheni</em> za `GET` (pia hujulikana kama _mbinu_ za HTTP).
-* _Njia_ `/items/{item_id}` ina _kigezo cha njia_ `item_id` ambacho kinapaswa kuwa `int`.
-* _Njia_ `/items/{item_id}` ina _kigezo cha hoja_ `q` cha hiari cha aina ya `str`.
+* Inapokea request za HTTP kwenye _path_ `/` na `/items/{item_id}`.
+* _Path_ zote mbili zinakubali <em>operation</em> za `GET` (zinazojulikana pia kama _method_ za HTTP).
+* _Path_ `/items/{item_id}` ina _kigezo cha path_ `item_id` ambacho kinapaswa kuwa `int`.
+* _Path_ `/items/{item_id}` ina _kigezo cha query_ `q` cha hiari chenye type ya `str`.
 
 ### Nyaraka shirikishi za API { #interactive-api-docs }
 
@@ -316,9 +316,9 @@ Utaona nyaraka mbadala zinazozalishwa kiotomatiki (zinazotolewa na [ReDoc](https
 
 ## Kuboresha mfano { #example-upgrade }
 
-Sasa rekebisha faili `main.py` ili lipokee mwili wa ombi la `PUT`.
+Sasa rekebisha faili `main.py` ili ipokee body kutoka kwenye request ya `PUT`.
 
-Tamka mwili huo kwa kutumia aina za kawaida za Python, shukrani kwa Pydantic.
+Tamka body kwa kutumia type za kawaida za Python, shukrani kwa Pydantic.
 
 ```Python hl_lines="2  7-10 23-25"
 from fastapi import FastAPI
@@ -348,13 +348,13 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-Seva ya `fastapi dev` inapaswa kupakia upya kiotomatiki.
+Server ya `fastapi dev` inapaswa kufanya reload kiotomatiki.
 
 ### Kuboresha nyaraka shirikishi za API { #interactive-api-docs-upgrade }
 
 Sasa nenda kwenye [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-* Nyaraka shirikishi za API zitasasishwa kiotomatiki, zikijumuisha mwili mpya wa ombi:
+* Nyaraka shirikishi za API zitasasishwa kiotomatiki, zikiwemo taarifa za body mpya:
 
 ![Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
@@ -362,7 +362,7 @@ Sasa nenda kwenye [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 ![Mwingiliano wa Swagger UI](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
-* Kisha bofya kitufe cha "Execute", kiolesura cha mtumiaji kitawasiliana na API yako, kutuma vigezo, kupata matokeo na kuyaonyesha kwenye skrini:
+* Kisha bofya kitufe cha "Execute", kiolesura cha mtumiaji kitawasiliana na API yako, kitatuma vigezo, kitapata matokeo na kuyaonyesha kwenye skrini:
 
 ![Mwingiliano wa Swagger UI](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
@@ -370,17 +370,17 @@ Sasa nenda kwenye [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 Na sasa, nenda kwenye [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-* Nyaraka mbadala pia zitaonyesha kigezo kipya cha hoja na mwili wa ombi:
+* Nyaraka mbadala pia zitaonyesha kigezo kipya cha query na body:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
 ### Muhtasari { #recap }
 
-Kwa ufupi, unatamka **mara moja** aina za vigezo, mwili wa ombi, n.k. kama vigezo vya function.
+Kwa muhtasari, unatamka **mara moja** type za vigezo, body, n.k. kama vigezo vya function.
 
-Unafanya hivyo kwa kutumia aina za kawaida za kisasa za Python.
+Unafanya hivyo kwa type za kawaida za Python ya kisasa.
 
-Huhitaji kujifunza sintaksia mpya, mbinu au madarasa ya maktaba fulani, n.k.
+Huhitaji kujifunza sintaksia mpya, method au class za library fulani, n.k.
 
 Ni **Python** ya kawaida tu.
 
@@ -390,7 +390,7 @@ Kwa mfano, kwa `int`:
 item_id: int
 ```
 
-au kwa modeli changamano zaidi ya `Item`:
+au kwa model ya `Item` iliyo changamano zaidi:
 
 ```Python
 item: Item
@@ -398,27 +398,27 @@ item: Item
 
 ...na kwa tamko hilo moja unapata:
 
-* Usaidizi wa kihariri, ukiwemo:
-    * Ukamilishaji.
-    * Ukaguzi wa aina.
+* Usaidizi wa editor, ukiwemo:
+    * Completion.
+    * Ukaguzi wa type.
 * Uhakiki wa uhalali wa data:
-    * Ujumbe wa makosa ulio wazi unaotolewa kiotomatiki data inapokuwa si halali.
-    * Uhakiki hata kwa objekti za JSON zilizopachikwa ndani ya nyingine kwa kina.
-* <dfn title="pia hujulikana kama: serialization, uchanganuzi, marshalling">Ubadilishaji</dfn> wa data ya ingizo: inayotoka kwenye mtandao kuwa data na aina za Python. Kusoma kutoka:
+    * Makosa yaliyo wazi yanayotolewa kiotomatiki wakati data si halali.
+    * Uhakiki wa uhalali hata kwa object za JSON zilizopachikwa kwa kina.
+* <dfn title="pia hujulikana kama: serialization, parsing, marshalling">Ubadilishaji</dfn> wa data inayoingia: inayotoka kwenye mtandao kwenda kwenye data na type za Python. Kusoma kutoka kwenye:
     * JSON.
-    * Vigezo vya njia.
-    * Vigezo vya hoja.
-    * Vidakuzi.
-    * Vichwa.
+    * Vigezo vya path.
+    * Vigezo vya query.
+    * Cookies.
+    * Headers.
     * Fomu.
     * Faili.
-* <dfn title="pia hujulikana kama: serialization, uchanganuzi, marshalling">Ubadilishaji</dfn> wa data ya matokeo: kubadilisha data na aina za Python kuwa data ya mtandao (kama JSON):
-    * Kubadilisha aina za Python (`str`, `int`, `float`, `bool`, `list`, n.k.).
-    * Objekti za `datetime`.
-    * Objekti za `UUID`.
-    * Modeli za hifadhidata.
-    * ...na nyingine nyingi.
-* Nyaraka shirikishi za API zinazozalishwa kiotomatiki, zikiwemo chaguo 2 za violesura vya mtumiaji:
+* <dfn title="pia hujulikana kama: serialization, parsing, marshalling">Ubadilishaji</dfn> wa data inayotoka: kubadilisha kutoka data na type za Python kwenda data ya mtandao (kama JSON):
+    * Kubadilisha type za Python (`str`, `int`, `float`, `bool`, `list`, n.k.).
+    * Object za `datetime`.
+    * Object za `UUID`.
+    * Model za hifadhidata.
+    * ...na mengine mengi.
+* Nyaraka shirikishi za API zinazozalishwa kiotomatiki, zikiwa na violesura 2 mbadala vya mtumiaji:
     * Swagger UI.
     * ReDoc.
 
@@ -426,26 +426,26 @@ item: Item
 
 Tukirudi kwenye mfano wa msimbo uliotangulia, **FastAPI** itafanya yafuatayo:
 
-* Kuhakiki kuwa kuna `item_id` kwenye njia kwa maombi ya `GET` na `PUT`.
-* Kuhakiki kuwa `item_id` ni ya aina ya `int` kwa maombi ya `GET` na `PUT`.
-    * Ikiwa sivyo, mteja ataona ujumbe wa kosa ulio wazi na wenye manufaa.
-* Kukagua ikiwa kuna kigezo cha hoja cha hiari kinachoitwa `q` (kama kwenye `http://127.0.0.1:8000/items/foo?q=somequery`) kwa maombi ya `GET`.
-    * Kwa kuwa kigezo cha `q` kimetamkwa na `= None`, ni cha hiari.
-    * Bila `None` kingehitajika (kama mwili wa ombi unavyohitajika kwa `PUT`).
-* Kwa maombi ya `PUT` kwenda `/items/{item_id}`, kusoma mwili wa ombi kama JSON:
-    * Kukagua kuwa una sifa inayohitajika ya `name` ambayo inapaswa kuwa `str`.
-    * Kukagua kuwa una sifa inayohitajika ya `price` ambayo lazima iwe `float`.
-    * Kukagua kuwa una sifa ya hiari ya `is_offer`, ambayo inapaswa kuwa `bool`, ikiwa ipo.
-    * Yote haya yangefanya kazi pia kwa objekti za JSON zilizopachikwa ndani ya nyingine kwa kina.
+* Kuhakiki kuwa kuna `item_id` kwenye path kwa request za `GET` na `PUT`.
+* Kuhakiki kuwa `item_id` ina type ya `int` kwa request za `GET` na `PUT`.
+    * Ikiwa sivyo, client itaona ujumbe wa kosa ulio wazi na wenye manufaa.
+* Kukagua kama kuna kigezo cha query cha hiari kinachoitwa `q` (kama katika `http://127.0.0.1:8000/items/foo?q=somequery`) kwa request za `GET`.
+    * Kwa kuwa kigezo `q` kimetamkwa kwa `= None`, ni cha hiari.
+    * Bila `None` kingehitajika (kama ilivyo kwa body katika `PUT`).
+* Kwa request za `PUT` kwenda `/items/{item_id}`, kusoma body kama JSON:
+    * Kukagua kuwa ina attribute inayohitajika ya `name` ambayo inapaswa kuwa `str`.
+    * Kukagua kuwa ina attribute inayohitajika ya `price` ambayo lazima iwe `float`.
+    * Kukagua kuwa ina attribute ya hiari ya `is_offer`, ambayo inapaswa kuwa `bool`, ikiwa ipo.
+    * Yote haya pia yangefanya kazi kwa object za JSON zilizopachikwa kwa kina.
 * Kubadilisha kutoka na kwenda JSON kiotomatiki.
-* Kuandika nyaraka za kila kitu kwa OpenAPI, zinazoweza kutumiwa na:
+* Kuandika nyaraka za kila kitu kwa OpenAPI, ambazo zinaweza kutumiwa na:
     * Mifumo ya nyaraka shirikishi.
-    * Mifumo ya kuzalisha msimbo wa mteja kiotomatiki, kwa lugha nyingi.
+    * Mifumo ya kuzalisha msimbo wa client kiotomatiki, kwa lugha nyingi.
 * Kutoa moja kwa moja violesura 2 vya wavuti vya nyaraka shirikishi.
 
 ---
 
-Tumegusia kwa juu juu tu, lakini tayari unaelewa jinsi yote yanavyofanya kazi.
+Tumegusia mwanzo tu, lakini tayari una wazo la jinsi yote yanavyofanya kazi.
 
 Jaribu kubadilisha mstari wenye:
 
@@ -459,36 +459,36 @@ Jaribu kubadilisha mstari wenye:
         ... "item_name": item.name ...
 ```
 
-...kuwa:
+...kwenda:
 
 ```Python
         ... "item_price": item.price ...
 ```
 
-...na uone jinsi kihariri chako kitakavyokamilisha sifa kiotomatiki na kujua aina zake:
+...na uone jinsi editor yako itakavyofanya auto-complete ya attribute na kujua type zake:
 
-![usaidizi wa kihariri](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![usaidizi wa editor](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 Kwa mfano kamili zaidi unaojumuisha vipengele zaidi, angalia <a href="https://fastapi.tiangolo.com/sw/tutorial/">Mafunzo - Mwongozo wa Mtumiaji</a>.
 
-**Dokezo la yaliyomo**: mafunzo - mwongozo wa mtumiaji unajumuisha:
+**Dokezo la yaliyomo mbele**: mafunzo - mwongozo wa mtumiaji unajumuisha:
 
-* Utamkaji wa **vigezo** kutoka sehemu nyingine tofauti kama vile: **vichwa**, **vidakuzi**, **nyuga za fomu** na **faili**.
-* Jinsi ya kuweka **vikwazo vya uhakiki wa uhalali** kama vile `maximum_length` au `regex`.
-* Mfumo wenye uwezo mkubwa na rahisi kutumia wa **<dfn title="pia hujulikana kama vipengele, rasilimali, watoa huduma, huduma, vipengele vinavyoweza kudungwa">Udungaji wa Vitegemezi</dfn>**.
-* Usalama na uthibitishaji wa utambulisho, ikiwemo usaidizi wa **OAuth2** yenye **tokeni za JWT** na uthibitishaji wa utambulisho wa **HTTP Basic**.
-* Mbinu za kiwango cha juu zaidi (lakini rahisi vilevile) za kutamka **modeli za JSON zilizopachikwa ndani ya nyingine kwa kina** (shukrani kwa Pydantic).
-* Uunganishaji wa **GraphQL** na [Strawberry](https://strawberry.rocks) na maktaba nyingine.
+* Kutamka **vigezo** kutoka sehemu nyingine tofauti kama vile: **headers**, **cookies**, **form fields** na **faili**.
+* Jinsi ya kuweka **masharti ya uhakiki wa uhalali** kama vile `maximum_length` au `regex`.
+* Mfumo wenye uwezo mkubwa sana na rahisi kutumia wa **<dfn title="pia hujulikana kama components, resources, providers, services, injectables">Dependency Injection</dfn>**.
+* Usalama na uthibitishaji wa utambulisho, ukiwemo usaidizi wa **OAuth2** yenye **token za JWT** na uthibitishaji wa utambulisho wa **HTTP Basic**.
+* Mbinu za juu zaidi (lakini rahisi vilevile) za kutamka **model za JSON zilizopachikwa kwa kina** (shukrani kwa Pydantic).
+* Uunganishaji wa **GraphQL** na [Strawberry](https://strawberry.rocks) na library nyingine.
 * Vipengele vingi vya ziada (shukrani kwa Starlette) kama vile:
     * **WebSockets**
     * majaribio rahisi sana yanayotumia HTTPX na `pytest`
     * **CORS**
-    * **Vikao vya Vidakuzi**
+    * **Cookie Sessions**
     * ...na zaidi.
 
-### Weka programu yako iweze kuendeshwa (hiari) { #deploy-your-app-optional }
+### Fanya deployment ya programu yako (hiari) { #deploy-your-app-optional }
 
-Ukipenda, unaweza kuweka programu yako ya FastAPI iweze kuendeshwa kwenye [FastAPI Cloud](https://fastapicloud.com) kwa amri moja. 🚀
+Ukipenda, unaweza kufanya deployment ya programu yako ya FastAPI kwenye [FastAPI Cloud](https://fastapicloud.com) kwa amri moja tu. 🚀
 
 <div class="termy">
 
@@ -504,31 +504,31 @@ Deploying to FastAPI Cloud...
 
 </div>
 
-CLI itatambua programu yako ya FastAPI kiotomatiki na kuiweka iweze kuendeshwa kwenye wingu. Ikiwa hujaingia katika akaunti yako, kivinjari chako kitafunguka ili kukamilisha mchakato wa uthibitishaji wa utambulisho.
+CLI itatambua programu yako ya FastAPI kiotomatiki na kufanya deployment yake kwenye cloud. Ikiwa hujaingia kwenye akaunti, kivinjari chako kitafunguka ili kukamilisha mchakato wa uthibitishaji wa utambulisho.
 
 Ni hivyo tu! Sasa unaweza kufikia programu yako kwenye URL hiyo. ✨
 
 #### Kuhusu FastAPI Cloud { #about-fastapi-cloud }
 
-**[FastAPI Cloud](https://fastapicloud.com)** imejengwa na mtunzi yuleyule na timu iliyounda **FastAPI**.
+**[FastAPI Cloud](https://fastapicloud.com)** imeundwa na mtunzi yuleyule na timu ileile iliyounda **FastAPI**.
 
-Inarahisisha mchakato wa **kujenga**, **kuweka iweze kuendeshwa**, na **kufikia** API kwa juhudi ndogo sana.
+Inarahisisha mchakato wa **kuunda**, **kufanya deployment**, na **kufikia** API kwa juhudi chache sana.
 
-Inaleta **urahisi uleule kwa waundaji wa programu** wanaojenga programu kwa FastAPI kwenye mchakato wa **kuziweka ziweze kuendeshwa** kwenye wingu. 🎉
+Inaleta **uzoefu uleule wa uundaji wa programu** unaoupata unapounda programu kwa FastAPI kwenye **kufanya deployment** yake kwenye cloud. 🎉
 
-FastAPI Cloud ndiyo mdhamini mkuu na mtoa ufadhili wa miradi ya msimbo huria ya *FastAPI na marafiki*. ✨
+FastAPI Cloud ndiyo mdhamini mkuu na mtoaji wa ufadhili wa miradi ya msimbo wazi ya *FastAPI and friends*. ✨
 
-#### Weka programu iweze kuendeshwa kwa watoa huduma wengine wa wingu { #deploy-to-other-cloud-providers }
+#### Fanya deployment kwa watoa huduma wengine wa cloud { #deploy-to-other-cloud-providers }
 
-FastAPI ni ya msimbo huria na inafuata viwango. Unaweza kuweka programu za FastAPI ziweze kuendeshwa kwa mtoa huduma yeyote wa wingu unayemchagua.
+FastAPI ni ya msimbo wazi na inategemea viwango. Unaweza kufanya deployment ya programu za FastAPI kwa mtoa huduma yeyote wa cloud unayemchagua.
 
-Fuata miongozo ya mtoa huduma wako wa wingu ili kuweka programu za FastAPI ziweze kuendeshwa kwake. 🤓
+Fuata miongozo ya mtoa huduma wako wa cloud ili kufanya deployment ya programu za FastAPI kwake. 🤓
 
 ## Utendaji { #performance }
 
-Vipimo huru vya utendaji vya TechEmpower vinaonyesha programu za **FastAPI** zinazoendeshwa kwa Uvicorn zikiifanya iwe [mojawapo ya framework za Python zenye kasi kubwa zaidi zinazopatikana](https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7), ikizidiwa tu na Starlette na Uvicorn zenyewe (zinazotumiwa ndani ya FastAPI). (*)
+Vipimo huru vya utendaji vya TechEmpower vinaonyesha kuwa programu za **FastAPI** zinazoendeshwa kwa Uvicorn zinaifanya kuwa [mojawapo ya framework za Python zenye kasi zaidi zinazopatikana](https://www.techempower.com/benchmarks/#section=test&runid=7464e520-0dc2-473d-bd34-dbdfd7e85911&hw=ph&test=query&l=zijzen-7), zikiwa nyuma ya Starlette na Uvicorn zenyewe tu (zinazotumiwa ndani ya FastAPI). (*)
 
-Ili kuelewa zaidi kuhusu hili, angalia sehemu ya [Vipimo vya Utendaji](https://fastapi.tiangolo.com/sw/benchmarks/).
+Ili kuelewa zaidi kuhusu hili, angalia sehemu ya [Vipimo vya utendaji](https://fastapi.tiangolo.com/sw/benchmarks/).
 
 ## Vitegemezi { #dependencies }
 
@@ -536,23 +536,23 @@ FastAPI inategemea Pydantic na Starlette.
 
 ### Vitegemezi vya `standard` { #standard-dependencies }
 
-Unaposakinisha FastAPI kwa `uv add "fastapi[standard]"` inakuja na kundi la `standard` la vitegemezi vya hiari:
+Unaposakinisha FastAPI kwa `uv add "fastapi[standard]"`, inakuja na kundi la `standard` la vitegemezi vya hiari:
 
 Vinavyotumiwa na Pydantic:
 
-* [`email-validator`](https://github.com/JoshData/python-email-validator) - kwa uhakiki wa uhalali wa anwani za barua pepe.
+* [`email-validator`](https://github.com/JoshData/python-email-validator) - kwa uhakiki wa uhalali wa barua pepe.
 
 Vinavyotumiwa na Starlette:
 
-* [`httpx2`](https://pydantic.dev/docs/httpx2/) (au `httpx`) - Hutumiwa na `TestClient`.
-* [`jinja2`](https://jinja.palletsprojects.com) - Inahitajika ikiwa unataka kutumia usanidi wa chaguo-msingi wa violezo.
-* [`python-multipart`](https://github.com/Kludex/python-multipart) - Inahitajika ikiwa unataka kuwezesha <dfn title="kubadilisha mfuatano wa herufi unaotoka kwenye ombi la HTTP kuwa data ya Python">"uchanganuzi"</dfn> wa fomu, kwa `request.form()`.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (au `httpx`) - Inatumiwa na `TestClient`.
+* [`jinja2`](https://jinja.palletsprojects.com) - Inahitajika ikiwa unataka kutumia usanidi wa chaguo-msingi wa template.
+* [`python-multipart`](https://github.com/Kludex/python-multipart) - Inahitajika ikiwa unataka kuwezesha <dfn title="kubadilisha string inayotoka kwenye request ya HTTP kuwa data ya Python">"parsing"</dfn> ya fomu, kwa `request.form()`.
 
 Vinavyotumiwa na FastAPI:
 
-* [`uvicorn`](https://uvicorn.dev) - kwa seva inayopakia na kuendesha programu yako ili kuhudumia maombi. Hii inajumuisha `uvicorn[standard]`, ambayo inajumuisha baadhi ya vitegemezi (k.m. `uvloop`) vinavyohitajika kwa kuhudumia maombi kwa utendaji wa juu.
-* `fastapi-cli[standard]` - kutoa amri ya `fastapi`.
-    * Hii inajumuisha `fastapi-cloud-cli`, ambayo inakuwezesha kuweka programu yako ya FastAPI iweze kuendeshwa kwenye [FastAPI Cloud](https://fastapicloud.com).
+* [`uvicorn`](https://uvicorn.dev) - kwa server inayopakia na kuendesha programu yako ili itumike. Hii inajumuisha `uvicorn[standard]`, ambayo ina baadhi ya vitegemezi (k.m. `uvloop`) vinavyohitajika kutoa huduma kwa utendaji wa juu.
+* `fastapi-cli[standard]` - ili kutoa amri ya `fastapi`.
+    * Hii inajumuisha `fastapi-cloud-cli`, inayokuwezesha kufanya deployment ya programu yako ya FastAPI kwenye [FastAPI Cloud](https://fastapicloud.com).
 
 ### Bila Vitegemezi vya `standard` { #without-standard-dependencies }
 
@@ -569,7 +569,7 @@ Kuna baadhi ya vitegemezi vya ziada ambavyo huenda ukataka kusakinisha.
 Vitegemezi vya ziada vya hiari vya Pydantic:
 
 * [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - kwa usimamizi wa mipangilio.
-* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - kwa aina za ziada za kutumia na Pydantic.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - kwa type za ziada zinazoweza kutumiwa na Pydantic.
 
 Vitegemezi vya ziada vya hiari vya FastAPI:
 
@@ -578,4 +578,4 @@ Vitegemezi vya ziada vya hiari vya FastAPI:
 
 ## Leseni { #license }
 
-Mradi huu umepewa leseni chini ya masharti ya leseni ya MIT.
+Mradi huu una leseni chini ya masharti ya leseni ya MIT.

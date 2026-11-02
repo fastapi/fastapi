@@ -1,17 +1,17 @@
 # Faili ya majaribio ya LLM { #llm-test-file }
 
-Hati hii inajaribu kama <abbr title="Large Language Model - Modeli Kubwa ya Lugha">LLM</abbr>, inayotafsiri nyaraka, inaelewa `general_prompt` katika `scripts/translate.py` na prompt maalumu ya lugha katika `docs/{language code}/llm-prompt.md`. Prompt maalumu ya lugha huongezwa mwishoni mwa `general_prompt`.
+Hati hii inajaribu kama <abbr title="Large Language Model - Modeli Kubwa ya Lugha">LLM</abbr>, inayotafsiri nyaraka, inaelewa `general_prompt` katika `scripts/translate.py` na prompt mahususi ya lugha katika `docs/{language code}/llm-prompt.md`. Prompt mahususi ya lugha huongezwa mwishoni mwa `general_prompt`.
 
-Majaribio yanayoongezwa hapa yataonekana kwa wabunifu wote wa prompt maalumu za lugha.
+Majaribio yanayoongezwa hapa yataonekana kwa wabunifu wote wa prompt mahususi za lugha.
 
 Tumia kama ifuatavyo:
 
-* Kuwa na prompt maalumu ya lugha - `docs/{language code}/llm-prompt.md`.
-* Tafsiri hati hii upya kwenda lugha unayolenga (tazama, kwa mfano, amri ya `translate-page` ya `translate.py`). Hii itaunda tafsiri katika `docs/{language code}/docs/_llm-test.md`.
-* Kagua kama kila kitu kiko sawa katika tafsiri.
-* Ikihitajika, boresha prompt yako maalumu ya lugha, prompt ya jumla, au hati ya Kiingereza.
-* Kisha rekebisha mwenyewe matatizo yaliyobaki katika tafsiri, ili iwe tafsiri nzuri.
-* Tafsiri tena, huku tafsiri hiyo nzuri ikiwa tayari ipo. Matokeo bora yangekuwa kwamba LLM haifanyi tena mabadiliko yoyote kwenye tafsiri. Hiyo inamaanisha kwamba prompt ya jumla na prompt yako maalumu ya lugha ni bora kadiri iwezekanavyo (Wakati mwingine itafanya mabadiliko machache yanayoonekana kuwa ya nasibu; sababu ni kwamba [LLM si algoriti zinazotoa matokeo yaleyale kila mara kwa ingizo lilelile](https://doublespeak.chat/#/handbook#deterministic-output)).
+* Kuwa na prompt mahususi ya lugha - `docs/{language code}/llm-prompt.md`.
+* Tafsiri hati hii upya katika lugha unayotaka (tazama, kwa mfano, amri ya `translate-page` ya `translate.py`). Hii itaunda tafsiri katika `docs/{language code}/docs/_llm-test.md`.
+* Kagua kama mambo yako sawa katika tafsiri.
+* Ikihitajika, boresha prompt yako mahususi ya lugha, prompt ya jumla, au hati ya Kiingereza.
+* Kisha rekebisha mwenyewe matatizo yaliyosalia katika tafsiri, ili iwe tafsiri nzuri.
+* Tafsiri tena, huku tafsiri nzuri ikiwa tayari ipo. Matokeo bora yangekuwa kwamba LLM haibadilishi tena chochote katika tafsiri. Hiyo inamaanisha kwamba prompt ya jumla na prompt yako mahususi ya lugha ni bora kadiri inavyowezekana (Wakati mwingine itafanya mabadiliko machache yanayoonekana kuwa ya nasibu, sababu ikiwa kwamba [LLM si algoriti zinazotoa matokeo yale yale kila wakati kwa ingizo lile lile](https://doublespeak.chat/#/handbook#deterministic-output)).
 
 Majaribio:
 
@@ -39,7 +39,7 @@ Jana, rafiki yangu aliandika: "Ukiandika neno kimakosa kwa usahihi, umeliandika 
 
 /// note | Tanbihi
 
-Huenda LLM ikatafsiri hili vibaya. Kinachovutia tu ni kama itahifadhi tafsiri iliyorekebishwa wakati wa kutafsiri tena.
+Huenda LLM ikatafsiri hili vibaya. Kinachovutia ni kama itahifadhi tafsiri iliyorekebishwa wakati wa kutafsiri tena.
 
 ///
 
@@ -47,9 +47,9 @@ Huenda LLM ikatafsiri hili vibaya. Kinachovutia tu ni kama itahifadhi tafsiri il
 
 //// tab | Maelezo
 
-Mbunifu wa prompt anaweza kuchagua kama anataka kubadilisha alama za kunukuu zilizonyooka kuwa alama za kunukuu za uchapaji. Ni sawa kuziacha kama zilivyo.
+Mbunifu wa prompt anaweza kuchagua kama anataka kubadilisha alama za kunukuu zilizonyooka kuwa alama za kunukuu za kitipografia. Ni sawa kuziacha kama zilivyo.
 
-Tazama, kwa mfano, sehemu ya `### Quotes` katika `docs/de/llm-prompt.md`.
+Kwa mfano, tazama sehemu ya `### Quotes` katika `docs/de/llm-prompt.md`.
 
 ////
 
@@ -95,9 +95,9 @@ $ <font color="#4E9A06">fastapi</font> run <u style="text-decoration-style:solid
 ...na mfano mwingine wa msimbo wa console...
 
 ```console
-// Unda saraka "Code"
+// Unda directory "Code"
 $ mkdir code
-// Hamia kwenye saraka hiyo
+// Ingia katika directory hiyo
 $ cd code
 ```
 
@@ -114,13 +114,13 @@ works(foo="bar")  # Hii inafanya kazi 🎉
 
 //// tab | Maelezo
 
-Msimbo katika vitalu vya msimbo haupaswi kubadilishwa, isipokuwa maoni.
+Msimbo ndani ya vitalu vya msimbo haupaswi kubadilishwa, isipokuwa maoni.
 
 Tazama sehemu ya `### Content of code blocks` katika prompt ya jumla katika `scripts/translate.py`.
 
 ////
 
-## Vichupo na visanduku vya rangi { #tabs-and-colored-boxes }
+## Tab na visanduku vyenye rangi { #tabs-and-colored-boxes }
 
 //// tab | Jaribio
 
@@ -148,7 +148,7 @@ Maandishi fulani
 
 //// tab | Maelezo
 
-Vichupo na vitalu vya `Info`/`Note`/`Warning`/n.k. vinapaswa kuongezewa tafsiri ya kichwa chake baada ya mstari wima (`|`).
+Tab na vitalu vya `Info`/`Note`/`Warning`/n.k. vinapaswa kuongezewa tafsiri ya kichwa chake baada ya mstari wima (`|`).
 
 Tazama sehemu za `### Special blocks` na `### Tab blocks` katika prompt ya jumla katika `scripts/translate.py`.
 
@@ -158,16 +158,16 @@ Tazama sehemu za `### Special blocks` na `### Tab blocks` katika prompt ya jumla
 
 //// tab | Jaribio
 
-Maandishi ya kiungo yanapaswa kutafsiriwa, anwani ya kiungo ibaki bila kubadilishwa:
+Maandishi ya kiungo yanapaswa kutafsiriwa, anwani ya kiungo inapaswa kubaki bila kubadilishwa:
 
-* [Kiungo cha kichwa kilicho juu](#code-snippets)
+* [Kiungo cha kichwa kilicho hapo juu](#code-snippets)
 * [Kiungo cha ndani](index.md#installation)
 * [Kiungo cha nje](https://sqlmodel.tiangolo.com/)
-* [Kiungo cha mtindo](https://fastapi.tiangolo.com/css/styles.css)
+* [Kiungo cha style](https://fastapi.tiangolo.com/css/styles.css)
 * [Kiungo cha script](https://fastapi.tiangolo.com/js/logic.js)
 * [Kiungo cha picha](https://fastapi.tiangolo.com/img/foo.jpg)
 
-Maandishi ya kiungo yanapaswa kutafsiriwa, anwani ya kiungo ielekeze kwenye tafsiri:
+Maandishi ya kiungo yanapaswa kutafsiriwa, anwani ya kiungo inapaswa kuelekeza kwenye tafsiri:
 
 * [Kiungo cha FastAPI](https://fastapi.tiangolo.com/sw/)
 
@@ -175,46 +175,46 @@ Maandishi ya kiungo yanapaswa kutafsiriwa, anwani ya kiungo ielekeze kwenye tafs
 
 //// tab | Maelezo
 
-Viungo vinapaswa kutafsiriwa, lakini anwani zake zibaki bila kubadilishwa. Isipokuwa ni viungo vyenye anwani kamili vya kurasa za nyaraka za FastAPI. Katika hali hiyo, kiungo kinapaswa kuelekeza kwenye tafsiri.
+Viungo vinapaswa kutafsiriwa, lakini anwani zake zinapaswa kubaki bila kubadilishwa. Isipokuwa ni viungo kamili vya kurasa za nyaraka za FastAPI. Katika hali hiyo, kiungo kinapaswa kuelekeza kwenye tafsiri.
 
 Tazama sehemu ya `### Links` katika prompt ya jumla katika `scripts/translate.py`.
 
 ////
 
-## Vipengele vya HTML vya "abbr" { #html-abbr-elements }
+## Elementi za HTML za "abbr" { #html-abbr-elements }
 
 //// tab | Jaribio
 
-Hapa kuna baadhi ya vitu vilivyowekwa ndani ya vipengele vya HTML vya "abbr" (Baadhi vimebuniwa):
+Hapa kuna baadhi ya vitu vilivyowekwa ndani ya elementi za HTML za "abbr" (Baadhi vimebuniwa):
 
-### abbr inatoa kifungu kamili cha maneno { #the-abbr-gives-a-full-phrase }
+### Abbr inatoa kishazi kamili { #the-abbr-gives-a-full-phrase }
 
 * <abbr title="Getting Things Done - Kukamilisha Mambo">GTD</abbr>
 * <abbr title="less than - ndogo kuliko"><code>lt</code></abbr>
 * <abbr title="XML Web Token - Tokeni ya Wavuti ya XML">XWT</abbr>
-* <abbr title="Parallel Server Gateway Interface - Kiolesura cha Lango la Seva za Parallel">PSGI</abbr>
+* <abbr title="Parallel Server Gateway Interface - Interface ya Gateway ya Server za Parallel">PSGI</abbr>
 
-### abbr inatoa kifungu kamili cha maneno na ufafanuzi { #the-abbr-gives-a-full-phrase-and-an-explanation }
+### Abbr inatoa kishazi kamili na ufafanuzi { #the-abbr-gives-a-full-phrase-and-an-explanation }
 
-* <abbr title="Mozilla Developer Network - Mtandao wa Watengenezaji wa Mozilla: nyaraka kwa watengenezaji, zilizoandikwa na watu wa Firefox">MDN</abbr>
-* <abbr title="Input/Output - Ingizo/Tokeo: kusoma au kuandika kwenye diski, mawasiliano ya mtandao.">I/O</abbr>.
+* <abbr title="Mozilla Developer Network - Mtandao wa Wasanidi Programu wa Mozilla: nyaraka za wasanidi programu, zilizoandikwa na watu wa Firefox">MDN</abbr>
+* <abbr title="Input/Output - Ingizo/Tokeo: kusoma au kuandika kwenye disk, mawasiliano ya mtandao.">I/O</abbr>.
 
 ////
 
 //// tab | Maelezo
 
-Sifa za "title" za vipengele vya "abbr" hutafsiriwa kwa kufuata maagizo maalumu.
+Sifa za "title" za elementi za "abbr" hutafsiriwa kwa kufuata maagizo fulani mahususi.
 
-Tafsiri zinaweza kuongeza vipengele vyake vya "abbr" ambavyo LLM haipaswi kuondoa. Kwa mfano, ili kufafanua maneno ya Kiingereza.
+Tafsiri zinaweza kuongeza elementi zao za "abbr" ambazo LLM haipaswi kuondoa. Kwa mfano, ili kufafanua maneno ya Kiingereza.
 
 Tazama sehemu ya `### HTML abbr elements` katika prompt ya jumla katika `scripts/translate.py`.
 
 ////
 
-## Vipengele vya HTML vya "dfn" { #html-dfn-elements }
+## Elementi za HTML za "dfn" { #html-dfn-elements }
 
 * <dfn title="Kundi la mashine zilizosanidiwa ili ziunganishwe na kufanya kazi pamoja kwa namna fulani.">cluster</dfn>
-* <dfn title="Mbinu ya ujifunzaji wa mashine inayotumia mitandao bandia ya neva yenye tabaka nyingi zilizofichwa kati ya tabaka za ingizo na tokeo, na hivyo kujenga muundo wa ndani wenye kina">Ujifunzaji wa Kina</dfn>
+* <dfn title="Mbinu ya machine learning inayotumia mitandao bandia ya neva yenye tabaka nyingi zilizofichwa kati ya tabaka za ingizo na tokeo, na hivyo kujenga muundo wa ndani wa kina">Deep Learning</dfn>
 
 ## Vichwa { #headings }
 
@@ -224,11 +224,11 @@ Tazama sehemu ya `### HTML abbr elements` katika prompt ya jumla katika `scripts
 
 Habari.
 
-### Vidokezo na viashirio vya aina { #type-hints-and-annotations }
+### Type hints na type annotations { #type-hints-and-annotations }
 
 Habari tena.
 
-### Madarasa ya msingi na madarasa yanayotokana nayo { #super-and-subclasses }
+### Superclass na subclass { #super-and-subclasses }
 
 Habari tena.
 
@@ -236,11 +236,11 @@ Habari tena.
 
 //// tab | Maelezo
 
-Kanuni pekee ya lazima kwa vichwa ni kwamba LLM iache sehemu ya hash iliyo ndani ya mabano ya mawimbi bila kubadilishwa, jambo linalohakikisha kwamba viungo haviathiriki.
+Kanuni pekee ya lazima kwa vichwa ni kwamba LLM iachie sehemu ya hash iliyo ndani ya mabano yaliyopinda bila kuibadilisha, ili kuhakikisha kwamba viungo vinaendelea kufanya kazi.
 
 Tazama sehemu ya `### Headings` katika prompt ya jumla katika `scripts/translate.py`.
 
-Kwa baadhi ya maagizo maalumu ya lugha, tazama, kwa mfano, sehemu ya `### Headings` katika `docs/de/llm-prompt.md`.
+Kwa baadhi ya maagizo mahususi ya lugha, tazama, kwa mfano, sehemu ya `### Headings` katika `docs/de/llm-prompt.md`.
 
 ////
 
@@ -259,100 +259,100 @@ Kwa baadhi ya maagizo maalumu ya lugha, tazama, kwa mfano, sehemu ya `### Headin
 * `baz` kama `list`
 
 * Mafunzo - Mwongozo wa Mtumiaji
-* Mwongozo wa Mtumiaji wa Kiwango cha Juu
+* Mwongozo wa Kina wa Mtumiaji
 * nyaraka za SQLModel
 * nyaraka za API
 * nyaraka zinazozalishwa kiotomatiki
 
 * Sayansi ya Data
-* Ujifunzaji wa Kina
-* Ujifunzaji wa Mashine
-* Uingizaji wa Vitegemezi
+* Deep Learning
+* Machine Learning
+* Dependency Injection
 * uthibitishaji wa utambulisho wa HTTP Basic
 * HTTP Digest
 * umbizo la ISO
 * kiwango cha JSON Schema
 * schema ya JSON
 * ufafanuzi wa schema
-* Mtiririko wa Nenosiri
-* Simu za mkononi
+* Password Flow
+* Mobile
 
-* iliyopitwa na wakati na isiyopendekezwa tena
-* iliyoundwa
-* isiyo halali
-* wakati wa utekelezaji
-* ya kawaida
-* ya chaguo-msingi
-* inayotofautisha herufi kubwa na ndogo
-* isiyotofautisha herufi kubwa na ndogo
+* imepitwa na wakati na matumizi yake hayapendekezwi tena
+* imebuniwa
+* si halali
+* papo hapo wakati wa utekelezaji
+* kiwango
+* default
+* inatofautisha herufi kubwa na ndogo
+* haitofautishi herufi kubwa na ndogo
 
-* kuendesha programu ili ipatikane kwa watumiaji
-* kutoa ukurasa kwa mteja
+* kuhudumia programu
+* kuhudumia ukurasa
 
 * app
 * programu
 
-* ombi
-* jibu
-* jibu la hitilafu
+* request
+* response
+* response ya hitilafu
 
-* operesheni ya njia
-* decorator ya operesheni ya njia
-* function ya operesheni ya njia
+* path operation
+* decorator ya path operation
+* function ya path operation
 
-* mwili
-* mwili wa ombi
-* mwili wa jibu
-* mwili wa JSON
-* mwili wa fomu
-* mwili wa faili
-* mwili wa function
+* body
+* body ya request
+* body ya response
+* body ya JSON
+* body ya form
+* body ya faili
+* body ya function
 
 * kigezo
-* kigezo cha mwili
-* kigezo cha njia
+* kigezo cha body
+* kigezo cha path
 * kigezo cha query
 * kigezo cha cookie
-* kigezo cha kichwa
-* kigezo cha fomu
+* kigezo cha header
+* kigezo cha form
 * kigezo cha function
 
-* tukio
-* tukio la kuanza
-* kuanza kwa seva
-* tukio la kuzimwa
-* tukio la muda wa uhai
+* event
+* event ya kuanza
+* kuanza kwa server
+* event ya kuzima
+* event ya lifespan
 
-* kishughulikiaji
-* kishughulikiaji cha tukio
-* kishughulikiaji cha exception
+* handler
+* handler ya event
+* handler ya exception
 * kushughulikia
 
-* modeli
-* modeli ya Pydantic
-* modeli ya data
-* modeli ya hifadhidata
-* modeli ya fomu
-* objekti ya modeli
+* model
+* model ya Pydantic
+* model ya data
+* model ya database
+* model ya form
+* object ya model
 
-* darasa
-* darasa la msingi
-* darasa mzazi
-* darasa linalotokana na darasa jingine
-* darasa mtoto
-* darasa lenye mzazi yuleyule
-* method ya darasa
+* class
+* base class
+* parent class
+* subclass
+* child class
+* sibling class
+* method ya class
 
-* kichwa
-* vichwa
-* kichwa cha uidhinishaji
-* kichwa cha `Authorization`
-* kichwa kilichopitishwa
+* header
+* headers
+* header ya uidhinishaji
+* header ya `Authorization`
+* header iliyopitishwa
 
-* mfumo wa uingizaji wa vitegemezi
+* mfumo wa dependency injection
 * kitegemezi
-* kinachoweza kutegemewa
-* kinachotegemea kingine
+* dependable
+* kinachotegemea kitegemezi
 
 * I/O bound
 * CPU bound
@@ -368,31 +368,31 @@ Kwa baadhi ya maagizo maalumu ya lugha, tazama, kwa mfano, sehemu ya `### Headin
 * uthibitishaji wa utambulisho
 * mtoa huduma ya uthibitishaji wa utambulisho
 * uidhinishaji
-* fomu ya uidhinishaji
+* form ya uidhinishaji
 * mtoa huduma ya uidhinishaji
 * mtumiaji anathibitisha utambulisho wake
 * mfumo unathibitisha utambulisho wa mtumiaji
 
 * CLI
-* kiolesura cha mstari wa amri
+* interface ya mstari wa amri
 
-* seva
-* mteja
+* server
+* client
 
-* mtoa huduma za wingu
-* huduma ya wingu
+* mtoa huduma za cloud
+* huduma ya cloud
 
 * uundaji wa programu
 * hatua za uundaji wa programu
 
 * dict
-* kamusi
+* dictionary
 * enumeration
 * enum
-* mwanachama wa enum
+* member wa enum
 
-* kisimbaji
-* kisimbuaji
+* encoder
+* decoder
 * kusimba
 * kusimbua
 
@@ -406,33 +406,33 @@ Kwa baadhi ya maagizo maalumu ya lugha, tazama, kwa mfano, sehemu ya `### Headin
 * backend
 
 * mjadala wa GitHub
-* suala la GitHub
+* issue ya GitHub
 
 * utendaji
 * uboreshaji wa utendaji
 
-* aina ya thamani inayorudishwa
-* thamani inayorudishwa
+* type ya thamani inayorejeshwa
+* thamani inayorejeshwa
 
 * usalama
-* mpango wa usalama
+* scheme ya usalama
 
-* kazi
-* kazi ya chinichini
-* function ya kazi
+* task
+* task ya background
+* function ya task
 
-* kiolezo
-* injini ya violezo
+* template
+* engine ya template
 
-* kiashirio cha aina
-* kidokezo cha aina
+* type annotation
+* type hint
 
-* worker wa seva
+* worker wa server
 * worker wa Uvicorn
 * Worker wa Gunicorn
-* mchakato wa worker
-* darasa la worker
-* mzigo wa kazi
+* process ya worker
+* class ya worker
+* workload
 
 * uwekaji wa programu ili iweze kuendeshwa
 * kuweka programu ili iweze kuendeshwa
@@ -442,54 +442,54 @@ Kwa baadhi ya maagizo maalumu ya lugha, tazama, kwa mfano, sehemu ya `### Headin
 
 * `APIRouter`
 * `requirements.txt`
-* Tokeni ya Bearer
+* Bearer Token
 * mabadiliko yanayovunja utangamano
-* hitilafu ya programu
-* kitufe
+* bug
+* button
 * callable
 * msimbo
 * commit
-* kidhibiti cha muktadha
+* context manager
 * coroutine
-* kipindi cha hifadhidata
-* diski
-* kikoa
-* injini
+* session ya database
+* disk
+* domain
+* engine
 * X bandia
-* mbinu ya HTTP GET
-* kipengee
-* maktaba
-* muda wa uhai
-* kufuli
+* method ya HTTP GET
+* item
+* library
+* lifespan
+* lock
 * middleware
-* programu ya simu
-* moduli
+* programu ya kifaa cha mkononi
+* module
 * mounting
 * mtandao
-* asili
-* ubatilishaji
+* origin
+* override
 * payload
-* kichakataji
-* sifa
-* seva wakilishi
+* processor
+* property
+* proxy
 * pull request
 * query
 * RAM
 * mashine ya mbali
-* msimbo wa hali
-* mfuatano wa herufi
-* lebo
+* status code
+* string
+* tag
 * framework ya wavuti
 * wildcard
-* kurudisha
+* kurejesha
 * kuhakiki uhalali
 
 ////
 
 //// tab | Maelezo
 
-Hii si orodha kamili wala orodha inayoweka kanuni za istilahi (nyingi zikiwa za kiufundi) zinazopatikana katika nyaraka. Inaweza kumsaidia mbunifu wa prompt kubaini istilahi ambazo LLM inahitaji msaada nazo. Kwa mfano, inapozidi kubadilisha tafsiri nzuri na kuirudisha kwenye tafsiri isiyo nzuri sana. Au inapokuwa na matatizo ya kunyambua au kupatanisha kisarufi istilahi katika lugha yako.
+Hii si orodha kamili wala orodha inayoweka kanuni za istilahi (nyingi zikiwa za kiufundi) zinazopatikana katika nyaraka. Inaweza kumsaidia mbunifu wa prompt kutambua istilahi ambazo LLM inahitaji kusaidiwa nazo. Kwa mfano, inapoendelea kubadilisha tafsiri nzuri na kuirudisha kwenye tafsiri isiyo nzuri sana. Au inapopata matatizo ya kunyambua neno au kubadilisha umbo lake kisarufi katika lugha yako.
 
-Tazama, kwa mfano, sehemu ya `### List of English terms and their preferred German translations` katika `docs/de/llm-prompt.md`.
+Kwa mfano, tazama sehemu ya `### List of English terms and their preferred German translations` katika `docs/de/llm-prompt.md`.
 
 ////
