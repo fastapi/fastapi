@@ -219,13 +219,21 @@ Donc, lorsque vous avez besoin de déclarer une valeur comme requise tout en uti
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### Requis, peut valoir `None` { #required-can-be-none }
+### Paramètres requis et `None` { #required-parameters-and-none }
 
-Vous pouvez déclarer qu’un paramètre accepte `None`, mais qu’il est tout de même requis. Cela obligerait les clients à envoyer une valeur, même si la valeur est `None`.
-
-Pour ce faire, vous pouvez déclarer que `None` est un type valide tout en ne déclarant pas de valeur par défaut :
+Le type `str | None` autorise `None` comme valeur Python, mais ne rend pas un paramètre de requête optionnel. Sans valeur par défaut, le paramètre reste requis :
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+Les valeurs des paramètres de requête arrivent sous forme de chaînes de caractères et n’ont pas de représentation intégrée de `None`. Envoyer `?q=None` ou `?q=null` envoie respectivement les chaînes `"None"` et `"null"`. Envoyer `?q=` envoie une chaîne vide, qui échoue à la validation `min_length=3` dans cet exemple.
+
+Pour permettre aux clients d’omettre `q` et d’utiliser `None` comme valeur, donnez-lui une valeur par défaut de `None` :
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+Les corps de requête JSON, contrairement aux paramètres de requête, peuvent contenir une valeur `null` explicite.
 
 ## Liste de paramètres de requête / valeurs multiples { #query-parameter-list-multiple-values }
 

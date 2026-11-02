@@ -16,17 +16,17 @@ Déclarez les **paramètres d'en-tête** dont vous avez besoin dans un **modèle
 
 {* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
 
-**FastAPI** extrait les données de **chaque champ** depuis les **en-têtes** de la requête et vous fournit le modèle Pydantic que vous avez défini.
+**FastAPI** **extrait** les données de **chaque champ** depuis les **en-têtes** de la requête et vous fournit le modèle Pydantic que vous avez défini.
 
-## Consulter la documentation { #check-the-docs }
+## Consultez les documents { #check-the-docs }
 
-Vous pouvez voir les en-têtes requis dans l'interface de la documentation à `/docs` :
+Vous pouvez voir les en-têtes requis dans l'interface des documents à `/docs` :
 
 <div class="screenshot">
 <img src="/img/tutorial/header-param-models/image01.png">
 </div>
 
-## Interdire les en-têtes supplémentaires { #forbid-extra-headers }
+## Interdisez les en-têtes supplémentaires { #forbid-extra-headers }
 
 Dans certains cas d'utilisation particuliers (probablement pas très courants), vous pourriez vouloir **restreindre** les en-têtes que vous souhaitez recevoir.
 
@@ -51,11 +51,11 @@ Par exemple, si le client essaie d'envoyer un en-tête `tool` avec la valeur `pl
 }
 ```
 
-## Désactiver convert_underscores { #disable-convert-underscores }
+## Désactivez la conversion des caractères de soulignement { #disable-convert-underscores }
 
 Comme pour les paramètres d'en-tête classiques, lorsque vous avez des caractères de soulignement dans les noms de paramètres, ils sont **automatiquement convertis en tirets**.
 
-Par exemple, si vous avez un paramètre d'en-tête `save_data` dans le code, l'en-tête HTTP attendu sera `save-data`, et il apparaîtra ainsi dans la documentation.
+Par exemple, si vous avez un paramètre d'en-tête `save_data` dans le code, l'en-tête HTTP attendu sera `save-data`, et il apparaîtra ainsi dans les documents.
 
 Si, pour une raison quelconque, vous devez désactiver cette conversion automatique, vous pouvez aussi le faire pour les modèles Pydantic de paramètres d'en-tête.
 
@@ -66,6 +66,26 @@ Si, pour une raison quelconque, vous devez désactiver cette conversion automati
 Avant de définir `convert_underscores` à `False`, gardez à l'esprit que certains proxys et serveurs HTTP interdisent l'utilisation d'en-têtes contenant des underscores.
 
 ///
+
+## Combinez les modèles de paramètres { #combine-parameter-models }
+
+Vous pouvez combiner plusieurs modèles de paramètres d'en-tête avec des paramètres d'en-tête individuels et des dépendances. Chaque modèle est extrait et validé indépendamment, comme expliqué pour les [modèles de paramètres de requête](query-param-models.md#combine-parameter-models).
+
+La configuration `extra` de chaque modèle s'applique à tous les paramètres d'en-tête, y compris ceux déclarés dans d'autres modèles ou dépendances. Avec `extra="forbid"`, tout en-tête extérieur à ce modèle est rejeté. Avec `extra="allow"`, ces en-têtes sont inclus comme champs supplémentaires du modèle.
+
+Chaque modèle utilise son propre réglage `Header(convert_underscores=...)`, aussi bien lors de la lecture de la requête que lors de la génération d'OpenAPI. Les alias de champs explicites restent des noms d'en-tête littéraux.
+
+## Modèles de paramètres d'en-tête optionnels { #optional-header-parameter-models }
+
+Déclarez un modèle de paramètres d'en-tête avec `| None` et une valeur par défaut de `None` pour rendre le groupe optionnel.
+
+{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+
+Si ni `x-client-name` ni `x-client-version` n'est envoyé, `client` vaut `None`. Si l'un des deux est envoyé, FastAPI valide le modèle et exige les deux champs.
+
+Les mêmes règles concernant les valeurs par défaut, les champs supplémentaires et OpenAPI s'appliquent que pour les [modèles de paramètres de requête optionnels](query-param-models.md#optional-query-parameter-models).
+
+Les en-têtes tels que `Host` suivent également la configuration `extra` du modèle. Avec `extra="allow"`, ils rendent le modèle présent même si aucun des deux champs déclarés n'est fourni.
 
 ## Résumé { #summary }
 

@@ -8,7 +8,7 @@ Ces proxies peuvent gérer les certificats HTTPS et d'autres aspects.
 
 Un **proxy** placé devant votre application définit normalement certains en-têtes à la volée avant d'envoyer les requêtes à votre **serveur**, afin d'indiquer au serveur que la requête a été **transférée** par le proxy, en lui donnant l'URL d'origine (publique), y compris le domaine, le fait qu'elle utilise HTTPS, etc.
 
-Le programme **serveur** (par exemple **Uvicorn** via **FastAPI CLI**) est capable d'interpréter ces en‑têtes, puis de transmettre ces informations à votre application.
+Le **serveur** démarré par `fastapi run` est capable d'interpréter ces en‑têtes, puis de transmettre ces informations à votre application.
 
 Mais, par sécurité, comme le serveur ne sait pas qu'il se trouve derrière un proxy de confiance, il n'interprétera pas ces en‑têtes.
 
@@ -22,7 +22,7 @@ Les en-têtes du proxy sont :
 
 ///
 
-### Activer les en-têtes transférés par le proxy { #enable-proxy-forwarded-headers }
+### Activez les en-têtes transférés par le proxy { #enable-proxy-forwarded-headers }
 
 Vous pouvez démarrer FastAPI CLI avec l'*option de CLI* `--forwarded-allow-ips` et fournir les adresses IP à considérer comme fiables pour lire ces en‑têtes transférés.
 
@@ -34,8 +34,6 @@ Si votre **serveur** est derrière un **proxy** de confiance et que seul le prox
 
 ```console
 $ uv run fastapi run --forwarded-allow-ips="*"
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -101,7 +99,7 @@ Lorsque **FastAPI CLI** est configurée avec `--forwarded-allow-ips`, elle fait 
 
 Vous pouvez avoir un proxy qui ajoute un préfixe de chemin à votre application.
 
-Dans ces cas, vous pouvez utiliser `root_path` pour configurer votre application.
+Dans ces cas, vous pouvez configurer le serveur avec `fastapi run --root-path`.
 
 Le `root_path` est un mécanisme fourni par la spécification ASGI (sur laquelle FastAPI est construit, via Starlette).
 
@@ -117,7 +115,7 @@ Même si tout votre code est écrit en supposant qu'il n'y a que `/app`.
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
-Et le proxy **« stripping »** le **préfixe de chemin** à la volée avant de transmettre la requête au serveur de l'application (probablement Uvicorn via FastAPI CLI), en gardant votre application convaincue qu'elle est servie à `/app`, afin que vous n'ayez pas à mettre à jour tout votre code pour inclure le préfixe `/api/v1`.
+Et le proxy **« supprimerait »** le **préfixe de chemin** à la volée avant de transmettre la requête au serveur, en gardant votre application convaincue qu'elle est servie à `/app`, afin que vous n'ayez pas à mettre à jour tout votre code pour inclure le préfixe `/api/v1`.
 
 Jusqu'ici, tout fonctionnerait normalement.
 
@@ -161,7 +159,7 @@ L'interface de documents doit également indiquer dans le schéma OpenAPI que ce
 }
 ```
 
-Dans cet exemple, le « Proxy » pourrait être quelque chose comme **Traefik**. Et le serveur serait quelque chose comme FastAPI CLI avec **Uvicorn**, exécutant votre application FastAPI.
+Dans cet exemple, le « Proxy » pourrait être quelque chose comme **Traefik**. Et `fastapi run` démarrerait le serveur exécutant votre application FastAPI.
 
 ### Fournir le `root_path` { #providing-the-root-path }
 
@@ -171,13 +169,9 @@ Pour y parvenir, vous pouvez utiliser l'option de ligne de commande `--root-path
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
-
-Si vous utilisez Hypercorn, il dispose également de l'option `--root-path`.
 
 /// note | Détails techniques
 
@@ -195,14 +189,12 @@ Ici, nous l'incluons dans le message uniquement à des fins de démonstration.
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
-Ensuite, si vous démarrez Uvicorn avec :
+Ensuite, si vous démarrez le serveur avec :
 
 <div class="termy">
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -216,30 +208,11 @@ La réponse sera semblable à :
 }
 ```
 
-### Définir le `root_path` dans l'application FastAPI { #setting-the-root-path-in-the-fastapi-app }
+/// warning | Paramètre `root_path` déprécié
 
-Autrement, si vous n'avez pas la possibilité de fournir une option de ligne de commande comme `--root-path` ou équivalent, vous pouvez définir le paramètre `root_path` lors de la création de votre application FastAPI :
+Dans FastAPI 0.145.0 et les versions antérieures, `root_path` pouvait également être configuré dans `FastAPI()`. Ce paramètre est désormais déprécié, car son comportement n'était pas cohérent avec la configuration du serveur. Utilisez plutôt `fastapi run --root-path /api/v1`.
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
-
-Passer le `root_path` à `FastAPI` équivaut à passer l'option de ligne de commande `--root-path` à Uvicorn ou Hypercorn.
-
-### À propos de `root_path` { #about-root-path }
-
-Gardez à l'esprit que le serveur (Uvicorn) n'utilisera ce `root_path` que pour le transmettre à l'application.
-
-Mais si vous allez avec votre navigateur sur [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), vous verrez la réponse normale :
-
-```JSON
-{
-    "message": "Hello World",
-    "root_path": "/api/v1"
-}
-```
-
-Donc, il ne s'attendra pas à être accessible à `http://127.0.0.1:8000/api/v1/app`.
-
-Uvicorn s'attendra à ce que le proxy accède à Uvicorn sur `http://127.0.0.1:8000/app`, et ce sera ensuite la responsabilité du proxy d'ajouter le préfixe supplémentaire `/api/v1` au‑dessus.
+///
 
 ## À propos des proxies avec un préfixe de chemin supprimé { #about-proxies-with-a-stripped-path-prefix }
 
@@ -247,7 +220,7 @@ Gardez à l'esprit qu'un proxy avec préfixe de chemin supprimé n'est qu'une de
 
 Dans de nombreux cas, la valeur par défaut sera probablement que le proxy n'a pas de préfixe de chemin supprimé.
 
-Dans un cas comme celui‑ci (sans préfixe de chemin supprimé), le proxy écoutera sur quelque chose comme `https://myawesomeapp.com`, puis si le navigateur va sur `https://myawesomeapp.com/api/v1/app` et que votre serveur (par ex. Uvicorn) écoute sur `http://127.0.0.1:8000`, le proxy (sans préfixe de chemin supprimé) accédera à Uvicorn au même chemin : `http://127.0.0.1:8000/api/v1/app`.
+Dans un cas comme celui‑ci (sans préfixe de chemin supprimé), le proxy écoutera sur quelque chose comme `https://myawesomeapp.com`, puis si le navigateur va sur `https://myawesomeapp.com/api/v1/app` et que votre serveur écoute sur `http://127.0.0.1:8000`, le proxy (sans préfixe de chemin supprimé) accédera au serveur au même chemin : `http://127.0.0.1:8000/api/v1/app`.
 
 ## Tester localement avec Traefik { #testing-locally-with-traefik }
 
@@ -302,7 +275,7 @@ Créez maintenant cet autre fichier `routes.toml` :
 
 Ce fichier configure Traefik pour utiliser le préfixe de chemin `/api/v1`.
 
-Puis Traefik redirigera ses requêtes vers votre Uvicorn tournant sur `http://127.0.0.1:8000`.
+Puis Traefik transmettra ses requêtes à votre serveur tournant sur `http://127.0.0.1:8000`.
 
 Démarrez maintenant Traefik :
 
@@ -322,15 +295,13 @@ Et démarrez maintenant votre application, en utilisant l'option `--root-path` :
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
-### Vérifier les réponses { #check-the-responses }
+### Vérifiez les réponses { #check-the-responses }
 
-Maintenant, si vous allez à l'URL avec le port pour Uvicorn : [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), vous verrez la réponse normale :
+Maintenant, si vous allez à l'URL avec le port pour le serveur : [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), vous verrez la réponse normale :
 
 ```JSON
 {
@@ -360,15 +331,15 @@ mais cette fois à l'URL avec le préfixe fourni par le proxy : `/api/v1`.
 
 Bien sûr, l'idée ici est que tout le monde accède à l'application via le proxy ; la version avec le préfixe de chemin `/api/v1` est donc la « correcte ».
 
-Et la version sans préfixe de chemin (`http://127.0.0.1:8000/app`), fournie directement par Uvicorn, serait exclusivement destinée au _proxy_ (Traefik) pour y accéder.
+Et la version sans préfixe de chemin (`http://127.0.0.1:8000/app`), fournie directement par le serveur, serait exclusivement destinée au _proxy_ (Traefik) pour y accéder.
 
-Cela montre comment le Proxy (Traefik) utilise le préfixe de chemin et comment le serveur (Uvicorn) utilise le `root_path` fourni par l'option `--root-path`.
+Cela montre comment le Proxy (Traefik) utilise le préfixe de chemin et comment le serveur utilise le `root_path` fourni par l'option `--root-path`.
 
-### Vérifier l'interface de documentation { #check-the-docs-ui }
+### Vérifiez l'interface de documentation { #check-the-docs-ui }
 
 Mais voici la partie intéressante. ✨
 
-La manière « officielle » d'accéder à l'application serait via le proxy avec le préfixe de chemin que nous avons défini. Donc, comme on s'y attend, si vous essayez l'interface de documentation servie directement par Uvicorn, sans le préfixe de chemin dans l'URL, cela ne fonctionne pas, car elle s'attend à être accédée via le proxy.
+La manière « officielle » d'accéder à l'application serait via le proxy avec le préfixe de chemin que nous avons défini. Donc, comme on s'y attend, si vous essayez l'interface de documentation servie directement par le serveur, sans le préfixe de chemin dans l'URL, cela ne fonctionne pas, car elle s'attend à être accédée via le proxy.
 
 Vous pouvez le vérifier sur [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) :
 
@@ -394,11 +365,11 @@ Ceci est un cas d'utilisation plus avancé. N'hésitez pas à l'ignorer.
 
 Par défaut, **FastAPI** créera un `server` dans le schéma OpenAPI avec l'URL correspondant au `root_path`.
 
-Mais vous pouvez aussi fournir d'autres `servers` alternatifs, par exemple si vous voulez que la même interface de documents interagisse avec un environnement de staging et un environnement de production.
+Mais vous pouvez aussi fournir d'autres `servers` alternatifs, par exemple si vous voulez que *la même* interface de documents interagisse avec un environnement de staging et un environnement de production.
 
 Si vous passez une liste personnalisée de `servers` et qu'il y a un `root_path` (parce que votre API vit derrière un proxy), **FastAPI** insérera un « server » avec ce `root_path` au début de la liste.
 
-Par exemple :
+Par exemple, en utilisant la même configuration de serveur `fastapi run --root-path /api/v1` :
 
 {* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
@@ -451,11 +422,11 @@ Si vous ne spécifiez pas le paramètre `servers` et que `root_path` est égal �
 
 ///
 
-### Désactiver le serveur automatique issu de `root_path` { #disable-automatic-server-from-root-path }
+### Désactivez le serveur automatique issu de `root_path` { #disable-automatic-server-from-root-path }
 
 Si vous ne voulez pas que **FastAPI** inclue un serveur automatique utilisant le `root_path`, vous pouvez utiliser le paramètre `root_path_in_servers=False` :
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
 
 et il ne l'inclura alors pas dans le schéma OpenAPI.
 

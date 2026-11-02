@@ -107,7 +107,13 @@ ou
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-ou n'importe quelle autre variation de casse (tout en majuscules, uniquement la première lettre en majuscule, etc.), votre fonction verra le paramètre `short` avec une valeur `bool` à `True`. Sinon la valeur sera à `False`.
+ou n'importe quelle autre variation de casse (tout en majuscules, uniquement la première lettre en majuscule, etc.), votre fonction verra le paramètre `short` avec une valeur `bool` à `True`.
+
+Les valeurs telles que `0`, `false`, `off` et `no` (y compris les variations de casse) sont converties en `False`.
+
+Si `short` est omis, **FastAPI** utilise sa valeur par défaut, qui est `False` dans cet exemple.
+
+Une valeur vide (`?short=`) ou une valeur non reconnue (par exemple, `?short=maybe`) produit une erreur de validation `422`.
 
 
 ## Multiples paramètres de chemin et de requête { #multiple-path-and-query-parameters }

@@ -95,7 +95,7 @@ Utilisez-le de la même manière que vous utiliseriez la classe `FastAPI` :
 
 {* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
-Vous pouvez considérer `APIRouter` comme une « mini `FastAPI` ».
+Vous pouvez considérer `APIRouter` comme une classe « mini `FastAPI` ».
 
 Toutes les mêmes options sont prises en charge.
 
@@ -155,8 +155,7 @@ Comme le chemin de chaque *chemin d'accès* doit commencer par `/`, comme dans :
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ... le préfixe ne doit pas inclure un `/` final.
@@ -186,7 +185,7 @@ Le résultat final est que les chemins d'item sont désormais :
 * Tous ces *chemins d'accès* auront la liste des `dependencies` évaluées/exécutées avant eux.
     * Si vous déclarez également des dépendances dans un *chemin d'accès* spécifique, **elles seront aussi exécutées**.
     * Les dépendances du routeur sont exécutées en premier, puis les [`dependencies` dans le décorateur](dependencies/dependencies-in-path-operation-decorators.md), puis les dépendances des paramètres normaux.
-    * Vous pouvez également ajouter des [`Security` dependencies avec des `scopes`](../advanced/security/oauth2-scopes.md).
+    * Vous pouvez également ajouter des [dépendances `Security` avec des `scopes`](../advanced/security/oauth2-scopes.md).
 
 /// tip | Astuce
 
@@ -226,8 +225,8 @@ from .dependencies import get_token_header
 
 signifierait :
 
-* En partant du même package dans lequel vit ce module (le fichier `app/routers/items.py`) (le répertoire `app/routers/`)...
-* trouver le module `dependencies` (un fichier imaginaire `app/routers/dependencies.py`)...
+* En partant du même package dans lequel vit ce module (le fichier `app/routers/items.py`) (le répertoire `app/routers/`) ...
+* trouver le module `dependencies` (un fichier imaginaire `app/routers/dependencies.py`) ...
 * et en importer la fonction `get_token_header`.
 
 Mais ce fichier n'existe pas, nos dépendances sont dans un fichier `app/dependencies.py`.
@@ -246,9 +245,9 @@ from ..dependencies import get_token_header
 
 veulent dire :
 
-* En partant du même package dans lequel vit ce module (le fichier `app/routers/items.py`) (le répertoire `app/routers/`)...
-* aller au package parent (le répertoire `app/`)...
-* et là, trouver le module `dependencies` (le fichier `app/dependencies.py`)...
+* En partant du même package dans lequel vit ce module (le fichier `app/routers/items.py`) (le répertoire `app/routers/`) ...
+* aller au package parent (le répertoire `app/`) ...
+* et là, trouver le module `dependencies` (le fichier `app/dependencies.py`) ...
 * et en importer la fonction `get_token_header`.
 
 Cela fonctionne correctement ! 🎉
@@ -263,10 +262,10 @@ from ...dependencies import get_token_header
 
 cela voudrait dire :
 
-* En partant du même package dans lequel vit ce module (le fichier `app/routers/items.py`) (le répertoire `app/routers/`)...
-* aller au package parent (le répertoire `app/`)...
-* puis aller au parent de ce package (il n'y a pas de package parent, `app` est le niveau supérieur 😱)...
-* et là, trouver le module `dependencies` (le fichier `app/dependencies.py`)...
+* En partant du même package dans lequel vit ce module (le fichier `app/routers/items.py`) (le répertoire `app/routers/`) ...
+* aller au package parent (le répertoire `app/`) ...
+* puis aller au parent de ce package (il n'y a pas de package parent, `app` est le niveau supérieur 😱) ...
+* et là, trouver le module `dependencies` (le fichier `app/dependencies.py`) ...
 * et en importer la fonction `get_token_header`.
 
 Cela ferait référence à un package au-dessus de `app/`, avec son propre fichier `__init__.py`, etc. Mais nous n'avons pas cela. Donc, cela lèverait une erreur dans notre exemple. 🚨
@@ -325,9 +324,9 @@ from .routers import items, users
 
 signifie :
 
-* En partant du même package dans lequel vit ce module (le fichier `app/main.py`) (le répertoire `app/`)...
-* chercher le sous-package `routers` (le répertoire `app/routers/`)...
-* et en importer le sous-module `items` (le fichier `app/routers/items.py`) et `users` (le fichier `app/routers/users.py`)...
+* En partant du même package dans lequel vit ce module (le fichier `app/main.py`) (le répertoire `app/`) ...
+* chercher le sous-package `routers` (le répertoire `app/routers/`) ...
+* et en importer le sous-module `items` (le fichier `app/routers/items.py`) et `users` (le fichier `app/routers/users.py`) ...
 
 Le module `items` aura une variable `router` (`items.router`). C'est celle que nous avons créée dans le fichier `app/routers/items.py`, c'est un objet `APIRouter`.
 
@@ -518,7 +517,7 @@ Vous verrez les documents d'API automatiques, incluant les chemins de tous les s
 
 ## Inclure le même routeur plusieurs fois avec des `prefix` différents { #include-the-same-router-multiple-times-with-different-prefix }
 
-Vous pouvez aussi utiliser `.include_router()` plusieurs fois avec le même routeur en utilisant des préfixes différents.
+Vous pouvez aussi utiliser `.include_router()` plusieurs fois avec le *même* routeur en utilisant des préfixes différents.
 
 Cela peut être utile, par exemple, pour exposer la même API sous des préfixes différents, p. ex. `/api/v1` et `/api/latest`.
 

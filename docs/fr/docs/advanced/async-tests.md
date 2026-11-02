@@ -38,7 +38,7 @@ Le fichier `test_main.py` contiendrait les tests pour `main.py`, il pourrait mai
 
 {* ../../docs_src/async_tests/app_a_py310/test_main.py *}
 
-## Exécuter { #run-it }
+## Exécutez-le { #run-it }
 
 Vous pouvez lancer vos tests comme d'habitude via :
 
@@ -71,7 +71,7 @@ Nous pouvons ensuite créer un `AsyncClient` avec l'application et lui envoyer d
 C'est l'équivalent de :
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ... que nous utilisions pour faire nos requêtes avec le `TestClient`.

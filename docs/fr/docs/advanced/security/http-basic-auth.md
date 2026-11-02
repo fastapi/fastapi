@@ -15,8 +15,8 @@ Ensuite, lorsque vous saisissez ce nom d'utilisateur et ce mot de passe, le navi
 ## Authentification HTTP Basic simple { #simple-http-basic-auth }
 
 - Importer `HTTPBasic` et `HTTPBasicCredentials`.
-- Créer un « schéma de sécurité » en utilisant `HTTPBasic`.
-- Utiliser ce `security` avec une dépendance dans votre chemin d'accès.
+- Créer un « schéma `security` » en utilisant `HTTPBasic`.
+- Utiliser ce `security` avec une dépendance dans votre *chemin d'accès*.
 - Cela renvoie un objet de type `HTTPBasicCredentials` :
     - Il contient le `username` et le `password` envoyés.
 
@@ -38,14 +38,16 @@ Pour cela, utilisez le module standard Python [`secrets`](https://docs.python.or
 
 Pour gérer cela, nous convertissons d'abord `username` et `password` en `bytes` en les encodant en UTF-8.
 
-Nous pouvons ensuite utiliser `secrets.compare_digest()` pour vérifier que `credentials.username` est « stanleyjobson » et que `credentials.password` est « swordfish ».
+Nous pouvons ensuite utiliser `secrets.compare_digest()` pour vérifier que `credentials.username` est `"stanleyjobson"` et que `credentials.password` est `"swordfish"`.
 
 {* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
-Cela serait équivalent à :
+Cela serait similaire à :
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # Renvoyer une erreur
     ...
 ```
@@ -82,7 +84,7 @@ Python devra comparer tout `stanleyjobso` dans `stanleyjobsox` et `stanleyjobson
 
 #### Le temps de réponse aide les attaquants { #the-time-to-answer-helps-the-attackers }
 
-À ce stade, en remarquant que le serveur a mis quelques microsecondes de plus à envoyer la réponse « Nom d'utilisateur ou mot de passe incorrect », les attaquants sauront qu'ils ont trouvé quelque chose de juste : certaines des premières lettres étaient correctes.
+À ce stade, en remarquant que le serveur a mis quelques microsecondes de plus à envoyer la réponse « Nom d'utilisateur ou mot de passe incorrect », les attaquants sauront qu'ils ont trouvé _quelque chose_ de juste : certaines des premières lettres étaient correctes.
 
 Ils peuvent alors réessayer en sachant que c'est probablement quelque chose de plus proche de `stanleyjobsox` que de `johndoe`.
 
