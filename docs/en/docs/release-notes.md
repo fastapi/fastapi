@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Update translations for ru (update-outdated). PR [#16650](https://github.com/fastapi/fastapi/pull/16650) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+
 ### Internal
 
 * ⬆ Bump the github-actions group with 7 updates. PR [#16658](https://github.com/fastapi/fastapi/pull/16658) by [@dependabot[bot]](https://github.com/apps/dependabot).
