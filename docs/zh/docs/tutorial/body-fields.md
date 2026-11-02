@@ -42,13 +42,13 @@ Pydantic 的 `Field` 返回也是 `FieldInfo` 的类实例。
 
 ## 添加更多信息 { #add-extra-information }
 
-`Field`、`Query`、`Body` 等对象里可以声明更多信息，并且 JSON Schema 中也会集成这些信息。
+可以在 `Field`、`Query`、`Body` 等对象里使用 `json_schema_extra` 声明更多信息，并且生成的 JSON Schema 中也会集成这些信息。
 
 *声明示例*一章中将详细介绍添加更多信息的知识。
 
 /// warning | 警告
 
-传递给 `Field` 的额外键也会出现在你的应用生成的 OpenAPI 架构中。
+在 `json_schema_extra` 中传递的额外键也会出现在你的应用生成的 OpenAPI 架构中。
 由于这些键不一定属于 OpenAPI 规范的一部分，某些 OpenAPI 工具（例如 [OpenAPI 验证器](https://validator.swagger.io/)）可能无法处理你生成的架构。
 
 ///
@@ -57,4 +57,4 @@ Pydantic 的 `Field` 返回也是 `FieldInfo` 的类实例。
 
 Pydantic 的 `Field` 可以为模型属性声明更多校验和元数据。
 
-传递 JSON Schema 元数据还可以使用更多关键字参数。
+还可以使用 `json_schema_extra` 传递额外的 JSON Schema 元数据。

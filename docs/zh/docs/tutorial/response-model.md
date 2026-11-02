@@ -42,7 +42,7 @@ FastAPI 会使用这个返回类型来：
 
 /// note | 注意
 
-注意，`response_model` 是「装饰器」方法（`get`、`post` 等）的一个参数。不是你的*路径操作函数*的参数，不像所有查询参数和请求体那样。
+注意，`response_model` 是「装饰器」方法（`get`、`post` 等）的一个参数。不是你的*路径操作函数*的参数，不像所有参数和请求体那样。
 
 ///
 
@@ -266,6 +266,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 但是，如果你的数据在具有默认值的模型字段中有实际的值，例如 ID 为 `bar` 的项：
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 这些值将包含在响应中。
 
@@ -281,6 +283,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 如果数据具有与默认值相同的值，例如 ID 为 `baz` 的项：
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI 足够聪明（实际上是 Pydantic 足够聪明）去认识到，即使 `description`、`tax` 和 `tags` 的值与默认值相同，它们也是被显式设置的（而不是取自默认值）。
 

@@ -4,7 +4,7 @@
 
 在 HTTP 基础授权中，应用需要请求头包含用户名与密码。
 
-如果没有接收到 HTTP 基础授权，就返回 HTTP 401 `"Unauthorized"` 错误。
+如果没有接收到 HTTP 基础授权，就返回 HTTP 401 "Unauthorized" 错误。
 
 并返回响应头 `WWW-Authenticate`，其值为 `Basic`，以及可选的 `realm` 参数。
 
@@ -15,7 +15,7 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 ## 简单的 HTTP 基础授权 { #simple-http-basic-auth }
 
 * 导入 `HTTPBasic` 与 `HTTPBasicCredentials`
-* 使用 `HTTPBasic` 创建**安全方案**
+* 使用 `HTTPBasic` 创建“`security` 方案”
 * 在*路径操作*的依赖项中使用 `security`
 * 返回类型为 `HTTPBasicCredentials` 的对象：
     * 包含发送的 `username` 与 `password`
@@ -45,8 +45,10 @@ HTTP 基础授权让浏览器显示内置的用户名与密码提示。
 这类似于：
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
-    # Return some error
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
+    # 返回某个错误
     ...
 ```
 
@@ -67,9 +69,9 @@ if "johndoe" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-但就在 Python 比较完 `johndoe` 的第一个字母 `j` 与 `stanleyjobson` 的 `s` 时，Python 就已经知道这两个字符串不相同了，它会这么想，**没必要浪费更多时间执行剩余字母的对比计算了**。应用立刻就会返回**错误的用户或密码**。
+但就在 Python 比较完 `johndoe` 的第一个字母 `j` 与 `stanleyjobson` 的 `s` 时，它就会返回 `False`，因为 Python 已经知道这两个字符串不相同了，它会这么想，**没必要浪费更多时间执行剩余字母的对比计算了**。应用就会返回**错误的用户名或密码**。
 
-但接下来，攻击者继续尝试 `stanleyjobsox` 和 密码 `love123`。
+但接下来，攻击者继续尝试用户名 `stanleyjobsox` 和密码 `love123`。
 
 应用代码会执行类似下面的操作：
 
@@ -78,17 +80,17 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-此时，Python 要对比 `stanleyjobsox` 与 `stanleyjobson` 中的 `stanleyjobso`，才能知道这两个字符串不一样。因此会多花费几微秒来返回**错误的用户或密码**。
+此时，Python 要对比 `stanleyjobsox` 与 `stanleyjobson` 中的 `stanleyjobso`，才能知道这两个字符串不一样。因此会多花费几微秒来返回**错误的用户名或密码**。
 
 #### 反应时间对攻击者的帮助 { #the-time-to-answer-helps-the-attackers }
 
-通过服务器花费了更多微秒才发送**错误的用户或密码**响应，攻击者会知道猜对了一些内容，起码开头字母是正确的。
+通过服务器花费了更多微秒才发送**错误的用户名或密码**响应，攻击者会知道猜对了一些内容，起码开头的一些字母是正确的。
 
-然后，他们就可以放弃 `johndoe`，再用类似 `stanleyjobsox` 的内容进行尝试。
+然后，他们就可以再次尝试，因为他们知道正确的用户名可能更接近 `stanleyjobsox`，而不是 `johndoe`。
 
 #### **专业**攻击 { #a-professional-attack }
 
-当然，攻击者不用手动操作，而是编写每秒能执行成千上万次测试的攻击程序，每次都会找到更多正确字符。
+当然，攻击者不用手动操作，而是编写每秒可能执行数千甚至数百万次测试的攻击程序，每次只会多找到一个正确字符。
 
 但是，在您的应用的**帮助**下，攻击者利用时间差，就能在几分钟或几小时内，以这种方式猜出正确的用户名和密码。
 

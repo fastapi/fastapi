@@ -155,15 +155,14 @@ from app.routers import items
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...前缀不能以 `/` 作为结尾。
 
 因此，本例中的前缀为 `/items`。
 
-我们还可以添加一个 `tags` 列表和额外的 `responses` 列表，这些参数将应用于此路由器中包含的所有*路径操作*。
+我们还可以添加一个 `tags` 列表和额外的 `responses`，这些参数将应用于此路由器中包含的所有*路径操作*。
 
 我们可以添加一个 `dependencies` 列表，这些依赖项将被添加到路由器中的所有*路径操作*中，并将针对向它们发起的每个请求执行/解决。
 
@@ -269,13 +268,13 @@ from ...dependencies import get_token_header
 * 在该父包中，找到 `dependencies` 模块（位于 `app/dependencies.py` 的文件）...
 * 然后从中导入函数 `get_token_header`。
 
-这将引用 `app/` 的往上一级，带有其自己的 `__init __.py` 等文件的某个包。但是我们并没有这个包。因此，这将在我们的示例中引发错误。🚨
+这将引用 `app/` 的往上一级，带有其自己的 `__init__.py` 等文件的某个包。但是我们并没有这个包。因此，这将在我们的示例中引发错误。🚨
 
 但是现在你知道了它的工作原理，因此无论它们多么复杂，你都可以在自己的应用程序中使用相对导入。🤓
 
 ### 添加一些自定义的 `tags`、`responses` 和 `dependencies` { #add-some-custom-tags-responses-and-dependencies }
 
-我们不打算在每个*路径操作*中添加前缀 `/items` 或 `tags =["items"]`，因为我们将它们添加到了 `APIRouter` 中。
+我们不打算在每个*路径操作*中添加前缀 `/items` 或 `tags=["items"]`，因为我们将它们添加到了 `APIRouter` 中。
 
 但是我们仍然可以添加*更多*将会应用于特定的*路径操作*的 `tags`，以及一些特定于该*路径操作*的额外 `responses`：
 
@@ -313,7 +312,7 @@ from ...dependencies import get_token_header
 
 {* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
 
-由于文件 `app/routers/users.py` 和 `app/routers/items.py` 是同一 Python 包 `app` 一个部分的子模块，因此我们可以使用单个点 ` .` 通过「相对导入」来导入它们。
+由于文件 `app/routers/users.py` 和 `app/routers/items.py` 是同一 Python 包 `app` 一个部分的子模块，因此我们可以使用单个点 `.` 通过「相对导入」来导入它们。
 
 ### 导入是如何工作的 { #how-the-importing-works }
 
@@ -422,7 +421,7 @@ from .routers.users import router
 
 {* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
-但是我们仍然希望在包含 `APIRouter` 时设置一个自定义的 `prefix`，以便其所有*路径操作*以 `/admin` 开头，我们希望使用本项目已经有的 `dependencies` 保护它，并且我们希望它包含自定义的 `tags` 和 `responses`。
+但是我们仍然希望在包含 `APIRouter` 时设置一个自定义的 `prefix`，以便其所有*路径操作*以 `/admin` 开头，我们希望使用本项目已经有的 `dependencies` 保护它，并且我们希望它包含 `tags` 和 `responses`。
 
 我们可以通过将这些参数传递给 `app.include_router()` 来完成所有的声明，而不必修改原始的 `APIRouter`：
 

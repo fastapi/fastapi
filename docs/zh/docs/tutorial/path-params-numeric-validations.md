@@ -28,7 +28,7 @@ FastAPI 在 0.95.0 版本添加了对 `Annotated` 的支持（并开始推荐使
 
 /// note | 注意
 
-路径参数总是必需的，因为它必须是路径的一部分。即使你将其声明为 `None` 或设置了默认值，也不会产生任何影响，它依然始终是必需参数。
+路径参数总是必需的，因为它必须是 URL 路径的一部分。在其类型中添加 `None` 并不会使其变为可选参数。使用 `Path` 声明的参数不能有默认值。
 
 ///
 
@@ -68,7 +68,7 @@ FastAPI 在 0.95.0 版本添加了对 `Annotated` 的支持（并开始推荐使
 
 ///
 
-这里有一个小技巧，可能会很方便，但你并不会经常需要它。
+这里有一个**小技巧**，可能会很方便，但你并不会经常需要它。
 
 如果你想要：
 
@@ -81,7 +81,7 @@ FastAPI 在 0.95.0 版本添加了对 `Annotated` 的支持（并开始推荐使
 
 在函数的第一个参数位置传入 `*`。
 
-Python 不会对这个 `*` 做任何事，但它会知道之后的所有参数都应该作为关键字参数（键值对）来调用，也被称为 <abbr title="来自：K-ey W-ord Arg-uments"><code>kwargs</code></abbr>。即使它们没有默认值。
+Python 不会对这个 `*` 做任何事，但它会知道之后的所有参数都应该作为关键字参数（键值对）来调用，也被称为 <abbr title="来自：K-ey W-ord Arg-uments - 关键字参数"><code>kwargs</code></abbr>。即使它们没有默认值。
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
@@ -95,7 +95,7 @@ Python 不会对这个 `*` 做任何事，但它会知道之后的所有参数�
 
 使用 `Query` 和 `Path`（以及你稍后会看到的其他类）你可以声明数值约束。
 
-在这里，使用 `ge=1` 后，`item_id` 必须是一个整数，值要「`g`reater than or `e`qual」1。
+在这里，使用 `ge=1` 后，`item_id` 必须是一个整数，值要大于等于（`g`reater than or `e`qual）`1`。
 
 {* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
