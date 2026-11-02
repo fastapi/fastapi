@@ -1,422 +1,437 @@
 repos:
 - name: headroom
   html_url: https://github.com/headroomlabs-ai/headroom
-  stars: 74217
+  stars: 78507
   owner_login: headroomlabs-ai
   owner_html_url: https://github.com/headroomlabs-ai
 - name: full-stack-fastapi-template
   html_url: https://github.com/fastapi/full-stack-fastapi-template
-  stars: 45830
+  stars: 46136
   owner_login: fastapi
   owner_html_url: https://github.com/fastapi
 - name: Hello-Python
   html_url: https://github.com/mouredev/Hello-Python
-  stars: 37617
+  stars: 37941
   owner_login: mouredev
   owner_html_url: https://github.com/mouredev
 - name: serve
   html_url: https://github.com/jina-ai/serve
-  stars: 21864
+  stars: 21851
   owner_login: jina-ai
   owner_html_url: https://github.com/jina-ai
 - name: HivisionIDPhotos
   html_url: https://github.com/Zeyi-Lin/HivisionIDPhotos
-  stars: 21582
+  stars: 21686
   owner_login: Zeyi-Lin
   owner_html_url: https://github.com/Zeyi-Lin
 - name: Douyin_TikTok_Download_API
   html_url: https://github.com/Evil0ctal/Douyin_TikTok_Download_API
-  stars: 20422
+  stars: 21044
   owner_login: Evil0ctal
   owner_html_url: https://github.com/Evil0ctal
 - name: sqlmodel
   html_url: https://github.com/fastapi/sqlmodel
-  stars: 18354
+  stars: 18521
   owner_login: fastapi
   owner_html_url: https://github.com/fastapi
 - name: fastapi-best-practices
   html_url: https://github.com/zhanymkanov/fastapi-best-practices
-  stars: 18138
+  stars: 18279
   owner_login: zhanymkanov
   owner_html_url: https://github.com/zhanymkanov
 - name: machine-learning-zoomcamp
   html_url: https://github.com/DataTalksClub/machine-learning-zoomcamp
-  stars: 14648
+  stars: 14899
   owner_login: DataTalksClub
   owner_html_url: https://github.com/DataTalksClub
 - name: XHS-Downloader
   html_url: https://github.com/JoeanAmier/XHS-Downloader
-  stars: 12882
+  stars: 13178
   owner_login: JoeanAmier
   owner_html_url: https://github.com/JoeanAmier
 - name: fastapi_mcp
   html_url: https://github.com/tadata-org/fastapi_mcp
-  stars: 12014
+  stars: 12023
   owner_login: tadata-org
   owner_html_url: https://github.com/tadata-org
 - name: peewee
   html_url: https://github.com/coleifer/peewee
-  stars: 11997
+  stars: 12003
   owner_login: coleifer
   owner_html_url: https://github.com/coleifer
 - name: awesome-fastapi
   html_url: https://github.com/mjhea0/awesome-fastapi
-  stars: 11696
+  stars: 11764
   owner_login: mjhea0
   owner_html_url: https://github.com/mjhea0
 - name: WhisperLiveKit
   html_url: https://github.com/QuentinFuxa/WhisperLiveKit
-  stars: 11108
+  stars: 11198
   owner_login: QuentinFuxa
   owner_html_url: https://github.com/QuentinFuxa
 - name: polar
   html_url: https://github.com/polarsource/polar
-  stars: 10300
+  stars: 10451
   owner_login: polarsource
   owner_html_url: https://github.com/polarsource
 - name: pycaret
   html_url: https://github.com/pycaret/pycaret
-  stars: 9849
+  stars: 9858
   owner_login: pycaret
   owner_html_url: https://github.com/pycaret
 - name: FastUI
   html_url: https://github.com/pydantic/FastUI
-  stars: 8940
+  stars: 8926
   owner_login: pydantic
   owner_html_url: https://github.com/pydantic
 - name: FileCodeBox
   html_url: https://github.com/vastsa/FileCodeBox
-  stars: 8559
+  stars: 8692
   owner_login: vastsa
   owner_html_url: https://github.com/vastsa
 - name: hatchet
   html_url: https://github.com/hatchet-dev/hatchet
-  stars: 8039
+  stars: 8211
   owner_login: hatchet-dev
   owner_html_url: https://github.com/hatchet-dev
 - name: nonebot2
   html_url: https://github.com/nonebot/nonebot2
-  stars: 7727
+  stars: 7777
   owner_login: nonebot
   owner_html_url: https://github.com/nonebot
 - name: Yuxi
   html_url: https://github.com/xerrors/Yuxi
-  stars: 7251
+  stars: 7564
   owner_login: xerrors
   owner_html_url: https://github.com/xerrors
 - name: dramaclaw
   html_url: https://github.com/dramaclaw/dramaclaw
-  stars: 6615
+  stars: 6838
   owner_login: dramaclaw
   owner_html_url: https://github.com/dramaclaw
-- name: fastapi-users
-  html_url: https://github.com/fastapi-users/fastapi-users
-  stars: 6248
-  owner_login: fastapi-users
-  owner_html_url: https://github.com/fastapi-users
-- name: serge
-  html_url: https://github.com/serge-chat/serge
-  stars: 5708
-  owner_login: serge-chat
-  owner_html_url: https://github.com/serge-chat
-- name: YouDub-webui
-  html_url: https://github.com/liuzhao1225/YouDub-webui
-  stars: 5563
-  owner_login: liuzhao1225
-  owner_html_url: https://github.com/liuzhao1225
-- name: Kokoro-FastAPI
-  html_url: https://github.com/remsky/Kokoro-FastAPI
-  stars: 5499
-  owner_login: remsky
-  owner_html_url: https://github.com/remsky
-- name: OpenExecutive
-  html_url: https://github.com/SenteLabsAI/OpenExecutive
-  stars: 5434
-  owner_login: SenteLabsAI
-  owner_html_url: https://github.com/SenteLabsAI
 - name: tick-stock-panel
   html_url: https://github.com/shy3130/tick-stock-panel
-  stars: 5353
+  stars: 6719
   owner_login: shy3130
   owner_html_url: https://github.com/shy3130
+- name: fastapi-users
+  html_url: https://github.com/fastapi-users/fastapi-users
+  stars: 6258
+  owner_login: fastapi-users
+  owner_html_url: https://github.com/fastapi-users
+- name: YouDub-webui
+  html_url: https://github.com/liuzhao1225/YouDub-webui
+  stars: 5784
+  owner_login: liuzhao1225
+  owner_html_url: https://github.com/liuzhao1225
+- name: OpenExecutive
+  html_url: https://github.com/SenteLabsAI/OpenExecutive
+  stars: 5716
+  owner_login: SenteLabsAI
+  owner_html_url: https://github.com/SenteLabsAI
+- name: serge
+  html_url: https://github.com/serge-chat/serge
+  stars: 5696
+  owner_login: serge-chat
+  owner_html_url: https://github.com/serge-chat
+- name: Kokoro-FastAPI
+  html_url: https://github.com/remsky/Kokoro-FastAPI
+  stars: 5623
+  owner_login: remsky
+  owner_html_url: https://github.com/remsky
+- name: AutoSwarm-Shadow-Adapter
+  html_url: https://github.com/AhmadHassan-BTed/AutoSwarm-Shadow-Adapter
+  stars: 4925
+  owner_login: AhmadHassan-BTed
+  owner_html_url: https://github.com/AhmadHassan-BTed
 - name: devpush
   html_url: https://github.com/hunvreus/devpush
-  stars: 4758
+  stars: 4780
   owner_login: hunvreus
   owner_html_url: https://github.com/hunvreus
-- name: strawberry
-  html_url: https://github.com/strawberry-graphql/strawberry
-  stars: 4722
-  owner_login: strawberry-graphql
-  owner_html_url: https://github.com/strawberry-graphql
 - name: mcp-context-forge
   html_url: https://github.com/IBM/mcp-context-forge
-  stars: 4557
+  stars: 4735
   owner_login: IBM
   owner_html_url: https://github.com/IBM
+- name: strawberry
+  html_url: https://github.com/strawberry-graphql/strawberry
+  stars: 4725
+  owner_login: strawberry-graphql
+  owner_html_url: https://github.com/strawberry-graphql
 - name: logfire
   html_url: https://github.com/pydantic/logfire
-  stars: 4500
+  stars: 4528
   owner_login: pydantic
   owner_html_url: https://github.com/pydantic
-- name: poem
-  html_url: https://github.com/poem-web/poem
-  stars: 4443
-  owner_login: poem-web
-  owner_html_url: https://github.com/poem-web
 - name: huma
   html_url: https://github.com/danielgtaylor/huma
-  stars: 4433
+  stars: 4510
   owner_login: danielgtaylor
   owner_html_url: https://github.com/danielgtaylor
+- name: poem
+  html_url: https://github.com/poem-web/poem
+  stars: 4462
+  owner_login: poem-web
+  owner_html_url: https://github.com/poem-web
 - name: dynaconf
   html_url: https://github.com/dynaconf/dynaconf
-  stars: 4333
+  stars: 4337
   owner_login: dynaconf
   owner_html_url: https://github.com/dynaconf
-- name: chatgpt-web-share
-  html_url: https://github.com/chatpire/chatgpt-web-share
-  stars: 4276
-  owner_login: chatpire
-  owner_html_url: https://github.com/chatpire
 - name: RVG
   html_url: https://github.com/arvin341az-glitch/RVG
-  stars: 4140
+  stars: 4315
   owner_login: arvin341az-glitch
   owner_html_url: https://github.com/arvin341az-glitch
+- name: chatgpt-web-share
+  html_url: https://github.com/chatpire/chatgpt-web-share
+  stars: 4269
+  owner_login: chatpire
+  owner_html_url: https://github.com/chatpire
 - name: atrilabs-engine
   html_url: https://github.com/Atri-Labs/atrilabs-engine
-  stars: 4063
+  stars: 4062
   owner_login: Atri-Labs
   owner_html_url: https://github.com/Atri-Labs
 - name: datamodel-code-generator
   html_url: https://github.com/datamodel-code-generator/datamodel-code-generator
-  stars: 4027
+  stars: 4048
   owner_login: datamodel-code-generator
   owner_html_url: https://github.com/datamodel-code-generator
 - name: LitServe
   html_url: https://github.com/Lightning-AI/LitServe
-  stars: 3943
+  stars: 3973
   owner_login: Lightning-AI
   owner_html_url: https://github.com/Lightning-AI
+- name: tracecat
+  html_url: https://github.com/TracecatHQ/tracecat
+  stars: 3880
+  owner_login: TracecatHQ
+  owner_html_url: https://github.com/TracecatHQ
 - name: fastapi-admin
   html_url: https://github.com/fastapi-admin/fastapi-admin
   stars: 3828
   owner_login: fastapi-admin
   owner_html_url: https://github.com/fastapi-admin
-- name: tracecat
-  html_url: https://github.com/TracecatHQ/tracecat
-  stars: 3823
-  owner_login: TracecatHQ
-  owner_html_url: https://github.com/TracecatHQ
+- name: mirage
+  html_url: https://github.com/strukto-ai/mirage
+  stars: 3760
+  owner_login: strukto-ai
+  owner_html_url: https://github.com/strukto-ai
 - name: farfalle
   html_url: https://github.com/rashadphz/farfalle
-  stars: 3540
+  stars: 3544
   owner_login: rashadphz
   owner_html_url: https://github.com/rashadphz
-- name: any-auto-register
-  html_url: https://github.com/lxf746/any-auto-register
-  stars: 3322
-  owner_login: lxf746
-  owner_html_url: https://github.com/lxf746
 - name: codex-lb
   html_url: https://github.com/Soju06/codex-lb
-  stars: 3284
+  stars: 3411
   owner_login: Soju06
   owner_html_url: https://github.com/Soju06
+- name: any-auto-register
+  html_url: https://github.com/lxf746/any-auto-register
+  stars: 3409
+  owner_login: lxf746
+  owner_html_url: https://github.com/lxf746
 - name: opyrator
   html_url: https://github.com/ml-tooling/opyrator
-  stars: 3132
+  stars: 3138
   owner_login: ml-tooling
   owner_html_url: https://github.com/ml-tooling
 - name: docarray
   html_url: https://github.com/docarray/docarray
-  stars: 3124
+  stars: 3125
   owner_login: docarray
   owner_html_url: https://github.com/docarray
 - name: fastapi-realworld-example-app
   html_url: https://github.com/nsidnev/fastapi-realworld-example-app
-  stars: 3104
+  stars: 3100
   owner_login: nsidnev
   owner_html_url: https://github.com/nsidnev
 - name: uvicorn-gunicorn-fastapi-docker
   html_url: https://github.com/tiangolo/uvicorn-gunicorn-fastapi-docker
-  stars: 2914
+  stars: 2915
   owner_login: tiangolo
   owner_html_url: https://github.com/tiangolo
-- name: sqladmin
-  html_url: https://github.com/smithyhq/sqladmin
-  stars: 2837
-  owner_login: smithyhq
-  owner_html_url: https://github.com/smithyhq
-- name: YC-Killer
-  html_url: https://github.com/sahibzada-allahyar/YC-Killer
-  stars: 2834
-  owner_login: sahibzada-allahyar
-  owner_html_url: https://github.com/sahibzada-allahyar
-- name: FastAPI-template
-  html_url: https://github.com/s3rius/FastAPI-template
-  stars: 2833
-  owner_login: s3rius
-  owner_html_url: https://github.com/s3rius
 - name: NoteDiscovery
   html_url: https://github.com/gamosoft/NoteDiscovery
-  stars: 2815
+  stars: 2863
   owner_login: gamosoft
   owner_html_url: https://github.com/gamosoft
+- name: sqladmin
+  html_url: https://github.com/smithyhq/sqladmin
+  stars: 2850
+  owner_login: smithyhq
+  owner_html_url: https://github.com/smithyhq
+- name: FastAPI-template
+  html_url: https://github.com/s3rius/FastAPI-template
+  stars: 2835
+  owner_login: s3rius
+  owner_html_url: https://github.com/s3rius
+- name: creatorhub
+  html_url: https://github.com/3441293738/creatorhub
+  stars: 2794
+  owner_login: '3441293738'
+  owner_html_url: https://github.com/3441293738
 - name: best-of-web-python
   html_url: https://github.com/ml-tooling/best-of-web-python
-  stars: 2763
+  stars: 2774
   owner_login: ml-tooling
   owner_html_url: https://github.com/ml-tooling
+- name: open-wearables
+  html_url: https://github.com/the-momentum/open-wearables
+  stars: 2741
+  owner_login: the-momentum
+  owner_html_url: https://github.com/the-momentum
 - name: fastapi-langgraph-agent-production-ready-template
   html_url: https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template
-  stars: 2686
+  stars: 2723
   owner_login: wassim249
   owner_html_url: https://github.com/wassim249
 - name: supabase-py
   html_url: https://github.com/supabase/supabase-py
-  stars: 2596
+  stars: 2621
   owner_login: supabase
   owner_html_url: https://github.com/supabase
-- name: open-wearables
-  html_url: https://github.com/the-momentum/open-wearables
-  stars: 2591
-  owner_login: the-momentum
-  owner_html_url: https://github.com/the-momentum
-- name: fastapi-react
-  html_url: https://github.com/Buuntu/fastapi-react
-  stars: 2591
-  owner_login: Buuntu
-  owner_html_url: https://github.com/Buuntu
 - name: fastapi-best-architecture
   html_url: https://github.com/fastapi-practices/fastapi-best-architecture
-  stars: 2573
+  stars: 2602
   owner_login: fastapi-practices
   owner_html_url: https://github.com/fastapi-practices
+- name: fastapi-react
+  html_url: https://github.com/Buuntu/fastapi-react
+  stars: 2592
+  owner_login: Buuntu
+  owner_html_url: https://github.com/Buuntu
 - name: 30-Days-of-Python
   html_url: https://github.com/codingforentrepreneurs/30-Days-of-Python
-  stars: 2524
+  stars: 2540
   owner_login: codingforentrepreneurs
   owner_html_url: https://github.com/codingforentrepreneurs
 - name: AIstudioProxyAPI
   html_url: https://github.com/CJackHwang/AIstudioProxyAPI
-  stars: 2514
+  stars: 2522
   owner_login: CJackHwang
   owner_html_url: https://github.com/CJackHwang
 - name: RasaGPT
   html_url: https://github.com/paulpierre/RasaGPT
-  stars: 2463
+  stars: 2460
   owner_login: paulpierre
   owner_html_url: https://github.com/paulpierre
 - name: nextpy
   html_url: https://github.com/dot-agent/nextpy
-  stars: 2346
+  stars: 2350
   owner_login: dot-agent
   owner_html_url: https://github.com/dot-agent
+- name: kiro-gateway
+  html_url: https://github.com/jwadow/kiro-gateway
+  stars: 2343
+  owner_login: jwadow
+  owner_html_url: https://github.com/jwadow
+- name: PanWatch
+  html_url: https://github.com/TNT-Likely/PanWatch
+  stars: 2330
+  owner_login: TNT-Likely
+  owner_html_url: https://github.com/TNT-Likely
 - name: langserve
   html_url: https://github.com/langchain-ai/langserve
-  stars: 2327
+  stars: 2323
   owner_login: langchain-ai
   owner_html_url: https://github.com/langchain-ai
 - name: fastapi-utils
   html_url: https://github.com/fastapiutils/fastapi-utils
-  stars: 2308
+  stars: 2306
   owner_login: fastapiutils
   owner_html_url: https://github.com/fastapiutils
-- name: kiro-gateway
-  html_url: https://github.com/jwadow/kiro-gateway
-  stars: 2299
-  owner_login: jwadow
-  owner_html_url: https://github.com/jwadow
 - name: vue-fastapi-admin
   html_url: https://github.com/mizhexiaoxiao/vue-fastapi-admin
-  stars: 2261
+  stars: 2285
   owner_login: mizhexiaoxiao
   owner_html_url: https://github.com/mizhexiaoxiao
-- name: creatorhub
-  html_url: https://github.com/3441293738/creatorhub
-  stars: 2200
-  owner_login: '3441293738'
-  owner_html_url: https://github.com/3441293738
+- name: workbuddy-manager
+  html_url: https://github.com/ithtelab/workbuddy-manager
+  stars: 2246
+  owner_login: ithtelab
+  owner_html_url: https://github.com/ithtelab
 - name: solara
   html_url: https://github.com/widgetti/solara
-  stars: 2179
+  stars: 2181
   owner_login: widgetti
   owner_html_url: https://github.com/widgetti
 - name: mangum
   html_url: https://github.com/Kludex/mangum
-  stars: 2138
+  stars: 2146
   owner_login: Kludex
   owner_html_url: https://github.com/Kludex
+- name: open-agent-email
+  html_url: https://github.com/Anil-matcha/open-agent-email
+  stars: 2120
+  owner_login: Anil-matcha
+  owner_html_url: https://github.com/Anil-matcha
 - name: FastAPI-boilerplate
   html_url: https://github.com/benavlabs/FastAPI-boilerplate
-  stars: 2092
+  stars: 2103
   owner_login: benavlabs
   owner_html_url: https://github.com/benavlabs
 - name: xhs_ai_publisher
   html_url: https://github.com/BetaStreetOmnis/xhs_ai_publisher
-  stars: 2089
+  stars: 2094
   owner_login: BetaStreetOmnis
   owner_html_url: https://github.com/BetaStreetOmnis
 - name: slowapi
   html_url: https://github.com/laurentS/slowapi
-  stars: 2067
+  stars: 2070
   owner_login: laurentS
   owner_html_url: https://github.com/laurentS
 - name: openapi-python-client
   html_url: https://github.com/openapi-generators/openapi-python-client
-  stars: 1995
+  stars: 1999
   owner_login: openapi-generators
   owner_html_url: https://github.com/openapi-generators
+- name: full-stack-ai-agent-template
+  html_url: https://github.com/vstorm-co/full-stack-ai-agent-template
+  stars: 1963
+  owner_login: vstorm-co
+  owner_html_url: https://github.com/vstorm-co
 - name: piccolo
   html_url: https://github.com/piccolo-orm/piccolo
-  stars: 1948
+  stars: 1951
   owner_login: piccolo-orm
   owner_html_url: https://github.com/piccolo-orm
 - name: agentkit
   html_url: https://github.com/BCG-X-Official/agentkit
-  stars: 1946
+  stars: 1940
   owner_login: BCG-X-Official
   owner_html_url: https://github.com/BCG-X-Official
-- name: full-stack-ai-agent-template
-  html_url: https://github.com/vstorm-co/full-stack-ai-agent-template
-  stars: 1926
-  owner_login: vstorm-co
-  owner_html_url: https://github.com/vstorm-co
-- name: PanWatch
-  html_url: https://github.com/TNT-Likely/PanWatch
-  stars: 1915
-  owner_login: TNT-Likely
-  owner_html_url: https://github.com/TNT-Likely
-- name: manage-fastapi
-  html_url: https://github.com/ycd/manage-fastapi
-  stars: 1905
-  owner_login: ycd
-  owner_html_url: https://github.com/ycd
 - name: WebRPA
   html_url: https://github.com/pmh1314520/WebRPA
-  stars: 1899
+  stars: 1915
   owner_login: pmh1314520
   owner_html_url: https://github.com/pmh1314520
-- name: fastapi-cache
-  html_url: https://github.com/long2ice/fastapi-cache
-  stars: 1867
-  owner_login: long2ice
-  owner_html_url: https://github.com/long2ice
+- name: manage-fastapi
+  html_url: https://github.com/ycd/manage-fastapi
+  stars: 1903
+  owner_login: ycd
+  owner_html_url: https://github.com/ycd
 - name: FileSync
   html_url: https://github.com/polius/FileSync
-  stars: 1816
+  stars: 1878
   owner_login: polius
   owner_html_url: https://github.com/polius
+- name: fastapi-cache
+  html_url: https://github.com/long2ice/fastapi-cache
+  stars: 1865
+  owner_login: long2ice
+  owner_html_url: https://github.com/long2ice
 - name: ormar
   html_url: https://github.com/ormar-orm/ormar
-  stars: 1803
+  stars: 1799
   owner_login: ormar-orm
   owner_html_url: https://github.com/ormar-orm
 - name: python-week-2022
   html_url: https://github.com/rochacbruno/python-week-2022
-  stars: 1796
+  stars: 1792
   owner_login: rochacbruno
   owner_html_url: https://github.com/rochacbruno
 - name: termpair
@@ -426,71 +441,56 @@ repos:
   owner_html_url: https://github.com/cs01
 - name: bracket
   html_url: https://github.com/evroon/bracket
-  stars: 1740
+  stars: 1751
   owner_login: evroon
   owner_html_url: https://github.com/evroon
+- name: yubal
+  html_url: https://github.com/guillevc/yubal
+  stars: 1740
+  owner_login: guillevc
+  owner_html_url: https://github.com/guillevc
 - name: fastapi-crudrouter
   html_url: https://github.com/awtkns/fastapi-crudrouter
   stars: 1698
   owner_login: awtkns
   owner_html_url: https://github.com/awtkns
-- name: docling-api
-  html_url: https://github.com/drmingler/docling-api
-  stars: 1688
-  owner_login: drmingler
-  owner_html_url: https://github.com/drmingler
 - name: fastapi-pagination
   html_url: https://github.com/uriyyo/fastapi-pagination
-  stars: 1682
+  stars: 1688
   owner_login: uriyyo
   owner_html_url: https://github.com/uriyyo
+- name: docling-api
+  html_url: https://github.com/drmingler/docling-api
+  stars: 1666
+  owner_login: drmingler
+  owner_html_url: https://github.com/drmingler
+- name: pixeltable
+  html_url: https://github.com/pixeltable/pixeltable
+  stars: 1651
+  owner_login: pixeltable
+  owner_html_url: https://github.com/pixeltable
 - name: langchain-serve
   html_url: https://github.com/jina-ai/langchain-serve
-  stars: 1637
+  stars: 1633
   owner_login: jina-ai
   owner_html_url: https://github.com/jina-ai
 - name: awesome-fastapi-projects
   html_url: https://github.com/Kludex/awesome-fastapi-projects
-  stars: 1620
+  stars: 1622
   owner_login: Kludex
   owner_html_url: https://github.com/Kludex
-- name: yubal
-  html_url: https://github.com/guillevc/yubal
-  stars: 1597
-  owner_login: guillevc
-  owner_html_url: https://github.com/guillevc
 - name: fastcrud
   html_url: https://github.com/benavlabs/fastcrud
-  stars: 1592
+  stars: 1599
   owner_login: benavlabs
   owner_html_url: https://github.com/benavlabs
-- name: fastapi-amis-admin
-  html_url: https://github.com/amisadmin/fastapi-amis-admin
-  stars: 1568
-  owner_login: amisadmin
-  owner_html_url: https://github.com/amisadmin
-- name: coronavirus-tracker-api
-  html_url: https://github.com/ExpDev07/coronavirus-tracker-api
-  stars: 1568
-  owner_login: ExpDev07
-  owner_html_url: https://github.com/ExpDev07
-- name: tavily-key-generator
-  html_url: https://github.com/skernelx/tavily-key-generator
-  stars: 1561
-  owner_login: skernelx
-  owner_html_url: https://github.com/skernelx
 - name: fim-one
   html_url: https://github.com/fim-ai/fim-one
-  stars: 1550
+  stars: 1586
   owner_login: fim-ai
   owner_html_url: https://github.com/fim-ai
-- name: RuoYi-Vue3-FastAPI
-  html_url: https://github.com/insistence/RuoYi-Vue3-FastAPI
-  stars: 1544
+- name: RuoYi-FastAPI
+  html_url: https://github.com/insistence/RuoYi-FastAPI
+  stars: 1572
   owner_login: insistence
   owner_html_url: https://github.com/insistence
-- name: fastapi-boilerplate
-  html_url: https://github.com/teamhide/fastapi-boilerplate
-  stars: 1495
-  owner_login: teamhide
-  owner_html_url: https://github.com/teamhide
