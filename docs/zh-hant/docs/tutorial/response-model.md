@@ -266,6 +266,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 但如果你的資料在模型中對於有預設值的欄位也有實際值，例如 ID 為 `bar` 的項目：
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 它們會被包含在回應中。
 
@@ -281,6 +283,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 如果資料的值與預設值相同，例如 ID 為 `baz` 的項目：
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI 足夠聰明（其實是 Pydantic 足夠聰明）去判斷，儘管 `description`、`tax` 與 `tags` 的值與預設值相同，但它們是被明確設定的（而不是取自預設值）。
 

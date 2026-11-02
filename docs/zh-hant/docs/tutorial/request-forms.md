@@ -45,6 +45,14 @@ $ uv add python-multipart
 
 ///
 
+## 布林表單欄位 { #boolean-form-fields }
+
+瀏覽器在提交 HTML 表單時會省略未勾選的核取方塊。宣告預設值為 `False` 的布林表單參數，即可在未勾選時接收到 `False`：
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+已勾選的核取方塊會傳送其值，預設為 `"on"`。**FastAPI** 會將 `"on"` 視為 `True`。
+
 ## 關於「表單欄位」 { #about-form-fields }
 
 HTML 表單（`<form></form>`）向伺服器傳送資料時，通常會使用一種「特殊」的編碼方式，與 JSON 不同。
@@ -56,6 +64,8 @@ HTML 表單（`<form></form>`）向伺服器傳送資料時，通常會使用一
 表單資料通常會使用「媒體類型」`application/x-www-form-urlencoded` 進行編碼。
 
 但當表單包含檔案時，會使用 `multipart/form-data`。你會在下一章閱讀如何處理檔案。
+
+你可以使用 `Form(media_type="multipart/form-data")` 在 OpenAPI 中描述 multipart 表單。組合表單參數或模型時，只需在其中一個參數上設定即可。
 
 若想進一步了解這些編碼與表單欄位，請參考 [<abbr title="Mozilla Developer Network - Mozilla 開發者網路">MDN</abbr> web docs 的 `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)。
 

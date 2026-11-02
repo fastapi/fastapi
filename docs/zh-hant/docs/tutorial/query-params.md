@@ -107,7 +107,13 @@ http://127.0.0.1:8000/items/foo?short=on
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-或任何其他大小寫變化（全大寫、首字母大寫等），你的函式會將參數 `short` 視為 `bool` 值 `True`。否則為 `False`。
+或任何其他大小寫變化（全大寫、首字母大寫等），你的函式會將參數 `short` 視為 `bool` 值 `True`。
+
+`0`、`false`、`off` 和 `no` 等值（包括大小寫變化）會被轉換為 `False`。
+
+如果省略 `short`，**FastAPI** 會使用它的預設值，在此例中為 `False`。
+
+空值（`?short=`）或無法辨識的值（例如 `?short=maybe`）會產生 `422` 驗證錯誤。
 
 
 ## 多個路徑與查詢參數 { #multiple-path-and-query-parameters }

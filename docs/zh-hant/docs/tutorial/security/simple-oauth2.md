@@ -136,11 +136,11 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
@@ -224,9 +224,9 @@ UserInDB(
 
 使用下列帳密：
 
-User: `johndoe`
+使用者：`johndoe`
 
-Password: `secret`
+密碼：`secret`
 
 <img src="/img/tutorial/security/image04.png">
 
@@ -264,9 +264,9 @@ Password: `secret`
 
 現在改用一個未啟用的使用者，使用以下帳密驗證：
 
-User: `alice`
+使用者：`alice`
 
-Password: `secret2`
+密碼：`secret2`
 
 然後再呼叫 `GET` 方法的 `/users/me`。
 
