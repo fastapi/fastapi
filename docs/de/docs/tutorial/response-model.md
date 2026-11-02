@@ -124,7 +124,7 @@ Darum wird **FastAPI** sich darum kümmern, dass alle Daten, die nicht im Ausgab
 
 ### `response_model` oder Rückgabetyp { #response-model-or-return-type }
 
-Da unsere zwei Modelle in diesem Fall unterschiedlich sind, würde, wenn wir den Funktions-Rückgabetyp als `UserOut` deklarieren, der Editor sich beschweren, dass wir einen ungültigen Typ zurückgeben, weil das unterschiedliche Klassen sind.
+Da unsere zwei Modelle in diesem Fall unterschiedlich sind, würden, wenn wir den Funktions-Rückgabetyp als `UserOut` deklarieren, der Editor und die Tools sich beschweren, dass wir einen ungültigen Typ zurückgeben, weil das unterschiedliche Klassen sind.
 
 Darum müssen wir es in diesem Beispiel im `response_model`-Parameter deklarieren.
 
@@ -166,7 +166,7 @@ FastAPI macht intern mehrere Dinge mit Pydantic, um sicherzustellen, dass obige 
 
 Auf diese Weise erhalten Sie das beste beider Welten: Sowohl Typannotationen mit **Tool-Unterstützung** als auch **Datenfilterung**.
 
-## Anzeige in der Dokumentation { #see-it-in-the-docs }
+## In der Dokumentation ansehen { #see-it-in-the-docs }
 
 Wenn Sie sich die automatische Dokumentation betrachten, können Sie sehen, dass Eingabe- und Ausgabemodell beide ihr eigenes JSON-Schema haben:
 
@@ -266,6 +266,7 @@ verwenden, wie in der [Pydantic-Dokumentation](https://pydantic.dev/docs/validat
 
 Aber wenn Ihre Daten Werte für die Felder des Modells mit Defaultwerten haben, wie etwa der Artikel mit der ID `bar`:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ Aber wenn Ihre Daten Werte für die Felder des Modells mit Defaultwerten haben, 
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 dann werden diese Werte in der Response enthalten sein.
 
@@ -281,6 +283,7 @@ dann werden diese Werte in der Response enthalten sein.
 
 Wenn Daten die gleichen Werte haben wie ihre Defaultwerte, wie etwa der Artikel mit der ID `baz`:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ Wenn Daten die gleichen Werte haben wie ihre Defaultwerte, wie etwa der Artikel 
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 dann ist FastAPI klug genug (tatsächlich ist Pydantic klug genug) zu erkennen, dass, obwohl `description`, `tax`, und `tags` die gleichen Werte haben wie ihre Defaultwerte, sie explizit gesetzt wurden (statt dass sie von den Defaultwerten genommen wurden).
 
@@ -299,7 +303,7 @@ Diese Felder werden also in der JSON-Response enthalten sein.
 
 Beachten Sie, dass Defaultwerte alles Mögliche sein können, nicht nur `None`.
 
-Sie können eine Liste (`[]`), ein `float` `10.5`, usw. sein.
+Sie können eine Liste (`[]`), ein `float` mit dem Wert `10.5`, usw. sein.
 
 ///
 
@@ -315,7 +319,7 @@ Das kann als schnelle Abkürzung verwendet werden, wenn Sie nur ein Pydantic-Mod
 
 Es wird dennoch empfohlen, dass Sie die Ideen von oben verwenden, also mehrere Klassen statt dieser Parameter.
 
-Der Grund ist, dass das das generierte JSON-Schema in der OpenAPI Ihrer Anwendung (und deren Dokumentation) dennoch das komplette Modell abbildet, selbst wenn Sie `response_model_include` oder `response_model_exclude` verwenden, um einige Attribute auszuschließen.
+Der Grund ist, dass das generierte JSON-Schema in der OpenAPI Ihrer Anwendung (und deren Dokumentation) dennoch das komplette Modell abbildet, selbst wenn Sie `response_model_include` oder `response_model_exclude` verwenden, um einige Attribute auszuschließen.
 
 Das trifft auch auf `response_model_by_alias` zu, welches ähnlich funktioniert.
 

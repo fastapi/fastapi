@@ -36,6 +36,7 @@ from datetime import date
 
 from pydantic import BaseModel
 
+
 # Deklarieren Sie eine Variable vom Typ str
 # und bekommen Sie Editor-Unterstützung innerhalb der Funktion
 def main(user_id: str):
@@ -75,7 +76,7 @@ my_second_user: User = User(**second_user_data)
 
 Das ganze Framework wurde so entworfen, dass es einfach und intuitiv zu benutzen ist; alle Entscheidungen wurden auf mehreren Editoren getestet, sogar vor der Implementierung, um die bestmögliche Entwicklererfahrung zu gewährleisten.
 
-In den Python-Entwickler-Umfragen wird klar, [dass die meist genutzte Funktion die „Autovervollständigung“ ist](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
+In den Python-Entwickler-Umfragen wird klar, [dass eine der meist genutzten Funktionen die „Autovervollständigung“ ist](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
 Das gesamte **FastAPI**-Framework ist darauf ausgelegt, das zu erfüllen. Autovervollständigung funktioniert überall.
 

@@ -51,7 +51,7 @@ Wir hatten diese Typannotation:
 q: str | None = None
 ```
 
-Was wir tun werden, ist, dies mit `Annotated` zu wrappen, sodass es zu:
+Was wir tun werden, ist, dies mit `Annotated` zu wrappen, sodass daraus Folgendes wird:
 
 ```Python
 q: Annotated[str | None] = None
@@ -133,7 +133,7 @@ Zum Beispiel ist das nicht erlaubt:
 q: Annotated[str, Query(default="rick")] = "morty"
 ```
 
-... denn es ist nicht klar, ob der Defaultwert „rick“ oder „morty“ sein soll.
+... denn es ist nicht klar, ob der Defaultwert `"rick"` oder `"morty"` sein soll.
 
 Sie würden also (bevorzugt) schreiben:
 
@@ -185,7 +185,7 @@ Nun wissen Sie, dass Sie sie in **FastAPI** immer dann verwenden können, wenn S
 
 Natürlich können Sie Defaultwerte verwenden, die nicht `None` sind.
 
-Nehmen wir an, Sie möchten, dass der `q` Query-Parameter eine `min_length` von `3` hat und einen Defaultwert von „fixedquery“:
+Nehmen wir an, Sie möchten, dass der `q` Query-Parameter eine `min_length` von `3` hat und einen Defaultwert von `"fixedquery"`:
 
 {* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
 
@@ -219,13 +219,21 @@ Wenn Sie einen Wert als erforderlich deklarieren müssen, während Sie `Query` v
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### Erforderlich, kann `None` sein { #required-can-be-none }
+### Erforderliche Parameter und `None` { #required-parameters-and-none }
 
-Sie können deklarieren, dass ein Parameter `None` akzeptieren kann, aber trotzdem erforderlich ist. Dadurch müssten Clients den Wert senden, selbst wenn der Wert `None` ist.
-
-Um das zu tun, können Sie deklarieren, dass `None` ein gültiger Typ ist, einfach indem Sie keinen Defaultwert deklarieren:
+Der Typ `str | None` erlaubt `None` als Python-Wert, macht einen Query-Parameter aber nicht optional. Ohne Defaultwert ist der Parameter weiterhin erforderlich:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+Query-Parameter-Werte kommen als Strings an und haben keine eingebaute Darstellung für `None`. Wenn Sie `?q=None` oder `?q=null` senden, senden Sie die Strings `"None"` beziehungsweise `"null"`. Wenn Sie `?q=` senden, senden Sie einen leeren String, der die Validierung `min_length=3` in diesem Beispiel nicht besteht.
+
+Damit Clients `q` weglassen können und `None` als dessen Wert verwendet wird, geben Sie ihm den Defaultwert `None`:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+JSON-Requestbodys können, anders als Query-Parameter, einen expliziten `null`-Wert enthalten.
 
 ## Query-Parameter-Liste / Mehrere Werte { #query-parameter-list-multiple-values }
 
@@ -391,7 +399,7 @@ Dies ist verfügbar seit Pydantic Version 2 oder höher. 😎
 
 Wenn Sie irgendeine Art von Validierung durchführen müssen, die eine Kommunikation mit einer **externen Komponente** erfordert, wie z. B. einer Datenbank oder einer anderen API, sollten Sie stattdessen **FastAPI-Abhängigkeiten** verwenden. Sie werden diese später kennenlernen.
 
-Diese benutzerdefinierten Validatoren sind für Dinge gedacht, die einfach mit denselben **Daten** überprüft werden können, die im Request bereitgestellt werden.
+Diese benutzerdefinierten Validatoren sind für Dinge gedacht, die **nur** mit denselben **Daten** überprüft werden können, die im Request bereitgestellt werden.
 
 ///
 

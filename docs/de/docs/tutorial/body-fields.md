@@ -8,6 +8,7 @@ Importieren Sie es zuerst:
 
 {* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
 
+
 /// warning | Achtung
 
 Beachten Sie, dass `Field` direkt von `pydantic` importiert wird, nicht von `fastapi`, wie die anderen (`Query`, `Path`, `Body`, usw.)
@@ -42,13 +43,14 @@ Beachten Sie, wie jedes Attribut eines Modells mit einem Typ, Defaultwert und `F
 
 ## Zusätzliche Information hinzufügen { #add-extra-information }
 
-Sie können zusätzliche Information in `Field`, `Query`, `Body`, usw. deklarieren. Und es wird im generierten JSON-Schema untergebracht.
+Sie können zusätzliche Information mit `json_schema_extra` in `Field`, `Query`, `Body`, usw. deklarieren. Und es wird im generierten JSON-Schema untergebracht.
 
 Sie werden später in der Dokumentation mehr darüber lernen, wie man zusätzliche Information unterbringt, wenn Sie lernen, Beispiele zu deklarieren.
 
 /// warning | Achtung
 
-Extra-Schlüssel, die `Field` überreicht werden, werden auch im resultierenden OpenAPI-Schema Ihrer Anwendung gelistet. Da diese Schlüssel möglicherweise nicht Teil der OpenAPI-Spezifikation sind, könnten einige OpenAPI-Tools, wie etwa [der OpenAPI-Validator](https://validator.swagger.io/), nicht mit Ihrem generierten Schema funktionieren.
+Extra-Schlüssel, die in `json_schema_extra` überreicht werden, werden auch im resultierenden OpenAPI-Schema Ihrer Anwendung gelistet.
+Da diese Schlüssel möglicherweise nicht Teil der OpenAPI-Spezifikation sind, könnten einige OpenAPI-Tools, wie etwa [der OpenAPI-Validator](https://validator.swagger.io/), nicht mit Ihrem generierten Schema funktionieren.
 
 ///
 
@@ -56,4 +58,4 @@ Extra-Schlüssel, die `Field` überreicht werden, werden auch im resultierenden 
 
 Sie können Pydantics `Field` verwenden, um zusätzliche Validierungen und Metadaten für Modellattribute zu deklarieren.
 
-Sie können auch die zusätzlichen Schlüsselwortargumente verwenden, um zusätzliche JSON-Schema-Metadaten zu übergeben.
+Sie können auch `json_schema_extra` verwenden, um zusätzliche JSON-Schema-Metadaten zu übergeben.
