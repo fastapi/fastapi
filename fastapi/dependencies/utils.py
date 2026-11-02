@@ -902,10 +902,16 @@ def _request_param_model_to_args(
     assert isinstance(field_info, params.Param), "Params must be subclasses of Param"
     loc: tuple[str, ...] = (field_info.in_.value,)
     value = params_to_process
-    if field_info.annotation is not model and not (
+    supplied = bool(
         own_names.intersection(received_params)
         or (model.model_config.get("extra") in ("allow", "forbid") and value)
+    )
+    if not supplied and (
+        field_info.annotation is not model or not field_info.is_required()
     ):
+        # Nothing was received for this model, use the parameter's default.
+        # Required models without a default keep their (empty) input to report
+        # missing fields for each of the model's fields.
         value = Undefined
     v_, errors_ = _validate_value_with_model_field(
         field=model_field, value=value, values={}, loc=loc
@@ -1141,9 +1147,12 @@ async def _extract_form_model(
     models: list[type[BaseModel]],
     received_body: FormData,
 ) -> Any:
-    if type(None) in get_args(field.field_info.annotation) and not any(
-        _is_form_model_supplied(model, received_body) for model in models
-    ):
+    supplied = any(_is_form_model_supplied(model, received_body) for model in models)
+    nullable = type(None) in get_args(field.field_info.annotation)
+    if not supplied and (nullable or not field.field_info.is_required()):
+        # Nothing was received for this model, use the parameter's default.
+        # Required models without a default keep their (empty) input to report
+        # missing fields for each of the model's fields.
         return Undefined
     # Union validators normalize each branch from the original form values.
     model_fields = get_cached_model_fields(models[0]) if len(models) == 1 else []

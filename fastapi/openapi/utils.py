@@ -177,11 +177,7 @@ def _get_openapi_operation_parameters(
             if not getattr(parent.field_info, "include_in_schema", True):
                 continue
             model = _get_param_model(parent)
-            optional_model = (
-                model is not None
-                and parent.field_info.annotation is not model
-                and not parent.field_info.is_required()
-            )
+            optional_model = model is not None and not parent.field_info.is_required()
             for param in _get_flat_fields_from_params([parent]):
                 field_info = param.field_info
                 convert_underscores = param_type == ParamTypes.header and getattr(
