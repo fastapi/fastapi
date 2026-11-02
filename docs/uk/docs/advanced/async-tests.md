@@ -71,7 +71,7 @@ $ uv run pytest
 Це еквівалентно:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...що ми раніше використовували для надсилання запитів за допомогою `TestClient`.
@@ -94,6 +94,6 @@ response = client.get('/')
 
 /// tip | Порада
 
-Якщо ви натрапили на `RuntimeError: Task attached to a different loop` під час інтеграції асинхронних викликів у ваші тести (наприклад, при використанні [MongoDB's MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), пам'ятайте створювати об'єкти, яким потрібен цикл подій, лише всередині асинхронних функцій, наприклад, у зворотному виклику `@app.on_event("startup")`.
+Якщо ви натрапили на `RuntimeError: Task attached to a different loop` під час інтеграції асинхронних викликів у ваші тести (наприклад, при використанні [MotorClient від MongoDB](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), пам'ятайте створювати об'єкти, яким потрібен цикл подій, лише всередині асинхронних функцій, наприклад, у зворотному виклику `@app.on_event("startup")`.
 
 ///

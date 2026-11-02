@@ -22,19 +22,19 @@ OAuth2 визначає, що під час використання «пото�
 
 Специфікація також каже, що клієнт може надіслати інше поле форми «`scope`».
 
-Назва поля форми — `scope` (в однині), але насправді це довга строка зі «scopes», розділеними пробілами.
+Назва поля форми - `scope` (в однині), але насправді це довга строка зі «scopes», розділеними пробілами.
 
-Кожен «scope» — це просто строка (без пробілів).
+Кожен «scope» - це просто строка (без пробілів).
 
 Їх зазвичай використовують для оголошення конкретних прав доступу, наприклад:
 
-* `users:read` або `users:write` — поширені приклади.
+* `users:read` або `users:write` - поширені приклади.
 * `instagram_basic` використовується Facebook / Instagram.
 * `https://www.googleapis.com/auth/drive` використовується Google.
 
 /// note | Примітка
 
-У OAuth2 «scope» — це просто строка, що оголошує конкретний потрібний дозвіл.
+У OAuth2 «scope» - це просто строка, що оголошує конкретний потрібний дозвіл.
 
 Не має значення, чи містить вона інші символи на кшталт `:` або чи це URL.
 
@@ -54,7 +54,7 @@ OAuth2 визначає, що під час використання «пото�
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
 
-`OAuth2PasswordRequestForm` — це клас залежності, що оголошує тіло форми з:
+`OAuth2PasswordRequestForm` - це клас залежності, що оголошує тіло форми з:
 
 * `username`.
 * `password`.
@@ -74,11 +74,11 @@ OAuth2 визначає, що під час використання «пото�
 
 /// note | Примітка
 
-`OAuth2PasswordRequestForm` — не спеціальний клас для **FastAPI**, як `OAuth2PasswordBearer`.
+`OAuth2PasswordRequestForm` - не спеціальний клас для **FastAPI**, як `OAuth2PasswordBearer`.
 
 `OAuth2PasswordBearer` робить так, що **FastAPI** знає, що це схема безпеки. Тому її додають таким чином до OpenAPI.
 
-Але `OAuth2PasswordRequestForm` — це просто клас залежності, який ви могли б написати самі, або ви могли б напряму оголосити параметри `Form`.
+Але `OAuth2PasswordRequestForm` - це просто клас залежності, який ви могли б написати самі, або ви могли б напряму оголосити параметри `Form`.
 
 Оскільки це типова задача, **FastAPI** надає його безпосередньо, щоб спростити роботу.
 
@@ -136,11 +136,11 @@ OAuth2 визначає, що під час використання «пото�
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
