@@ -2,7 +2,7 @@
 
 Você pode declarar o tipo usado para a resposta anotando o **tipo de retorno** da *função de operação de rota*.
 
-Você pode usar **anotações de tipo** da mesma forma que usaria para dados de entrada em **parâmetros** de função, você pode usar modelos Pydantic, listas, dicionários, valores escalares como inteiros, booleanos, etc.
+Você pode usar **anotações de tipo** da mesma forma que usaria para dados de entrada em **parâmetros** de função, você pode usar modelos Pydantic, lists, dicionários, valores escalares como inteiros, booleanos, etc.
 
 {* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
 
@@ -156,7 +156,7 @@ Primeiro, vamos ver como editores, mypy e outras ferramentas veriam isso.
 
 Anotamos o tipo de retorno da função como `BaseUser`, mas na verdade estamos retornando uma instância `UserIn`.
 
-O editor, mypy e outras ferramentas não reclamarão disso porque, em termos de digitação, `UserIn` é uma subclasse de `BaseUser`, o que significa que é um tipo *válido* quando o que é esperado é qualquer coisa que seja um `BaseUser`.
+O editor, mypy e outras ferramentas não reclamarão disso porque, em termos de tipagem, `UserIn` é uma subclasse de `BaseUser`, o que significa que é um tipo *válido* quando o que é esperado é qualquer coisa que seja um `BaseUser`.
 
 ### Filtragem de dados FastAPI { #fastapi-data-filtering }
 
@@ -168,7 +168,7 @@ Dessa forma, você pode obter o melhor dos dois mundos: anotações de tipo com 
 
 ## Veja na documentação { #see-it-in-the-docs }
 
-Quando você vê a documentação automática, pode verificar se o modelo de entrada e o modelo de saída terão seus próprios esquemas JSON:
+Quando você vê a documentação automática, pode verificar se o modelo de entrada e o modelo de saída terão seus próprios JSON Schema:
 
 <img src="/img/tutorial/response-model/image01.png">
 
@@ -228,7 +228,7 @@ Seu modelo de resposta pode ter valores padrão, como:
 
 * `description: Union[str, None] = None` (ou `str | None = None` no Python 3.10) tem um padrão de `None`.
 * `tax: float = 10.5` tem um padrão de `10.5`.
-* `tags: List[str] = []` tem um padrão de uma lista vazia: `[]`.
+* `tags: List[str] = []` tem um padrão de uma list vazia: `[]`.
 
 mas você pode querer omiti-los do resultado se eles não foram realmente armazenados.
 
@@ -266,6 +266,7 @@ conforme descrito na [documentação do Pydantic](https://pydantic.dev/docs/vali
 
 Mas se seus dados tiverem valores para os campos do modelo com valores padrões, como o item com ID `bar`:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ Mas se seus dados tiverem valores para os campos do modelo com valores padrões,
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 eles serão incluídos na resposta.
 
@@ -281,6 +283,7 @@ eles serão incluídos na resposta.
 
 Se os dados tiverem os mesmos valores que os padrões, como o item com ID `baz`:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ Se os dados tiverem os mesmos valores que os padrões, como o item com ID `baz`:
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 O FastAPI é inteligente o suficiente (na verdade, o Pydantic é inteligente o suficiente) para perceber que, embora `description`, `tax` e `tags` tenham os mesmos valores que os padrões, eles foram definidos explicitamente (em vez de retirados dos padrões).
 
@@ -299,7 +303,7 @@ Portanto, eles serão incluídos na resposta JSON.
 
 Observe que os valores padrão podem ser qualquer coisa, não apenas `None`.
 
-Eles podem ser uma lista (`[]`), um `float` de `10.5`, etc.
+Eles podem ser uma list (`[]`), um `float` de `10.5`, etc.
 
 ///
 
