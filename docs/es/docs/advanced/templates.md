@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Plantillas { #templates }
 
 Puedes usar cualquier motor de plantillas que desees con **FastAPI**.
@@ -63,13 +67,9 @@ Luego puedes escribir una plantilla en `templates/item.html` con, por ejemplo:
 
 En el HTML que contiene:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...mostrará el `id` tomado del `dict` de "contexto" que pasaste:
 
@@ -89,21 +89,47 @@ También puedes usar `url_for()` dentro de la plantilla, toma como argumentos lo
 
 Entonces, la sección con:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ...generará un enlace hacia la misma URL que manejaría la *path operation function* `read_item(id=id)`.
 
-Por ejemplo, con un ID de `42`, esto se renderizaría como:
+`url_for()` devuelve una URL absoluta, incluidos el esquema y el host, basada en el request actual.
+
+Por ejemplo, si tu aplicación se sirve en `https://example.com`, con un ID de `42`, esto se renderizaría como:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### Paths de URL en plantillas { #url-paths-in-templates }
+
+Para enlaces al mismo sitio, puedes usar el atributo `.path` para obtener solo el path de la URL, por ejemplo, en `templates/item_path.html`:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Pasa el nombre de la plantilla a `TemplateResponse`:
+
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+Con el mismo ejemplo, el enlace al ítem se renderizaría como:
 
 ```html
 <a href="/items/42">
 ```
+
+La `/` inicial hace que este path sea relativo a la raíz del sitio actual.
+
+El atributo `.path` excluye el esquema, el host, los parámetros de query y el fragmento. Usa la URL completa para enlaces a otro host.
+
+/// tip | Consejo
+
+Si tu aplicación está detrás de un proxy, configura los headers reenviados y `root_path` como se describe en [Detrás de un proxy](behind-a-proxy.md).
+
+///
 
 ## Plantillas y archivos estáticos { #templates-and-static-files }
 

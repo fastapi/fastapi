@@ -54,10 +54,10 @@ obtendríamos un `dict` de Python con:
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ O más exactamente, usando `user_dict` directamente, con cualquier contenido que
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -138,7 +138,7 @@ Las funciones adicionales de soporte `fake_password_hasher` y `fake_save_user` s
 
 ///
 
-## Reducir duplicación { #reduce-duplication }
+## Reduce la duplicación { #reduce-duplication }
 
 Reducir la duplicación de código es una de las ideas centrales en **FastAPI**.
 
@@ -186,9 +186,9 @@ some_variable: PlaneItem | CarItem
 
 Pero si ponemos eso en la asignación `response_model=PlaneItem | CarItem` obtendríamos un error, porque Python intentaría realizar una **operación inválida** entre `PlaneItem` y `CarItem` en lugar de interpretar eso como una anotación de tipos.
 
-## Lista de modelos { #list-of-models }
+## List de modelos { #list-of-models }
 
-De la misma manera, puedes declarar responses de listas de objetos.
+De la misma manera, puedes declarar responses de lists de objetos.
 
 Para eso, usa la `list` estándar de Python:
 
