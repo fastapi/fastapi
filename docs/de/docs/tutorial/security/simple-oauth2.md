@@ -78,7 +78,7 @@ Wenn Sie es erzwingen müssen, verwenden Sie `OAuth2PasswordRequestFormStrict` a
 
 `OAuth2PasswordBearer` lässt **FastAPI** wissen, dass es sich um ein Sicherheitsschema handelt. Daher wird es auf diese Weise zu OpenAPI hinzugefügt.
 
-Aber `OAuth2PasswordRequestForm` ist nur eine Klassenabhängigkeit, die Sie selbst hätten schreiben können, oder Sie hätten `Form`ular-Parameter direkt deklarieren können.
+Aber `OAuth2PasswordRequestForm` ist nur eine Klassenabhängigkeit, die Sie selbst hätten schreiben können, oder Sie hätten Formular-Parameter mit `Form` direkt deklarieren können.
 
 Da es sich jedoch um einen häufigen Anwendungsfall handelt, wird er zur Vereinfachung direkt von **FastAPI** bereitgestellt.
 
@@ -132,15 +132,15 @@ Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen Sy
 
 `UserInDB(**user_dict)` bedeutet:
 
-*Übergib die Schlüssel und Werte des `user_dict` direkt als Schlüssel-Wert-Argumente, äquivalent zu:*
+*Übergeben Sie die Schlüssel und Werte des `user_dict` direkt als Schlüssel-Wert-Argumente, äquivalent zu:*
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 

@@ -71,7 +71,7 @@ Dann können wir einen `AsyncClient` mit der App erstellen und mit `await` async
 Das ist das Äquivalent zu:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ... welches wir verwendet haben, um unsere Requests mit dem `TestClient` zu machen.
@@ -94,6 +94,6 @@ Da die Testfunktion jetzt asynchron ist, können Sie in Ihren Tests neben dem Se
 
 /// tip | Tipp
 
-Wenn Sie einen `RuntimeError: Task attached to a different loop` erhalten, wenn Sie asynchrone Funktionsaufrufe in Ihre Tests integrieren (z. B. bei Verwendung von [MongoDBs MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), dann denken Sie daran, Objekte zu instanziieren, die einen Event Loop nur innerhalb asynchroner Funktionen benötigen, z. B. einen `@app.on_event("startup")`-Callback.
+Wenn Sie einen `RuntimeError: Task attached to a different loop` erhalten, wenn Sie asynchrone Funktionsaufrufe in Ihre Tests integrieren (z. B. bei Verwendung von [MongoDBs MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), dann denken Sie daran, Objekte, die einen Event Loop benötigen, nur innerhalb asynchroner Funktionen zu instanziieren, z. B. in einem `@app.on_event("startup")`-Callback.
 
 ///

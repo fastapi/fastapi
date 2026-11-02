@@ -28,7 +28,7 @@ Um zum Beispiel einen `title`-Metadaten-Wert für den Pfad-Parameter `item_id` z
 
 /// note | Hinweis
 
-Ein Pfad-Parameter ist immer erforderlich, da er Teil des Pfads sein muss. Selbst wenn Sie ihn mit `None` deklarieren oder einen Defaultwert setzen, würde das nichts ändern, er wäre dennoch immer erforderlich.
+Ein Pfad-Parameter ist immer erforderlich, da er Teil des URL-Pfads sein muss. Das Hinzufügen von `None` zu seinem Typ macht ihn nicht optional. Ein mit `Path` deklarierter Parameter kann keinen Defaultwert haben.
 
 ///
 
@@ -56,7 +56,7 @@ Sie können Ihre Funktion also so deklarieren:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
 
-Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` verwenden, da es nicht darauf ankommt, dass Sie keine Funktionsparameter-Defaultwerte für `Query()` oder `Path()` verwenden.
+Aber bedenken Sie, dass Sie dieses Problem nicht haben, wenn Sie `Annotated` verwenden. Die Reihenfolge spielt dann keine Rolle, da Sie keine Funktionsparameter-Defaultwerte für `Query()` oder `Path()` verwenden.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
 
@@ -81,7 +81,7 @@ Wenn Sie:
 
 Übergeben Sie `*`, als den ersten Parameter der Funktion.
 
-Python wird nichts mit diesem `*` machen, aber es wird wissen, dass alle folgenden Parameter als Schlüsselwortargumente (Schlüssel-Wert-Paare) verwendet werden sollen, auch bekannt als <abbr title="Von: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Selbst wenn diese keinen Defaultwert haben.
+Python wird nichts mit diesem `*` machen, aber es wird wissen, dass alle folgenden Parameter als Schlüsselwortargumente (Schlüssel-Wert-Paare) verwendet werden sollen, auch bekannt als <abbr title="Von: K-ey W-ord Arg-uments - Schlüsselwortargumente"><code>kwargs</code></abbr>. Selbst wenn diese keinen Defaultwert haben.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
@@ -112,11 +112,11 @@ Das Gleiche gilt für:
 
 Zahlenvalidierung funktioniert auch für <abbr title="Fließkommazahlen">`float`</abbr>-Werte.
 
-Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than – größer als"><code>gt</code></abbr> und nicht nur <abbr title="greater than or equal – größer oder gleich"><code>ge</code></abbr> zu deklarieren. Da Sie mit dieser Option erzwingen können, dass ein Wert größer als `0` sein muss, selbst wenn er kleiner als `1` ist.
+Hier wird es wichtig, in der Lage zu sein, <abbr title="greater than - größer als"><code>gt</code></abbr> und nicht nur <abbr title="greater than or equal - größer oder gleich"><code>ge</code></abbr> zu deklarieren. Da Sie mit dieser Option zum Beispiel erzwingen können, dass ein Wert größer als `0` sein muss, selbst wenn er kleiner als `1` ist.
 
 Also wäre `0.5` ein gültiger Wert. Aber `0.0` oder `0` nicht.
 
-Und das Gleiche gilt für <abbr title="less than – kleiner als"><code>lt</code></abbr>.
+Und das Gleiche gilt für <abbr title="less than - kleiner als"><code>lt</code></abbr>.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 

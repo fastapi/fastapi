@@ -42,10 +42,12 @@ Dann können wir `secrets.compare_digest()` verwenden, um sicherzustellen, dass 
 
 {* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
 
-Dies wäre das gleiche wie:
+Dies wäre ähnlich wie:
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # Einen Error zurückgeben
     ...
 ```
@@ -78,7 +80,7 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
     ...
 ```
 
-Python muss das gesamte `stanleyjobso` in `stanleyjobsox` und `stanleyjobson` vergleichen, bevor es erkennt, dass beide Zeichenfolgen nicht gleich sind. Daher wird es einige zusätzliche Mikrosekunden dauern, bis die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> „Incorrect username or password“ erfolgt.
+Python muss das gesamte `stanleyjobso` in `stanleyjobsox` und `stanleyjobson` vergleichen, bevor es erkennt, dass beide Strings nicht gleich sind. Daher wird es einige zusätzliche Mikrosekunden dauern, bis die <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr> „Incorrect username or password“ erfolgt.
 
 #### Die Zeit zum Antworten hilft den Angreifern { #the-time-to-answer-helps-the-attackers }
 

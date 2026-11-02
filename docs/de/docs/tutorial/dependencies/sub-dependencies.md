@@ -24,7 +24,7 @@ Dann können Sie eine weitere Abhängigkeitsfunktion (ein „Dependable“) erst
 
 Betrachten wir die deklarierten Parameter:
 
-* Obwohl diese Funktion selbst eine Abhängigkeit ist („Dependable“, etwas hängt von ihr ab), deklariert sie auch eine andere Abhängigkeit („Dependant“, sie hängt von etwas anderem ab).
+* Obwohl diese Funktion selbst eine Abhängigkeit ist („Dependable“), deklariert sie auch eine andere Abhängigkeit (sie „hängt“ von etwas anderem „ab“).
     * Sie hängt von `query_extractor` ab und weist den von diesem zurückgegebenen Wert dem Parameter `q` zu.
 * Sie deklariert außerdem ein optionales `last_query`-Cookie, ein `str`.
     * Wenn der Benutzer keine Query `q` übermittelt hat, verwenden wir die zuletzt übermittelte Query, die wir zuvor in einem Cookie gespeichert haben.
@@ -64,8 +64,10 @@ In einem fortgeschrittenen Szenario, bei dem Sie wissen, dass die Abhängigkeit 
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+```Python hl_lines="2"
+async def needy_dependency(
+    fresh_value: Annotated[str, Depends(get_value, use_cache=False)],
+):
     return {"fresh_value": fresh_value}
 ```
 
