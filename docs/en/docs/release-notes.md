@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump the github-actions group with 7 updates. PR [#16658](https://github.com/fastapi/fastapi/pull/16658) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * ⬆ Bump pre-commit hooks. PR [#16659](https://github.com/fastapi/fastapi/pull/16659) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * ⬆ Bump authlib from 1.7.2 to 1.9.1. PR [#16637](https://github.com/fastapi/fastapi/pull/16637) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 🔧 Update sponsors: add MicroAuth. PR [#16641](https://github.com/fastapi/fastapi/pull/16641) by [@tiangolo](https://github.com/tiangolo).
