@@ -123,6 +123,10 @@ def _version_str_to_tuple(version: str) -> tuple[int, ...]:
         if not numeric_prefix:
             break
         version_tuple.append(int(numeric_prefix))
+    # Trailing zeros don't change the version, so "0.0.12.0" is the same as
+    # "0.0.12" and must not be considered newer than it.
+    while version_tuple and version_tuple[-1] == 0:
+        version_tuple.pop()
     return tuple(version_tuple)
 
 
