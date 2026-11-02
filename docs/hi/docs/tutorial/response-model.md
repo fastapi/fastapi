@@ -266,6 +266,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 
 लेकिन अगर आपके data में model के default values वाले fields के लिए values हैं, जैसे ID `bar` वाला item:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 तो वे response में शामिल होंगे।
 
@@ -281,6 +283,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 
 अगर data में default values जैसे ही values हैं, जैसे ID `baz` वाला item:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI इतना smart है (दरअसल, Pydantic इतना smart है) कि यह समझ सके कि, भले ही `description`, `tax`, और `tags` के values defaults जैसे ही हैं, उन्हें explicitly set किया गया था (defaults से लिए जाने के बजाय)।
 

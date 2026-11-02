@@ -58,20 +58,22 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 अगर आपकी किसी dependency को उसी *path operation* के लिए कई बार declare किया गया है, उदाहरण के लिए, कई dependencies की कोई common sub-dependency है, तो **FastAPI** जानता होगा कि उस sub-dependency को प्रति request केवल एक बार call करना है।
 
-और यह return किए गए value को एक <dfn title="computed/generated values को store करने और उन्हें फिर से compute करने के बजाय reuse करने के लिए एक utility/system">"cache"</dfn> में save करेगा और उसे उन सभी "dependants" को pass करेगा जिन्हें उस specific request में इसकी ज़रूरत है, बजाय उसी request के लिए dependency को कई बार call करने के।
+और यह return किए गए value को एक <dfn title="गणना की गई/बनाई गई values को संग्रहीत करने और उनकी दोबारा गणना करने के बजाय उनका पुनः उपयोग करने के लिए एक उपयोगिता/प्रणाली।">"कैश"</dfn> में save करेगा और उसे उन सभी "dependants" को pass करेगा जिन्हें उस specific request में इसकी ज़रूरत है, बजाय उसी request के लिए dependency को कई बार call करने के।
 
 एक advanced scenario में, जहाँ आप जानते हैं कि आपको उसी request में "cached" value का उपयोग करने के बजाय हर step पर dependency को call करवाना है (संभवतः कई बार), आप `Depends` का उपयोग करते समय parameter `use_cache=False` set कर सकते हैं:
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+```Python hl_lines="2"
+async def needy_dependency(
+    fresh_value: Annotated[str, Depends(get_value, use_cache=False)],
+):
     return {"fresh_value": fresh_value}
 ```
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python 3.10+ बिना Annotated के
 
 /// tip | सुझाव
 

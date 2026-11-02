@@ -71,7 +71,7 @@ marker `@pytest.mark.anyio` pytest को बताता है कि इस t
 यह इसके बराबर है:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...जिसका उपयोग हम `TestClient` के साथ अपनी requests बनाने के लिए करते थे।
@@ -84,7 +84,7 @@ response = client.get('/')
 
 /// warning | चेतावनी
 
-अगर आपकी application lifespan events पर निर्भर करती है, तो `AsyncClient` इन events को trigger नहीं करेगा। यह सुनिश्चित करने के लिए कि वे trigger हों, [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage) से `LifespanManager` का उपयोग करें।
+अगर आपकी application lifespan event पर निर्भर करती है, तो `AsyncClient` इन event को trigger नहीं करेगा। यह सुनिश्चित करने के लिए कि वे trigger हों, [florimondmanca/asgi-lifespan](https://github.com/florimondmanca/asgi-lifespan#usage) से `LifespanManager` का उपयोग करें।
 
 ///
 
