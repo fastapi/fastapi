@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for fr (update-outdated). PR [#16649](https://github.com/fastapi/fastapi/pull/16649) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for tr (update-outdated). PR [#16651](https://github.com/fastapi/fastapi/pull/16651) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ja (update-outdated). PR [#16648](https://github.com/fastapi/fastapi/pull/16648) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for zh (update-outdated). PR [#16644](https://github.com/fastapi/fastapi/pull/16644) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
