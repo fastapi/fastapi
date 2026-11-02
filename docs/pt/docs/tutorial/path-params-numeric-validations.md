@@ -28,7 +28,7 @@ Por exemplo, para declarar um valor de metadado `title` para o parâmetro de pat
 
 /// note | Nota
 
-Um parâmetro de path é sempre obrigatório, pois precisa fazer parte do path. Mesmo que você o declare como `None` ou defina um valor padrão, isso não afetaria nada, ele ainda seria sempre obrigatório.
+Um parâmetro de path é sempre obrigatório, pois precisa fazer parte do path da URL. Adicionar `None` ao seu tipo não o torna opcional. Um parâmetro declarado com `Path` não pode ter um valor padrão.
 
 ///
 
@@ -68,7 +68,7 @@ Isso provavelmente não é tão importante ou necessário se você usar `Annotat
 
 ///
 
-Aqui vai um pequeno truque que pode ser útil, mas você não vai precisar dele com frequência.
+Aqui vai um **pequeno truque** que pode ser útil, mas você não vai precisar dele com frequência.
 
 Se você quiser:
 
@@ -81,7 +81,7 @@ Se você quiser:
 
 Passe `*`, como o primeiro parâmetro da função.
 
-O Python não fará nada com esse `*`, mas saberá que todos os parâmetros seguintes devem ser chamados como argumentos nomeados (pares chave-valor), também conhecidos como <abbr title="De: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Mesmo que eles não tenham um valor padrão.
+O Python não fará nada com esse `*`, mas saberá que todos os parâmetros seguintes devem ser chamados como argumentos nomeados (pares chave-valor), também conhecidos como <abbr title="De: K-ey W-ord Arg-uments - argumentos nomeados"><code>kwargs</code></abbr>. Mesmo que eles não tenham um valor padrão.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
@@ -95,7 +95,7 @@ Tenha em mente que, se você usar `Annotated`, como você não está usando valo
 
 Com `Query` e `Path` (e outras que você verá depois) você pode declarar restrições numéricas.
 
-Aqui, com `ge=1`, `item_id` precisará ser um número inteiro “`g`reater than or `e`qual” a `1`.
+Aqui, com `ge=1`, `item_id` precisará ser um número inteiro “maior que ou igual” — `g`reater than or `e`qual — a `1`.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
@@ -103,8 +103,8 @@ Aqui, com `ge=1`, `item_id` precisará ser um número inteiro “`g`reater than 
 
 O mesmo se aplica a:
 
-* `gt`: maior que (`g`reater `t`han)
-* `le`: menor que ou igual (`l`ess than or `e`qual)
+* `gt`: maior que — `g`reater `t`han
+* `le`: menor que ou igual — `l`ess than or `e`qual
 
 {* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
 
@@ -112,11 +112,11 @@ O mesmo se aplica a:
 
 Validações numéricas também funcionam para valores `float`.
 
-Aqui é onde se torna importante poder declarar <abbr title="greater than – maior que"><code>gt</code></abbr> e não apenas <abbr title="greater than or equal – maior que ou igual"><code>ge</code></abbr>. Com isso você pode exigir, por exemplo, que um valor seja maior que `0`, mesmo que seja menor que `1`.
+Aqui é onde se torna importante poder declarar <abbr title="greater than - maior que"><code>gt</code></abbr> e não apenas <abbr title="greater than or equal - maior que ou igual"><code>ge</code></abbr>. Com isso você pode exigir, por exemplo, que um valor seja maior que `0`, mesmo que seja menor que `1`.
 
 Assim, `0.5` seria um valor válido. Mas `0.0` ou `0` não seriam.
 
-E o mesmo para <abbr title="less than – menor que"><code>lt</code></abbr>.
+E o mesmo para <abbr title="less than - menor que"><code>lt</code></abbr>.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 
@@ -126,10 +126,10 @@ Com `Query`, `Path` (e outras que você ainda não viu) você pode declarar meta
 
 E você também pode declarar validações numéricas:
 
-* `gt`: maior que (`g`reater `t`han)
-* `ge`: maior que ou igual (`g`reater than or `e`qual)
-* `lt`: menor que (`l`ess `t`han)
-* `le`: menor que ou igual (`l`ess than or `e`qual)
+* `gt`: maior que — `g`reater `t`han
+* `ge`: maior que ou igual — `g`reater than or `e`qual
+* `lt`: menor que — `l`ess `t`han
+* `le`: menor que ou igual — `l`ess than or `e`qual
 
 /// note | Nota
 

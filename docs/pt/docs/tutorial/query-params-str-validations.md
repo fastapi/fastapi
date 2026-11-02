@@ -220,13 +220,21 @@ Então, quando você precisa declarar um valor como obrigatório usando `Query`,
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### Obrigatório, pode ser `None` { #required-can-be-none }
+### Parâmetros obrigatórios e `None` { #required-parameters-and-none }
 
-Você pode declarar que um parâmetro pode aceitar `None`, mas que ainda assim é obrigatório. Isso forçaria os clientes a enviarem um valor, mesmo que o valor seja `None`.
-
-Para isso, você pode declarar que `None` é um tipo válido, mas simplesmente não declarar um valor padrão:
+O tipo `str | None` permite `None` como valor Python, mas não torna um parâmetro de consulta opcional. Sem um valor padrão, o parâmetro continua obrigatório:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+Os valores dos parâmetros de consulta chegam como strings e não têm uma representação nativa de `None`. Enviar `?q=None` ou `?q=null` envia as strings `"None"` e `"null"`, respectivamente. Enviar `?q=` envia uma string vazia, que falha na validação `min_length=3` neste exemplo.
+
+Para permitir que os clientes omitam `q` e usem `None` como seu valor, atribua a ele o valor padrão `None`:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+Corpos de requisição JSON, ao contrário dos parâmetros de consulta, podem conter um valor `null` explícito.
 
 ## Lista de parâmetros de consulta / múltiplos valores { #query-parameter-list-multiple-values }
 
@@ -296,9 +304,9 @@ Você também pode usar `list` diretamente em vez de `list[str]`:
 
 /// note | Nota
 
-Tenha em mente que, neste caso, o FastAPI não verificará o conteúdo da lista.
+Tenha em mente que, neste caso, o FastAPI não verificará o conteúdo da list.
 
-Por exemplo, `list[int]` verificaria (e documentaria) que os conteúdos da lista são inteiros. Mas `list` sozinho não.
+Por exemplo, `list[int]` verificaria (e documentaria) que os conteúdos da list são inteiros. Mas `list` sozinho não.
 
 ///
 
@@ -358,7 +366,7 @@ A documentação vai mostrar assim:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Excluir parâmetros do OpenAPI { #exclude-parameters-from-openapi }
+## Exclua parâmetros do OpenAPI { #exclude-parameters-from-openapi }
 
 Para excluir um parâmetro de consulta do esquema OpenAPI gerado (e portanto, dos sistemas de documentação automáticos), defina o parâmetro `include_in_schema` de `Query` como `False`:
 
@@ -416,7 +424,7 @@ Com `data.items()` obtemos um <dfn title="Algo que podemos iterar com um laço f
 
 Convertemos esse objeto iterável em uma `list` adequada com `list(data.items())`.
 
-Em seguida, com `random.choice()` podemos obter um **valor aleatório** da lista, então obtemos uma tupla com `(id, name)`. Será algo como `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
+Em seguida, com `random.choice()` podemos obter um **valor aleatório** da list, então obtemos uma tupla com `(id, name)`. Será algo como `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
 
 Depois **atribuímos esses dois valores** da tupla às variáveis `id` e `name`.
 

@@ -29,7 +29,7 @@ Vamos focar nos parâmetros declarados:
 * Ela também declara um cookie opcional `last_query`, do tipo `str`.
     * Se o usuário não passou nenhuma consulta `q`, a última consulta é utilizada, que foi salva em um cookie anteriormente.
 
-## Utilizando a dependência { #use-the-dependency }
+## Utilize a dependência { #use-the-dependency }
 
 Então podemos utilizar a dependência com:
 
@@ -60,12 +60,14 @@ Se uma de suas dependências é declarada várias vezes para a mesma *operação
 
 E o valor retornado é salvo em um <dfn title="Um utilitário/sistema para armazenar valores calculados/gerados para serem reutilizados em vez de computá-los novamente.">"cache"</dfn> e repassado para todos os "dependentes" que precisam dele em uma requisição específica, em vez de chamar a dependência múltiplas vezes para uma mesma requisição.
 
-Em um cenário avançado onde você precise que a dependência seja calculada em cada passo (possivelmente várias vezes) de uma requisição em vez de utilizar o valor em "cache", você pode definir o parâmetro `use_cache=False` em `Depends`:
+Em um cenário avançado onde você precise que a dependência seja chamada em cada passo (possivelmente várias vezes) de uma requisição em vez de utilizar o valor em "cache", você pode definir o parâmetro `use_cache=False` em `Depends`:
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+```Python hl_lines="2"
+async def needy_dependency(
+    fresh_value: Annotated[str, Depends(get_value, use_cache=False)],
+):
     return {"fresh_value": fresh_value}
 ```
 
@@ -100,6 +102,6 @@ Tudo isso pode não parecer muito útil com esses exemplos.
 
 Mas você verá o quão útil isso é nos capítulos sobre **segurança**.
 
-E você também verá a quantidade de código que você não precisara escrever.
+E você também verá a quantidade de código que você não precisará escrever.
 
 ///

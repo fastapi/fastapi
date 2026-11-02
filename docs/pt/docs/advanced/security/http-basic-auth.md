@@ -45,8 +45,10 @@ Então nós podemos utilizar o `secrets.compare_digest()` para garantir que o `c
 Isso seria parecido com:
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
-    # Return some error
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
+    # Retorne algum erro
     ...
 ```
 

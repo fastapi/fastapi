@@ -155,8 +155,7 @@ Como o path de cada *operação de rota* tem que começar com `/`, como em:
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...o prefixo não deve incluir um `/` final.
@@ -180,7 +179,7 @@ O resultado final é que os paths dos itens agora são:
 
 ...como pretendíamos.
 
-* Elas serão marcadas com uma lista de tags que contêm uma única string `"items"`.
+* Elas serão marcadas com uma list de tags que contêm uma única string `"items"`.
     * Essas "tags" são especialmente úteis para os sistemas de documentação interativa automática (usando OpenAPI).
 * Todas elas incluirão as `responses` predefinidas.
 * Todas essas *operações de rota* terão a list de `dependencies` avaliada/executada antes delas.
@@ -196,7 +195,7 @@ Ter `dependencies` no `APIRouter` pode ser usado, por exemplo, para exigir auten
 
 /// tip | Dica
 
-Os parâmetros `prefix`, `tags`, `responses` e `dependencies` são (como em muitos outros casos) apenas um recurso do **FastAPI** para ajudar a evitar duplicação de código.
+Os parâmetros `prefix`, `tags`, `responses` e `dependencies` são (como em muitos outros casos) apenas uma funcionalidade do **FastAPI** para ajudar a evitar duplicação de código.
 
 ///
 
@@ -390,7 +389,7 @@ E `items.router` contém o `APIRouter` dentro do arquivo `app/routers/items.py`.
 
 ///
 
-Com `app.include_router()` podemos adicionar cada `APIRouter` ao aplicativo principal `FastAPI`.
+Com `app.include_router()` podemos adicionar cada `APIRouter` à aplicação principal `FastAPI`.
 
 Ele incluirá todas as rotas daquele router como parte dele.
 
@@ -443,7 +442,7 @@ Assim, por exemplo, outros projetos poderiam usar o mesmo `APIRouter` com um mé
 
 ### Inclua uma *operação de rota* { #include-a-path-operation }
 
-Também podemos adicionar *operações de rota* diretamente ao aplicativo `FastAPI`.
+Também podemos adicionar *operações de rota* diretamente à aplicação `FastAPI`.
 
 Aqui fazemos isso... só para mostrar que podemos 🤷:
 
@@ -542,6 +541,6 @@ Evite mutar diretamente `router.routes` após incluir um router. O FastAPI trata
 
 Use APIs documentadas como os decoradores de operações de rota e `.include_router()` para adicionar rotas e routers.
 
-Trate `router.routes` como uma árvore de rotas de nível mais baixo que pode conter definições de rotas e routers incluídos, e evite depender dela como uma lista plana de operações de rota finais.
+Trate `router.routes` como uma árvore de rotas de nível mais baixo que pode conter definições de rotas e routers incluídos, e evite depender dela como uma list plana de operações de rota finais.
 
 ///

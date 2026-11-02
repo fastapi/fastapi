@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Templates { #templates }
 
 Você pode usar qualquer template engine com o **FastAPI**.
@@ -6,7 +10,7 @@ Uma escolha comum é o Jinja2, o mesmo usado pelo Flask e outras ferramentas.
 
 Existem utilitários para configurá-lo facilmente que você pode usar diretamente em sua aplicação **FastAPI** (fornecidos pelo Starlette).
 
-## Instalar dependências { #install-dependencies }
+## Instale dependências { #install-dependencies }
 
 Adicione `jinja2` ao seu projeto:
 
@@ -63,13 +67,9 @@ Então você pode escrever um template em `templates/item.html` com, por exemplo
 
 No código HTML que contém:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...aparecerá o `id` obtido do "context" `dict` que você passou:
 
@@ -89,21 +89,47 @@ Você também pode usar `url_for()` dentro do template, ele recebe como argument
 
 Logo, a seção com:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ...irá gerar um link para a mesma URL que será tratada pela *função de operação de rota* `read_item(id=id)`.
 
-Por exemplo, com um ID de `42`, isso renderizará:
+`url_for()` retorna uma URL absoluta, incluindo o esquema e o host, com base no request atual.
+
+Por exemplo, se sua aplicação for servida em `https://example.com`, com um ID de `42`, isso renderizará:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### Paths de URL em templates { #url-paths-in-templates }
+
+Para links para o mesmo site, você pode usar o atributo `.path` para obter apenas o path da URL, por exemplo, em `templates/item_path.html`:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Passe o nome do template para `TemplateResponse`:
+
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+Com o mesmo exemplo, o link do item seria renderizado assim:
 
 ```html
 <a href="/items/42">
 ```
+
+A `/` inicial torna esse path relativo à raiz do site atual.
+
+O atributo `.path` exclui o esquema, o host, os parâmetros de consulta e o fragmento. Use a URL completa para links para outro host.
+
+/// tip | Dica
+
+Se sua aplicação estiver atrás de um proxy, configure os cabeçalhos encaminhados e o `root_path` conforme descrito em [Atrás de um Proxy](behind-a-proxy.md).
+
+///
 
 ## Templates e arquivos estáticos { #templates-and-static-files }
 

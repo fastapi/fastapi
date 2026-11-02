@@ -96,7 +96,7 @@ Não estamos usando `scopes` neste exemplo, mas a funcionalidade está disponív
 
 Agora, obtenha os dados do usuário do banco de dados (falso), usando o `username` do campo do formulário.
 
-Se não existir tal usuário, retornaremos um erro dizendo "Incorrect username or password".
+Se não existir tal usuário, retornaremos um erro dizendo "Nome de usuário ou senha incorretos".
 
 Para o erro, usamos a exceção `HTTPException`:
 
@@ -136,17 +136,17 @@ Assim, o ladrão não poderá tentar usar essas mesmas senhas em outro sistema (
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
 /// note | Nota
 
-Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-model-dump).
+Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Modelos Extras**](../extra-models.md#about-user-in-model-dump).
 
 ///
 
@@ -158,11 +158,11 @@ Deve ter um `token_type`. No nosso caso, como estamos usando tokens "Bearer", o 
 
 E deve ter um `access_token`, com uma string contendo nosso token de acesso.
 
-Para este exemplo simples, seremos completamente inseguros e retornaremos o mesmo `username` do token.
+Para este exemplo simples, seremos completamente inseguros e retornaremos o mesmo `username` como token.
 
 /// tip | Dica
 
-No próximo capítulo, você verá uma implementação realmente segura, com hash de senha e tokens <abbr title="JSON Web Tokens">JWT</abbr>.
+No próximo capítulo, você verá uma implementação realmente segura, com hash de senha e tokens <abbr title="JSON Web Tokens - Tokens Web JSON">JWT</abbr>.
 
 Mas, por enquanto, vamos nos concentrar nos detalhes específicos de que precisamos.
 
@@ -224,9 +224,9 @@ Clique no botão "Authorize".
 
 Use as credenciais:
 
-User: `johndoe`
+Usuário: `johndoe`
 
-Password: `secret`
+Senha: `secret`
 
 <img src="/img/tutorial/security/image04.png">
 
@@ -264,9 +264,9 @@ Se você clicar no ícone de cadeado, sair e tentar a mesma operação novamente
 
 Agora tente com um usuário inativo, autentique-se com:
 
-User: `alice`
+Usuário: `alice`
 
-Password: `secret2`
+Senha: `secret2`
 
 E tente usar a operação `GET` com o caminho `/users/me`.
 
@@ -286,4 +286,4 @@ Usando essas ferramentas, você pode tornar o sistema de segurança compatível 
 
 O único detalhe que falta é que ainda não é realmente "seguro".
 
-No próximo capítulo você verá como usar uma biblioteca de hashing de senha segura e tokens <abbr title="JSON Web Tokens">JWT</abbr>.
+No próximo capítulo você verá como usar uma biblioteca de hashing de senha segura e tokens <abbr title="JSON Web Tokens - Tokens Web JSON">JWT</abbr>.
