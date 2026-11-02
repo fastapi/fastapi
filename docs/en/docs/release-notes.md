@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for hi (update-outdated). PR [#16647](https://github.com/fastapi/fastapi/pull/16647) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for es (update-outdated). PR [#16645](https://github.com/fastapi/fastapi/pull/16645) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ru (update-outdated). PR [#16650](https://github.com/fastapi/fastapi/pull/16650) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 
