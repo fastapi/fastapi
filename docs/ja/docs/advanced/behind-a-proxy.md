@@ -1,14 +1,14 @@
 # プロキシの背後 { #behind-a-proxy }
 
-多くの状況で、FastAPI アプリの前段に **Traefik** や **Nginx** のような**プロキシ**を置きます。
+多くの状況で、FastAPI アプリの前段に Traefik や Nginx のような**プロキシ**を置きます。
 
 これらのプロキシは HTTPS 証明書などの処理を担います。
 
 ## プロキシの転送ヘッダー { #proxy-forwarded-headers }
 
-アプリケーションの前段にある **プロキシ** は通常、リクエストを **サーバー** に送る前に、そのリクエストがプロキシによって転送されたことを知らせるためのヘッダーを動的に付与し、使用中の元の（公開）URL（ドメインを含む）や HTTPS 使用などの情報を伝えます。
+アプリケーションの前段にある **プロキシ** は通常、リクエストを **サーバー** に送る前に、そのリクエストがプロキシによって**転送**されたことを知らせるためのヘッダーを動的に付与し、使用中の元の（公開）URL（ドメインを含む）や HTTPS 使用などの情報を伝えます。
 
-**サーバー** プログラム（例えば **FastAPI CLI** 経由の **Uvicorn**）はこれらのヘッダーを解釈し、その情報をアプリケーションに渡すことができます。
+`fastapi run` で起動される **サーバー** はこれらのヘッダーを解釈し、その情報をアプリケーションに渡すことができます。
 
 しかしセキュリティ上、サーバーは自分が信頼できるプロキシの背後にあると分からないため、これらのヘッダーを解釈しません。
 
@@ -34,8 +34,6 @@ FastAPI CLI を *CLI オプション* `--forwarded-allow-ips` 付きで起動し
 
 ```console
 $ uv run fastapi run --forwarded-allow-ips="*"
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -101,7 +99,7 @@ sequenceDiagram
 
 アプリケーションにパスプレフィックスを付与するプロキシを使う場合があります。
 
-そのような場合は `root_path` でアプリケーションを設定できます。
+そのような場合は `fastapi run --root-path` でサーバーを設定できます。
 
 `root_path` は（FastAPI が Starlette を通して基づいている）ASGI 仕様で提供されている仕組みです。
 
@@ -117,7 +115,7 @@ sequenceDiagram
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
-そしてプロキシは、アプリサーバー（おそらく FastAPI CLI 経由の Uvicorn）に転送する前に、その場で **パスプレフィックス** を**「削除」**し、アプリケーション側には自分が `/app` で提供されているように見せかけます。これにより、コードのすべてを `/api/v1` のプレフィックス付きに書き換える必要がありません。
+そしてプロキシは、サーバーにリクエストを転送する前に、その場で **パスプレフィックス** を**「削除」**し、アプリケーション側には自分が `/app` で提供されているように見せかけます。これにより、コードのすべてを `/api/v1` のプレフィックス付きに書き換える必要がありません。
 
 ここまでは通常どおりに動作します。
 
@@ -161,7 +159,7 @@ IP `0.0.0.0` は、そのマシン/サーバーで利用可能なすべての IP
 }
 ```
 
-この例では「Proxy」は **Traefik** のようなもの、サーバーは **Uvicorn** と FastAPI CLI で FastAPI アプリケーションを実行しているものを想定しています。
+この例では「Proxy」は **Traefik** のようなものを想定しています。そして `fastapi run` が FastAPI アプリケーションを実行するサーバーを起動します。
 
 ### `root_path` の指定 { #providing-the-root-path }
 
@@ -171,13 +169,9 @@ IP `0.0.0.0` は、そのマシン/サーバーで利用可能なすべての IP
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
-
-Hypercorn を使う場合も、同様に `--root-path` オプションがあります。
 
 /// note | 技術詳細
 
@@ -195,14 +189,12 @@ Hypercorn を使う場合も、同様に `--root-path` オプションがあり�
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
-そのうえで、次のように Uvicorn を起動すると:
+そのうえで、次のようにサーバーを起動すると:
 
 <div class="termy">
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -216,30 +208,11 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 }
 ```
 
-### FastAPI アプリでの `root_path` 設定 { #setting-the-root-path-in-the-fastapi-app }
+/// warning | 非推奨の `root_path` パラメータ
 
-あるいは、`--root-path` のようなコマンドラインオプションを渡せない場合は、FastAPI アプリ作成時にパラメータ `root_path` を設定できます:
+FastAPI 0.145.0 以前では、`FastAPI()` でも `root_path` を設定できました。このパラメータは、動作がサーバーの設定と一致していなかったため、現在は非推奨です。代わりに `fastapi run --root-path /api/v1` を使用してください。
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
-
-`FastAPI` に `root_path` を渡すのは、Uvicorn や Hypercorn にコマンドラインオプション `--root-path` を渡すのと同等です。
-
-### `root_path` について { #about-root-path }
-
-サーバー（Uvicorn）は、その `root_path` をアプリに渡す以外の用途では使用しない点に注意してください。
-
-しかし、ブラウザで [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) にアクセスすると、通常どおりのレスポンスが表示されます:
-
-```JSON
-{
-    "message": "Hello World",
-    "root_path": "/api/v1"
-}
-```
-
-つまり、`http://127.0.0.1:8000/api/v1/app` でアクセスされることは想定していません。
-
-Uvicorn は、プロキシが `http://127.0.0.1:8000/app` にアクセスしてくることを想定しており、その上に追加の `/api/v1` プレフィックスを付けるのはプロキシの責務です。
+///
 
 ## パスプレフィックスを削除するプロキシについて { #about-proxies-with-a-stripped-path-prefix }
 
@@ -247,7 +220,7 @@ Uvicorn は、プロキシが `http://127.0.0.1:8000/app` にアクセスして�
 
 多くの場合、プロキシはパスプレフィックスを削除しない設定が既定でしょう。
 
-そのような場合（パスプレフィックスを削除しない場合）は、プロキシは `https://myawesomeapp.com` のようなアドレスで待ち受け、ブラウザが `https://myawesomeapp.com/api/v1/app` にアクセスし、サーバー（例: Uvicorn）が `http://127.0.0.1:8000` で待ち受けているなら、プロキシ（プレフィックスを削除しない）は同じパス `http://127.0.0.1:8000/api/v1/app` で Uvicorn にアクセスします。
+そのような場合（パスプレフィックスを削除しない場合）は、プロキシは `https://myawesomeapp.com` のようなアドレスで待ち受け、ブラウザが `https://myawesomeapp.com/api/v1/app` にアクセスし、サーバーが `http://127.0.0.1:8000` で待ち受けているなら、プロキシ（プレフィックスを削除しない）は同じパス `http://127.0.0.1:8000/api/v1/app` でサーバーにアクセスします。
 
 ## Traefik を使ったローカル検証 { #testing-locally-with-traefik }
 
@@ -302,7 +275,7 @@ Uvicorn は、プロキシが `http://127.0.0.1:8000/app` にアクセスして�
 
 このファイルは Traefik に `/api/v1` のパスプレフィックスを使うよう設定します。
 
-そして Traefik は、`http://127.0.0.1:8000` で動作している Uvicorn へリクエストを転送します。
+そして Traefik は、`http://127.0.0.1:8000` で動作しているサーバーへリクエストを転送します。
 
 では Traefik を起動します:
 
@@ -322,15 +295,13 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
 ### レスポンスの確認 { #check-the-responses }
 
-ここで、Uvicorn のポートの URL [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) にアクセスすると、通常どおりのレスポンスが表示されます:
+ここで、サーバーのポートの URL [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) にアクセスすると、通常どおりのレスポンスが表示されます:
 
 ```JSON
 {
@@ -360,15 +331,15 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 もちろん、ここでの想定は全員がプロキシ経由でアプリにアクセスすることです。したがって、パスプレフィックス `/api/v1` のある版が「正しい」アクセス方法になります。
 
-一方、プレフィックスのない版（`http://127.0.0.1:8000/app`。Uvicorn が直接提供）は、_プロキシ_（Traefik）専用の接続先になります。
+一方、プレフィックスのない版（`http://127.0.0.1:8000/app`。サーバーが直接提供）は、_プロキシ_（Traefik）専用の接続先になります。
 
-これにより、プロキシ（Traefik）がパスプレフィックスをどのように用い、サーバー（Uvicorn）が `--root-path` の `root_path` をどのように利用するかが分かります。
+これにより、プロキシ（Traefik）がパスプレフィックスをどのように用い、サーバーが `--root-path` の `root_path` をどのように利用するかが分かります。
 
 ### ドキュメント UI の確認 { #check-the-docs-ui }
 
 ここがポイントです。✨
 
-「公式な」アクセス方法は、定義したパスプレフィックス付きのプロキシ経由です。したがって想定どおり、プレフィックスなしの URL で Uvicorn が直接提供するドキュメント UI にアクセスすると動作しません。プロキシ経由でアクセスされることを前提としているためです。
+「公式な」アクセス方法は、定義したパスプレフィックス付きのプロキシ経由です。したがって想定どおり、プレフィックスなしの URL でサーバーが直接提供するドキュメント UI にアクセスすると動作しません。プロキシ経由でアクセスされることを前提としているためです。
 
 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) を確認してください:
 
@@ -398,7 +369,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 カスタムの `servers` リストを渡していて、かつ `root_path`（API がプロキシの背後にあるため）が設定されている場合、**FastAPI** はこの `root_path` を用いた「server」をリストの先頭に挿入します。
 
-例えば:
+例えば、同じ `fastapi run --root-path /api/v1` のサーバー設定を使用すると:
 
 {* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
@@ -455,7 +426,7 @@ OpenAPI 仕様の `servers` プロパティは任意です。
 
 `root_path` を用いた自動的な server を **FastAPI** に含めてほしくない場合は、パラメータ `root_path_in_servers=False` を使用します:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
 
 すると、OpenAPI スキーマには含まれません。
 

@@ -64,8 +64,10 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+```Python hl_lines="2"
+async def needy_dependency(
+    fresh_value: Annotated[str, Depends(get_value, use_cache=False)],
+):
     return {"fresh_value": fresh_value}
 ```
 
@@ -100,6 +102,6 @@ async def needy_dependency(fresh_value: str = Depends(get_value, use_cache=False
 
 しかし、**security** についての章で、それがどれほど有用であるかがわかるでしょう。
 
-そして、あなたを救うコードの量もみることになるでしょう。
+そして、どれほど多くのコードを省けるかもわかるでしょう。
 
 ///

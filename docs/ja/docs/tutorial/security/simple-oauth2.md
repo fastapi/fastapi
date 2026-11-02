@@ -136,11 +136,11 @@ OAuth2 の仕様では、固定値 `password` を持つフィールド `grant_ty
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
@@ -158,11 +158,11 @@ UserInDB(
 
 そして `access_token` を含め、その中にアクセストークンの文字列を入れます。
 
-この単純な例では、完全に安全ではありませんが、トークンとして同じ `username` をそのまま返します。
+この単純な例では、まったく安全ではありませんが、トークンとして同じ `username` をそのまま返します。
 
 /// tip | 豆知識
 
-次の章では、パスワードハッシュ化と <abbr title="JSON Web Tokens - JSON Web Token">JWT</abbr> トークンを使った本当に安全な実装を見ます。
+次の章では、パスワードハッシュ化と <abbr title="JSON Web Tokens - JSONウェブトークン">JWT</abbr> トークンを使った本当に安全な実装を見ます。
 
 しかし今は、必要な特定の詳細に集中しましょう。
 
@@ -210,7 +210,7 @@ HTTP（エラー）ステータスコード 401「UNAUTHORIZED」は、`WWW-Auth
 
 また、（今または将来）それを想定して利用するツールがあるかもしれず、あなたやユーザーにとって有用になる可能性があります。
 
-これが標準の利点です…。
+これが標準の利点です...
 
 ///
 
@@ -224,9 +224,9 @@ HTTP（エラー）ステータスコード 401「UNAUTHORIZED」は、`WWW-Auth
 
 次の認証情報を使います:
 
-User: `johndoe`
+ユーザー: `johndoe`
 
-Password: `secret`
+パスワード: `secret`
 
 <img src="/img/tutorial/security/image04.png">
 
@@ -264,9 +264,9 @@ Password: `secret`
 
 今度は非アクティブなユーザーで試してみます。次で認証してください:
 
-User: `alice`
+ユーザー: `alice`
 
-Password: `secret2`
+パスワード: `secret2`
 
 そして path `/users/me` で operation `GET` を使ってみます。
 
@@ -286,4 +286,4 @@ Password: `secret2`
 
 唯一欠けている点は、実際にはまだ「安全」ではないことです。
 
-次の章では、安全なパスワードハッシュライブラリと <abbr title="JSON Web Tokens - JSON Web Token">JWT</abbr> トークンの使い方を見ていきます。
+次の章では、安全なパスワードハッシュライブラリと <abbr title="JSON Web Tokens - JSONウェブトークン">JWT</abbr> トークンの使い方を見ていきます。
