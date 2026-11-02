@@ -8,6 +8,8 @@ Language code: sw.
 
 Use clear, natural Swahili. Preserve existing translations that are understandable and technically correct, even if terminology varies. Prioritize meaning over uniform wording.
 
+Never translate IT terms when the Swahili translation also has a non-IT meaning. Keep those terms in English, including in existing translations. This rule takes priority over the terminology guidance below.
+
 Use correct noun-class agreement, for example "uga uliotangazwa" (one field) and "nyuga zilizotangazwa" (multiple fields).
 
 Avoid repeating identical Swahili phrases when translating synonyms together. Preserve distinct concepts and separate glossary entries.
