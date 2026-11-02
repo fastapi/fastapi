@@ -220,13 +220,21 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### 必須、`None` にできる { #required-can-be-none }
+### 必須パラメータと `None` { #required-parameters-and-none }
 
-パラメータが `None` を受け付けるが、それでも必須である、と宣言できます。これにより、値が `None` であってもクライアントは値を送らなければならなくなります。
-
-そのために、`None` が有効な型であることを宣言しつつ、単にデフォルト値を宣言しません:
+`str | None` 型は Python の値として `None` を許可しますが、クエリパラメータをオプショナルにするわけではありません。デフォルト値がなければ、パラメータは依然として必須です:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+クエリパラメータの値は文字列として届き、`None` を表す組み込みの表現はありません。`?q=None` や `?q=null` を送信すると、それぞれ文字列 `"None"` と `"null"` が送信されます。`?q=` を送信すると空文字列が送信され、この例では `min_length=3` のバリデーションに失敗します。
+
+クライアントが `q` を省略し、その値として `None` を使えるようにするには、デフォルト値を `None` にします:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+JSON リクエストボディは、クエリパラメータとは異なり、明示的な `null` 値を含むことができます。
 
 ## クエリパラメータのリスト / 複数の値 { #query-parameter-list-multiple-values }
 

@@ -4,7 +4,7 @@
 
 HTTP Basic 認証では、アプリケーションはユーザー名とパスワードを含むヘッダーを期待します。
 
-それを受け取れない場合、HTTP 401 "Unauthorized" エラーを返します。
+それを受け取れない場合、HTTP 401「Unauthorized」エラーを返します。
 
 そして、値が `Basic` のヘッダー `WWW-Authenticate` を、任意の `realm` パラメータとともに返します。
 
@@ -45,7 +45,9 @@ URL を最初に開こうとしたとき（またはドキュメントで「Exec
 これは次のようなコードに相当します:
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # 何らかのエラーを返す
     ...
 ```

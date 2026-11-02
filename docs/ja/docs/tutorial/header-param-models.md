@@ -67,6 +67,26 @@ Pydantic のモデル設定で `extra` フィールドを `forbid` にして禁�
 
 ///
 
+## パラメータモデルの組み合わせ { #combine-parameter-models }
+
+複数のヘッダーパラメータモデルを、個別のヘッダーパラメータや依存関係と組み合わせることができます。[クエリパラメータのモデル](query-param-models.md#combine-parameter-models)で説明されているように、各モデルの抽出とバリデーションは独立して行われます。
+
+各モデルの `extra` 設定は、他のモデルや依存関係で宣言されたものも含め、すべてのヘッダーパラメータに適用されます。`extra="forbid"` の場合、そのモデルに含まれないヘッダーはすべて拒否されます。`extra="allow"` の場合、それらのヘッダーはモデルの追加フィールドとして含まれます。
+
+各モデルは、リクエストの読み取り時と OpenAPI の生成時の両方で、独自の `Header(convert_underscores=...)` 設定を使用します。明示的なフィールドエイリアスは、そのままヘッダー名として扱われます。
+
+## オプショナルなヘッダーパラメータモデル { #optional-header-parameter-models }
+
+ヘッダーパラメータモデルを `| None` とデフォルト値 `None` で宣言すると、グループ全体を省略可能にできます。
+
+{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+
+`x-client-name` も `x-client-version` も送信されない場合、`client` は `None` になります。どちらかが送信されると、FastAPI はモデルをバリデーションし、両方のフィールドを必須とします。
+
+デフォルト値、追加フィールド、OpenAPI には、[オプショナルなクエリパラメータモデル](query-param-models.md#optional-query-parameter-models)と同じルールが適用されます。
+
+`Host` などのヘッダーもモデルの `extra` 設定に従います。`extra="allow"` の場合、宣言されたどちらのフィールドも指定されていなくても、これらのヘッダーによってモデルが存在するものとして扱われます。
+
 ## まとめ { #summary }
 
 **Pydantic モデル**を使って **FastAPI** で **ヘッダー**を宣言できます。😎

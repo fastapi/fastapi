@@ -28,7 +28,7 @@ FastAPI はバージョン 0.95.0 で`Annotated`のサポートを追加し（�
 
 /// note | 備考
 
-パスパラメータはパスの一部でなければならないので、常に必須です。`None`で宣言したりデフォルト値を設定したりしても何も影響せず、常に必須のままです。
+パスパラメータはURLパスの一部でなければならないので、常に必須です。型に`None`を追加しても省略可能にはなりません。`Path`で宣言したパラメータにデフォルト値を設定することはできません。
 
 ///
 
@@ -81,7 +81,7 @@ Pythonは「デフォルト」を持つ値を「デフォルト」を持たな�
 
 関数の最初のパラメータとして`*`を渡します。
 
-Pythonはその`*`で何かをすることはありませんが、それ以降のすべてのパラメータがキーワード引数（キーと値のペア）として呼ばれるべきものであると知っているでしょう。それは<abbr title="From: K-ey W-ord Arg-uments - キーワード引数"><code>kwargs</code></abbr>としても知られています。たとえデフォルト値がなくても。
+Pythonはその`*`で何かをすることはありませんが、それ以降のすべてのパラメータがキーワード引数（キーと値のペア）として呼ばれるべきものであると知っているでしょう。それは<abbr title="由来: K-ey W-ord Arg-uments - キーワード引数"><code>kwargs</code></abbr>としても知られています。たとえデフォルト値がなくても。
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
@@ -112,11 +112,11 @@ Pythonはその`*`で何かをすることはありませんが、それ以降�
 
 数値のバリデーションは`float`の値に対しても有効です。
 
-ここで重要になってくるのは<abbr title="greater than – より大きい"><code>gt</code></abbr>だけでなく<abbr title="greater than or equal – 以上"><code>ge</code></abbr>も宣言できることです。これと同様に、例えば、値が`1`より小さくても`0`より大きくなければならないことを要求することができます。
+ここで重要になってくるのは<abbr title="greater than - より大きい"><code>gt</code></abbr>だけでなく<abbr title="greater than or equal - 以上"><code>ge</code></abbr>も宣言できることです。これと同様に、例えば、値が`1`より小さくても`0`より大きくなければならないことを要求することができます。
 
 したがって、`0.5`は有効な値ですが、`0.0`や`0`はそうではありません。
 
-これは<abbr title="less than – より小さい"><code>lt</code></abbr>も同じです。
+これは<abbr title="less than - より小さい"><code>lt</code></abbr>も同じです。
 
 {* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
 

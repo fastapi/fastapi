@@ -4,7 +4,7 @@
 
 これはユーザーモデルの場合は特にそうです。なぜなら:
 
-* **入力モデル** にはパスワードが必要です。
+* **入力モデル** にはパスワードを持たせられる必要があります。
 * **出力モデル**はパスワードをもつべきではありません。
 * **データベースモデル**はおそらくハッシュ化されたパスワードが必要になるでしょう。
 
@@ -54,10 +54,10 @@ print(user_dict)
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ UserInDB(
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -108,7 +108,7 @@ UserInDB(**user_dict)
 UserInDB(**user_in.model_dump())
 ```
 
-...なぜなら`user_in.model_dump()`は`dict`であり、`**`を付与して`UserInDB`を渡してPythonに「展開」させているからです。
+...なぜなら`user_in.model_dump()`は`dict`であり、`**`を付与して`UserInDB`に渡してPythonに「展開」させているからです。
 
 そこで、別のPydanticモデルのデータからPydanticモデルを取得します。
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -144,7 +144,7 @@ UserInDB(
 
 コードの重複が増えると、バグやセキュリティの問題、コードの非同期化問題（ある場所では更新しても他の場所では更新されない場合）などが発生する可能性が高くなります。
 
-そして、これらのモデルは全てのデータを共有し、属性名や型を重複させています。
+そして、これらのモデルは全て多くのデータを共有し、属性名や型を重複させています。
 
 もっと良い方法があります。
 

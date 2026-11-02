@@ -123,7 +123,7 @@ from app.routers import items
 
 この例を簡単にするために架空のヘッダーを使っています。
 
-しかし実際には、組み込みの [Security utilities](security/index.md) を使う方が良い結果になります。
+しかし実際には、組み込みの [セキュリティユーティリティ](security/index.md) を使う方が良い結果になります。
 
 ///
 
@@ -155,8 +155,7 @@ from app.routers import items
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...prefix の末尾に `/` を含めてはいけません。
@@ -492,7 +491,7 @@ $ uv run fastapi dev app/main.py
 
 しかし、そのたびに `fastapi` コマンドを呼ぶ際、正しいパスを渡すのを忘れないようにする必要があります。
 
-さらに、[VS Code Extension](../editor-support.md) や [FastAPI Cloud](https://fastapicloud.com) など、他のツールが見つけられない場合があります。そのため、`pyproject.toml` の `entrypoint` を使うことを推奨します。
+さらに、[VS Code 拡張機能](../editor-support.md) や [FastAPI Cloud](https://fastapicloud.com) など、他のツールが見つけられない場合があります。そのため、`pyproject.toml` の `entrypoint` を使うことを推奨します。
 
 ///
 

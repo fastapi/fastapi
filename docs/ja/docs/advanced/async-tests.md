@@ -12,7 +12,7 @@
 
 ## HTTPX { #httpx }
 
-**FastAPI** アプリケーションが通常の `def` 関数を使っていても、その内側は依然として `async` アプリケーションです。
+**FastAPI** アプリケーションが `async def` の代わりに通常の `def` 関数を使っていても、その内側は依然として `async` アプリケーションです。
 
 `TestClient` は、標準の pytest を使って通常の `def` のテスト関数から非同期の FastAPI アプリを呼び出すための「おまじない」を内部で行います。しかし、その「おまじない」はテスト関数自体が非同期の場合には機能しません。テストを非同期で実行すると、テスト関数内で `TestClient` は使えなくなります。
 
@@ -71,7 +71,7 @@ $ uv run pytest
 これは次と同等です:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...これまでは `TestClient` でリクエストを送っていました。
