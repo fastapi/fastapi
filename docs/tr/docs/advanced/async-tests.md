@@ -14,7 +14,7 @@ Testlerimizde asenkron fonksiyonlar çağırmak istiyorsak, test fonksiyonlarım
 
 **FastAPI** uygulamanız `async def` yerine normal `def` fonksiyonları kullanıyor olsa bile, altta yatan yapı hâlâ bir `async` uygulamadır.
 
-`TestClient`, standart pytest kullanarak normal `def` test fonksiyonlarınızın içinden asenkron FastAPI uygulamasını çağırmak için içeride bazı “sihirli” işlemler yapar. Ancak bu sihir, onu asenkron fonksiyonların içinde kullandığımızda artık çalışmaz. Testlerimizi asenkron çalıştırdığımızda, test fonksiyonlarımızın içinde `TestClient` kullanamayız.
+`TestClient`, standart pytest kullanarak normal `def` test fonksiyonlarınızın içinden asenkron FastAPI uygulamasını çağırmak için içeride bazı "sihirli" işlemler yapar. Ancak bu sihir, onu asenkron fonksiyonların içinde kullandığımızda artık çalışmaz. Testlerimizi asenkron çalıştırdığımızda, test fonksiyonlarımızın içinde `TestClient` kullanamayız.
 
 `TestClient`, [HTTPX](https://www.python-httpx.org) tabanlıdır ve neyse ki API'yi test etmek için HTTPX'i doğrudan kullanabiliriz.
 
@@ -71,7 +71,7 @@ Ardından app ile bir `AsyncClient` oluşturup `await` kullanarak ona async requ
 Bu, şu kullanıma denktir:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...ki daha önce request'leri `TestClient` ile bu şekilde gönderiyorduk.

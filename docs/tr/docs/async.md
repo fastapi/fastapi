@@ -15,7 +15,7 @@ results = await some_library()
 O zaman *path operasyon fonksiyonlarınızı* aşağıdaki gibi `async def` ile tanımlayın:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ async def read_results():
 Eğer bir veritabanı, bir API, dosya sistemi vb. ile iletişim kuran ve `await` desteği olmayan bir üçüncü taraf kütüphane kullanıyorsanız (bu şu anda çoğu veritabanı kütüphanesi için geçerlidir), o zaman *path operasyon fonksiyonlarınızı* normal olarak `def` ile tanımlayın:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -48,7 +48,7 @@ Emin değilseniz, normal `def` kullanın.
 
 ---
 
-Not: *path operasyon fonksiyonlarınızda* `def` ve `async def`'i ihtiyacınız kadar karıştırabilirsiniz, her birini sizin için en iyi seçenekle tanımlayın. FastAPI onlar için doğru olanı yapacaktır.
+**Not**: *path operasyon fonksiyonlarınızda* `def` ve `async def`'i ihtiyacınız kadar karıştırabilirsiniz, her birini sizin için en iyi seçenekle tanımlayın. FastAPI onlar için doğru olanı yapacaktır.
 
 Yukarıdaki durumların herhangi birinde FastAPI yine de asenkron olarak çalışır ve son derece hızlıdır.
 
@@ -56,7 +56,7 @@ Ancak yukarıdaki adımları izleyerek bazı performans optimizasyonları mümk�
 
 ## Teknik Detaylar { #technical-details }
 
-Python’un modern sürümleri, **`async` ve `await`** sözdizimiyle, **"coroutines"** denilen bir yapıyı kullanarak **"asenkron kod"** desteğine sahiptir.
+Python'un modern sürümleri, **`async` ve `await`** sözdizimiyle, **"coroutines"** denilen bir yapıyı kullanarak **"asenkron kod"** desteğine sahiptir.
 
 Aşağıdaki bölümlerde bu ifadeyi parça parça ele alalım:
 
@@ -155,7 +155,7 @@ Sıra sana geldiğinde gerçekten "üretken" işler yapıyorsun: menüyü işliy
 
 Ama sonra, burgerlerin hâlâ gelmemiş olsa da, kasiyerle olan işin "duraklatılıyor" ⏸, çünkü burgerlerin hazır olmasını 🕙 beklemen gerekiyor.
 
-Fakat tezgâhtan uzaklaşıp masada sıra numaranla oturduğun için, dikkatinizi 🔀 aşkına çevirebilir, onunla "çalışmaya" ⏯ 🤓 odaklanabilirsin. Yani yine çok "üretken" bir şey yapıyorsun, aşkınla flört etmek gibi 😍.
+Fakat tezgâhtan uzaklaşıp masada sıra numaranla oturduğun için, dikkatini 🔀 aşkına çevirebilir, onunla "çalışmaya" ⏯ 🤓 odaklanabilirsin. Yani yine çok "üretken" bir şey yapıyorsun, aşkınla flört etmek gibi 😍.
 
 Ardından kasiyer 💁, tezgâh ekranına numaranı koyarak "burgerleri bitirdim" diyor; ama numara seninki olduğunda çılgınca sıçramıyorsun. Sıra numaran sende, herkesin kendi numarası var; kimse burgerlerini çalamaz.
 
@@ -245,13 +245,13 @@ Ardından response'ların geri gelmesini yine 🕙 bekler.
 
 Bu "beklemeler" 🕙 mikrosaniyelerle ölçülür; ama hepsi toplandığında sonuçta oldukça fazla bekleme olur.
 
-Bu yüzden web API’leri için asenkron ⏸🔀⏯ kod kullanmak çok mantıklıdır.
+Bu yüzden web API'leri için asenkron ⏸🔀⏯ kod kullanmak çok mantıklıdır.
 
-Bu tür asenkronluk, NodeJS’i popüler yapan şeydir (NodeJS paralel olmasa bile) ve Go dilinin gücüdür.
+Bu tür asenkronluk, NodeJS'i popüler yapan şeydir (NodeJS paralel olmasa bile) ve Go dilinin gücüdür.
 
 Ve **FastAPI** ile elde ettiğiniz performans seviyesi de budur.
 
-Ayrıca, aynı anda hem paralellik hem de asenkronluk kullanabildiğiniz için, test edilen çoğu NodeJS framework’ünden daha yüksek ve C’ye daha yakın derlenen bir dil olan Go ile başa baş performans elde edersiniz [(hepsi Starlette sayesinde)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
+Ayrıca, aynı anda hem paralellik hem de asenkronluk kullanabildiğiniz için, test edilen çoğu NodeJS framework'ünden daha yüksek ve C'ye daha yakın derlenen bir dil olan Go ile başa baş performans elde edersiniz [(hepsi Starlette sayesinde)](https://www.techempower.com/benchmarks/#section=data-r17&hw=ph&test=query&l=zijmkf-1).
 
 ### Eşzamanlılık paralellikten daha mı iyi? { #is-concurrency-better-than-parallelism }
 
@@ -271,7 +271,7 @@ Hiçbir yerde 🕙 bekleme yok; sadece evin birden fazla yerinde yapılacak çok
 
 Hamburger örneğindeki gibi dönüşlerle ilerleyebilirsin, önce salon, sonra mutfak; ama hiçbir şey 🕙 beklemediğin için, sadece temizlik yaptığından, dönüşlerin hiçbir etkisi olmaz.
 
-Dönüşlerle ya da dönüşsüz (eşzamanlılık) bitirmek aynı zaman alır ve aynı miktarda iş yapmış olursun.
+Dönüşlerle ya da dönüşsüz (eşzamanlılık) bitirmek aynı zamanı alır ve aynı miktarda iş yapmış olursun.
 
 Ama bu durumda, 8 eski kasiyer/aşçı—yeni temizlikçiyi getirip her birine (artı sana) evin bir bölümünü versen, fazladan yardımla tüm işleri **paralel** yaparak çok daha çabuk bitirebilirdin.
 
@@ -281,28 +281,28 @@ Ve yürütme süresinin çoğu gerçek işten (bekleme yerine) oluştuğu ve bil
 
 ---
 
-CPU’ya bağlı işlemlerin yaygın örnekleri, karmaşık matematiksel işlem gerektiren iş yükleridir.
+CPU'ya bağlı işlemlerin yaygın örnekleri, karmaşık matematiksel işlem gerektiren iş yükleridir.
 
 Örneğin:
 
 * **Ses** veya **görüntü işleme**.
 * **Bilgisayar görüsü**: bir görüntü milyonlarca pikselden oluşur, her pikselin 3 değeri / rengi vardır; işleme genellikle bu pikseller üzerinde aynı anda bir şeyler hesaplamayı gerektirir.
 * **Makine Öğrenimi**: genellikle çok sayıda "matris" ve "vektör" çarpımı gerekir. Sayılar içeren devasa bir elektronik tabloyu ve hepsini aynı anda çarpmayı düşünün.
-* **Derin Öğrenme**: Makine Öğreniminin bir alt alanıdır, dolayısıyla aynısı geçerlidir. Sadece çarpılacak tek bir sayı tablosu değil, kocaman bir sayı kümesi vardır ve çoğu durumda bu modelleri kurmak ve/veya kullanmak için özel işlemciler kullanırsınız.
+* **Derin Öğrenme**: Makine Öğreniminin bir alt alanıdır, dolayısıyla aynısı geçerlidir. Sadece çarpılacak tek bir sayı tablosu değil, kocaman bir sayı tablosu kümesi vardır ve çoğu durumda bu modelleri kurmak ve/veya kullanmak için özel işlemciler kullanırsınız.
 
 ### Eşzamanlılık + Paralellik: Web + Makine Öğrenimi { #concurrency-parallelism-web-machine-learning }
 
-**FastAPI** ile web geliştirmede çok yaygın olan eşzamanlılıktan (NodeJS’in başlıca cazibesiyle aynı) yararlanabilirsiniz.
+**FastAPI** ile web geliştirmede çok yaygın olan eşzamanlılıktan (NodeJS'in başlıca cazibesiyle aynı) yararlanabilirsiniz.
 
-Ama ayrıca **CPU’ya bağlı** iş yükleri (Makine Öğrenimi sistemlerindeki gibi) için paralellik ve çoklu işlemden (paralel çalışan birden çok işlem) de yararlanabilirsiniz.
+Ama ayrıca **CPU'ya bağlı** iş yükleri (Makine Öğrenimi sistemlerindeki gibi) için paralellik ve çoklu işlemden (paralel çalışan birden çok işlem) de yararlanabilirsiniz.
 
-Buna ek olarak Python’un **Veri Bilimi**, Makine Öğrenimi ve özellikle Derin Öğrenme için ana dil olması, FastAPI’yi Veri Bilimi / Makine Öğrenimi web API’leri ve uygulamaları için çok iyi bir seçenek yapar.
+Buna ek olarak Python'un **Veri Bilimi**, Makine Öğrenimi ve özellikle Derin Öğrenme için ana dil olması, FastAPI'yi birçok başka alanın yanı sıra Veri Bilimi / Makine Öğrenimi web API'leri ve uygulamaları için çok iyi bir seçenek yapar.
 
-Production’da bu paralelliği nasıl sağlayacağınızı görmek için [Deployment](deployment/index.md) bölümüne bakın.
+Production'da bu paralelliği nasıl sağlayacağınızı görmek için [Deployment](deployment/index.md) bölümüne bakın.
 
 ## `async` ve `await` { #async-and-await }
 
-Python’un modern sürümleri, asenkron kodu tanımlamak için oldukça sezgisel bir yol sunar. Bu sayede kod normal "sıralı" kod gibi görünür ve doğru anlarda sizin yerinize "beklemeyi" yapar.
+Python'un modern sürümleri, asenkron kodu tanımlamak için oldukça sezgisel bir yol sunar. Bu sayede kod normal "sıralı" kod gibi görünür ve doğru anlarda sizin yerinize "beklemeyi" yapar.
 
 Sonuçları vermeden önce bekleme gerektiren ve bu yeni Python özelliklerini destekleyen bir işlem olduğunda, şöyle kodlayabilirsiniz:
 
@@ -310,9 +310,9 @@ Sonuçları vermeden önce bekleme gerektiren ve bu yeni Python özelliklerini d
 burgers = await get_burgers(2)
 ```
 
-Buradaki kilit nokta `await`. Python’a, sonuçları `burgers` değişkenine koymadan önce `get_burgers(2)` çalışmasının bitmesini 🕙 beklemesi ⏸ gerektiğini söyler. Böylece Python, bu arada başka bir şey 🔀 ⏯ yapabileceğini bilir (ör. başka bir request almak gibi).
+Buradaki kilit nokta `await`. Python'a, sonuçları `burgers` değişkenine koymadan önce `get_burgers(2)` çalışmasının bitmesini 🕙 beklemesi ⏸ gerektiğini söyler. Böylece Python, bu arada başka bir şey 🔀 ⏯ yapabileceğini bilir (ör. başka bir request almak gibi).
 
-`await`’in çalışabilmesi için, bu asenkronluğu destekleyen bir fonksiyonun içinde olması gerekir. Bunu yapmak için fonksiyonu `async def` ile tanımlayın:
+`await`'in çalışabilmesi için, bu asenkronluğu destekleyen bir fonksiyonun içinde olması gerekir. Bunu yapmak için fonksiyonu `async def` ile tanımlayın:
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 Dolayısıyla, `await` ile çağrılabileceğini söyleyen bir kütüphane kullanıyorsanız, onu kullanan *path operasyon fonksiyonunu* `async def` ile oluşturmanız gerekir, örneğin:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
@@ -351,7 +351,7 @@ async def read_burgers():
 
 ### Daha teknik detaylar { #more-technical-details }
 
-`await`’in yalnızca `async def` ile tanımlanan fonksiyonların içinde kullanılabildiğini fark etmiş olabilirsiniz.
+`await`'in yalnızca `async def` ile tanımlanan fonksiyonların içinde kullanılabildiğini fark etmiş olabilirsiniz.
 
 Aynı zamanda, `async def` ile tanımlanan fonksiyonların da "await" edilmesi gerekir. Yani `async def` ile tanımlanan fonksiyonlar yalnızca `async def` ile tanımlanan fonksiyonların içinde çağrılabilir.
 
@@ -369,7 +369,7 @@ Starlette (ve **FastAPI**) [AnyIO](https://anyio.readthedocs.io/en/stable/) üze
 
 Hatta FastAPI kullanmıyor olsanız bile, yüksek uyumluluk ve avantajları (ör. *structured concurrency*) için [AnyIO](https://anyio.readthedocs.io/en/stable/) ile kendi async uygulamalarınızı yazabilirsiniz.
 
-AnyIO’nun üzerine, tür açıklamalarını biraz iyileştirmek ve daha iyi **otomatik tamamlama**, **satır içi hatalar** vb. elde etmek için ince bir katman olarak başka bir kütüphane daha oluşturdum. Ayrıca **kendi async kodunuzu** anlamanıza ve yazmanıza yardımcı olacak dostça bir giriş ve eğitim içerir: [Asyncer](https://asyncer.tiangolo.com/). Özellikle **async kodu normal** (bloklayan/senkron) **kodla birleştirmeniz** gerektiğinde faydalı olacaktır.
+AnyIO'nun üzerine, tür açıklamalarını biraz iyileştirmek ve daha iyi **otomatik tamamlama**, **satır içi hatalar** vb. elde etmek için ince bir katman olarak başka bir kütüphane daha oluşturdum. Ayrıca **kendi async kodunuzu** **anlamanıza** ve yazmanıza yardımcı olacak dostça bir giriş ve eğitim içerir: [Asyncer](https://asyncer.tiangolo.com/). Özellikle **async kodu normal** (bloklayan/senkron) **kodla birleştirmeniz** gerektiğinde faydalı olacaktır.
 
 ### Asenkron kodun diğer biçimleri { #other-forms-of-asynchronous-code }
 
@@ -381,25 +381,25 @@ Aynı (ya da neredeyse aynı) sözdizimi yakın zamanda modern JavaScript sürü
 
 Bundan önce, asenkron kodu ele almak oldukça daha karmaşık ve zordu.
 
-Python’un önceki sürümlerinde thread’ler veya [Gevent](https://www.gevent.org/) kullanabilirdiniz. Ama kodu anlamak, hata ayıklamak ve üzerine düşünmek çok daha zordu.
+Python'un önceki sürümlerinde thread'ler veya [Gevent](https://www.gevent.org/) kullanabilirdiniz. Ama kodu anlamak, hata ayıklamak ve üzerine düşünmek çok daha zordu.
 
-NodeJS / Tarayıcı JavaScript’in önceki sürümlerinde "callback" kullanırdınız. Bu da "callback cehennemi"ne yol açardı.
+NodeJS / Tarayıcı JavaScript'in önceki sürümlerinde "callback" kullanırdınız. Bu da "callback cehennemi"ne yol açardı.
 
 ## Coroutine'ler { #coroutines }
 
 **Coroutine**, bir `async def` fonksiyonunun döndürdüğü şeye verilen süslü isimdir. Python bunun bir fonksiyona benzer bir şey olduğunu, bir noktada başlayıp biteceğini bilir; ama içinde bir `await` olduğunda dahili olarak duraklatılabileceğini ⏸ de bilir.
 
-`async` ve `await` ile asenkron kod kullanmanın bu işlevselliği çoğu zaman "coroutine" kullanmak olarak özetlenir. Go’nun ana kilit özelliği olan "Goroutines" ile karşılaştırılabilir.
+`async` ve `await` ile asenkron kod kullanmanın bu işlevselliği çoğu zaman "coroutine" kullanmak olarak özetlenir. Go'nun ana kilit özelliği olan "Goroutines" ile karşılaştırılabilir.
 
 ## Sonuç { #conclusion }
 
 Yukarıdaki cümleyi tekrar görelim:
 
-> Python’un modern sürümleri, **`async` ve `await`** sözdizimiyle, **"coroutines"** denilen bir yapıyı kullanarak **"asenkron kod"** desteğine sahiptir.
+> Python'un modern sürümleri, **`async` ve `await`** sözdizimiyle, **"coroutines"** denilen bir yapıyı kullanarak **"asenkron kod"** desteğine sahiptir.
 
 Artık daha anlamlı gelmeli. ✨
 
-Bunların hepsi, FastAPI’ye (Starlette aracılığıyla) güç verir ve böylesine etkileyici bir performansa sahip olmasını sağlar.
+Bunların hepsi, FastAPI'ye (Starlette aracılığıyla) güç verir ve böylesine etkileyici bir performansa sahip olmasını sağlar.
 
 ## Çok Teknik Detaylar { #very-technical-details }
 
@@ -407,35 +407,35 @@ Bunların hepsi, FastAPI’ye (Starlette aracılığıyla) güç verir ve böyle
 
 Büyük ihtimalle burayı atlayabilirsiniz.
 
-Bunlar, **FastAPI**’nin altında nasıl çalıştığına dair oldukça teknik ayrıntılardır.
+Bunlar, **FastAPI**'nin altında nasıl çalıştığına dair oldukça teknik ayrıntılardır.
 
-Coroutine’ler, thread’ler, blocking vb. hakkında teknik bilginiz varsa ve FastAPI’nin `async def` ile normal `def` arasındaki farkı nasıl ele aldığını merak ediyorsanız, devam edin.
+Coroutine'ler, thread'ler, blocking vb. hakkında teknik bilginiz varsa ve FastAPI'nin `async def` ile normal `def` arasındaki farkı nasıl ele aldığını merak ediyorsanız, devam edin.
 
 ///
 
 ### Path Operasyon Fonksiyonları { #path-operation-functions }
 
-Bir *path operasyon fonksiyonunu* `async def` yerine normal `def` ile tanımladığınızda, (sunucuyu bloklayacağından) doğrudan çağrılmak yerine, harici bir thread pool’da çalıştırılır ve ardından beklenir.
+Bir *path operasyon fonksiyonunu* `async def` yerine normal `def` ile tanımladığınızda, (sunucuyu bloklayacağından) doğrudan çağrılmak yerine, harici bir thread pool'da çalıştırılır ve ardından beklenir.
 
-Yukarıda açıklanan şekilde çalışmayan başka bir async framework’ten geliyorsanız ve ufak bir performans kazancı (yaklaşık 100 nanosaniye) için yalnızca hesaplama yapan basit *path operasyon fonksiyonlarını* düz `def` ile tanımlamaya alışkınsanız, **FastAPI**’de etkinin tam tersi olacağını unutmayın. Bu durumlarda, *path operasyon fonksiyonlarınız* bloklayan <abbr title="Input/Output - Giriş/Çıkış: disk okuma veya yazma, ağ iletişimi.">I/O</abbr> yapan kod kullanmadıkça `async def` kullanmak daha iyidir.
+Yukarıda açıklanan şekilde çalışmayan başka bir async framework'ten geliyorsanız ve ufak bir performans kazancı (yaklaşık 100 nanosaniye) için yalnızca hesaplama yapan basit *path operasyon fonksiyonlarını* düz `def` ile tanımlamaya alışkınsanız, **FastAPI**'de etkinin tam tersi olacağını unutmayın. Bu durumlarda, *path operasyon fonksiyonlarınız* bloklayan <abbr title="Input/Output - Giriş/Çıkış: disk okuma veya yazma, ağ iletişimi.">I/O</abbr> yapan kod kullanmadıkça `async def` kullanmak daha iyidir.
 
-Yine de her iki durumda da, **FastAPI**’nin önceki framework’ünüzden [hala daha hızlı](index.md#performance) (ya da en azından karşılaştırılabilir) olması muhtemeldir.
+Yine de her iki durumda da, **FastAPI**'nin önceki framework'ünüzden [hala daha hızlı](index.md#performance) (ya da en azından karşılaştırılabilir) olması muhtemeldir.
 
 ### Bağımlılıklar { #dependencies }
 
-Aynısı [bağımlılıklar](tutorial/dependencies/index.md) için de geçerlidir. Bir bağımlılık `async def` yerine standart bir `def` fonksiyonuysa, harici thread pool’da çalıştırılır.
+Aynısı [bağımlılıklar](tutorial/dependencies/index.md) için de geçerlidir. Bir bağımlılık `async def` yerine standart bir `def` fonksiyonuysa, harici thread pool'da çalıştırılır.
 
 ### Alt-bağımlılıklar { #sub-dependencies }
 
-Birbirini gerektiren birden çok bağımlılık ve [alt-bağımlılık](tutorial/dependencies/sub-dependencies.md) olabilir (fonksiyon tanımlarının parametreleri olarak). Bazıları `async def` ile, bazıları normal `def` ile oluşturulmuş olabilir. Yine de çalışır ve normal `def` ile oluşturulanlar "await" edilmek yerine harici bir thread’de (thread pool’dan) çağrılır.
+Birbirini gerektiren birden çok bağımlılık ve [alt-bağımlılık](tutorial/dependencies/sub-dependencies.md) olabilir (fonksiyon tanımlarının parametreleri olarak). Bazıları `async def` ile, bazıları normal `def` ile oluşturulmuş olabilir. Yine de çalışır ve normal `def` ile oluşturulanlar "await" edilmek yerine harici bir thread'de (thread pool'dan) çağrılır.
 
 ### Diğer yardımcı fonksiyonlar { #other-utility-functions }
 
 Doğrudan çağırdığınız diğer yardımcı fonksiyonları normal `def` veya `async def` ile tanımlayabilirsiniz ve FastAPI onları çağırma biçiminizi etkilemez.
 
-Bu, FastAPI’nin sizin için çağırdığı fonksiyonların tersidir: *path operasyon fonksiyonları* ve bağımlılıklar.
+Bu, FastAPI'nin sizin için çağırdığı fonksiyonların tersidir: *path operasyon fonksiyonları* ve bağımlılıklar.
 
-Yardımcı fonksiyonunuz `def` ile tanımlı normal bir fonksiyonsa, bir thread pool’da değil doğrudan (kodunuzda yazdığınız gibi) çağrılır; fonksiyon `async def` ile tanımlıysa kodunuzda çağırırken onu `await` etmelisiniz.
+Yardımcı fonksiyonunuz `def` ile tanımlı normal bir fonksiyonsa, bir thread pool'da değil doğrudan (kodunuzda yazdığınız gibi) çağrılır; fonksiyon `async def` ile tanımlıysa kodunuzda çağırırken onu `await` etmelisiniz.
 
 ---
 

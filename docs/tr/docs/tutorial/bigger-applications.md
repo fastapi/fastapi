@@ -45,7 +45,7 @@ from app.routers import items
 
 * `app` dizini her şeyi içerir. Ayrıca boş bir `app/__init__.py` dosyası olduğu için bir "Python package" (bir "Python module" koleksiyonu) olur: `app`.
 * İçinde bir `app/main.py` dosyası vardır. Bir Python package’in (içinde `__init__.py` dosyası olan bir dizinin) içinde olduğundan, o package’in bir "module"’üdür: `app.main`.
-* Benzer şekilde `app/dependencies.py` dosyası da bir "module"’dür: `app.dependencies`.
+* Benzer şekilde `app/dependencies.py` dosyası da `app/main.py` gibi bir "module"’dür: `app.dependencies`.
 * `app/routers/` adında bir alt dizin vardır ve içinde başka bir `__init__.py` dosyası bulunur; dolayısıyla bu bir "Python subpackage"’dir: `app.routers`.
 * `app/routers/items.py` dosyası `app/routers/` package’i içinde olduğundan bir submodule’dür: `app.routers.items`.
 * `app/routers/users.py` için de aynı şekilde, başka bir submodule’dür: `app.routers.users`.
@@ -155,8 +155,7 @@ Her *path operation*’ın path’i aşağıdaki gibi `/` ile başlamak zorunda 
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...prefix’in sonunda `/` olmamalıdır.
@@ -246,7 +245,7 @@ from ..dependencies import get_token_header
 
 şu anlama gelir:
 
-* Bu module’ün bulunduğu package içinden başla (`app/routers/` dizini)...
+* Bu module’ün (yani `app/routers/items.py` dosyasının) bulunduğu package içinden başla (`app/routers/` dizini)...
 * üst (parent) package’e çık (`app/` dizini)...
 * burada `dependencies` module’ünü bul (`app/dependencies.py` dosyası)...
 * ve oradan `get_token_header` function’ını import et.
@@ -263,7 +262,7 @@ from ...dependencies import get_token_header
 
 şu anlama gelirdi:
 
-* Bu module’ün bulunduğu package içinden başla (`app/routers/` dizini)...
+* Bu module’ün (yani `app/routers/items.py` dosyasının) bulunduğu package içinden başla (`app/routers/` dizini)...
 * üst package’e çık (`app/` dizini)...
 * sonra bir üstüne daha çık (orada bir üst package yok; `app` en üst seviye 😱)...
 * ve orada `dependencies` module’ünü bul (`app/dependencies.py` dosyası)...
@@ -301,7 +300,7 @@ Mantığın büyük kısmı artık kendi module’lerinde yaşayacağı için an
 
 ### `FastAPI` Import Edin { #import-fastapi }
 
-Normal şekilde bir `FastAPI` class’ı oluşturursunuz.
+Normal şekilde `FastAPI` class’ını import edip bir instance oluşturursunuz.
 
 Hatta her `APIRouter` için olan dependency’lerle birleştirilecek [global dependencies](dependencies/global-dependencies.md) bile tanımlayabilirsiniz:
 

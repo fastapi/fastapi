@@ -107,7 +107,13 @@ veya
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-veya başka herhangi bir büyük/küçük harf varyasyonunda (tamamı büyük, ilk harf büyük, vb.), fonksiyonunuz `short` parametresini `bool` değeri `True` olarak görecektir. Aksi halde `False` olarak görür.
+veya başka herhangi bir büyük/küçük harf varyasyonunda (tamamı büyük, ilk harf büyük, vb.), fonksiyonunuz `short` parametresini `bool` değeri `True` olarak görecektir.
+
+`0`, `false`, `off` ve `no` gibi değerler (büyük/küçük harf varyasyonları dahil) `False` değerine dönüştürülür.
+
+`short` belirtilmezse, **FastAPI** bu örnekte `False` olan varsayılan değerini kullanır.
+
+Boş bir değer (`?short=`) veya tanınmayan bir değer (örneğin, `?short=maybe`) `422` doğrulama hatasına neden olur.
 
 
 ## Çoklu path ve query parametreleri { #multiple-path-and-query-parameters }

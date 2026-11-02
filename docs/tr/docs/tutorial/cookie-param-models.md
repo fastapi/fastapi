@@ -71,6 +71,22 @@ Onayınızı almak için bunca çaba harcayan zavallı cookie banner'ları... <d
 }
 ```
 
+## Parametre Modellerini Birleştirin { #combine-parameter-models }
+
+Birden fazla cookie parametre modelini, tek tek tanımlanan cookie parametreleri ve dependency'lerle birleştirebilirsiniz. [Query parametre modelleri](query-param-models.md#combine-parameter-models) için açıklandığı gibi, her modelin verileri bağımsız olarak çıkarılır ve doğrulanır.
+
+Her modelin `extra` yapılandırması, diğer modellerde veya dependency'lerde tanımlananlar da dahil olmak üzere tüm cookie parametrelerine uygulanır. `extra="forbid"` ile o modelin dışındaki tüm cookie'ler reddedilir. `extra="allow"` ile bu cookie'ler modele ek alanlar olarak dahil edilir.
+
+## İsteğe Bağlı Cookie Parametre Modelleri { #optional-cookie-parameter-models }
+
+Grubu isteğe bağlı hale getirmek için cookie parametre modelini `| None` ile tanımlayın ve varsayılan değerini `None` olarak ayarlayın.
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+Ne `theme` ne de `locale` gönderilirse, `preferences` değeri `None` olur. Bunlardan biri gönderilirse, FastAPI modeli doğrular ve her iki alanı da zorunlu kılar.
+
+Varsayılan değerler, ek alanlar ve OpenAPI için [isteğe bağlı query parametre modelleri](query-param-models.md#optional-query-parameter-models) ile aynı kurallar geçerlidir.
+
 ## Özet { #summary }
 
 **FastAPI**'de <dfn title="Gitmeden önce son bir cookie alın. 🍪">**cookie**</dfn> tanımlamak için **Pydantic model**'lerini kullanabilirsiniz. 😎

@@ -131,9 +131,9 @@ Temel özellikleri şunlardır:
 
 ---
 
-"_**FastAPI** kütüphanesini, **predictions** almak için sorgulanabilecek bir **REST** server oluşturmak amacıyla benimsedik. [Ludwig için]_"
+"_**FastAPI** kütüphanesini, **tahminler** almak için sorgulanabilecek bir **REST** server oluşturmak amacıyla benimsedik. [Ludwig için]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin ve Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -273,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary><code>fastapi dev</code> komutu hakkında...</summary>
 
-`fastapi dev` komutu, `main.py` dosyanızı okur, içindeki **FastAPI** uygulamasını algılar ve [Uvicorn](https://uvicorn.dev) kullanarak bir server başlatır.
+`fastapi dev` komutu, `main.py` dosyanızı otomatik olarak okur, içindeki **FastAPI** uygulamasını algılar ve [Uvicorn](https://uvicorn.dev) kullanarak bir server başlatır.
 
 Varsayılan olarak `fastapi dev`, local geliştirme için auto-reload etkin şekilde başlar.
 
@@ -544,7 +544,7 @@ Pydantic tarafından kullanılanlar:
 
 Starlette tarafından kullanılanlar:
 
-* [`httpx`](https://www.python-httpx.org) - `TestClient` kullanmak istiyorsanız gereklidir.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (veya `httpx`) - `TestClient` tarafından kullanılır.
 * [`jinja2`](https://jinja.palletsprojects.com) - varsayılan template yapılandırmasını kullanmak istiyorsanız gereklidir.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - `request.form()` ile, form <dfn title="HTTP request'ten gelen string'i Python verisine dönüştürme">"ayrıştırma"</dfn> desteği istiyorsanız gereklidir.
 

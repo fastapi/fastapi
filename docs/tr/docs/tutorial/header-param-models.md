@@ -67,6 +67,26 @@ Herhangi bir sebeple bu otomatik dönüşümü kapatmanız gerekiyorsa, header p
 
 ///
 
+## Parametre Modellerini Birleştirin { #combine-parameter-models }
+
+Birden fazla header parametre modelini, ayrı header parametreleri ve bağımlılıklarla birleştirebilirsiniz. [Query parametre modelleri](query-param-models.md#combine-parameter-models) için açıklandığı gibi, her modelin verileri bağımsız olarak çıkarılır ve doğrulanır.
+
+Her modelin `extra` yapılandırması, diğer modellerde veya bağımlılıklarda tanımlananlar dahil tüm header parametrelerine uygulanır. `extra="forbid"` kullanıldığında, o modelin dışındaki tüm header'lar reddedilir. `extra="allow"` kullanıldığında ise bu header'lar modele ek alanlar olarak dahil edilir.
+
+Her model, hem request'i okurken hem de OpenAPI oluştururken kendi `Header(convert_underscores=...)` ayarını kullanır. Açıkça belirtilen alan alias'ları, değiştirilmeden header adı olarak kullanılır.
+
+## İsteğe Bağlı Header Parametre Modelleri { #optional-header-parameter-models }
+
+Grubu isteğe bağlı yapmak için header parametre modelini `| None` ile tanımlayın ve varsayılan değerini `None` olarak ayarlayın.
+
+{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+
+Ne `x-client-name` ne de `x-client-version` gönderilirse, `client` değeri `None` olur. İkisinden biri gönderilirse, FastAPI modeli doğrular ve her iki alanı da zorunlu tutar.
+
+Varsayılan değerler, ek alanlar ve OpenAPI için [isteğe bağlı query parametre modelleri](query-param-models.md#optional-query-parameter-models) ile aynı kurallar geçerlidir.
+
+`Host` gibi header'lar da modelin `extra` yapılandırmasına tabidir. `extra="allow"` kullanıldığında, tanımlanan iki alanın hiçbiri gönderilmese bile bu header'lar modelin oluşturulmasını sağlar.
+
 ## Özet { #summary }
 
 **FastAPI**'de **headers** tanımlamak için **Pydantic model** kullanabilirsiniz. 😎
