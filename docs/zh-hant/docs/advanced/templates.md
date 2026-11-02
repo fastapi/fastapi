@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # 模板 { #templates }
 
 你可以在 **FastAPI** 中使用任意你想要的模板引擎。
@@ -63,13 +67,9 @@ $ uv add jinja2
 
 在包含以下內容的 HTML 中：
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...它會顯示你在傳入的 context `dict` 中提供的 `id`：
 
@@ -89,21 +89,47 @@ Item ID: 42
 
 因此，包含以下內容的區塊：
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ...會產生指向與「*路徑操作函式*」`read_item(id=id)` 相同 URL 的連結。
 
-例如，若 ID 為 `42`，會渲染為：
+`url_for()` 會根據目前的請求，回傳包含通訊協定與主機的絕對 URL。
+
+例如，若你的應用程式在 `https://example.com` 提供服務，且 ID 為 `42`，會渲染為：
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### 模板中的 URL 路徑 { #url-paths-in-templates }
+
+對於指向同一網站的連結，你可以使用 `.path` 屬性來取得 URL 路徑，例如在 `templates/item_path.html` 中：
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+將模板名稱傳給 `TemplateResponse`：
+
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+在相同的例子中，項目連結會渲染為：
 
 ```html
 <a href="/items/42">
 ```
+
+開頭的 `/` 表示此路徑是相對於目前網站的根目錄。
+
+`.path` 屬性不包含通訊協定、主機、查詢參數與片段識別碼。對於指向其他主機的連結，請使用完整的 URL。
+
+/// tip
+
+如果你的應用程式位於代理伺服器後方，請依照[位於代理伺服器後方](behind-a-proxy.md)的說明設定轉送標頭與 `root_path`。
+
+///
 
 ## 模板與靜態檔案 { #templates-and-static-files }
 

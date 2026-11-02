@@ -45,7 +45,9 @@
 這大致等同於：
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # 回傳錯誤
     ...
 ```

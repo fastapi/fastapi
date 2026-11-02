@@ -71,7 +71,7 @@ $ uv run pytest
 這等同於：
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...也就是我們先前用 `TestClient` 發送請求時所用的寫法。

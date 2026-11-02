@@ -13,17 +13,17 @@ from typing import Union
 
 
 def say_hi(name: Union[str, None]):
-        print(f"Hi {name}!")
+    print(f"Hi {name}!")
 ```
 
 在 `typing` 中也有用 `Optional` 宣告某個值可以是 `None` 的速記法。
 
-以下是我個人（非常主觀）的建議：
+以下是我個人（非常**主觀**）的建議：
 
 * 🚨 避免使用 `Optional[SomeType]`
-* 改為 ✨ 使用 `Union[SomeType, None]` ✨。
+* 改為 ✨ **使用 `Union[SomeType, None]`** ✨。
 
-兩者等價且底層相同，但我會推薦用 `Union` 而不要用 `Optional`，因為「optional」這個詞看起來會讓人以為這個值是可選的，但實際上它的意思是「可以是 `None`」，即使它不是可選的、仍然是必填。
+兩者等價且底層相同，但我會推薦用 `Union` 而不要用 `Optional`，因為「**optional**」這個詞看起來會讓人以為這個值是可選的，但實際上它的意思是「可以是 `None`」，即使它不是可選的、仍然是必填。
 
 我認為 `Union[SomeType, None]` 更能清楚表達其含義。
 
@@ -39,13 +39,13 @@ def say_hi(name: Optional[str]):
     print(f"Hey {name}!")
 ```
 
-參數 `name` 被標註為 `Optional[str]`，但它並不是可選的；你不能在沒有該參數的情況下呼叫這個函式：
+參數 `name` 被標註為 `Optional[str]`，但它**並不是可選的**；你不能在沒有該參數的情況下呼叫這個函式：
 
 ```Python
 say_hi()  # 糟了，這會拋出錯誤！😱
 ```
 
-參數 `name` 仍是必填（不是可選），因為它沒有預設值。不過，`name` 可以接受 `None` 作為值：
+參數 `name` **仍是必填**（不是*可選*），因為它沒有預設值。不過，`name` 可以接受 `None` 作為值：
 
 ```Python
 say_hi(name=None)  # 這可行，None 是有效的 🎉
