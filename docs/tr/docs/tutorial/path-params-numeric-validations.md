@@ -4,7 +4,7 @@
 
 ## `Path`'i İçe Aktarın { #import-path }
 
-Önce `fastapi` içinden `Path`'i ve `Annotated`'ı içe aktarın:
+Önce `fastapi` içinden `Path`'i, ayrıca `Annotated`'ı içe aktarın:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
@@ -28,7 +28,7 @@ Daha eski bir sürüm kullanıyorsanız, `Annotated` kullanmaya çalıştığın
 
 /// note | Not
 
-Bir path parametresi her zaman zorunludur, çünkü path'in bir parçası olmak zorundadır. `None` ile tanımlasanız veya bir varsayılan değer verseniz bile bu hiçbir şeyi değiştirmez; yine her zaman zorunlu olur.
+Bir path parametresi her zaman zorunludur, çünkü URL path'inin bir parçası olmak zorundadır. Tipine `None` eklemek onu isteğe bağlı hale getirmez. `Path` ile tanımlanan bir parametrenin varsayılan değeri olamaz.
 
 ///
 
@@ -95,7 +95,7 @@ Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keywor
 
 `Query` ve `Path` (ve ileride göreceğiniz diğerleri) ile sayı kısıtları tanımlayabilirsiniz.
 
-Burada `ge=1` ile, `item_id` değerinin `1`'den "`g`reater than or `e`qual" olacak şekilde bir tam sayı olması gerekir.
+Burada `ge=1` ile, `item_id` değerinin `1`'den büyük veya ona eşit ("`g`reater than or `e`qual") bir tam sayı olması gerekir.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
 
@@ -103,8 +103,8 @@ Burada `ge=1` ile, `item_id` değerinin `1`'den "`g`reater than or `e`qual" olac
 
 Aynısı şunlar için de geçerlidir:
 
-* `gt`: `g`reater `t`han
-* `le`: `l`ess than or `e`qual
+* `gt`: `g`reater `t`han (büyüktür)
+* `le`: `l`ess than or `e`qual (küçük veya eşittir)
 
 {* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
 
@@ -126,10 +126,10 @@ Aynısı <abbr title="less than - küçüktür"><code>lt</code></abbr> için de 
 
 Ayrıca sayısal doğrulamalar da tanımlayabilirsiniz:
 
-* `gt`: `g`reater `t`han
-* `ge`: `g`reater than or `e`qual
-* `lt`: `l`ess `t`han
-* `le`: `l`ess than or `e`qual
+* `gt`: `g`reater `t`han (büyüktür)
+* `ge`: `g`reater than or `e`qual (büyük veya eşittir)
+* `lt`: `l`ess `t`han (küçüktür)
+* `le`: `l`ess than or `e`qual (küçük veya eşittir)
 
 /// note | Not
 

@@ -8,7 +8,7 @@ Bu proxy'ler HTTPS sertifikalarını ve diğer bazı işleri üstlenebilir.
 
 Uygulamanızın önündeki bir **proxy**, request'leri **server**'ınıza göndermeden önce genelde bazı header'ları dinamik olarak ayarlar. Böylece server, request'in proxy tarafından **forward** edildiğini; domain dahil orijinal (public) URL'yi, HTTPS kullanıldığını vb. bilgileri anlayabilir.
 
-**Server** programı (örneğin **FastAPI CLI** üzerinden **Uvicorn**) bu header'ları yorumlayabilir ve ardından bu bilgiyi uygulamanıza aktarabilir.
+`fastapi run` ile başlatılan **server** bu header'ları yorumlayabilir ve ardından bu bilgiyi uygulamanıza aktarabilir.
 
 Ancak güvenlik nedeniyle, server güvenilir bir proxy arkasında olduğunu bilmediği için bu header'ları yorumlamaz.
 
@@ -34,8 +34,6 @@ Bunu `--forwarded-allow-ips="*"` olarak ayarlarsanız, gelen tüm IP'lere güven
 
 ```console
 $ uv run fastapi run --forwarded-allow-ips="*"
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -101,7 +99,7 @@ Bu header'lar, aksi halde kaybolacak olan orijinal request bilgilerini korur:
 
 Uygulamanıza bir path prefix ekleyen bir proxy'niz olabilir.
 
-Bu durumlarda uygulamanızı yapılandırmak için `root_path` kullanabilirsiniz.
+Bu durumlarda server'ı `fastapi run --root-path` ile yapılandırabilirsiniz.
 
 `root_path`, FastAPI'nin (Starlette üzerinden) üzerine kurulduğu ASGI spesifikasyonunun sağladığı bir mekanizmadır.
 
@@ -117,7 +115,7 @@ Kodunuzun tamamı sadece `/app` varmış gibi yazılmış olsa bile.
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
-Proxy, request'i app server'a (muhtemelen FastAPI CLI üzerinden Uvicorn) iletmeden önce **path prefix**'i anlık olarak **"kırpar"** (strip). Böylece uygulamanız hâlâ `/app` altında servis ediliyormuş gibi davranır ve tüm kodunuzu `/api/v1` prefix'ini içerecek şekilde güncellemeniz gerekmez.
+Proxy, request'i server'a iletmeden önce **path prefix**'i anlık olarak **"kırpar"** (strip). Böylece uygulamanız hâlâ `/app` altında servis ediliyormuş gibi davranır ve tüm kodunuzu `/api/v1` prefix'ini içerecek şekilde güncellemeniz gerekmez.
 
 Buraya kadar her şey normal çalışır.
 
@@ -161,7 +159,7 @@ Docs UI'nin, bu API `server`'ının (proxy arkasında) `/api/v1` altında bulund
 }
 ```
 
-Bu örnekte "Proxy", **Traefik** gibi bir şey olabilir. Server da FastAPI uygulamanızı çalıştıran (Uvicorn'lu) FastAPI CLI olabilir.
+Bu örnekte "Proxy", **Traefik** gibi bir şey olabilir. `fastapi run` ise FastAPI uygulamanızı çalıştıran server'ı başlatır.
 
 ### `root_path` Sağlama { #providing-the-root-path }
 
@@ -171,13 +169,9 @@ Bunu yapmak için `--root-path` komut satırı seçeneğini şöyle kullanabilir
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
-
-Hypercorn kullanıyorsanız, onda da `--root-path` seçeneği vardır.
 
 /// note | Teknik Detaylar
 
@@ -195,14 +189,12 @@ Burada sadece göstermek için bunu mesaja dahil ediyoruz.
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
-Ardından Uvicorn'u şu şekilde başlatırsanız:
+Ardından server'ı şu şekilde başlatırsanız:
 
 <div class="termy">
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -216,30 +208,11 @@ Response şöyle bir şey olur:
 }
 ```
 
-### FastAPI Uygulamasında `root_path` Ayarlama { #setting-the-root-path-in-the-fastapi-app }
+/// warning | Kullanımdan Kaldırılması Planlanan `root_path` Parametresi
 
-Alternatif olarak, `--root-path` gibi bir komut satırı seçeneği (veya muadili) sağlayamıyorsanız, FastAPI uygulamanızı oluştururken `root_path` parametresini ayarlayabilirsiniz:
+FastAPI 0.145.0 ve önceki sürümlerde `root_path`, `FastAPI()` içinde de yapılandırılabiliyordu. Davranışı server yapılandırmasıyla tutarlı olmadığı için bu parametrenin kullanımdan kaldırılması planlanmaktadır. Bunun yerine `fastapi run --root-path /api/v1` kullanın.
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
-
-`FastAPI`'ye `root_path` vermek, Uvicorn veya Hypercorn'a `--root-path` komut satırı seçeneğini vermekle eşdeğerdir.
-
-### `root_path` Hakkında { #about-root-path }
-
-Şunu unutmayın: Server (Uvicorn) bu `root_path`'i, uygulamaya iletmek dışında başka bir amaçla kullanmaz.
-
-Ancak tarayıcınızla [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app) adresine giderseniz normal response'u görürsünüz:
-
-```JSON
-{
-    "message": "Hello World",
-    "root_path": "/api/v1"
-}
-```
-
-Yani `http://127.0.0.1:8000/api/v1/app` üzerinden erişilmeyi beklemez.
-
-Uvicorn, proxy'nin Uvicorn'a `http://127.0.0.1:8000/app` üzerinden erişmesini bekler; bunun üstüne ekstra `/api/v1` prefix'ini eklemek proxy'nin sorumluluğudur.
+///
 
 ## Stripped Path Prefix Kullanan Proxy'ler Hakkında { #about-proxies-with-a-stripped-path-prefix }
 
@@ -247,7 +220,7 @@ Stripped path prefix kullanan bir proxy, yapılandırma yöntemlerinden yalnızc
 
 Birçok durumda varsayılan davranış, proxy'nin stripped path prefix kullanmaması olacaktır.
 
-Böyle bir durumda (stripped path prefix olmadan), proxy `https://myawesomeapp.com` gibi bir yerde dinler; tarayıcı `https://myawesomeapp.com/api/v1/app`'e giderse ve sizin server'ınız (ör. Uvicorn) `http://127.0.0.1:8000` üzerinde dinliyorsa, proxy (stripped path prefix olmadan) Uvicorn'a aynı path ile erişir: `http://127.0.0.1:8000/api/v1/app`.
+Böyle bir durumda (stripped path prefix olmadan), proxy `https://myawesomeapp.com` gibi bir yerde dinler; tarayıcı `https://myawesomeapp.com/api/v1/app`'e giderse ve sizin server'ınız `http://127.0.0.1:8000` üzerinde dinliyorsa, proxy (stripped path prefix olmadan) server'a aynı path ile erişir: `http://127.0.0.1:8000/api/v1/app`.
 
 ## Traefik ile Local Olarak Test Etme { #testing-locally-with-traefik }
 
@@ -302,7 +275,7 @@ Standart HTTP portu 80 yerine 9999 portunu kullanıyoruz; böylece admin (`sudo`
 
 Bu dosya, Traefik'i `/api/v1` path prefix'ini kullanacak şekilde yapılandırır.
 
-Ardından Traefik, request'leri `http://127.0.0.1:8000` üzerinde çalışan Uvicorn'unuza yönlendirir.
+Ardından Traefik, request'leri `http://127.0.0.1:8000` üzerinde çalışan server'ınıza yönlendirir.
 
 Şimdi Traefik'i başlatın:
 
@@ -322,15 +295,13 @@ Ve şimdi uygulamanızı `--root-path` seçeneğiyle başlatın:
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
 ### Response'ları Kontrol Edin { #check-the-responses }
 
-Şimdi Uvicorn'un portundaki URL'ye giderseniz: [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), normal response'u görürsünüz:
+Şimdi server'ın portundaki URL'ye giderseniz: [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app), normal response'u görürsünüz:
 
 ```JSON
 {
@@ -360,15 +331,15 @@ ama bu sefer proxy'nin sağladığı prefix path olan `/api/v1` ile gelen URL'de
 
 Elbette buradaki fikir, herkesin uygulamaya proxy üzerinden erişmesidir; dolayısıyla `/api/v1` path prefix'li sürüm "doğru" olandır.
 
-Uvicorn'un doğrudan sunduğu, path prefix olmayan sürüm (`http://127.0.0.1:8000/app`) ise sadece _proxy_'nin (Traefik) erişmesi için kullanılmalıdır.
+Server'ın doğrudan sunduğu, path prefix olmayan sürüm (`http://127.0.0.1:8000/app`) ise sadece _proxy_'nin (Traefik) erişmesi için kullanılmalıdır.
 
-Bu da Proxy'nin (Traefik) path prefix'i nasıl kullandığını ve server'ın (Uvicorn) `--root-path` seçeneğinden gelen `root_path`'i nasıl kullandığını gösterir.
+Bu da Proxy'nin (Traefik) path prefix'i nasıl kullandığını ve server'ın `--root-path` seçeneğinden gelen `root_path`'i nasıl kullandığını gösterir.
 
 ### Docs UI'yi Kontrol Edin { #check-the-docs-ui }
 
 Şimdi işin eğlenceli kısmı. ✨
 
-Uygulamaya erişmenin "resmi" yolu, tanımladığımız path prefix ile proxy üzerinden erişmektir. Bu yüzden beklendiği gibi, Uvicorn'un doğrudan servis ettiği docs UI'yi URL'de path prefix olmadan açarsanız çalışmaz; çünkü proxy üzerinden erişileceğini varsayar.
+Uygulamaya erişmenin "resmi" yolu, tanımladığımız path prefix ile proxy üzerinden erişmektir. Bu yüzden beklendiği gibi, server'ın doğrudan servis ettiği docs UI'yi URL'de path prefix olmadan açarsanız çalışmaz; çünkü proxy üzerinden erişileceğini varsayar.
 
 Şuradan kontrol edebilirsiniz: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs):
 
@@ -396,9 +367,9 @@ Varsayılan olarak **FastAPI**, OpenAPI şemasında `root_path` için bir `serve
 
 Ancak başka alternatif `servers` da sağlayabilirsiniz; örneğin *aynı* docs UI'nin hem staging hem de production ortamıyla etkileşime girmesini istiyorsanız.
 
-Özel bir `servers` listesi verirseniz ve bir `root_path` varsa (çünkü API'niz proxy arkasındadır), **FastAPI** bu `root_path` ile bir "server"ı listenin başına ekler.
+Özel bir `servers` listesi verirseniz ve bir `root_path` varsa (çünkü API'niz proxy arkasındadır), **FastAPI** bu `root_path` ile bir "server"'ı listenin başına ekler.
 
-Örneğin:
+Örneğin, aynı `fastapi run --root-path /api/v1` server yapılandırmasını kullanarak:
 
 {* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
@@ -455,7 +426,7 @@ OpenAPI spesifikasyonunda `servers` özelliği opsiyoneldir.
 
 **FastAPI**'nin `root_path` kullanarak otomatik bir server eklemesini istemiyorsanız, `root_path_in_servers=False` parametresini kullanabilirsiniz:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
 
 Böylece OpenAPI şemasına dahil etmez.
 

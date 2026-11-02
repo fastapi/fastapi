@@ -55,10 +55,10 @@ print(user_dict)
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -87,10 +87,10 @@ Ya da daha net şekilde, `user_dict`'i doğrudan kullanarak, gelecekte içeriği
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -125,11 +125,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -195,9 +195,9 @@ Bunun için standart Python `list`'i kullanın:
 
 {* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
 
-## Rastgele `dict` ile Response { #response-with-arbitrary-dict }
+## Serbest Biçimli `dict` ile Response { #response-with-arbitrary-dict }
 
-Bir Pydantic modeli kullanmadan, sadece key ve value type'larını belirterek düz, rastgele bir `dict` ile de response tanımlayabilirsiniz.
+Bir Pydantic modeli kullanmadan, sadece key ve value type'larını belirterek düz, serbest biçimli bir `dict` ile de response tanımlayabilirsiniz.
 
 Bu, geçerli field/attribute adlarını (Pydantic modeli için gerekli olurdu) önceden bilmiyorsanız kullanışlıdır.
 

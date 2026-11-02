@@ -266,6 +266,7 @@ Bunlar, `exclude_defaults` ve `exclude_none` için [Pydantic dokümanlarında](h
 
 Ama data’nız modelde default değeri olan field’lar için değer içeriyorsa, örneğin ID’si `bar` olan item gibi:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ Ama data’nız modelde default değeri olan field’lar için değer içeriyors
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 bunlar response’a dahil edilir.
 
@@ -281,6 +283,7 @@ bunlar response’a dahil edilir.
 
 Eğer data, default değerlerle aynı değerlere sahipse, örneğin ID’si `baz` olan item gibi:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ Eğer data, default değerlerle aynı değerlere sahipse, örneğin ID’si `baz
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI yeterince akıllıdır (aslında Pydantic yeterince akıllıdır) ve `description`, `tax`, `tags` default ile aynı olsa bile bunların explicit olarak set edildiğini (default’tan alınmadığını) anlar.
 
