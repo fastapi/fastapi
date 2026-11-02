@@ -32,7 +32,7 @@ You can see the defined cookies in the docs UI at `/docs`:
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info
+/// note
 
 Have in mind that, as **browsers handle cookies** in special ways and behind the scenes, they **don't** easily allow **JavaScript** to touch them.
 
@@ -70,6 +70,22 @@ For example, if the client tries to send a `santa_tracker` cookie with a value o
     ]
 }
 ```
+
+## Combine Parameter Models { #combine-parameter-models }
+
+You can combine multiple cookie parameter models with individual cookie parameters and dependencies. Each model is extracted and validated independently, as explained for [query parameter models](query-param-models.md#combine-parameter-models).
+
+Each model's `extra` configuration applies to all cookie parameters, including those declared in other models or dependencies. With `extra="forbid"`, any cookie outside that model is rejected. With `extra="allow"`, those cookies are included as model extras.
+
+## Optional Cookie Parameter Models { #optional-cookie-parameter-models }
+
+Declare a cookie parameter model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+If neither `theme` nor `locale` is sent, `preferences` is `None`. If either is sent, FastAPI validates the model and requires both fields.
+
+The same rules for defaults, extra fields, and OpenAPI apply as for [optional query parameter models](query-param-models.md#optional-query-parameter-models).
 
 ## Summary { #summary }
 

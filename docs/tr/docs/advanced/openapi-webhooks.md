@@ -22,7 +22,7 @@ Webhook'lar için URL'lerin nasıl kaydedileceğine dair tüm **mantık** ve bu 
 
 Bu, kullanıcılarınızın **webhook** request'lerinizi alacak şekilde **API'lerini implement etmesini** çok daha kolaylaştırabilir; hatta kendi API kodlarının bir kısmını otomatik üretebilirler.
 
-/// info | Bilgi
+/// note | Not
 
 Webhook'lar OpenAPI 3.1.0 ve üzeri sürümlerde mevcuttur; FastAPI `0.99.0` ve üzeri tarafından desteklenir.
 
@@ -36,7 +36,7 @@ Bir **FastAPI** uygulaması oluşturduğunuzda, *webhook*'ları tanımlamak içi
 
 Tanımladığınız webhook'lar **OpenAPI** şemasında ve otomatik **docs UI**'da yer alır.
 
-/// info | Bilgi
+/// note | Not
 
 `app.webhooks` nesnesi aslında sadece bir `APIRouter`'dır; uygulamanızı birden fazla dosya ile yapılandırırken kullanacağınız türün aynısıdır.
 

@@ -10,6 +10,7 @@ import anyio
 import pytest
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
+from starlette.types import Message, Scope
 
 pytestmark = [
     pytest.mark.anyio,
@@ -45,16 +46,16 @@ async def _run_asgi_and_cancel(app: FastAPI, path: str, timeout: float) -> bool:
     """
     chunks: list[bytes] = []
 
-    async def receive():  # type: ignore[no-untyped-def]
+    async def receive() -> Message:
         # Simulate a client that never disconnects, rely on cancellation
         await anyio.sleep(float("inf"))
         return {"type": "http.disconnect"}  # pragma: no cover
 
-    async def send(message: dict) -> None:  # type: ignore[type-arg]
+    async def send(message: Message) -> None:
         if message["type"] == "http.response.body":
             chunks.append(message.get("body", b""))
 
-    scope = {
+    scope: Scope = {
         "type": "http",
         "asgi": {"version": "3.0", "spec_version": "2.0"},
         "http_version": "1.1",
@@ -67,7 +68,7 @@ async def _run_asgi_and_cancel(app: FastAPI, path: str, timeout: float) -> bool:
     }
 
     with anyio.move_on_after(timeout) as cancel_scope:
-        await app(scope, receive, send)  # type: ignore[arg-type]
+        await app(scope, receive, send)
 
     # If we got here within the timeout the generator was cancellable.
     # cancel_scope.cancelled_caught is True when move_on_after fired.

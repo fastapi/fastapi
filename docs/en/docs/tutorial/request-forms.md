@@ -2,14 +2,14 @@
 
 When you need to receive form fields instead of JSON, you can use `Form`.
 
-/// info
+/// note
 
 To use forms, first install [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
+Add it to your project:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -32,7 +32,7 @@ The <dfn title="specification">spec</dfn> requires the fields to be exactly name
 
 With `Form` you can declare the same configurations as with `Body` (and `Query`, `Path`, `Cookie`), including validation, examples, an alias (e.g. `user-name` instead of `username`), etc.
 
-/// info
+/// note
 
 `Form` is a class that inherits directly from `Body`.
 
@@ -44,9 +44,17 @@ To declare form bodies, you need to use `Form` explicitly, because without it th
 
 ///
 
+## Boolean Form Fields { #boolean-form-fields }
+
+Browsers omit unchecked checkboxes when submitting HTML forms. Declare a boolean form parameter with a default of `False` to receive `False` when unchecked:
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+A checked checkbox sends its value, which defaults to `"on"`. **FastAPI** accepts `"on"` as `True`.
+
 ## About "Form Fields" { #about-form-fields }
 
-The way HTML forms (`<form></form>`) sends the data to the server normally uses a "special" encoding for that data, it's different from JSON.
+The way HTML forms (`<form></form>`) send the data to the server normally uses a "special" encoding for that data, it's different from JSON.
 
 **FastAPI** will make sure to read that data from the right place instead of JSON.
 
@@ -55,6 +63,8 @@ The way HTML forms (`<form></form>`) sends the data to the server normally uses 
 Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded`.
 
 But when the form includes files, it is encoded as `multipart/form-data`. You'll read about handling files in the next chapter.
+
+You can use `Form(media_type="multipart/form-data")` to describe a multipart form in OpenAPI. Setting it on one parameter is enough when combining form parameters or models.
 
 If you want to read more about these encodings and form fields, head to the [<abbr title="Mozilla Developer Network">MDN</abbr> web docs for `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 

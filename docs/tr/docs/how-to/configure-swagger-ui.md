@@ -56,7 +56,7 @@ Kullanabileceğiniz diğer tüm olası yapılandırmaları görmek için, resmi 
 
 Swagger UI ayrıca bazı yapılandırmaların **yalnızca JavaScript** nesneleri olmasına izin verir (örneğin JavaScript fonksiyonları).
 
-FastAPI, bu yalnızca JavaScript olan `presets` ayarlarını da içerir:
+FastAPI, yalnızca JavaScript olan bu `presets` ayarlarını da içerir:
 
 ```JavaScript
 presets: [
@@ -67,4 +67,4 @@ presets: [
 
 Bunlar string değil, **JavaScript** nesneleridir; dolayısıyla bunları Python kodundan doğrudan geçemezsiniz.
 
-Böyle yalnızca JavaScript yapılandırmalarına ihtiyacınız varsa, yukarıdaki yöntemlerden birini kullanabilirsiniz: Swagger UI'nin tüm *path operation*'larını override edin ve ihtiyaç duyduğunuz JavaScript'i elle yazın.
+Böyle yalnızca JavaScript yapılandırmalarına ihtiyacınız varsa, yukarıdaki yöntemlerden birini kullanabilirsiniz. Swagger UI *path operation*'ının tamamını override edin ve ihtiyaç duyduğunuz JavaScript'i elle yazın.

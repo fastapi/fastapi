@@ -1,15 +1,16 @@
 # 폼 데이터 { #form-data }
 
+
 JSON 대신 폼 필드를 받아야 하는 경우 `Form`을 사용할 수 있습니다.
 
-/// info | 정보
+/// note | 참고
 
 폼을 사용하려면, 먼저 [`python-multipart`](https://github.com/Kludex/python-multipart)를 설치하세요.
 
-[가상 환경](../virtual-environments.md)을 생성하고 활성화한 다음, 예를 들어 다음과 같이 설치하세요:
+프로젝트에 추가하세요:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -30,9 +31,9 @@ $ pip install python-multipart
 
 <dfn title="사양">사양</dfn>에서는 필드 이름이 `username` 및 `password`로 정확하게 명명되어야 하고, JSON이 아닌 폼 필드로 전송해야 합니다.
 
-`Form`을 사용하면 유효성 검사, 예제, 별칭(예: `username` 대신 `user-name`) 등을 포함하여 `Body`(및 `Query`, `Path`, `Cookie`)와 동일한 구성을 선언할 수 있습니다.
+`Form`을 사용하면 유효성 검사, 예제, 별칭(예: `user-name` 대신 `username`) 등을 포함하여 `Body`(및 `Query`, `Path`, `Cookie`)와 동일한 구성을 선언할 수 있습니다.
 
-/// info | 정보
+/// note | 참고
 
 `Form`은 `Body`에서 직접 상속되는 클래스입니다.
 
@@ -56,7 +57,7 @@ HTML 폼(`<form></form>`)이 데이터를 서버로 보내는 방식은 일반�
 
 그러나 폼에 파일이 포함된 경우, `multipart/form-data`로 인코딩합니다. 다음 장에서 파일 처리에 대해 읽을 겁니다.
 
-이러한 인코딩 및 폼 필드에 대해 더 읽고 싶다면, [`POST`에 대한 <abbr title="Mozilla Developer Network - Mozilla 개발자 네트워크">MDN</abbr> 웹 문서를 참조하세요](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
+이러한 인코딩 및 폼 필드에 대해 더 읽고 싶다면, [`POST`에 대한 <abbr title="Mozilla Developer Network - 모질라 개발자 네트워크">MDN</abbr> 웹 문서를 참조하세요](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

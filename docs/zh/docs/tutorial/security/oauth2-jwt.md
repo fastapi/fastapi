@@ -30,19 +30,19 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 我们需要安装 `PyJWT`，以便在 Python 中生成和校验 JWT 令牌。
 
-请确保创建并激活一个[虚拟环境](../../virtual-environments.md)，然后安装 `pyjwt`：
+将 `pyjwt` 添加到你的项目：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | 信息
+/// note | 注意
 
 如果你计划使用类似 RSA 或 ECDSA 的数字签名算法，你应该安装加密库依赖项 `pyjwt[crypto]`。
 
@@ -72,12 +72,12 @@ pwdlib 是一个用于处理密码哈希的优秀 Python 包。
 
 推荐的算法是 “Argon2”。
 
-请确保创建并激活一个[虚拟环境](../../virtual-environments.md)，然后安装带 Argon2 的 pwdlib：
+将带 Argon2 的 `pwdlib` 添加到你的项目：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -120,7 +120,7 @@ pwdlib 也支持 bcrypt 哈希算法，但不包含遗留算法——如果需�
 
 当使用一个在数据库中不存在的用户名调用 `authenticate_user` 时，我们仍然会针对一个虚拟哈希运行 `verify_password`。
 
-这可以确保无论用户名是否有效，端点的响应时间大致相同，从而防止可用于枚举已存在用户名的“时间攻击”（timing attacks）。
+这可以确保无论用户名是否有效，端点的响应时间大致相同，从而防止可用于枚举已存在用户名的**时序攻击**。
 
 /// note | 注意
 
@@ -168,7 +168,7 @@ $ openssl rand -hex 32
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## 更新 `/token` 路径操作 { #update-the-token-path-operation }
+## 更新 `/token` *路径操作* { #update-the-token-path-operation }
 
 用令牌的过期时间创建一个 `timedelta`。
 
@@ -213,7 +213,7 @@ JWT 除了用于识别用户并允许其直接在你的 API 上执行操作之�
 用户名: `johndoe`
 密码: `secret`
 
-/// check | 检查
+/// tip | 提示
 
 注意，代码中的任何地方都没有明文密码 “`secret`”，我们只有它的哈希版本。
 

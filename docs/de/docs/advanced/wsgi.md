@@ -1,20 +1,21 @@
 # WSGI inkludieren – Flask, Django und andere { #including-wsgi-flask-django-others }
 
+
 Sie können WSGI-Anwendungen mounten, wie Sie es in [Unteranwendungen – Mounts](sub-applications.md), [Hinter einem Proxy](behind-a-proxy.md) gesehen haben.
 
 Dazu können Sie die `WSGIMiddleware` verwenden und damit Ihre WSGI-Anwendung wrappen, zum Beispiel Flask, Django usw.
 
 ## `WSGIMiddleware` verwenden { #using-wsgimiddleware }
 
-/// info | Info
+/// note | Hinweis
 
-Dafür muss `a2wsgi` installiert sein, z. B. mit `pip install a2wsgi`.
+Dafür muss `a2wsgi` zu Ihrem Projekt hinzugefügt werden, z. B. mit `uv add a2wsgi`.
 
 ///
 
 Sie müssen `WSGIMiddleware` aus `a2wsgi` importieren.
 
-Wrappen Sie dann die WSGI-Anwendung (z. B. Flask) mit der Middleware.
+Wrappen Sie dann die WSGI-App (z. B. Flask) mit der Middleware.
 
 Und dann mounten Sie das auf einem Pfad.
 

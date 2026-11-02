@@ -1,5 +1,6 @@
 # Códigos de Estado Adicionales { #additional-status-codes }
 
+
 Por defecto, **FastAPI** devolverá los responses usando un `JSONResponse`, colocando el contenido que devuelves desde tu *path operation* dentro de ese `JSONResponse`.
 
 Usará el código de estado por defecto o el que configures en tu *path operation*.

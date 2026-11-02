@@ -15,7 +15,7 @@ FastAPI uygulamanızda `uvicorn`'ı import edip doğrudan çalıştırın:
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ Dosyanızın adının `myapp.py` olduğunu varsayalım.
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -59,7 +59,7 @@ Yani örneğin `importer.py` adında başka bir dosyanız var ve içinde şunlar
 ```Python
 from myapp import app
 
-# Some more code
+# Biraz daha kod
 ```
 
 bu durumda `myapp.py` içindeki otomatik oluşturulan `__name__` değişkeni `"__main__"` değerine sahip olmaz.
@@ -72,7 +72,7 @@ Bu yüzden şu satır:
 
 çalıştırılmaz.
 
-/// info | Bilgi
+/// note | Not
 
 Daha fazla bilgi için [resmi Python dokümantasyonuna](https://docs.python.org/3/library/__main__.html) bakın.
 

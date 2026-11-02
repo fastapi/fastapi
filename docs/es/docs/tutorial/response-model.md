@@ -72,20 +72,20 @@ Aquí estamos declarando un modelo `UserIn`, contendrá una contraseña en texto
 
 {* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
 
-/// info | Información
+/// note | Nota
 
 Para usar `EmailStr`, primero instala [`email-validator`](https://github.com/JoshData/python-email-validator).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo, y luego instalarlo, por ejemplo:
+Añádelo a tu proyecto:
 
 ```console
-$ pip install email-validator
+$ uv add email-validator
 ```
 
 o con:
 
 ```console
-$ pip install "pydantic[email]"
+$ uv add "pydantic[email]"
 ```
 
 ///
@@ -251,14 +251,14 @@ Entonces, si envías un request a esa *path operation* para el ítem con ID `foo
 }
 ```
 
-/// info | Información
+/// note | Nota
 
 También puedes usar:
 
 * `response_model_exclude_defaults=True`
 * `response_model_exclude_none=True`
 
-como se describe en [la documentación de Pydantic](https://docs.pydantic.dev/1.10/usage/exporting_models/#modeldict) para `exclude_defaults` y `exclude_none`.
+como se describe en [la documentación de Pydantic](https://pydantic.dev/docs/validation/latest/concepts/serialization/#excluding-and-including-fields-based-on-their-value) para `exclude_defaults` y `exclude_none`.
 
 ///
 

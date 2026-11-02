@@ -24,12 +24,12 @@ FastAPIは、 `q` はデフォルト値が `= None` であるため、必須で�
 
 そのために、まずは以下をインポートします:
 
-* `fastapi` から `Query`
-* `typing` から `Annotated`
+- `fastapi` から `Query`
+- `typing` から `Annotated`
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | 情報
+/// note | 備考
 
 FastAPI はバージョン 0.95.0 で `Annotated` のサポートを追加し（推奨し始め）ました。
 
@@ -41,7 +41,7 @@ FastAPI はバージョン 0.95.0 で `Annotated` のサポートを追加し（
 
 ## `q` パラメータの型で `Annotated` を使う { #use-annotated-in-the-type-for-the-q-parameter }
 
-以前、[Python Types Intro](../python-types.md#type-hints-with-metadata-annotations) で `Annotated` を使ってパラメータにメタデータを追加できると説明したことを覚えていますか？
+以前、[Python 型入門](../python-types.md#type-hints-with-metadata-annotations) で `Annotated` を使ってパラメータにメタデータを追加できると説明したことを覚えていますか？
 
 いよいよ FastAPI で使うときです。 🚀
 
@@ -79,9 +79,9 @@ q: Annotated[str | None] = None
 
 FastAPI は次を行います:
 
-* 最大長が 50 文字であることを確かめるようデータを **検証** する
-* データが有効でないときに、クライアントに **明確なエラー** を表示する
-* OpenAPI スキーマの *path operation* にパラメータを **ドキュメント化** する（その結果、**自動ドキュメント UI** に表示されます）
+- 最大長が 50 文字であることを確かめるようデータを **検証** する
+- データが有効でないときに、クライアントに **明確なエラー** を表示する
+- OpenAPI スキーマの *path operation* にパラメータを **ドキュメント化** する（その結果、**自動ドキュメント UI** に表示されます）
 
 ## 代替（古い方法）: デフォルト値としての `Query` { #alternative-old-query-as-the-default-value }
 
@@ -174,9 +174,9 @@ FastAPI なしで同じ関数を **別の場所** から **呼び出しても**�
 
 この特定の正規表現パターンは受け取ったパラメータの値をチェックします:
 
-* `^`: は、これ以降の文字で始まり、これより以前には文字はありません。
-* `fixedquery`: は、正確な`fixedquery`を持っています.
-* `$`: で終わる場合、`fixedquery`以降には文字はありません.
+- `^`: は、これ以降の文字で始まり、これより以前には文字はありません。
+- `fixedquery`: は、正確な`fixedquery`を持っています.
+- `$`: で終わる場合、`fixedquery`以降には文字はありません.
 
 もしこれらすべての **「正規表現」** のアイデアについて迷っていても、心配しないでください。多くの人にとって難しい話題です。正規表現を必要としなくても、まだ、多くのことができます。
 
@@ -242,7 +242,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 http://localhost:8000/items/?q=foo&q=bar
 ```
 
-*path operation function* 内の *function parameter* `q` で、複数の `q` *query parameters'* 値（`foo` と `bar`）を Python の `list` として受け取ります。
+*path operation function* 内の *function parameter* `q` で、複数の `q` *クエリパラメータ*の値（`foo` と `bar`）を Python の `list` として受け取ります。
 
 そのため、このURLのレスポンスは以下のようになります:
 
@@ -370,11 +370,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 その場合、通常のバリデーション（例: 値が `str` であることの検証）の後に適用される **カスタムバリデータ関数** を使えます。
 
-これを行うには、`Annotated` の中で [Pydantic の `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) を使います。
+これを行うには、`Annotated` の中で [Pydantic の `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) を使います。
 
 /// tip | 豆知識
 
-Pydantic には [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) などもあります。 🤓
+Pydantic には [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) などもあります。 🤓
 
 ///
 
@@ -382,7 +382,7 @@ Pydantic には [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | 情報
+/// note | 備考
 
 これは Pydantic バージョン 2 以上で利用できます。 😎
 
@@ -432,16 +432,16 @@ Pydantic には [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 一般的なバリデーションとメタデータ:
 
-* `alias`
-* `title`
-* `description`
-* `deprecated`
+- `alias`
+- `title`
+- `description`
+- `deprecated`
 
 文字列に固有のバリデーション:
 
-* `min_length`
-* `max_length`
-* `pattern`
+- `min_length`
+- `max_length`
+- `pattern`
 
 `AfterValidator` を使ったカスタムバリデーション。
 

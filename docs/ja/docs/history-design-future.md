@@ -54,11 +54,11 @@
 
 ## 要件 { #requirements }
 
-いくつかの代替手法を試したあと、私は[**Pydantic**](https://docs.pydantic.dev/)の強みを利用することを決めました。
+いくつかの代替手法を試したあと、私は[**Pydantic**](https://pydantic.dev/docs/)の強みを利用することを決めました。
 
 そして、JSON Schemaに完全に準拠するようにしたり、制約宣言を定義するさまざまな方法をサポートしたり、いくつかのエディターでのテストに基づいてエディターのサポート (型チェック、自動補完) を改善するために貢献しました。
 
-開発中、もう1つの重要な鍵となる[**Starlette**](https://www.starlette.dev/)にも貢献しました。
+開発中、もう1つの重要な鍵となる[**Starlette**](https://starlette.dev/)にも貢献しました。
 
 ## 開発 { #development }
 

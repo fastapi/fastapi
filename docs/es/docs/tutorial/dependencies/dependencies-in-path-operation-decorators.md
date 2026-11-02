@@ -28,7 +28,7 @@ También puede ayudar a evitar confusiones para nuevos desarrolladores que vean 
 
 ///
 
-/// info | Información
+/// note | Nota
 
 En este ejemplo usamos headers personalizados inventados `X-Key` y `X-Token`.
 

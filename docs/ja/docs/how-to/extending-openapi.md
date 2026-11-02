@@ -10,7 +10,7 @@
 
 `FastAPI` アプリケーション（インスタンス）には、OpenAPI スキーマを返すことが期待される `.openapi()` メソッドがあります。
 
-アプリケーションオブジェクトの作成時に、`/openapi.json`（または `openapi_url` に設定したパス）への path operation が登録されます。
+アプリケーションオブジェクトの作成時に、`/openapi.json`（または `openapi_url` に設定したパス）への *path operation* が登録されます。
 
 これは単に、アプリケーションの `.openapi()` メソッドの結果を含む JSON レスポンスを返します。
 
@@ -25,9 +25,17 @@
 - `openapi_version`: 使用する OpenAPI 仕様のバージョン。デフォルトは最新の `3.1.0`。
 - `summary`: API の短い概要。
 - `description`: API の説明。Markdown を含めることができ、ドキュメントに表示されます。
-- `routes`: ルートのリスト。登録済みの各 path operation です。`app.routes` から取得されます。
+- `routes`: アプリケーションのルート。`app.routes` から取得されます。FastAPI はこれらを使用して、登録済みの *path operation*（取り込んだルーター由来のものも含む）を収集します。
 
-/// info | 情報
+/// tip | 豆知識
+
+`app.routes` はより低レベルなルートツリーです。最終的な `APIRoute` オブジェクトだけでなく、FastAPI が内部で使用する、取り込まれたルーター向けの候補ルートも含まれることがあります。
+
+それでも `app.routes` を `get_openapi()` に渡せます。FastAPI はそのルートツリーを走査して、有効な path operation を収集します。
+
+///
+
+/// note | 備考
 
 パラメータ `summary` は OpenAPI 3.1.0 以降で利用可能で、FastAPI 0.99.0 以降が対応しています。
 
@@ -37,7 +45,7 @@
 
 上記の情報を使って、同じユーティリティ関数で OpenAPI スキーマを生成し、必要な部分を上書きできます。
 
-たとえば、[カスタムロゴを含めるための ReDoc の OpenAPI 拡張](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)を追加してみましょう。
+たとえば、[カスタムロゴを含めるための ReDoc の OpenAPI 拡張](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo)を追加してみましょう。
 
 ### 通常の **FastAPI** { #normal-fastapi }
 

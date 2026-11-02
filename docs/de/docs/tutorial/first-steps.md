@@ -6,12 +6,18 @@ Die einfachste FastAPI-Datei könnte wie folgt aussehen:
 
 Kopieren Sie das in eine Datei `main.py`.
 
+/// tip | Tipp
+
+FastAPI hat eine [offizielle Erweiterung für VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (und Cursor), die viele Features bereitstellt, darunter einen Pfadoperation-Explorer, Pfadoperation-Suche, CodeLens-Navigation in Tests (Sprung zur Definition aus Tests) sowie Deployment und Logs von FastAPI Cloud, alles aus Ihrem Editor heraus.
+
+///
+
 Starten Sie den Live-Server:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ Sie werden die automatisch erzeugte, interaktive API-Dokumentation sehen (bereit
 
 Gehen Sie nun auf [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Dort sehen Sie die alternative, automatische Dokumentation (bereitgestellt durch [ReDoc](https://github.com/Rebilly/ReDoc)):
+Dort sehen Sie die alternative, automatische Dokumentation (bereitgestellt durch [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -180,42 +186,32 @@ was äquivalent wäre zu:
 from backend.main import app
 ```
 
-### `fastapi dev` mit Pfad { #fastapi-dev-with-path }
+### `fastapi dev` mit Pfad oder mit der CLI-Option `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Sie können auch den Dateipfad an den Befehl `fastapi dev` übergeben, und er wird das zu verwendende FastAPI-App-Objekt erraten:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-Aber Sie müssten sich daran erinnern, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad zu übergeben.
+Oder Sie können die Option `--entrypoint` an den Befehl `fastapi dev` übergeben:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+Aber Sie müssten sich daran erinnern, bei jedem Aufruf des `fastapi`-Befehls den korrekten Pfad\entrypoint zu übergeben.
 
 Zusätzlich könnten andere Tools es nicht finden, z. B. die [VS Code-Erweiterung](../editor-support.md) oder [FastAPI Cloud](https://fastapicloud.com). Daher wird empfohlen, den `entrypoint` in `pyproject.toml` zu verwenden.
 
 ### Ihre App deployen (optional) { #deploy-your-app-optional }
 
-Sie können optional Ihre FastAPI-App in der [FastAPI Cloud](https://fastapicloud.com) deployen, treten Sie der Warteliste bei, falls Sie es noch nicht getan haben. 🚀
-
-Wenn Sie bereits ein **FastAPI Cloud**-Konto haben (wir haben Sie von der Warteliste eingeladen 😉), können Sie Ihre Anwendung mit einem Befehl deployen.
-
-Vor dem Deployen, stellen Sie sicher, dass Sie eingeloggt sind:
+Sie können optional Ihre FastAPI-App in der [FastAPI Cloud](https://fastapicloud.com) mit einem einzigen Befehl deployen. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Dann stellen Sie Ihre App bereit:
-
-<div class="termy">
-
-```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -226,7 +222,9 @@ Deploying to FastAPI Cloud...
 
 </div>
 
-Das war's! Jetzt können Sie Ihre App unter dieser URL aufrufen. ✨
+Das CLI erkennt Ihre FastAPI-Anwendung automatisch und deployt sie in die Cloud. Wenn Sie nicht eingeloggt sind, wird Ihr Browser geöffnet, um die Authentifizierung abzuschließen.
+
+Das war’s! Jetzt können Sie Ihre App unter dieser URL aufrufen. ✨
 
 ## Zusammenfassung, Schritt für Schritt { #recap-step-by-step }
 
@@ -240,11 +238,11 @@ Das war's! Jetzt können Sie Ihre App unter dieser URL aufrufen. ✨
 
 `FastAPI` ist eine Klasse, die direkt von `Starlette` erbt.
 
-Sie können alle [Starlette](https://www.starlette.dev/)-Funktionalitäten auch mit `FastAPI` nutzen.
+Sie können alle [Starlette](https://starlette.dev/)-Funktionalitäten auch mit `FastAPI` nutzen.
 
 ///
 
-### Schritt 2: Erzeugen einer `FastAPI`-„Instanz“ { #step-2-create-a-fastapi-instance }
+### Schritt 2: Eine `FastAPI`-„Instanz“ erstellen { #step-2-create-a-fastapi-instance }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
 
@@ -252,7 +250,7 @@ In diesem Beispiel ist die Variable `app` eine „Instanz“ der Klasse `FastAPI
 
 Dies wird der Hauptinteraktionspunkt für die Erstellung all Ihrer APIs sein.
 
-### Schritt 3: Erstellen einer *Pfadoperation* { #step-3-create-a-path-operation }
+### Schritt 3: Eine *Pfadoperation* erstellen { #step-3-create-a-path-operation }
 
 #### Pfad { #path }
 
@@ -270,7 +268,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Info
+/// note | Hinweis
 
 Ein „Pfad“ wird häufig auch als „Endpunkt“ oder „Route“ bezeichnet.
 
@@ -313,7 +311,7 @@ In OpenAPI wird folglich jede dieser HTTP-Methoden als „Operation“ bezeichne
 
 Wir werden sie auch „**Operationen**“ nennen.
 
-#### Definieren eines *Pfadoperation-Dekorators* { #define-a-path-operation-decorator }
+#### Einen *Pfadoperation-Dekorator* definieren { #define-a-path-operation-decorator }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
 
@@ -322,7 +320,7 @@ Das `@app.get("/")` sagt **FastAPI**, dass die Funktion direkt darunter für die
 * den Pfad `/`
 * unter der Verwendung der <dfn title="eine HTTP-GET-Methode"><code>get</code>-Operation</dfn> gehen
 
-/// info | `@decorator` Info
+/// note | `@decorator` Info
 
 Diese `@something`-Syntax wird in Python „Dekorator“ genannt.
 
@@ -357,11 +355,11 @@ Es steht Ihnen frei, jede Operation (HTTP-Methode) so zu verwenden, wie Sie es m
 
 Die hier aufgeführten Informationen dienen als Leitfaden und sind nicht verbindlich.
 
-Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktionen nur mit „POST“-Operationen durch.
+Wenn Sie beispielsweise GraphQL verwenden, führen Sie normalerweise alle Aktionen nur mit `POST`-Operationen durch.
 
 ///
 
-### Schritt 4: Definieren der **Pfadoperation-Funktion** { #step-4-define-the-path-operation-function }
+### Schritt 4: Die **Pfadoperation-Funktion** definieren { #step-4-define-the-path-operation-function }
 
 Das ist unsere „**Pfadoperation-Funktion**“:
 
@@ -407,11 +405,11 @@ Stellen Sie Ihre App in der **[FastAPI Cloud](https://fastapicloud.com)** mit ei
 
 **[FastAPI Cloud](https://fastapicloud.com)** wird vom selben Autor und Team hinter **FastAPI** entwickelt.
 
-Es vereinfacht den Prozess des Erstellens, Deployens und des Zugriffs auf eine API mit minimalem Aufwand.
+Es vereinfacht den Prozess des **Erstellens**, **Deployens** und des **Zugriffs** auf eine API mit minimalem Aufwand.
 
 Es bringt die gleiche **Developer-Experience** beim Erstellen von Apps mit FastAPI auch zum **Deployment** in der Cloud. 🎉
 
-FastAPI Cloud ist der Hauptsponsor und Finanzierer der „FastAPI and friends“ Open-Source-Projekte. ✨
+FastAPI Cloud ist der Hauptsponsor und Finanzierer der *FastAPI and friends*-Open-Source-Projekte. ✨
 
 #### Zu anderen Cloudanbietern deployen { #deploy-to-other-cloud-providers }
 
@@ -422,7 +420,7 @@ Folgen Sie den Anleitungen Ihres Cloudanbieters, um dort FastAPI-Apps bereitzust
 ## Zusammenfassung { #recap }
 
 * Importieren Sie `FastAPI`.
-* Erstellen Sie eine `app` Instanz.
+* Erstellen Sie eine `app`-Instanz.
 * Schreiben Sie einen **Pfadoperation-Dekorator** unter Verwendung von Dekoratoren wie `@app.get("/")`.
 * Definieren Sie eine **Pfadoperation-Funktion**, zum Beispiel `def root(): ...`.
 * Starten Sie den Entwicklungsserver mit dem Befehl `fastapi dev`.

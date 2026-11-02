@@ -33,10 +33,20 @@ class EventSourceResponse(StreamingResponse):
     media_type = "text/event-stream"
 
 
-def _check_id_no_null(v: str | None) -> str | None:
+def _check_single_line(v: str | None, field_name: str) -> str | None:
+    if v is not None and ("\r" in v or "\n" in v):
+        raise ValueError(f"SSE '{field_name}' must be a single line")
+    return v
+
+
+def _check_event_single_line(v: str | None) -> str | None:
+    return _check_single_line(v, "event")
+
+
+def _check_id_valid(v: str | None) -> str | None:
     if v is not None and "\0" in v:
         raise ValueError("SSE 'id' must not contain null characters")
-    return v
+    return _check_single_line(v, "id")
 
 
 class ServerSentEvent(BaseModel):
@@ -86,24 +96,27 @@ class ServerSentEvent(BaseModel):
     ] = None
     event: Annotated[
         str | None,
+        AfterValidator(_check_event_single_line),
         Doc(
             """
             Optional event type name.
 
             Maps to `addEventListener(event, ...)` on the browser. When omitted,
-            the browser dispatches on the generic `message` event.
+            the browser dispatches on the generic `message` event. Must be a
+            single line.
             """
         ),
     ] = None
     id: Annotated[
         str | None,
-        AfterValidator(_check_id_no_null),
+        AfterValidator(_check_id_valid),
         Doc(
             """
             Optional event ID.
 
             The browser sends this value back as the `Last-Event-ID` header on
-            automatic reconnection. **Must not contain null (`\\0`) characters.**
+            automatic reconnection. **Must be a single line** and must not contain
+            null (`\\0`) characters.
             """
         ),
     ] = None
@@ -141,6 +154,12 @@ class ServerSentEvent(BaseModel):
                 "or 'raw_data' for pre-formatted strings."
             )
         return self
+
+
+def _split_sse_lines(value: str) -> list[str]:
+    # Split on SSE-spec line terminators only (\n, \r\n, \r), preserving
+    # trailing empty strings.
+    return value.replace("\r\n", "\n").replace("\r", "\n").split("\n")
 
 
 def format_sse_event(
@@ -188,19 +207,19 @@ def format_sse_event(
 ) -> bytes:
     """Build SSE wire-format bytes from **pre-serialized** data.
 
-    The result always ends with `\n\n` (the event terminator).
+    The result always ends with `\\n\\n` (the event terminator).
     """
     lines: list[str] = []
 
     if comment is not None:
-        for line in comment.splitlines():
+        for line in _split_sse_lines(comment):
             lines.append(f": {line}")
 
     if event is not None:
         lines.append(f"event: {event}")
 
     if data_str is not None:
-        for line in data_str.splitlines():
+        for line in _split_sse_lines(data_str):
             lines.append(f"data: {line}")
 
     if id is not None:

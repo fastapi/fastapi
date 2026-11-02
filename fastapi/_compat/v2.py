@@ -23,7 +23,7 @@ from pydantic import PydanticSchemaGenerationError as PydanticSchemaGenerationEr
 from pydantic import PydanticUndefinedAnnotation as PydanticUndefinedAnnotation
 from pydantic import ValidationError as ValidationError
 from pydantic._internal import _typing_extra as _pydantic_typing_extra
-from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]  # ty: ignore[unused-ignore-comment]
+from pydantic._internal._schema_generation_shared import (  # type: ignore[attr-defined]
     GetJsonSchemaHandler as GetJsonSchemaHandler,
 )
 from pydantic.fields import FieldInfo as FieldInfo
@@ -259,20 +259,22 @@ def get_schema_from_model_field(
         tuple[ModelField, Literal["validation", "serialization"]], JsonSchemaValue
     ],
     separate_input_output_schemas: bool = True,
+    field_alias: str | None = None,
 ) -> dict[str, Any]:
     override_mode: Literal["validation"] | None = (
         None
         if (separate_input_output_schemas or _has_computed_fields(field))
         else "validation"
     )
-    field_alias = (
-        (field.validation_alias or field.alias)
-        if field.mode == "validation"
-        else (field.serialization_alias or field.alias)
-    )
+    if field_alias is None:
+        field_alias = (
+            (field.validation_alias or field.alias)
+            if field.mode == "validation"
+            else (field.serialization_alias or field.alias)
+        )
 
     # This expects that GenerateJsonSchema was already used to generate the definitions
-    json_schema = field_mapping[(field, override_mode or field.mode)]
+    json_schema = field_mapping[(field, override_mode or field.mode)].copy()
     if "$ref" not in json_schema:
         # TODO remove when deprecating Pydantic v1
         # Ref: https://github.com/pydantic/pydantic/blob/d61792cc42c80b13b23e3ffa74bc37ec7c77f7d1/pydantic/schema.py#L207
@@ -358,6 +360,9 @@ def copy_field_info(*, field_info: FieldInfo, annotation: Any) -> FieldInfo:
     cls = type(field_info)
     merged_field_info = cls.from_annotation(annotation)
     new_field_info = copy(field_info)
+    for name, value in asdict(merged_field_info)["attributes"].items():
+        setattr(new_field_info, name, value)
+    new_field_info._attributes_set = merged_field_info._attributes_set.copy()
     new_field_info.metadata = merged_field_info.metadata
     new_field_info.annotation = merged_field_info.annotation
     return new_field_info
@@ -372,8 +377,8 @@ def serialize_sequence_value(*, field: ModelField, value: Any) -> Sequence[Any]:
                 continue
             origin_type = get_origin(union_arg) or union_arg
             break
-    assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]
-    return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]
+    assert issubclass(origin_type, shared.sequence_types)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
+    return shared.sequence_annotation_to_type[origin_type](value)  # type: ignore[no-any-return,index]  # ty: ignore[invalid-return-type]
 
 
 def get_missing_field_error(loc: tuple[int | str, ...]) -> dict[str, Any]:
@@ -381,14 +386,16 @@ def get_missing_field_error(loc: tuple[int | str, ...]) -> dict[str, Any]:
         "Field required", [{"type": "missing", "loc": loc, "input": {}}]
     ).errors(include_url=False)[0]
     error["input"] = None
-    return error  # type: ignore[return-value]
+    return error  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
 
 
 def create_body_model(
-    *, fields: Sequence[ModelField], model_name: str
+    *, fields: Sequence[ModelField], model_name: str, config: ConfigDict | None = None
 ) -> type[BaseModel]:
     field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
-    BodyModel: type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]
+    BodyModel: type[BaseModel] = create_model(
+        model_name, __config__=config, **field_params
+    )  # type: ignore[call-overload]  # ty: ignore[no-matching-overload]
     return BodyModel
 
 
@@ -451,7 +458,7 @@ def get_flat_models_from_annotation(
         for arg in get_args(annotation):
             if lenient_issubclass(arg, (BaseModel, Enum)):
                 if arg not in known_models:
-                    known_models.add(arg)  # type: ignore[arg-type]  # ty: ignore[unused-ignore-comment]
+                    known_models.add(arg)  # type: ignore[arg-type]
                     if lenient_issubclass(arg, BaseModel):
                         get_flat_models_from_model(arg, known_models=known_models)
             else:

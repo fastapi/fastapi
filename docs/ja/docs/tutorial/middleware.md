@@ -37,7 +37,7 @@
 
 カスタムの独自ヘッダーは [`X-` プレフィックスを使用](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)して追加できる点に注意してください。
 
-ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、[CORS (Cross-Origin Resource Sharing)](cors.md) の設定に、[StarletteのCORSドキュメント](https://www.starlette.dev/middleware/#corsmiddleware)に記載されているパラメータ `expose_headers` を使用して、それらを追加する必要があります。
+ただし、ブラウザのクライアントに表示させたいカスタムヘッダーがある場合は、[CORS (Cross-Origin Resource Sharing)](cors.md) の設定に、[StarletteのCORSドキュメント](https://starlette.dev/middleware/#corsmiddleware)に記載されているパラメータ `expose_headers` を使用して、それらを追加する必要があります。
 
 ///
 

@@ -1,4 +1,5 @@
 import importlib
+from typing import Any
 
 import pytest
 from dirty_equals import IsList
@@ -130,7 +131,7 @@ def test_put_missing_required(client: TestClient):
 
 
 def test_openapi_schema(client: TestClient, mod_name: str):
-    tags_schema = {"default": [], "title": "Tags"}
+    tags_schema: dict[str, Any] = {"default": [], "title": "Tags"}
     if mod_name.startswith("tutorial001"):
         tags_schema.update(UNTYPED_LIST_SCHEMA)
     elif mod_name.startswith("tutorial002"):

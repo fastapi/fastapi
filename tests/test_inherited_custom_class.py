@@ -13,7 +13,7 @@ class MyUuid:
     def __str__(self):
         return self.uuid
 
-    @property  # type: ignore
+    @property
     def __class__(self):
         return uuid.UUID
 

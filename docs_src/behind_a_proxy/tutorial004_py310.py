@@ -5,7 +5,6 @@ app = FastAPI(
         {"url": "https://stag.example.com", "description": "Staging environment"},
         {"url": "https://prod.example.com", "description": "Production environment"},
     ],
-    root_path="/api/v1",
     root_path_in_servers=False,
 )
 

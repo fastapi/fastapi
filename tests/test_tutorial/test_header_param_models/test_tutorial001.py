@@ -1,6 +1,7 @@
 import importlib
 
 import pytest
+from dirty_equals import IsOneOf
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -62,13 +63,14 @@ def test_header_param_model_invalid(client: TestClient):
             "detail": [
                 {
                     "type": "missing",
-                    "loc": ["header", "save_data"],
+                    "loc": ["header", "save-data"],
                     "msg": "Field required",
                     "input": {
-                        "x_tag": [],
                         "host": "testserver",
                         "accept": "*/*",
-                        "accept-encoding": "gzip, deflate",
+                        "accept-encoding": IsOneOf(
+                            "gzip, deflate", "gzip, deflate, zstd"
+                        ),
                         "connection": "keep-alive",
                         "user-agent": "testclient",
                     },

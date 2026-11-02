@@ -1,6 +1,6 @@
 # `yield` ile Dependency'ler { #dependencies-with-yield }
 
-FastAPI, işini bitirdikten sonra <dfn title='bazen "exit code", "cleanup code", "teardown code", "closing code", "context manager exit code" vb. olarak da adlandırılır'>ek adımlar</dfn> çalıştıran dependency'leri destekler.
+FastAPI, işini bitirdikten sonra <dfn title='bazen "çıkış kodu", "temizleme kodu", "sökme kodu", "kapatma kodu", "bağlam yöneticisi çıkış kodu" vb. olarak da adlandırılır'>ek adımlar</dfn> çalıştıran dependency'leri destekler.
 
 Bunu yapmak için `return` yerine `yield` kullanın ve ek adımları (kodu) `yield` satırından sonra yazın.
 
@@ -111,7 +111,7 @@ Ama ihtiyaç duyarsanız diye burada. 🤓
 
 {* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
 
-Exception yakalayıp buna göre özel bir response oluşturmak istiyorsanız bir [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers) oluşturun.
+Exception yakalayıp buna göre özel bir response oluşturmak istiyorsanız bir [Özel Exception Handler](../handling-errors.md#install-custom-exception-handlers) oluşturun.
 
 ## `yield` ve `except` ile Dependency'ler { #dependencies-with-yield-and-except }
 
@@ -170,7 +170,7 @@ participant tasks as Background tasks
     end
 ```
 
-/// info | Bilgi
+/// note | Not
 
 Client'a yalnızca **tek bir response** gönderilir. Bu, error response'lardan biri olabilir ya da *path operation*'dan dönen response olabilir.
 
@@ -233,7 +233,8 @@ participant operation as Path Operation
 
 `yield` kullanan dependency'ler, zaman içinde farklı kullanım senaryolarını kapsamak ve bazı sorunları düzeltmek için gelişti.
 
-FastAPI'nin farklı sürümlerinde nelerin değiştiğini görmek isterseniz, advanced guide'da şu bölümü okuyabilirsiniz: [Advanced Dependencies - Dependencies with `yield`, `HTTPException`, `except` and Background Tasks](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
+FastAPI'nin farklı sürümlerinde nelerin değiştiğini görmek isterseniz, gelişmiş kılavuzda şu bölümü okuyabilirsiniz: [Gelişmiş Dependency'ler - `yield`, `HTTPException`, `except` ve Background Tasks ile Dependency'ler](../../advanced/advanced-dependencies.md#dependencies-with-yield-httpexception-except-and-background-tasks).
+
 ## Context Managers { #context-managers }
 
 ### "Context Managers" Nedir? { #what-are-context-managers }

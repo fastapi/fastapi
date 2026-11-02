@@ -29,7 +29,7 @@ To achieve that, first import:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info
+/// note
 
 FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
@@ -220,13 +220,21 @@ So, when you need to declare a value as required while using `Query`, you can si
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### Required, can be `None` { #required-can-be-none }
+### Required parameters and `None` { #required-parameters-and-none }
 
-You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`.
-
-To do that, you can declare that `None` is a valid type but simply do not declare a default value:
+The type `str | None` allows `None` as a Python value, but it does not make a query parameter optional. Without a default value, the parameter is still required:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+Query parameter values arrive as strings and have no built-in representation of `None`. Sending `?q=None` or `?q=null` sends the strings `"None"` and `"null"`, respectively. Sending `?q=` sends an empty string, which fails the `min_length=3` validation in this example.
+
+To allow clients to omit `q` and use `None` as its value, give it a default of `None`:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+JSON request bodies, unlike query parameters, can contain an explicit `null` value.
 
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
@@ -370,11 +378,11 @@ There could be cases where you need to do some **custom validation** that can't 
 
 In those cases, you can use a **custom validator function** that is applied after the normal validation (e.g. after validating that the value is a `str`).
 
-You can achieve that using [Pydantic's `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) inside of `Annotated`.
+You can achieve that using [Pydantic's `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) inside of `Annotated`.
 
 /// tip
 
-Pydantic also has [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) and others. 🤓
+Pydantic also has [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) and others. 🤓
 
 ///
 
@@ -382,7 +390,7 @@ For example, this custom validator checks that the item ID starts with `isbn-` f
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info
+/// note
 
 This is available with Pydantic version 2 or above. 😎
 
@@ -406,7 +414,7 @@ But if you're curious about this specific code example and you're still entertai
 
 #### String with `value.startswith()` { #string-with-value-startswith }
 
-Did you notice? a string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
+Did you notice? A string using `value.startswith()` can take a tuple, and it will check each value in the tuple:
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
 

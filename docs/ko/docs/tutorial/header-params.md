@@ -24,7 +24,7 @@
 
 ///
 
-/// info | 정보
+/// note
 
 헤더를 선언하기 위해서 `Header`를 사용해야 합니다. 그렇지 않으면 해당 매개변수를 쿼리 매개변수로 해석하기 때문입니다.
 
@@ -48,7 +48,7 @@
 
 {* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
 
-/// warning | 경고
+/// warning
 
 `convert_underscores`를 `False`로 설정하기 전에, 어떤 HTTP 프록시들과 서버들은 언더스코어가 포함된 헤더 사용을 허락하지 않는다는 것을 명심하십시오.
 

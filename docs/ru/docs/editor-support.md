@@ -20,4 +20,4 @@
 - **Развернуть в FastAPI Cloud** — развертывание вашего приложения в один клик в [FastAPI Cloud](https://fastapicloud.com/).
 - **Поток логов приложения** — потоковая передача логов в реальном времени из вашего приложения, развернутого в FastAPI Cloud, с фильтрацией по уровню и текстовым поиском.
 
-Если вы хотите поверхностно ознакомиться с возможностями расширения, откройте палитру команд (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> или на macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>), выберите «Welcome: Open walkthrough...», а затем «Get started with FastAPI».
+Если вы хотите ознакомиться с возможностями расширения, вы можете посмотреть walkthrough расширения, открыв палитру команд (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> или на macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>) и выбрав «Welcome: Open walkthrough...», а затем walkthrough «Get started with FastAPI».

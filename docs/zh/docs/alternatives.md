@@ -24,11 +24,11 @@
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
-Django REST framework 作为一个灵活工具箱而创建，用于在底层使用 Django 构建 Web API，从而增强其 API 能力。
+Django REST Framework 作为一个灵活工具箱而创建，用于在底层使用 Django 构建 Web API，从而增强其 API 能力。
 
 它被包括 Mozilla、Red Hat、Eventbrite 在内的许多公司使用。
 
-它是最早的“自动 API 文档”的范例之一，这正是启发“寻找” **FastAPI** 的最初想法之一。
+它是最早的**自动 API 文档**的范例之一，这正是启发“寻找” **FastAPI** 的最初想法之一。
 
 /// note | 注意
 
@@ -36,7 +36,7 @@ Django REST Framework 由 Tom Christie 创建。他也是 Starlette 和 Uvicorn 
 
 ///
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 提供自动化的 API 文档 Web 界面。
 
@@ -56,10 +56,11 @@ Flask 是一个“微框架”，它不包含数据库集成，也没有像 Djan
 
 鉴于 Flask 的简洁，它似乎非常适合构建 API。接下来要找的，就是 Flask 版的 “Django REST Framework”。
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
-- 成为微框架，便于按需组合所需的工具与组件。
-- 提供简单易用的路由系统。
+成为微框架。让按需组合所需的工具与组件变得容易。
+
+提供简单易用的路由系统。
 
 ///
 
@@ -87,7 +88,7 @@ Requests 设计非常简单直观，易于使用，且有合理的默认值。�
 response = requests.get("http://example.com/some/url")
 ```
 
-对应地，FastAPI 的 API 路径操作可能看起来是这样的：
+对应地，FastAPI 的 API *路径操作*可能看起来是这样的：
 
 ```Python hl_lines="1"
 @app.get("/some/url")
@@ -97,7 +98,7 @@ def read_url():
 
 可以看到 `requests.get(...)` 与 `@app.get(...)` 的相似之处。
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 * 提供简单直观的 API。
 * 直接、自然地使用 HTTP 方法名（操作）。
@@ -117,14 +118,14 @@ def read_url():
 
 因此，在谈到 2.0 版本时人们常说 “Swagger”，而 3+ 版本则称为 “OpenAPI”。
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 采用并使用开放的 API 规范标准，而非自定义模式。
 
 并集成基于标准的用户界面工具：
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 选择这两者是因为它们相当流行且稳定；但稍作搜索，你就能找到数十种 OpenAPI 的替代用户界面（都可以与 **FastAPI** 搭配使用）。
 
@@ -146,7 +147,7 @@ API 的另一个重要特性是数据校验，确保数据在给定约束下是�
 
 但它诞生于 Python 类型提示出现之前。因此，定义每个<dfn title="数据应如何构造的定义">模式</dfn>都需要使用 Marshmallow 提供的特定工具和类。
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 使用代码定义“模式”，自动提供数据类型与校验。
 
@@ -162,13 +163,13 @@ Webargs 是一个在多个框架（包括 Flask）之上提供该功能的工具
 
 在拥有 **FastAPI** 之前，我也大量使用过它，这是个很棒的工具。
 
-/// info | 信息
+/// note | 注意
 
 Webargs 由与 Marshmallow 相同的开发者创建。
 
 ///
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 对传入请求数据进行自动校验。
 
@@ -192,13 +193,13 @@ Marshmallow 与 Webargs 通过插件提供了校验、解析与序列化。
 
 编辑器很难为此提供帮助；而且如果我们修改了参数或 Marshmallow 模式，却忘了同步更新那个 YAML 文档字符串，生成的模式就会过时。
 
-/// info | 信息
+/// note | 注意
 
 APISpec 由与 Marshmallow 相同的开发者创建。
 
 ///
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 支持开放的 API 标准 OpenAPI。
 
@@ -224,19 +225,19 @@ APISpec 由与 Marshmallow 相同的开发者创建。
 
 这些全栈脚手架也成为了[**FastAPI** 项目脚手架](project-generation.md)的基础。
 
-/// info | 信息
+/// note | 注意
 
 Flask-apispec 由与 Marshmallow 相同的开发者创建。
 
 ///
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 从定义序列化与校验的同一份代码自动生成 OpenAPI 模式。
 
 ///
 
-### [NestJS](https://nestjs.com/)（以及 [Angular](https://angular.io/)） { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/)（以及 [Angular](https://angular.dev/)） { #nestjs-and-angular }
 
 这甚至不是 Python。NestJS 是一个 JavaScript（TypeScript）的 NodeJS 框架，受 Angular 启发。
 
@@ -250,7 +251,7 @@ Flask-apispec 由与 Marshmallow 相同的开发者创建。
 
 它对嵌套模型的支持并不好。如果请求的 JSON 体是包含嵌套 JSON 对象的 JSON 对象，则无法被正确文档化和校验。
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 使用 Python 类型以获得出色的编辑器支持。
 
@@ -270,7 +271,7 @@ Flask-apispec 由与 Marshmallow 相同的开发者创建。
 
 ///
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 找到实现疯狂性能的路径。
 
@@ -282,11 +283,11 @@ Flask-apispec 由与 Marshmallow 相同的开发者创建。
 
 Falcon 是另一个高性能 Python 框架，它被设计为精简且可作为 Hug 等其他框架的基础。
 
-它设计为接收两个参数的函数：一个“request”和一个“response”。然后从 request 中“读取”，向 response 中“写入”。由于这种设计，无法用标准的 Python 类型提示将请求参数和请求体声明为函数形参。
+它设计为接收两个参数的函数：一个“请求”和一个“响应”。然后从请求中“读取”，向响应中“写入”。由于这种设计，无法用标准的 Python 类型提示将请求参数和请求体声明为函数形参。
 
 因此，数据校验、序列化与文档要么需要手写完成，无法自动化；要么需要在 Falcon 之上实现一个框架，例如 Hug。其他受 Falcon 设计启发、采用“一个 request 对象 + 一个 response 对象作为参数”的框架也有同样的区别。
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 寻找获得卓越性能的方法。
 
@@ -310,7 +311,7 @@ Falcon 是另一个高性能 Python 框架，它被设计为精简且可作为 H
 
 路由在一个地方集中声明，使用在其他地方声明的函数（而不是使用可以直接放在处理端点函数之上的装饰器）。这更接近 Django 的做法，而不是 Flask（和 Starlette）。它在代码中割裂了相对紧耦合的内容。
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 通过模型属性的“默认值”为数据类型定义额外校验。这提升了编辑器支持，而这在当时的 Pydantic 中尚不可用。
 
@@ -332,13 +333,13 @@ Hug 是最早使用 Python 类型提示来声明 API 参数类型的框架之一
 
 由于基于同步 Python Web 框架的上一代标准（WSGI），它无法处理 WebSocket 等，尽管它的性能仍然很高。
 
-/// info | 信息
+/// note | 注意
 
-Hug 由 Timothy Crosley 创建，他也是 [`isort`](https://github.com/timothycrosley/isort) 的作者，这是一个能自动排序 Python 文件中导入的优秀工具。
+Hug 由 Timothy Crosley 创建，他也是 [`isort`](https://github.com/PyCQA/isort) 的作者，这是一个能自动排序 Python 文件中导入的优秀工具。
 
 ///
 
-/// check | 启发 **FastAPI** 的想法：
+/// tip | 启发 **FastAPI** 的想法：
 
 Hug 启发了 APIStar 的部分设计，也是我当时最看好的工具之一，与 APIStar 并列。
 
@@ -372,7 +373,7 @@ Hug 启发 **FastAPI** 在函数中声明 `response` 参数，用于设置 heade
 
 现在 APIStar 是一组用于校验 OpenAPI 规范的工具，而不是 Web 框架。
 
-/// info | 信息
+/// note | 注意
 
 APIStar 由 Tom Christie 创建。他还创建了：
 
@@ -382,7 +383,7 @@ APIStar 由 Tom Christie 创建。他还创建了：
 
 ///
 
-/// check | 启发 **FastAPI**：
+/// tip | 启发 **FastAPI**：
 
 诞生。
 
@@ -398,7 +399,7 @@ APIStar 由 Tom Christie 创建。他还创建了：
 
 ## **FastAPI** 所使用的组件 { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic 是一个基于 Python 类型提示来定义数据校验、序列化与文档（使用 JSON Schema）的库。
 
@@ -406,7 +407,7 @@ Pydantic 是一个基于 Python 类型提示来定义数据校验、序列化与
 
 它可与 Marshmallow 类比。尽管在基准测试中它比 Marshmallow 更快。并且由于同样基于 Python 类型提示，编辑器支持优秀。
 
-/// check | **FastAPI** 用它来：
+/// tip | **FastAPI** 用它来：
 
 处理所有数据校验、数据序列化与自动模型文档（基于 JSON Schema）。
 
@@ -414,7 +415,7 @@ Pydantic 是一个基于 Python 类型提示来定义数据校验、序列化与
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette 是一个轻量级的 <dfn title="构建异步 Python Web 应用的新标准">ASGI</dfn> 框架/工具集，非常适合构建高性能的 asyncio 服务。
 
@@ -449,7 +450,7 @@ ASGI 是由 Django 核心团队成员推动的新“标准”。它尚不是正�
 
 ///
 
-/// check | **FastAPI** 用它来：
+/// tip | **FastAPI** 用它来：
 
 处理所有核心 Web 部分，并在其之上扩展功能。
 
@@ -459,7 +460,7 @@ ASGI 是由 Django 核心团队成员推动的新“标准”。它尚不是正�
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn 是一个基于 uvloop 与 httptools 构建的极速 ASGI 服务器。
 
@@ -467,7 +468,7 @@ Uvicorn 是一个基于 uvloop 与 httptools 构建的极速 ASGI 服务器。
 
 它是 Starlette 与 **FastAPI** 推荐的服务器。
 
-/// check | **FastAPI** 推荐将其作为：
+/// tip | **FastAPI** 推荐将其作为：
 
 运行 **FastAPI** 应用的主要 Web 服务器。
 

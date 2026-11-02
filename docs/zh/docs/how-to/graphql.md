@@ -2,7 +2,7 @@
 
 由于 **FastAPI** 基于 **ASGI** 标准，因此很容易集成任何也兼容 ASGI 的 **GraphQL** 库。
 
-你可以在同一个应用中将常规的 FastAPI 路径操作与 GraphQL 结合使用。
+你可以在同一个应用中将常规的 FastAPI *路径操作* 与 GraphQL 结合使用。
 
 /// tip | 提示
 
@@ -21,7 +21,7 @@
 * [Strawberry](https://strawberry.rocks/) 🍓
     * 提供 [面向 FastAPI 的文档](https://strawberry.rocks/docs/integrations/fastapi)
 * [Ariadne](https://ariadnegraphql.org/)
-    * 提供 [面向 FastAPI 的文档](https://ariadnegraphql.org/docs/fastapi-integration)
+    * 提供 [面向 FastAPI 的文档](https://ariadnegraphql.org/server/Integrations/fastapi-integration)
 * [Tartiflette](https://tartiflette.io/)
     * 提供用于 ASGI 集成的 [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/)
 * [Graphene](https://graphene-python.org/)

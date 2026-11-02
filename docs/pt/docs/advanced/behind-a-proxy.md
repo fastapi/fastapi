@@ -22,9 +22,9 @@ Os headers do proxy são:
 
 ///
 
-### Ativar headers encaminhados pelo proxy { #enable-proxy-forwarded-headers }
+### Ative os headers encaminhados pelo proxy { #enable-proxy-forwarded-headers }
 
-Você pode iniciar a CLI do FastAPI com a opção de linha de comando `--forwarded-allow-ips` e informar os endereços IP que devem ser confiáveis para ler esses headers encaminhados.
+Você pode iniciar a CLI do FastAPI com a *Opção de CLI* `--forwarded-allow-ips` e informar os endereços IP que devem ser confiáveis para ler esses headers encaminhados.
 
 Se você definir como `--forwarded-allow-ips="*"`, ele confiará em todos os IPs de entrada.
 
@@ -33,7 +33,7 @@ Se o seu **servidor** estiver atrás de um **proxy** confiável e somente o prox
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -48,7 +48,7 @@ Por exemplo, suponha que você defina uma *operação de rota* `/items/`:
 
 Se o cliente tentar ir para `/items`, por padrão, ele seria redirecionado para `/items/`.
 
-Mas antes de definir a opção de linha de comando `--forwarded-allow-ips`, poderia redirecionar para `http://localhost:8000/items/`.
+Mas antes de definir a *Opção de CLI* `--forwarded-allow-ips`, poderia redirecionar para `http://localhost:8000/items/`.
 
 Mas talvez sua aplicação esteja hospedada em `https://mysuperapp.com`, e o redirecionamento deveria ser para `https://mysuperapp.com/items/`.
 
@@ -87,7 +87,7 @@ sequenceDiagram
     Proxy->>Client: HTTPS Response
 ```
 
-O **proxy** intercepta a requisição original do cliente e adiciona os headers especiais de encaminhamento (`X-Forwarded-*`) antes de repassar a requisição para o **servidor da aplicação**.
+O **proxy** intercepta a requisição original do cliente e adiciona os headers especiais *encaminhados* (`X-Forwarded-*`) antes de repassar a requisição para o **servidor da aplicação**.
 
 Esses headers preservam informações sobre a requisição original que, de outra forma, seriam perdidas:
 
@@ -117,7 +117,7 @@ Embora todo o seu código esteja escrito assumindo que existe apenas `/app`.
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
-E o proxy estaria **"removendo"** o **prefixo de path** dinamicamente antes de transmitir a solicitação para o servidor da aplicação (provavelmente Uvicorn via CLI do FastAPI), mantendo sua aplicação convencida de que está sendo servida em `/app`, para que você não precise atualizar todo o seu código para incluir o prefixo `/api/v1`.
+E o proxy estaria **"removendo"** o **prefixo de path** dinamicamente antes de transmitir a requisição para o servidor da aplicação (provavelmente Uvicorn via CLI do FastAPI), mantendo sua aplicação convencida de que está sendo servida em `/app`, para que você não precise atualizar todo o seu código para incluir o prefixo `/api/v1`.
 
 Até aqui, tudo funcionaria normalmente.
 
@@ -170,7 +170,7 @@ Para conseguir isso, você pode usar a opção de linha de comando `--root-path`
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -189,7 +189,7 @@ E a opção de linha de comando `--root-path` fornece esse `root_path`.
 
 ### Verificando o `root_path` atual { #checking-the-current-root-path }
 
-Você pode obter o `root_path` atual usado pela sua aplicação para cada solicitação, ele faz parte do dicionário `scope` (que faz parte da especificação ASGI).
+Você pode obter o `root_path` atual usado pela sua aplicação para cada requisição, ele faz parte do dicionário `scope` (que faz parte da especificação ASGI).
 
 Aqui estamos incluindo-o na mensagem apenas para fins de demonstração.
 
@@ -200,7 +200,7 @@ Então, se você iniciar o Uvicorn com:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Em um caso como esse (sem um prefixo de path removido), o proxy escutaria em alg
 
 Você pode facilmente executar o experimento localmente com um prefixo de path removido usando [Traefik](https://docs.traefik.io/).
 
-[Faça o download do Traefik](https://github.com/containous/traefik/releases), ele é um único binário, você pode extrair o arquivo compactado e executá-lo diretamente do terminal.
+[Faça o download do Traefik](https://github.com/traefik/traefik/releases), ele é um único binário, você pode extrair o arquivo compactado e executá-lo diretamente do terminal.
 
 Então, crie um arquivo `traefik.toml` com:
 
@@ -302,7 +302,7 @@ Agora crie esse outro arquivo `routes.toml`:
 
 Esse arquivo configura o Traefik para usar o prefixo de path `/api/v1`.
 
-E então o Traefik redirecionará suas solicitações para seu Uvicorn rodando em `http://127.0.0.1:8000`.
+E então o Traefik redirecionará suas requisições para seu Uvicorn rodando em `http://127.0.0.1:8000`.
 
 Agora inicie o Traefik:
 
@@ -321,7 +321,7 @@ E agora inicie sua aplicação, usando a opção `--root-path`:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -394,7 +394,7 @@ Este é um caso de uso mais avançado. Sinta-se à vontade para pular.
 
 Por padrão, o **FastAPI** criará um `server` no OpenAPI schema com o URL para o `root_path`.
 
-Mas você também pode fornecer outros `servers` alternativos, por exemplo, se quiser que a mesma interface de documentação interaja com ambientes de staging e produção.
+Mas você também pode fornecer outros `servers` alternativos, por exemplo, se quiser que *a mesma* interface de documentação interaja com ambientes de staging e produção.
 
 Se você passar uma lista personalizada de `servers` e houver um `root_path` (porque sua API está atrás de um proxy), o **FastAPI** inserirá um "server" com esse `root_path` no início da lista.
 
@@ -451,7 +451,7 @@ Se você não especificar o parâmetro `servers` e `root_path` for igual a `/`, 
 
 ///
 
-### Desabilitar servidor automático de `root_path` { #disable-automatic-server-from-root-path }
+### Desabilite o servidor automático de `root_path` { #disable-automatic-server-from-root-path }
 
 Se você não quiser que o **FastAPI** inclua um servidor automático usando o `root_path`, você pode usar o parâmetro `root_path_in_servers=False`:
 

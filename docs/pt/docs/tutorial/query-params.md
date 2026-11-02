@@ -54,8 +54,8 @@ http://127.0.0.1:8000/items/?skip=20
 
 Os valores dos parâmetros na sua função serão:
 
-* `skip=20`: Por que você definiu isso na URL
-* `limit=10`: Por que esse era o valor padrão
+* `skip=20`: porque você definiu isso na URL
+* `limit=10`: porque esse era o valor padrão
 
 ## Parâmetros opcionais { #optional-parameters }
 
@@ -65,7 +65,7 @@ Da mesma forma, você pode declarar parâmetros de consulta opcionais, definindo
 
 Nesse caso, o parâmetro da função `q` será opcional, e `None` será o padrão.
 
-/// check | Verifique
+/// tip | Dica
 
 Você também pode notar que o **FastAPI** é esperto o suficiente para perceber que o parâmetro da rota `item_id` é um parâmetro da rota, e `q` não é, portanto, `q` é o parâmetro de consulta.
 
@@ -109,6 +109,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 ou qualquer outra variação (tudo em maiúscula, primeira letra em maiúscula, etc), a sua função vai ver o parâmetro `short` com um valor `bool` de `True`. Caso contrário `False`.
 
+
 ## Múltiplos parâmetros de rota e consulta { #multiple-path-and-query-parameters }
 
 Você pode declarar múltiplos parâmetros de rota e parâmetros de consulta ao mesmo tempo, o **FastAPI** vai saber o quê é o quê.
@@ -129,9 +130,9 @@ Porém, quando você quiser fazer com que o parâmetro de consulta seja obrigat�
 
 {* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
 
-Aqui o parâmetro da consulta `needy` é um valor obrigatório, do tipo `str`.
+Aqui o parâmetro da consulta `needy` é um parâmetro de consulta obrigatório, do tipo `str`.
 
-Se você abrir no seu navegador a URL:
+Se você abrir no seu navegador uma URL como:
 
 ```
 http://127.0.0.1:8000/items/foo-item

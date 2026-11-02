@@ -1,5 +1,6 @@
 # Query Parametreleri ve String Doğrulamaları { #query-parameters-and-string-validations }
 
+
 **FastAPI**, parametreleriniz için ek bilgi ve doğrulamalar (validation) tanımlamanıza izin verir.
 
 Örnek olarak şu uygulamayı ele alalım:
@@ -29,7 +30,7 @@ Bunu yapmak için önce şunları import edin:
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | Bilgi
+/// note | Not
 
 FastAPI, 0.95.0 sürümünde `Annotated` desteğini ekledi (ve önermeye başladı).
 
@@ -348,7 +349,7 @@ O zaman bir `alias` tanımlayabilirsiniz; bu alias, parametre değerini bulmak i
 
 Diyelim ki artık bu parametreyi istemiyorsunuz.
 
-Bazı client’lar hâlâ kullandığı için bir süre tutmanız gerekiyor, ama dokümanların bunu açıkça <dfn title="kullanımdan kalkmış, kullanmamanız önerilir">deprecated</dfn> olarak göstermesini istiyorsunuz.
+Bazı client’lar hâlâ kullandığı için bir süre tutmanız gerekiyor, ama dokümanların bunu açıkça <dfn title="kullanımdan kalkmış, kullanmamanız önerilir">kullanımdan kalkmış</dfn> olarak göstermesini istiyorsunuz.
 
 O zaman `Query`’ye `deprecated=True` parametresini geçin:
 
@@ -370,11 +371,11 @@ Yukarıdaki parametrelerle yapılamayan bazı **özel doğrulama** ihtiyaçları
 
 Bu durumlarda, normal doğrulamadan sonra (ör. değerin `str` olduğunun doğrulanmasından sonra) uygulanacak bir **custom validator function** kullanabilirsiniz.
 
-Bunu, `Annotated` içinde [Pydantic’in `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator)’ını kullanarak yapabilirsiniz.
+Bunu, `Annotated` içinde [Pydantic’in `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator)’ını kullanarak yapabilirsiniz.
 
 /// tip | İpucu
 
-Pydantic’te [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) ve başka validator’lar da vardır. 🤓
+Pydantic’te [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) ve başka validator’lar da vardır. 🤓
 
 ///
 
@@ -382,7 +383,7 @@ Pydantic’te [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/vali
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | Bilgi
+/// note | Not
 
 Bu özellik Pydantic 2 ve üzeri sürümlerde mevcuttur. 😎
 
@@ -402,7 +403,7 @@ Bu custom validator’lar, request’te sağlanan **yalnızca** **aynı veri** i
 
 ---
 
-Ama bu örnek kodun detaylarını merak ediyorsanız, birkaç ek bilgi:
+Ama bu özel kod örneğini merak ediyorsanız ve hâlâ eğleniyorsanız, işte birkaç ek detay.
 
 #### `value.startswith()` ile String { #string-with-value-startswith }
 

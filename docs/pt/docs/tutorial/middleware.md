@@ -1,6 +1,6 @@
 # Middleware { #middleware }
 
-Você pode adicionar middleware à suas aplicações **FastAPI**.
+Você pode adicionar middleware às aplicações **FastAPI**.
 
 Um "middleware" é uma função que manipula cada **requisição** antes de ser processada por qualquer *operação de rota* específica. E também cada **resposta** antes de retorná-la.
 
@@ -37,7 +37,7 @@ A função middleware recebe:
 
 Tenha em mente que cabeçalhos proprietários personalizados podem ser adicionados [usando o prefixo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando o parâmetro `expose_headers` documentado na [Documentação CORS da Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Mas se você tiver cabeçalhos personalizados desejando que um cliente em um navegador esteja apto a ver, você precisa adicioná-los às suas configurações CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando o parâmetro `expose_headers` documentado na [Documentação CORS da Starlette](https://starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -55,7 +55,7 @@ Você pode adicionar código para ser executado com a `request`, antes que qualq
 
 E também depois que a `response` é gerada, antes de retorná-la.
 
-Por exemplo, você pode adicionar um cabeçalho personalizado `X-Process-Time` contendo o tempo em segundos que levou para processar a solicitação e gerar uma resposta:
+Por exemplo, você pode adicionar um cabeçalho personalizado `X-Process-Time` contendo o tempo em segundos que levou para processar a requisição e gerar uma resposta:
 
 {* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
@@ -67,9 +67,9 @@ Aqui usamos [`time.perf_counter()`](https://docs.python.org/3/library/time.html#
 
 ## Ordem de execução de múltiplos middlewares { #multiple-middleware-execution-order }
 
-Quando você adiciona múltiplos middlewares usando o decorador `@app.middleware()` ou o método `app.add_middleware()`, cada novo middleware envolve a aplicação, formando uma pilha. O último middleware adicionado é o mais externo, e o primeiro é o mais interno.
+Quando você adiciona múltiplos middlewares usando o decorador `@app.middleware()` ou o método `app.add_middleware()`, cada novo middleware envolve a aplicação, formando uma pilha. O último middleware adicionado é o *mais externo*, e o primeiro é o *mais interno*.
 
-No caminho da requisição, o middleware mais externo roda primeiro.
+No caminho da requisição, o middleware *mais externo* roda primeiro.
 
 No caminho da resposta, ele roda por último.
 

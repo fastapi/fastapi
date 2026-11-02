@@ -4,7 +4,8 @@
 
 {* ../../docs_src/app_testing/tutorial004_py310.py hl[9:15,18,27:28,30:32,41:43] *}
 
-你可以在[官方 Starlette 文档站点的“在测试中运行 lifespan”](https://www.starlette.dev/lifespan/#running-lifespan-in-tests)阅读更多细节。
+
+你可以阅读更多关于[“官方 Starlette 文档站点中的在测试中运行 lifespan。”](https://starlette.dev/lifespan/#running-lifespan-in-tests)的细节。
 
 对于已弃用的 `startup` 和 `shutdown` 事件，可以按如下方式使用 `TestClient`：
 

@@ -35,7 +35,7 @@ Sonra bu bağımlılığı şöyle kullanabiliriz:
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info | Bilgi
+/// note | Not
 
 Dikkat edin, *path operation function* içinde yalnızca tek bir bağımlılık tanımlıyoruz: `query_or_cookie_extractor`.
 

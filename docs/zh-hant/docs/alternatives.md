@@ -24,7 +24,7 @@
 
 ### [Django REST Framework](https://www.django-rest-framework.org/) { #django-rest-framework }
 
-Django REST framework 的目標是成為一套在 Django 之上構建 Web API 的彈性工具組，以強化其 API 能力。
+Django REST Framework 被創建為一套在 Django 之上構建 Web API 的彈性工具組，以強化其 API 能力。
 
 它被 Mozilla、Red Hat、Eventbrite 等眾多公司使用。
 
@@ -36,7 +36,7 @@ Django REST Framework 由 Tom Christie 創建。他同時也是 Starlette 與 Uv
 
 ///
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 提供自動化的 API 文件網頁使用者介面。
 
@@ -56,7 +56,7 @@ Flask 是一個「微框架」，它不包含資料庫整合，也沒有像 Djan
 
 基於 Flask 的簡潔，它看起來很適合用來構建 API。接下來要找的，就是 Flask 世界裡的「Django REST Framework」。
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 成為一個微框架，讓所需的工具與元件能輕鬆搭配組合。
 
@@ -80,7 +80,7 @@ Requests 設計非常簡單直觀、容易使用，且有合理的預設值。�
 
 因此，如其官網所言：
 
-> Requests is one of the most downloaded Python packages of all time
+> Requests 是有史以來下載次數最多的 Python 套件之一
 
 用法非常簡單。例如，發出一個 `GET` 請求，你會寫：
 
@@ -98,7 +98,7 @@ def read_url():
 
 看看 `requests.get(...)` 與 `@app.get(...)` 的相似之處。
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 * 擁有簡單直觀的 API。
 * 直接使用 HTTP 方法名稱（操作），以直接、直觀的方式表達。
@@ -118,14 +118,14 @@ def read_url():
 
 因此，談到 2.0 版時常說「Swagger」，而 3+ 版則是「OpenAPI」。
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 採用並使用開放的 API 規格標準，而非自訂格式。
 
 並整合基於標準的使用者介面工具：
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 選擇這兩個是因為它們相當受歡迎且穩定，但稍加搜尋，你會發現有數十種 OpenAPI 的替代使用者介面（都能與 **FastAPI** 一起使用）。
 
@@ -147,7 +147,7 @@ API 需要的另一個重要功能是資料驗證，確保資料在特定條件�
 
 但它誕生於 Python 型別提示出現之前。因此，為了定義每個 <dfn title="資料應如何組成的定義">結構（schema）</dfn>，你需要使用 Marshmallow 提供的特定工具與類別。
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 用程式碼定義能自動提供資料型別與驗證的「schemas」。
 
@@ -163,13 +163,13 @@ Webargs 是在多個框架（包含 Flask）之上提供該功能的工具。
 
 它是一個很棒的工具，在有 **FastAPI** 之前我也經常使用。
 
-/// info
+/// note
 
 Webargs 由與 Marshmallow 相同的開發者創建。
 
 ///
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 自動驗證傳入請求資料。
 
@@ -193,13 +193,13 @@ Marshmallow 與 Webargs 以外掛提供驗證、解析與序列化。
 
 編輯器幫不上太多忙。而且如果我們修改了參數或 Marshmallow 的 schemas 卻忘了同步修改 YAML docstring，產生的結構就會過時。
 
-/// info
+/// note
 
 APISpec 由與 Marshmallow 相同的開發者創建。
 
 ///
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 支援 API 的開放標準 OpenAPI。
 
@@ -213,7 +213,7 @@ APISpec 由與 Marshmallow 相同的開發者創建。
 
 它是個很棒但被低估的工具。它理應比許多 Flask 外掛更受歡迎，可能因為它的文件過於簡潔與抽象。
 
-這解決了在 Python 文件字串中撰寫 YAML（另一種語法）的问题。
+這解決了在 Python 文件字串中撰寫 YAML（另一種語法）的問題。
 
 在打造 **FastAPI** 前，我最喜歡的後端技術組合就是 Flask、Flask-apispec、Marshmallow 與 Webargs。
 
@@ -225,19 +225,19 @@ APISpec 由與 Marshmallow 相同的開發者創建。
 
 而這些全端產生器，也成為了 [**FastAPI** 專案產生器](project-generation.md) 的基礎。
 
-/// info
+/// note
 
 Flask-apispec 由與 Marshmallow 相同的開發者創建。
 
 ///
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 從定義序列化與驗證的相同程式碼，自動產生 OpenAPI 結構（schema）。
 
 ///
 
-### [NestJS](https://nestjs.com/)（與 [Angular](https://angular.io/)） { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/)（與 [Angular](https://angular.dev/)） { #nestjs-and-angular }
 
 這甚至不是 Python。NestJS 是受 Angular 啟發的 JavaScript（TypeScript）NodeJS 框架。
 
@@ -251,7 +251,7 @@ Flask-apispec 由與 Marshmallow 相同的開發者創建。
 
 它無法很好地處理巢狀模型。若請求的 JSON 主體中有內層欄位，且這些內層欄位又是巢狀 JSON 物件，就無法被妥善地文件化與驗證。
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 使用 Python 型別以獲得優秀的編輯器支援。
 
@@ -271,7 +271,7 @@ Flask-apispec 由與 Marshmallow 相同的開發者創建。
 
 ///
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 想辦法達到瘋狂的效能。
 
@@ -287,7 +287,7 @@ Falcon 是另一個高效能 Python 框架，設計上極簡，並作為其他�
 
 因此，資料驗證、序列化與文件必須以程式碼手動完成，無法自動化。或者需在 Falcon 之上實作另一層框架（如 Hug）。其他受 Falcon 設計啟發的框架也有同樣的區別：將 request 與 response 物件作為參數。
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 設法取得優秀的效能。
 
@@ -313,7 +313,7 @@ Falcon 是另一個高效能 Python 框架，設計上極簡，並作為其他�
 
 路由需要在單一地方宣告，使用在其他地方宣告的函式（而不是用可以直接放在端點處理函式上方的裝飾器）。這更接近 Django 的作法，而不是 Flask（與 Starlette）的作法。它在程式碼中分離了其實相當緊密耦合的事物。
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 用模型屬性的「預設值」來定義資料型別的額外驗證。這提升了編輯器支援，而這在當時的 Pydantic 還不支援。
 
@@ -335,13 +335,13 @@ Hug 是最早使用 Python 型別提示來宣告 API 參數型別的框架之一
 
 由於它基於同步 Python 網頁框架的舊標準（WSGI），無法處理 WebSocket 與其他功能，儘管效能仍然很高。
 
-/// info
+/// note
 
-Hug 由 Timothy Crosley 創建，他同時也是 [`isort`](https://github.com/timothycrosley/isort) 的作者，一個自動排序 Python 匯入的好工具。
+Hug 由 Timothy Crosley 創建，他同時也是 [`isort`](https://github.com/PyCQA/isort) 的作者，一個能自動排序 Python 檔案中 import 的好工具。
 
 ///
 
-/// check | 啟發 **FastAPI** 的想法
+/// tip | 啟發 **FastAPI** 的想法
 
 Hug 啟發了 APIStar 的部分設計，也是我覺得最有前景的工具之一，與 APIStar 並列。
 
@@ -375,7 +375,7 @@ Hug 啟發 **FastAPI** 在函式中宣告 `response` 參數以設定標頭與 Co
 
 現在的 APIStar 是一套用於驗證 OpenAPI 規格的工具，不是網頁框架。
 
-/// info
+/// note
 
 APIStar 由 Tom Christie 創建。他也創建了：
 
@@ -385,7 +385,7 @@ APIStar 由 Tom Christie 創建。他也創建了：
 
 ///
 
-/// check | 啟發 **FastAPI**
+/// tip | 啟發 **FastAPI**
 
 存在。
 
@@ -401,7 +401,7 @@ APIStar 由 Tom Christie 創建。他也創建了：
 
 ## **FastAPI** 所採用的工具 { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic 是基於 Python 型別提示，定義資料驗證、序列化與文件（使用 JSON Schema）的函式庫。
 
@@ -409,7 +409,7 @@ Pydantic 是基於 Python 型別提示，定義資料驗證、序列化與文件
 
 它可與 Marshmallow 相提並論。儘管在效能測試中它比 Marshmallow 更快。而且因為它基於相同的 Python 型別提示，編輯器支援也很出色。
 
-/// check | **FastAPI** 用於
+/// tip | **FastAPI** 用於
 
 處理所有資料驗證、資料序列化與自動模型文件（基於 JSON Schema）。
 
@@ -417,7 +417,7 @@ Pydantic 是基於 Python 型別提示，定義資料驗證、序列化與文件
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette 是一個輕量的 <dfn title="用於構建非同步 Python 網頁應用的新標準">ASGI</dfn> 框架／工具集，非常適合用來建構高效能的 asyncio 服務。
 
@@ -452,7 +452,7 @@ ASGI 是由 Django 核心團隊成員正在開發的新「標準」。它尚未�
 
 ///
 
-/// check | **FastAPI** 用於
+/// tip | **FastAPI** 用於
 
 處理所有核心網頁部分，並在其上加上功能。
 
@@ -462,7 +462,7 @@ ASGI 是由 Django 核心團隊成員正在開發的新「標準」。它尚未�
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn 是基於 uvloop 與 httptools 的極速 ASGI 伺服器。
 
@@ -470,7 +470,7 @@ Uvicorn 是基於 uvloop 與 httptools 的極速 ASGI 伺服器。
 
 它是 Starlette 與 **FastAPI** 推薦使用的伺服器。
 
-/// check | **FastAPI** 建議用作
+/// tip | **FastAPI** 建議用作
 
 執行 **FastAPI** 應用的主要網頁伺服器。
 

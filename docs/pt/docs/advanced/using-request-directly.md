@@ -15,13 +15,13 @@ Porém há situações em que você possa precisar acessar o objeto `Request` di
 
 ## Detalhes sobre o objeto `Request` { #details-about-the-request-object }
 
-Como o **FastAPI** é na verdade o **Starlette** por baixo, com camadas de diversas funcionalidades por cima, você pode utilizar o objeto [`Request`](https://www.starlette.dev/requests/) do Starlette diretamente quando precisar.
+Como o **FastAPI** é na verdade o **Starlette** por baixo, com camadas de diversas funcionalidades por cima, você pode utilizar o objeto [`Request`](https://starlette.dev/requests/) do Starlette diretamente quando precisar.
 
 Isso significaria também que se você obtiver informações do objeto `Request` diretamente (ler o corpo da requisição por exemplo), as informações não serão validadas, convertidas ou documentadas (com o OpenAPI, para a interface de usuário automática da API) pelo FastAPI.
 
 Embora qualquer outro parâmetro declarado normalmente (o corpo da requisição com um modelo Pydantic, por exemplo) ainda seria validado, convertido, anotado, etc.
 
-Mas há situações específicas onde é útil utilizar o objeto `Request`.
+Mas há situações específicas onde é útil obter o objeto `Request`.
 
 ## Utilize o objeto `Request` diretamente { #use-the-request-object-directly }
 
@@ -45,7 +45,7 @@ Do mesmo jeito, você pode declarar qualquer outro parâmetro normalmente, e al�
 
 ## Documentação do `Request` { #request-documentation }
 
-Você pode ler mais sobre os detalhes do [objeto `Request` no site da documentação oficial do Starlette](https://www.starlette.dev/requests/).
+Você pode ler mais sobre os detalhes do [objeto `Request` no site da documentação oficial do Starlette](https://starlette.dev/requests/).
 
 /// note | Detalhes Técnicos
 

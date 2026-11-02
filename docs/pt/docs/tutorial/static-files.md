@@ -2,6 +2,14 @@
 
 Você pode servir arquivos estáticos automaticamente a partir de um diretório usando `StaticFiles`.
 
+/// tip | Dica
+
+Se você precisar hospedar um frontend, use `app.frontend()` em vez disso, leia sobre isso em [Frontend](frontend.md).
+
+`app.frontend()` usa `StaticFiles` por baixo, com várias vantagens adicionais para frontends, como lidar com roteamento do lado do cliente.
+
+///
+
 ## Use `StaticFiles` { #use-staticfiles }
 
 * Importe `StaticFiles`.
@@ -37,4 +45,4 @@ Todos esses parâmetros podem ser diferentes de "`static`", ajuste-os de acordo 
 
 ## Mais informações { #more-info }
 
-Para mais detalhes e opções, consulte [a documentação da Starlette sobre Arquivos Estáticos](https://www.starlette.dev/staticfiles/).
+Para mais detalhes e opções, consulte [a documentação da Starlette sobre Arquivos Estáticos](https://starlette.dev/staticfiles/).

@@ -1,3 +1,4 @@
+from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
@@ -14,7 +15,9 @@ def test_get():
 
 def test_dummy_webhook():
     # Just for coverage
-    app.webhooks.routes[0].endpoint({})
+    route = app.webhooks.routes[0]
+    assert isinstance(route, APIRoute)
+    route.endpoint({})
 
 
 def test_openapi_schema():

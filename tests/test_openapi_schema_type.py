@@ -21,4 +21,4 @@ def test_allowed_schema_type(
 def test_invalid_type_value() -> None:
     """Test that Schema raises ValueError for invalid type values."""
     with pytest.raises(ValueError, match="2 validation errors for Schema"):
-        Schema(type=True)  # type: ignore[arg-type]
+        Schema(type=True)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]

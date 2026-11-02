@@ -18,7 +18,7 @@ Normalmente você terá um desempenho muito melhor usando um [Modelo de resposta
 
 Você pode retornar uma `Response` ou qualquer subclasse dela.
 
-/// info | Informação
+/// note | Nota
 
 A própria `JSONResponse` é uma subclasse de `Response`.
 

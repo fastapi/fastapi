@@ -4,7 +4,7 @@ Uygulamanız JSON veri alıp gönderiyorsa ve bunun içine ikili (binary) veri e
 
 ## Base64 ve Dosyalar { #base64-vs-files }
 
-İkili veriyi JSON içinde encode etmek yerine, yükleme için [Request Files](../tutorial/request-files.md) ve gönderim için [Custom Response - FileResponse](./custom-response.md#fileresponse--fileresponse-) kullanıp kullanamayacağınıza önce bir bakın.
+İkili veriyi JSON içinde encode etmek yerine, yükleme için [Request Files](../tutorial/request-files.md) ve gönderim için [Custom Response - FileResponse](./custom-response.md#fileresponse) kullanıp kullanamayacağınıza önce bir bakın.
 
 JSON sadece UTF-8 ile encode edilmiş string'ler içerebilir, dolayısıyla ham bytes içeremez.
 

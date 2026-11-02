@@ -1,5 +1,6 @@
 # 路徑操作設定 { #path-operation-configuration }
 
+
 你可以在你的「路徑操作裝飾器」中傳入多個參數來進行設定。
 
 /// warning | 警告
@@ -72,13 +73,13 @@
 
 {* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
 
-/// info | 資訊
+/// note | 注意
 
 請注意，`response_description` 專指回應，而 `description` 則是針對整個「路徑操作」的一般描述。
 
 ///
 
-/// check | 檢查
+/// tip
 
 OpenAPI 規範要求每個「路徑操作」都必須有一個回應描述。
 

@@ -1,21 +1,21 @@
 # Test Etme { #testing }
 
-[Starlette](https://www.starlette.dev/testclient/) sayesinde **FastAPI** uygulamalarını test etmek kolay ve keyiflidir.
+[Starlette](https://starlette.dev/testclient/) sayesinde **FastAPI** uygulamalarını test etmek kolay ve keyiflidir.
 
 Temelde [HTTPX](https://www.python-httpx.org) üzerine kuruludur; HTTPX de Requests’i temel alarak tasarlandığı için oldukça tanıdık ve sezgiseldir.
 
-Bununla birlikte **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan kullanabilirsiniz.
+Bu sayede **FastAPI** ile [pytest](https://docs.pytest.org/)'i doğrudan kullanabilirsiniz.
 
 ## `TestClient` Kullanımı { #using-testclient }
 
-/// info | Bilgi
+/// note | Not
 
 `TestClient` kullanmak için önce [`httpx`](https://www.python-httpx.org)'i kurun.
 
-Bir [Sanal Ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
+Projenize ekleyin:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -75,6 +75,7 @@ Ayrıca **FastAPI** uygulamanız birden fazla dosya/modül vb. ile de oluşturul
 
 `main.py` dosyasında **FastAPI** uygulamanız bulunuyor olsun:
 
+
 {* ../../docs_src/app_testing/app_a_py310/main.py *}
 
 ### Test Dosyası { #testing-file }
@@ -92,6 +93,7 @@ Sonra testlerinizin olduğu bir `test_main.py` dosyanız olabilir. Bu dosya ayn�
 Bu dosya aynı package içinde olduğu için, `main` modülünden (`main.py`) `app` nesnesini import etmek üzere relative import kullanabilirsiniz:
 
 {* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+
 
 ...ve test kodunu da öncekiyle aynı şekilde yazabilirsiniz.
 
@@ -127,6 +129,7 @@ Sonrasında `test_main.py` dosyanızı genişletilmiş testlerle güncelleyebili
 
 {* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
 
+
 Client'ın request içinde bir bilgi göndermesi gerektiğinde ve bunu nasıl yapacağınızı bilemediğinizde, `httpx` ile nasıl yapılacağını aratabilirsiniz (Google) ya da HTTPX’in tasarımı Requests’e dayandığı için `requests` ile nasıl yapıldığını da arayabilirsiniz.
 
 Sonra testlerinizde aynısını uygularsınız.
@@ -141,7 +144,7 @@ Sonra testlerinizde aynısını uygularsınız.
 
 Backend'e veri geçme hakkında daha fazla bilgi için (`httpx` veya `TestClient` kullanarak) [HTTPX dokümantasyonu](https://www.python-httpx.org)'na bakın.
 
-/// info | Bilgi
+/// note | Not
 
 `TestClient`'ın Pydantic model'lerini değil, JSON'a dönüştürülebilen verileri aldığını unutmayın.
 
@@ -153,12 +156,12 @@ Testinizde bir Pydantic model'iniz varsa ve test sırasında verisini uygulamaya
 
 Bundan sonra yapmanız gereken tek şey `pytest`'i kurmaktır.
 
-Bir [Sanal Ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktifleştirdiğinizden ve sonra kurulumu yaptığınızdan emin olun; örneğin:
+Projenize ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -172,7 +175,7 @@ Testleri şu şekilde çalıştırın:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

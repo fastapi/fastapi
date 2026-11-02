@@ -16,7 +16,7 @@
 
 {* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
 
-/// warning
+/// warning | 注意
 
 上の例のように `Response` を直接返すと、それはそのまま返されます。
 

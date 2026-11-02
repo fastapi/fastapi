@@ -20,7 +20,7 @@ Die Spezifikation besagt auch, dass `username` und `password` als Formulardaten 
 
 ### `scope` { #scope }
 
-Ferner sagt die Spezifikation, dass der Client ein weiteres Formularfeld "`scope`" („Geltungsbereich“) senden kann.
+Ferner sagt die Spezifikation, dass der Client ein weiteres Formularfeld „`scope`“ senden kann.
 
 Der Name des Formularfelds lautet `scope` (im Singular), tatsächlich handelt es sich jedoch um einen langen String mit durch Leerzeichen getrennten „Scopes“.
 
@@ -32,7 +32,7 @@ Diese werden normalerweise verwendet, um bestimmte Sicherheitsberechtigungen zu 
 * `instagram_basic` wird von Facebook / Instagram verwendet.
 * `https://www.googleapis.com/auth/drive` wird von Google verwendet.
 
-/// info | Info
+/// note | Hinweis
 
 In OAuth2 ist ein „Scope“ nur ein String, der eine bestimmte erforderliche Berechtigung deklariert.
 
@@ -72,7 +72,7 @@ Wenn Sie es erzwingen müssen, verwenden Sie `OAuth2PasswordRequestFormStrict` a
 * Eine optionale `client_id` (benötigen wir für unser Beispiel nicht).
 * Ein optionales `client_secret` (benötigen wir für unser Beispiel nicht).
 
-/// info | Info
+/// note | Hinweis
 
 `OAuth2PasswordRequestForm` ist keine spezielle Klasse für **FastAPI**, so wie `OAuth2PasswordBearer`.
 
@@ -120,7 +120,7 @@ Immer wenn Sie genau den gleichen Inhalt (genau das gleiche Passwort) übergeben
 
 Sie können jedoch nicht vom Kauderwelsch zurück zum Passwort konvertieren.
 
-##### Warum Passwort-Hashing verwenden? { #why-use-password-hashing }
+##### Warum Passwort-Hashing verwenden { #why-use-password-hashing }
 
 Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter Ihrer Benutzer, sondern nur die Hashes.
 
@@ -144,9 +144,9 @@ UserInDB(
 )
 ```
 
-/// info | Info
+/// note | Hinweis
 
-Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#about-user-in-dict).
+Eine ausführlichere Erklärung von `**user_dict` finden Sie in [der Dokumentation für **Extra Modelle**](../extra-models.md#about-user-in-model-dump).
 
 ///
 
@@ -196,7 +196,7 @@ In unserem Endpunkt erhalten wir also nur dann einen Benutzer, wenn der Benutzer
 
 {* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
 
-/// info | Info
+/// note | Hinweis
 
 Der zusätzliche Header `WWW-Authenticate` mit dem Wert `Bearer`, den wir hier zurückgeben, ist ebenfalls Teil der Spezifikation.
 
@@ -226,7 +226,7 @@ Verwenden Sie die Anmeldedaten:
 
 Benutzer: `johndoe`
 
-Passwort: `secret`.
+Passwort: `secret`
 
 <img src="/img/tutorial/security/image04.png">
 
@@ -264,9 +264,9 @@ Wenn Sie auf das Schlosssymbol klicken und sich abmelden und dann den gleichen V
 
 Versuchen Sie es nun mit einem inaktiven Benutzer und authentisieren Sie sich mit:
 
-Benutzer: `alice`.
+Benutzer: `alice`
 
-Passwort: `secret2`.
+Passwort: `secret2`
 
 Und versuchen Sie, die Operation `GET` mit dem Pfad `/users/me` zu verwenden.
 

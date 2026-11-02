@@ -50,11 +50,11 @@ Par exemple, pour désactiver `deepLinking`, vous pourriez passer ces paramètre
 
 ## Autres paramètres de Swagger UI { #other-swagger-ui-parameters }
 
-Pour voir toutes les autres configurations possibles que vous pouvez utiliser, lisez les [documents officiels pour les paramètres de Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
+Pour voir toutes les autres configurations possibles que vous pouvez utiliser, lisez les documents officiels [pour les paramètres de Swagger UI](https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/).
 
 ## Paramètres JavaScript uniquement { #javascript-only-settings }
 
-Swagger UI permet également d'autres configurations qui sont des objets réservés à JavaScript (par exemple, des fonctions JavaScript).
+Swagger UI permet également d'autres configurations qui sont des objets **réservés à JavaScript** (par exemple, des fonctions JavaScript).
 
 FastAPI inclut aussi ces paramètres `presets` réservés à JavaScript :
 

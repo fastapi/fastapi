@@ -10,7 +10,6 @@ from multiprocessing import Pool
 from pathlib import Path
 from typing import Any
 
-import mkdocs.utils
 import typer
 import yaml
 from jinja2 import Template
@@ -32,16 +31,13 @@ SUPPORTED_LANGS = {
     "uk",
     "zh",
     "zh-hant",
+    "hi",
 }
 
 
 app = typer.Typer()
 
 mkdocs_name = "mkdocs.yml"
-
-missing_translation_snippet = """
-{!../../docs/missing-translation.md!}
-"""
 
 non_translated_sections = (
     f"reference{os.sep}",
@@ -52,13 +48,14 @@ non_translated_sections = (
     "management-tasks.md",
     "management.md",
     "contributing.md",
+    "translations.md",
 )
 
 docs_path = Path("docs")
 en_docs_path = Path("docs/en")
 en_config_path: Path = en_docs_path / mkdocs_name
 site_path = Path("site").absolute()
-build_site_path = Path("site_build").absolute()
+zensical_src_path = Path("site_zensical_src").absolute()
 
 header_pattern = re.compile(r"^(#{1,6}) (.+?)(?:\s*\{\s*(#.*)\s*\})?\s*$")
 header_with_permalink_pattern = re.compile(r"^(#{1,6}) (.+?)(\s*\{\s*#.*\s*\})\s*$")
@@ -105,7 +102,7 @@ def slugify(text: str) -> str:
 
 
 def get_en_config() -> dict[str, Any]:
-    return mkdocs.utils.yaml_load(en_config_path.read_text(encoding="utf-8"))
+    return yaml.unsafe_load(en_config_path.read_text(encoding="utf-8"))
 
 
 def get_lang_paths() -> list[Path]:
@@ -142,8 +139,6 @@ def new_lang(lang: str = typer.Argument(..., callback=lang_callback)):
         typer.echo(f"The language was already created: {lang}")
         raise typer.Abort()
     new_path.mkdir()
-    new_config_path: Path = Path(new_path) / mkdocs_name
-    new_config_path.write_text("INHERIT: ../en/mkdocs.yml\n", encoding="utf-8")
     new_llm_prompt_path: Path = new_path / "llm-prompt.md"
     new_llm_prompt_path.write_text("", encoding="utf-8")
     print(f"Successfully initialized: {new_path}")
@@ -159,49 +154,183 @@ def build_lang(
     """
     Build the docs for a language.
     """
-    lang_path: Path = Path("docs") / lang
-    if not lang_path.is_dir():
+    build_zensical_lang_to_stage(lang)
+    copy_zensical_stage_to_site(lang)
+    typer.secho(f"Successfully built docs for: {lang}", fg=typer.colors.GREEN)
+
+
+def split_markdown_header(markdown: str) -> tuple[str, str]:
+    prefix = ""
+    if markdown.startswith("---\n"):
+        front_matter_end = markdown.find("\n---\n", 4)
+        if front_matter_end != -1:
+            front_matter_end += len("\n---\n")
+            prefix = markdown[:front_matter_end]
+            markdown = markdown[front_matter_end:]
+    if markdown.startswith("#"):
+        header, separator, body = markdown.partition("\n\n")
+        if separator:
+            return f"{prefix}{header}", body
+    if prefix:
+        return prefix.rstrip("\n"), markdown
+    return "", markdown
+
+
+def add_markdown_notice(markdown: str, notice: str) -> str:
+    header, body = split_markdown_header(markdown)
+    if header:
+        return f"{header}\n\n{notice}\n\n{body}"
+    return f"{notice}\n\n{body}"
+
+
+def is_non_translated_path(path: Path) -> bool:
+    src_path = path.as_posix()
+    return any(src_path.startswith(section) for section in non_translated_sections)
+
+
+def get_en_url(path: Path) -> str:
+    url_path = path.with_suffix("").as_posix()
+    if url_path.endswith("/index"):
+        url_path = url_path.removesuffix("index")
+    elif url_path != "index":
+        url_path = f"{url_path}/"
+    else:
+        url_path = ""
+    return f"https://fastapi.tiangolo.com/{url_path}"
+
+
+def get_zensical_theme_language(lang: str) -> str:
+    if lang == "zh-hant":
+        return "zh-Hant"
+    return lang
+
+
+def stage_zensical_docs(lang: str) -> Path:
+    lang_docs_path = docs_path / lang / "docs"
+    if not lang_docs_path.is_dir():
         typer.echo(f"The language translation doesn't seem to exist yet: {lang}")
         raise typer.Abort()
-    typer.echo(f"Building docs for: {lang}")
-    build_site_dist_path = build_site_path / lang
+
+    en_docs_source_path = en_docs_path / "docs"
+    staged_docs_src_path = zensical_src_path / "docs_src"
+    if not staged_docs_src_path.exists():
+        shutil.copytree(Path("docs_src"), staged_docs_src_path, dirs_exist_ok=True)
+    lang_stage_path = zensical_src_path / lang
+    staged_docs_path = lang_stage_path / "content"
+    shutil.rmtree(lang_stage_path, ignore_errors=True)
+    shutil.copytree(en_docs_source_path, staged_docs_path)
+
+    missing_translation = (docs_path / "missing-translation.md").read_text(
+        encoding="utf-8"
+    )
+    translation_banner_path = lang_docs_path / "translation-banner.md"
+    if not translation_banner_path.is_file():
+        translation_banner_path = en_docs_source_path / "translation-banner.md"
+    translation_banner = translation_banner_path.read_text(encoding="utf-8")
+
+    if lang != "en":
+        for staged_file in staged_docs_path.rglob("*.md"):
+            relative_path = staged_file.relative_to(staged_docs_path)
+            translated_file = lang_docs_path / relative_path
+            if translated_file.is_file():
+                markdown = translated_file.read_text(encoding="utf-8")
+                if relative_path.name == "translation-banner.md":
+                    staged_file.write_text(markdown, encoding="utf-8")
+                    continue
+                en_url = get_en_url(relative_path)
+                banner = translation_banner.replace("ENGLISH_VERSION_URL", en_url)
+                staged_file.write_text(
+                    add_markdown_notice(markdown, banner), encoding="utf-8"
+                )
+            elif not is_non_translated_path(relative_path):
+                markdown = staged_file.read_text(encoding="utf-8")
+                staged_file.write_text(
+                    add_markdown_notice(markdown, missing_translation),
+                    encoding="utf-8",
+                )
+
+    render_banner_sponsors()
+    shutil.copytree(en_docs_path / "data", lang_stage_path / "data")
+    shutil.copytree(en_docs_path / "overrides", lang_stage_path / "overrides")
+
+    config = get_updated_config_content()
+    config["docs_dir"] = "content"
+    config["site_dir"] = "site"
+    if lang == "en":
+        config["site_url"] = "https://fastapi.tiangolo.com/"
+    else:
+        config["site_url"] = f"https://fastapi.tiangolo.com/{lang}/"
+    config.setdefault("theme", {})
+    config["theme"]["language"] = get_zensical_theme_language(lang)
+    if lang != "en":
+        # The root English build owns shared static assets; translated builds should
+        # reference those root paths instead of emitting language-local copies.
+        if "logo" in config["theme"]:
+            config["theme"]["logo"] = "/" + config["theme"]["logo"].lstrip("/")
+        if "favicon" in config["theme"]:
+            config["theme"]["favicon"] = "/" + config["theme"]["favicon"].lstrip("/")
+        config["extra_css"] = ["/" + path.lstrip("/") for path in config["extra_css"]]
+        config["extra_javascript"] = [
+            "/" + path.lstrip("/") for path in config["extra_javascript"]
+        ]
+    config_path = lang_stage_path / mkdocs_name
+    config_path.write_text(
+        yaml.dump(config, sort_keys=False, width=200, allow_unicode=True),
+        encoding="utf-8",
+    )
+    return config_path
+
+
+def build_zensical_config(config_path: Path) -> None:
+    subprocess.run(
+        ["zensical", "build", "--config-file", config_path.name],
+        check=True,
+        cwd=config_path.parent,
+    )
+
+
+def build_zensical_lang_to_stage(lang: str) -> Path:
+    typer.echo(f"Building Zensical docs for: {lang}")
+    config_path = stage_zensical_docs(lang)
+    config = yaml.unsafe_load(config_path.read_text(encoding="utf-8"))
+    build_site_dist_path = config_path.parent / config["site_dir"]
+    shutil.rmtree(build_site_dist_path, ignore_errors=True)
+    build_zensical_config(config_path)
+    return build_site_dist_path
+
+
+def copy_zensical_stage_to_site(lang: str) -> None:
+    build_site_dist_path = zensical_src_path / lang / "site"
     if lang == "en":
         dist_path = site_path
-        # Don't remove en dist_path as it might already contain other languages.
-        # When running build_all(), that function already removes site_path.
-        # All this is only relevant locally, on GitHub Actions all this is done through
-        # artifacts and multiple workflows, so it doesn't matter if directories are
-        # removed or not.
     else:
         dist_path = site_path / lang
         shutil.rmtree(dist_path, ignore_errors=True)
-    current_dir = os.getcwd()
-    os.chdir(lang_path)
-    shutil.rmtree(build_site_dist_path, ignore_errors=True)
-    subprocess.run(["mkdocs", "build", "--site-dir", build_site_dist_path], check=True)
     shutil.copytree(build_site_dist_path, dist_path, dirs_exist_ok=True)
-    os.chdir(current_dir)
-    typer.secho(f"Successfully built docs for: {lang}", color=typer.colors.GREEN)
 
 
 index_sponsors_template = """
 ### Keystone Sponsor
 
 {% for sponsor in sponsors.keystone -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor_img_url(sponsor.img) }}"></a>
 {% endfor %}
 ### Gold Sponsors
 
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor_img_url(sponsor.img) }}"></a>
 {% endfor %}
 ### Silver Sponsors
 
 {% for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}"></a>
+<a href="{{ sponsor.url }}" target="_blank" title="{{ sponsor.title }}"><img src="{{ sponsor_img_url(sponsor.img) }}"></a>
 {% endfor %}
 
 """
+
+
+def sponsor_img_url(img: str) -> str:
+    return f"https://fastapi.tiangolo.com{img}"
 
 
 def remove_header_permalinks(content: str):
@@ -223,7 +352,7 @@ def generate_readme_content() -> str:
     match_start = re.search(r"<!-- sponsors -->", content)
     match_end = re.search(r"<!-- /sponsors -->", content)
     sponsors_data_path = en_docs_path / "data" / "sponsors.yml"
-    sponsors = mkdocs.utils.yaml_load(sponsors_data_path.read_text(encoding="utf-8"))
+    sponsors = yaml.safe_load(sponsors_data_path.read_text(encoding="utf-8"))
     if not (match_start and match_end):
         raise RuntimeError("Couldn't auto-generate sponsors section")
     if not match_pre:
@@ -232,7 +361,7 @@ def generate_readme_content() -> str:
     pre_end = match_start.end()
     post_start = match_end.start()
     template = Template(index_sponsors_template)
-    message = template.render(sponsors=sponsors)
+    message = template.render(sponsors=sponsors, sponsor_img_url=sponsor_img_url)
     pre_content = content[frontmatter_end:pre_end]
     post_content = content[post_start:]
     new_content = pre_content + message + post_content
@@ -265,27 +394,33 @@ def generate_readme() -> None:
 @app.command()
 def build_all() -> None:
     """
-    Build mkdocs site for en, and then build each language inside, end result is located
-    at directory ./site/ with each language inside.
+    Build the full translated docs site into ./site/.
     """
     update_languages()
     shutil.rmtree(site_path, ignore_errors=True)
+    shutil.rmtree(zensical_src_path, ignore_errors=True)
+    shutil.copytree(Path("docs_src"), zensical_src_path / "docs_src")
     langs = [
         lang.name
         for lang in get_lang_paths()
         if (lang.is_dir() and lang.name in SUPPORTED_LANGS)
     ]
-    cpu_count = os.cpu_count() or 1
-    process_pool_size = cpu_count * 4
+    process_pool_size = min(4, len(langs), os.cpu_count() or 1)
     typer.echo(f"Using process pool size: {process_pool_size}")
     with Pool(process_pool_size) as p:
-        p.map(build_lang, langs)
+        p.map(build_zensical_lang_to_stage, langs)
+    if "en" in langs:
+        copy_zensical_stage_to_site("en")
+    for lang in langs:
+        if lang != "en":
+            copy_zensical_stage_to_site(lang)
+    typer.secho("Successfully built all docs", fg=typer.colors.GREEN)
 
 
 @app.command()
 def update_languages() -> None:
     """
-    Update the mkdocs.yml file Languages section including all the available languages.
+    Update the docs config Languages section including all the available languages.
     """
     old_config = get_en_config()
     updated_config = get_updated_config_content()
@@ -305,7 +440,7 @@ def serve() -> None:
     """
     A quick server to preview a built site with translations.
 
-    For development, prefer the command live (or just mkdocs serve).
+    For development, prefer the command live.
 
     This is here only to preview a site with translations already built.
 
@@ -323,31 +458,22 @@ def serve() -> None:
 
 
 @app.command()
-def live(
-    lang: str = typer.Argument(
-        None, callback=lang_callback, autocompletion=complete_existing_lang
-    ),
-    dirty: bool = False,
-) -> None:
+def live() -> None:
     """
-    Serve with livereload a docs site for a specific language.
-
-    This only shows the actual translated files, not the placeholders created with
-    build-all.
-
-    Takes an optional LANG argument with the name of the language to serve, by default
-    en.
+    Serve the English docs with livereload from the source files.
     """
-    # Enable line numbers during local development to make it easier to highlight
-    if lang is None:
-        lang = "en"
-    lang_path: Path = docs_path / lang
-    # Enable line numbers during local development to make it easier to highlight
-    args = ["mkdocs", "serve", "--dev-addr", "127.0.0.1:8008"]
-    if dirty:
-        args.append("--dirty")
+    render_banner_sponsors()
     subprocess.run(
-        args, env={**os.environ, "LINENUMS": "true"}, cwd=lang_path, check=True
+        [
+            "zensical",
+            "serve",
+            "--config-file",
+            mkdocs_name,
+            "--dev-addr",
+            "127.0.0.1:8008",
+        ],
+        cwd=en_docs_path,
+        check=True,
     )
 
 
@@ -358,7 +484,7 @@ def get_updated_config_content() -> dict[str, Any]:
     # Language names sourced from https://quickref.me/iso-639-1
     # Contributors may wish to update or change these, e.g. to fix capitalization.
     language_names_path = Path(__file__).parent / "../docs/language_names.yml"
-    local_language_names: dict[str, str] = mkdocs.utils.yaml_load(
+    local_language_names: dict[str, str] = yaml.safe_load(
         language_names_path.read_text(encoding="utf-8")
     )
     for lang_path in get_lang_paths():
@@ -382,6 +508,56 @@ def get_updated_config_content() -> dict[str, Any]:
         new_alternate.append({"link": url, "name": use_name})
     config["extra"]["alternate"] = new_alternate
     return config
+
+
+banner_sponsors_template = """{% for sponsor in banner_sponsors -%}
+<div class="item">
+  <a title="{{ sponsor.title }}" style="display: block; position: relative;" href="{{ sponsor.url }}" target="_blank">
+    <span class="sponsor-badge">sponsor</span>
+    <img class="sponsor-image" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" />
+  </a>
+</div>
+{% endfor %}
+"""
+
+
+def get_banner_sponsors(sponsors: dict[str, Any]) -> list[dict[str, str]]:
+    banner_sponsors: list[dict[str, str]] = []
+    for sponsor in sponsors.get("gold", []):
+        banner_img = sponsor.get("banner_img")
+        if not banner_img:
+            continue
+        banner_sponsors.append(
+            {
+                "url": sponsor.get("banner_url", sponsor["url"]),
+                "title": sponsor.get("banner_title", sponsor["title"]),
+                "img": banner_img,
+            }
+        )
+    return banner_sponsors
+
+
+def render_banner_sponsors_partial() -> str:
+    sponsors_path = en_docs_path / "data" / "sponsors.yml"
+    sponsors = yaml.safe_load(sponsors_path.read_text(encoding="utf-8"))
+    template = Template(banner_sponsors_template)
+    return template.render(banner_sponsors=get_banner_sponsors(sponsors))
+
+
+@app.command()
+def render_banner_sponsors() -> None:
+    """
+    Render the sponsor banner partial from sponsors.yml.
+    """
+    partial_path = en_docs_path / "overrides" / "partials" / "banner-sponsors.html"
+    old_content = partial_path.read_text("utf-8") if partial_path.is_file() else ""
+    new_content = render_banner_sponsors_partial()
+    if new_content != old_content:
+        print(f"{partial_path} outdated from the latest sponsors.yml")
+        print(f"Updating {partial_path}")
+        partial_path.write_text(new_content, encoding="utf-8")
+        raise typer.Exit(1)
+    print(f"{partial_path} is up to date ✅")
 
 
 @app.command()

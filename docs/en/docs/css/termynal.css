@@ -55,10 +55,19 @@
     text-align: center;
 }
 
-a[data-terminal-control] {
+button[data-terminal-control] {
+    cursor: pointer;
     text-align: right;
     display: block;
+    width: 100%;
     color: #aebbff;
+    border: 0;
+    background: transparent;
+    font: inherit;
+}
+
+button[data-terminal-control]:hover {
+    color: var(--color-text);
 }
 
 [data-ty] {

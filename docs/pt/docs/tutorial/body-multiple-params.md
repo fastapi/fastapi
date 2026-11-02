@@ -108,7 +108,7 @@ Por exemplo:
 
 {* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
 
-/// info | Informação
+/// note | Nota
 
 `Body` também possui todas as validações adicionais e metadados de parâmetros como em `Query`,`Path` e outras que você verá depois.
 
@@ -123,7 +123,7 @@ Por padrão, o **FastAPI** esperará que seu conteúdo venha no corpo diretament
 Mas se você quiser que ele espere por um JSON com uma chave `item` e dentro dele os conteúdos do modelo, como ocorre ao declarar vários parâmetros de corpo, você pode usar o parâmetro especial de `Body` chamado `embed`:
 
 ```Python
-item: Item = Body(embed=True)
+item: Annotated[Item, Body(embed=True)]
 ```
 
 como em:

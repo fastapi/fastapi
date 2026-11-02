@@ -91,7 +91,7 @@ HTTP Host Header 공격을 방어하기 위해, 들어오는 모든 요청에 �
 
 예를 들어:
 
-* [Uvicorn의 `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [Uvicorn의 `ProxyHeadersMiddleware`](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-사용 가능한 다른 middleware를 보려면 [Starlette의 Middleware 문서](https://www.starlette.dev/middleware/)와 [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi)를 확인하세요.
+사용 가능한 다른 middleware를 보려면 [Starlette의 Middleware 문서](https://starlette.dev/middleware/)와 [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi)를 확인하세요.

@@ -1,3 +1,8 @@
+---
+include_yaml:
+  sponsors: data/sponsors.yml
+---
+
 # FastAPI { #fastapi }
 
 <style>
@@ -40,7 +45,7 @@ FastAPI — это современный, быстрый (высокопрои�
 * **Скорость**: Очень высокая производительность, на уровне **NodeJS** и **Go** (благодаря Starlette и Pydantic). [Один из самых быстрых доступных фреймворков Python](#performance).
 * **Быстрота разработки**: Увеличьте скорость разработки фич примерно на 200–300%. *
 * **Меньше ошибок**: Сократите примерно на 40% количество ошибок, вызванных человеком (разработчиком). *
-* **Интуитивность**: Отличная поддержка редактора кода. <dfn title="также известное как: автодополнение, автозавершение, IntelliSense">Автозавершение</dfn> везде. Меньше времени на отладку.
+* **Интуитивность**: Отличная поддержка редактора кода. <dfn title="также известно как: автозавершение, IntelliSense">Автозавершение</dfn> везде. Меньше времени на отладку.
 * **Простота**: Разработан так, чтобы его было легко использовать и осваивать. Меньше времени на чтение документации.
 * **Краткость**: Минимизируйте дублирование кода. Несколько возможностей из каждого объявления параметров. Меньше ошибок.
 * **Надежность**: Получите код, готовый к продакшн. С автоматической интерактивной документацией.
@@ -52,26 +57,73 @@ FastAPI — это современный, быстрый (высокопрои�
 
 <!-- sponsors -->
 
-### Ключевой-спонсор { #keystone-sponsor }
+### Ключевой спонсор { #keystone-sponsor }
 
+<div class="fastapi-sponsors fastapi-sponsors--keystone">
 {% for sponsor in sponsors.keystone -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--keystone" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}"></a>
 {% endfor -%}
+</div>
 
-### Золотые и серебряные спонсоры { #gold-and-silver-sponsors }
+### Золотые спонсоры { #gold-sponsors }
 
+<div class="fastapi-sponsors fastapi-sponsors--gold">
 {% for sponsor in sponsors.gold -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+<a class="fastapi-sponsors__card fastapi-sponsors__card--gold" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor -%}
-{%- for sponsor in sponsors.silver -%}
-<a href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img src="{{ sponsor.img }}" style="border-radius:15px"></a>
+</div>
+
+### Серебряные спонсоры { #silver-sponsors }
+
+<div class="fastapi-sponsors fastapi-sponsors--silver">
+{% for sponsor in sponsors.silver -%}
+<a class="fastapi-sponsors__card fastapi-sponsors__card--silver" href="{{ sponsor.url }}" title="{{ sponsor.title }}"><img class="fastapi-sponsors__banner" src="{{ sponsor.img }}" alt="{{ sponsor.title }}" loading="lazy"></a>
 {% endfor %}
+</div>
 
 <!-- /sponsors -->
 
 [Другие спонсоры](https://fastapi.tiangolo.com/ru/fastapi-people/#sponsors)
 
 ## Мнения { #opinions }
+
+<!-- only-mkdocs -->
+<div class="fastapi-opinions" data-fastapi-opinions>
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Компании, использующие FastAPI">
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-uber" aria-controls="fo-panel-uber" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/uber.svg" alt="Uber" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-netflix" aria-controls="fo-panel-netflix" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/netflix.svg" alt="Netflix" loading="lazy"></span>
+    </button>
+    <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-cisco" aria-controls="fo-panel-cisco" aria-selected="false" tabindex="-1">
+      <span class="fastapi-opinions__mark"><img src="/img/logos/cisco.svg" alt="Cisco" loading="lazy"></span>
+    </button>
+  </div>
+
+  <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
+    <blockquote class="fastapi-opinions__quote">«В последнее время я много где использую <strong>FastAPI</strong>. На самом деле я планирую использовать его для всех <strong>ML-сервисов моей команды в Microsoft</strong>. Некоторые из них интегрируются в основной продукт <strong>Windows</strong>, а некоторые — в продукты <strong>Office</strong>».</blockquote>
+    <div class="fastapi-opinions__attr">— Kabir Khan, <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">«Мы начали использовать библиотеку <strong>FastAPI</strong>, чтобы поднять <strong>REST</strong>-сервер, к которому можно обращаться за <strong>предсказаниями</strong>». <em>[для Ludwig]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">«<strong>Netflix</strong> рада объявить об открытом релизе нашего фреймворка оркестрации <strong>антикризисного управления</strong>: <strong>Dispatch</strong>!» <em>[создан с помощью FastAPI]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Kevin Glisson, Marc Vilanova, Forest Monsen, <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072">(ref)</a></div>
+  </div>
+  <div class="fastapi-opinions__panel" id="fo-panel-cisco" role="tabpanel" aria-labelledby="fo-tab-cisco" tabindex="0" hidden>
+    <blockquote class="fastapi-opinions__quote">«Если вы собираетесь делать продакшн-API на Python, я настоятельно рекомендую <strong>FastAPI</strong>. Он <strong>прекрасно спроектирован</strong>, <strong>прост в использовании</strong> и <strong>отлично масштабируется</strong> — он стал <strong>ключевым компонентом</strong> нашей стратегии API-first».</blockquote>
+    <div class="fastapi-opinions__attr">— Deon Pillsbury, <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/">(ref)</a></div>
+  </div>
+</div>
+<!-- /only-mkdocs -->
+
+<div class="only-github" markdown="1">
 
 "_[...] В последнее время я много где использую **FastAPI**. [...] На самом деле я планирую использовать его для всех **ML-сервисов моей команды в Microsoft**. Некоторые из них интегрируются в основной продукт **Windows**, а некоторые — в продукты **Office**._"
 
@@ -81,7 +133,7 @@ FastAPI — это современный, быстрый (высокопрои�
 
 "_Мы начали использовать библиотеку **FastAPI**, чтобы поднять **REST**-сервер, к которому можно обращаться за **предсказаниями**. [для Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -91,37 +143,19 @@ FastAPI — это современный, быстрый (высокопрои�
 
 ---
 
-"_Я в полном восторге от **FastAPI**. Это так весело!_"
-
-<div style="text-align: right; margin-right: 10%;">Brian Okken - <strong>Ведущий подкаста [Python Bytes](https://pythonbytes.fm/episodes/show/123/time-to-right-the-py-wrongs?time_in_sec=855)</strong> <a href="https://x.com/brianokken/status/1112220079972728832"><small>(ref)</small></a></div>
-
----
-
-"_Честно говоря, то, что вы создали, выглядит очень солидно и отполировано. Во многих смыслах это то, чем я хотел видеть **Hug** — очень вдохновляет видеть, как кто-то это создал._"
-
-<div style="text-align: right; margin-right: 10%;">Timothy Crosley - <strong>Создатель [Hug](https://github.com/hugapi/hug)</strong> <a href="https://news.ycombinator.com/item?id=19455465"><small>(ref)</small></a></div>
-
----
-
-"_Если вы хотите изучить один **современный фреймворк** для создания REST API, посмотрите **FastAPI** [...] Он быстрый, простой в использовании и лёгкий в изучении [...]_"
-
-"_Мы переключились на **FastAPI** для наших **API** [...] Думаю, вам тоже понравится [...]_"
-
-<div style="text-align: right; margin-right: 10%;">Ines Montani - Matthew Honnibal - <strong>Основатели [Explosion AI](https://explosion.ai) — создатели [spaCy](https://spacy.io)</strong> <a href="https://x.com/_inesmontani/status/1144173225322143744"><small>(ref)</small></a> - <a href="https://x.com/honnibal/status/1144031421859655680"><small>(ref)</small></a></div>
-
----
-
 "_Если кто-то собирается делать продакшн-API на Python, я настоятельно рекомендую **FastAPI**. Он **прекрасно спроектирован**, **прост в использовании** и **отлично масштабируется**, стал **ключевым компонентом** нашей стратегии API-first и приводит в действие множество автоматизаций и сервисов, таких как наш Virtual TAC Engineer._"
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(ref)</small></a></div>
 
 ---
 
+</div>
+
 ## Мини-документальный фильм о FastAPI { #fastapi-mini-documentary }
 
 В конце 2025 года вышел [мини-документальный фильм о FastAPI](https://www.youtube.com/watch?v=mpR8ngthqiE), вы можете посмотреть его онлайн:
 
-<a href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="Мини-документальный фильм о FastAPI"></a>
 
 ## **Typer**, FastAPI для CLI { #typer-the-fastapi-of-clis }
 
@@ -135,17 +169,17 @@ FastAPI — это современный, быстрый (высокопрои�
 
 FastAPI стоит на плечах гигантов:
 
-* [Starlette](https://www.starlette.dev/) для части, связанной с вебом.
-* [Pydantic](https://docs.pydantic.dev/) для части, связанной с данными.
+* [Starlette](https://starlette.dev/) для части, связанной с вебом.
+* [Pydantic](https://pydantic.dev/docs/) для части, связанной с данными.
 
 ## Установка { #installation }
 
-Создайте и активируйте [виртуальное окружение](https://fastapi.tiangolo.com/ru/virtual-environments/), затем установите FastAPI:
+Сначала [установите `uv`](https://docs.astral.sh/uv/getting-started/installation/), а затем добавьте FastAPI в ваш проект:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -153,6 +187,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **Примечание**: Обязательно заключите `"fastapi[standard]"` в кавычки, чтобы это работало во всех терминалах.
+
+Если вы предпочитаете использовать `pip`, установите `fastapi[standard]` внутри виртуального окружения. См. [руководство по установке](tutorial/#install-fastapi) для альтернативных шагов.
 
 ## Пример { #example }
 
@@ -210,7 +246,7 @@ async def read_item(item_id: int, q: str | None = None):
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -237,7 +273,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>О команде <code>fastapi dev</code>...</summary>
 
-Команда `fastapi dev` читает ваш файл `main.py`, находит в нём приложение **FastAPI** и запускает сервер с помощью [Uvicorn](https://www.uvicorn.dev).
+Команда `fastapi dev` читает ваш файл `main.py`, находит в нём приложение **FastAPI** и запускает сервер с помощью [Uvicorn](https://uvicorn.dev).
 
 По умолчанию `fastapi dev` запускается с включённой авто-перезагрузкой для локальной разработки.
 
@@ -274,7 +310,7 @@ INFO:     Application startup complete.
 
 Теперь откройте [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Вы увидите альтернативную автоматическую документацию (предоставлена [ReDoc](https://github.com/Rebilly/ReDoc)):
+Вы увидите альтернативную автоматическую документацию (предоставлена [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -324,11 +360,11 @@ def update_item(item_id: int, item: Item):
 
 * Нажмите кнопку «Try it out», это позволит вам заполнить параметры и напрямую взаимодействовать с API:
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
+![Взаимодействие со Swagger UI](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
 * Затем нажмите кнопку «Execute», интерфейс свяжется с вашим API, отправит параметры, получит результаты и отобразит их на экране:
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
+![Взаимодействие со Swagger UI](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
 ### Обновление альтернативной документации API { #alternative-api-docs-upgrade }
 
@@ -431,7 +467,7 @@ item: Item
 
 ...и посмотрите, как ваш редактор кода будет автоматически дополнять атрибуты и знать их типы:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![Поддержка редактора кода](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 Более полный пример с дополнительными возможностями см. в <a href="https://fastapi.tiangolo.com/ru/tutorial/">Учебник - Руководство пользователя</a>.
 
@@ -452,14 +488,12 @@ item: Item
 
 ### Разверните приложение (опционально) { #deploy-your-app-optional }
 
-При желании вы можете развернуть своё приложение FastAPI в [FastAPI Cloud](https://fastapicloud.com), присоединяйтесь к списку ожидания, если ещё не сделали этого. 🚀
-
-Если у вас уже есть аккаунт **FastAPI Cloud** (мы пригласили вас из списка ожидания 😉), вы можете развернуть ваше приложение одной командой.
+При желании вы можете развернуть своё приложение FastAPI в [FastAPI Cloud](https://fastapicloud.com) одной командой. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -469,6 +503,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI автоматически определит ваше приложение FastAPI и развернёт его в облаке. Если вы не вошли в систему, откроется браузер для завершения процесса аутентификации.
 
 Вот и всё! Теперь вы можете открыть ваше приложение по этой ссылке. ✨
 
@@ -484,7 +520,7 @@ FastAPI Cloud — основной спонсор и источник финан
 
 #### Развертывание у других облачных провайдеров { #deploy-to-other-cloud-providers }
 
-FastAPI — это open source и стандартизированный фреймворк. Вы можете развернуть приложения FastAPI у любого облачного провайдера на ваш выбор.
+FastAPI — это проект с открытым исходным кодом, основанный на стандартах. Вы можете развернуть приложения FastAPI у любого облачного провайдера на ваш выбор.
 
 Следуйте руководствам вашего облачного провайдера по развертыванию приложений FastAPI. 🤓
 
@@ -500,11 +536,11 @@ FastAPI зависит от Pydantic и Starlette.
 
 ### Зависимости `standard` { #standard-dependencies }
 
-Когда вы устанавливаете FastAPI с помощью `pip install "fastapi[standard]"`, он идёт с группой опциональных зависимостей `standard`:
+Когда вы устанавливаете FastAPI с помощью `uv add "fastapi[standard]"`, он идёт с группой опциональных зависимостей `standard`:
 
 Используется Pydantic:
 
-* [`email-validator`](https://github.com/JoshData/python-email-validator) — для проверки адресов электронной почты.
+* [`email-validator`](https://github.com/JoshData/python-email-validator) — для валидации адресов электронной почты.
 
 Используется Starlette:
 
@@ -514,17 +550,17 @@ FastAPI зависит от Pydantic и Starlette.
 
 Используется FastAPI:
 
-* [`uvicorn`](https://www.uvicorn.dev) — сервер, который загружает и «отдаёт» ваше приложение. Включает `uvicorn[standard]`, содержащий некоторые зависимости (например, `uvloop`), нужные для высокой производительности.
+* [`uvicorn`](https://uvicorn.dev) — сервер, который загружает и «отдаёт» ваше приложение. Включает `uvicorn[standard]`, содержащий некоторые зависимости (например, `uvloop`), нужные для высокой производительности.
 * `fastapi-cli[standard]` — чтобы предоставить команду `fastapi`.
     * Включает `fastapi-cloud-cli`, который позволяет развернуть ваше приложение FastAPI в [FastAPI Cloud](https://fastapicloud.com).
 
 ### Без зависимостей `standard` { #without-standard-dependencies }
 
-Если вы не хотите включать опциональные зависимости `standard`, можно установить `pip install fastapi` вместо `pip install "fastapi[standard]"`.
+Если вы не хотите включать опциональные зависимости `standard`, можно установить `uv add fastapi` вместо `uv add "fastapi[standard]"`.
 
 ### Без `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
-Если вы хотите установить FastAPI со стандартными зависимостями, но без `fastapi-cloud-cli`, установите `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+Если вы хотите установить FastAPI со стандартными зависимостями, но без `fastapi-cloud-cli`, установите `uv add "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ### Дополнительные опциональные зависимости { #additional-optional-dependencies }
 
@@ -532,13 +568,13 @@ FastAPI зависит от Pydantic и Starlette.
 
 Дополнительные опциональные зависимости Pydantic:
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) — для управления настройками.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) — дополнительные типы для использования с Pydantic.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) — для управления настройками.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) — дополнительные типы для использования с Pydantic.
 
 Дополнительные опциональные зависимости FastAPI:
 
 * [`orjson`](https://github.com/ijl/orjson) — обязателен, если вы хотите использовать `ORJSONResponse`.
-* [`ujson`](https://github.com/esnme/ultrajson) — обязателен, если вы хотите использовать `UJSONResponse`.
+* [`ujson`](https://github.com/ultrajson/ultrajson) — обязателен, если вы хотите использовать `UJSONResponse`.
 
 ## Лицензия { #license }
 

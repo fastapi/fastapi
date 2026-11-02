@@ -17,9 +17,9 @@ Documentation d'API interactive et interfaces web d'exploration. Comme le framew
 
 * [**Swagger UI**](https://github.com/swagger-api/swagger-ui), avec exploration interactive, appelez et testez votre API directement depuis le navigateur.
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![interaction avec Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Documentation d'API alternative avec [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Documentation d'API alternative avec [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info
+/// note | Remarque
 
 `**second_user_data` signifie :
 
@@ -85,11 +85,11 @@ Voici comment votre éditeur peut vous aider :
 
 * dans [Visual Studio Code](https://code.visualstudio.com/) :
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![support de l'éditeur](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * dans [PyCharm](https://www.jetbrains.com/pycharm/) :
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![support de l'éditeur](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 Vous obtiendrez de l'autocomplétion dans du code que vous auriez pu considérer impossible auparavant. Par exemple, la clé `price` à l'intérieur d'un corps JSON (qui aurait pu être imbriqué) provenant d'une requête.
 
@@ -105,7 +105,7 @@ Mais par défaut, tout **« just works »**.
 
 * Validation pour la plupart (ou tous ?) des **types de données** Python, y compris :
     * objets JSON (`dict`).
-    * tableaux JSON (`list`) définissant les types d'éléments.
+    * tableau JSON (`list`) définissant les types d'éléments.
     * champs String (`str`), définition des longueurs minimale et maximale.
     * nombres (`int`, `float`) avec valeurs minimale et maximale, etc.
 
@@ -159,7 +159,7 @@ Toute intégration est conçue pour être si simple à utiliser (avec des dépen
 
 ## Fonctionnalités de Starlette { #starlette-features }
 
-**FastAPI** est entièrement compatible avec (et basé sur) [**Starlette**](https://www.starlette.dev/). Donc, tout code Starlette additionnel que vous avez fonctionnera aussi.
+**FastAPI** est entièrement compatible avec (et basé sur) [**Starlette**](https://starlette.dev/). Donc, tout code Starlette additionnel que vous avez fonctionnera aussi.
 
 `FastAPI` est en fait une sous-classe de `Starlette`. Ainsi, si vous connaissez ou utilisez déjà Starlette, la plupart des fonctionnalités fonctionneront de la même manière.
 
@@ -177,9 +177,9 @@ Avec **FastAPI** vous obtenez toutes les fonctionnalités de **Starlette** (puis
 
 ## Fonctionnalités de Pydantic { #pydantic-features }
 
-**FastAPI** est entièrement compatible avec (et basé sur) [**Pydantic**](https://docs.pydantic.dev/). Donc, tout code Pydantic additionnel que vous avez fonctionnera aussi.
+**FastAPI** est entièrement compatible avec (et basé sur) [**Pydantic**](https://pydantic.dev/docs/). Donc, tout code Pydantic additionnel que vous avez fonctionnera aussi.
 
-Y compris des bibliothèques externes également basées sur Pydantic, servant d’<abbr title="Object-Relational Mapper - Mappeur objet-relationnel">ORM</abbr>, d’<abbr title="Object-Document Mapper - Mappeur objet-document">ODM</abbr> pour les bases de données.
+Y compris des bibliothèques externes également basées sur Pydantic, telles que des <abbr title="Object-Relational Mapper - Mappeur objet-relationnel">ORM</abbr> et des <abbr title="Object-Document Mapper - Mappeur objet-document">ODM</abbr> pour les bases de données.
 
 Cela signifie également que, dans de nombreux cas, vous pouvez passer l'objet que vous recevez d'une requête **directement à la base de données**, puisque tout est validé automatiquement.
 
@@ -190,7 +190,7 @@ Avec **FastAPI** vous obtenez toutes les fonctionnalités de **Pydantic** (puisq
 * **Pas de prise de tête** :
     * Pas de micro-langage de définition de schéma à apprendre.
     * Si vous connaissez les types Python vous savez utiliser Pydantic.
-* Fonctionne bien avec votre **<abbr title="Integrated Development Environment - Environnement de développement intégré: similaire à un éditeur de code">IDE</abbr>/<dfn title="Programme qui vérifie les erreurs de code">linter</dfn>/cerveau** :
+* Fonctionne bien avec votre **<abbr title="Integrated Development Environment - Environnement de développement intégré : similaire à un éditeur de code">IDE</abbr>/<dfn title="Programme qui vérifie les erreurs de code">linter</dfn>/cerveau** :
     * Parce que les structures de données de Pydantic sont simplement des instances de classes que vous définissez ; l'autocomplétion, le linting, mypy et votre intuition devraient tous bien fonctionner avec vos données validées.
 * Valider des **structures complexes** :
     * Utilisation de modèles Pydantic hiérarchiques, de `List` et `Dict` du `typing` Python, etc.

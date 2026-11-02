@@ -20,7 +20,7 @@
 
 在這個例子裡，`item_id` 被宣告為 `int`。
 
-/// check
+/// tip
 
 這會在你的函式中提供編輯器支援，包括錯誤檢查、自動完成等。
 
@@ -34,7 +34,7 @@
 {"item_id":3}
 ```
 
-/// check
+/// tip
 
 注意你的函式接收（並回傳）的值是 `3`，也就是 Python 的 `int`，而不是字串 `"3"`。
 
@@ -66,7 +66,7 @@
 
 同樣的錯誤也會在你提供 `float` 而不是 `int` 時出現，例如：[http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check
+/// tip
 
 因此，搭配相同的 Python 型別宣告，**FastAPI** 會為你進行資料驗證。
 
@@ -82,7 +82,7 @@
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check
+/// tip
 
 同樣地，只要使用那個 Python 型別宣告，**FastAPI** 就會提供自動、互動式的文件（整合 Swagger UI）。
 
@@ -92,7 +92,7 @@
 
 ## 基於標準的優勢與替代文件 { #standards-based-benefits-alternative-documentation }
 
-而且因為產生的 schema 來自 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 標準，有很多相容的工具可用。
+而且因為產生的 schema 來自 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 標準，有很多相容的工具可用。
 
 因此，**FastAPI** 本身也提供另一種 API 文件（使用 ReDoc），你可以在 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 存取：
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-所有資料驗證都由 [Pydantic](https://docs.pydantic.dev/) 在底層處理，因此你能直接受惠。而且你可以放心使用。
+所有資料驗證都由 [Pydantic](https://pydantic.dev/docs/) 在底層處理，因此你能直接受惠。而且你可以放心使用。
 
 你可以用相同的型別宣告搭配 `str`、`float`、`bool` 與許多更複雜的資料型別。
 
@@ -248,4 +248,4 @@ OpenAPI 並不支援直接宣告一個「路徑參數」內再包含一個「路
 
 而且你只要宣告一次就好。
 
-這大概是 **FastAPI** 相較於其他框架最明顯的優勢之一（除了原始效能之外）。
+這大概是 **FastAPI** 相較於其他框架最明顯的優勢（除了原始效能之外）。

@@ -51,7 +51,9 @@ Ve yazma işlemi `async` ve `await` kullanmadığı için fonksiyonu normal `def
 
 **FastAPI** her durumda ne yapılacağını ve aynı objenin nasıl yeniden kullanılacağını bilir; böylece tüm arka plan görevleri birleştirilir ve sonrasında arka planda çalıştırılır:
 
+
 {* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+
 
 Bu örnekte, response gönderildikten *sonra* mesajlar `log.txt` dosyasına yazılacaktır.
 
@@ -61,7 +63,7 @@ Ardından *path operation function* içinde oluşturulan başka bir arka plan g�
 
 ## Teknik Detaylar { #technical-details }
 
-`BackgroundTasks` sınıfı doğrudan [`starlette.background`](https://www.starlette.dev/background/)’dan gelir.
+`BackgroundTasks` sınıfı doğrudan [`starlette.background`](https://starlette.dev/background/)’dan gelir.
 
 `fastapi` üzerinden import edebilmeniz ve yanlışlıkla `starlette.background` içindeki alternatif `BackgroundTask`’i (sonunda `s` olmadan) import etmemeniz için FastAPI’nin içine doğrudan import/eklenmiştir.
 
@@ -69,7 +71,7 @@ Sadece `BackgroundTasks` (ve `BackgroundTask` değil) kullanarak, bunu bir *path
 
 FastAPI’de `BackgroundTask`’i tek başına kullanmak hâlâ mümkündür; ancak bu durumda objeyi kendi kodunuzda oluşturmanız ve onu içeren bir Starlette `Response` döndürmeniz gerekir.
 
-Daha fazla detayı [Starlette’in Background Tasks için resmi dokümantasyonunda](https://www.starlette.dev/background/) görebilirsiniz.
+Daha fazla detayı [Starlette’in Background Tasks için resmi dokümantasyonunda](https://starlette.dev/background/) görebilirsiniz.
 
 ## Dikkat Edilmesi Gerekenler { #caveat }
 

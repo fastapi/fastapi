@@ -11,7 +11,7 @@ OpenAPI spesifikasyonunda ve otomatik API doküman arayüzlerinde kullanılan ş
 | `title` | `str` | API'nin başlığı. |
 | `summary` | `str` | API'nin kısa özeti. <small>OpenAPI 3.1.0, FastAPI 0.99.0 sürümünden itibaren mevcut.</small> |
 | `description` | `str` | API'nin kısa açıklaması. Markdown kullanabilir. |
-| `version` | `string` | API'nin sürümü. Bu, OpenAPI'nin değil, kendi uygulamanızın sürümüdür. Örneğin `2.5.0`. |
+| `version` | `str` | API'nin sürümü. Bu, OpenAPI'nin değil, kendi uygulamanızın sürümüdür. Örneğin `2.5.0`. |
 | `terms_of_service` | `str` | API'nin Kullanım Koşulları (Terms of Service) için bir URL. Verilirse, URL formatında olmalıdır. |
 | `contact` | `dict` | Yayınlanan API için iletişim bilgileri. Birden fazla alan içerebilir. <details><summary><code>contact</code> alanları</summary><table><thead><tr><th>Parametre</th><th>Tip</th><th>Açıklama</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td>İletişim kişisi/kuruluşunu tanımlayan ad.</td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>İletişim bilgilerine işaret eden URL. URL formatında OLMALIDIR.</td></tr><tr><td><code>email</code></td><td><code>str</code></td><td>İletişim kişisi/kuruluşunun e-posta adresi. E-posta adresi formatında OLMALIDIR.</td></tr></tbody></table></details> |
 | `license_info` | `dict` | Yayınlanan API için lisans bilgileri. Birden fazla alan içerebilir. <details><summary><code>license_info</code> alanları</summary><table><thead><tr><th>Parametre</th><th>Tip</th><th>Açıklama</th></tr></thead><tbody><tr><td><code>name</code></td><td><code>str</code></td><td><strong>ZORUNLU</strong> (<code>license_info</code> ayarlanmışsa). API için kullanılan lisans adı.</td></tr><tr><td><code>identifier</code></td><td><code>str</code></td><td>API için bir [SPDX](https://spdx.org/licenses/) lisans ifadesi. <code>identifier</code> alanı, <code>url</code> alanıyla karşılıklı olarak dışlayıcıdır (ikisi aynı anda kullanılamaz). <small>OpenAPI 3.1.0, FastAPI 0.99.0 sürümünden itibaren mevcut.</small></td></tr><tr><td><code>url</code></td><td><code>str</code></td><td>API için kullanılan lisansa ait URL. URL formatında OLMALIDIR.</td></tr></tbody></table></details> |
@@ -74,9 +74,9 @@ Kullandığınız tüm tag'ler için metadata eklemek zorunda değilsiniz.
 
 {* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
 
-/// info | Bilgi
+/// note | Not
 
-Tag'ler hakkında daha fazlası için: [Path Operation Configuration](path-operation-configuration.md#tags).
+Tag'ler hakkında daha fazlası için: [Path Operation Yapılandırması](path-operation-configuration.md#tags).
 
 ///
 

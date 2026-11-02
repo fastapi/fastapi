@@ -1,17 +1,24 @@
 # İlk Adımlar { #first-steps }
 
+
 En sade FastAPI dosyası şu şekilde görünür:
 
 {* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 Yukarıdakini `main.py` adlı bir dosyaya kopyalayın.
 
+/// tip | İpucu
+
+FastAPI'nin [VS Code için resmi bir eklentisi](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (ve Cursor için) vardır; path operation explorer, path operation search, testlerde CodeLens navigasyonu (testlerden tanıma atlama), FastAPI Cloud deployment ve log'lar dahil olmak üzere birçok özelliği doğrudan editörünüzden sağlar.
+
+///
+
 Canlı sunucuyu çalıştırın:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +85,7 @@ Otomatik etkileşimli API dokümantasyonunu ([Swagger UI](https://github.com/swa
 
 Ve şimdi [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gidin.
 
-Alternatif otomatik dokümantasyonu ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanan) göreceksiniz:
+Alternatif otomatik dokümantasyonu ([ReDoc](https://github.com/Redocly/redoc) tarafından sağlanan) göreceksiniz:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -180,42 +187,32 @@ Bu da şuna eşdeğer olur:
 from backend.main import app
 ```
 
-### Path ile `fastapi dev` { #fastapi-dev-with-path }
+### Path ile veya `--entrypoint` CLI seçeneğiyle `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 Dosya path'ini `fastapi dev` komutuna da verebilirsiniz; hangi FastAPI app objesini kullanacağını tahmin eder:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-Ancak `fastapi` komutunu her çağırdığınızda doğru path'i geçmeyi hatırlamanız gerekir.
+Veya `fastapi dev` komutuna `--entrypoint` seçeneğini de geçebilirsiniz:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+Ancak `fastapi` komutunu her çağırdığınızda doğru path'i/entrypoint'i geçmeyi hatırlamanız gerekir.
 
 Ayrıca, [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com) gibi başka araçlar da onu bulamayabilir; bu yüzden `pyproject.toml` içindeki `entrypoint`'i kullanmanız önerilir.
 
 ### Uygulamanızı Yayınlayın (opsiyonel) { #deploy-your-app-optional }
 
-İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a deploy edebilirsiniz; henüz katılmadıysanız gidip bekleme listesine yazılın. 🚀
-
-Zaten bir **FastAPI Cloud** hesabınız varsa (bekleme listesinden sizi davet ettiysek 😉), uygulamanızı tek komutla deploy edebilirsiniz.
-
-Deploy etmeden önce giriş yaptığınızdan emin olun:
+İsterseniz FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a tek komutla deploy edebilirsiniz. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Ardından uygulamanızı deploy edin:
-
-<div class="termy">
-
-```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -225,6 +222,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI, FastAPI uygulamanızı otomatik olarak algılar ve buluta deploy eder. Giriş yapmadıysanız, kimlik doğrulama işlemini tamamlamak için tarayıcınız açılır.
 
 Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
@@ -240,7 +239,7 @@ Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 `FastAPI`, doğrudan `Starlette`'ten miras alan bir class'tır.
 
-[Starlette](https://www.starlette.dev/)'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
+[Starlette](https://starlette.dev/)'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
 
 ///
 
@@ -270,7 +269,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Bilgi
+/// note | Not
 
 Bir "path" genellikle "endpoint" veya "route" olarak da adlandırılır.
 
@@ -322,7 +321,7 @@ Biz de bunlara "**operation**" diyeceğiz.
 * path `/`
 * <dfn title="bir HTTP GET methodu"><code>get</code> operation</dfn> kullanarak
 
-/// info | `@decorator` Bilgisi
+/// note | `@decorator` Bilgisi
 
 Python'daki `@something` söz dizimi "decorator" olarak adlandırılır.
 

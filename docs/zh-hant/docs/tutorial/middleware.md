@@ -37,7 +37,7 @@
 
 請記得，自訂的非標準標頭可以[使用 `X-` 前綴](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)。
 
-但如果你有自訂標頭並希望瀏覽器端的用戶端能看到它們，你需要在 CORS 設定（[CORS（跨來源資源共用）](cors.md)）中使用 [Starlette 的 CORS 文件](https://www.starlette.dev/middleware/#corsmiddleware)所記載的參數 `expose_headers` 將它們加入。
+但如果你有自訂標頭並希望瀏覽器端的用戶端能看到它們，你需要在 CORS 設定（[CORS（跨來源資源共用）](cors.md)）中使用 [Starlette 的 CORS 文件](https://starlette.dev/middleware/#corsmiddleware)所記載的參數 `expose_headers` 將它們加入。
 
 ///
 

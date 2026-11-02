@@ -8,7 +8,7 @@ First, import `Path` from `fastapi`, and import `Annotated`:
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-/// info
+/// note
 
 FastAPI added support for `Annotated` (and started recommending it) in version 0.95.0.
 
@@ -28,7 +28,7 @@ For example, to declare a `title` metadata value for the path parameter `item_id
 
 /// note
 
-A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
+A path parameter is always required because it has to be part of the URL path. Adding `None` to its type does not make it optional. A parameter declared with `Path` cannot have a default value.
 
 ///
 
@@ -131,7 +131,7 @@ And you can also declare numeric validations:
 * `lt`: `l`ess `t`han
 * `le`: `l`ess than or `e`qual
 
-/// info
+/// note
 
 `Query`, `Path`, and other classes you will see later are subclasses of a common `Param` class.
 

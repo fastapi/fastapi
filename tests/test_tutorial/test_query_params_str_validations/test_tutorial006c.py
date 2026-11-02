@@ -22,39 +22,34 @@ def get_client(request: pytest.FixtureRequest):
     return client
 
 
-@pytest.mark.xfail(
-    reason="Code example is not valid. See https://github.com/fastapi/fastapi/issues/12419"
-)
 def test_query_params_str_validations_no_query(client: TestClient):
     response = client.get("/items/")
-    assert response.status_code == 200
-    assert response.json() == {  # pragma: no cover
-        "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "missing",
+                "loc": ["query", "q"],
+                "msg": "Field required",
+                "input": None,
+            }
+        ]
     }
 
 
-@pytest.mark.xfail(
-    reason="Code example is not valid. See https://github.com/fastapi/fastapi/issues/12419"
-)
-def test_query_params_str_validations_empty_str(client: TestClient):
-    response = client.get("/items/?q=")
-    assert response.status_code == 200
-    assert response.json() == {  # pragma: no cover
-        "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
-    }
-
-
-def test_query_params_str_validations_q_query(client: TestClient):
-    response = client.get("/items/", params={"q": "query"})
+@pytest.mark.parametrize("q", ["query", "None", "null"])
+def test_query_params_str_validations_q_query(client: TestClient, q: str):
+    response = client.get("/items/", params={"q": q})
     assert response.status_code == 200
     assert response.json() == {
         "items": [{"item_id": "Foo"}, {"item_id": "Bar"}],
-        "q": "query",
+        "q": q,
     }
 
 
-def test_query_params_str_validations_q_short(client: TestClient):
-    response = client.get("/items/", params={"q": "fa"})
+@pytest.mark.parametrize("q", ["", "fa"])
+def test_query_params_str_validations_q_short(client: TestClient, q: str):
+    response = client.get("/items/", params={"q": q})
     assert response.status_code == 422
     assert response.json() == {
         "detail": [
@@ -62,7 +57,7 @@ def test_query_params_str_validations_q_short(client: TestClient):
                 "type": "string_too_short",
                 "loc": ["query", "q"],
                 "msg": "String should have at least 3 characters",
-                "input": "fa",
+                "input": q,
                 "ctx": {"min_length": 3},
             }
         ]

@@ -1,6 +1,7 @@
 # 패스워드(해싱 포함)를 사용하는 OAuth2, JWT 토큰을 사용하는 Bearer { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-모든 보안 흐름을 구성했으므로, 이제 <abbr title="JSON 웹 토큰">JWT</abbr> 토큰과 안전한 패스워드 해싱을 사용해 애플리케이션을 실제로 안전하게 만들겠습니다.
+
+모든 보안 흐름을 구성했으므로, 이제 <abbr title="JSON Web Tokens - JSON 웹 토큰">JWT</abbr> 토큰과 안전한 패스워드 해싱을 사용해 애플리케이션을 실제로 안전하게 만들겠습니다.
 
 이 코드는 실제로 애플리케이션에서 사용할 수 있으며, 패스워드 해시를 데이터베이스에 저장하는 등의 작업에 활용할 수 있습니다.
 
@@ -30,19 +31,19 @@ JWT 토큰을 직접 다뤄보고 동작 방식을 확인해보고 싶다면 [ht
 
 Python에서 JWT 토큰을 생성하고 검증하려면 `PyJWT`를 설치해야 합니다.
 
-[가상환경](../../virtual-environments.md)을 만들고 활성화한 다음 `pyjwt`를 설치하십시오:
+프로젝트에 `pyjwt`를 추가하십시오:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | 정보
+/// note | 참고
 
 RSA나 ECDSA 같은 전자 서명 알고리즘을 사용할 계획이라면, cryptography 라이브러리 의존성인 `pyjwt[crypto]`를 설치해야 합니다.
 
@@ -72,12 +73,12 @@ pwdlib는 패스워드 해시를 다루기 위한 훌륭한 Python 패키지입�
 
 추천 알고리즘은 "Argon2"입니다.
 
-[가상환경](../../virtual-environments.md)을 만들고 활성화한 다음 Argon2와 함께 pwdlib를 설치하십시오:
+프로젝트에 Argon2와 함께 `pwdlib`를 추가하십시오:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -134,7 +135,7 @@ pwdlib는 bcrypt 해싱 알고리즘도 지원하지만 레거시 알고리즘�
 
 JWT 토큰을 서명하는 데 사용할 임의의 비밀 키를 생성합니다.
 
-안전한 임의의 비밀 키를 생성하려면 다음 명령을 사용하십시오:
+안전한 임의의 비밀 키를 생성하려면 다음 명령어를 사용하십시오:
 
 <div class="termy">
 
@@ -213,7 +214,7 @@ JWT는 사용자를 식별하고 사용자가 API에서 직접 작업을 수행�
 Username: `johndoe`
 Password: `secret`
 
-/// check | 확인
+/// tip | 팁
 
 코드 어디에도 평문 패스워드 "`secret`"은 없고, 해시된 버전만 있다는 점에 유의하십시오.
 

@@ -12,29 +12,13 @@ Una opción versátil es el [OpenAPI Generator](https://openapi-generator.tech/)
 
 Para **clientes de TypeScript**, [Hey API](https://heyapi.dev/) es una solución diseñada específicamente, que ofrece una experiencia optimizada para el ecosistema de TypeScript.
 
-Puedes descubrir más generadores de SDK en [OpenAPI.Tools](https://openapi.tools/#sdk).
+Puedes descubrir más generadores de SDK en [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Consejo
 
 FastAPI genera automáticamente especificaciones **OpenAPI 3.1**, así que cualquier herramienta que uses debe soportar esta versión.
 
 ///
-
-## Generadores de SDKs de sponsors de FastAPI { #sdk-generators-from-fastapi-sponsors }
-
-Esta sección destaca soluciones **respaldadas por empresas** y **venture-backed** de compañías que sponsorean FastAPI. Estos productos ofrecen **funcionalidades adicionales** e **integraciones** además de SDKs generados de alta calidad.
-
-Al ✨ [**sponsorear FastAPI**](../help-fastapi.md#sponsor-the-author) ✨, estas compañías ayudan a asegurar que el framework y su **ecosistema** se mantengan saludables y **sustentables**.
-
-Su sponsorship también demuestra un fuerte compromiso con la **comunidad** de FastAPI (tú), mostrando que no solo les importa ofrecer un **gran servicio**, sino también apoyar un **framework robusto y próspero**, FastAPI. 🙇
-
-Por ejemplo, podrías querer probar:
-
-* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
-
-Algunas de estas soluciones también pueden ser open source u ofrecer niveles gratuitos, así que puedes probarlas sin un compromiso financiero. Hay otros generadores de SDK comerciales disponibles y se pueden encontrar en línea. 🤓
 
 ## Crea un SDK de TypeScript { #create-a-typescript-sdk }
 
@@ -54,7 +38,7 @@ Puedes ver esos esquemas porque fueron declarados con los modelos en la app.
 
 Esa información está disponible en el **OpenAPI schema** de la app, y luego se muestra en la documentación de la API.
 
-Y esa misma información de los modelos que está incluida en OpenAPI es lo que puede usarse para **generar el código del cliente**.
+Esa misma información de los modelos que está incluida en OpenAPI es lo que puede usarse para **generar el código del cliente**.
 
 ### Hey API { #hey-api }
 
@@ -133,7 +117,7 @@ Puedes **modificar** la forma en que estos operation IDs son **generados** para 
 
 En este caso tendrás que asegurarte de que cada operation ID sea **único** de alguna otra manera.
 
-Por ejemplo, podrías asegurarte de que cada *path operation* tenga un tag, y luego generar el operation ID basado en el **tag** y el **name** de la *path operation* (el nombre de la función).
+Por ejemplo, podrías asegurarte de que cada *path operation* tenga un tag, y luego generar el operation ID basado en el **tag** y el **nombre** de la *path operation* (el nombre de la función).
 
 ### Función personalizada para generar ID único { #custom-generate-unique-id-function }
 

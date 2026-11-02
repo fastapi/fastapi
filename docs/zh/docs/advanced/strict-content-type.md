@@ -81,7 +81,7 @@ http://localhost:8000/v1/agents/multivac
 
 启用该设置后，缺少 `Content-Type` 头的请求其请求体也会按 JSON 解析，这与旧版本 FastAPI 的行为一致。
 
-/// info | 信息
+/// note | 注意
 
 此行为和配置在 FastAPI 0.132.0 中新增。
 

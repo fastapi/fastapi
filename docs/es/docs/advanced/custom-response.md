@@ -24,7 +24,7 @@ Si declaras un [Response Model](../tutorial/response-model.md) FastAPI lo usará
 
 Si no declaras un response model, FastAPI usará el `jsonable_encoder` explicado en [Codificador Compatible con JSON](../tutorial/encoder.md) y lo pondrá en un `JSONResponse`.
 
-Si declaras un `response_class` con un media type JSON (`application/json`), como es el caso con `JSONResponse`, los datos que devuelvas se convertirán automáticamente (y serán filtrados) con cualquier `response_model` de Pydantic que hayas declarado en el *path operation decorator*. Pero los datos no se serializarán a bytes JSON con Pydantic, en su lugar se convertirán con el `jsonable_encoder` y luego se pasarán a la clase `JSONResponse`, que los serializará a bytes usando la librería JSON estándar de Python.
+Si declaras un `response_class` con un media type JSON (`application/json`), como es el caso con `JSONResponse`, los datos que devuelvas se convertirán automáticamente (y serán filtrados) con cualquier `response_model` de Pydantic que hayas declarado en el *path operation decorator*. Pero los datos no se serializarán a bytes JSON con Pydantic, en su lugar se convertirán con el `jsonable_encoder` y luego se pasarán a la clase `JSONResponse`, que los serializará a bytes usando el paquete JSON estándar de Python.
 
 ### Rendimiento JSON { #json-performance }
 
@@ -41,7 +41,7 @@ Para devolver un response con HTML directamente desde **FastAPI**, usa `HTMLResp
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info | Información
+/// note | Nota
 
 El parámetro `response_class` también se utilizará para definir el "media type" del response.
 
@@ -65,7 +65,7 @@ Una `Response` devuelta directamente por tu *path operation function* no se docu
 
 ///
 
-/// info | Información
+/// note | Nota
 
 Por supuesto, el `Content-Type` header real, el código de estado, etc., provendrán del objeto `Response` que devolviste.
 
@@ -181,7 +181,7 @@ Toma un generador `async` o un generador/iterador normal (una función con `yiel
 
 Una tarea `async` solo puede cancelarse cuando llega a un `await`. Si no hay `await`, el generador (función con `yield`) no se puede cancelar correctamente y puede seguir ejecutándose incluso después de solicitar la cancelación.
 
-Como este pequeño ejemplo no necesita ninguna sentencia `await`, añadimos un `await anyio.sleep(0)` para darle al loop de eventos la oportunidad de manejar la cancelación.
+Como este pequeño ejemplo no necesita ninguna statement `await`, añadimos un `await anyio.sleep(0)` para darle al loop de eventos la oportunidad de manejar la cancelación.
 
 Esto sería aún más importante con streams grandes o infinitos.
 

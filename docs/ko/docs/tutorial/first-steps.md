@@ -6,12 +6,18 @@
 
 위 코드를 `main.py`에 복사합니다.
 
+/// tip | 팁
+
+FastAPI에는 VS Code(및 Cursor)를 위한 [공식 확장](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)이 있으며, 에디터에서 바로 경로 처리 탐색기, 경로 처리 검색, 테스트에서의 CodeLens 탐색(테스트에서 정의로 이동), FastAPI Cloud 배포와 로그를 포함한 많은 기능을 제공합니다.
+
+///
+
 라이브 서버를 실행합니다:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -54,7 +60,7 @@ $ <font color="#4E9A06">fastapi</font> dev
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
-해당 줄은 로컬 머신에서 앱이 서비스되는 URL을 보여줍니다.
+해당 줄은 로컬 머신에서 애플리케이션이 서비스되는 URL을 보여줍니다.
 
 ### 확인하기 { #check-it }
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 그리고 이제, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 가봅니다.
 
-대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Rebilly/ReDoc) 제공):
+대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Redocly/redoc) 제공):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -143,16 +149,16 @@ OpenAPI 스키마는 포함된 두 개의 대화형 문서 시스템을 제공�
 
 API와 통신하는 클라이언트(프론트엔드, 모바일, IoT 애플리케이션 등)를 위해 코드를 자동으로 생성하는 데도 사용할 수 있습니다.
 
-### `pyproject.toml`에 앱 `entrypoint` 구성하기 { #configure-the-app-entrypoint-in-pyproject-toml }
+### `pyproject.toml`에 애플리케이션 `entrypoint` 구성하기 { #configure-the-app-entrypoint-in-pyproject-toml }
 
-다음과 같이 `pyproject.toml` 파일에서 앱이 위치한 곳을 구성할 수 있습니다:
+다음과 같이 `pyproject.toml` 파일에서 애플리케이션이 위치한 곳을 구성할 수 있습니다:
 
 ```toml
 [tool.fastapi]
 entrypoint = "main:app"
 ```
 
-해당 `entrypoint`는 `fastapi` 명령어에 다음과 같이 앱을 임포트하라고 알려줍니다:
+해당 `entrypoint`는 `fastapi` 명령어에 다음과 같이 애플리케이션을 임포트하라고 알려줍니다:
 
 ```python
 from main import app
@@ -180,42 +186,32 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### `fastapi dev`에 경로 지정하기 { #fastapi-dev-with-path }
+### `fastapi dev`를 경로 또는 `--entrypoint` CLI 옵션과 함께 사용하기 { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
-`fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI app 객체를 추정합니다:
+`fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI 애플리케이션 객체를 추정합니다:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-하지만 매번 `fastapi` 명령어를 호출할 때마다 올바른 경로를 전달해야 합니다.
+또는 `fastapi dev` 명령어에 `--entrypoint` 옵션을 전달할 수도 있습니다:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+하지만 매번 `fastapi` 명령어를 호출할 때마다 올바른 path\entrypoint를 전달해야 합니다.
 
 또한 다른 도구들, 예를 들어 [VS Code 확장](../editor-support.md)이나 [FastAPI Cloud](https://fastapicloud.com)가 이를 찾지 못할 수 있으므로, `pyproject.toml`의 `entrypoint`를 사용하는 것을 권장합니다.
 
-### 앱 배포하기(선택 사항) { #deploy-your-app-optional }
+### 애플리케이션 배포하기(선택 사항) { #deploy-your-app-optional }
 
-선택적으로 FastAPI 앱을 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 아직 대기자 명단에 등록하지 않았다면, 등록하러 가세요. 🚀
-
-이미 **FastAPI Cloud** 계정이 있다면(대기자 명단에서 초대해 드렸습니다 😉), 한 번의 명령으로 애플리케이션을 배포할 수 있습니다.
-
-배포하기 전에, 로그인되어 있는지 확인하세요:
+선택적으로 FastAPI 애플리케이션을 [FastAPI Cloud](https://fastapicloud.com)에 단 한 번의 명령어로 배포할 수 있습니다. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-그 다음 앱을 배포합니다:
-
-<div class="termy">
-
-```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -226,7 +222,9 @@ Deploying to FastAPI Cloud...
 
 </div>
 
-이게 전부입니다! 이제 해당 URL에서 앱에 접근할 수 있습니다. ✨
+CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하고 클라우드에 배포합니다. 로그인되어 있지 않다면 브라우저가 열려 인증 과정을 완료합니다.
+
+이게 전부입니다! 이제 해당 URL에서 애플리케이션에 접근할 수 있습니다. ✨
 
 ## 단계별 요약 { #recap-step-by-step }
 
@@ -240,7 +238,7 @@ Deploying to FastAPI Cloud...
 
 `FastAPI`는 `Starlette`를 직접 상속하는 클래스입니다.
 
-`FastAPI`로 [Starlette](https://www.starlette.dev/)의 모든 기능을 사용할 수 있습니다.
+`FastAPI`로 [Starlette](https://starlette.dev/)의 모든 기능을 사용할 수 있습니다.
 
 ///
 
@@ -270,7 +268,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | 정보
+/// note | 참고
 
 "경로"는 일반적으로 "엔드포인트" 또는 "라우트"라고도 불립니다.
 
@@ -322,7 +320,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * 경로 `/`
 * <dfn title="HTTP GET 메소드"><code>get</code> 작동</dfn> 사용
 
-/// info | `@decorator` 정보
+/// note | `@decorator` 정보
 
 이 `@something` 문법은 파이썬에서 "데코레이터"라 부릅니다.
 
@@ -401,7 +399,7 @@ JSON으로 자동 변환되는 객체들과 모델들(ORM 등을 포함해서)�
 
 ### 6 단계: 배포하기 { #step-6-deploy-it }
 
-한 번의 명령으로 **[FastAPI Cloud](https://fastapicloud.com)**에 앱을 배포합니다: `fastapi deploy`. 🎉
+한 번의 명령어로 **[FastAPI Cloud](https://fastapicloud.com)**에 애플리케이션을 배포합니다: `fastapi deploy`. 🎉
 
 #### FastAPI Cloud 소개 { #about-fastapi-cloud }
 
@@ -409,15 +407,15 @@ JSON으로 자동 변환되는 객체들과 모델들(ORM 등을 포함해서)�
 
 최소한의 노력으로 API를 **빌드**, **배포**, **접근**하는 과정을 간소화합니다.
 
-FastAPI로 앱을 빌드할 때의 동일한 **개발자 경험**을 클라우드에 **배포**할 때도 제공합니다. 🎉
+FastAPI로 애플리케이션을 빌드할 때의 동일한 **개발자 경험**을 클라우드에 **배포**할 때도 제공합니다. 🎉
 
 FastAPI Cloud는 *FastAPI와 친구들* 오픈 소스 프로젝트의 주요 스폰서이자 자금 제공자입니다. ✨
 
 #### 다른 클라우드 제공업체에 배포하기 { #deploy-to-other-cloud-providers }
 
-FastAPI는 오픈 소스이며 표준을 기반으로 합니다. 선택한 어떤 클라우드 제공업체에도 FastAPI 앱을 배포할 수 있습니다.
+FastAPI는 오픈 소스이며 표준을 기반으로 합니다. 선택한 어떤 클라우드 제공업체에도 FastAPI 애플리케이션을 배포할 수 있습니다.
 
-클라우드 제공업체의 가이드를 따라 FastAPI 앱을 배포하세요. 🤓
+클라우드 제공업체의 가이드를 따라 FastAPI 애플리케이션을 배포하세요. 🤓
 
 ## 요약 { #recap }
 
@@ -425,5 +423,5 @@ FastAPI는 오픈 소스이며 표준을 기반으로 합니다. 선택한 어�
 * `app` 인스턴스 생성.
 * (`@app.get("/")`처럼) **경로 처리 데코레이터** 작성.
 * (위에 있는 `def root(): ...`처럼) **경로 처리 함수** 작성.
-* `fastapi dev` 명령으로 개발 서버 실행.
-* 선택적으로 `fastapi deploy`로 앱 배포.
+* `fastapi dev` 명령어로 개발 서버 실행.
+* 선택적으로 `fastapi deploy`로 애플리케이션 배포.

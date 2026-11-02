@@ -81,7 +81,7 @@ http://localhost:8000/v1/agents/multivac
 
 この設定では、`Content-Type` ヘッダーがないリクエストでもボディが JSON として解析されます。これは古いバージョンの FastAPI と同じ挙動です。
 
-/// info | 情報
+/// note | 備考
 
 この挙動と設定は FastAPI 0.132.0 で追加されました。
 

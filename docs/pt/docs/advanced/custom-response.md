@@ -41,7 +41,7 @@ Para retornar uma resposta com HTML diretamente do **FastAPI**, utilize `HTMLRes
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info | Informação
+/// note | Nota
 
 O parâmetro `response_class` também será usado para definir o "media type" da resposta.
 
@@ -65,7 +65,7 @@ Uma `Response` retornada diretamente em sua *função de operação de rota* nã
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 Obviamente, o cabeçalho `Content-Type`, o código de status, etc, virão do objeto `Response` que você retornou.
 

@@ -1,5 +1,6 @@
 # 에디터 지원 { #editor-support }
 
+
 공식 [FastAPI 확장](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)은 FastAPI 개발 워크플로우를 강화해 줍니다. *경로 처리* 탐색 및 이동, FastAPI Cloud 배포, 실시간 로그 스트리밍을 제공합니다.
 
 확장에 대한 자세한 내용은 [GitHub 저장소](https://github.com/fastapi/fastapi-vscode)의 README를 참고하세요.

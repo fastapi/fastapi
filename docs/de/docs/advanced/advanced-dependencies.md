@@ -1,5 +1,6 @@
 # Fortgeschrittene Abhängigkeiten { #advanced-dependencies }
 
+
 ## Parametrisierte Abhängigkeiten { #parameterized-dependencies }
 
 Alle Abhängigkeiten, die wir bisher gesehen haben, waren festgelegte Funktionen oder Klassen.
@@ -98,7 +99,7 @@ Wenn Sie beispielsweise eine Datenbanksession in einer Abhängigkeit mit `yield`
 
 Dieses Verhalten wurde in 0.118.0 zurückgenommen, sodass der Exit-Code nach `yield` ausgeführt wird, nachdem die Response gesendet wurde.
 
-/// info | Info
+/// note | Hinweis
 
 Wie Sie unten sehen werden, ähnelt dies sehr dem Verhalten vor Version 0.106.0, jedoch mit mehreren Verbesserungen und Bugfixes für Sonderfälle.
 

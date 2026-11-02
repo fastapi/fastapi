@@ -4,7 +4,7 @@
 
 ## Base64 とファイル { #base64-vs-files }
 
-バイナリデータのアップロードにはまず、JSON にエンコードする代わりに [Request Files](../tutorial/request-files.md) を、バイナリデータの送信には [カスタムレスポンス - FileResponse](./custom-response.md#fileresponse--fileresponse-) を使えるか検討してください。
+バイナリデータのアップロードにはまず、JSON にエンコードする代わりに [リクエストファイル](../tutorial/request-files.md) を、バイナリデータの送信には [カスタムレスポンス - FileResponse](./custom-response.md#fileresponse) を使えるか検討してください。
 
 JSON は UTF-8 でエンコードされた文字列のみを含められるため、生のバイト列は含められません。
 

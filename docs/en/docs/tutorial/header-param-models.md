@@ -67,6 +67,26 @@ Before setting `convert_underscores` to `False`, bear in mind that some HTTP pro
 
 ///
 
+## Combine Parameter Models { #combine-parameter-models }
+
+You can combine multiple header parameter models with individual header parameters and dependencies. Each model is extracted and validated independently, as explained for [query parameter models](query-param-models.md#combine-parameter-models).
+
+Each model's `extra` configuration applies to all header parameters, including those declared in other models or dependencies. With `extra="forbid"`, any header outside that model is rejected. With `extra="allow"`, those headers are included as model extras.
+
+Each model uses its own `Header(convert_underscores=...)` setting, both when reading the request and when generating OpenAPI. Explicit field aliases remain literal header names.
+
+## Optional Header Parameter Models { #optional-header-parameter-models }
+
+Declare a header parameter model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+
+If neither `x-client-name` nor `x-client-version` is sent, `client` is `None`. If either is sent, FastAPI validates the model and requires both fields.
+
+The same rules for defaults, extra fields, and OpenAPI apply as for [optional query parameter models](query-param-models.md#optional-query-parameter-models).
+
+Headers such as `Host` also follow the model's `extra` configuration. With `extra="allow"`, they make the model present even if neither declared field is supplied.
+
 ## Summary { #summary }
 
 You can use **Pydantic models** to declare **headers** in **FastAPI**. 😎

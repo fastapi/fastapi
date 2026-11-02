@@ -45,7 +45,7 @@ Testlerinizi her zamanki gibi şu şekilde çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ---> 100%
 ```

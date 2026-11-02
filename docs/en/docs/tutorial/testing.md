@@ -1,6 +1,6 @@
 # Testing { #testing }
 
-Thanks to [Starlette](https://www.starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.
+Thanks to [Starlette](https://starlette.dev/testclient/), testing **FastAPI** applications is easy and enjoyable.
 
 It is based on [HTTPX](https://www.python-httpx.org), which in turn is designed based on Requests, so it's very familiar and intuitive.
 
@@ -8,14 +8,14 @@ With it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI*
 
 ## Using `TestClient` { #using-testclient }
 
-/// info
+/// note
 
 To use `TestClient`, first install [`httpx`](https://www.python-httpx.org).
 
-Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
+Add it to your project:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -24,7 +24,7 @@ Import `TestClient`.
 
 Create a `TestClient` by passing your **FastAPI** application to it.
 
-Create functions with a name that starts with `test_` (this is standard `pytest` conventions).
+Create functions with a name that starts with `test_` (this is a standard `pytest` convention).
 
 Use the `TestClient` object the same way as you do with `httpx`.
 
@@ -144,7 +144,7 @@ E.g.:
 
 For more information about how to pass data to the backend (using `httpx` or the `TestClient`) check the [HTTPX documentation](https://www.python-httpx.org).
 
-/// info
+/// note
 
 Note that the `TestClient` receives data that can be converted to JSON, not Pydantic models.
 
@@ -156,12 +156,12 @@ If you have a Pydantic model in your test and you want to send its data to the a
 
 After that, you just need to install `pytest`.
 
-Make sure you create a [virtual environment](../virtual-environments.md), activate it, and then install it, for example:
+Add it to your project:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ Run the tests with:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

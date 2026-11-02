@@ -30,19 +30,19 @@ Si quieres jugar con tokens JWT y ver cómo funcionan, revisa [https://jwt.io](h
 
 Necesitamos instalar `PyJWT` para generar y verificar los tokens JWT en Python.
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo y luego instalar `pyjwt`:
+Añade `pyjwt` a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | Información
+/// note | Nota
 
 Si planeas usar algoritmos de firma digital como RSA o ECDSA, deberías instalar la dependencia del paquete de criptografía `pyjwt[crypto]`.
 
@@ -72,12 +72,12 @@ Soporta muchos algoritmos de hashing seguros y utilidades para trabajar con ello
 
 El algoritmo recomendado es "Argon2".
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo y luego instalar pwdlib con Argon2:
+Añade `pwdlib` con Argon2 a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -213,7 +213,7 @@ Usando las credenciales:
 Usuario: `johndoe`
 Contraseña: `secret`
 
-/// check | Revisa
+/// tip | Consejo
 
 Observa que en ninguna parte del código está la contraseña en texto claro "`secret`", solo tenemos la versión con hash.
 

@@ -8,7 +8,7 @@ Aqui está um pouco dessa história.
 
 ## Alternativas { #alternatives }
 
-Eu tenho criado APIs com requisitos complexos por vários anos (Aprendizado de Máquina, sistemas distribuídos, tarefas assíncronas, banco de dados NoSQL etc.), liderando vários times de desenvolvedores.
+Eu tenho criado APIs com requisitos complexos por vários anos (Aprendizado de Máquina, sistemas distribuídos, tarefas assíncronas, bancos de dados NoSQL etc.), liderando vários times de desenvolvedores.
 
 Como parte disso, eu precisava investigar, testar e usar muitas alternativas.
 
@@ -22,9 +22,9 @@ Como dito na seção [Alternativas](alternatives.md):
 
 Há muitas ferramentas criadas antes que ajudaram a inspirar sua criação.
 
-Eu estive evitando a criação de um novo _framework_ por vários anos. Primeiro tentei resolver todas as funcionalidades cobertas por **FastAPI** usando muitos _frameworks_, _plug-ins_ e ferramentas diferentes.
+Eu estive evitando a criação de um novo framework por vários anos. Primeiro tentei resolver todas as funcionalidades cobertas por **FastAPI** usando muitos frameworks, plug-ins e ferramentas diferentes.
 
-Mas em algum ponto, não havia outra opção senão criar algo que oferecia todas as funcionalidades, aproveitando as melhores ideias de ferramentas anteriores, e combinando-as da melhor maneira possível, usando funcionalidades da linguagem que nem estavam disponíveis antes (anotações de tipo do Python 3.6+).
+Mas em algum ponto, não havia outra opção senão criar algo que oferecia todas essas funcionalidades, aproveitando as melhores ideias de ferramentas anteriores, e combinando-as da melhor maneira possível, usando funcionalidades da linguagem que nem estavam disponíveis antes (anotações de tipo do Python 3.6+).
 
 </blockquote>
 
@@ -36,7 +36,7 @@ Por exemplo, estava claro que idealmente ele deveria ser baseado nas anotações
 
 Também, a melhor abordagem era usar padrões já existentes.
 
-Então, antes mesmo de começar a codificar o **FastAPI**, eu investi vários meses estudando as especificações do OpenAPI, JSON Schema, OAuth2 etc. Entendendo suas relações, sobreposições e diferenças.
+Então, antes mesmo de começar a codificar o **FastAPI**, eu investi vários meses estudando as especificações do OpenAPI, JSON Schema, OAuth2 etc. Entendendo sua relação, sobreposições e diferenças.
 
 ## Design { #design }
 
@@ -54,11 +54,11 @@ Tudo de uma forma que oferecesse a melhor experiência de desenvolvimento para t
 
 ## Requisitos { #requirements }
 
-Após testar várias alternativas, eu decidi que usaria o [**Pydantic**](https://docs.pydantic.dev/) por suas vantagens.
+Após testar várias alternativas, eu decidi que usaria o [**Pydantic**](https://pydantic.dev/docs/) por suas vantagens.
 
 Então eu contribuí com ele, para deixá-lo completamente de acordo com o JSON Schema, para dar suporte a diferentes maneiras de definir declarações de restrições, e melhorar o suporte a editores (conferências de tipos, preenchimento automático) baseado nos testes em vários editores.
 
-Durante o desenvolvimento, eu também contribuí com o [**Starlette**](https://www.starlette.dev/), outro requisito chave.
+Durante o desenvolvimento, eu também contribuí com o [**Starlette**](https://starlette.dev/), o outro requisito chave.
 
 ## Desenvolvimento { #development }
 

@@ -24,16 +24,16 @@
 
 ## 运行 { #run-it }
 
-/// info | 信息
+/// note | 注意
 
-当你使用命令 `pip install "fastapi[standard]"` 安装 **FastAPI** 时，[`python-multipart`](https://github.com/Kludex/python-multipart) 包会自动安装。
+当你运行 `uv add "fastapi[standard]"` 命令时，[`python-multipart`](https://github.com/Kludex/python-multipart) 包会随 **FastAPI** 自动安装。
 
-但是，如果你使用 `pip install fastapi`，默认不会包含 `python-multipart` 包。
+但是，如果你使用 `uv add fastapi` 命令，默认不会包含 `python-multipart` 包。
 
-如需手动安装，请先创建并激活[虚拟环境](../../virtual-environments.md)，然后执行：
+如需手动安装，请把它添加到你的项目中：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 这是因为 **OAuth2** 使用“表单数据”来发送 `username` 和 `password`。
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -60,7 +60,7 @@ $ fastapi dev
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize 按钮！
+/// tip | Authorize 按钮！
 
 页面右上角已经有一个崭新的“Authorize”按钮。
 
@@ -118,7 +118,7 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 本示例将使用 **OAuth2** 的 **Password** 流程并配合 **Bearer** 令牌，通过 `OAuth2PasswordBearer` 类来实现。
 
-/// info | 信息
+/// note | 注意
 
 “Bearer” 令牌并非唯一选项。
 
@@ -144,11 +144,11 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 ///
 
-这个参数不会创建该端点/*路径操作*，而是声明客户端应使用 `/token` 这个 URL 来获取令牌。这些信息会用于 OpenAPI，进而用于交互式 API 文档系统。
+这个参数不会创建该端点 / *路径操作*，而是声明客户端应使用 `/token` 这个 URL 来获取令牌。这些信息会用于 OpenAPI，进而用于交互式 API 文档系统。
 
 我们很快也会创建对应的实际路径操作。
 
-/// info | 信息
+/// note | 注意
 
 如果你是非常严格的 “Pythonista”，可能不喜欢使用参数名 `tokenUrl` 而不是 `token_url`。
 
@@ -176,7 +176,7 @@ oauth2_scheme(some, parameters)
 
 **FastAPI** 会据此在 OpenAPI 架构（以及自动生成的 API 文档）中定义一个“安全方案”。
 
-/// info | 技术细节
+/// note | 技术细节
 
 **FastAPI** 之所以知道可以使用（在依赖中声明的）`OAuth2PasswordBearer` 在 OpenAPI 中定义安全方案，是因为它继承自 `fastapi.security.oauth2.OAuth2`，而后者又继承自 `fastapi.security.base.SecurityBase`。
 

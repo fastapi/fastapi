@@ -91,7 +91,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 例如：
 
-- [Uvicorn 的 `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+- [Uvicorn 的 `ProxyHeadersMiddleware`](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 - [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-想瞭解更多可用的中介軟體，請參考 [Starlette 的中介軟體文件](https://www.starlette.dev/middleware/) 與 [ASGI 精選清單](https://github.com/florimondmanca/awesome-asgi)。
+想瞭解更多可用的中介軟體，請參考 [Starlette 的中介軟體文件](https://starlette.dev/middleware/) 與 [ASGI 精選清單](https://github.com/florimondmanca/awesome-asgi)。

@@ -2,6 +2,14 @@
 
 `StaticFiles` を使用して、ディレクトリから静的ファイルを自動的に提供できます。
 
+/// tip | 豆知識
+
+フロントエンドをホストする必要がある場合は、代わりに `app.frontend()` を使用してください。詳しくは [フロントエンド](frontend.md) を読んでください。
+
+`app.frontend()` は内部で `StaticFiles` を使用しており、client-side routing の処理など、フロントエンド向けの追加の利点がいくつかあります。
+
+///
+
 ## `StaticFiles` の使用 { #use-staticfiles }
 
 * `StaticFiles` をインポート。
@@ -37,4 +45,4 @@
 
 ## より詳しい情報 { #more-info }
 
-詳細とオプションについては、[Starletteの静的ファイルに関するドキュメント](https://www.starlette.dev/staticfiles/)を確認してください。
+詳細とオプションについては、[Starletteの静的ファイルに関するドキュメント](https://starlette.dev/staticfiles/)を確認してください。

@@ -41,7 +41,7 @@ Pour renvoyer une réponse avec du HTML directement depuis **FastAPI**, utilisez
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info
+/// note | Remarque
 
 Le paramètre `response_class` sera aussi utilisé pour définir le « media type » de la réponse.
 
@@ -65,7 +65,7 @@ Une `Response` renvoyée directement par votre *fonction de chemin d'accès* ne 
 
 ///
 
-/// info
+/// note | Remarque
 
 Bien sûr, l'en-tête `Content-Type` réel, le code d'état, etc., proviendront de l'objet `Response` que vous avez renvoyé.
 

@@ -33,7 +33,7 @@
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -91,9 +91,9 @@ sequenceDiagram
 
 Ці заголовки зберігають інформацію про оригінальний запит, яка інакше була б втрачена:
 
-- X-Forwarded-For: оригінальна IP-адреса клієнта
-- X-Forwarded-Proto: оригінальний протокол (`https`)
-- X-Forwarded-Host: оригінальний хост (`mysuperapp.com`)
+* **X-Forwarded-For**: оригінальна IP-адреса клієнта
+* **X-Forwarded-Proto**: оригінальний протокол (`https`)
+* **X-Forwarded-Host**: оригінальний хост (`mysuperapp.com`)
 
 Коли **FastAPI CLI** налаштовано з `--forwarded-allow-ips`, він довіряє цим заголовкам і використовує їх, наприклад, для побудови коректних URL-адрес у перенаправленнях.
 
@@ -170,7 +170,7 @@ IP `0.0.0.0` зазвичай означає, що програма слухає
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Uvicorn очікуватиме, що представник буде зверт�
 
 Ви можете легко провести експеримент локально з вилученим префіксом шляху, використовуючи [Traefik](https://docs.traefik.io/).
 
-[Завантажте Traefik](https://github.com/containous/traefik/releases), це один бінарний файл, ви можете розпакувати архів і запустити його безпосередньо з термінала.
+[Завантажте Traefik](https://github.com/traefik/traefik/releases), це один бінарний файл, ви можете розпакувати архів і запустити його безпосередньо з термінала.
 
 Потім створіть файл `traefik.toml` з таким вмістом:
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

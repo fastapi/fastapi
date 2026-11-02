@@ -20,7 +20,7 @@
 
 위의 예시에서, `item_id`는 `int`로 선언되었습니다.
 
-/// check | 확인
+/// tip | 팁
 
 이 기능은 함수 내에서 오류 검사, 자동완성 등의 편집기 기능을 활용할 수 있게 해줍니다.
 
@@ -34,7 +34,7 @@
 {"item_id":3}
 ```
 
-/// check | 확인
+/// tip | 팁
 
 함수가 받은(반환도 하는) 값은 문자열 `"3"`이 아니라 파이썬 `int` 형인 `3`입니다.
 
@@ -66,7 +66,7 @@
 
 `int` 대신 `float`을 제공하면(예: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)) 동일한 오류가 나타납니다.
 
-/// check | 확인
+/// tip | 팁
 
 즉, 파이썬 타입 선언을 하면 **FastAPI**는 데이터 검증을 합니다.
 
@@ -82,7 +82,7 @@
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | 확인
+/// tip | 팁
 
 다시 한 번, 동일한 파이썬 타입 선언만으로 **FastAPI**는 자동 대화형 문서(Swagger UI 통합)를 제공합니다.
 
@@ -92,7 +92,7 @@
 
 ## 표준 기반의 이점, 대체 문서 { #standards-based-benefits-alternative-documentation }
 
-그리고 생성된 스키마는 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 표준에서 나온 것이기 때문에 호환되는 도구가 많이 있습니다.
+그리고 생성된 스키마는 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 표준에서 나온 것이기 때문에 호환되는 도구가 많이 있습니다.
 
 이 덕분에 **FastAPI** 자체에서 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 접속할 수 있는 (ReDoc을 사용하는) 대체 API 문서를 제공합니다:
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-모든 데이터 검증은 [Pydantic](https://docs.pydantic.dev/)에 의해 내부적으로 수행되므로 이로 인한 이점을 모두 얻을 수 있습니다. 여러분은 관리를 잘 받고 있음을 느낄 수 있습니다.
+모든 데이터 검증은 [Pydantic](https://pydantic.dev/docs/)에 의해 내부적으로 수행되므로 이로 인한 이점을 모두 얻을 수 있습니다. 여러분은 관리를 잘 받고 있음을 느낄 수 있습니다.
 
 `str`, `float`, `bool`, 그리고 다른 여러 복잡한 데이터 타입 선언을 할 수 있습니다.
 

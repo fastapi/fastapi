@@ -105,36 +105,32 @@ C'est ce que vous voudrez faire dans **la plupart des cas**, par exemple :
 
 ### Dépendances des paquets { #package-requirements }
 
-Vous aurez normalement les **dépendances des paquets** de votre application dans un fichier.
+Lorsque vous gérez votre projet avec `uv`, ses dépendances directes sont déclarées dans `pyproject.toml` et les versions exactes résolues sont stockées dans `uv.lock`.
 
-Cela dépendra principalement de l'outil que vous utilisez pour **installer** ces dépendances.
-
-La manière la plus courante consiste à avoir un fichier `requirements.txt` avec les noms des paquets et leurs versions, un par ligne.
-
-Vous utiliserez bien sûr les mêmes idées que vous avez lues dans [À propos des versions de FastAPI](versions.md) pour définir les plages de versions.
-
-Par exemple, votre `requirements.txt` pourrait ressembler à :
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-Et vous installerez normalement ces dépendances de paquets avec `pip`, par exemple :
+Vous pouvez ajouter les paquets dont votre application a besoin avec :
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
-/// info
+/// note | Remarque
 
-Il existe d'autres formats et outils pour définir et installer des dépendances de paquets.
+Le Dockerfile ci-dessous utilise `pip` à l'intérieur du conteneur. Vous pouvez exporter les dépendances verrouillées de votre projet uv vers le format `requirements.txt` qu'il attend :
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+Le `requirements.txt` généré est un export pour la construction du conteneur. Continuez à gérer les dépendances avec `uv add` et régénérez-le lorsque `uv.lock` change.
 
 ///
 
@@ -232,7 +228,7 @@ Passez en revue ce que fait chaque ligne en cliquant sur chaque bulle numéroté
 
 /// warning | Alertes
 
-Vous devez vous assurer d'utiliser **toujours** la **forme exec** de l'instruction `CMD`, comme expliqué ci-dessous.
+Vous devez **toujours** utiliser la **forme exec** de l'instruction `CMD`, comme expliqué ci-dessous.
 
 ///
 
@@ -254,7 +250,7 @@ CMD ["fastapi", "run", "app/main.py", "--port", "80"]
 CMD fastapi run app/main.py --port 80
 ```
 
-Assurez-vous d'utiliser toujours la forme **exec** pour garantir que FastAPI peut s'arrêter proprement et que les [événements de cycle de vie](../advanced/events.md) sont déclenchés.
+Vous devez toujours utiliser la forme **exec** pour garantir que FastAPI peut s'arrêter proprement et que les [événements de cycle de vie](../advanced/events.md) sont déclenchés.
 
 Vous pouvez en lire davantage dans la [documentation Docker sur les formes shell et exec](https://docs.docker.com/reference/dockerfile/#shell-and-exec-form).
 
@@ -372,7 +368,7 @@ Vous verrez la documentation interactive automatique de l'API (fournie par [Swag
 
 Et vous pouvez aussi aller sur [http://192.168.99.100/redoc](http://192.168.99.100/redoc) ou [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (ou équivalent, en utilisant votre hôte Docker).
 
-Vous verrez la documentation automatique alternative (fournie par [ReDoc](https://github.com/Rebilly/ReDoc)) :
+Vous verrez la documentation automatique alternative (fournie par [ReDoc](https://github.com/Redocly/redoc)) :
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -556,7 +552,7 @@ Si vous utilisez des conteneurs (par ex. Docker, Kubernetes), alors il existe de
 
 Si vous avez **plusieurs conteneurs**, probablement chacun exécutant un **seul processus** (par exemple, dans un cluster **Kubernetes**), alors vous voudrez probablement avoir un **conteneur séparé** effectuant le travail des **étapes préalables** dans un seul conteneur, exécutant un seul processus, **avant** d'exécuter les conteneurs worker répliqués.
 
-/// info
+/// note | Remarque
 
 Si vous utilisez Kubernetes, ce sera probablement un [Init Container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/).
 

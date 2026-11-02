@@ -8,12 +8,12 @@ Existem utilitários para configurá-lo facilmente que você pode usar diretamen
 
 ## Instalar dependências { #install-dependencies }
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e instalar `jinja2`:
+Adicione `jinja2` ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -24,22 +24,22 @@ $ pip install jinja2
 
 * Importe `Jinja2Templates`.
 * Crie um objeto `templates` que você possa reutilizar posteriormente.
-* Declare um parâmetro `Request` no *path operation* que retornará um template.
-* Use o `templates` que você criou para renderizar e retornar uma `TemplateResponse`, passe o nome do template, o objeto `request` e um dicionário "context" com pares chave-valor a serem usados dentro do template do Jinja2.
+* Declare um parâmetro `Request` na *operação de rota* que retornará um template.
+* Use o `templates` que você criou para renderizar e retornar uma `TemplateResponse`, passe o nome do template, o objeto request e um dicionário "context" com pares chave-valor a serem usados dentro do template do Jinja2.
 
 {* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
 
 /// note | Nota
 
-Antes do FastAPI 0.108.0, Starlette 0.29.0, `name` era o primeiro parâmetro.
+Antes do FastAPI 0.108.0, Starlette 0.29.0, o `name` era o primeiro parâmetro.
 
-Além disso, em versões anteriores, o objeto `request` era passado como parte dos pares chave-valor no "context" dict para o Jinja2.
+Além disso, antes disso, em versões anteriores, o objeto `request` era passado como parte dos pares chave-valor no context para o Jinja2.
 
 ///
 
 /// tip | Dica
 
-Ao declarar `response_class=HTMLResponse`, a documentação entenderá que a resposta será HTML.
+Ao declarar `response_class=HTMLResponse`, a interface da documentação poderá saber que a resposta será HTML.
 
 ///
 
@@ -53,7 +53,7 @@ Você também poderia usar `from starlette.templating import Jinja2Templates`.
 
 ## Escrevendo templates { #writing-templates }
 
-Então você pode escrever um template em `templates/item.html`, por exemplo:
+Então você pode escrever um template em `templates/item.html` com, por exemplo:
 
 ```jinja hl_lines="7"
 {!../../docs_src/templates/templates/item.html!}
@@ -77,7 +77,7 @@ Item ID: {{ id }}
 {"id": id}
 ```
 
-Por exemplo, dado um ID de valor `42`, aparecerá:
+Por exemplo, com um ID de `42`, isso renderizará:
 
 ```html
 Item ID: 42
@@ -85,7 +85,7 @@ Item ID: 42
 
 ### Argumentos do `url_for` no template { #template-url-for-arguments }
 
-Você também pode usar `url_for()` dentro do template, ele recebe como argumentos os mesmos argumentos que seriam usados pela sua *path operation function*.
+Você também pode usar `url_for()` dentro do template, ele recebe como argumentos os mesmos argumentos que seriam usados pela sua *função de operação de rota*.
 
 Logo, a seção com:
 
@@ -97,7 +97,7 @@ Logo, a seção com:
 
 {% endraw %}
 
-...irá gerar um link para a mesma URL que será tratada pela *path operation function* `read_item(id=id)`.
+...irá gerar um link para a mesma URL que será tratada pela *função de operação de rota* `read_item(id=id)`.
 
 Por exemplo, com um ID de `42`, isso renderizará:
 
@@ -123,4 +123,4 @@ E como você está usando `StaticFiles`, este arquivo CSS será automaticamente 
 
 ## Mais detalhes { #more-details }
 
-Para obter mais detalhes, incluindo como testar templates, consulte a [documentação da Starlette sobre templates](https://www.starlette.dev/templates/).
+Para obter mais detalhes, incluindo como testar templates, consulte a [documentação da Starlette sobre templates](https://starlette.dev/templates/).

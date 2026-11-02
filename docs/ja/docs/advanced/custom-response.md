@@ -41,7 +41,7 @@ FastAPI はデフォルトでJSONレスポンスを返します。
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info | 情報
+/// note | 備考
 
 パラメータ `response_class` は、レスポンスの「メディアタイプ」を定義するためにも使用されます。
 
@@ -65,7 +65,7 @@ FastAPI はデフォルトでJSONレスポンスを返します。
 
 ///
 
-/// info | 情報
+/// note | 備考
 
 もちろん、実際の `Content-Type` ヘッダーやステータスコードなどは、返した `Response` オブジェクトに由来します。
 

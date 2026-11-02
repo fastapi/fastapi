@@ -1,5 +1,6 @@
 # 查询参数 { #query-parameters }
 
+
 声明的参数不是路径参数时，路径操作函数会把该参数自动解释为“查询”参数。
 
 {* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
@@ -65,7 +66,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 本例中，查询参数 `q` 是可选的，默认值为 `None`。
 
-/// check | 检查
+/// tip | 提示
 
 注意，**FastAPI** 可以识别出 `item_id` 是路径参数，`q` 不是路径参数，而是查询参数。
 

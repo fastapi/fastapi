@@ -76,6 +76,7 @@ app = FastAPI()
 class PNGStreamingResponse(StreamingResponse):
     media_type = "image/png"
 
+
 @app.get("/image", response_class=PNGStreamingResponse)
 def stream_image_no_async_no_annotation():
     with read_image() as image_file:

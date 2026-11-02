@@ -6,12 +6,18 @@ El archivo FastAPI más simple podría verse así:
 
 Copia eso en un archivo `main.py`.
 
+/// tip | Consejo
+
+FastAPI tiene una [extensión oficial para VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (y Cursor), que proporciona muchas funcionalidades, incluyendo un explorador de path operations, búsqueda de path operations, navegación CodeLens en tests (saltar a la definición desde los tests), y despliegue y logs de FastAPI Cloud, todo desde tu editor.
+
+///
+
 Ejecuta el servidor en vivo:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ Verás la documentación interactiva automática de la API (proporcionada por [S
 
 Y ahora, ve a [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Rebilly/ReDoc)):
+Verás la documentación alternativa automática (proporcionada por [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -90,13 +96,13 @@ Verás la documentación alternativa automática (proporcionada por [ReDoc](http
 
 Un "esquema" es una definición o descripción de algo. No el código que lo implementa, sino solo una descripción abstracta.
 
-#### Esquema de la API { #api-schema }
+#### "Esquema" de la API { #api-schema }
 
 En este caso, [OpenAPI](https://github.com/OAI/OpenAPI-Specification) es una especificación que dicta cómo definir un esquema de tu API.
 
 Esta definición de esquema incluye los paths de tu API, los posibles parámetros que toman, etc.
 
-#### Esquema de Datos { #data-schema }
+#### "Esquema" de datos { #data-schema }
 
 El término "esquema" también podría referirse a la forma de algunos datos, como el contenido JSON.
 
@@ -180,42 +186,32 @@ lo cual sería equivalente a:
 from backend.main import app
 ```
 
-### `fastapi dev` con path { #fastapi-dev-with-path }
+### `fastapi dev` con path o con la opción de CLI `--entrypoint` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 También puedes pasar el path del archivo al comando `fastapi dev`, y adivinará el objeto app de FastAPI que debe usar:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-Pero tendrías que recordar pasar el path correcto cada vez que llames al comando `fastapi`.
+O, también puedes pasar la opción `--entrypoint` al comando `fastapi dev`:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+Pero tendrías que recordar pasar el path\entrypoint correcto cada vez que llames al comando `fastapi`.
 
 Además, otras herramientas podrían no ser capaces de encontrarlo, por ejemplo la [Extensión de VS Code](../editor-support.md) o [FastAPI Cloud](https://fastapicloud.com), así que se recomienda usar el `entrypoint` en `pyproject.toml`.
 
 ### Despliega tu app (opcional) { #deploy-your-app-optional }
 
-Opcionalmente puedes desplegar tu app de FastAPI en [FastAPI Cloud](https://fastapicloud.com), ve y únete a la lista de espera si aún no lo has hecho. 🚀
-
-Si ya tienes una cuenta de **FastAPI Cloud** (te invitamos desde la lista de espera 😉), puedes desplegar tu aplicación con un solo comando.
-
-Antes de desplegar, asegúrate de haber iniciado sesión:
+Opcionalmente puedes desplegar tu app de FastAPI en [FastAPI Cloud](https://fastapicloud.com) con un solo comando. 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-Luego despliega tu app:
-
-<div class="termy">
-
-```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -225,6 +221,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+La CLI detectará automáticamente tu aplicación de FastAPI y la desplegará en la nube. Si no has iniciado sesión, se abrirá tu navegador para completar el proceso de autenticación.
 
 ¡Eso es todo! Ahora puedes acceder a tu app en esa URL. ✨
 
@@ -240,7 +238,7 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` es una clase que hereda directamente de `Starlette`.
 
-Puedes usar toda la funcionalidad de [Starlette](https://www.starlette.dev/) con `FastAPI` también.
+Puedes usar toda la funcionalidad de [Starlette](https://starlette.dev/) con `FastAPI` también.
 
 ///
 
@@ -270,7 +268,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | Información
+/// note | Nota
 
 Un "path" también es comúnmente llamado "endpoint" o "ruta".
 
@@ -309,7 +307,7 @@ Normalmente usas:
 * `PUT`: para actualizar datos.
 * `DELETE`: para eliminar datos.
 
-Así que, en OpenAPI, cada uno de los métodos HTTP se llama una "operation".
+Así que, en OpenAPI, cada uno de los métodos HTTP se llama una "operación".
 
 Vamos a llamarlas "**operaciones**" también.
 
@@ -322,7 +320,7 @@ El `@app.get("/")` le dice a **FastAPI** que la función justo debajo se encarga
 * el path `/`
 * usando una <dfn title="un método HTTP GET"><code>get</code> operación</dfn>
 
-/// info | Información sobre `@decorator`
+/// note | Información sobre `@decorator`
 
 Esa sintaxis `@algo` en Python se llama un "decorador".
 

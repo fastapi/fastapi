@@ -66,7 +66,7 @@
 
 그리고 이 두 가지, `scope`와 `receive`가 새로운 `Request` 인스턴스를 만드는 데 필요한 것들입니다.
 
-`Request`에 대해 더 알아보려면 [Starlette의 Requests 문서](https://www.starlette.dev/requests/)를 확인하세요.
+`Request`에 대해 더 알아보려면 [Starlette의 Requests 문서](https://starlette.dev/requests/)를 확인하세요.
 
 ///
 

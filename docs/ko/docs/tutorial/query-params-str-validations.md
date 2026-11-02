@@ -29,7 +29,7 @@ FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압�
 
 {* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
 
-/// info | 정보
+/// note | 참고
 
 FastAPI는 0.95.0 버전에서 `Annotated` 지원을 추가했고(그리고 이를 권장하기 시작했습니다).
 
@@ -370,11 +370,11 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 그런 경우에는 일반적인 검증(예: 값이 `str`인지 검증한 뒤) 이후에 적용되는 **커스텀 검증 함수**를 사용할 수 있습니다.
 
-`Annotated` 안에서 [Pydantic의 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator)를 사용하면 이를 구현할 수 있습니다.
+`Annotated` 안에서 [Pydantic의 `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator)를 사용하면 이를 구현할 수 있습니다.
 
 /// tip | 팁
 
-Pydantic에는 [BeforeValidator](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator)와 같은 다른 것들도 있습니다. 🤓
+Pydantic에는 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator)와 같은 다른 것들도 있습니다. 🤓
 
 ///
 
@@ -382,7 +382,7 @@ Pydantic에는 [BeforeValidator](https://docs.pydantic.dev/latest/concepts/valid
 
 {* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
 
-/// info | 정보
+/// note | 참고
 
 이는 Pydantic 2 이상 버전에서 사용할 수 있습니다. 😎
 

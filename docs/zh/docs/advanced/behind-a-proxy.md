@@ -33,7 +33,7 @@
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -91,9 +91,9 @@ sequenceDiagram
 
 这些请求头保留了原始请求中否则会丢失的信息：
 
-- X-Forwarded-For：原始客户端的 IP 地址
-- X-Forwarded-Proto：原始协议（`https`）
-- X-Forwarded-Host：原始主机（`mysuperapp.com`）
+* **X-Forwarded-For**：原始客户端的 IP 地址
+* **X-Forwarded-Proto**：原始协议（`https`）
+* **X-Forwarded-Host**：原始主机（`mysuperapp.com`）
 
 当 **FastAPI CLI** 配置了 `--forwarded-allow-ips` 后，它会信任并使用这些请求头，例如用于在重定向中生成正确的 URL。
 
@@ -149,14 +149,14 @@ IP `0.0.0.0` 通常表示程序监听该机器/服务器上的所有可用 IP。
 ```JSON hl_lines="4-8"
 {
     "openapi": "3.1.0",
-    // More stuff here
+    // 这里还有更多内容
     "servers": [
         {
             "url": "/api/v1"
         }
     ],
     "paths": {
-            // More stuff here
+            // 这里还有更多内容
     }
 }
 ```
@@ -170,7 +170,7 @@ IP `0.0.0.0` 通常表示程序监听该机器/服务器上的所有可用 IP。
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ ASGI 规范为这种用例定义了 `root_path`。
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ Uvicorn 会期望代理以 `http://127.0.0.1:8000/app` 访问 Uvicorn，而在�
 
 你可以很容易地使用 [Traefik](https://docs.traefik.io/) 在本地运行一个移除路径前缀的实验。
 
-[下载 Traefik](https://github.com/containous/traefik/releases)，它是一个单独的二进制文件，你可以解压压缩包并直接在终端中运行。
+[下载 Traefik](https://github.com/traefik/traefik/releases)，它是一个单独的二进制文件，你可以解压压缩包并直接在终端中运行。
 
 然后创建一个 `traefik.toml` 文件，内容如下：
 
@@ -321,7 +321,7 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -407,7 +407,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 ```JSON hl_lines="5-7"
 {
     "openapi": "3.1.0",
-    // More stuff here
+    // 这里还有更多内容
     "servers": [
         {
             "url": "/api/v1"
@@ -422,7 +422,7 @@ $ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
         }
     ],
     "paths": {
-            // More stuff here
+            // 这里还有更多内容
     }
 }
 ```

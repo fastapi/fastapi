@@ -6,9 +6,9 @@ Bunun için `WSGIMiddleware`'ı kullanabilir ve bunu WSGI uygulamanızı (örne�
 
 ## `WSGIMiddleware` Kullanımı { #using-wsgimiddleware }
 
-/// info
+/// note | Not
 
-Bunun için `a2wsgi` kurulmalıdır; örneğin `pip install a2wsgi` ile.
+Bunun için projenize `a2wsgi` eklemeniz gerekir; örneğin `uv add a2wsgi` ile.
 
 ///
 
@@ -20,7 +20,7 @@ Ve sonra bunu bir path'in altına mount edin.
 
 {* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
 
-/// note
+/// note | Not
 
 Önceden, `fastapi.middleware.wsgi` içindeki `WSGIMiddleware`'ın kullanılması öneriliyordu, ancak artık kullanımdan kaldırıldı.
 

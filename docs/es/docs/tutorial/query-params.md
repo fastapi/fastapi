@@ -65,7 +65,7 @@ De la misma manera, puedes declarar parámetros de query opcionales, establecien
 
 En este caso, el parámetro de función `q` será opcional y será `None` por defecto.
 
-/// check | Revisa
+/// tip | Consejo
 
 Además, nota que **FastAPI** es lo suficientemente inteligente para notar que el parámetro de path `item_id` es un parámetro de path y `q` no lo es, por lo tanto, es un parámetro de query.
 
@@ -108,6 +108,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 ```
 
 o cualquier otra variación (mayúsculas, primera letra en mayúscula, etc.), tu función verá el parámetro `short` con un valor `bool` de `True`. De lo contrario, será `False`.
+
 
 ## Múltiples parámetros de path y de query { #multiple-path-and-query-parameters }
 

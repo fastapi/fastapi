@@ -16,17 +16,11 @@ Vous devez vous assurer qu’il est unique pour chaque opération.
 
 ### Utiliser le nom de la fonction de chemin d’accès comme operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-Si vous souhaitez utiliser les noms de fonction de vos API comme `operationId`, vous pouvez les parcourir tous et remplacer l’`operation_id` de chaque chemin d’accès en utilisant leur `APIRoute.name`.
+Si vous souhaitez utiliser les noms de fonction de vos API comme `operationId`, vous pouvez passer une fonction personnalisée `generate_unique_id_function` à `FastAPI`.
 
-Vous devez le faire après avoir ajouté tous vos chemins d’accès.
+Cette fonction reçoit chaque `APIRoute` et renvoie l’`operationId` à utiliser pour ce chemin d’accès.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip | Astuce
-
-Si vous appelez manuellement `app.openapi()`, vous devez mettre à jour les `operationId` avant cela.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning | Alertes
 

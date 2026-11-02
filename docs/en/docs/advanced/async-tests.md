@@ -45,7 +45,7 @@ You can run your tests as usual via:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ---> 100%
 ```
@@ -71,7 +71,7 @@ Then we can create an `AsyncClient` with the app, and send async requests to it,
 This is the equivalent to:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...that we used to make our requests with the `TestClient`.

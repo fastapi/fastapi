@@ -24,7 +24,7 @@ Pero recuerda que cuando importas `Query`, `Path`, `Header`, y otros de `fastapi
 
 ///
 
-/// info | Información
+/// note | Nota
 
 Para declarar headers, necesitas usar `Header`, porque de otra forma los parámetros serían interpretados como parámetros de query.
 
@@ -58,7 +58,7 @@ Antes de establecer `convert_underscores` a `False`, ten en cuenta que algunos p
 
 Es posible recibir headers duplicados. Eso significa, el mismo header con múltiples valores.
 
-Puedes definir esos casos usando una lista en la declaración del tipo.
+Puedes definir esos casos usando una list en la declaración del tipo.
 
 Recibirás todos los valores del header duplicado como una `list` de Python.
 

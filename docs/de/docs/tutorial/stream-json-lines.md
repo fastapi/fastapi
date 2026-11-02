@@ -2,7 +2,7 @@
 
 Sie könnten eine Folge von Daten haben, die Sie in einem „Stream“ senden möchten, das können Sie mit **JSON Lines** tun.
 
-/// info | Info
+/// note | Hinweis
 
 Hinzugefügt in FastAPI 0.134.0.
 
@@ -48,7 +48,7 @@ Eine Response hätte einen Content-Type von `application/jsonl` (anstelle von `a
 
 Es ist einem JSON-Array (entspricht einer Python-Liste) sehr ähnlich, aber anstatt in `[]` eingeschlossen zu sein und `,` zwischen den Elementen zu haben, gibt es hier **ein JSON-Objekt pro Zeile**, sie sind durch ein Zeilenumbruchzeichen getrennt.
 
-/// info | Info
+/// note | Hinweis
 
 Der wichtige Punkt ist, dass Ihre App in der Lage ist, jede Zeile der Reihe nach zu erzeugen, während der Client die vorherigen Zeilen konsumiert.
 

@@ -57,6 +57,42 @@ They will receive an **error** response telling them that the query parameter `t
 }
 ```
 
+## Combine Parameter Models { #combine-parameter-models }
+
+You can declare multiple query parameter models, and combine them with individual query parameters or dependencies.
+
+{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+
+The request parameters stay at the same level.
+
+```http
+https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
+```
+
+There are no `pagination` or `filters` keys in the query string. Each model validates the query parameters independently, with its own defaults, field validators, and model validators. The same applies when the models or individual parameters are declared in dependencies.
+
+If models share a parameter name or alias, each model validates that request parameter independently. Use distinct names or aliases for independent values. OpenAPI lists a shared parameter once, as it does for parameters shared with dependencies, so shared declarations should describe the same type and constraints.
+
+Each model's `extra` configuration applies to all query parameters, including those declared in other models or dependencies. With `extra="forbid"`, any parameter outside that model is rejected. With `extra="allow"`, those parameters are included as model extras.
+
+This also works for `Header` and `Cookie` models.
+
+## Optional Query Parameter Models { #optional-query-parameter-models }
+
+Declare a query parameter model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+
+If neither `start` nor `end` is sent, `date_range` is `None`. If either is sent, FastAPI validates the model and requires both fields.
+
+Using `| None` without a default still makes the parameter required.
+
+Extra parameters follow the model's `extra` configuration. Ignored extras do not make the model present.
+
+OpenAPI lists the group's fields individually and marks them as optional.
+
+You can also declare optional [header parameter models](header-param-models.md#optional-header-parameter-models) and [cookie parameter models](cookie-param-models.md#optional-cookie-parameter-models).
+
 ## Summary { #summary }
 
 You can use **Pydantic models** to declare **query parameters** in **FastAPI**. 😎

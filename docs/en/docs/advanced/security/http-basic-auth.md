@@ -45,7 +45,9 @@ Then we can use `secrets.compare_digest()` to ensure that `credentials.username`
 This would be similar to:
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # Return some error
     ...
 ```

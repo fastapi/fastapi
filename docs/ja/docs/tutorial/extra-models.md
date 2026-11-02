@@ -166,7 +166,7 @@ OpenAPIでは`anyOf`で定義されます。
 
 /// note | 備考
 
-[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions)を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
+[`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/)を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
 
 ///
 
@@ -208,4 +208,4 @@ some_variable: PlaneItem | CarItem
 
 複数のPydanticモデルを使用し、ケースごとに自由に継承します。
 
-エンティティが異なる「状態」を持たなければならない場合は、エンティティごとに単一のデータモデルを持つ必要はありません。`password`、`password_hash`、パスワードなしを含む状態を持つユーザー「エンティティ」の場合と同様です。
+エンティティが異なる「状態」を持たなければならない場合は、エンティティごとに単一のデータモデルを持つ必要はありません。`password`、`password_hash`、パスワードなしを含む状態を持つ**ユーザー**「エンティティ」の場合と同様です。

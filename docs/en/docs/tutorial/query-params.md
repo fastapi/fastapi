@@ -21,7 +21,7 @@ As they are part of the URL, they are "naturally" strings.
 
 But when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it.
 
-All the same process that applied for path parameters also applies for query parameters:
+All the same processes that apply to path parameters also apply to query parameters:
 
 * Editor support (obviously)
 * Data <dfn title="converting the string that comes from an HTTP request into Python data">"parsing"</dfn>
@@ -65,7 +65,7 @@ The same way, you can declare optional query parameters, by setting their defaul
 
 In this case, the function parameter `q` will be optional, and will be `None` by default.
 
-/// check
+/// tip
 
 Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
 
@@ -107,7 +107,13 @@ or
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
+or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`.
+
+Values such as `0`, `false`, `off`, and `no` (including case variations) are converted to `False`.
+
+If `short` is omitted, **FastAPI** uses its default value, which is `False` in this example.
+
+An empty value (`?short=`) or an unrecognized value (for example, `?short=maybe`) produces a `422` validation error.
 
 
 ## Multiple path and query parameters { #multiple-path-and-query-parameters }

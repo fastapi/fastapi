@@ -1,26 +1,26 @@
-# Datos de formulario { #form-data }
+# Form Data { #form-data }
 
 Cuando necesitas recibir campos de formulario en lugar de JSON, puedes usar `Form`.
 
-/// info | Información
+/// note | Nota
 
 Para usar formularios, primero instala [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo, y luego instalarlo, por ejemplo:
+Añádelo a tu proyecto:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
 
-## Importar `Form` { #import-form }
+## Importa `Form` { #import-form }
 
-Importar `Form` desde `fastapi`:
+Importa `Form` desde `fastapi`:
 
 {* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
 
-## Definir parámetros de `Form` { #define-form-parameters }
+## Define parámetros de `Form` { #define-form-parameters }
 
 Crea parámetros de formulario de la misma manera que lo harías para `Body` o `Query`:
 
@@ -32,7 +32,7 @@ La <dfn title="especificación">especificación</dfn> requiere que los campos se
 
 Con `Form` puedes declarar las mismas configuraciones que con `Body` (y `Query`, `Path`, `Cookie`), incluyendo validación, ejemplos, un alias (por ejemplo, `user-name` en lugar de `username`), etc.
 
-/// info | Información
+/// note | Nota
 
 `Form` es una clase que hereda directamente de `Body`.
 
@@ -70,4 +70,4 @@ Esto no es una limitación de **FastAPI**, es parte del protocolo HTTP.
 
 ## Recapitulación { #recap }
 
-Usa `Form` para declarar parámetros de entrada de datos de formulario.
+Usa `Form` para declarar parámetros de entrada de form data.

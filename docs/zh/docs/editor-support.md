@@ -14,7 +14,7 @@
 
 ## 功能 { #features }
 
-- **Path Operation 资源管理器** - 侧边栏树状视图展示应用中的所有 <dfn title="路由，端点">*路径操作*</dfn>。点击可跳转至任一路由或 APIRouter 的定义。
+- **Path Operation 资源管理器** - 侧边栏树状视图展示应用中的所有 <dfn title="路由，端点">*路径操作*</dfn>。点击可跳转至任一路由或 router 的定义。
 - **路由搜索** - 使用 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>（macOS 上为 <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>）按路径、方法或名称进行搜索。
 - **CodeLens 导航** - 测试客户端调用（例如 `client.get('/items')`）上方的可点击链接，可跳转到匹配的*路径操作*，在测试与实现之间快速往返。
 - **部署到 FastAPI Cloud** - 一键将你的应用部署到 [FastAPI Cloud](https://fastapicloud.com/)。

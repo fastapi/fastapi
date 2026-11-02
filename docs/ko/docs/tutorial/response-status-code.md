@@ -1,5 +1,6 @@
 # 응답 상태 코드 { #response-status-code }
 
+
 응답 모델을 지정하는 것과 같은 방법으로, 어떤 *경로 처리*에서든 `status_code` 매개변수를 사용하여 응답에 사용할 HTTP 상태 코드를 선언할 수도 있습니다:
 
 * `@app.get()`
@@ -12,13 +13,13 @@
 
 /// note | 참고
 
-`status_code` 는 "데코레이터" 메소드(`get`, `post` 등)의 매개변수입니다. 모든 매개변수들과 본문처럼 *경로 처리 함수*가 아닙니다.
+`status_code` 는 "데코레이터" 메소드(`get`, `post` 등)의 매개변수입니다. 다른 매개변수나 본문과 달리, *경로 처리 함수*의 매개변수가 아닙니다.
 
 ///
 
 `status_code` 매개변수는 HTTP 상태 코드를 숫자로 입력받습니다.
 
-/// info | 정보
+/// note | 참고
 
 `status_code` 는 파이썬의 [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) 와 같은 `IntEnum` 을 입력받을 수도 있습니다.
 

@@ -6,7 +6,7 @@ Diese Proxys könnten HTTPS-Zertifikate und andere Dinge handhaben.
 
 ## Proxy-<abbr title="weitergeleitete Header">Forwarded-Header</abbr> { #proxy-forwarded-headers }
 
-Ein **Proxy** vor Ihrer Anwendung würde normalerweise einige Header on-the-fly setzen, bevor er die Requests an den **Server** sendet, um den Server wissen zu lassen, dass der Request vom Proxy **weitergeleitet** wurde, einschließlich der ursprünglichen (öffentlichen) URL, inklusive der Domain, dass HTTPS verwendet wird, usw.
+Ein **Proxy** vor Ihrer Anwendung würde normalerweise einige Header on-the-fly setzen, bevor er die Requests an Ihren **Server** sendet, um den Server wissen zu lassen, dass der Request vom Proxy **weitergeleitet** wurde, einschließlich der ursprünglichen (öffentlichen) URL, inklusive der Domain, dass HTTPS verwendet wird, usw.
 
 Das **Server**-Programm (z. B. **Uvicorn** via **FastAPI CLI**) ist in der Lage, diese Header zu interpretieren und diese Information dann an Ihre Anwendung weiterzugeben.
 
@@ -33,7 +33,7 @@ Wenn Ihr **Server** hinter einem vertrauenswürdigen **Proxy** sitzt und nur der
 <div class="termy">
 
 ```console
-$ fastapi run --forwarded-allow-ips="*"
+$ uv run fastapi run --forwarded-allow-ips="*"
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -82,7 +82,7 @@ sequenceDiagram
 
     Note over Server: Server interpretiert die Header<br/>(wenn --forwarded-allow-ips gesetzt ist)
 
-    Server->>Proxy: HTTP-Response<br/>mit correkten HTTPS-URLs
+    Server->>Proxy: HTTP-Response<br/>mit korrekten HTTPS-URLs
 
     Proxy->>Client: HTTPS-Response
 ```
@@ -170,7 +170,7 @@ Um dies zu erreichen, können Sie die Kommandozeilenoption `--root-path` wie fol
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -200,7 +200,7 @@ Wenn Sie Uvicorn dann starten mit:
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -253,7 +253,7 @@ In einem solchen Fall (ohne ein abgetrenntes Pfadpräfix) würde der Proxy auf e
 
 Sie können das Experiment mit einem abgetrennten Pfadpräfix einfach lokal ausführen, indem Sie [Traefik](https://docs.traefik.io/) verwenden.
 
-[Laden Sie Traefik herunter](https://github.com/containous/traefik/releases), es ist eine einzelne Binärdatei, Sie können die komprimierte Datei extrahieren und sie direkt vom Terminal aus ausführen.
+[Laden Sie Traefik herunter](https://github.com/traefik/traefik/releases), es ist eine einzelne Binärdatei, Sie können die komprimierte Datei extrahieren und sie direkt vom Terminal aus ausführen.
 
 Dann erstellen Sie eine Datei `traefik.toml` mit:
 
@@ -316,12 +316,12 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 
 </div>
 
-Und jetzt starten Sie Ihre Anwendung mit Uvicorn, indem Sie die Option `--root-path` verwenden:
+Und jetzt starten Sie Ihre Anwendung, indem Sie die Option `--root-path` verwenden:
 
 <div class="termy">
 
 ```console
-$ fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
+$ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -461,6 +461,6 @@ Dann wird er nicht in das OpenAPI-Schema aufgenommen.
 
 ## Mounten einer Unteranwendung { #mounting-a-sub-application }
 
-Wenn Sie gleichzeitig eine Unteranwendung mounten (wie beschrieben in [Unteranwendungen – Mounts](sub-applications.md)) und einen Proxy mit `root_path` verwenden wollen, können Sie das normal tun, wie Sie es erwarten würden.
+Wenn Sie eine Unteranwendung mounten müssen (wie beschrieben in [Unteranwendungen – Mounts](sub-applications.md)) und dabei auch einen Proxy mit `root_path` verwenden, können Sie das normal tun, wie Sie es erwarten würden.
 
 FastAPI verwendet intern den `root_path` auf intelligente Weise, sodass es einfach funktioniert. ✨

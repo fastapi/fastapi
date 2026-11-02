@@ -89,7 +89,7 @@ Como el tiempo de ejecución se consume principalmente esperando operaciones de 
 
 Se llama "asíncrono" porque la computadora / programa no tiene que estar "sincronizado" con la tarea lenta, esperando el momento exacto en que la tarea termine, sin hacer nada, para poder tomar el resultado de la tarea y continuar el trabajo.
 
-En lugar de eso, al ser un sistema "asíncrono", una vez terminado, la tarea puede esperar un poco en la cola (algunos microsegundos) para que la computadora / programa termine lo que salió a hacer, y luego regrese para tomar los resultados y continuar trabajando con ellos.
+En lugar de eso, al ser un sistema "asíncrono", una vez terminado, la tarea puede esperar un poquito en la cola (algunos microsegundos) para que la computadora / programa termine lo que salió a hacer, y luego regrese para tomar los resultados y continuar trabajando con ellos.
 
 Para el "sincrónico" (contrario al "asíncrono") comúnmente también usan el término "secuencial", porque la computadora / programa sigue todos los pasos en secuencia antes de cambiar a una tarea diferente, incluso si esos pasos implican esperar.
 
@@ -139,7 +139,7 @@ Tú y tu crush comen las hamburguesas y pasan un buen rato. ✨
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-07.png" class="illustration">
 
-/// info | Información
+/// note | Nota
 
 Hermosas ilustraciones de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -151,7 +151,7 @@ Imagina que eres la computadora / programa 🤖 en esa historia.
 
 Mientras estás en la fila, estás inactivo 😴, esperando tu turno, sin hacer nada muy "productivo". Pero la fila es rápida porque el cajero solo está tomando los pedidos (no preparándolos), así que está bien.
 
-Luego, cuando es tu turno, haces un trabajo realmente "productivo", procesas el menú, decides lo que quieres, obtienes la elección de tu crush, pagas, verificas que das el billete o tarjeta correctos, verificas que te cobren correctamente, verificas que el pedido tenga los artículos correctos, etc.
+Luego, cuando es tu turno, haces un trabajo realmente "productivo", procesas el menú, decides lo que quieres, obtienes la elección de tu crush, pagas, revisas que das el billete o tarjeta correctos, revisas que te cobren correctamente, revisas que el pedido tenga los artículos correctos, etc.
 
 Pero luego, aunque todavía no tienes tus hamburguesas, tu trabajo con el cajero está "en pausa" ⏸, porque tienes que esperar 🕙 a que tus hamburguesas estén listas.
 
@@ -205,7 +205,7 @@ Simplemente las comes, y has terminado. ⏹
 
 No hubo mucho hablar o coquetear ya que la mayor parte del tiempo se dedicó a esperar 🕙 frente al mostrador. 😞
 
-/// info | Información
+/// note | Nota
 
 Hermosas ilustraciones de [Ketrina Thompson](https://www.instagram.com/ketrinadrawsalot). 🎨
 
@@ -387,7 +387,7 @@ En versiones previas de NodeJS / JavaScript en el Navegador, habrías usado "cal
 
 ## Coroutines { #coroutines }
 
-**Coroutines** es simplemente el término muy elegante para la cosa que devuelve una función `async def`. Python sabe que es algo parecido a una función, que puede comenzar y que terminará en algún momento, pero que podría pausar ⏸ internamente también, siempre que haya un `await` dentro de él.
+**Coroutine** es simplemente el término muy elegante para la cosa que devuelve una función `async def`. Python sabe que es algo parecido a una función, que puede comenzar y que terminará en algún momento, pero que podría pausar ⏸ internamente también, siempre que haya un `await` dentro de él.
 
 Pero toda esta funcionalidad de usar código asíncrono con `async` y `await` a menudo se resume como utilizar "coroutines". Es comparable a la funcionalidad clave principal de Go, las "Goroutines".
 
@@ -413,11 +413,11 @@ Si tienes bastante conocimiento técnico (coroutines, hilos, bloqueo, etc.) y ti
 
 ///
 
-### Funciones de *path operation* { #path-operation-functions }
+### Path operation functions { #path-operation-functions }
 
 Cuando declaras una *path operation function* con `def` normal en lugar de `async def`, se ejecuta en un threadpool externo que luego es esperado, en lugar de ser llamado directamente (ya que bloquearía el servidor).
 
-Si vienes de otro framework async que no funciona de la manera descrita anteriormente y estás acostumbrado a definir funciones de *path operation* solo de cómputo trivial con `def` normal para una pequeña ganancia de rendimiento (alrededor de 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus *path operation functions* usen código que realice <abbr title="Input/Output - Entrada/Salida: lectura o escritura en disco, comunicaciones de red.">I/O</abbr> de bloqueo.
+Si vienes de otro framework async que no funciona de la manera descrita anteriormente y estás acostumbrado a definir *path operation functions* solo de cómputo trivial con `def` normal para una pequeña ganancia de rendimiento (alrededor de 100 nanosegundos), ten en cuenta que en **FastAPI** el efecto sería bastante opuesto. En estos casos, es mejor usar `async def` a menos que tus *path operation functions* usen código que realice <abbr title="Input/Output - Entrada/Salida: lectura o escritura en disco, comunicaciones de red.">I/O</abbr> de bloqueo.
 
 Aun así, en ambas situaciones, es probable que **FastAPI** [siga siendo más rápida](index.md#performance) que (o al menos comparable a) tu framework anterior.
 

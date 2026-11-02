@@ -35,7 +35,7 @@
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info
+/// note
 
 注意，在路徑操作函式中我們只宣告了一個相依項 `query_or_cookie_extractor`。
 

@@ -26,7 +26,7 @@
 
 {* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
 
-/// tip
+/// tip | Порада
 
 Майте на увазі, що якщо ви повертаєте відповідь безпосередньо замість використання параметра `Response`, FastAPI поверне її напряму.
 
@@ -48,4 +48,4 @@
 
 ///
 
-Щоб побачити всі доступні параметри та опції, перегляньте [документацію в Starlette](https://www.starlette.dev/responses/#set-cookie).
+Щоб побачити всі доступні параметри та опції, перегляньте [документацію в Starlette](https://starlette.dev/responses/#set-cookie).

@@ -16,17 +16,11 @@ Você deveria ter certeza que ele é único para cada operação.
 
 ### Utilizando o nome da *função de operação de rota* como o operationId { #using-the-path-operation-function-name-as-the-operationid }
 
-Se você quiser utilizar o nome das funções da sua API como `operationId`s, você pode iterar sobre todos esses nomes e sobrescrever o `operation_id` em  cada *operação de rota* utilizando o `APIRoute.name` dela.
+Se você quiser utilizar os nomes das funções da sua API como `operationId`s, você pode passar uma `generate_unique_id_function` personalizada para o `FastAPI`.
 
-Você deveria fazer isso depois de adicionar todas as suas *operações de rota*.
+A função recebe cada `APIRoute` e retorna o `operationId` a ser usado para aquela operação de rota.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2, 12:21, 24] *}
-
-/// tip | Dica
-
-Se você chamar `app.openapi()` manualmente, você deveria atualizar os `operationId`s antes dessa chamada.
-
-///
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
 
 /// warning | Atenção
 

@@ -54,11 +54,11 @@ Alles auf eine Weise, die allen Entwicklern das beste Entwicklungserlebnis bot.
 
 ## Anforderungen { #requirements }
 
-Nachdem ich mehrere Alternativen getestet hatte, entschied ich, dass ich [**Pydantic**](https://docs.pydantic.dev/) wegen seiner Vorteile verwenden würde.
+Nachdem ich mehrere Alternativen getestet hatte, entschied ich, dass ich [**Pydantic**](https://pydantic.dev/docs/) wegen seiner Vorteile verwenden würde.
 
 Dann habe ich zu dessen Code beigetragen, um es vollständig mit JSON Schema kompatibel zu machen, und so verschiedene Möglichkeiten zum Definieren von einschränkenden Deklarationen (Constraints) zu unterstützen, und die Editorunterstützung (Typprüfungen, Codevervollständigung) zu verbessern, basierend auf den Tests in mehreren Editoren.
 
-Während der Entwicklung habe ich auch zu [**Starlette**](https://www.starlette.dev/) beigetragen, die andere Schlüsselanforderung.
+Während der Entwicklung habe ich auch zu [**Starlette**](https://starlette.dev/) beigetragen, die andere Schlüsselanforderung.
 
 ## Entwicklung { #development }
 

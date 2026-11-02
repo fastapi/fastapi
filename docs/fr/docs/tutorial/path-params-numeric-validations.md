@@ -8,7 +8,7 @@ Tout d'abord, importez `Path` de `fastapi`, et importez `Annotated` :
 
 {* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
 
-/// info
+/// note | Remarque
 
 FastAPI a ajouté le support pour `Annotated` (et a commencé à le recommander) dans la version 0.95.0.
 
@@ -131,7 +131,7 @@ Et vous pouvez également déclarer des validations numériques :
 * `lt` : `l`ess `t`han
 * `le` : `l`ess than or `e`qual
 
-/// info
+/// note | Remarque
 
 `Query`, `Path`, et d'autres classes que vous verrez plus tard sont des sous-classes d'une classe commune `Param`.
 

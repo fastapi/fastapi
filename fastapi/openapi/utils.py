@@ -3,6 +3,7 @@ import http.client
 import inspect
 import warnings
 from collections.abc import Sequence
+from dataclasses import dataclass, field
 from typing import Any, Literal, cast
 
 from fastapi import routing
@@ -15,12 +16,19 @@ from fastapi._compat import (
     lenient_issubclass,
 )
 from fastapi.datastructures import DefaultPlaceholder, _Unset
-from fastapi.dependencies.models import Dependant
+from fastapi.dependencies.models import (
+    Dependant,
+    _get_cache_key,
+    _get_oauth_scopes,
+    _get_security_scheme,
+    _is_security_scheme,
+    _UsesScopesCache,
+)
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
-    get_flat_dependant,
+    _get_param_aliases,
+    _get_param_model,
     get_flat_params,
-    get_validation_alias,
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import FastAPIDeprecationWarning
@@ -29,13 +37,12 @@ from fastapi.openapi.models import OpenAPI
 from fastapi.params import Body, ParamTypes
 from fastapi.responses import Response
 from fastapi.sse import _SSE_EVENT_SCHEMA
-from fastapi.types import ModelNameMap
+from fastapi.types import DependencyCacheKey, ModelNameMap
 from fastapi.utils import (
     deep_dict_update,
     generate_operation_id_for_path,
     is_body_allowed_for_status_code,
 )
-from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 
@@ -78,24 +85,69 @@ status_code_ranges: dict[str, str] = {
 }
 
 
-def get_openapi_security_definitions(
-    flat_dependant: Dependant,
+@dataclass
+class _OpenAPIDependencyData:
+    path_params: list[ModelField] = field(default_factory=list)
+    query_params: list[ModelField] = field(default_factory=list)
+    header_params: list[ModelField] = field(default_factory=list)
+    cookie_params: list[ModelField] = field(default_factory=list)
+    security_dependencies: list[tuple[Dependant, list[str]]] = field(
+        default_factory=list
+    )
+
+
+def _get_openapi_dependency_data(dependant: Dependant) -> _OpenAPIDependencyData:
+    dependency_data = _OpenAPIDependencyData()
+    visited: list[DependencyCacheKey] = []
+    uses_scopes_cache: _UsesScopesCache = {}
+    dependants: list[tuple[Dependant, list[str], bool]] = [(dependant, [], True)]
+    while dependants:
+        current_dependant, parent_oauth_scopes, is_root = dependants.pop()
+        cache_key = _get_cache_key(
+            dependant=current_dependant,
+            uses_scopes_cache=uses_scopes_cache,
+        )
+        if cache_key in visited:
+            continue
+        visited.append(cache_key)
+        dependency_data.path_params.extend(current_dependant.path_params)
+        dependency_data.query_params.extend(current_dependant.query_params)
+        dependency_data.header_params.extend(current_dependant.header_params)
+        dependency_data.cookie_params.extend(current_dependant.cookie_params)
+        oauth_scopes = parent_oauth_scopes.copy()
+        for scope in _get_oauth_scopes(dependant=current_dependant):
+            if scope not in oauth_scopes:
+                oauth_scopes.append(scope)
+        if not is_root and _is_security_scheme(dependant=current_dependant):
+            dependency_data.security_dependencies.append(
+                (current_dependant, oauth_scopes)
+            )
+        dependants.extend(
+            (sub_dependant, oauth_scopes, False)
+            for sub_dependant in reversed(current_dependant.dependencies)
+        )
+    return dependency_data
+
+
+def _get_openapi_security_definitions(
+    security_dependencies: list[tuple[Dependant, list[str]]],
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     security_definitions = {}
     # Use a dict to merge scopes for same security scheme
     operation_security_dict: dict[str, list[str]] = {}
-    for security_dependency in flat_dependant._security_dependencies:
+    for security_dependency, oauth_scopes in security_dependencies:
+        security_scheme = _get_security_scheme(dependant=security_dependency)
         security_definition = jsonable_encoder(
-            security_dependency._security_scheme.model,
+            security_scheme.model,
             by_alias=True,
             exclude_none=True,
         )
-        security_name = security_dependency._security_scheme.scheme_name
+        security_name = security_scheme.scheme_name
         security_definitions[security_name] = security_definition
         # Merge scopes for the same security scheme
         if security_name not in operation_security_dict:
             operation_security_dict[security_name] = []
-        for scope in security_dependency.oauth_scopes or []:
+        for scope in oauth_scopes:
             if scope not in operation_security_dict[security_name]:
                 operation_security_dict[security_name].append(scope)
     operation_security = [
@@ -106,7 +158,7 @@ def get_openapi_security_definitions(
 
 def _get_openapi_operation_parameters(
     *,
-    dependant: Dependant,
+    dependency_data: _OpenAPIDependencyData,
     model_name_map: ModelNameMap,
     field_mapping: dict[
         tuple[ModelField, Literal["validation", "serialization"]], dict[str, Any]
@@ -114,66 +166,57 @@ def _get_openapi_operation_parameters(
     separate_input_output_schemas: bool = True,
 ) -> list[dict[str, Any]]:
     parameters = []
-    flat_dependant = get_flat_dependant(dependant, skip_repeats=True)
-    path_params = _get_flat_fields_from_params(flat_dependant.path_params)
-    query_params = _get_flat_fields_from_params(flat_dependant.query_params)
-    header_params = _get_flat_fields_from_params(flat_dependant.header_params)
-    cookie_params = _get_flat_fields_from_params(flat_dependant.cookie_params)
     parameter_groups = [
-        (ParamTypes.path, path_params),
-        (ParamTypes.query, query_params),
-        (ParamTypes.header, header_params),
-        (ParamTypes.cookie, cookie_params),
+        (ParamTypes.path, dependency_data.path_params),
+        (ParamTypes.query, dependency_data.query_params),
+        (ParamTypes.header, dependency_data.header_params),
+        (ParamTypes.cookie, dependency_data.cookie_params),
     ]
-    default_convert_underscores = True
-    if len(flat_dependant.header_params) == 1:
-        first_field = flat_dependant.header_params[0]
-        if lenient_issubclass(first_field.field_info.annotation, BaseModel):
-            default_convert_underscores = getattr(
-                first_field.field_info, "convert_underscores", True
-            )
     for param_type, param_group in parameter_groups:
-        for param in param_group:
-            field_info = param.field_info
-            # field_info = cast(Param, field_info)
-            if not getattr(field_info, "include_in_schema", True):
+        for parent in param_group:
+            if not getattr(parent.field_info, "include_in_schema", True):
                 continue
-            param_schema = get_schema_from_model_field(
-                field=param,
-                model_name_map=model_name_map,
-                field_mapping=field_mapping,
-                separate_input_output_schemas=separate_input_output_schemas,
+            model = _get_param_model(parent)
+            optional_model = (
+                model is not None
+                and parent.field_info.annotation is not model
+                and not parent.field_info.is_required()
             )
-            name = get_validation_alias(param)
-            convert_underscores = getattr(
-                param.field_info,
-                "convert_underscores",
-                default_convert_underscores,
-            )
-            if (
-                param_type == ParamTypes.header
-                and name == param.name
-                and convert_underscores
-            ):
-                name = param.name.replace("_", "-")
+            for param in _get_flat_fields_from_params([parent]):
+                field_info = param.field_info
+                convert_underscores = param_type == ParamTypes.header and getattr(
+                    field_info,
+                    "convert_underscores",
+                    getattr(parent.field_info, "convert_underscores", True),
+                )
+                alias, name = _get_param_aliases(
+                    param, convert_underscores=convert_underscores
+                )[0]
+                param_schema = get_schema_from_model_field(
+                    field=param,
+                    model_name_map=model_name_map,
+                    field_mapping=field_mapping,
+                    separate_input_output_schemas=separate_input_output_schemas,
+                    field_alias=alias,
+                )
 
-            parameter = {
-                "name": name,
-                "in": param_type.value,
-                "required": param.field_info.is_required(),
-                "schema": param_schema,
-            }
-            if field_info.description:
-                parameter["description"] = field_info.description
-            openapi_examples = getattr(field_info, "openapi_examples", None)
-            example = getattr(field_info, "example", None)
-            if openapi_examples:
-                parameter["examples"] = jsonable_encoder(openapi_examples)
-            elif example is not _Unset:
-                parameter["example"] = jsonable_encoder(example)
-            if getattr(field_info, "deprecated", None):
-                parameter["deprecated"] = True
-            parameters.append(parameter)
+                parameter = {
+                    "name": name,
+                    "in": param_type.value,
+                    "required": param.field_info.is_required() and not optional_model,
+                    "schema": param_schema,
+                }
+                if field_info.description:
+                    parameter["description"] = field_info.description
+                openapi_examples = getattr(field_info, "openapi_examples", None)
+                example = getattr(field_info, "example", None)
+                if openapi_examples:
+                    parameter["examples"] = jsonable_encoder(openapi_examples)
+                elif example is not _Unset:
+                    parameter["example"] = jsonable_encoder(example)
+                if getattr(field_info, "deprecated", None):
+                    parameter["deprecated"] = True
+                parameters.append(parameter)
     return parameters
 
 
@@ -213,7 +256,7 @@ def get_openapi_operation_request_body(
 
 
 def generate_operation_id(
-    *, route: routing.APIRoute, method: str
+    *, route: routing._APIRouteLike, method: str
 ) -> str:  # pragma: nocover
     warnings.warn(
         message="fastapi.openapi.utils.generate_operation_id() was deprecated, "
@@ -227,14 +270,14 @@ def generate_operation_id(
     return generate_operation_id_for_path(name=route.name, path=path, method=method)
 
 
-def generate_operation_summary(*, route: routing.APIRoute, method: str) -> str:
+def generate_operation_summary(*, route: routing._APIRouteLike, method: str) -> str:
     if route.summary:
         return route.summary
     return route.name.replace("_", " ").title()
 
 
 def get_openapi_operation_metadata(
-    *, route: routing.APIRoute, method: str, operation_ids: set[str]
+    *, route: routing._APIRouteLike, method: str, operation_ids: set[str]
 ) -> dict[str, Any]:
     operation: dict[str, Any] = {}
     if route.tags:
@@ -259,7 +302,7 @@ def get_openapi_operation_metadata(
 
 def get_openapi_path(
     *,
-    route: routing.APIRoute,
+    route: routing._APIRouteLike,
     operation_ids: set[str],
     model_name_map: ModelNameMap,
     field_mapping: dict[
@@ -278,21 +321,33 @@ def get_openapi_path(
     assert current_response_class, "A response class is needed to generate OpenAPI"
     route_response_media_type: str | None = current_response_class.media_type
     if route.include_in_schema:
+        dependency_data = _get_openapi_dependency_data(route.dependant)
+        all_route_params = [
+            field
+            for fields in (
+                dependency_data.path_params,
+                dependency_data.query_params,
+                dependency_data.header_params,
+                dependency_data.cookie_params,
+            )
+            for field in _get_flat_fields_from_params(fields)
+        ]
         for method in route.methods:
             operation = get_openapi_operation_metadata(
                 route=route, method=method, operation_ids=operation_ids
             )
             parameters: list[dict[str, Any]] = []
-            flat_dependant = get_flat_dependant(route.dependant, skip_repeats=True)
-            security_definitions, operation_security = get_openapi_security_definitions(
-                flat_dependant=flat_dependant
+            security_definitions, operation_security = (
+                _get_openapi_security_definitions(
+                    security_dependencies=dependency_data.security_dependencies
+                )
             )
             if operation_security:
                 operation.setdefault("security", []).extend(operation_security)
             if security_definitions:
                 security_schemes.update(security_definitions)
             operation_parameters = _get_openapi_operation_parameters(
-                dependant=route.dependant,
+                dependency_data=dependency_data,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
                 separate_input_output_schemas=separate_input_output_schemas,
@@ -329,7 +384,7 @@ def get_openapi_path(
                             cb_security_schemes,
                             cb_definitions,
                         ) = get_openapi_path(
-                            route=callback,
+                            route=cast(routing._APIRouteLike, callback),
                             operation_ids=operation_ids,
                             model_name_map=model_name_map,
                             field_mapping=field_mapping,
@@ -452,7 +507,6 @@ def get_openapi_path(
                     deep_dict_update(openapi_response, process_response)
                     openapi_response["description"] = description
             http422 = "422"
-            all_route_params = get_flat_params(route.dependant)
             if (all_route_params or route.body_field) and not any(
                 status in operation["responses"]
                 for status in [http422, "4XX", "default"]
@@ -478,31 +532,40 @@ def get_openapi_path(
     return path, security_schemes, definitions
 
 
+def _get_api_route_for_openapi(
+    route_context: routing.RouteContext,
+) -> routing._APIRouteLike | None:
+    if isinstance(route_context.original_route, routing.APIRoute):
+        return cast(routing._APIRouteLike, route_context)
+    return None
+
+
 def get_fields_from_routes(
-    routes: Sequence[BaseRoute],
+    routes: Sequence[BaseRoute | routing.RouteContext],
 ) -> list[ModelField]:
     body_fields_from_routes: list[ModelField] = []
     responses_from_routes: list[ModelField] = []
     request_fields_from_routes: list[ModelField] = []
     callback_flat_models: list[ModelField] = []
-    for route in routes:
-        if not isinstance(route, routing.APIRoute):
+    for route_context in routing.iter_route_contexts(routes):
+        api_route = _get_api_route_for_openapi(route_context)
+        if api_route is None:
             continue
-        if route.include_in_schema:
-            if route.body_field:
-                assert isinstance(route.body_field, ModelField), (
+        if api_route.include_in_schema:
+            if api_route.body_field:
+                assert isinstance(api_route.body_field, ModelField), (
                     "A request body must be a Pydantic Field"
                 )
-                body_fields_from_routes.append(route.body_field)
-            if route.response_field:
-                responses_from_routes.append(route.response_field)
-            if route.response_fields:
-                responses_from_routes.extend(route.response_fields.values())
-            if route.stream_item_field:
-                responses_from_routes.append(route.stream_item_field)
-            if route.callbacks:
-                callback_flat_models.extend(get_fields_from_routes(route.callbacks))
-            params = get_flat_params(route.dependant)
+                body_fields_from_routes.append(api_route.body_field)
+            if api_route.response_field:
+                responses_from_routes.append(api_route.response_field)
+            if api_route.response_fields:
+                responses_from_routes.extend(api_route.response_fields.values())
+            if api_route.stream_item_field:
+                responses_from_routes.append(api_route.stream_item_field)
+            if api_route.callbacks:
+                callback_flat_models.extend(get_fields_from_routes(api_route.callbacks))
+            params = get_flat_params(api_route.dependant)
             request_fields_from_routes.extend(params)
 
     flat_models = callback_flat_models + list(
@@ -518,8 +581,8 @@ def get_openapi(
     openapi_version: str = "3.1.0",
     summary: str | None = None,
     description: str | None = None,
-    routes: Sequence[BaseRoute],
-    webhooks: Sequence[BaseRoute] | None = None,
+    routes: Sequence[BaseRoute | routing.RouteContext],
+    webhooks: Sequence[BaseRoute | routing.RouteContext] | None = None,
     tags: list[dict[str, Any]] | None = None,
     servers: list[dict[str, str | Any]] | None = None,
     terms_of_service: str | None = None,
@@ -546,7 +609,7 @@ def get_openapi(
     paths: dict[str, dict[str, Any]] = {}
     webhook_paths: dict[str, dict[str, Any]] = {}
     operation_ids: set[str] = set()
-    all_fields = get_fields_from_routes(list(routes or []) + list(webhooks or []))
+    all_fields = get_fields_from_routes(list(routes) + list(webhooks or []))
     flat_models = get_flat_models_from_fields(all_fields, known_models=set())
     model_name_map = get_model_name_map(flat_models)
     field_mapping, definitions = get_definitions(
@@ -554,10 +617,11 @@ def get_openapi(
         model_name_map=model_name_map,
         separate_input_output_schemas=separate_input_output_schemas,
     )
-    for route in routes or []:
-        if isinstance(route, routing.APIRoute):
+    for route_context in routing.iter_route_contexts(routes):
+        api_route = _get_api_route_for_openapi(route_context)
+        if api_route is not None:
             result = get_openapi_path(
-                route=route,
+                route=api_route,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -566,17 +630,18 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    paths.setdefault(route.path_format, {}).update(path)
+                    paths.setdefault(api_route.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
                     )
                 if path_definitions:
                     definitions.update(path_definitions)
-    for webhook in webhooks or []:
-        if isinstance(webhook, routing.APIRoute):
+    for webhook_context in routing.iter_route_contexts(webhooks or []):
+        api_webhook = _get_api_route_for_openapi(webhook_context)
+        if api_webhook is not None:
             result = get_openapi_path(
-                route=webhook,
+                route=api_webhook,
                 operation_ids=operation_ids,
                 model_name_map=model_name_map,
                 field_mapping=field_mapping,
@@ -585,7 +650,7 @@ def get_openapi(
             if result:
                 path, security_schemes, path_definitions = result
                 if path:
-                    webhook_paths.setdefault(webhook.path_format, {}).update(path)
+                    webhook_paths.setdefault(api_webhook.path_format, {}).update(path)
                 if security_schemes:
                     components.setdefault("securitySchemes", {}).update(
                         security_schemes
@@ -603,4 +668,4 @@ def get_openapi(
         output["tags"] = tags
     if external_docs:
         output["externalDocs"] = external_docs
-    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore  # ty: ignore[unused-ignore-comment]
+    return jsonable_encoder(OpenAPI(**output), by_alias=True, exclude_none=True)  # type: ignore[no-any-return]

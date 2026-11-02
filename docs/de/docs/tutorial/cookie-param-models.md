@@ -32,7 +32,7 @@ Sie können die definierten Cookies in der Dokumentationsoberfläche unter `/doc
 <img src="/img/tutorial/cookie-param-models/image01.png">
 </div>
 
-/// info | Info
+/// note | Hinweis
 
 Bitte beachten Sie, dass Browser Cookies auf spezielle Weise und im Hintergrund bearbeiten, sodass sie **nicht** leicht **JavaScript** erlauben, diese zu berühren.
 

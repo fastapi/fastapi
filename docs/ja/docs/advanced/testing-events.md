@@ -4,7 +4,8 @@
 
 {* ../../docs_src/app_testing/tutorial004_py310.py hl[9:15,18,27:28,30:32,41:43] *}
 
-より詳しい内容は、[公式 Starlette ドキュメントの「テストでの lifespan の実行」](https://www.starlette.dev/lifespan/#running-lifespan-in-tests) を参照してください。
+
+[`公式 Starlette ドキュメントサイトの「テストでの lifespan の実行」`](https://starlette.dev/lifespan/#running-lifespan-in-tests) についての詳細を読むことができます。
 
 非推奨の `startup` および `shutdown` イベントについては、次のように `TestClient` を使用できます:
 

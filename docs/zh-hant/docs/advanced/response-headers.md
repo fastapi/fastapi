@@ -12,7 +12,7 @@
 
 如果你宣告了 `response_model`，它仍會用來過濾並轉換你回傳的物件。
 
-FastAPI 會使用那個暫時性的回應來擷取標頭（還有 Cookie 與狀態碼），並把它們放到最終回應中；最終回應包含你回傳的值，且會依任何 `response_model` 進行過濾。
+**FastAPI** 會使用那個暫時性的回應來擷取標頭（還有 Cookie 與狀態碼），並把它們放到最終回應中；最終回應包含你回傳的值，且會依任何 `response_model` 進行過濾。
 
 你也可以在依賴中宣告 `Response` 參數，並在其中設定標頭（與 Cookie）。
 
@@ -28,9 +28,9 @@ FastAPI 會使用那個暫時性的回應來擷取標頭（還有 Cookie 與狀�
 
 你也可以使用 `from starlette.responses import Response` 或 `from starlette.responses import JSONResponse`。
 
-為了方便開發者，FastAPI 提供與 `starlette.responses` 相同的內容於 `fastapi.responses`。但大多數可用的回應類型其實直接來自 Starlette。
+為了方便開發者，**FastAPI** 提供與 `starlette.responses` 相同的內容於 `fastapi.responses`。但大多數可用的回應類型其實直接來自 Starlette。
 
-由於 `Response` 常用來設定標頭與 Cookie，FastAPI 也在 `fastapi.Response` 提供了它。
+由於 `Response` 常用來設定標頭與 Cookie，**FastAPI** 也在 `fastapi.Response` 提供了它。
 
 ///
 
@@ -38,4 +38,4 @@ FastAPI 會使用那個暫時性的回應來擷取標頭（還有 Cookie 與狀�
 
 請記住，專有的自訂標頭可以[使用 `X-` 前綴](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)來新增。
 
-但如果你有自訂標頭並希望瀏覽器端的客戶端能看見它們，你需要把這些標頭加入到 CORS 設定中（詳見 [CORS（跨來源資源共用）](../tutorial/cors.md)），使用在[Starlette 的 CORS 文件](https://www.starlette.dev/middleware/#corsmiddleware)中記載的 `expose_headers` 參數。
+但如果你有自訂標頭並希望瀏覽器端的客戶端能看見它們，你需要把這些標頭加入到 CORS 設定中（詳見 [CORS（跨來源資源共用）](../tutorial/cors.md)），使用在[Starlette 的 CORS 文件](https://starlette.dev/middleware/#corsmiddleware)中記載的 `expose_headers` 參數。

@@ -1,12 +1,13 @@
 # 使用数据类 { #using-dataclasses }
 
+
 FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydantic 模型声明请求与响应。
 
 但 FastAPI 也支持以相同方式使用 [`dataclasses`](https://docs.python.org/3/library/dataclasses.html)：
 
 {* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
 
-这仍然得益于 **Pydantic**，因为它对 [`dataclasses` 的内置支持](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel)。
+这仍然得益于 **Pydantic**，因为它对 [`dataclasses` 的内置支持](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel)。
 
 因此，即便上面的代码没有显式使用 Pydantic，FastAPI 也会使用 Pydantic 将那些标准数据类转换为 Pydantic 风格的 dataclasses。
 
@@ -18,7 +19,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 
 这与使用 Pydantic 模型时的工作方式相同。而且底层实际上也是借助 Pydantic 实现的。
 
-/// info | 信息
+/// note | 注意
 
 请注意，数据类不能完成 Pydantic 模型能做的所有事情。
 
@@ -80,7 +81,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 
 你还可以把 `dataclasses` 与其它 Pydantic 模型组合、从它们继承、把它们包含到你自己的模型中等。
 
-想了解更多，请查看 [Pydantic 关于 dataclasses 的文档](https://docs.pydantic.dev/latest/concepts/dataclasses/)。
+想了解更多，请查看 [Pydantic 关于 dataclasses 的文档](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/)。
 
 ## 版本 { #version }
 

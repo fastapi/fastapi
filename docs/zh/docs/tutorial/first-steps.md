@@ -1,17 +1,24 @@
 # 第一步 { #first-steps }
 
+
 最简单的 FastAPI 文件可能像下面这样：
 
 {* ../../docs_src/first_steps/tutorial001_py310.py *}
 
 将其复制到 `main.py` 文件中。
 
+/// tip | 提示
+
+FastAPI 有一个[官方 VS Code 扩展](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)（以及 Cursor），它提供了很多功能，包括路径操作浏览器、路径操作搜索、测试中的 CodeLens 导航（从测试跳转到定义），以及 FastAPI Cloud 部署和日志，全部都可以在你的编辑器中完成。
+
+///
+
 运行实时服务器：
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +85,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 前往 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你将会看到可选的自动生成文档 （由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你将会看到可选的自动生成文档 （由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -180,42 +187,32 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### `fastapi dev` 带路径 { #fastapi-dev-with-path }
+### 带路径或使用 `--entrypoint` CLI 选项的 `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 你也可以把文件路径传给 `fastapi dev` 命令，它会尝试推断要使用的 FastAPI 应用对象：
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-但这样每次调用 `fastapi` 命令时都需要记得传入正确的路径。
+或者，你也可以给 `fastapi dev` 命令传入 `--entrypoint` 选项：
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+但这样每次调用 `fastapi` 命令时都需要记得传入正确的路径\entrypoint。
 
 另外，其他工具可能无法找到它，例如 [VS Code 扩展](../editor-support.md) 或 [FastAPI Cloud](https://fastapicloud.com)，因此推荐在 `pyproject.toml` 中使用 `entrypoint`。
 
 ### 部署你的应用（可选） { #deploy-your-app-optional }
 
-你可以选择将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)，如果还没有，先去加入候补名单。🚀
-
-如果你已经拥有 **FastAPI Cloud** 账户（我们从候补名单邀请了你 😉），你可以用一条命令部署应用。
-
-部署前，先确保已登录：
+你可以选择用一条命令将 FastAPI 应用部署到 [FastAPI Cloud](https://fastapicloud.com)。🚀
 
 <div class="termy">
 
 ```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-然后部署你的应用：
-
-<div class="termy">
-
-```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -225,6 +222,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLI 会自动检测你的 FastAPI 应用并将其部署到云端。如果你尚未登录，浏览器会打开以完成认证流程。
 
 就这些！现在你可以通过该 URL 访问你的应用了。✨
 
@@ -240,7 +239,7 @@ Deploying to FastAPI Cloud...
 
 `FastAPI` 是直接从 `Starlette` 继承的类。
 
-你可以通过 `FastAPI` 使用所有的 [Starlette](https://www.starlette.dev/) 的功能。
+你也可以通过 `FastAPI` 使用所有的 [Starlette](https://starlette.dev/) 的功能。
 
 ///
 
@@ -270,7 +269,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info
+/// note | 注意
 
 「路径」也通常被称为「端点」或「路由」。
 
@@ -322,7 +321,7 @@ https://example.com/items/foo
 * 请求路径为 `/`
 * 使用 <dfn title="一种 HTTP GET 方法"><code>get</code> 操作</dfn>
 
-/// info | `@decorator` 信息
+/// note | `@decorator` 信息
 
 `@something` 语法在 Python 中被称为「装饰器」。
 
@@ -349,7 +348,7 @@ https://example.com/items/foo
 * `@app.patch()`
 * `@app.trace()`
 
-/// tip
+/// tip | 提示
 
 你可以随意使用任何一个操作（HTTP方法）。
 
@@ -383,7 +382,7 @@ https://example.com/items/foo
 
 {* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
 
-/// note
+/// note | 注意
 
 如果你不知道两者的区别，请查阅 [并发: *赶时间吗？*](../async.md#in-a-hurry)。
 

@@ -20,7 +20,7 @@ Puedes declarar el tipo de un parámetro de path en la función, usando anotacio
 
 En este caso, `item_id` se declara como un `int`.
 
-/// check | Revisa
+/// tip | Consejo
 
 Esto te dará soporte del editor dentro de tu función, con chequeo de errores, autocompletado, etc.
 
@@ -34,7 +34,7 @@ Si ejecutas este ejemplo y abres tu navegador en [http://127.0.0.1:8000/items/3]
 {"item_id":3}
 ```
 
-/// check | Revisa
+/// tip | Consejo
 
 Nota que el valor que tu función recibió (y devolvió) es `3`, como un `int` de Python, no un string `"3"`.
 
@@ -66,7 +66,7 @@ porque el parámetro de path `item_id` tenía un valor de `"foo"`, que no es un 
 
 El mismo error aparecería si proporcionaras un `float` en lugar de un `int`, como en: [http://127.0.0.1:8000/items/4.2](http://127.0.0.1:8000/items/4.2)
 
-/// check | Revisa
+/// tip | Consejo
 
 Entonces, con la misma declaración de tipo de Python, **FastAPI** te ofrece validación de datos.
 
@@ -82,7 +82,7 @@ Y cuando abras tu navegador en [http://127.0.0.1:8000/docs](http://127.0.0.1:800
 
 <img src="/img/tutorial/path-params/image01.png">
 
-/// check | Revisa
+/// tip | Consejo
 
 Nuevamente, solo con esa misma declaración de tipo de Python, **FastAPI** te ofrece documentación automática e interactiva (integrando Swagger UI).
 
@@ -92,7 +92,7 @@ Nota que el parámetro de path está declarado como un entero.
 
 ## Beneficios basados en estándares, documentación alternativa { #standards-based-benefits-alternative-documentation }
 
-Y porque el esquema generado es del estándar [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md), hay muchas herramientas compatibles.
+Y porque el esquema generado es del estándar [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md), hay muchas herramientas compatibles.
 
 Debido a esto, el propio **FastAPI** proporciona una documentación de API alternativa (usando ReDoc), a la cual puedes acceder en [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc):
 
@@ -102,7 +102,7 @@ De la misma manera, hay muchas herramientas compatibles. Incluyendo herramientas
 
 ## Pydantic { #pydantic }
 
-Toda la validación de datos se realiza internamente con [Pydantic](https://docs.pydantic.dev/), así que obtienes todos los beneficios de esta. Y sabes que estás en buenas manos.
+Toda la validación de datos se realiza internamente con [Pydantic](https://pydantic.dev/docs/), así que obtienes todos los beneficios de esta. Y sabes que estás en buenas manos.
 
 Puedes usar las mismas declaraciones de tipo con `str`, `float`, `bool` y muchos otros tipos de datos complejos.
 
@@ -130,7 +130,7 @@ La primera siempre será utilizada ya que el path coincide primero.
 
 ## Valores predefinidos { #predefined-values }
 
-Si tienes una *path operation* que recibe un *path parameter*, pero quieres que los valores posibles válidos del *path parameter* estén predefinidos, puedes usar un <abbr title="Enumeration – Enumeración">`Enum`</abbr> estándar de Python.
+Si tienes una *path operation* que recibe un *path parameter*, pero quieres que los valores posibles válidos del *path parameter* estén predefinidos, puedes usar un <abbr title="Enumeración">`Enum`</abbr> estándar de Python.
 
 ### Crear una clase `Enum` { #create-an-enum-class }
 

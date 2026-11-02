@@ -10,7 +10,7 @@
 
 これは「上級」機能です。
 
-FastAPI を始めたばかりの場合は、このセクションは読み飛ばしてもよいでしょう。
+**FastAPI** を始めたばかりの場合は、このセクションは読み飛ばしてもよいでしょう。
 
 ///
 
@@ -66,7 +66,7 @@ gzip のリクエストを解凍するために、カスタムの `Request` サ�
 
 そしてこの 2 つ（`scope` と `receive`）が、新しい `Request` インスタンスを作成するために必要なものです。
 
-`Request` について詳しくは、[Starlette の Requests に関するドキュメント](https://www.starlette.dev/requests/) を参照してください。
+`Request` について詳しくは、[Starlette の Requests に関するドキュメント](https://starlette.dev/requests/) を参照してください。
 
 ///
 

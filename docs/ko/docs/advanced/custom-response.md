@@ -41,7 +41,7 @@
 
 {* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
 
-/// info | 정보
+/// note | 참고
 
 `response_class` 매개변수는 응답의 "미디어 타입"을 정의하는 데에도 사용됩니다.
 
@@ -65,7 +65,7 @@
 
 ///
 
-/// info | 정보
+/// note | 참고
 
 물론 실제 `Content-Type` 헤더, 상태 코드 등은 반환된 `Response` 객체에서 가져옵니다.
 

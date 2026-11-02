@@ -11,7 +11,7 @@ class ORJSONResponse(JSONResponse):
     media_type = "application/x-orjson"
 
     def render(self, content: Any) -> bytes:
-        import orjson
+        import orjson  # ty: ignore[unresolved-import]
 
         return orjson.dumps(content)
 

@@ -6,35 +6,19 @@ Dies vereinfacht es, aktuelle **Dokumentation** und Client-Bibliotheken (<abbr t
 
 In diesem Leitfaden erfahren Sie, wie Sie ein **TypeScript-SDK** für Ihr FastAPI-Backend generieren.
 
-## Open Source SDK-Generatoren { #open-source-sdk-generators }
+## Open-Source-SDK-Generatoren { #open-source-sdk-generators }
 
 Eine vielseitige Möglichkeit ist der [OpenAPI Generator](https://openapi-generator.tech/), der **viele Programmiersprachen** unterstützt und SDKs aus Ihrer OpenAPI-Spezifikation generieren kann.
 
 Für **TypeScript-Clients** ist [Hey API](https://heyapi.dev/) eine speziell entwickelte Lösung, die ein optimiertes Erlebnis für das TypeScript-Ökosystem bietet.
 
-Weitere SDK-Generatoren finden Sie auf [OpenAPI.Tools](https://openapi.tools/#sdk).
+Weitere SDK-Generatoren finden Sie auf [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Tipp
 
 FastAPI generiert automatisch **OpenAPI 3.1**-Spezifikationen, daher muss jedes von Ihnen verwendete Tool diese Version unterstützen.
 
 ///
-
-## SDK-Generatoren von FastAPI-Sponsoren { #sdk-generators-from-fastapi-sponsors }
-
-Dieser Abschnitt hebt **venture-unterstützte** und **firmengestützte** Lösungen hervor, die von Unternehmen entwickelt werden, welche FastAPI sponsern. Diese Produkte bieten **zusätzliche Funktionen** und **Integrationen** zusätzlich zu hochwertig generierten SDKs.
-
-Durch das ✨ [**Sponsoring von FastAPI**](../help-fastapi.md#sponsor-the-author) ✨ helfen diese Unternehmen sicherzustellen, dass das Framework und sein **Ökosystem** gesund und **nachhaltig** bleiben.
-
-Ihr Sponsoring zeigt auch ein starkes Engagement für die FastAPI-**Community** (Sie), was bedeutet, dass sie nicht nur einen **großartigen Service** bieten möchten, sondern auch ein **robustes und florierendes Framework**, FastAPI, unterstützen möchten. 🙇
-
-Zum Beispiel könnten Sie ausprobieren:
-
-* [Speakeasy](https://speakeasy.com/editor?utm_source=fastapi+repo&utm_medium=github+sponsorship)
-* [Stainless](https://www.stainless.com/?utm_source=fastapi&utm_medium=referral)
-* [liblab](https://developers.liblab.com/tutorials/sdk-for-fastapi?utm_source=fastapi)
-
-Einige dieser Lösungen sind möglicherweise auch Open Source oder bieten kostenlose Tarife an, sodass Sie diese ohne finanzielle Verpflichtung ausprobieren können. Andere kommerzielle SDK-Generatoren sind online verfügbar und können dort gefunden werden. 🤓
 
 ## Ein TypeScript-SDK erstellen { #create-a-typescript-sdk }
 
@@ -66,7 +50,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Dies generiert ein TypeScript-SDK in `./src/client`.
 
-Sie können lernen, wie man [`@hey-api/openapi-ts` installiert](https://heyapi.dev/openapi-ts/get-started) und über die [erzeugte Ausgabe](https://heyapi.dev/openapi-ts/output) auf deren Website lesen.
+Sie können lernen, wie Sie [`@hey-api/openapi-ts` installieren](https://heyapi.dev/openapi-ts/get-started) und über die [erzeugte Ausgabe](https://heyapi.dev/openapi-ts/output) auf deren Website lesen.
 
 ### Das SDK verwenden { #using-the-sdk }
 

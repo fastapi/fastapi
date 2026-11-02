@@ -1,5 +1,5 @@
-import importlib
 import sys
+from importlib.util import find_spec
 
 import pytest
 
@@ -11,12 +11,12 @@ needs_py314 = pytest.mark.skipif(
 )
 
 needs_orjson = pytest.mark.skipif(
-    importlib.util.find_spec("orjson") is None,
+    find_spec("orjson") is None,
     reason="requires orjson",
 )
 
 needs_ujson = pytest.mark.skipif(
-    importlib.util.find_spec("ujson") is None,
+    find_spec("ujson") is None,
     reason="requires ujson",
 )
 

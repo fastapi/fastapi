@@ -1,6 +1,6 @@
 # 子应用 - 挂载 { #sub-applications-mounts }
 
-如果需要两个独立的 FastAPI 应用，拥有各自独立的 OpenAPI 与文档，则需设置一个主应用，并**挂载**一个（或多个）子应用。
+如果需要两个独立的 FastAPI 应用，拥有各自独立的 OpenAPI 与文档 UI，则需设置一个主应用，并**挂载**一个（或多个）子应用。
 
 ## 挂载 **FastAPI** 应用 { #mounting-a-fastapi-application }
 
@@ -35,7 +35,7 @@
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

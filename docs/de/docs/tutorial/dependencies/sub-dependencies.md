@@ -35,7 +35,7 @@ Diese Abhängigkeit verwenden wir nun wie folgt:
 
 {* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
 
-/// info | Info
+/// note | Hinweis
 
 Beachten Sie, dass wir in der *Pfadoperation-Funktion* nur eine einzige Abhängigkeit deklarieren, den `query_or_cookie_extractor`.
 

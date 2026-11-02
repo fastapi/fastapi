@@ -16,9 +16,9 @@ Normalerweise erzielen Sie eine deutlich bessere Leistung, wenn Sie ein [Respons
 
 ## Eine `Response` zurückgeben { #return-a-response }
 
-Tatsächlich können Sie jede `Response` oder jede Unterklasse davon zurückgeben.
+Sie können eine `Response` oder jede Unterklasse davon zurückgeben.
 
-/// info | Info
+/// note | Hinweis
 
 `JSONResponse` selbst ist eine Unterklasse von `Response`.
 

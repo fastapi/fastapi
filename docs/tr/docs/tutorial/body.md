@@ -1,14 +1,15 @@
 # Request Body { #request-body }
 
+
 Bir client'ten (örneğin bir tarayıcıdan) API'nize veri göndermeniz gerektiğinde, bunu **request body** olarak gönderirsiniz.
 
 Bir **request** body, client'in API'nize gönderdiği veridir. Bir **response** body ise API'nizin client'e gönderdiği veridir.
 
 API'niz neredeyse her zaman bir **response** body göndermek zorundadır. Ancak client'lerin her zaman **request body** göndermesi gerekmez; bazen sadece bir path isterler, belki birkaç query parametresiyle birlikte, ama body göndermezler.
 
-Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla [Pydantic](https://docs.pydantic.dev/) modellerini kullanırsınız.
+Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla [Pydantic](https://pydantic.dev/docs/) modellerini kullanırsınız.
 
-/// info | Bilgi
+/// note | Not
 
 Veri göndermek için şunlardan birini kullanmalısınız: `POST` (en yaygını), `PUT`, `DELETE` veya `PATCH`.
 

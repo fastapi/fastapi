@@ -24,16 +24,16 @@ Copy the example in a file `main.py`:
 
 ## Run it { #run-it }
 
-/// info
+/// note
 
-The [`python-multipart`](https://github.com/Kludex/python-multipart) package is automatically installed with **FastAPI** when you run the `pip install "fastapi[standard]"` command.
+The [`python-multipart`](https://github.com/Kludex/python-multipart) package is automatically installed with **FastAPI** when you run the `uv add "fastapi[standard]"` command.
 
-However, if you use the `pip install fastapi` command, the `python-multipart` package is not included by default.
+However, if you use the `uv add fastapi` command, the `python-multipart` package is not included by default.
 
-To install it manually, make sure you create a [virtual environment](../../virtual-environments.md), activate it, and then install it with:
+To install it manually, add it to your project with:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 This is because **OAuth2** uses "form data" for sending the `username` and `password`.
@@ -45,7 +45,7 @@ Run the example with:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -60,7 +60,7 @@ You will see something like this:
 
 <img src="/img/tutorial/security/image01.png">
 
-/// check | Authorize button!
+/// tip | Authorize button!
 
 You already have a shiny new "Authorize" button.
 
@@ -88,7 +88,7 @@ And it can also be used by yourself, to debug, check and test the same applicati
 
 ## The `password` flow { #the-password-flow }
 
-Now let's go back a bit and understand what is all that.
+Now let's go back a bit and understand what all that is.
 
 The `password` "flow" is one of the ways ("flows") defined in OAuth2, to handle security and authentication.
 
@@ -118,7 +118,7 @@ So, let's review it from that simplified point of view:
 
 In this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token. We do that using the `OAuth2PasswordBearer` class.
 
-/// info
+/// note
 
 A "bearer" token is not the only option.
 
@@ -148,7 +148,7 @@ This parameter doesn't create that endpoint / *path operation*, but declares tha
 
 We will soon also create the actual path operation.
 
-/// info
+/// note
 
 If you are a very strict "Pythonista" you might dislike the style of the parameter name `tokenUrl` instead of `token_url`.
 
@@ -176,7 +176,7 @@ This dependency will provide a `str` that is assigned to the parameter `token` o
 
 **FastAPI** will know that it can use this dependency to define a "security scheme" in the OpenAPI schema (and the automatic API docs).
 
-/// info | Technical Details
+/// note | Technical Details
 
 **FastAPI** will know that it can use the class `OAuth2PasswordBearer` (declared in a dependency) to define the security scheme in OpenAPI because it inherits from `fastapi.security.oauth2.OAuth2`, which in turn inherits from `fastapi.security.base.SecurityBase`.
 

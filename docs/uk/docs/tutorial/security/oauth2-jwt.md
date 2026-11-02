@@ -10,7 +10,7 @@
 
 JWT означає «JSON Web Tokens».
 
-Це стандарт кодування об'єкта JSON у довгий щільний рядок без пробілів. Він виглядає так:
+Це стандарт кодування об'єкта JSON у довгу щільну строку без пробілів. Він виглядає так:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
@@ -30,19 +30,19 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 Нам потрібно встановити `PyJWT`, щоб створювати та перевіряти токени JWT у Python.
 
-Переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md), активували його і тоді встановіть `pyjwt`:
+Додайте `pyjwt` до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
 
 </div>
 
-/// info | Інформація
+/// note | Примітка
 
 Якщо ви плануєте використовувати алгоритми цифрового підпису на кшталт RSA або ECDSA, слід встановити залежність криптобібліотеки `pyjwt[crypto]`.
 
@@ -72,12 +72,12 @@ pwdlib - це чудовий пакет Python для роботи з хешам
 
 Рекомендований алгоритм - «Argon2».
 
-Переконайтеся, що ви створили [віртуальне оточення](../../virtual-environments.md), активували його і тоді встановіть pwdlib з Argon2:
+Додайте `pwdlib` з Argon2 до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -168,7 +168,7 @@ $ openssl rand -hex 32
 
 {* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
 
-## Оновіть операцію шляху `/token` { #update-the-token-path-operation }
+## Оновіть *операцію шляху* `/token` { #update-the-token-path-operation }
 
 Створіть `timedelta` з часом життя токена.
 
@@ -213,7 +213,7 @@ JWT може використовуватися й для інших речей,
 Username: `johndoe`
 Password: `secret`
 
-/// check | Перевірте
+/// tip | Порада
 
 Зверніть увагу, що ніде в коді немає відкритого пароля "`secret`", ми маємо лише хешовану версію.
 

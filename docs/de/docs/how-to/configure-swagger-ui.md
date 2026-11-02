@@ -67,4 +67,4 @@ presets: [
 
 Dabei handelt es sich um **JavaScript**-Objekte, nicht um Strings, daher können Sie diese nicht direkt vom Python-Code aus übergeben.
 
-Wenn Sie solche JavaScript-Konfigurationen verwenden müssen, können Sie einen der früher genannten Wege verwenden. Überschreiben Sie alle *Pfadoperationen* der Swagger-Oberfläche und schreiben Sie manuell jedes benötigte JavaScript.
+Wenn Sie solche Nur-JavaScript-Konfigurationen verwenden müssen, können Sie einen der früher genannten Wege verwenden. Überschreiben Sie die gesamte *Pfadoperation* der Swagger-Oberfläche und schreiben Sie manuell jedes benötigte JavaScript.

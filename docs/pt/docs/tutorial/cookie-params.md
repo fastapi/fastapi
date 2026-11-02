@@ -24,13 +24,13 @@ Mas lembre-se que quando você importa `Query`, `Path`, `Cookie` e outras de `fa
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 Para declarar cookies, você precisa usar `Cookie`, pois caso contrário, os parâmetros seriam interpretados como parâmetros de consulta.
 
 ///
 
-/// info | Informação
+/// note | Nota
 
 Tenha em mente que, como os **navegadores lidam com cookies** de maneiras especiais e nos bastidores, eles **não** permitem facilmente que o **JavaScript** os acesse.
 

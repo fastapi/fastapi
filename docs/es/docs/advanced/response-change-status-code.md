@@ -2,7 +2,7 @@
 
 Probablemente leíste antes que puedes establecer un [Código de Estado de Response](../tutorial/response-status-code.md) por defecto.
 
-Pero en algunos casos necesitas devolver un código de estado diferente al predeterminado.
+Pero en algunos casos necesitas devolver un código de estado diferente al por defecto.
 
 ## Caso de uso { #use-case }
 

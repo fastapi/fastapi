@@ -6,12 +6,18 @@
 
 これを`main.py`にコピーします。
 
+/// tip | 豆知識
+
+FastAPIには[VS Code向けの公式拡張機能](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)（およびCursor）があります。path operation explorer、path operation search、テスト内のCodeLensナビゲーション（テストから定義へジャンプ）、FastAPI Cloudへのデプロイとログなど、多くの機能をすべてエディタから利用できます。
+
+///
+
 ライブサーバーを実行します:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 次に、[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)にアクセスします。
 
-先ほどとは異なる、自動生成された対話的APIドキュメントが表示されます（[ReDoc](https://github.com/Rebilly/ReDoc)によって提供）:
+代替の自動生成ドキュメントが表示されます（[ReDoc](https://github.com/Redocly/redoc)によって提供）:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -104,7 +110,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 #### OpenAPIおよびJSONスキーマ { #openapi-and-json-schema }
 
-OpenAPIはAPIのためのAPIスキーマを定義します。そして、そのスキーマは**JSONデータスキーマ**の標準規格である**JSON Schema**を利用するAPIによって送受されるデータの定義（または「スキーマ」）を含んでいます。
+OpenAPIはAPIのためのAPIスキーマを定義します。そして、そのスキーマには、JSONデータスキーマの標準である**JSON Schema**を使用して、APIによって送受信されるデータの定義（または「スキーマ」）が含まれます。
 
 #### `openapi.json`を確認 { #check-the-openapi-json }
 
@@ -180,42 +186,32 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### パス付きの`fastapi dev` { #fastapi-dev-with-path }
+### パス指定の`fastapi dev`または`--entrypoint` CLIオプション { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 `fastapi dev`コマンドにファイルパスを渡すこともでき、使用すべきFastAPIのappオブジェクトを推測します:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
-ただし、その場合は毎回`fastapi`コマンドを呼ぶたびに正しいパスを渡すことを覚えておく必要があります。
+または、`fastapi dev`コマンドに`--entrypoint`オプションを渡すこともできます:
+
+```console
+$ uv run fastapi dev --entrypoint main:app
+```
+
+ただし、その場合は毎回`fastapi`コマンドを呼ぶたびに正しいパスや`entrypoint`を渡すことを覚えておく必要があります。
 
 さらに、他のツール（たとえば、[VS Code 拡張機能](../editor-support.md)や[FastAPI Cloud](https://fastapicloud.com)）が見つけられない場合があります。そのため、`pyproject.toml`の`entrypoint`を使うことを推奨します。
 
 ### アプリをデプロイ（任意） { #deploy-your-app-optional }
 
-任意でFastAPIアプリを[FastAPI Cloud](https://fastapicloud.com)にデプロイできます。まだなら、待機リストに登録してください。 🚀
-
-すでに**FastAPI Cloud**アカウントがある場合（待機リストから招待済みの場合😉）、1コマンドでアプリケーションをデプロイできます。
-
-デプロイする前に、ログインしていることを確認してください:
+任意でFastAPIアプリを[FastAPI Cloud](https://fastapicloud.com)に1コマンドでデプロイできます。 🚀
 
 <div class="termy">
 
 ```console
-$ fastapi login
-
-You are logged in to FastAPI Cloud 🚀
-```
-
-</div>
-
-その後、アプリをデプロイします:
-
-<div class="termy">
-
-```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -225,6 +221,8 @@ Deploying to FastAPI Cloud...
 ```
 
 </div>
+
+CLIはFastAPIアプリケーションを自動検出してクラウドにデプロイします。ログインしていない場合、認証を完了するためにブラウザが開きます。
 
 以上です！これで、そのURLでアプリにアクセスできます。 ✨
 
@@ -240,13 +238,14 @@ Deploying to FastAPI Cloud...
 
 `FastAPI`は`Starlette`を直接継承するクラスです。
 
-`FastAPI`でも[Starlette](https://www.starlette.dev/)のすべての機能を利用可能です。
+`FastAPI`でも[Starlette](https://starlette.dev/)のすべての機能を利用可能です。
 
 ///
 
 ### Step 2: `FastAPI`の「インスタンス」を生成 { #step-2-create-a-fastapi-instance }
 
 {* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+
 ここで、`app`変数が`FastAPI`クラスの「インスタンス」になります。
 
 これが、すべてのAPIを作成するための主要なポイントになります。
@@ -269,7 +268,7 @@ https://example.com/items/foo
 /items/foo
 ```
 
-/// info | 情報
+/// note | 備考
 
 「パス」は一般に「エンドポイント」または「ルート」とも呼ばれます。
 
@@ -319,9 +318,9 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 `@app.get("/")`は直下の関数が下記のリクエストの処理を担当することを**FastAPI**に伝えます:
 
 * パス `/`
-* <dfn title="HTTP GET メソッド"><code>get</code> オペレーション</dfn>
+* <dfn title="HTTP GETメソッド"><code>get</code> オペレーション</dfn>を使用する
 
-/// info | `@decorator` 情報
+/// note | `@decorator` 情報
 
 Pythonにおける`@something`シンタックスはデコレータと呼ばれます。
 

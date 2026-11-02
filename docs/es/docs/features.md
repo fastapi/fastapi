@@ -19,7 +19,7 @@ Interfaces web de documentación y exploración de APIs interactivas. Como el fr
 
 ![Interacción Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Documentación alternativa de API con [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Documentación alternativa de API con [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -63,7 +63,7 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-/// info | Información
+/// note | Nota
 
 `**second_user_data` significa:
 
@@ -130,7 +130,7 @@ Todos los esquemas de seguridad definidos en OpenAPI, incluyendo:
     * Parámetros de query.
     * Cookies, etc.
 
-Además de todas las características de seguridad de Starlette (incluyendo **cookies de sesión**).
+Además de todas las funcionalidades de seguridad de Starlette (incluyendo **cookies de sesión**).
 
 Todo construido como herramientas y componentes reutilizables que son fáciles de integrar con tus sistemas, almacenes de datos, bases de datos relacionales y NoSQL, etc.
 
@@ -153,13 +153,13 @@ Cualquier integración está diseñada para ser tan simple de usar (con dependen
 
 ### Probado { #tested }
 
-* 100% de <dfn title="La cantidad de código que se prueba automáticamente">cobertura de tests</dfn>.
+* <dfn title="La cantidad de código que se prueba automáticamente">cobertura de tests del 100%</dfn>.
 * 100% <dfn title="Anotaciones de tipos en Python, con esto tu editor y herramientas externas pueden ofrecerte mejor soporte">anotada con tipos</dfn> code base.
 * Usado en aplicaciones en producción.
 
 ## Funcionalidades de Starlette { #starlette-features }
 
-**FastAPI** es totalmente compatible con (y está basado en) [**Starlette**](https://www.starlette.dev/). Así que, cualquier código adicional de Starlette que tengas, también funcionará.
+**FastAPI** es totalmente compatible con (y está basado en) [**Starlette**](https://starlette.dev/). Así que, cualquier código adicional de Starlette que tengas, también funcionará.
 
 `FastAPI` es en realidad una subclase de `Starlette`. Así que, si ya conoces o usas Starlette, la mayoría de las funcionalidades funcionarán de la misma manera.
 
@@ -177,9 +177,9 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 
 ## Funcionalidades de Pydantic { #pydantic-features }
 
-**FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://docs.pydantic.dev/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
+**FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://pydantic.dev/docs/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
 
-Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper – Mapeador Objeto-Relacional">ORM</abbr>s, <abbr title="Object-Document Mapper – Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
+Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s y <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
 
 Esto también significa que, en muchos casos, puedes pasar el mismo objeto que obtienes de un request **directamente a la base de datos**, ya que todo se valida automáticamente.
 
@@ -190,7 +190,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Pydantic** (ya que FastA
 * **Sin complicaciones**:
     * Sin micro-lenguaje de definición de esquemas nuevo que aprender.
     * Si conoces los tipos en Python sabes cómo usar Pydantic.
-* Se lleva bien con tu **<abbr title="Integrated Development Environment – Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
+* Se lleva bien con tu **<abbr title="Integrated Development Environment - Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
     * Porque las estructuras de datos de pydantic son solo instances de clases que defines; autocompletado, linting, mypy y tu intuición deberían funcionar correctamente con tus datos validados.
 * Valida **estructuras complejas**:
     * Uso de modelos jerárquicos de Pydantic, `List` y `Dict` de `typing` de Python, etc.

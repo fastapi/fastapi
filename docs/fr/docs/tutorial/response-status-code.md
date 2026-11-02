@@ -1,5 +1,6 @@
 # Code d'état de la réponse { #response-status-code }
 
+
 De la même manière que vous pouvez spécifier un modèle de réponse, vous pouvez également déclarer le code d'état HTTP utilisé pour la réponse avec le paramètre `status_code` dans n'importe lequel des chemins d'accès :
 
 * `@app.get()`
@@ -18,7 +19,7 @@ Remarquez que `status_code` est un paramètre de la méthode « decorator » (`g
 
 Le paramètre `status_code` reçoit un nombre correspondant au code d'état HTTP.
 
-/// info
+/// note | Remarque
 
 `status_code` peut aussi recevoir un `IntEnum`, comme le [`http.HTTPStatus`](https://docs.python.org/3/library/http.html#http.HTTPStatus) de Python.
 

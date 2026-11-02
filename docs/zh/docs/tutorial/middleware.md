@@ -33,11 +33,11 @@
 
 {* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
 
-/// tip
+/// tip | 提示
 
 请记住可以[使用 `X-` 前缀](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)添加专有自定义请求头。
 
-但是如果你有希望让浏览器中的客户端可见的自定义请求头，你需要把它们加到你的 CORS 配置（[CORS（跨域资源共享）](cors.md)）的 `expose_headers` 参数中，参见 [Starlette 的 CORS 文档](https://www.starlette.dev/middleware/#corsmiddleware)。
+但是如果你有希望让浏览器中的客户端可见的自定义请求头，你需要把它们加到你的 CORS 配置（[CORS（跨域资源共享）](cors.md)）的 `expose_headers` 参数中，参见 [Starlette 的 CORS 文档](https://starlette.dev/middleware/#corsmiddleware)。
 
 ///
 
@@ -59,7 +59,7 @@
 
 {* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
 
-/// tip
+/// tip | 提示
 
 这里我们使用 [`time.perf_counter()`](https://docs.python.org/3/library/time.html#time.perf_counter) 而不是 `time.time()`，因为在这类场景中它可能更精确。🤓
 
@@ -82,9 +82,9 @@ app.add_middleware(MiddlewareB)
 
 这会产生如下执行顺序：
 
-* 请求：MiddlewareB → MiddlewareA → 路由
+* **请求**：MiddlewareB → MiddlewareA → 路由
 
-* 响应：路由 → MiddlewareA → MiddlewareB
+* **响应**：路由 → MiddlewareA → MiddlewareB
 
 这种栈式行为确保中间件按可预测且可控的顺序执行。
 
