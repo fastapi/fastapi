@@ -28,7 +28,7 @@ Par exemple, pour déclarer une valeur de métadonnée `title` pour le paramètr
 
 /// note | Remarque
 
-Un paramètre de chemin est toujours requis car il doit faire partie du chemin. Même si vous l'avez déclaré avec `None` ou défini une valeur par défaut, cela ne changerait rien, il serait toujours requis.
+Un paramètre de chemin est toujours requis car il doit faire partie du chemin de l'URL. Ajouter `None` à son type ne le rend pas optionnel. Un paramètre déclaré avec `Path` ne peut pas avoir de valeur par défaut.
 
 ///
 

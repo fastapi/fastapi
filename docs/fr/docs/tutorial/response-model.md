@@ -9,9 +9,9 @@ Vous pouvez utiliser des **annotations de type** de la même manière que pour l
 FastAPI utilisera ce type de retour pour :
 
 * **Valider** les données renvoyées.
-    * Si les données sont invalides (par exemple, il manque un champ), cela signifie que le code de *votre* application est défectueux, qu'il ne renvoie pas ce qu'il devrait, et un erreur serveur sera renvoyée au lieu de renvoyer des données incorrectes. De cette façon, vous et vos clients pouvez être certains de recevoir les données attendues et avec la structure attendue.
+    * Si les données sont invalides (par exemple, il manque un champ), cela signifie que le code de *votre* application est défectueux, qu'il ne renvoie pas ce qu'il devrait, et une erreur serveur sera renvoyée au lieu de renvoyer des données incorrectes. De cette façon, vous et vos clients pouvez être certains de recevoir les données attendues et avec la structure attendue.
 * Ajouter un **JSON Schema** pour la réponse, dans l’OpenAPI du *chemin d'accès*.
-    * Ceci sera utilisé par la **documentation automatique**.
+    * Ceci sera utilisé par les **documents automatiques**.
     * Ceci sera également utilisé par les outils de génération automatique de code client.
 * **Sérialiser** les données renvoyées en JSON en utilisant Pydantic, qui est écrit en **Rust**, ce qui sera **beaucoup plus rapide**.
 
@@ -166,9 +166,9 @@ FastAPI fait plusieurs choses en interne avec Pydantic pour s'assurer que ces m�
 
 De cette façon, vous obtenez le meilleur des deux mondes : annotations de type avec **prise en charge par les outils** et **filtrage des données**.
 
-## Le voir dans la documentation { #see-it-in-the-docs }
+## Le voir dans les documents { #see-it-in-the-docs }
 
-Dans la documentation automatique, vous pouvez vérifier que le modèle d'entrée et le modèle de sortie auront chacun leur propre JSON Schema :
+Dans les documents automatiques, vous pouvez vérifier que le modèle d'entrée et le modèle de sortie auront chacun leur propre JSON Schema :
 
 <img src="/img/tutorial/response-model/image01.png">
 
@@ -182,7 +182,7 @@ Il peut y avoir des cas où vous renvoyez quelque chose qui n'est pas un champ P
 
 ### Renvoyer directement une Response { #return-a-response-directly }
 
-Le cas le plus courant serait [de renvoyer directement une Response comme expliqué plus loin dans la documentation avancée](../advanced/response-directly.md).
+Le cas le plus courant serait [de renvoyer directement une Response comme expliqué plus loin dans les documents avancés](../advanced/response-directly.md).
 
 {* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
 
@@ -266,6 +266,7 @@ comme décrit dans [les documents Pydantic](https://pydantic.dev/docs/validation
 
 Mais si vos données ont des valeurs pour les champs du modèle avec des valeurs par défaut, comme l'article avec l'ID `bar` :
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ Mais si vos données ont des valeurs pour les champs du modèle avec des valeurs
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 elles seront incluses dans la réponse.
 
@@ -281,6 +283,7 @@ elles seront incluses dans la réponse.
 
 Si les données ont les mêmes valeurs que les valeurs par défaut, comme l'article avec l'ID `baz` :
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ Si les données ont les mêmes valeurs que les valeurs par défaut, comme l'arti
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI est suffisamment intelligent (en fait, Pydantic l’est) pour comprendre que, même si `description`, `tax` et `tags` ont les mêmes valeurs que les valeurs par défaut, elles ont été définies explicitement (au lieu d'être prises depuis les valeurs par défaut).
 
@@ -315,7 +319,7 @@ Cela peut être utilisé comme un raccourci rapide si vous n'avez qu'un seul mod
 
 Mais il est toujours recommandé d'utiliser les idées ci-dessus, en utilisant plusieurs classes, plutôt que ces paramètres.
 
-En effet, le JSON Schema généré dans l’OpenAPI de votre application (et la documentation) restera celui du modèle complet, même si vous utilisez `response_model_include` ou `response_model_exclude` pour omettre certains attributs.
+En effet, le JSON Schema généré dans l’OpenAPI de votre application (et les documents) restera celui du modèle complet, même si vous utilisez `response_model_include` ou `response_model_exclude` pour omettre certains attributs.
 
 Cela s'applique également à `response_model_by_alias` qui fonctionne de manière similaire.
 

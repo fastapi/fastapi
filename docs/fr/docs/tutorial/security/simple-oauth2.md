@@ -136,11 +136,11 @@ Ainsi, il ne pourra pas essayer d'utiliser ces mêmes mots de passe dans un autr
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
@@ -162,7 +162,7 @@ Pour cet exemple simple, nous allons faire quelque chose de complètement non s�
 
 /// tip | Astuce
 
-Dans le prochain chapitre, vous verrez une véritable implémentation sécurisée, avec du hachage de mot de passe et des jetons <abbr title="JSON Web Tokens">JWT</abbr>.
+Dans le prochain chapitre, vous verrez une véritable implémentation sécurisée, avec du hachage de mot de passe et des jetons <abbr title="JSON Web Tokens - Jetons Web JSON">JWT</abbr>.
 
 Mais pour l'instant, concentrons‑nous sur les détails spécifiques dont nous avons besoin.
 
@@ -286,4 +286,4 @@ En utilisant ces outils, vous pouvez rendre le système de sécurité compatible
 
 Le seul détail manquant est qu'il n'est pas encore réellement « sécurisé ».
 
-Dans le prochain chapitre, vous verrez comment utiliser une bibliothèque de hachage de mot de passe sécurisée et des jetons <abbr title="JSON Web Tokens">JWT</abbr>.
+Dans le prochain chapitre, vous verrez comment utiliser une bibliothèque de hachage de mot de passe sécurisée et des jetons <abbr title="JSON Web Tokens - Jetons Web JSON">JWT</abbr>.

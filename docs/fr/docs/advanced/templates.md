@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Templates { #templates }
 
 Vous pouvez utiliser n'importe quel moteur de templates avec **FastAPI**.
@@ -63,13 +67,9 @@ Vous pouvez ensuite écrire un template dans `templates/item.html`, par exemple 
 
 Dans le HTML qui contient :
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ... il affichera l’`id` récupéré à partir du `dict` « context » que vous avez passé :
 
@@ -89,21 +89,47 @@ Vous pouvez aussi utiliser `url_for()` dans le template ; elle prend en paramèt
 
 Ainsi, la section suivante :
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ... générera un lien vers la même URL que celle gérée par la *fonction de chemin d'accès* `read_item(id=id)`.
 
-Par exemple, avec un ID de `42`, cela rendrait :
+`url_for()` renvoie une URL absolue, comprenant le schéma et l'hôte, basée sur la requête actuelle.
+
+Par exemple, si votre application est servie à l'adresse `https://example.com`, avec un ID de `42`, cela rendrait :
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### Chemins d'URL dans les templates { #url-paths-in-templates }
+
+Pour les liens vers le même site, vous pouvez utiliser l'attribut `.path` pour obtenir uniquement le chemin de l'URL, par exemple, dans `templates/item_path.html` :
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Passez le nom du template à `TemplateResponse` :
+
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+Avec le même exemple, le lien vers l'élément donnerait :
 
 ```html
 <a href="/items/42">
 ```
+
+Le `/` initial rend ce chemin relatif à la racine du site actuel.
+
+L'attribut `.path` exclut le schéma, l'hôte, les paramètres de requête et le fragment. Utilisez l'URL complète pour les liens vers un autre hôte.
+
+/// tip | Astuce
+
+Si votre application est derrière un proxy, configurez les en-têtes transférés et `root_path` comme décrit dans [Derrière un proxy](behind-a-proxy.md).
+
+///
 
 ## Templates et fichiers statiques { #templates-and-static-files }
 
@@ -123,4 +149,4 @@ Et comme vous utilisez `StaticFiles`, ce fichier CSS est servi automatiquement p
 
 ## En savoir plus { #more-details }
 
-Pour plus de détails, y compris sur la façon de tester des templates, consultez [la documentation de Starlette sur les templates](https://starlette.dev/templates/).
+Pour plus de détails, y compris sur la façon de tester des templates, consultez [les documents de Starlette sur les templates](https://starlette.dev/templates/).
