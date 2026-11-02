@@ -177,9 +177,14 @@ def is_uploadfile_sequence_annotation(annotation: Any) -> bool:
                 at_least_one = True
                 continue
         return at_least_one
-    return field_annotation_is_sequence(annotation) and all(
-        is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
-        for sub_annotation in get_args(annotation)
+    uploadfile_args = get_args(annotation)
+    return (
+        bool(uploadfile_args)
+        and field_annotation_is_sequence(annotation)
+        and all(
+            is_uploadfile_or_nonable_uploadfile_annotation(sub_annotation)
+            for sub_annotation in uploadfile_args
+        )
     )
 
 
