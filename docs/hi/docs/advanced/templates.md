@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Templates { #templates }
 
 आप **FastAPI** के साथ अपनी पसंद का कोई भी template engine उपयोग कर सकते हैं।
@@ -63,13 +67,9 @@ FastAPI 0.108.0, Starlette 0.29.0 से पहले, `name` पहला param
 
 उस HTML में जिसमें यह शामिल है:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...यह आपके द्वारा pass किए गए "context" `dict` से लिया गया `id` दिखाएगा:
 
@@ -89,21 +89,47 @@ Item ID: 42
 
 इसलिए, इस section के साथ:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ...यह उसी URL का link generate करेगा जिसे *path operation function* `read_item(id=id)` handle करेगा।
 
-उदाहरण के लिए, `42` की ID के साथ, यह render होगा:
+`url_for()` वर्तमान request के आधार पर scheme और host सहित एक absolute URL return करता है।
+
+उदाहरण के लिए, यदि आपका application `https://example.com` पर serve किया जाता है, तो `42` की ID के साथ, यह render होगा:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### Templates में URL paths { #url-paths-in-templates }
+
+उसी साइट के links के लिए, आप केवल URL path प्राप्त करने के लिए `.path` attribute का उपयोग कर सकते हैं, उदाहरण के लिए, `templates/item_path.html` में:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Template का नाम `TemplateResponse` को pass करें:
+
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+उसी उदाहरण में, item का link इस तरह render होगा:
 
 ```html
 <a href="/items/42">
 ```
+
+शुरुआती `/` इस path को वर्तमान साइट के root के सापेक्ष बनाता है।
+
+`.path` attribute में scheme, host, query parameters और fragment शामिल नहीं होते। किसी अन्य host के links के लिए पूरे URL का उपयोग करें।
+
+/// tip | सुझाव
+
+यदि आपका application किसी proxy के पीछे है, तो [Proxy के पीछे](behind-a-proxy.md) में बताए अनुसार forwarded headers और `root_path` configure करें।
+
+///
 
 ## Templates और static files { #templates-and-static-files }
 

@@ -12,7 +12,7 @@ HTTP Basic Auth में, application एक header की अपेक्ष�
 
 फिर, जब आप वह username और password टाइप करते हैं, तो browser उन्हें header में अपने-आप भेज देता है।
 
-## Simple HTTP Basic Auth { #simple-http-basic-auth }
+## सरल HTTP Basic Auth { #simple-http-basic-auth }
 
 * `HTTPBasic` और `HTTPBasicCredentials` import करें।
 * `HTTPBasic` का उपयोग करके एक "`security` scheme" बनाएँ।
@@ -45,7 +45,9 @@ HTTP Basic Auth में, application एक header की अपेक्ष�
 यह इसके समान होगा:
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # कोई error लौटाएँ
     ...
 ```

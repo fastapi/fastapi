@@ -28,7 +28,7 @@ FastAPI ने version 0.95.0 में `Annotated` के लिए support ज
 
 /// note | नोट
 
-एक path parameter हमेशा required होता है क्योंकि उसे path का हिस्सा होना होता है। भले ही आपने इसे `None` के साथ घोषित किया हो या कोई default value सेट की हो, इससे कुछ भी प्रभावित नहीं होगा, यह फिर भी हमेशा required रहेगा।
+एक path parameter हमेशा required होता है क्योंकि उसे URL path का हिस्सा होना होता है। उसके type में `None` जोड़ने से वह वैकल्पिक नहीं हो जाता। `Path` के साथ घोषित parameter की कोई default value नहीं हो सकती।
 
 ///
 
@@ -81,7 +81,7 @@ FastAPI ने version 0.95.0 में `Annotated` के लिए support ज
 
 function के पहले parameter के रूप में `*` पास करें।
 
-Python उस `*` के साथ कुछ नहीं करेगा, लेकिन उसे पता चल जाएगा कि उसके बाद आने वाले सभी parameters को keyword arguments (key-value pairs) के रूप में call किया जाना चाहिए, जिन्हें <abbr title="From: K-ey W-ord Arg-uments - से: K-ey W-ord Arg-uments"><code>kwargs</code></abbr> भी कहा जाता है। भले ही उनके पास default value न हो।
+Python उस `*` के साथ कुछ नहीं करेगा, लेकिन उसे पता चल जाएगा कि उसके बाद आने वाले सभी parameters को keyword arguments (key-value pairs) के रूप में call किया जाना चाहिए, जिन्हें <abbr title="से: K-ey W-ord Arg-uments - कीवर्ड आर्ग्युमेंट्स"><code>kwargs</code></abbr> भी कहा जाता है। भले ही उनके पास default value न हो।
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 
