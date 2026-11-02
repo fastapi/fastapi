@@ -12,7 +12,7 @@ Eso le dice al navegador que muestre el prompt integrado para un nombre de usuar
 
 Luego, cuando escribes ese nombre de usuario y contraseña, el navegador los envía automáticamente en el header.
 
-## Simple HTTP Basic Auth { #simple-http-basic-auth }
+## HTTP Basic Auth simple { #simple-http-basic-auth }
 
 * Importa `HTTPBasic` y `HTTPBasicCredentials`.
 * Crea un "esquema de `security`" usando `HTTPBasic`.
@@ -30,9 +30,9 @@ Cuando intentas abrir la URL por primera vez (o haces clic en el botón "Execute
 
 Aquí hay un ejemplo más completo.
 
-Usa una dependencia para comprobar si el nombre de usuario y la contraseña son correctos.
+Usa una dependencia para revisar si el nombre de usuario y la contraseña son correctos.
 
-Para esto, usa el módulo estándar de Python [`secrets`](https://docs.python.org/3/library/secrets.html) para verificar el nombre de usuario y la contraseña.
+Para esto, usa el módulo estándar de Python [`secrets`](https://docs.python.org/3/library/secrets.html) para revisar el nombre de usuario y la contraseña.
 
 `secrets.compare_digest()` necesita tomar `bytes` o un `str` que solo contenga caracteres ASCII (los carácteres en inglés), esto significa que no funcionaría con caracteres como `á`, como en `Sebastián`.
 
@@ -45,7 +45,9 @@ Luego podemos usar `secrets.compare_digest()` para asegurar que `credentials.use
 Esto sería similar a:
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # Devuelve algún error
     ...
 ```

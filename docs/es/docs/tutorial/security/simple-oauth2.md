@@ -2,7 +2,7 @@
 
 Ahora vamos a construir a partir del capítulo anterior y agregar las partes faltantes para tener un flujo de seguridad completo.
 
-## Obtener el `username` y `password` { #get-the-username-and-password }
+## Obtén el `username` y `password` { #get-the-username-and-password }
 
 Vamos a usar las utilidades de seguridad de **FastAPI** para obtener el `username` y `password`.
 
@@ -88,7 +88,7 @@ Pero como es un caso de uso común, se proporciona directamente por **FastAPI**,
 
 /// tip | Consejo
 
-La instance de la clase de dependencia `OAuth2PasswordRequestForm` no tendrá un atributo `scope` con el string largo separado por espacios, en su lugar, tendrá un atributo `scopes` con la lista real de strings para cada scope enviado.
+La instance de la clase de dependencia `OAuth2PasswordRequestForm` no tendrá un atributo `scope` con el string largo separado por espacios, en su lugar, tendrá un atributo `scopes` con la list real de strings para cada scope enviado.
 
 No estamos usando `scopes` en este ejemplo, pero la funcionalidad está ahí si la necesitas.
 
@@ -136,11 +136,11 @@ Entonces, el ladrón no podrá intentar usar esos mismos passwords en otro siste
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
@@ -150,7 +150,7 @@ Para una explicación más completa de `**user_dict` revisa en [la documentació
 
 ///
 
-## Devolver el token { #return-the-token }
+## Devuelve el token { #return-the-token }
 
 El response del endpoint `token` debe ser un objeto JSON.
 
@@ -162,7 +162,7 @@ Para este ejemplo simple, vamos a ser completamente inseguros y devolver el mism
 
 /// tip | Consejo
 
-En el próximo capítulo, verás una implementación segura real, con hashing de passwords y tokens <abbr title="JSON Web Tokens">JWT</abbr>.
+En el próximo capítulo, verás una implementación segura real, con hashing de passwords y tokens <abbr title="JSON Web Tokens - Tokens web JSON">JWT</abbr>.
 
 Pero por ahora, enfoquémonos en los detalles específicos que necesitamos.
 
@@ -182,7 +182,7 @@ Para el resto, **FastAPI** lo maneja por ti.
 
 ///
 
-## Actualizar las dependencias { #update-the-dependencies }
+## Actualiza las dependencias { #update-the-dependencies }
 
 Ahora vamos a actualizar nuestras dependencias.
 
@@ -214,11 +214,11 @@ Ese es el beneficio de los estándares...
 
 ///
 
-## Verlo en acción { #see-it-in-action }
+## Vélo en acción { #see-it-in-action }
 
 Abre la documentación interactiva: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-### Autenticar { #authenticate }
+### Autentícate { #authenticate }
 
 Haz clic en el botón "Authorize".
 
@@ -234,7 +234,7 @@ Después de autenticarte en el sistema, lo verás así:
 
 <img src="/img/tutorial/security/image05.png">
 
-### Obtener tus propios datos de usuario { #get-your-own-user-data }
+### Obtén tus propios datos de usuario { #get-your-own-user-data }
 
 Ahora usa la operación `GET` con la path `/users/me`.
 
@@ -286,4 +286,4 @@ Usando estas herramientas, puedes hacer que el sistema de seguridad sea compatib
 
 El único detalle que falta es que en realidad no es "seguro" aún.
 
-En el próximo capítulo verás cómo usar un paquete de hashing de passwords seguro y tokens <abbr title="JSON Web Tokens">JWT</abbr>.
+En el próximo capítulo verás cómo usar un paquete de hashing de passwords seguro y tokens <abbr title="JSON Web Tokens - Tokens web JSON">JWT</abbr>.

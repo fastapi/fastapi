@@ -26,11 +26,11 @@ Puedes ver los headers requeridos en la interfaz de documentación en `/docs`:
 <img src="/img/tutorial/header-param-models/image01.png">
 </div>
 
-## Prohibir Headers Extra { #forbid-extra-headers }
+## Prohíbe Headers Extra { #forbid-extra-headers }
 
 En algunos casos de uso especiales (probablemente no muy comunes), podrías querer **restringir** los headers que deseas recibir.
 
-Puedes usar la configuración del modelo de Pydantic para `prohibir` cualquier campo `extra`:
+Puedes usar la configuración del modelo de Pydantic para prohibir (`forbid`) cualquier campo `extra`:
 
 {* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
 
@@ -51,7 +51,7 @@ Por ejemplo, si el cliente intenta enviar un header `tool` con un valor de `plum
 }
 ```
 
-## Desactivar la conversión de guiones bajos { #disable-convert-underscores }
+## Desactiva la conversión de guiones bajos { #disable-convert-underscores }
 
 De la misma forma que con los parámetros de header normales, cuando tienes caracteres de guion bajo en los nombres de los parámetros, se **convierten automáticamente en guiones**.
 
@@ -66,6 +66,26 @@ Si por alguna razón necesitas desactivar esta conversión automática, también
 Antes de establecer `convert_underscores` a `False`, ten en cuenta que algunos proxies y servidores HTTP no permiten el uso de headers con guiones bajos.
 
 ///
+
+## Combina Modelos de Parámetros { #combine-parameter-models }
+
+Puedes combinar múltiples modelos de parámetros de header con parámetros de header individuales y dependencias. Cada modelo se extrae y se valida de forma independiente, como se explica para los [modelos de parámetros de query](query-param-models.md#combine-parameter-models).
+
+La configuración `extra` de cada modelo se aplica a todos los parámetros de header, incluidos los declarados en otros modelos o dependencias. Con `extra="forbid"`, se rechaza cualquier header que no forme parte de ese modelo. Con `extra="allow"`, esos headers se incluyen como campos extra del modelo.
+
+Cada modelo usa su propia configuración `Header(convert_underscores=...)`, tanto al leer el request como al generar OpenAPI. Los alias explícitos de los campos se mantienen como nombres literales de headers.
+
+## Modelos Opcionales de Parámetros de Header { #optional-header-parameter-models }
+
+Declara un modelo de parámetros de header con `| None` y un valor por defecto de `None` para que el grupo sea opcional.
+
+{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+
+Si no se envía ni `x-client-name` ni `x-client-version`, `client` es `None`. Si se envía cualquiera de los dos, FastAPI valida el modelo y requiere ambos campos.
+
+Se aplican las mismas reglas para los valores por defecto, los campos extra y OpenAPI que para los [modelos opcionales de parámetros de query](query-param-models.md#optional-query-parameter-models).
+
+Los headers como `Host` también siguen la configuración `extra` del modelo. Con `extra="allow"`, hacen que el modelo esté presente incluso si no se proporciona ninguno de los campos declarados.
 
 ## Resumen { #summary }
 

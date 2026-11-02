@@ -44,6 +44,14 @@ Para declarar bodies de formularios, necesitas usar `Form` explícitamente, porq
 
 ///
 
+## Campos de formulario booleanos { #boolean-form-fields }
+
+Los navegadores omiten las casillas de verificación no marcadas al enviar formularios HTML. Declara un parámetro de formulario booleano con un valor por defecto de `False` para recibir `False` cuando la casilla no esté marcada:
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+Una casilla de verificación marcada envía su valor, que por defecto es `"on"`. **FastAPI** acepta `"on"` como `True`.
+
 ## Sobre "Campos de formulario" { #about-form-fields }
 
 La manera en que los formularios HTML (`<form></form>`) envían los datos al servidor normalmente usa una codificación "especial" para esos datos, es diferente de JSON.
@@ -56,7 +64,9 @@ Los datos de formularios normalmente se codifican usando el "media type" `applic
 
 Pero cuando el formulario incluye archivos, se codifica como `multipart/form-data`. Leerás sobre la gestión de archivos en el próximo capítulo.
 
-Si quieres leer más sobre estas codificaciones y campos de formulario, dirígete a las [<abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla">MDN</abbr> web docs para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
+Puedes usar `Form(media_type="multipart/form-data")` para describir un formulario multipart en OpenAPI. Basta con configurarlo en un parámetro al combinar parámetros de formulario o modelos.
+
+Si quieres leer más sobre estas codificaciones y campos de formulario, dirígete a la [documentación web de <abbr title="Mozilla Developer Network - Red de Desarrolladores de Mozilla">MDN</abbr> para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 
 ///
 

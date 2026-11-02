@@ -2,7 +2,7 @@
 
 De la misma manera que puedes declarar más validaciones y metadatos para los parámetros de query con `Query`, puedes declarar el mismo tipo de validaciones y metadatos para los parámetros de path con `Path`.
 
-## Importar `Path` { #import-path }
+## Importa `Path` { #import-path }
 
 Primero, importa `Path` de `fastapi`, e importa `Annotated`:
 
@@ -18,7 +18,7 @@ Asegúrate de [Actualizar la versión de FastAPI](../deployment/versions.md#upgr
 
 ///
 
-## Declarar metadatos { #declare-metadata }
+## Declara metadatos { #declare-metadata }
 
 Puedes declarar todos los mismos parámetros que para `Query`.
 
@@ -28,7 +28,7 @@ Por ejemplo, para declarar un valor de metadato `title` para el parámetro de pa
 
 /// note | Nota
 
-Un parámetro de path siempre es requerido ya que tiene que formar parte del path. Incluso si lo declaras con `None` o le asignas un valor por defecto, no afectará en nada, siempre será requerido.
+Un parámetro de path siempre es requerido ya que tiene que formar parte del path de la URL. Añadir `None` a su tipo no lo hace opcional. Un parámetro declarado con `Path` no puede tener un valor por defecto.
 
 ///
 
@@ -81,7 +81,7 @@ Si quieres:
 
 Pasa `*`, como el primer parámetro de la función.
 
-Python no hará nada con ese `*`, pero sabrá que todos los parámetros siguientes deben ser llamados como argumentos de palabras clave (parejas key-value), también conocidos como <abbr title="De: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Incluso si no tienen un valor por defecto.
+Python no hará nada con ese `*`, pero sabrá que todos los parámetros siguientes deben ser llamados como argumentos de palabras clave (parejas clave-valor), también conocidos como <abbr title="De: K-ey W-ord Arg-uments - argumentos de palabras clave"><code>kwargs</code></abbr>. Incluso si no tienen un valor por defecto.
 
 {* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
 

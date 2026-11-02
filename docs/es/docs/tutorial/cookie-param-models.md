@@ -1,4 +1,4 @@
-# Modelos de Cookies { #cookie-parameter-models }
+# Modelos de Parámetros de Cookie { #cookie-parameter-models }
 
 Si tienes un grupo de **cookies** que están relacionadas, puedes crear un **modelo de Pydantic** para declararlas. 🍪
 
@@ -42,17 +42,17 @@ Pero incluso si **rellenas los datos** y haces clic en "Execute", como la UI de 
 
 ///
 
-## Prohibir Cookies Extra { #forbid-extra-cookies }
+## Prohíbe Cookies Extra { #forbid-extra-cookies }
 
 En algunos casos de uso especiales (probablemente no muy comunes), podrías querer **restringir** las cookies que deseas recibir.
 
 Tu API ahora tiene el poder de controlar su propio <dfn title="Esto es una broma, por si acaso. No tiene nada que ver con los consentimientos de cookies, pero es gracioso que incluso la API ahora pueda rechazar las pobres cookies. Toma una cookie. 🍪">consentimiento de cookies</dfn>. 🤪🍪
 
-Puedes usar la configuración del modelo de Pydantic para `prohibir` cualquier campo `extra`:
+Puedes usar la configuración del modelo de Pydantic para `forbid` cualquier campo `extra`:
 
 {* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
 
-Si un cliente intenta enviar algunas **cookies extra**, recibirán un response de **error**.
+Si un cliente intenta enviar algunas **cookies extra**, recibirá un response de **error**.
 
 Pobres banners de cookies con todo su esfuerzo para obtener tu consentimiento para que la <dfn title="Esta es otra broma. No me prestes atención. Toma un café para tu cookie. ☕">API lo rechace</dfn>. 🍪
 
@@ -70,6 +70,22 @@ Por ejemplo, si el cliente intenta enviar una cookie `santa_tracker` con un valo
     ]
 }
 ```
+
+## Combina Modelos de Parámetros { #combine-parameter-models }
+
+Puedes combinar múltiples modelos de parámetros de cookie con parámetros de cookie individuales y dependencias. Cada modelo se extrae y se valida de forma independiente, como se explica para los [modelos de parámetros de query](query-param-models.md#combine-parameter-models).
+
+La configuración `extra` de cada modelo se aplica a todos los parámetros de cookie, incluidos los declarados en otros modelos o dependencias. Con `extra="forbid"`, se rechaza cualquier cookie que no forme parte de ese modelo. Con `extra="allow"`, esas cookies se incluyen como campos extra del modelo.
+
+## Modelos Opcionales de Parámetros de Cookie { #optional-cookie-parameter-models }
+
+Declara un modelo de parámetros de cookie con `| None` y un valor por defecto de `None` para hacer que el grupo sea opcional.
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+Si no se envía ni `theme` ni `locale`, `preferences` es `None`. Si se envía cualquiera de los dos, FastAPI valida el modelo y requiere ambos campos.
+
+Se aplican las mismas reglas para los valores por defecto, los campos extra y OpenAPI que para los [modelos opcionales de parámetros de query](query-param-models.md#optional-query-parameter-models).
 
 ## Resumen { #summary }
 

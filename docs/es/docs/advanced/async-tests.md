@@ -20,7 +20,7 @@ El `TestClient` está basado en [HTTPX](https://www.python-httpx.org), y afortun
 
 ## Ejemplo { #example }
 
-Para un ejemplo simple, consideremos una estructura de archivos similar a la descrita en [Aplicaciones Más Grandes](../tutorial/bigger-applications.md) y [Testing](../tutorial/testing.md):
+Para un ejemplo simple, consideremos una estructura de archivos similar a la descrita en [Aplicaciones Más Grandes](../tutorial/bigger-applications.md) y [Escribir pruebas](../tutorial/testing.md):
 
 ```
 .
@@ -71,7 +71,7 @@ Luego podemos crear un `AsyncClient` con la app y enviar requests asíncronos a 
 Esto es equivalente a:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...que usábamos para hacer nuestros requests con el `TestClient`.
