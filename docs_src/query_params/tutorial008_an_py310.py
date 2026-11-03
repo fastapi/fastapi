@@ -1,6 +1,5 @@
-from typing import Annotated
-
 import re
+from typing import Annotated
 
 from fastapi import FastAPI, Query
 
