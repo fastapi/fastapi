@@ -85,6 +85,19 @@ class Param(FieldInfo):  # type: ignore[misc]  # ty: ignore[subclass-of-final-cl
         self.example = example
         self.include_in_schema = include_in_schema
         self.openapi_examples = openapi_examples
+        # Reject negative lengths here: pydantic-core otherwise fails while the
+        # route is being registered, with a SchemaError/OverflowError that does
+        # not name the parameter that caused it.
+        if min_length is not None and min_length < 0:
+            raise ValueError(
+                f"`min_length` cannot be negative, received: {min_length!r}. "
+                "Use a non-negative integer or `None`."
+            )
+        if max_length is not None and max_length < 0:
+            raise ValueError(
+                f"`max_length` cannot be negative, received: {max_length!r}. "
+                "Use a non-negative integer or `None`."
+            )
         kwargs = {
             "default": default,
             "default_factory": default_factory,
