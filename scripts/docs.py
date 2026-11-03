@@ -101,8 +101,35 @@ def slugify(text: str) -> str:
     )
 
 
+class PythonName(str):
+    pass
+
+
+class MkDocsSafeLoader(yaml.SafeLoader):
+    pass
+
+
+def _python_name_constructor(
+    loader: yaml.SafeLoader, suffix: str, node: yaml.Node
+) -> PythonName:
+    return PythonName(suffix)
+
+
+def _python_name_representer(dumper: yaml.Dumper, data: PythonName) -> yaml.ScalarNode:
+    return dumper.represent_scalar(f"tag:yaml.org,2002:python/name:{data}", "")
+
+
+MkDocsSafeLoader.add_multi_constructor(
+    "tag:yaml.org,2002:python/name:", _python_name_constructor
+)
+yaml.add_representer(PythonName, _python_name_representer)
+yaml.add_representer(PythonName, _python_name_representer, Dumper=yaml.SafeDumper)
+
+
 def get_en_config() -> dict[str, Any]:
-    return yaml.unsafe_load(en_config_path.read_text(encoding="utf-8"))
+    return yaml.load(
+        en_config_path.read_text(encoding="utf-8"), Loader=MkDocsSafeLoader
+    )
 
 
 def get_lang_paths() -> list[Path]:
@@ -292,7 +319,7 @@ def build_zensical_config(config_path: Path) -> None:
 def build_zensical_lang_to_stage(lang: str) -> Path:
     typer.echo(f"Building Zensical docs for: {lang}")
     config_path = stage_zensical_docs(lang)
-    config = yaml.unsafe_load(config_path.read_text(encoding="utf-8"))
+    config = yaml.load(config_path.read_text(encoding="utf-8"), Loader=MkDocsSafeLoader)
     build_site_dist_path = config_path.parent / config["site_dir"]
     shutil.rmtree(build_site_dist_path, ignore_errors=True)
     build_zensical_config(config_path)
