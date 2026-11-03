@@ -1,7 +1,7 @@
 import dataclasses
 import datetime
 from collections import defaultdict, deque
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from decimal import Decimal
 from enum import Enum
 from ipaddress import (
@@ -228,6 +228,16 @@ def jsonable_encoder(
     Read more about it in the
     [FastAPI docs for JSON Compatible Encoder](https://fastapi.tiangolo.com/tutorial/encoder/).
     """
+    if custom_encoder is not None and not isinstance(custom_encoder, Mapping):
+        # A single callable is the natural misreading of "custom encoder": it used
+        # to fail as "argument of type 'function' is not iterable" inside the loop
+        # below, with no mention of the argument.
+        raise TypeError(
+            "custom_encoder must be a mapping (e.g. a dict) from types to encoder "
+            f"callables, but received an object of type "
+            f"{type(custom_encoder).__name__}"
+        )
+
     custom_encoder = custom_encoder or {}
     if custom_encoder:
         if type(obj) in custom_encoder:
