@@ -1082,6 +1082,13 @@ def _populate_api_route_state(
     # normalize enums e.g. http.HTTPStatus
     if isinstance(status_code, IntEnum):
         status_code = int(status_code)
+    elif status_code is not None and not isinstance(status_code, int):
+        raise FastAPIError(
+            f"Invalid status_code: {status_code!r}. The status_code of a path "
+            "operation must be an int or an IntEnum, e.g. 200 or "
+            "http.HTTPStatus.OK. Patterned OpenAPI values like '2XX' and "
+            "'default' are only valid as keys in `responses`."
+        )
     route.status_code = status_code
     route.dependencies = list(dependencies or [])
     route.description = description or inspect.cleandoc(route.endpoint.__doc__ or "")
