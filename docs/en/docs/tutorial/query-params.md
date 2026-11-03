@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Query Parameters { #query-parameters }
 
 When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.
@@ -67,7 +72,7 @@ In this case, the function parameter `q` will be optional, and will be `None` by
 
 /// tip
 
-Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it's a query parameter.
+Also notice that **FastAPI** is smart enough to notice that the path parameter `item_id` is a path parameter and `q` is not, so, it is a query parameter.
 
 ///
 
@@ -192,3 +197,17 @@ In this case, there are 3 query parameters:
 You could also use `Enum`s the same way as with [Path Parameters](path-params.md#predefined-values).
 
 ///
+
+## Advanced parameter options { #advanced-parameter-options }
+
+Query (and other request parameters) support additional Pydantic validation options:
+
+* `validate_default`: validates the default value (`True` by default it is not validated).
+* `union_mode`: selects union validation strategy (`"smart"` by default or `"left_to_right"`).
+* `fail_fast`: stops validation at the first error for collections (`True` or `False`).
+* `pattern`: accepts a compiled regular expression (`re.Pattern[str]`) in addition to a string.
+* `json_schema_extra`: accepts a callable that modifies the JSON Schema.
+
+{* ../../docs_src/query_params/tutorial008_an_py310.py hl[9:32] *}
+
+These options apply to `Query`, `Path`, `Header`, `Cookie`, `Body`, and `Form` parameters.
