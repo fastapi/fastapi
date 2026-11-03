@@ -27,6 +27,5 @@ def test_an_int_status_code_still_works():
     def read_ok():
         return {}
 
-
     assert app.routes[-2].status_code == 201
     assert app.routes[-1].status_code == 200
