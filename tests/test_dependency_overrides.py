@@ -387,3 +387,34 @@ def test_override_with_sub_router_decorator_depends_k_bar():
     assert response.status_code == 200
     assert response.json() == {"in": "router-decorator-depends"}
     app.dependency_overrides = {}
+
+
+def test_unrelated_dependency_override_preserves_nested_security_scopes():
+    from fastapi import Security
+    from fastapi.security import SecurityScopes
+
+    test_app = FastAPI()
+
+    def unrelated_dep() -> str:
+        return "unrelated"
+
+    def child(security_scopes: SecurityScopes) -> list[str]:
+        return security_scopes.scopes
+
+    def parent(scopes: list[str] = Depends(child)) -> list[str]:
+        return scopes
+
+    def grandparent(scopes: list[str] = Security(parent, scopes=["a"])) -> list[str]:
+        return scopes
+
+    @test_app.get("/scopes")
+    def endpoint(scopes: list[str] = Security(grandparent, scopes=["a"])):
+        return scopes
+
+    test_client = TestClient(test_app)
+    res_normal = test_client.get("/scopes").json()
+    assert res_normal == ["a", "a"]
+
+    test_app.dependency_overrides[unrelated_dep] = lambda: "overridden"
+    res_override = test_client.get("/scopes").json()
+    assert res_override == ["a", "a"]
