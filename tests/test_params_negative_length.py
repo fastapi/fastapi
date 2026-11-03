@@ -1,6 +1,5 @@
 import pytest
-
-from fastapi import Body, FastAPI, Path, Query
+from fastapi import Body, FastAPI, Query
 from fastapi.testclient import TestClient
 
 
