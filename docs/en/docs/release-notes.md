@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* 🔧 Update sponsors: add Encore. PR [#16683](https://github.com/fastapi/fastapi/pull/16683) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove conference rail component and related styles. PR [#16679](https://github.com/fastapi/fastapi/pull/16679) by [@alejsdev](https://github.com/alejsdev).
 * 👥 Update FastAPI People - Sponsors. PR [#16656](https://github.com/fastapi/fastapi/pull/16656) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 👥 Update FastAPI GitHub topic repositories. PR [#16660](https://github.com/fastapi/fastapi/pull/16660) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
