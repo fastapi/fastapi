@@ -81,6 +81,11 @@ def get_validdict_exclude_unset():
     }
 
 
+@app.get("/items/unmodeled")
+def get_unmodeled():
+    return {"name": "unmodeled", "tags": ["fast", "api"]}
+
+
 client = TestClient(app)
 
 
@@ -150,3 +155,9 @@ def test_validdict_exclude_unset():
         "k2": {"aliased_name": "bar", "price": 1.0},
         "k3": {"aliased_name": "baz", "price": 2.0, "owner_ids": [1, 2, 3]},
     }
+
+
+def test_serialize_response_without_response_model():
+    response = client.get("/items/unmodeled")
+    response.raise_for_status()
+    assert response.json() == {"name": "unmodeled", "tags": ["fast", "api"]}

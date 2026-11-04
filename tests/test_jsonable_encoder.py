@@ -343,3 +343,47 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+def test_decimal_encoder_exact_int_type_invariant():
+    # Invariant: Decimal with zero or positive exponent MUST encode as Python int, not float.
+    # A boundary shift from >= 0 to > 0 erroneously converts Decimal("1") (exponent 0) to float 1.0.
+    int_dec = Decimal("1")
+    encoded = jsonable_encoder(int_dec)
+    assert encoded == 1
+    assert type(encoded) is int, f"Expected int, got {type(encoded).__name__}"
+
+    zero_dec = Decimal("0")
+    encoded_zero = jsonable_encoder(zero_dec)
+    assert encoded_zero == 0
+    assert type(encoded_zero) is int, f"Expected int, got {type(encoded_zero).__name__}"
+
+    pos_exp = Decimal("100")
+    encoded_pos = jsonable_encoder(pos_exp)
+    assert encoded_pos == 100
+    assert type(encoded_pos) is int, f"Expected int, got {type(encoded_pos).__name__}"
+
+
+def test_jsonable_encoder_direct_enum_value():
+    # Invariant: An Enum member passed to jsonable_encoder must serialize to its exact raw value.
+    # Mutating 'return obj.value' to 'return None' must fail.
+    class StatusEnum(str, Enum):
+        ACTIVE = "active"
+        INACTIVE = "inactive"
+
+    class IntStatusEnum(int, Enum):
+        ONE = 1
+        TWO = 2
+
+    assert jsonable_encoder(StatusEnum.ACTIVE) == "active"
+    assert jsonable_encoder(StatusEnum.ACTIVE) is not None
+    assert type(jsonable_encoder(StatusEnum.ACTIVE)) is str
+
+    assert jsonable_encoder(IntStatusEnum.ONE) == 1
+    assert jsonable_encoder(IntStatusEnum.ONE) is not None
+    assert type(jsonable_encoder(IntStatusEnum.ONE)) is int
+
+    res_dict = jsonable_encoder(
+        {"status": StatusEnum.ACTIVE, "code": IntStatusEnum.ONE}
+    )
+    assert res_dict == {"status": "active", "code": 1}
