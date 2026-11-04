@@ -47,7 +47,7 @@ The key features are:
 <!-- sponsors -->
 ### Keystone Sponsor
 
-<a href="https://fastapicloud.com" target="_blank" title="FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud."><img src="https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png"></a>
+<a href="https://fastapicloud.com" target="_blank" title="FastAPI Cloud is now generally available. By the same team behind FastAPI. You code. We cloud."><img src="https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png"></a>
 
 ### Gold Sponsors
 

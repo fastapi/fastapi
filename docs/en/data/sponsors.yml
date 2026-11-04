@@ -1,6 +1,6 @@
 keystone:
   - url: https://fastapicloud.com
-    title: FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud.
+    title: FastAPI Cloud is now generally available. By the same team behind FastAPI. You code. We cloud.
     img: /img/sponsors/fastapicloud.png
 gold:
   - url: https://blockbee.io?ref=fastapi
