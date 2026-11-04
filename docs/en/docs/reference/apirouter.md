@@ -15,6 +15,7 @@ from fastapi import APIRouter
             - include_router
             - frontend
             - get
+            - query
             - put
             - post
             - delete

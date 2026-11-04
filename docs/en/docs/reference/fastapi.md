@@ -20,6 +20,7 @@ from fastapi import FastAPI
             - include_router
             - frontend
             - get
+            - query
             - put
             - post
             - delete

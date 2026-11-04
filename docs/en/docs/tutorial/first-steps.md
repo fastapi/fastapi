@@ -293,6 +293,13 @@ One of:
 * `HEAD`
 * `PATCH`
 * `TRACE`
+* `QUERY`
+
+/// note
+
+The `QUERY` method is defined in [RFC 10008](https://datatracker.ietf.org/doc/rfc10008/). It is safe and idempotent and can include a request body, making it useful for complex search requests.
+
+///
 
 In the HTTP protocol, you can communicate to each path using one (or more) of these "methods".
 
@@ -346,6 +353,7 @@ And the more exotic ones:
 * `@app.head()`
 * `@app.patch()`
 * `@app.trace()`
+* `@app.query()`
 
 /// tip
 
