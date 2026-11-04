@@ -67,6 +67,7 @@ The key features are:
 <a href="https://dribia.com/en/" target="_blank" title="Dribia - Data Science within your reach"><img src="https://fastapi.tiangolo.com/img/sponsors/dribia.png"></a>
 <a href="https://www.bairesdev.com/" target="_blank" title="BairesDev | Nearshore Software Development & Staff Augmentation Company"><img src="https://fastapi.tiangolo.com/img/sponsors/bairesdev.svg"></a>
 <a href="https://tutorcruncher.com/?utm_source=fastapi" target="_blank" title="TutorCruncher"><img src="https://fastapi.tiangolo.com/img/sponsors/tutorcruncher.png"></a>
+<a href="https://encore.dev/py?utm_source=fastapi&utm_medium=sponsor&utm_campaign=fastapi-sponsorship" target="_blank" title="Encore: Build and deploy FastAPI apps to your own AWS or GCP account, with the infrastructure handled for you"><img src="https://fastapi.tiangolo.com/img/sponsors/encore.png"></a>
 
 <!-- /sponsors -->
 

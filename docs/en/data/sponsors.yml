@@ -54,6 +54,9 @@ silver:
   - url: https://tutorcruncher.com/?utm_source=fastapi
     title: TutorCruncher
     img: /img/sponsors/tutorcruncher.png
+  - url: https://encore.dev/py?utm_source=fastapi&utm_medium=sponsor&utm_campaign=fastapi-sponsorship
+    title: "Encore: Build and deploy FastAPI apps to your own AWS or GCP account, with the infrastructure handled for you"
+    img: /img/sponsors/encore.png
 bronze:
   # - url: https://testdriven.io/courses/tdd-fastapi/
   #   title: Learn to build high-quality web apps with best practices
