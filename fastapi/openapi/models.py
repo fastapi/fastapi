@@ -314,6 +314,7 @@ class PathItem(BaseModelWithConfig):
     head: Operation | None = None
     patch: Operation | None = None
     trace: Operation | None = None
+    query: Operation | None = None
     servers: list[Server] | None = None
     parameters: list[Parameter | Reference] | None = None
 
