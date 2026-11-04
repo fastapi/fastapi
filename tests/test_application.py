@@ -43,7 +43,9 @@ def test_redoc():
     response = client.get("/redoc")
     assert response.status_code == 200, response.text
     assert response.headers["content-type"] == "text/html; charset=utf-8"
-    assert "redoc@2" in response.text
+    assert "redoc@3" in response.text
+    assert '<script type="module"' in response.text
+    assert 'disable-telemetry="true"' in response.text
 
 
 def test_enum_status_code_response():

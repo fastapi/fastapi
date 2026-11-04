@@ -40,6 +40,8 @@ def test_strings_in_generated_redoc():
     body_content = bytes(html.body).decode()
     assert redoc_js_url in body_content
     assert redoc_favicon_url in body_content
+    assert '<script type="module"' in body_content
+    assert 'disable-telemetry="true"' in body_content
 
 
 def test_strings_in_custom_redoc():
@@ -57,11 +59,11 @@ def test_strings_in_custom_redoc():
 
 
 def test_google_fonts_in_generated_redoc():
-    body_with_google_fonts = bytes(
+    body_without_google_fonts = bytes(
         get_redoc_html(openapi_url="/docs", title="title").body
     ).decode()
-    assert "fonts.googleapis.com" in body_with_google_fonts
-    body_without_google_fonts = bytes(
-        get_redoc_html(openapi_url="/docs", title="title", with_google_fonts=False).body
-    ).decode()
     assert "fonts.googleapis.com" not in body_without_google_fonts
+    body_with_google_fonts = bytes(
+        get_redoc_html(openapi_url="/docs", title="title", with_google_fonts=True).body
+    ).decode()
+    assert "fonts.googleapis.com" in body_with_google_fonts

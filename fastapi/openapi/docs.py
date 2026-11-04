@@ -233,7 +233,7 @@ def get_redoc_html(
             [FastAPI docs for Custom Docs UI Static Assets](https://fastapi.tiangolo.com/how-to/custom-docs-ui-assets/)
             """
         ),
-    ] = "https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js",
+    ] = "https://cdn.jsdelivr.net/npm/redoc@3/bundles/redoc.standalone.js",
     redoc_favicon_url: Annotated[
         str,
         Doc(
@@ -249,7 +249,7 @@ def get_redoc_html(
             Load and use Google Fonts.
             """
         ),
-    ] = True,
+    ] = False,
 ) -> HTMLResponse:
     """
     Generate and return the HTML response that loads ReDoc for the alternative
@@ -290,8 +290,8 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
-    <script src="{redoc_js_url}"> </script>
+    <redoc spec-url="{openapi_url}" disable-telemetry="true"></redoc>
+    <script type="module" src="{redoc_js_url}"> </script>
     </body>
     </html>
     """

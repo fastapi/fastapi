@@ -98,7 +98,7 @@ You can probably right-click each link and select an option similar to "Save lin
 
 And **ReDoc** uses the file:
 
-* [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@2/bundles/redoc.standalone.js)
+* [`redoc.standalone.js`](https://cdn.jsdelivr.net/npm/redoc@3/bundles/redoc.standalone.js)
 
 After that, your file structure could look like:
 
@@ -129,9 +129,13 @@ You should see a very long JavaScript file for **ReDoc**.
 It could start with something like:
 
 ```JavaScript
-/*! For license information please see redoc.standalone.js.LICENSE.txt */
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("null")):
-...
+/**
+* @license MIT
+* (c) Copyright 2026 Redocly LLC, all rights reserved.
+* -------------------------------------------------------------
+* Version: 3.0.1
+**/
+const{RedocStandalone,hydrate,init}=...
 ```
 
 That confirms that you are being able to serve static files from your app, and that you placed the static files for the docs in the correct place.
