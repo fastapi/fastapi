@@ -17,7 +17,7 @@ def test_openapi_schema():
     assert response.status_code == 200, response.text
     assert response.json() == snapshot(
         {
-            "openapi": "3.1.0",
+            "openapi": "3.2.0",
             "info": {
                 "title": "ChimichangApp",
                 "summary": "Deadpool's favorite app. Nuff said.",

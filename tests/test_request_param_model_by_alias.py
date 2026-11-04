@@ -114,7 +114,7 @@ def test_openapi_with_validation_by_alias_disabled():
     assert response.status_code == 200
     assert response.json() == snapshot(
         {
-            "openapi": "3.1.0",
+            "openapi": "3.2.0",
             "info": {"title": "FastAPI", "version": "0.1.0"},
             "paths": {
                 "/query": {

@@ -122,7 +122,7 @@ It will show a JSON starting with something like:
 
 ```JSON
 {
-    "openapi": "3.1.0",
+    "openapi": "3.2.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"

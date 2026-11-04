@@ -22,7 +22,7 @@ And that function `get_openapi()` receives as parameters:
 
 * `title`: The OpenAPI title, shown in the docs.
 * `version`: The version of your API, e.g. `2.5.0`.
-* `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.1.0`.
+* `openapi_version`: The version of the OpenAPI specification used. By default, the latest: `3.2.0`.
 * `summary`: A short summary of the API.
 * `description`: The description of your API, this can include markdown and will be shown in the docs.
 * `routes`: The routes from the application, taken from `app.routes`. FastAPI uses them to collect the registered *path operations*, including those from included routers.

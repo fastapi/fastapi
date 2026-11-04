@@ -96,7 +96,7 @@ And if you see the resulting OpenAPI (at `/openapi.json` in your API), you will 
 
 ```JSON hl_lines="22"
 {
-    "openapi": "3.1.0",
+    "openapi": "3.2.0",
     "info": {
         "title": "FastAPI",
         "version": "0.1.0"

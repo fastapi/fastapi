@@ -893,13 +893,13 @@ class FastAPI(Starlette):
                 """
                 The version string of OpenAPI.
 
-                FastAPI will generate OpenAPI version 3.1.0, and will output that as
+                FastAPI will generate OpenAPI version 3.2.0, and will output that as
                 the OpenAPI version. But some tools, even though they might be
-                compatible with OpenAPI 3.1.0, might not recognize it as a valid.
+                compatible with OpenAPI 3.2.0, might not recognize it as a valid.
 
                 So you could override this value to trick those tools into using
                 the generated OpenAPI. Have in mind that this is a hack. But if you
-                avoid using features added in OpenAPI 3.1.0, it might work for your
+                avoid using features added in OpenAPI 3.2.0, it might work for your
                 use case.
 
                 This is not passed as a parameter to the `FastAPI` class to avoid
@@ -917,7 +917,7 @@ class FastAPI(Starlette):
                 ```
                 """
             ),
-        ] = "3.1.0"
+        ] = "3.2.0"
         self.openapi_schema: dict[str, Any] | None = None
         self._openapi_routes_version: int | None = None
         if self.openapi_url:

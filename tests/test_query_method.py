@@ -60,7 +60,6 @@ def test_get_is_not_allowed():
 
 
 def test_openapi_schema():
-    app.openapi_version = "3.2.0"
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
     assert response.json() == snapshot(

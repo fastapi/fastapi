@@ -578,7 +578,7 @@ def get_openapi(
     *,
     title: str,
     version: str,
-    openapi_version: str = "3.1.0",
+    openapi_version: str = "3.2.0",
     summary: str | None = None,
     description: str | None = None,
     routes: Sequence[BaseRoute | routing.RouteContext],

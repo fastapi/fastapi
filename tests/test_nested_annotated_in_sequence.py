@@ -95,7 +95,7 @@ def test_openapi():
                 "title": "FastAPI",
                 "version": "0.1.0",
             },
-            "openapi": "3.1.0",
+            "openapi": "3.2.0",
             "paths": {
                 "/": {
                     "get": {

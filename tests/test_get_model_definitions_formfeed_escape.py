@@ -117,7 +117,7 @@ def test_openapi_schema(client: TestClient):
                 }
             },
             "info": {"title": "FastAPI", "version": "0.1.0"},
-            "openapi": "3.1.0",
+            "openapi": "3.2.0",
             "paths": {
                 "/facilities/{facility_id}": {
                     "get": {
