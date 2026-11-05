@@ -8,7 +8,7 @@ from fastapi import APIRouter, FastAPI
 from fastapi.responses import EventSourceResponse
 from fastapi.sse import ServerSentEvent, format_sse_event
 from fastapi.testclient import TestClient
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Item(BaseModel):
@@ -488,3 +488,62 @@ def test_default_response_class_on_parent_router_openapi_schema():
         default_parent_app.openapi()["paths"]["/api/stream"]["get"]["responses"]["200"]
         == sse_schema_response
     )
+
+
+class AliasedItem(BaseModel):
+    name: str = Field(alias="item_name", default="default_name")
+    description: str | None = None
+    secret: str = "hidden"
+
+    model_config = {"populate_by_name": True}
+
+
+def test_sse_event_model_serialization_by_alias_and_filters():
+    sse_app = FastAPI()
+
+    @sse_app.get("/sse-alias-default", response_class=EventSourceResponse)
+    async def stream_alias_default() -> AsyncIterable[ServerSentEvent]:
+        yield ServerSentEvent(
+            data=AliasedItem(name="Plumbus", description=None),
+            event="item",
+        )
+        yield ServerSentEvent(
+            data=[AliasedItem(name="Portal Gun", description=None)],
+            event="items",
+        )
+
+    @sse_app.get(
+        "/sse-serialization-options",
+        response_class=EventSourceResponse,
+        response_model_by_alias=False,
+        response_model_exclude_none=True,
+        response_model_exclude_defaults=True,
+        response_model_exclude={"secret"},
+    )
+    async def stream_serialization_options() -> AsyncIterable[ServerSentEvent]:
+        yield ServerSentEvent(
+            data=AliasedItem(name="Plumbus", description=None, secret="top-secret"),
+            event="single",
+        )
+        yield ServerSentEvent(
+            data=[AliasedItem(name="Portal Gun", description=None, secret="top-secret")],
+            event="list",
+        )
+
+    with TestClient(sse_app) as c:
+        res_default = c.get("/sse-alias-default")
+        assert res_default.status_code == 200
+        assert (
+            'data: {"item_name":"Plumbus","description":null,"secret":"hidden"}\n'
+            in res_default.text
+        )
+        assert (
+            'data: [{"item_name": "Portal Gun", "description": null, "secret": "hidden"}]\n'
+            in res_default.text
+        )
+
+        res_opts = c.get("/sse-serialization-options")
+        assert res_opts.status_code == 200
+        assert 'data: {"name":"Plumbus"}\n' in res_opts.text
+        assert 'data: [{"name": "Portal Gun"}]\n' in res_opts.text
+
