@@ -23,6 +23,7 @@ hide:
 
 ### Internal
 
+* ⬆️ Bump pillow to 13.0.0 and dnspython to 2.9.2. PR [#16685](https://github.com/fastapi/fastapi/pull/16685) by [@YuriiMotov](https://github.com/YuriiMotov).
 * 📝 Update FastAPI Cloud docs banner for general availability. PR [#16684](https://github.com/fastapi/fastapi/pull/16684) by [@tiangolo](https://github.com/tiangolo).
 * 🔧 Update sponsors: add Encore. PR [#16683](https://github.com/fastapi/fastapi/pull/16683) by [@tiangolo](https://github.com/tiangolo).
 * 🔥 Remove conference rail component and related styles. PR [#16679](https://github.com/fastapi/fastapi/pull/16679) by [@alejsdev](https://github.com/alejsdev).
