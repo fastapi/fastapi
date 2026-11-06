@@ -48,9 +48,7 @@ Depend (security) का उपयोग करके यह जांचने 
 if not (credentials.username == "stanleyjobson") or not (
     credentials.password == "swordfish"
 ):
-    raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-    )
+    Error 401 लौटाए
     ...
 ```
 
