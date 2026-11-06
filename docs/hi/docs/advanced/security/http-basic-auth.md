@@ -28,11 +28,11 @@ HTTP Basic Auth में, application एक header की अपेक्ष�
 
 ## Username जाँचें { #check-the-username }
 
-यहाँ एक अधिक complete example है।
+यह एक बेहतरीन complete example है।
 
-यह जाँचने के लिए dependency का उपयोग करें कि username और password सही हैं या नहीं।
+Depend (security) का उपयोग करके यह जांचने के लिए username and password सही है या नहीं।
 
-इसके लिए, username और password जाँचने के लिए Python standard module [`secrets`](https://docs.python.org/3/library/secrets.html) का उपयोग करें।
+इसके लिए username और password जाँचने के लिए हम Python standard module [`secrets`](https://docs.python.org/3/library/secrets.html) का उपयोग करें।
 
 `secrets.compare_digest()` को `bytes` या ऐसा `str` लेना होता है जिसमें केवल ASCII characters (English वाले) हों, इसका मतलब है कि यह `á` जैसे characters के साथ काम नहीं करेगा, जैसे `Sebastián` में।
 
@@ -48,7 +48,7 @@ HTTP Basic Auth में, application एक header की अपेक्ष�
 if not (credentials.username == "stanleyjobson") or not (
     credentials.password == "swordfish"
 ):
-    # कोई error लौटाएँ
+    
     ...
 ```
 
@@ -62,8 +62,8 @@ if not (credentials.username == "stanleyjobson") or not (
 
 और वे username `johndoe` और password `love123` के साथ एक request भेजते हैं।
 
-तब आपकी application में Python code कुछ इस तरह के बराबर होगा:
-
+तब आपकी application में Python code कुछ इस तरह लिखा होगा:
+जिसमें हमने कम्पैरिजन करने के लिए `==` का उपयोग क्या होगा।
 ```Python
 if "johndoe" == "stanleyjobson" and "love123" == "swordfish":
     ...
@@ -90,7 +90,7 @@ Python को यह समझने से पहले कि दोनों 
 
 #### एक "professional" attack { #a-professional-attack }
 
-बेशक, attackers यह सब हाथ से नहीं करेंगे, वे इसे करने के लिए एक program लिखेंगे, संभवतः प्रति सेकंड हजारों या लाखों tests के साथ। और उन्हें एक समय में बस एक extra सही अक्षर मिलेगा।
+बेशक, attackers यह सब हाथ से नहीं करेंगे, वे इसे करने के लिए एक powerful program लिखेंगे, संभवतः प्रति सेकंड हजारों या लाखों tests के साथ। और उन्हें एक समय में बस एक extra सही अक्षर मिलेगा।
 
 लेकिन ऐसा करते हुए, कुछ minutes या hours में attackers ने हमारी application की "help" से सही username और password का अनुमान लगा लिया होगा, सिर्फ जवाब देने में लगे समय का उपयोग करके।
 
