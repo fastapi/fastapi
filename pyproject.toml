@@ -135,9 +135,12 @@ fastapi = "fastapi.cli:main"
 
 [dependency-groups]
 dev = [
-    { include-group = "tests" },
+    { include-group = "dev-no-docs" },
     { include-group = "docs" },
     { include-group = "translations" },
+]
+dev-no-docs = [
+    { include-group = "tests" },
     "playwright >=1.57.0",
     "prek >=0.2.22",
     "zizmor >=1.23.1",
@@ -152,7 +155,7 @@ docs = [
     "markdown-include-variants >=0.0.8",
     "mdx-include >=1.4.1,<2.0.0",
     "mkdocstrings[python] >=1.0.3",
-    "pillow >=11.3.0",
+    "pillow >=13.0.0",
     "python-slugify >=8.0.4",
     "pyyaml >=5.3.1,<7.0.0",
     "typer >=0.21.1",
@@ -207,6 +210,11 @@ translations = [
     "pydantic-ai >=0.4.10",
     "pygithub >=2.8.1",
 ]
+
+[tool.uv.dependency-groups]
+docs = { requires-python = ">=3.11" }
+github-actions = { requires-python = ">=3.11" }
+translations = { requires-python = ">=3.11" }
 
 [tool.pdm]
 version = { source = "file", path = "fastapi/__init__.py" }
