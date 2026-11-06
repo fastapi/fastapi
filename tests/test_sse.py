@@ -526,7 +526,9 @@ def test_sse_event_model_serialization_by_alias_and_filters():
             event="single",
         )
         yield ServerSentEvent(
-            data=[AliasedItem(name="Portal Gun", description=None, secret="top-secret")],
+            data=[
+                AliasedItem(name="Portal Gun", description=None, secret="top-secret")
+            ],
             event="list",
         )
 
@@ -546,4 +548,3 @@ def test_sse_event_model_serialization_by_alias_and_filters():
         assert res_opts.status_code == 200
         assert 'data: {"name":"Plumbus"}\n' in res_opts.text
         assert 'data: [{"name": "Portal Gun"}]\n' in res_opts.text
-
