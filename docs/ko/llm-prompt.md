@@ -9,7 +9,6 @@ Language code: ko.
 - Use polite, instructional Korean (e.g. 합니다/하세요 style).
 - Keep the tone consistent with the existing Korean FastAPI docs.
 - Do not translate “You” literally as “당신”. Use “여러분” where appropriate, or omit the subject if it sounds more natural in Korean.
-- Avoid awkward passive voice (prefer active forms like "~합니다/제공합니다" over "~되어집니다/보여집니다").
 
 ### Headings
 
@@ -34,22 +33,7 @@ Use the following preferred translations when they apply in documentation prose:
 - response (HTTP): 응답
 - path operation: 경로 처리
 - path operation function: 경로 처리 함수
-- path parameter: 경로 매개변수
-- query parameter: 쿼리 매개변수
 - request body: 요청 본문 (NOT 요청 바디)
-- response body: 응답 본문 (NOT 응답 바디)
-- dependency injection: 의존성 주입
-- dependency: 의존성
-- type hints / type annotations: 타입 힌트
-- validation: 유효성 검사
-- middleware: 미들웨어
-- concurrency: 동시성
-- parallelism: 병렬성
-- asynchronous: 비동기
-- synchronous: 동기
-- status code: 상태 코드
-- virtual environment: 가상환경
-- background task: 백그라운드 작업
 - app: 애플리케이션
 - command: 명령어
 - burger: 햄버거 (NOT 버거)
