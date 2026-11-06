@@ -48,7 +48,7 @@ Depend (security) का उपयोग करके यह जांचने 
 if not (credentials.username == "stanleyjobson") or not (
     credentials.password == "swordfish"
 ):
-    Error 401 लौटाए
+    
     ...
 ```
 
