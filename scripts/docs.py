@@ -167,10 +167,12 @@ def split_markdown_header(markdown: str) -> tuple[str, str]:
             front_matter_end += len("\n---\n")
             prefix = markdown[:front_matter_end]
             markdown = markdown[front_matter_end:]
-    if markdown.startswith("#"):
-        header, separator, body = markdown.partition("\n\n")
-        if separator:
-            return f"{prefix}{header}", body
+    leading_newlines = len(markdown) - len(markdown.lstrip("\n"))
+    prefix += markdown[:leading_newlines]
+    markdown = markdown[leading_newlines:]
+    if markdown.startswith("# "):
+        header, _, body = markdown.partition("\n")
+        return f"{prefix}{header}", body.lstrip("\n")
     if prefix:
         return prefix.rstrip("\n"), markdown
     return "", markdown
@@ -218,7 +220,16 @@ def stage_zensical_docs(lang: str) -> Path:
     lang_stage_path = zensical_src_path / lang
     staged_docs_path = lang_stage_path / "content"
     shutil.rmtree(lang_stage_path, ignore_errors=True)
-    shutil.copytree(en_docs_source_path, staged_docs_path)
+    shutil.copytree(
+        en_docs_source_path,
+        staged_docs_path,
+        ignore=shutil.ignore_patterns("agent-banner.md"),
+    )
+
+    agent_banner_path = lang_docs_path / "agent-banner.md"
+    if not agent_banner_path.is_file():
+        agent_banner_path = en_docs_source_path / "agent-banner.md"
+    agent_banner = agent_banner_path.read_text(encoding="utf-8").strip()
 
     missing_translation = (docs_path / "missing-translation.md").read_text(
         encoding="utf-8"
@@ -248,6 +259,17 @@ def stage_zensical_docs(lang: str) -> Path:
                     add_markdown_notice(markdown, missing_translation),
                     encoding="utf-8",
                 )
+
+    for staged_file in staged_docs_path.rglob("*.md"):
+        relative_path = staged_file.relative_to(staged_docs_path)
+        if relative_path in {Path("ai-development.md"), Path("translation-banner.md")}:
+            continue
+        markdown = staged_file.read_text(encoding="utf-8")
+        if "<!-- agent-banner -->" in markdown:
+            markdown = markdown.replace("<!-- agent-banner -->", agent_banner, 1)
+        else:
+            markdown = add_markdown_notice(markdown, agent_banner)
+        staged_file.write_text(markdown, encoding="utf-8")
 
     render_banner_sponsors()
     shutil.copytree(en_docs_path / "data", lang_stage_path / "data")
@@ -372,6 +394,7 @@ def generate_readme_content() -> str:
         new_content,
         flags=re.DOTALL,
     )
+    new_content = new_content.replace("<!-- agent-banner -->\n\n", "")
     return new_content
 
 
