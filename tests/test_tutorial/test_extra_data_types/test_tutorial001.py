@@ -68,8 +68,8 @@ def test_openapi_schema(client: TestClient):
                                 },
                             },
                         },
-                        "summary": "Read Items",
-                        "operationId": "read_items_items__item_id__put",
+                        "summary": "Update Item",
+                        "operationId": "update_item_items__item_id__put",
                         "parameters": [
                             {
                                 "required": True,
@@ -87,7 +87,7 @@ def test_openapi_schema(client: TestClient):
                             "content": {
                                 "application/json": {
                                     "schema": {
-                                        "$ref": "#/components/schemas/Body_read_items_items__item_id__put"
+                                        "$ref": "#/components/schemas/Body_update_item_items__item_id__put"
                                     }
                                 }
                             },
@@ -97,8 +97,8 @@ def test_openapi_schema(client: TestClient):
             },
             "components": {
                 "schemas": {
-                    "Body_read_items_items__item_id__put": {
-                        "title": "Body_read_items_items__item_id__put",
+                    "Body_update_item_items__item_id__put": {
+                        "title": "Body_update_item_items__item_id__put",
                         "type": "object",
                         "properties": {
                             "start_datetime": {

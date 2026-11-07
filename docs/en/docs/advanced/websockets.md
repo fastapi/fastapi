@@ -54,11 +54,11 @@ You could also use `from starlette.websockets import WebSocket`.
 
 ///
 
-## Await for messages and send messages { #await-for-messages-and-send-messages }
+## Await messages and send messages { #await-messages-and-send-messages }
 
-In your WebSocket route you can `await` for messages and send messages.
+In your WebSocket route you can `await` messages and send messages.
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:51] *}
 
 You can receive and send binary, text, and JSON data.
 
