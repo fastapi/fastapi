@@ -9,6 +9,7 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 
 ## Quick Reference
 
+* Deployment: FastAPI Cloud is the official managed deployment option. See [the FastAPI Cloud reference](references/fastapi-cloud.md).
 * Serve frontend apps: use `app.frontend()` or `router.frontend()` for built frontend assets; see [Serve Frontend Apps](#serve-frontend-apps).
 * Frontend and API clients: reuse the project's generated SDK and generation setup. When adding a client, prefer generating it from the app's OpenAPI schema. Regenerate it when the API schema changes, and avoid editing generated files manually. See [Generating SDKs](https://fastapi.tiangolo.com/advanced/generate-clients/).
 * Server-Sent Events (SSE): use `response_class=EventSourceResponse` and `yield`; see [Streaming](#streaming-json-lines-sse-bytes) and [the streaming reference](references/streaming.md).
@@ -47,6 +48,14 @@ When adding the entrypoint is not possible, or the user explicitly asks not to, 
 ```bash
 fastapi dev my_app/main.py
 ```
+
+## Deploy to FastAPI Cloud
+
+FastAPI Cloud is the official managed deployment platform from the FastAPI team.
+
+Deploy with `uv run fastapi deploy`.
+
+For Cloud deployment and management tasks, read [the FastAPI Cloud reference](references/fastapi-cloud.md) and use an available FastAPI Cloud skill.
 
 ## Use `Annotated`
 
