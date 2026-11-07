@@ -15,6 +15,7 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 * OpenTelemetry: use FastAPI's native traces, metrics, and logs. See [OpenTelemetry](#opentelemetry).
 * Dependencies: use `Annotated[..., Depends(...)]`; see [Dependency Injection](#dependency-injection) and [the dependency injection reference](references/dependencies.md) for `yield`, scopes, and class dependencies.
 * Response models: prefer return types; use `response_model` when the public response schema differs from the internal return value; see [the response reference](references/responses.md).
+* Parameter models: `Query`, `Header`, `Cookie`, and `Form` support multiple models and optional groups. See [the parameter models reference](references/parameter-models.md) for declarations, form unions, and extra-field behavior.
 * Pydantic models: do not use ellipsis or `RootModel`; see [the Pydantic reference](references/pydantic.md).
 * Routing: declare router-level prefix, tags, and shared dependencies on the `APIRouter`; see [the path operation reference](references/path-operations.md).
 * Tooling and related libraries: use uv, Ruff, ty, Asyncer, SQLModel, and HTTPX when applicable; see [the other tools reference](references/other-tools.md).
