@@ -1,5 +1,4 @@
 import importlib
-import time
 from types import ModuleType
 
 import pytest
@@ -25,9 +24,10 @@ def get_html(mod: ModuleType):
 
 @pytest.fixture(name="client")
 def get_client(mod: ModuleType):
-    client = TestClient(mod.app)
-
-    return client
+    # Share one portal across websocket sessions, otherwise broadcasts can
+    # deadlock: https://github.com/Kludex/starlette/discussions/3697
+    with TestClient(mod.app) as client:
+        yield client
 
 
 def test_get(client: TestClient, html: str):
@@ -43,13 +43,11 @@ def test_websocket_handle_disconnection(client: TestClient):
         connection.send_text("Hello from 1234")
         data1 = connection.receive_text()
         assert data1 == "You wrote: Hello from 1234"
-        time.sleep(0.01)  # Give server time to process broadcast
         data2 = connection_two.receive_text()
         client1_says = "Client #1234 says: Hello from 1234"
         assert data2 == client1_says
         data1 = connection.receive_text()
         assert data1 == client1_says
         connection_two.close()
-        time.sleep(0.01)  # Give server time to process broadcast
         data1 = connection.receive_text()
         assert data1 == "Client #5678 left the chat"
