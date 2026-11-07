@@ -11,6 +11,10 @@ hide:
 
 * 📝 Add guidance for developing FastAPI apps with AI. PR [#16695](https://github.com/fastapi/fastapi/pull/16695) by [@tiangolo](https://github.com/tiangolo).
 
+### Internal
+
+* 🔧 Add an agent skills note to GitHub releases. PR [#16696](https://github.com/fastapi/fastapi/pull/16696) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.162.1 (2026-11-07)
 
 ### Docs
