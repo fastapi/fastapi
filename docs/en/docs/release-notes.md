@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.162.1 (2026-11-07)
+
 ### Docs
 
 * 📝 Add parameter model guidance to the FastAPI skill. PR [#16693](https://github.com/fastapi/fastapi/pull/16693) by [@tiangolo](https://github.com/tiangolo).
