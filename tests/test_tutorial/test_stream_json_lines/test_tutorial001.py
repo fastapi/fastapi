@@ -43,6 +43,24 @@ def test_stream_items(client: TestClient, path: str):
     assert lines == expected_items
 
 
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/items/stream",
+        "/items/stream-no-async",
+        "/items/stream-no-annotation",
+        "/items/stream-no-async-no-annotation",
+    ],
+)
+def test_stream_disables_proxy_buffering(client: TestClient, path: str):
+    """JSONL streaming responses should disable proxy buffering, so
+    intermediaries (e.g. Nginx) deliver items incrementally instead of
+    holding them back until the buffer fills."""
+    response = client.get(path)
+    assert response.status_code == 200, response.text
+    assert response.headers["x-accel-buffering"] == "no"
+
+
 def test_openapi_schema(client: TestClient):
     response = client.get("/openapi.json")
     assert response.status_code == 200, response.text
