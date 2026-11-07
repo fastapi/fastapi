@@ -27,6 +27,7 @@ SUPPORTED_LANGS = {
     "ko",
     "pt",
     "ru",
+    "sw",
     "tr",
     "uk",
     "zh",
