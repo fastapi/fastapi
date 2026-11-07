@@ -14,6 +14,20 @@ Select the FastAPI skill and `.agents/skills` for Codex and most agents, or `.cl
 
 Your agent can then use the skill automatically when working on FastAPI code.
 
+### Install without prompts { #install-without-prompts }
+
+For agents and scripts, select the FastAPI skill without interactive prompts:
+
+```bash
+uvx library-skills install --skill fastapi --yes
+```
+
+For Claude Code, add `--claude` to also install it in `.claude/skills`:
+
+```bash
+uvx library-skills install --skill fastapi --yes --claude
+```
+
 ## Configure your app { #configure-your-app }
 
 Configure the [app entrypoint](fastapi-cli.md#configure-the-app-entrypoint-in-pyproject-toml) in `pyproject.toml` so FastAPI tools can find your app:
