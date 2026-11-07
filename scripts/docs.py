@@ -8,6 +8,7 @@ from html.parser import HTMLParser
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from multiprocessing import Pool
 from pathlib import Path
+from posixpath import relpath
 from typing import Any
 
 import typer
@@ -264,11 +265,13 @@ def stage_zensical_docs(lang: str) -> Path:
         relative_path = staged_file.relative_to(staged_docs_path)
         if relative_path in {Path("ai-development.md"), Path("translation-banner.md")}:
             continue
+        guide_path = relpath("ai-development.md", relative_path.parent.as_posix())
+        banner = agent_banner.replace("(ai-development.md)", f"({guide_path})")
         markdown = staged_file.read_text(encoding="utf-8")
         if "<!-- agent-banner -->" in markdown:
-            markdown = markdown.replace("<!-- agent-banner -->", agent_banner, 1)
+            markdown = markdown.replace("<!-- agent-banner -->", banner, 1)
         else:
-            markdown = add_markdown_notice(markdown, agent_banner)
+            markdown = add_markdown_notice(markdown, banner)
         staged_file.write_text(markdown, encoding="utf-8")
 
     render_banner_sponsors()
