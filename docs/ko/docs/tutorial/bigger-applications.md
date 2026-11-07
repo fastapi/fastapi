@@ -155,8 +155,7 @@ from app.routers import items
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...prefix에는 마지막 `/`가 포함되면 안 됩니다.
