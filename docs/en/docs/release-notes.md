@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.162.2 (2026-11-07)
+
 ### Docs
 
 * 📝 Add FastAPI Cloud guidance to the FastAPI skill. PR [#16697](https://github.com/fastapi/fastapi/pull/16697) by [@tiangolo](https://github.com/tiangolo).
