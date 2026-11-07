@@ -3,14 +3,14 @@
 /* Noto Color Emoji for emoji support with the same font everywhere */
 @import url(https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap);
 
-/* Override default code font in Material for MkDocs to Fira Code */
+/* Use Fira Code for code blocks */
 :root {
     --md-code-font: "Fira Code", monospace, "Noto Color Emoji";
 }
 
-/* Override default regular font in Material for MkDocs to include Noto Color Emoji */
+/* Keep the modern theme font and include Noto Color Emoji */
 :root {
-    --md-text-font: "Roboto", "Noto Color Emoji";
+    --md-text-font: "Inter", "Noto Color Emoji";
 }
 
 .termynal-comment {
@@ -151,13 +151,20 @@ a[data-internal-link][target="_blank"]:not(:has(img)):not(.no-link-icon):not(.an
   text-align: center;
 }
 
+/* Keep FastAPI's announcement banner dark in both color schemes. */
+[data-md-component="announce"] .md-banner {
+  color: #fff;
+  background-color: #212121;
+}
+
 a.announce-link:link,
 a.announce-link:visited {
-  color: #fff;
+  color: inherit;
 }
 
 a.announce-link:hover {
-  color: var(--md-accent-fg-color);
+  color: inherit;
+  text-decoration: underline;
 }
 
 .announce-wrapper {
