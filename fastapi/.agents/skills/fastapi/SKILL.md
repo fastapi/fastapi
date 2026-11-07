@@ -10,6 +10,7 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 ## Quick Reference
 
 * Serve frontend apps: use `app.frontend()` or `router.frontend()` for built frontend assets; see [Serve Frontend Apps](#serve-frontend-apps).
+* Frontend and API clients: reuse the project's generated SDK and generation setup. When adding a client, prefer generating it from the app's OpenAPI schema. Regenerate it when the API schema changes, and avoid editing generated files manually. See [Generating SDKs](https://fastapi.tiangolo.com/advanced/generate-clients/).
 * Server-Sent Events (SSE): use `response_class=EventSourceResponse` and `yield`; see [Streaming](#streaming-json-lines-sse-bytes) and [the streaming reference](references/streaming.md).
 * JSON Lines and byte streaming: see [the streaming reference](references/streaming.md).
 * OpenTelemetry: use FastAPI's native traces, metrics, and logs. See [OpenTelemetry](#opentelemetry).
