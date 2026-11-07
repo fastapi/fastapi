@@ -9,6 +9,7 @@ hide:
 
 ### Docs
 
+* 🎨 Use the Zensical modern theme for docs. PR [#16701](https://github.com/fastapi/fastapi/pull/16701) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Fix AI coding agent notice links in previews. PR [#16700](https://github.com/fastapi/fastapi/pull/16700) by [@tiangolo](https://github.com/tiangolo).
 * 📝 Add an AI coding agent notice to the docs. PR [#16699](https://github.com/fastapi/fastapi/pull/16699) by [@tiangolo](https://github.com/tiangolo).
 
