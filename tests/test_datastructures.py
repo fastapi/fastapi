@@ -21,8 +21,8 @@ def test_default_placeholder_equals():
 
 
 def test_default_placeholder_bool():
-    placeholder_a = Default("a")
-    placeholder_b = Default("")
+    placeholder_a = cast(DefaultPlaceholder, Default("a"))
+    placeholder_b = cast(DefaultPlaceholder, Default(""))
     assert placeholder_a
     assert not placeholder_b
 
