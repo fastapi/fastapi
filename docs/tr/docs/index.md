@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI, Python'un standart type hints'lerine dayalı olarak Python ile API'lar oluşturmak için kullanılan modern ve hızlı (yüksek performanslı) bir web framework'üdür.
 
+<!-- agent-banner -->
+
 Temel özellikleri şunlardır:
 
 * **Hızlı**: Çok yüksek performanslı, **NodeJS** ve **Go** ile eşit düzeyde (Starlette ve Pydantic sayesinde). [Mevcut en hızlı Python framework'lerinden biri](#performance).
