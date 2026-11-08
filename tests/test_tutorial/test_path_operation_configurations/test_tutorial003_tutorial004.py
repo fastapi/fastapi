@@ -25,8 +25,8 @@ DESCRIPTIONS = {
 @pytest.fixture(
     name="mod_name",
     params=[
-        pytest.param("tutorial003_py310", marks=needs_py310),
-        pytest.param("tutorial004_py310", marks=needs_py310),
+        pytest.param("tutorial003", marks=needs_py310),
+        pytest.param("tutorial004", marks=needs_py310),
     ],
 )
 def get_mod_name(request: pytest.FixtureRequest) -> str:

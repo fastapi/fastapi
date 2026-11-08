@@ -51,19 +51,19 @@ Yukarıdaki bilgileri kullanarak aynı yardımcı fonksiyonla OpenAPI şemasın�
 
 Önce, tüm **FastAPI** uygulamanızı her zamanki gibi yazın:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### OpenAPI Şemasını Üretme { #generate-the-openapi-schema }
 
 Ardından, bir `custom_openapi()` fonksiyonunun içinde aynı yardımcı fonksiyonu kullanarak OpenAPI şemasını üretin:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### OpenAPI Şemasını Değiştirme { #modify-the-openapi-schema }
 
 Artık OpenAPI şemasındaki `info` "object"'ine özel bir `x-logo` ekleyerek ReDoc extension'ını ekleyebilirsiniz:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### OpenAPI Şemasını Cache'leme { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@ Böylece bir kullanıcı API docs'larınızı her açtığında uygulamanız şe
 
 Şema yalnızca bir kez üretilecektir; sonraki request'ler için de aynı cache'lenmiş şema kullanılacaktır.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### Metodu Override Etme { #override-the-method }
 
 Şimdi `.openapi()` metodunu yeni fonksiyonunuzla değiştirebilirsiniz.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### Kontrol Edin { #check-it }
 

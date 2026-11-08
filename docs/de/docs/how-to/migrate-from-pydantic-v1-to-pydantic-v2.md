@@ -52,7 +52,7 @@ Pydantic v2 enthält alles aus Pydantic v1 als Untermodul `pydantic.v1`. Dies wi
 
 Das bedeutet, Sie können die neueste Version von Pydantic v2 installieren und die alten Pydantic‑v1‑Komponenten aus diesem Untermodul importieren und verwenden, als hätten Sie das alte Pydantic v1 installiert.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### FastAPI-Unterstützung für Pydantic v1 in v2 { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ Seit FastAPI 0.119.0 gibt es außerdem eine teilweise Unterstützung für Pydant
 
 Sie könnten also Pydantic auf die neueste Version 2 aktualisieren und die Importe so ändern, dass das Untermodul `pydantic.v1` verwendet wird, und in vielen Fällen würde es einfach funktionieren.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning | Achtung
 
@@ -122,7 +122,7 @@ graph TB
 
 In einigen Fällen ist es sogar möglich, sowohl Pydantic‑v1‑ als auch Pydantic‑v2‑Modelle in derselben **Pfadoperation** Ihrer FastAPI‑App zu verwenden:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 Im obigen Beispiel ist das Eingabemodell ein Pydantic‑v1‑Modell, und das Ausgabemodell (definiert in `response_model=ItemV2`) ist ein Pydantic‑v2‑Modell.
 
@@ -130,7 +130,7 @@ Im obigen Beispiel ist das Eingabemodell ein Pydantic‑v1‑Modell, und das Aus
 
 Wenn Sie einige der FastAPI-spezifischen Tools für Parameter wie `Body`, `Query`, `Form`, usw. zusammen mit Pydantic‑v1‑Modellen verwenden müssen, können Sie die aus `fastapi.temp_pydantic_v1_params` importieren, während Sie die Migration zu Pydantic v2 abschließen:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### In Schritten migrieren { #migrate-in-steps }
 

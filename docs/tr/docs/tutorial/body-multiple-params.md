@@ -8,7 +8,7 @@ Artık `Path` ve `Query` kullanmayı gördüğümüze göre, request body bildir
 
 Ayrıca, varsayılan değeri `None` yaparak body parametrelerini opsiyonel olarak da tanımlayabilirsiniz:
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | Not
 
@@ -31,7 +31,7 @@ Bu durumda body'den alınacak `item` opsiyoneldir. Çünkü varsayılan değeri 
 
 Ancak birden fazla body parametresi de tanımlayabilirsiniz; örneğin `item` ve `user`:
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 
 Bu durumda **FastAPI**, fonksiyonda birden fazla body parametresi olduğunu fark eder (iki parametre de Pydantic modelidir).
@@ -73,7 +73,7 @@ Bunu olduğu gibi tanımlarsanız, tekil bir değer olduğu için **FastAPI** bu
 
 Ama `Body` kullanarak, **FastAPI**'ye bunu body içinde başka bir anahtar olarak ele almasını söyleyebilirsiniz:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 
 Bu durumda **FastAPI** şu şekilde bir body bekler:
@@ -108,7 +108,7 @@ q: str | None = None
 
 Örneğin:
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 
 /// note | Not
@@ -131,7 +131,7 @@ item: Annotated[Item, Body(embed=True)]
 
 yani şöyle:
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 
 Bu durumda **FastAPI** şu şekilde bir body bekler:

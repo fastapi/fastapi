@@ -11,8 +11,8 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="app",
     params=[
-        pytest.param("tutorial002_py310", marks=needs_py310),
-        pytest.param("tutorial002_an_py310", marks=needs_py310),
+        pytest.param("tutorial002_non_an", marks=needs_py310),
+        pytest.param("tutorial002", marks=needs_py310),
     ],
 )
 def get_app(request: pytest.FixtureRequest):

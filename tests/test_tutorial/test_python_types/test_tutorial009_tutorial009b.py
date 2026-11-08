@@ -10,8 +10,8 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="module",
     params=[
-        pytest.param("tutorial009_py310"),
-        pytest.param("tutorial009_py310", marks=needs_py310),
+        pytest.param("tutorial009"),
+        pytest.param("tutorial009", marks=needs_py310),
     ],
 )
 def get_module(request: pytest.FixtureRequest):

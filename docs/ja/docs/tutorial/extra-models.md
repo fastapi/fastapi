@@ -20,7 +20,7 @@
 
 ここでは、パスワードフィールドをもつモデルがどのように見えるのか、また、どこで使われるのか、大まかなイメージを紹介します:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### `**user_in.model_dump()` について { #about-user-in-model-dump }
 
@@ -154,7 +154,7 @@ UserInDB(
 
 このようにして、モデル間の違いだけを宣言することができます（平文の`password`、`hashed_password`、パスワードなし）:
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` または `anyOf` { #union-or-anyof }
 
@@ -170,7 +170,7 @@ OpenAPIでは`anyOf`で定義されます。
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### Python 3.10の`Union` { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ some_variable: PlaneItem | CarItem
 
 そのためには、標準のPythonの`list`を使用します:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## 任意の`dict`によるレスポンス { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ some_variable: PlaneItem | CarItem
 
 この場合、`dict`を使用できます:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## まとめ { #recap }
 

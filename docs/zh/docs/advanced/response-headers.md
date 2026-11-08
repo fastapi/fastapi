@@ -6,7 +6,7 @@
 
 然后你可以在这个*临时*响应对象中设置头部。
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 然后你可以像平常一样返回任何你需要的对象（例如一个 `dict` 或者一个数据库模型）。
 
@@ -22,7 +22,7 @@
 
 按照[直接返回响应](response-directly.md)中所述创建响应，并将头部作为附加参数传递：
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | 技术细节
 

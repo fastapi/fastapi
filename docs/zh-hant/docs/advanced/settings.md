@@ -58,7 +58,7 @@ $ uv add "fastapi[all]"
 
 你可以使用與 Pydantic model 相同的所有驗證功能與工具，例如不同的資料型別與透過 `Field()` 進行額外驗證。
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip
 
@@ -74,7 +74,7 @@ $ uv add "fastapi[all]"
 
 接著你可以在應用程式中使用新的 `settings` 物件：
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### 執行伺服器 { #run-the-server }
 
@@ -128,11 +128,11 @@ $ uv run fastapi run main.py
 
 例如，你可以有一個 `config.py` 檔案如下：
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 然後在 `main.py` 檔案中使用它：
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip
 
@@ -150,7 +150,7 @@ $ uv run fastapi run main.py
 
 延續前一個範例，你的 `config.py` 可以像這樣：
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 注意現在我們不再建立預設實例 `settings = Settings()`。
 
@@ -158,7 +158,7 @@ $ uv run fastapi run main.py
 
 現在我們建立一個相依，回傳新的 `config.Settings()`。
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip
 
@@ -170,13 +170,13 @@ $ uv run fastapi run main.py
 
 接著我們可以在*路徑操作函式 (path operation function)* 中將它宣告為相依，並在需要的地方使用它。
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### 設定與測試 { #settings-and-testing }
 
 接著，在測試時要提供不同的設定物件會非常容易，只要為 `get_settings` 建立相依覆寫（dependency override）即可：
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 在相依覆寫中，我們在建立新的 `Settings` 物件時設定 `admin_email` 的新值，然後回傳該新物件。
 
@@ -217,7 +217,7 @@ APP_NAME="ChimichangApp"
 
 然後更新你的 `config.py`：
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip
 
@@ -250,7 +250,7 @@ def get_settings():
 
 但由於我們在上方使用了 `@lru_cache` 裝飾器，`Settings` 物件只會在第一次呼叫時建立一次。✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 之後在下一批請求的相依中任何對 `get_settings()` 的呼叫，都不會再執行 `get_settings()` 的內部程式碼與建立新的 `Settings` 物件，而是會一再回傳第一次呼叫時回傳的同一個物件。
 

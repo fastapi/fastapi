@@ -2,7 +2,7 @@
 
 你可以使用与 Python 字符串格式化相同的语法声明路径“参数”或“变量”：
 
-{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 路径参数 `item_id` 的值会作为参数 `item_id` 传递给你的函数。
 
@@ -16,7 +16,7 @@
 
 使用 Python 标准类型注解，声明路径操作函数中路径参数的类型：
 
-{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 本例把 `item_id` 的类型声明为 `int`。
 
@@ -118,13 +118,13 @@
 
 由于*路径操作*是按顺序依次运行的，因此，一定要在 `/users/{user_id}` 之前声明 `/users/me` ：
 
-{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 否则，`/users/{user_id}` 将匹配 `/users/me`，FastAPI 会**认为**正在接收值为 `"me"` 的 `user_id` 参数。
 
 同样，你不能重复定义一个路径操作：
 
-{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 由于路径首先匹配，始终会使用第一个定义的。
 
@@ -140,7 +140,7 @@
 
 然后，创建包含固定值的类属性，这些固定值是可用的有效值：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// tip | 提示
 
@@ -152,7 +152,7 @@
 
 使用你创建的枚举类（`ModelName`）创建带有类型注解的*路径参数*：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### 查看文档 { #check-the-docs }
 
@@ -168,13 +168,13 @@
 
 可以将其与你创建的枚举 `ModelName` 中的*枚举成员*进行比较：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### 获取*枚举值* { #get-the-enumeration-value }
 
 使用 `model_name.value` 或通用的 `your_enum_member.value` 获取实际的值（本例中为 `str`）：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | 提示
 
@@ -188,7 +188,7 @@
 
 返回给客户端之前，会把它们转换为对应的值（本例中为字符串）：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 客户端中的 JSON 响应如下：
 
@@ -227,7 +227,7 @@ OpenAPI 不支持声明内部包含*路径*的*路径参数*，因为这会导�
 
 用法如下：
 
-{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip | 提示
 

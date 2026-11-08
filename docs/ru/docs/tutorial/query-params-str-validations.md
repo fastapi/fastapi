@@ -4,7 +4,7 @@
 
 Рассмотрим это приложение в качестве примера:
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 Query-параметр `q` имеет тип `str | None`, это означает, что он имеет тип `str`, но также может быть `None`. Значение по умолчанию действительно `None`, поэтому FastAPI будет знать, что он не обязателен.
 
@@ -27,7 +27,7 @@ FastAPI поймёт, что значение `q` не обязательно, �
 * `Query` из `fastapi`
 * `Annotated` из `typing`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | Примечание
 
@@ -65,7 +65,7 @@ q: Annotated[str | None] = None
 
 Теперь, когда у нас есть `Annotated`, куда можно поместить дополнительную информацию (в нашем случае — дополнительные правила валидации), добавим `Query` внутрь `Annotated` и установим параметр `max_length` равным `50`:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 Обратите внимание, что значение по умолчанию по‑прежнему `None`, то есть параметр остаётся необязательным.
 
@@ -95,7 +95,7 @@ q: Annotated[str | None] = None
 
 Вот как можно использовать `Query()` как значение по умолчанию для параметра функции, установив `max_length` равным 50:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 Так как в этом случае (без `Annotated`) мы заменяем в функции значение по умолчанию `None` на `Query()`, теперь нужно указать значение по умолчанию через параметр `Query(default=None)`, это служит той же цели — задать значение по умолчанию (по крайней мере для FastAPI).
 
@@ -163,13 +163,13 @@ q: str = Query(default="rick")
 
 Можно также добавить параметр `min_length`:
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## Добавим регулярные выражения { #add-regular-expressions }
 
 Вы можете определить <dfn title="Регулярное выражение (regex, regexp) — это последовательность символов, задающая шаблон поиска для строк.">регулярное выражение</dfn> `pattern`, которому должен соответствовать параметр:
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 Данный шаблон регулярного выражения проверяет, что полученное значение параметра:
 
@@ -187,7 +187,7 @@ q: str = Query(default="rick")
 
 Допустим, вы хотите объявить, что query-параметр `q` должен иметь `min_length` равный `3` и значение по умолчанию `"fixedquery"`:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | Примечание
 
@@ -217,13 +217,13 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 Поэтому, когда вам нужно объявить значение как обязательное при использовании `Query`, просто не указывайте значение по умолчанию:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
 ### Обязательные параметры и `None` { #required-parameters-and-none }
 
 Тип `str | None` допускает `None` как значение Python, но не делает query-параметр необязательным. Без значения по умолчанию параметр остаётся обязательным:
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
 Значения query-параметров поступают в виде строк и не имеют встроенного представления `None`. При отправке `?q=None` или `?q=null` передаются строки `"None"` и `"null"` соответственно. При отправке `?q=` передаётся пустая строка, которая в этом примере не проходит валидацию `min_length=3`.
 
@@ -241,7 +241,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 Например, чтобы объявить query-параметр `q`, который может встречаться в URL несколько раз, можно написать:
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 Тогда при таком URL:
 
@@ -276,7 +276,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 Можно также определить значение по умолчанию как `list`, если ничего не передано:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 Если вы перейдёте по адресу:
 
@@ -299,7 +299,7 @@ http://localhost:8000/items/
 
 Можно использовать `list` напрямую вместо `list[str]`:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | Примечание
 
@@ -325,11 +325,11 @@ http://localhost:8000/items/
 
 Можно задать `title`:
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 И `description`:
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## Псевдонимы параметров { #alias-parameters }
 
@@ -349,7 +349,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Тогда можно объявить `alias`, и этот псевдоним будет использован для поиска значения параметра:
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## Маркировка параметров как устаревших { #deprecating-parameters }
 
@@ -359,7 +359,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Тогда передайте параметр `deprecated=True` в `Query`:
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 В документации это будет отображено так:
 
@@ -369,7 +369,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Чтобы исключить query-параметр из генерируемой OpenAPI-схемы (и, следовательно, из систем автоматической документации), укажите у `Query` параметр `include_in_schema=False`:
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## Кастомная валидация { #custom-validation }
 
@@ -387,7 +387,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Например, эта кастомная проверка убеждается, что ID элемента начинается с `isbn-` для номера книги <abbr title="International Standard Book Number - Международный стандартный книжный номер">ISBN</abbr> или с `imdb-` для ID URL фильма в <abbr title="Internet Movie Database - Интернет-база данных фильмов: веб‑сайт с информацией о фильмах">IMDB</abbr>:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | Примечание
 
@@ -415,7 +415,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Заметили? Метод строки `value.startswith()` может принимать кортеж — тогда будет проверено каждое значение из кортежа:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### Случайный элемент { #a-random-item }
 
@@ -431,7 +431,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 ...и всё это в **одной простой строке**. 🤯 Разве не прекрасен Python? 🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## Резюме { #recap }
 

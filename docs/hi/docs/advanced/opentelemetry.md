@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 एक file `main.py` बनाएँ:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 Telemetry एकत्र करने के लिए आपको कोई कस्टम कोड लिखने की ज़रूरत नहीं है।
 
@@ -92,7 +92,7 @@ Default रूप से, FastAPI exporters जोड़े बिना कॉ�
 
 आप `telemetry` डिक्शनरी में सीधे एक provider भी पास कर सकते हैं। उदाहरण के लिए, यह provider आपके टर्मिनल में request spans प्रिंट करने के लिए OpenTelemetry के console exporter का उपयोग करता है:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 **Exporter**, spans को उनके गंतव्य पर भेजता है। `BatchSpanProcessor`, spans को समूहों में बाँटता है और उन्हें बैकग्राउंड में भेजता है। अपनी मॉनिटरिंग लाइब्रेरी के गंतव्य का उपयोग करने के लिए console exporter की जगह उस लाइब्रेरी द्वारा प्रदान किया गया exporter लगाएँ। कॉन्फ़िगरेशन के और विकल्पों के लिए [OpenTelemetry की Python instrumentation गाइड](https://opentelemetry.io/docs/languages/python/instrumentation/) देखें।
 
@@ -112,7 +112,7 @@ Default रूप से, request traces में dependencies रिज़ॉ�
 
 केवल HTTP request span रिकॉर्ड करने के लिए, `operation_spans` को `False` पर सेट करें:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### WebSocket कनेक्शन को ट्रेस करें { #trace-websocket-connections }

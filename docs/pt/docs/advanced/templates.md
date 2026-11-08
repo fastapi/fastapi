@@ -31,7 +31,7 @@ $ uv add jinja2
 * Declare um parâmetro `Request` na *operação de rota* que retornará um template.
 * Use o `templates` que você criou para renderizar e retornar uma `TemplateResponse`, passe o nome do template, o objeto request e um dicionário "context" com pares chave-valor a serem usados dentro do template do Jinja2.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Nota
 
@@ -113,7 +113,7 @@ Para links para o mesmo site, você pode usar o atributo `.path` para obter apen
 
 Passe o nome do template para `TemplateResponse`:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 Com o mesmo exemplo, o link do item seria renderizado assim:
 

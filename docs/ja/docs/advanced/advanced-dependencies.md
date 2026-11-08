@@ -18,7 +18,7 @@ Python には、クラスのインスタンスを「callable」にする方法�
 
 そのためには、`__call__` メソッドを宣言します:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 この場合、この `__call__` が、**FastAPI** が追加のパラメータやサブ依存関係を確認するために使うものになり、後であなたの *path operation 関数* のパラメータに値を渡すために呼び出されるものになります。
 
@@ -26,7 +26,7 @@ Python には、クラスのインスタンスを「callable」にする方法�
 
 そして、`__init__` を使って、依存関係を「パラメータ化」するために利用できるインスタンスのパラメータを宣言できます:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 この場合、**FastAPI** は `__init__` に触れたり気にかけたりすることはありません。私たちがコード内で直接使います。
 
@@ -34,7 +34,7 @@ Python には、クラスのインスタンスを「callable」にする方法�
 
 このクラスのインスタンスは次のように作成できます:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 このようにして依存関係を「パラメータ化」できます。いまや `"bar"` が属性 `checker.fixed_content` として中に保持されています。
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...そして、その戻り値を *path operation 関数* 内の依存関係の値として、パラメータ `fixed_content_included` に渡します:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip | 豆知識
 
@@ -114,21 +114,21 @@ FastAPI 0.118.0 より前では、`yield` を使う依存関係を使用する�
 
 次のようになります:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 終了コード、すなわち `Session` の自動クローズは:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 ...の部分で定義されており、遅いデータ送信が終わった後に実行されます:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 しかし、`generate_stream()` はデータベースセッションを使わないため、レスポンス送信中にセッションを開いたままにしておく必要は実際にはありません。
 
 SQLModel（または SQLAlchemy）でこの特定のユースケースがある場合は、不要になった時点でセッションを明示的にクローズできます:
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 このようにすると、セッションはデータベース接続を解放するため、他のリクエストがそれを使えるようになります。
 

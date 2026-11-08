@@ -14,7 +14,7 @@ Esto es compatible desde la versión `0.115.0` de FastAPI. 🤓
 
 Declara los **parámetros de header** que necesitas en un **modelo Pydantic**, y luego declara el parámetro como `Header`:
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI** **extraerá** los datos para **cada campo** de los **headers** en el request y te dará el modelo Pydantic que definiste.
 
@@ -32,7 +32,7 @@ En algunos casos de uso especiales (probablemente no muy comunes), podrías quer
 
 Puedes usar la configuración del modelo de Pydantic para prohibir (`forbid`) cualquier campo `extra`:
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 Si un cliente intenta enviar algunos **headers extra**, recibirán un response de **error**.
 
@@ -59,7 +59,7 @@ Por ejemplo, si tienes un parámetro de header `save_data` en el código, el hea
 
 Si por alguna razón necesitas desactivar esta conversión automática, también puedes hacerlo para los modelos Pydantic de parámetros de header.
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | Advertencia
 
@@ -79,7 +79,7 @@ Cada modelo usa su propia configuración `Header(convert_underscores=...)`, tant
 
 Declara un modelo de parámetros de header con `| None` y un valor por defecto de `None` para que el grupo sea opcional.
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 Si no se envía ni `x-client-name` ni `x-client-version`, `client` es `None`. Si se envía cualquiera de los dos, FastAPI valida el modelo y requiere ambos campos.
 

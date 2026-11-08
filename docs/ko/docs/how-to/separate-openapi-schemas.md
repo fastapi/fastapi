@@ -10,13 +10,13 @@
 
 예를 들어, 다음처럼 기본값이 있는 Pydantic 모델이 있다고 해보겠습니다:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### 입력용 모델 { #model-for-input }
 
 이 모델을 다음처럼 입력으로 사용하면:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ...`description` 필드는 **필수가 아닙니다**. `None`이라는 기본값이 있기 때문입니다.
 
@@ -32,7 +32,7 @@
 
 하지만 같은 모델을 다음처럼 출력으로 사용하면:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ...`description`에 기본값이 있기 때문에, 그 필드에 대해 **아무것도 반환하지 않더라도** 여전히 그 **기본값**이 들어가게 됩니다.
 
@@ -91,7 +91,7 @@
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### 문서에서 입력과 출력 모델에 같은 스키마 사용 { #same-schema-for-input-and-output-models-in-docs }
 

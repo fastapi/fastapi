@@ -6,7 +6,7 @@
 
 Önce `fastapi` içinden `Path`'i, ayrıca `Annotated`'ı içe aktarın:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[1,3] *}
 
 /// note | Not
 
@@ -24,7 +24,7 @@ Daha eski bir sürüm kullanıyorsanız, `Annotated` kullanmaya çalıştığın
 
 Örneğin, `item_id` path parametresi için bir `title` metadata değeri tanımlamak isterseniz şunu yazabilirsiniz:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[10] *}
 
 /// note | Not
 
@@ -54,11 +54,11 @@ Bu **FastAPI** için önemli değildir. FastAPI parametreleri isimlerine, tipler
 
 Dolayısıyla fonksiyonunuzu şöyle tanımlayabilirsiniz:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_non_an.py hl[7] *}
 
 Ancak şunu unutmayın: `Annotated` kullanırsanız bu problem olmaz; çünkü `Query()` veya `Path()` için fonksiyon parametresi default değerlerini kullanmıyorsunuz.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py *}
 
 ## Parametreleri İhtiyacınıza Göre Sıralayın: Küçük Hileler { #order-the-parameters-as-you-need-tricks }
 
@@ -83,13 +83,13 @@ Fonksiyonun ilk parametresi olarak `*` geçin.
 
 Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keyword argument (anahtar-değer çiftleri) olarak çağrılması gerektiğini bilir; buna <abbr title="Kökeni: K-ey W-ord Arg-uments - Anahtar Kelime Argümanları"><code>kwargs</code></abbr> da denir. Default değerleri olmasa bile.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_non_an.py hl[7] *}
 
 ### `Annotated` ile Daha İyi { #better-with-annotated }
 
 Şunu da unutmayın: `Annotated` kullanırsanız, fonksiyon parametresi default değerlerini kullanmadığınız için bu sorun ortaya çıkmaz ve muhtemelen `*` kullanmanız da gerekmez.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[10] *}
 
 ## Sayı Doğrulamaları: Büyük Eşit { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Python bu `*` ile bir şey yapmaz; ama bundan sonraki tüm parametrelerin keywor
 
 Burada `ge=1` ile, `item_id` değerinin `1`'den büyük veya ona eşit ("`g`reater than or `e`qual") bir tam sayı olması gerekir.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004.py hl[10] *}
 
 ## Sayı Doğrulamaları: Büyük ve Küçük Eşit { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ Aynısı şunlar için de geçerlidir:
 * `gt`: `g`reater `t`han (büyüktür)
 * `le`: `l`ess than or `e`qual (küçük veya eşittir)
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005.py hl[10] *}
 
 ## Sayı Doğrulamaları: `float` Değerler, Büyük ve Küçük { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ Bu durumda `0.5` geçerli bir değer olur. Ancak `0.0` veya `0` geçerli olmaz.
 
 Aynısı <abbr title="less than - küçüktür"><code>lt</code></abbr> için de geçerlidir.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006.py hl[13] *}
 
 ## Özet { #recap }
 

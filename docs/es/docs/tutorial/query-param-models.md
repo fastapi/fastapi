@@ -14,7 +14,7 @@ Esto es compatible desde la versión `0.115.0` de FastAPI. 🤓
 
 Declara los **parámetros query** que necesitas en un **modelo de Pydantic**, y luego declara el parámetro como `Query`:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI** **extraerá** los datos para **cada campo** de los **parámetros query** en el request y te proporcionará el modelo de Pydantic que definiste.
 
@@ -32,7 +32,7 @@ En algunos casos de uso especiales (probablemente no muy comunes), podrías quer
 
 Puedes usar la configuración del modelo de Pydantic para `forbid` cualquier campo `extra`:
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 Si un cliente intenta enviar algunos datos **extra** en los **parámetros query**, recibirá un response de **error**.
 
@@ -61,7 +61,7 @@ Recibirá un response de **error** que le indica que el parámetro query `tool` 
 
 Puedes declarar múltiples modelos de parámetros query y combinarlos con parámetros query individuales o dependencias.
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 Los parámetros del request permanecen en el mismo nivel.
 
@@ -81,7 +81,7 @@ Esto también funciona para los modelos de `Header` y `Cookie`.
 
 Declara un modelo de parámetros query con `| None` y un valor por defecto de `None` para hacer que el grupo sea opcional.
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 Si no se envía ni `start` ni `end`, `date_range` es `None`. Si se envía cualquiera de los dos, FastAPI valida el modelo y requiere ambos campos.
 

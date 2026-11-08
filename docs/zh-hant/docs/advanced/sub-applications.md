@@ -10,7 +10,7 @@
 
 先建立主（頂層）**FastAPI** 應用程式以及它的*路徑操作*：
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### 子應用程式 { #sub-application }
 
@@ -18,7 +18,7 @@
 
 這個子應用程式就是另一個標準的 FastAPI 應用，但這個會被「掛載」：
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### 掛載子應用程式 { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@
 
 在此範例中，它會被掛載在路徑 `/subapi`：
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### 檢查自動 API 文件 { #check-the-automatic-api-docs }
 

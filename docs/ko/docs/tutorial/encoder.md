@@ -20,7 +20,7 @@ JSON 호환 가능 데이터만 수신하는 `fake_db` 데이터베이스가 존
 
 Pydantic 모델 같은 객체를 받고 JSON 호환 가능한 버전을 반환합니다:
 
-{* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
+{* ../../docs_src/encoder/tutorial001.py hl[4,21] *}
 
 이 예시에서는 Pydantic 모델을 `dict`로, `datetime`을 `str`로 변환합니다.
 

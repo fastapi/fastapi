@@ -14,7 +14,7 @@
 
 在 Pydantic 模型中宣告你需要的標頭參數，然後將參數宣告為 `Header`：
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 FastAPI 會從請求的標頭為每個欄位擷取資料，並交給你已定義的 Pydantic 模型實例。
 
@@ -32,7 +32,7 @@ FastAPI 會從請求的標頭為每個欄位擷取資料，並交給你已定義
 
 你可以使用 Pydantic 的模型設定來 `forbid` 任何 `extra` 欄位：
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 如果用戶端嘗試傳送額外的標頭，會收到錯誤回應。
 
@@ -59,7 +59,7 @@ FastAPI 會從請求的標頭為每個欄位擷取資料，並交給你已定義
 
 如果因某些原因需要停用這個自動轉換，你也可以在標頭參數的 Pydantic 模型上設定。
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | 警告
 
@@ -79,7 +79,7 @@ FastAPI 會從請求的標頭為每個欄位擷取資料，並交給你已定義
 
 宣告標頭參數模型時，使用 `| None` 並將預設值設為 `None`，即可讓這組參數變為可選。
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 如果未傳送 `x-client-name` 和 `x-client-version`，`client` 就是 `None`。如果傳送了其中任一標頭，FastAPI 就會驗證模型，並要求兩個欄位都必須提供。
 

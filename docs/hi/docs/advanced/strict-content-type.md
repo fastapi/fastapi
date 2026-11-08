@@ -77,7 +77,7 @@ Attackers सीधे आपकी API पर requests भेजने के �
 
 अगर आपको ऐसे clients को support करना है जो `Content-Type` header नहीं भेजते, तो आप `strict_content_type=False` set करके strict checking disable कर सकते हैं:
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 इस setting के साथ, जिन requests में `Content-Type` header नहीं होगा, उनकी body JSON के रूप में parse की जाएगी, जो FastAPI के पुराने versions जैसा ही व्यवहार है।
 

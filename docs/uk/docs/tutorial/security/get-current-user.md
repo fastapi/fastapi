@@ -2,7 +2,7 @@
 
 У попередньому розділі система безпеки (яка базується на системі впровадження залежностей) передавала *функції операції шляху* `token` як `str`:
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Але це ще не дуже корисно.
 
@@ -14,7 +14,7 @@
 
 Так само, як ми використовуємо Pydantic для оголошення тіл, ми можемо використовувати його будь-де:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## Створити залежність `get_current_user` { #create-a-get-current-user-dependency }
 
@@ -26,19 +26,19 @@
 
 Так само, як ми робили раніше безпосередньо в *операції шляху*, наша нова залежність `get_current_user` отримає `token` як `str` від підзалежності `oauth2_scheme`:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## Отримати користувача { #get-the-user }
 
 `get_current_user` використає (фальшиву) утилітну функцію, яку ми створили, що приймає токен як `str` і повертає нашу Pydantic-модель `User`:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## Впровадити поточного користувача { #inject-the-current-user }
 
 Тепер ми можемо використати той самий `Depends` з нашим `get_current_user` в *операції шляху*:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 Зверніть увагу, що ми оголошуємо тип `current_user` як Pydantic-модель `User`.
 
@@ -92,7 +92,7 @@
 
 І всі ці тисячі *операцій шляху* можуть бути всього у 3 рядки:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## Підсумок { #recap }
 

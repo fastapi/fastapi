@@ -20,7 +20,7 @@ Wenn Sie nicht wissen, was das ist, werden Sie in den [Sicherheitskapiteln](secu
 
 Hier ist eine allgemeine Idee, wie die Modelle mit ihren Passwortfeldern aussehen könnten und an welchen Stellen sie verwendet werden:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### Über `**user_in.model_dump()` { #about-user-in-model-dump }
 
@@ -154,7 +154,7 @@ Die ganze Datenkonvertierung, -validierung, -dokumentation usw. wird immer noch 
 
 Auf diese Weise können wir nur die Unterschiede zwischen den Modellen (mit Klartext-`password`, mit `hashed_password` und ohne Passwort) deklarieren:
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` oder `anyOf` { #union-or-anyof }
 
@@ -170,7 +170,7 @@ Wenn Sie eine [`Union`](https://pydantic.dev/docs/validation/latest/concepts/uni
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### `Union` in Python 3.10 { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ Auf die gleiche Weise können Sie Responses von Listen von Objekten deklarieren.
 
 Dafür verwenden Sie Pythons Standard-`list`:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## Response mit beliebigem `dict` { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ Dies ist nützlich, wenn Sie die gültigen Feld-/Attributnamen nicht im Voraus k
 
 In diesem Fall können Sie `dict` verwenden:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## Zusammenfassung { #recap }
 

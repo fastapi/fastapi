@@ -6,7 +6,7 @@
 
 पहले `Header` import करें:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## `Header` parameters घोषित करें { #declare-header-parameters }
 
@@ -14,7 +14,7 @@
 
 आप default value के साथ-साथ सभी अतिरिक्त validation या annotation parameters भी define कर सकते हैं:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | तकनीकी विवरण
 
@@ -46,7 +46,7 @@ headers घोषित करने के लिए, आपको `Header` क
 
 अगर किसी कारण से आपको underscores से hyphens में automatic conversion disable करना हो, तो `Header` के parameter `convert_underscores` को `False` पर set करें:
 
-{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning | चेतावनी
 
@@ -64,7 +64,7 @@ duplicate headers receive करना संभव है। इसका म�
 
 उदाहरण के लिए, `X-Token` का header declare करने के लिए जो एक से अधिक बार आ सकता है, आप लिख सकते हैं:
 
-{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 यदि आप उस *path operation* के साथ दो HTTP headers भेजते हुए communicate करते हैं, जैसे:
 

@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 例えば、*path operation* `/items/` を定義しているとします:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 クライアントが `/items` にアクセスすると、既定では `/items/` にリダイレクトされます。
 
@@ -113,7 +113,7 @@ sequenceDiagram
 
 すべてのコードは `/app` だけを前提に書かれているにもかかわらず、です。
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 そしてプロキシは、サーバーにリクエストを転送する前に、その場で **パスプレフィックス** を**「削除」**し、アプリケーション側には自分が `/app` で提供されているように見せかけます。これにより、コードのすべてを `/api/v1` のプレフィックス付きに書き換える必要がありません。
 
@@ -187,7 +187,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 ここではデモのため、メッセージに含めています。
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 そのうえで、次のようにサーバーを起動すると:
 
@@ -371,7 +371,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 例えば、同じ `fastapi run --root-path /api/v1` のサーバー設定を使用すると:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 次のような OpenAPI スキーマが生成されます:
 
@@ -426,7 +426,7 @@ OpenAPI 仕様の `servers` プロパティは任意です。
 
 `root_path` を用いた自動的な server を **FastAPI** に含めてほしくない場合は、パラメータ `root_path_in_servers=False` を使用します:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 すると、OpenAPI スキーマには含まれません。
 

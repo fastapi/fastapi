@@ -14,7 +14,7 @@
 
 필요한 **쿼리 매개변수**를 **Pydantic 모델** 안에 선언한 다음, 매개변수를 `Query`로 선언합니다:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI**는 요청의 **쿼리 매개변수**에서 **각 필드**의 데이터를 **추출**해 정의한 Pydantic 모델을 제공합니다.
 
@@ -32,7 +32,7 @@
 
 Pydantic의 모델 설정을 사용해 어떤 `extra` 필드도 `forbid`할 수 있습니다:
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 클라이언트가 **쿼리 매개변수**로 **추가적인** 데이터를 보내려고 하면 **에러** 응답을 받게 됩니다.
 
@@ -61,7 +61,7 @@ https://example.com/items/?limit=10&tool=plumbus
 
 여러 쿼리 매개변수 모델을 선언하고, 개별 쿼리 매개변수나 의존성과 함께 사용할 수 있습니다.
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 요청 매개변수는 모두 같은 수준에 위치합니다.
 
@@ -81,7 +81,7 @@ https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
 
 쿼리 매개변수 그룹을 선택적으로 만들려면, 모델에 `| None`을 사용하고 기본값을 `None`으로 선언하세요.
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 `start`와 `end`가 모두 전송되지 않으면 `date_range`는 `None`입니다. 둘 중 하나라도 전송되면 FastAPI는 모델을 검증하며 두 필드를 모두 요구합니다.
 

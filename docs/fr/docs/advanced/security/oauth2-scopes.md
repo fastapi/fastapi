@@ -62,7 +62,7 @@ Pour OAuth2, ce ne sont que des chaînes.
 
 Voyons d’abord rapidement les parties qui changent par rapport aux exemples du **Tutoriel - Guide utilisateur** pour [OAuth2 avec mot de passe (et hachage), Bearer avec jetons JWT](../../tutorial/security/oauth2-jwt.md). Cette fois, en utilisant des scopes OAuth2 :
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Passons maintenant en revue ces changements étape par étape.
 
@@ -72,7 +72,7 @@ Le premier changement est que nous déclarons maintenant le schéma de sécurit�
 
 Le paramètre `scopes` reçoit un `dict` avec chaque scope en clé et la description en valeur :
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 Comme nous déclarons maintenant ces scopes, ils apparaîtront dans les documents de l’API lorsque vous vous authentifiez/autorisez.
 
@@ -98,7 +98,7 @@ Mais dans votre application, pour la sécurité, vous devez vous assurer de n’
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## Déclarer des scopes dans les chemins d’accès et les dépendances { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ Nous le faisons ici pour montrer comment **FastAPI** gère des scopes déclarés
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | Détails techniques
 
@@ -150,7 +150,7 @@ Nous déclarons également un paramètre spécial de type `SecurityScopes`, impo
 
 Cette classe `SecurityScopes` est similaire à `Request` (`Request` servait à obtenir directement l’objet requête).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## Utiliser les `scopes` { #use-the-scopes }
 
@@ -164,7 +164,7 @@ Nous créons une `HTTPException` que nous pouvons réutiliser (`raise`) plus tar
 
 Dans cette exception, nous incluons les scopes requis (le cas échéant) sous forme de chaîne séparée par des espaces (en utilisant `scope_str`). Nous plaçons cette chaîne contenant les scopes dans l’en-tête `WWW-Authenticate` (cela fait partie de la spécification).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## Vérifier le `username` et la structure des données { #verify-the-username-and-data-shape }
 
@@ -180,7 +180,7 @@ Au lieu, par exemple, d’un `dict`, ou autre chose, ce qui pourrait casser l’
 
 Nous vérifions également que nous avons un utilisateur avec ce nom d’utilisateur, et sinon, nous levons la même exception que précédemment.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## Vérifier les `scopes` { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ Nous vérifions maintenant que tous les scopes requis, par cette dépendance et 
 
 Pour cela, nous utilisons `security_scopes.scopes`, qui contient une `list` avec tous ces scopes en `str`.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## Arbre de dépendances et scopes { #dependency-tree-and-scopes }
 

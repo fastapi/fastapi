@@ -10,13 +10,13 @@ Voyons comment cela fonctionne et comment le modifier si vous devez le faire.
 
 Supposons que vous ayez un modèle Pydantic avec des valeurs par défaut, comme celui‑ci :
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### Modèle pour l'entrée { #model-for-input }
 
 Si vous utilisez ce modèle en entrée comme ici :
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ... alors, le champ `description` ne sera **pas requis**. Parce qu'il a une valeur par défaut de `None`.
 
@@ -32,7 +32,7 @@ Vous pouvez le confirmer dans les documents, le champ `description` n'a pas d'**
 
 Mais si vous utilisez le même modèle en sortie, comme ici :
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ... alors, comme `description` a une valeur par défaut, si vous **ne retournez rien** pour ce champ, il aura tout de même cette **valeur par défaut**.
 
@@ -91,7 +91,7 @@ La prise en charge de `separate_input_output_schemas` a été ajoutée dans Fast
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### Utiliser le même schéma pour les modèles d'entrée et de sortie dans les documents { #same-schema-for-input-and-output-models-in-docs }
 

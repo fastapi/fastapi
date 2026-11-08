@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 Angenommen, Sie definieren eine *Pfadoperation* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 Wenn der Client versucht, zu `/items` zu gehen, würde er standardmäßig zu `/items/` umgeleitet.
 
@@ -113,7 +113,7 @@ In diesem Fall würde der ursprüngliche Pfad `/app` tatsächlich unter `/api/v1
 
 Auch wenn Ihr gesamter Code unter der Annahme geschrieben ist, dass es nur `/app` gibt.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 Und der Proxy würde das **Pfadpräfix** on-the-fly **„entfernen“**, bevor er den <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> an den Server übermittelt, dafür sorgend, dass Ihre Anwendung davon überzeugt ist, dass sie unter `/app` bereitgestellt wird, sodass Sie nicht Ihren gesamten Code dahingehend aktualisieren müssen, das Präfix `/api/v1` zu verwenden.
 
@@ -187,7 +187,7 @@ Sie können den aktuellen `root_path` abrufen, der von Ihrer Anwendung für jede
 
 Hier fügen wir ihn, nur zu Demonstrationszwecken, in die Nachricht ein.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 Wenn Sie den Server dann starten mit:
 
@@ -371,7 +371,7 @@ Wenn Sie eine benutzerdefinierte Liste von Servern (`servers`) übergeben und es
 
 Zum Beispiel, mit derselben Serverkonfiguration `fastapi run --root-path /api/v1`:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 Erzeugt ein OpenAPI-Schema, wie:
 
@@ -426,7 +426,7 @@ Wenn Sie den Parameter `servers` nicht angeben und `root_path` den Wert `/` hat,
 
 Wenn Sie nicht möchten, dass **FastAPI** einen automatischen Server inkludiert, welcher `root_path` verwendet, können Sie den Parameter `root_path_in_servers=False` verwenden:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 Dann wird er nicht in das OpenAPI-Schema aufgenommen.
 

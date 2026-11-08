@@ -4,7 +4,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 
-@pytest.fixture(name="client", params=["tutorial004_py310", "tutorial004_an_py310"])
+@pytest.fixture(name="client", params=["tutorial004_non_an", "tutorial004"])
 def get_client(request: pytest.FixtureRequest):
     mod = importlib.import_module(f"docs_src.query_param_models.{request.param}")
     return TestClient(mod.app)

@@ -18,7 +18,7 @@ FastAPI はそれらの設定を **JSON** に変換し、JavaScript と互換に
 
 しかし、`syntaxHighlight` を `False` に設定すると無効化できます:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
 ...その場合、Swagger UI ではシンタックスハイライトが表示されなくなります:
 
@@ -28,7 +28,7 @@ FastAPI はそれらの設定を **JSON** に変換し、JavaScript と互換に
 
 同様に、キー `"syntaxHighlight.theme"`（途中にドットが含まれている点に注意）でシンタックスハイライトのテーマを設定できます:
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
 この設定により、シンタックスハイライトの配色テーマが変わります:
 
@@ -46,7 +46,7 @@ FastAPI には、多くのユースケースに適した既定の設定パラメ
 
 例えば、`deepLinking` を無効化するには、次の設定を `swagger_ui_parameters` に渡します:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
 ## その他の Swagger UI パラメータ { #other-swagger-ui-parameters }
 

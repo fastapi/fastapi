@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 例如，假设你定义了一个*路径操作* `/items/`：
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 如果客户端尝试访问 `/items`，默认会被重定向到 `/items/`。
 
@@ -113,7 +113,7 @@ sequenceDiagram
 
 即使你的所有代码都假设只有 `/app`。
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 代理会在将请求传递给服务器之前，实时**“移除”**这个**路径前缀**，让你的应用认为它是在 `/app` 被服务，这样你就不需要更新所有代码去包含 `/api/v1` 前缀。
 
@@ -187,7 +187,7 @@ ASGI 规范为这种用例定义了 `root_path`。
 
 这里我们把它包含在响应消息中仅用于演示。
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 然后，如果你这样启动服务器：
 
@@ -371,7 +371,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 例如，使用相同的 `fastapi run --root-path /api/v1` 服务器配置：
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 会生成如下的 OpenAPI 模式：
 
@@ -426,7 +426,7 @@ OpenAPI 规范中的 `servers` 属性是可选的。
 
 如果你不希望 **FastAPI** 包含一个使用 `root_path` 的自动服务器，可以使用参数 `root_path_in_servers=False`：
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 这样它就不会被包含到 OpenAPI 模式中。
 

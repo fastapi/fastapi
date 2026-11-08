@@ -15,7 +15,7 @@ This includes, for example:
 
 First, import `BackgroundTasks` and define a parameter in your *path operation function* with a type declaration of `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** will create the object of type `BackgroundTasks` for you and pass it as that parameter.
 
@@ -31,13 +31,13 @@ In this case, the task function will write to a file (simulating sending an emai
 
 And as the write operation doesn't use `async` and `await`, we define the function with normal `def`:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## Add the background task { #add-the-background-task }
 
 Inside of your *path operation function*, pass your task function to the *background tasks* object with the method `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` receives as arguments:
 
@@ -52,7 +52,7 @@ Using `BackgroundTasks` also works with the dependency injection system, you can
 **FastAPI** knows what to do in each case and how to reuse the same object, so that all the background tasks are merged together and are run in the background afterwards:
 
 
-{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 
 In this example, the messages will be written to the `log.txt` file *after* the response is sent.

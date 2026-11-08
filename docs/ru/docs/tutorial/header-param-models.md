@@ -14,7 +14,7 @@
 
 Объявите нужные **header-параметры** в **Pydantic-модели** и затем аннотируйте параметр как `Header`:
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI** **извлечёт** данные для **каждого поля** из **HTTP-заголовков** HTTP-запроса и выдаст заданную вами Pydantic-модель.
 
@@ -32,7 +32,7 @@
 
 Вы можете использовать возможности конфигурации Pydantic-модели для того, чтобы запретить (`forbid`) любые дополнительные (`extra`) поля:
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 Если клиент попробует отправить **дополнительные HTTP-заголовки**, то в ответ он получит **ошибку**.
 
@@ -59,7 +59,7 @@
 
 Если по каким-то причинам вам нужно отключить данное автоматическое преобразование, это можно сделать и для Pydantic-моделей для header-параметров.
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | Внимание
 
@@ -79,7 +79,7 @@
 
 Объявите модель header-параметров с `| None` и значением по умолчанию `None`, чтобы сделать группу необязательной.
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 Если не отправлен ни `x-client-name`, ни `x-client-version`, значение `client` равно `None`. Если отправлен хотя бы один из них, FastAPI валидирует модель и требует оба поля.
 

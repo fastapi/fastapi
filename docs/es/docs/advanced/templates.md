@@ -31,7 +31,7 @@ $ uv add jinja2
 * Declara un parámetro `Request` en la *path operation* que devolverá una plantilla.
 * Usa los `templates` que creaste para renderizar y devolver un `TemplateResponse`, pasa el nombre de la plantilla, el objeto de request, y un diccionario "context" con pares clave-valor que se usarán dentro de la plantilla Jinja2.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Nota
 
@@ -113,7 +113,7 @@ Para enlaces al mismo sitio, puedes usar el atributo `.path` para obtener solo e
 
 Pasa el nombre de la plantilla a `TemplateResponse`:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 Con el mismo ejemplo, el enlace al ítem se renderizaría como:
 

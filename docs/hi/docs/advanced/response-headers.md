@@ -6,7 +6,7 @@
 
 और फिर आप उस *अस्थायी* response object में headers सेट कर सकते हैं।
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 और फिर आप अपनी ज़रूरत का कोई भी object return कर सकते हैं, जैसा कि आप सामान्य रूप से करते हैं (एक `dict`, database model, आदि)।
 
@@ -22,7 +22,7 @@
 
 [सीधे Response Return करें](response-directly.md) में वर्णित तरीके से response बनाएँ और headers को एक अतिरिक्त parameter के रूप में पास करें:
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | तकनीकी विवरण
 

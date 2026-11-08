@@ -18,7 +18,7 @@ FastAPI는 이 구성을 **JSON** 형식으로 변환하여 JavaScript와 호환
 
 그러나 `syntaxHighlight`를 `False`로 설정하여 구문 강조 기능을 비활성화할 수 있습니다:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
 ...그럼 Swagger UI에서 더 이상 구문 강조 기능이 표시되지 않습니다:
 
@@ -28,7 +28,7 @@ FastAPI는 이 구성을 **JSON** 형식으로 변환하여 JavaScript와 호환
 
 동일한 방식으로 `"syntaxHighlight.theme"` 키를 사용하여 구문 강조 테마를 설정할 수 있습니다 (중간에 점이 포함된 것을 참고하십시오).
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
 이 설정은 구문 강조 색상 테마를 변경합니다:
 
@@ -46,7 +46,7 @@ FastAPI는 대부분의 사용 사례에 적합한 몇 가지 기본 구성 매�
 
 예를 들어, `deepLinking`을 비활성화하려면 `swagger_ui_parameters`에 다음 설정을 전달할 수 있습니다:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
 ## 기타 Swagger UI 매개변수 { #other-swagger-ui-parameters }
 

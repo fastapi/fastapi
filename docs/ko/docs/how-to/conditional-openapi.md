@@ -29,7 +29,7 @@ API를 보호하고 싶다면, 예를 들어 다음과 같은 더 나은 방법�
 
 예를 들어:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001.py hl[6,11] *}
 
 여기서 `openapi_url` 설정을 기본값인 `"/openapi.json"`으로 선언합니다.
 

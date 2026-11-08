@@ -6,7 +6,7 @@
 
 在這種情況下，它們會套用到應用程式中的所有路徑操作：
 
-{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial012.py hl[17] *}
 
 而且，在[將 `dependencies` 新增到路徑操作裝飾器](dependencies-in-path-operation-decorators.md) 那一節中的所有概念依然適用，只是這裡是套用到整個應用中的所有路徑操作。
 

@@ -30,7 +30,7 @@
 
 हम `yield` के साथ एक async function `lifespan()` इस तरह create करते हैं:
 
-{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 यहां हम `yield` से पहले machine learning models वाली dictionary में (fake) model function रखकर model load करने वाली महंगी *startup* operation को simulate कर रहे हैं। यह code application के **requests लेना शुरू करने से पहले**, *startup* के दौरान execute होगा।
 
@@ -48,7 +48,7 @@
 
 ध्यान देने वाली पहली चीज यह है कि हम `yield` के साथ एक async function define कर रहे हैं। यह `yield` वाली Dependencies से बहुत मिलता-जुलता है।
 
-{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 function का पहला हिस्सा, `yield` से पहले वाला, application start होने से **पहले** execute होगा।
 
@@ -60,7 +60,7 @@ function का पहला हिस्सा, `yield` से पहले व
 
 यह function को "**async context manager**" नाम की चीज में convert करता है।
 
-{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 Python में एक **context manager** ऐसी चीज है जिसे आप `with` statement में use कर सकते हैं, उदाहरण के लिए, `open()` को context manager की तरह use किया जा सकता है:
 
@@ -82,7 +82,7 @@ async with lifespan(app):
 
 `FastAPI` app का `lifespan` parameter एक **async context manager** लेता है, इसलिए हम अपना नया `lifespan` async context manager उसे pass कर सकते हैं।
 
-{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## Alternative event (deprecated) { #alternative-events-deprecated }
 
@@ -104,7 +104,7 @@ async with lifespan(app):
 
 application start होने से पहले run होने वाला function add करने के लिए, इसे event `"startup"` के साथ declare करें:
 
-{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 इस मामले में, `startup` event handler function items "database" (बस एक `dict`) को कुछ values के साथ initialize करेगा।
 
@@ -116,7 +116,7 @@ application start होने से पहले run होने वाला
 
 application के shutting down होने पर run होने वाला function add करने के लिए, इसे event `"shutdown"` के साथ declare करें:
 
-{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 यहां, `shutdown` event handler function एक text line `"Application shutdown"` को `log.txt` file में write करेगा।
 

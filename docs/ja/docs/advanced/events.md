@@ -30,7 +30,7 @@
 
 次のように、`yield` を使う非同期関数 `lifespan()` を作成します:
 
-{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 ここでは、`yield` の前で機械学習モデルの辞書に（ダミーの）モデル関数を入れることで、高コストな「起動時」のモデル読み込みをシミュレーションしています。このコードは、アプリケーションがリクエストを「受け付け始める前」に、すなわち起動時に実行されます。
 
@@ -48,7 +48,7 @@
 
 まず注目すべきは、`yield` を使う非同期関数を定義していることです。これは「yield を使う依存関係（Dependencies）」にとてもよく似ています。
 
-{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 `yield` の前の前半は、アプリケーションが開始される「前」に実行されます。
 
@@ -60,7 +60,7 @@
 
 これにより、この関数は「非同期コンテキストマネージャ」になります。
 
-{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 Python の「コンテキストマネージャ」は、`with` 文で使えるものです。たとえば、`open()` はコンテキストマネージャとして使えます:
 
@@ -82,7 +82,7 @@ async with lifespan(app):
 
 `FastAPI` アプリの `lifespan` パラメータは「非同期コンテキストマネージャ」を受け取るので、新しく作った `lifespan` 非同期コンテキストマネージャを渡せます。
 
-{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## 代替のイベント（非推奨） { #alternative-events-deprecated }
 
@@ -104,7 +104,7 @@ async with lifespan(app):
 
 アプリケーションが開始される前に実行すべき関数を追加するには、イベント `"startup"` で宣言します:
 
-{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 この場合、`startup` のイベントハンドラ関数は items の「データベース」（単なる `dict`）をいくつかの値で初期化します。
 
@@ -116,7 +116,7 @@ async with lifespan(app):
 
 アプリケーションがシャットダウンするときに実行すべき関数を追加するには、イベント `"shutdown"` で宣言します:
 
-{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 ここでは、`shutdown` のイベントハンドラ関数が、テキスト行 `"Application shutdown"` をファイル `log.txt` に書き込みます。
 

@@ -14,7 +14,7 @@ Cela est pris en charge depuis la version `0.115.0` de FastAPI. 🤓
 
 Déclarez les **paramètres d'en-tête** dont vous avez besoin dans un **modèle Pydantic**, puis déclarez le paramètre comme `Header` :
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI** **extrait** les données de **chaque champ** depuis les **en-têtes** de la requête et vous fournit le modèle Pydantic que vous avez défini.
 
@@ -32,7 +32,7 @@ Dans certains cas d'utilisation particuliers (probablement pas très courants), 
 
 Vous pouvez utiliser la configuration du modèle de Pydantic pour `forbid` tout champ `extra` :
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 Si un client essaie d'envoyer des **en-têtes supplémentaires**, il recevra une **réponse d'erreur**.
 
@@ -59,7 +59,7 @@ Par exemple, si vous avez un paramètre d'en-tête `save_data` dans le code, l'e
 
 Si, pour une raison quelconque, vous devez désactiver cette conversion automatique, vous pouvez aussi le faire pour les modèles Pydantic de paramètres d'en-tête.
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | Alertes
 
@@ -79,7 +79,7 @@ Chaque modèle utilise son propre réglage `Header(convert_underscores=...)`, au
 
 Déclarez un modèle de paramètres d'en-tête avec `| None` et une valeur par défaut de `None` pour rendre le groupe optionnel.
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 Si ni `x-client-name` ni `x-client-version` n'est envoyé, `client` vaut `None`. Si l'un des deux est envoyé, FastAPI valide le modèle et exige les deux champs.
 

@@ -22,7 +22,7 @@ Si vous êtes un expert Python, et que vous savez déjà tout sur les annotation
 
 Commençons par un exemple simple :
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 Exécuter ce programme affiche :
 
@@ -36,7 +36,7 @@ La fonction fait ce qui suit :
 * Convertit la première lettre de chacun en majuscule avec `title()`.
 * <dfn title="Les met ensemble, en un seul. Avec le contenu de l'un après l'autre.">Concatène</dfn> ces deux valeurs avec un espace au milieu.
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Modifier le code { #edit-it }
 
@@ -78,7 +78,7 @@ C'est tout.
 
 Ce sont les « annotations de type » :
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 Ce n'est pas la même chose que de déclarer des valeurs par défaut, ce qui serait :
 
@@ -106,7 +106,7 @@ Avec cela, vous pouvez faire défiler en voyant les options, jusqu'à trouver ce
 
 Regardez cette fonction, elle a déjà des annotations de type :
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Comme l'éditeur connaît les types des variables, vous n'obtenez pas seulement l'autocomplétion, vous obtenez aussi des vérifications d'erreurs :
 
@@ -114,7 +114,7 @@ Comme l'éditeur connaît les types des variables, vous n'obtenez pas seulement 
 
 Vous savez maintenant qu'il faut corriger, convertir `age` en chaîne avec `str(age)` :
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Déclarer des types { #declaring-types }
 
@@ -133,7 +133,7 @@ Vous pouvez utiliser, par exemple :
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### Module `typing` { #typing-module }
 
@@ -170,7 +170,7 @@ Comme type, mettez `list`.
 
 Comme la liste est un type qui contient des types internes, mettez-les entre crochets :
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | Remarque
 
@@ -196,7 +196,7 @@ Et pourtant, l'éditeur sait que c'est un `str` et fournit le support approprié
 
 Vous feriez la même chose pour déclarer des `tuple` et des `set` :
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 Cela signifie :
 
@@ -211,7 +211,7 @@ Le premier paramètre de type est pour les clés du `dict`.
 
 Le second paramètre de type est pour les valeurs du `dict` :
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 Cela signifie :
 
@@ -228,7 +228,7 @@ Pour le définir, vous utilisez la <dfn title='aussi appelé « opérateur OU bi
 C'est ce qu'on appelle une « union », car la variable peut être n'importe quoi dans l'union de ces deux ensembles de types.
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 Cela signifie que `item` peut être un `int` ou un `str`.
@@ -240,7 +240,7 @@ Vous pouvez déclarer qu'une valeur peut avoir un type, comme `str`, mais qu'ell
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -253,11 +253,11 @@ Vous pouvez aussi déclarer une classe comme type d'une variable.
 
 Disons que vous avez une classe `Person`, avec un nom :
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Vous pouvez ensuite déclarer une variable de type `Person` :
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 Et là encore, vous obtenez tout le support de l'éditeur :
 
@@ -281,7 +281,7 @@ Et vous obtenez tout le support de l'éditeur avec cet objet résultant.
 
 Un exemple tiré des documents officiels de Pydantic :
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | Remarque
 
@@ -299,7 +299,7 @@ Python dispose également d'une fonctionnalité qui permet de mettre des **<dfn 
 
 Vous pouvez importer `Annotated` depuis `typing`.
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Python lui-même ne fait rien avec ce `Annotated`. Et pour les éditeurs et autres outils, le type est toujours `str`.
 

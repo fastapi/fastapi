@@ -9,7 +9,7 @@
 
 生成されるJSON Schemaに追加されるPydanticモデルの`examples`を宣言できます。
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001.py hl[13:24] *}
 
 その追加情報は、そのモデルの出力**JSON Schema**にそのまま追加され、APIドキュメントで使用されます。
 
@@ -39,7 +39,7 @@ OpenAPI 3.1.0（FastAPI 0.99.0以降で使用）では、**JSON Schema**標準�
 
 Pydanticモデルで`Field()`を使う場合、追加の`examples`も宣言できます:
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002.py hl[2,8:11] *}
 
 ## JSON Schema内の`examples` - OpenAPI { #examples-in-json-schema-openapi }
 
@@ -59,7 +59,7 @@ Pydanticモデルで`Field()`を使う場合、追加の`examples`も宣言で�
 
 ここでは、`Body()`で期待されるデータの例を1つ含む`examples`を渡します:
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003.py hl[22:29] *}
 
 ### ドキュメントUIでの例 { #example-in-the-docs-ui }
 
@@ -71,7 +71,7 @@ Pydanticモデルで`Field()`を使う場合、追加の`examples`も宣言で�
 
 もちろん、複数の`examples`を渡すこともできます:
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004.py hl[23:38] *}
 
 この場合、examplesはそのボディデータの内部**JSON Schema**の一部になります。
 
@@ -112,7 +112,7 @@ FastAPIでは、以下に対してパラメータ`openapi_examples`を使って�
 
 次のように使えます:
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005.py hl[23:49] *}
 
 ### ドキュメントUIのOpenAPI Examples { #openapi-examples-in-the-docs-ui }
 

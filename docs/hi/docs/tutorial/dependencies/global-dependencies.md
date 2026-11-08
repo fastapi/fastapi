@@ -6,7 +6,7 @@
 
 उस स्थिति में, वे application की सभी *path operations* पर लागू होंगी:
 
-{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial012.py hl[17] *}
 
 
 और [*path operation decorators* में `dependencies` जोड़ने](dependencies-in-path-operation-decorators.md) वाले section की सभी बातें अभी भी लागू होती हैं, लेकिन इस मामले में, app की सभी *path operations* पर।

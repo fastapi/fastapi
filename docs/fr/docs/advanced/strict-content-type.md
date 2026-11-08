@@ -77,7 +77,7 @@ Ce risque et cette attaque sont surtout pertinents lorsque l’application s’e
 
 Si vous devez prendre en charge des clients qui n’envoient pas d’en-tête `Content-Type`, vous pouvez désactiver la vérification stricte en définissant `strict_content_type=False` :
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 Avec ce paramètre, les requêtes sans en-tête `Content-Type` verront leur corps analysé comme JSON, ce qui correspond au comportement des anciennes versions de FastAPI.
 

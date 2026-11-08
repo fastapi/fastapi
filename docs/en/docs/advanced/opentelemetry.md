@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 Create a file `main.py`:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 You don't need to write any custom code to collect telemetry.
 
@@ -92,7 +92,7 @@ If another library already configures export to the same destination, leave `FAS
 
 You can also pass a provider directly in the `telemetry` dictionary. For example, this provider uses OpenTelemetry's console exporter to print request spans in your terminal:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 The **exporter** sends the spans to their destination. `BatchSpanProcessor` groups spans and sends them in the background. Replace the console exporter with one supplied by your monitoring library to use its destination. See [OpenTelemetry's Python instrumentation guide](https://opentelemetry.io/docs/languages/python/instrumentation/) for more configuration options.
 
@@ -112,7 +112,7 @@ Background task spans remain part of the request's trace. They run after the HTT
 
 To record only the HTTP request span, set `operation_spans` to `False`:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### Trace WebSocket connections { #trace-websocket-connections }

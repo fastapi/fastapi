@@ -10,7 +10,7 @@ Elles peuvent être aussi **profondes** que nécessaire.
 
 Vous pouvez créer une première dépendance (« dependable ») comme :
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 Elle déclare un paramètre de requête optionnel `q` de type `str`, puis le retourne simplement.
 
@@ -20,7 +20,7 @@ C'est assez simple (pas très utile), mais cela nous aidera à nous concentrer s
 
 Vous pouvez ensuite créer une autre fonction de dépendance (un « dependable ») qui, en même temps, déclare sa propre dépendance (elle est donc aussi un « dependant ») :
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 Concentrons-nous sur les paramètres déclarés :
 
@@ -33,7 +33,7 @@ Concentrons-nous sur les paramètres déclarés :
 
 Nous pouvons ensuite utiliser la dépendance avec :
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | Remarque
 

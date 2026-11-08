@@ -17,7 +17,7 @@
 
 如果不記得每個數字代碼代表什麼，你可以使用 `status` 中的速記常數：
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 該狀態碼會用於回應，並被加入至 OpenAPI 結構描述中。
 
@@ -33,7 +33,7 @@
 
 你可以為「路徑操作」加入標籤，傳入參數 `tags`，其值為由 `str` 組成的 `list`（通常只是一個 `str`）：
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 這些標籤會被加入到 OpenAPI 結構描述，並由自動化文件介面使用：
 
@@ -47,13 +47,13 @@
 
 **FastAPI** 對此的支援方式與使用普通字串相同：
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## 摘要與描述 { #summary-and-description }
 
 你可以加入 `summary` 與 `description`：
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## 從 docstring 取得描述 { #description-from-docstring }
 
@@ -61,7 +61,7 @@
 
 你可以在 docstring 中書寫 [Markdown](https://en.wikipedia.org/wiki/Markdown)，它會被正確解析並顯示（會考慮 docstring 的縮排）。
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 這會用於互動式文件：
 
@@ -71,7 +71,7 @@
 
 你可以用參數 `response_description` 指定回應的描述：
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | 注意
 
@@ -93,7 +93,7 @@ OpenAPI 規範要求每個「路徑操作」都必須有一個回應描述。
 
 若需要將「路徑操作」標記為 <dfn title="已過時，建議不要再使用">已棄用</dfn>，但不移除它，請傳入參數 `deprecated`：
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 在互動式文件中，它會被清楚標示為已棄用：
 

@@ -14,7 +14,7 @@ FastAPI 從 `0.115.0` 版本開始支援這個特性。🤓
 
 在一個 **Pydantic 模型**中聲明你需要的**查詢參數**，然後將參數聲明為 `Query`：
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI** 將會從請求的**查詢參數**中**提取**出**每個欄位**的資料，並提供你定義的 Pydantic 模型。
 
@@ -32,7 +32,7 @@ FastAPI 從 `0.115.0` 版本開始支援這個特性。🤓
 
 你可以使用 Pydantic 的模型設定來 `forbid`（禁止）任何 `extra`（額外）欄位：
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 如果客戶端嘗試在**查詢參數**中發送一些**額外的**資料，他們將會收到一個**錯誤**回應。
 
@@ -61,7 +61,7 @@ https://example.com/items/?limit=10&tool=plumbus
 
 你可以聲明多個查詢參數模型，並將它們與個別的查詢參數或依賴項組合使用。
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 請求參數仍位於同一層級。
 
@@ -81,7 +81,7 @@ https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
 
 聲明查詢參數模型時使用 `| None` 並將預設值設為 `None`，即可讓這組參數變為可選。
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 如果未發送 `start` 和 `end`，`date_range` 就會是 `None`。如果發送了其中任一參數，FastAPI 就會驗證模型，並要求提供這兩個欄位。
 

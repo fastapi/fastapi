@@ -6,7 +6,7 @@
 
 你可以使用 `jsonable_encoder` 將輸入資料轉換為可儲存為 JSON 的資料（例如用於 NoSQL 資料庫）。例如把 `datetime` 轉成 `str`。
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[28:33] *}
 
 `PUT` 用於接收應該取代現有資料的資料。
 
@@ -54,7 +54,7 @@
 
 接著你可以用它來生成只包含實際設定（請求中傳來）的資料之 `dict`，省略預設值：
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[32] *}
 
 ### 使用 Pydantic 的 `update` 參數 { #using-pydantics-update-parameter }
 
@@ -62,7 +62,7 @@
 
 例如 `stored_item_model.model_copy(update=update_data)`：
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[33] *}
 
 ### 部分更新摘要 { #partial-updates-recap }
 
@@ -79,7 +79,7 @@
 * 將資料儲存到資料庫。
 * 回傳更新後的模型。
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[28:35] *}
 
 /// tip | 提示
 

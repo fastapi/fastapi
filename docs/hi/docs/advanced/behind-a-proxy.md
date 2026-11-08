@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 उदाहरण के लिए, मान लें कि आप एक *path operation* `/items/` define करते हैं:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 अगर client `/items` पर जाने की कोशिश करता है, तो default रूप से, उसे `/items/` पर redirect किया जाएगा।
 
@@ -113,7 +113,7 @@ sequenceDiagram
 
 हालाँकि आपका सारा code यह मानकर लिखा गया है कि सिर्फ `/app` है।
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 और proxy server तक request भेजने से पहले तुरंत **path prefix** को **"strip"** कर देगा, आपकी application को यह भरोसा दिलाते हुए कि वह `/app` पर serve हो रही है, ताकि आपको prefix `/api/v1` शामिल करने के लिए अपना सारा code update न करना पड़े।
 
@@ -187,7 +187,7 @@ ASGI specification इस use case के लिए `root_path` define करत
 
 यहाँ हम इसे केवल demonstration purposes के लिए message में शामिल कर रहे हैं।
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 फिर, अगर आप server को इस तरह शुरू करते हैं:
 
@@ -371,7 +371,7 @@ Default रूप से, **FastAPI** OpenAPI schema में `root_path` क�
 
 उदाहरण के लिए, उसी `fastapi run --root-path /api/v1` server configuration का उपयोग करने पर:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 यह इस तरह का OpenAPI schema generate करेगा:
 
@@ -426,7 +426,7 @@ OpenAPI specification में `servers` property optional है।
 
 अगर आप नहीं चाहते कि **FastAPI** `root_path` का उपयोग करके automatic server शामिल करे, तो आप parameter `root_path_in_servers=False` उपयोग कर सकते हैं:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 और फिर यह उसे OpenAPI schema में शामिल नहीं करेगा।
 

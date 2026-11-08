@@ -52,7 +52,7 @@ Utilisons maintenant les utilités fournies par **FastAPI** pour gérer cela.
 
 Tout d'abord, importez `OAuth2PasswordRequestForm`, et utilisez-la en tant que dépendance avec `Depends` dans le *chemin d'accès* pour `/token` :
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` est une dépendance de classe qui déclare un corps de formulaire avec :
 
@@ -100,7 +100,7 @@ S'il n'existe pas d'utilisateur, nous renvoyons une erreur indiquant « Incorrec
 
 Pour l'erreur, nous utilisons l'exception `HTTPException` :
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### Vérifier le mot de passe { #check-the-password }
 
@@ -126,7 +126,7 @@ Si votre base de données est volée, le voleur n'aura pas les mots de passe en 
 
 Ainsi, il ne pourra pas essayer d'utiliser ces mêmes mots de passe dans un autre système (comme beaucoup d'utilisateurs utilisent le même mot de passe partout, ce serait dangereux).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### À propos de `**user_dict` { #about-user-dict }
 
@@ -168,7 +168,7 @@ Mais pour l'instant, concentrons‑nous sur les détails spécifiques dont nous 
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | Astuce
 
@@ -194,7 +194,7 @@ Ces deux dépendances renverront simplement une erreur HTTP si l'utilisateur n'e
 
 Ainsi, dans notre endpoint, nous n'obtiendrons un utilisateur que si l'utilisateur existe, a été correctement authentifié et est actif :
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | Remarque
 

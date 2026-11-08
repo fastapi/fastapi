@@ -6,7 +6,7 @@
 
 먼저 `Cookie`를 임포트합니다:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## `Cookie` 매개변수 선언 { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@
 
 첫 번째 값은 기본값이며, 추가 검증이나 어노테이션 매개변수 모두 전달할 수 있습니다:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | 기술 세부사항
 

@@ -20,7 +20,7 @@
 
 Оголосіть параметри **кукі**, які вам потрібні, у **Pydantic-моделі**, а потім оголосіть параметр як `Cookie`:
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI** буде **витягувати** дані для **кожного поля** з **кукі**, отриманих у запиті, і передавати вам Pydantic-модель, яку ви визначили.
 
@@ -50,7 +50,7 @@
 
 Ви можете використовувати налаштування моделі Pydantic, щоб `forbid` будь-які `extra` поля:
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 Якщо клієнт спробує надіслати якісь **додаткові кукі**, він отримає відповідь з **помилкою**.
 
@@ -81,7 +81,7 @@
 
 Оголосіть модель параметрів кукі з `| None` і значенням за замовчуванням `None`, щоб зробити групу необов'язковою.
 
-{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
 
 Якщо не надіслано ні `theme`, ні `locale`, `preferences` має значення `None`. Якщо надіслано хоча б одне з них, FastAPI валідує модель і вимагає обидва поля.
 

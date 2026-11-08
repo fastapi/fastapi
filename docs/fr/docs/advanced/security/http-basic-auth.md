@@ -20,7 +20,7 @@ Ensuite, lorsque vous saisissez ce nom d'utilisateur et ce mot de passe, le navi
 - Cela renvoie un objet de type `HTTPBasicCredentials` :
     - Il contient le `username` et le `password` envoyés.
 
-{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006.py hl[4,8,12] *}
 
 Lorsque vous essayez d'ouvrir l'URL pour la première fois (ou cliquez sur le bouton « Execute » dans les documents) le navigateur vous demandera votre nom d'utilisateur et votre mot de passe :
 
@@ -40,7 +40,7 @@ Pour gérer cela, nous convertissons d'abord `username` et `password` en `bytes`
 
 Nous pouvons ensuite utiliser `secrets.compare_digest()` pour vérifier que `credentials.username` est `"stanleyjobson"` et que `credentials.password` est `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007.py hl[1,12:24] *}
 
 Cela serait similaire à :
 
@@ -106,4 +106,4 @@ Ainsi, en utilisant `secrets.compare_digest()` dans le code de votre application
 
 Après avoir détecté que les identifiants sont incorrects, renvoyez une `HTTPException` avec un code d'état 401 (le même que lorsque aucun identifiant n'est fourni) et ajoutez l'en-tête `WWW-Authenticate` pour que le navigateur affiche à nouveau l'invite de connexion :
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007.py hl[26:30] *}

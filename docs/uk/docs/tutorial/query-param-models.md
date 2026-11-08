@@ -14,7 +14,7 @@
 
 Оголосіть **параметри запиту**, які Вам потрібні, у **Pydantic-моделі**, а потім оголосіть цей параметр як `Query`:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI** буде **витягувати** дані для **кожного поля** з **параметрів запиту** у запиті та надавати Вам визначену вами Pydantic-модель.
 
@@ -32,7 +32,7 @@
 
 Ви можете використати конфігурацію моделі Pydantic, щоб заборонити (`forbid`) будь-які зайві (`extra`) поля:
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 Якщо клієнт спробує надіслати **зайві** дані у **параметрах запиту**, він отримає **відповідь з помилкою**.
 
@@ -61,7 +61,7 @@ https://example.com/items/?limit=10&tool=plumbus
 
 Ви можете оголосити кілька моделей параметрів запиту та поєднати їх з окремими параметрами запиту або залежностями.
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 Параметри запиту залишаються на одному рівні.
 
@@ -81,7 +81,7 @@ https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
 
 Оголосіть модель параметрів запиту з `| None` і значенням за замовчуванням `None`, щоб зробити групу необов’язковою.
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 Якщо не надіслано ні `start`, ні `end`, значення `date_range` буде `None`. Якщо надіслано будь-який із них, FastAPI перевіряє модель і вимагає обидва поля.
 

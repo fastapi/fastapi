@@ -6,7 +6,7 @@
 
 首先，你需要匯入它：
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
 
 
 /// warning
@@ -19,7 +19,7 @@
 
 接著你可以在模型屬性上使用 `Field`：
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field` 的用法與 `Query`、`Path`、`Body` 相同，擁有相同的參數等。
 

@@ -14,7 +14,7 @@
 
 Объявите нужные **query-параметры** в **Pydantic-модели**, а после объявите параметр как `Query`:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI извлечёт** данные, соответствующие **каждому полю модели**, из **query-параметров** HTTP-запроса и выдаст вам объявленную Pydantic-модель, заполненную ими.
 
@@ -32,7 +32,7 @@
 
 Вы можете сконфигурировать Pydantic-модель так, чтобы запретить (`forbid`) все дополнительные (`extra`) поля:
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 Если клиент попробует отправить **дополнительные** данные в **query-параметрах**, то он получит HTTP-ответ с **ошибкой**.
 
@@ -61,7 +61,7 @@ https://example.com/items/?limit=10&tool=plumbus
 
 Вы можете объявить несколько моделей query-параметров и комбинировать их с отдельными query-параметрами или зависимостями.
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 Параметры HTTP-запроса остаются на одном уровне.
 
@@ -81,7 +81,7 @@ https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
 
 Объявите модель query-параметров с `| None` и значением по умолчанию `None`, чтобы сделать группу необязательной.
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 Если ни `start`, ни `end` не переданы, `date_range` равен `None`. Если передан хотя бы один из них, FastAPI валидирует модель и требует оба поля.
 

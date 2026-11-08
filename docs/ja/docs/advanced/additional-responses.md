@@ -26,7 +26,7 @@
 
 例えば、ステータスコード `404` と Pydantic モデル `Message` を持つ別のレスポンスを宣言するには、次のように書けます:
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | 備考
 
@@ -175,7 +175,7 @@
 
 例えば、`image/png` の追加メディアタイプを加え、あなたの *path operation* が JSON オブジェクト（メディアタイプ `application/json`）または PNG 画像を返せることを宣言できます:
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | 備考
 
@@ -203,7 +203,7 @@
 
 さらに、`response_model` を使うステータスコード `200` のレスポンスに独自の `example` を含めることもできます:
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 これらはすべて結合されて OpenAPI に含まれ、API ドキュメントに表示されます:
 
@@ -237,7 +237,7 @@ new_dict = {**old_dict, "new key": "new value"}
 
 例えば:
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## OpenAPI レスポンスの詳細 { #more-information-about-openapi-responses }
 

@@ -21,7 +21,7 @@
 
 接著你可以在那個「*暫時的*」回應物件上設定 `status_code`。
 
-{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
 然後你可以照常回傳任何需要的物件（例如 `dict`、資料庫模型等）。
 

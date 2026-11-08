@@ -32,11 +32,11 @@
 
 `main.py` は次のようになります:
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 `test_main.py` は `main.py` のテストを持ち、今は次のようになります:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
 ## 実行 { #run-it }
 
@@ -56,7 +56,7 @@ $ uv run pytest
 
 マーカー `@pytest.mark.anyio` は、このテスト関数を非同期で呼び出すべきであることを pytest に伝えます:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | 豆知識
 
@@ -66,7 +66,7 @@ $ uv run pytest
 
 次に、アプリを渡して `AsyncClient` を作成し、`await` を使って非同期リクエストを送信できます。
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 これは次と同等です:
 

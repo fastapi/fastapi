@@ -6,7 +6,7 @@
 
 먼저 이를 임포트해야 합니다:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
 
 /// warning | 경고
 
@@ -18,7 +18,7 @@
 
 그 다음 모델 어트리뷰트와 함께 `Field`를 사용할 수 있습니다:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field`는 `Query`, `Path`와 `Body`와 같은 방식으로 동작하며, 모두 같은 매개변수들 등을 가집니다.
 

@@ -52,7 +52,7 @@ Pydantic v2는 Pydantic v1의 모든 것을 서브모듈 `pydantic.v1`로 포함
 
 즉, Pydantic v2의 최신 버전을 설치한 뒤, 이 서브모듈에서 예전 Pydantic v1 구성 요소를 import하여 예전 Pydantic v1을 설치한 것처럼 사용할 수 있습니다.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### v2 안의 Pydantic v1에 대한 FastAPI 지원 { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ FastAPI 0.119.0부터는 v2로의 마이그레이션을 쉽게 하기 위해, Py
 
 따라서 Pydantic을 최신 v2로 업그레이드하고, import를 `pydantic.v1` 서브모듈을 사용하도록 바꾸면, 많은 경우 그대로 동작합니다.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning | 경고
 
@@ -122,7 +122,7 @@ graph TB
 
 어떤 경우에는 FastAPI 앱의 같은 **경로 처리**에서 Pydantic v1과 v2 모델을 함께 사용하는 것도 가능합니다:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 위 예제에서 입력 모델은 Pydantic v1 모델이고, 출력 모델(`response_model=ItemV2`로 정의됨)은 Pydantic v2 모델입니다.
 
@@ -130,7 +130,7 @@ graph TB
 
 Pydantic v1 모델과 함께 `Body`, `Query`, `Form` 등 파라미터용 FastAPI 전용 도구 일부를 사용해야 한다면, Pydantic v2로의 마이그레이션을 마칠 때까지 `fastapi.temp_pydantic_v1_params`에서 import할 수 있습니다:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### 단계적으로 마이그레이션하기 { #migrate-in-steps }
 

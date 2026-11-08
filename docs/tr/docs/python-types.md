@@ -23,7 +23,7 @@ Eğer bir Python uzmanıysanız ve type hints hakkında her şeyi zaten biliyors
 
 Basit bir örnekle başlayalım:
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 Bu programı çalıştırınca şu çıktıyı alırsınız:
 
@@ -37,7 +37,7 @@ Fonksiyon şunları yapar:
 * `title()` ile her birinin ilk harfini büyük harfe çevirir.
 * Ortada bir boşluk olacak şekilde <dfn title="Onları tek bir bütün olarak bir araya getirir. İçerikler art arda gelir.">Birleştirir</dfn>.
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Düzenleyelim { #edit-it }
 
@@ -79,7 +79,7 @@ Bu kadar.
 
 Bunlar "type hints":
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 Bu, aşağıdaki gibi default değerler bildirmekle aynı şey değildir:
 
@@ -107,7 +107,7 @@ Bununla birlikte, seçenekleri görerek kaydırabilirsiniz; ta ki "tanıdık gel
 
 Şu fonksiyona bakın, zaten type hints içeriyor:
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Editör değişkenlerin tiplerini bildiği için, sadece completion değil, aynı zamanda hata kontrolleri de alırsınız:
 
@@ -115,7 +115,7 @@ Editör değişkenlerin tiplerini bildiği için, sadece completion değil, ayn�
 
 Artık bunu düzeltmeniz gerektiğini, `age`'i `str(age)` ile string'e çevirmeniz gerektiğini biliyorsunuz:
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Tipleri Bildirmek { #declaring-types }
 
@@ -134,7 +134,7 @@ Sadece `str` değil, tüm standart Python tiplerini bildirebilirsiniz.
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### `typing` modülü { #typing-module }
 
@@ -171,7 +171,7 @@ Tip olarak `list` yazın.
 
 `list`, bazı iç tipleri barındıran bir tip olduğundan, bunları köşeli parantez içine yazarsınız:
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | Not
 
@@ -197,7 +197,7 @@ Ve yine de editör bunun bir `str` olduğunu bilir ve buna göre destek sağlar.
 
 `tuple`'ları ve `set`'leri bildirmek için de aynısını yaparsınız:
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 Bu şu anlama gelir:
 
@@ -212,7 +212,7 @@ Bir `dict` tanımlamak için, virgülle ayrılmış 2 type parameter verirsiniz.
 
 İkinci type parameter, `dict`'in value'ları içindir:
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 Bu şu anlama gelir:
 
@@ -229,7 +229,7 @@ Bunu tanımlamak için, her iki tipi ayırmak üzere <dfn title='başka adıyla 
 Buna "union" denir, çünkü değişken bu iki tip kümesinin birleşimindeki herhangi bir şey olabilir.
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 Bu, `item`'ın `int` veya `str` olabileceği anlamına gelir.
@@ -241,7 +241,7 @@ Bir değerin `str` gibi bir tipi olabileceğini ama aynı zamanda `None` da olab
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -254,11 +254,11 @@ Bir sınıfı da bir değişkenin tipi olarak bildirebilirsiniz.
 
 Örneğin, adı olan bir `Person` sınıfınız olsun:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Sonra bir değişkeni `Person` tipinde olacak şekilde bildirebilirsiniz:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 Ve sonra, yine tüm editör desteğini alırsınız:
 
@@ -282,7 +282,7 @@ Ve bu ortaya çıkan nesne ile tüm editör desteğini alırsınız.
 
 Resmî Pydantic dokümanlarından bir örnek:
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | Not
 
@@ -300,7 +300,7 @@ Python'da ayrıca, `Annotated` kullanarak bu type hints içine **ek <dfn title="
 
 `Annotated`'ı `typing` içinden import edebilirsiniz.
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Python'un kendisi bu `Annotated` ile bir şey yapmaz. Editörler ve diğer araçlar için tip hâlâ `str`'dir.
 

@@ -14,7 +14,7 @@ Dies wird seit FastAPI Version `0.115.0` unterstützt. 🤓
 
 Deklarieren Sie die benötigten **Query-Parameter** in einem **Pydantic-Modell** und dann den Parameter als `Query`:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI** wird die Daten für **jedes Feld** aus den **Query-Parametern** des <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> extrahieren und Ihnen das definierte Pydantic-Modell bereitstellen.
 
@@ -32,7 +32,7 @@ In einigen speziellen Anwendungsfällen (wahrscheinlich nicht sehr häufig) möc
 
 Sie können die Modellkonfiguration von Pydantic verwenden, um jegliche `extra` Felder mit `forbid` zu verbieten:
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 Wenn ein Client versucht, einige **zusätzliche** Daten in den **Query-Parametern** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
@@ -61,7 +61,7 @@ erhält er eine **Error-Response**, die ihm mitteilt, dass der Query-Parameter `
 
 Sie können mehrere Query-Parameter-Modelle deklarieren und sie mit einzelnen Query-Parametern oder Abhängigkeiten kombinieren.
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 Die Requestparameter bleiben auf derselben Ebene.
 
@@ -81,7 +81,7 @@ Dies funktioniert auch für `Header`- und `Cookie`-Modelle.
 
 Deklarieren Sie ein Query-Parameter-Modell mit `| None` und einem Defaultwert von `None`, um die Gruppe optional zu machen.
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 Wenn weder `start` noch `end` gesendet wird, ist `date_range` gleich `None`. Wenn eines davon gesendet wird, validiert FastAPI das Modell und erfordert beide Felder.
 

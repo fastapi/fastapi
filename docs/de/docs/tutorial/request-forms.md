@@ -19,13 +19,13 @@ $ uv add python-multipart
 
 Importieren Sie `Form` von `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## `Form`-Parameter definieren { #define-form-parameters }
 
 Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` oder `Query` machen würden:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Zum Beispiel stellt eine der Möglichkeiten, die OAuth2-Spezifikation zu verwenden (genannt „password flow“), die Bedingung, einen `username` und ein `password` als Formularfelder zu senden.
 
@@ -49,7 +49,7 @@ Um Formularbodys zu deklarieren, verwenden Sie explizit `Form`, da diese Paramet
 
 Browser lassen nicht angekreuzte Checkboxen beim Absenden von HTML-Formularen weg. Deklarieren Sie einen booleschen Formular-Parameter mit dem Defaultwert `False`, um `False` zu erhalten, wenn die Checkbox nicht angekreuzt ist:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 Eine angekreuzte Checkbox sendet ihren Wert, der standardmäßig `"on"` ist. **FastAPI** akzeptiert `"on"` als `True`.
 

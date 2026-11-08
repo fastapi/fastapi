@@ -8,7 +8,7 @@
 
 Також ви можете оголошувати параметри тіла як необов’язкові, встановивши для них значення за замовчуванням `None`:
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | Примітка
 
@@ -31,7 +31,7 @@
 
 Але ви також можете оголосити декілька параметрів тіла, наприклад `item` та `user`:
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 
 У цьому випадку **FastAPI** помітить, що у функції є більше ніж один параметр тіла (є два параметри, які є моделями Pydantic).
@@ -73,7 +73,7 @@
 
 Але ви можете вказати **FastAPI** обробляти його як інший ключ тіла, використовуючи `Body`:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 
 У цьому випадку **FastAPI** очікуватиме тіло такого вигляду:
@@ -108,7 +108,7 @@ q: str | None = None
 
 Наприклад:
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 
 /// note | Примітка
@@ -131,7 +131,7 @@ item: Annotated[Item, Body(embed=True)]
 
 як у прикладі:
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 
 У цьому випадку **FastAPI** очікуватиме тіло такого вигляду:

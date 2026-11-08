@@ -4,7 +4,7 @@
 
 इसके लिए, आप `TestClient` को एक `with` statement में उपयोग करते हैं, WebSocket से connect करते हुए:
 
-{* ../../docs_src/app_testing/tutorial002_py310.py hl[27:31] *}
+{* ../../docs_src/app_testing/tutorial002.py hl[27:31] *}
 
 /// note | नोट
 

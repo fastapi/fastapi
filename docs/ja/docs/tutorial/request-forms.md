@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 `fastapi`から`Form`をインポートします:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## `Form`のパラメータの定義 { #define-form-parameters }
 
 `Body`や`Query`の場合と同じようにフォームパラメータを作成します:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 例えば、OAuth2仕様が使用できる方法の１つ（「パスワードフロー」と呼ばれる）では、フォームフィールドとして`username`と`password`を送信する必要があります。
 
@@ -48,7 +48,7 @@ $ uv add python-multipart
 
 ブラウザはHTMLフォームを送信する際、チェックされていないチェックボックスを省略します。チェックされていない場合に`False`を受け取るには、デフォルト値を`False`にしたブール型のフォームパラメータを宣言します:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 チェックされたチェックボックスはその値を送信し、デフォルトの値は`"on"`です。**FastAPI**は`"on"`を`True`として受け付けます。
 

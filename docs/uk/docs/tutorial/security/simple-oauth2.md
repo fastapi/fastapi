@@ -52,7 +52,7 @@ OAuth2 визначає, що під час використання «пото�
 
 Спочатку імпортуйте `OAuth2PasswordRequestForm` і використайте його як залежність із `Depends` в *операції шляху* для `/token`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` - це клас залежності, що оголошує тіло форми з:
 
@@ -100,7 +100,7 @@ OAuth2 визначає, що під час використання «пото�
 
 Для помилки використовуємо виняток `HTTPException`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### Перевірте пароль { #check-the-password }
 
@@ -126,7 +126,7 @@ OAuth2 визначає, що під час використання «пото�
 
 Тож зловмисник не зможе спробувати використати ті самі паролі в іншій системі (оскільки багато користувачів використовують той самий пароль всюди, це було б небезпечно).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### Про `**user_dict` { #about-user-dict }
 
@@ -168,7 +168,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | Порада
 
@@ -194,7 +194,7 @@ UserInDB(
 
 Отже, у нашій кінцевій точці ми отримаємо користувача лише якщо він існує, був правильно автентифікований і є активним:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | Примітка
 

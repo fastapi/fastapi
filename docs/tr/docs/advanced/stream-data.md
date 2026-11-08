@@ -22,7 +22,7 @@ Bu şekilde **video** veya **ses** de akıtabilirsiniz; hatta işledikçe üreti
 
 *Path operation function* içinde `response_class=StreamingResponse` belirtirseniz, her veri parçasını sırayla göndermek için `yield` kullanabilirsiniz.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI her veri parçasını olduğu gibi `StreamingResponse`'a verir; JSON'a ya da benzeri bir formata dönüştürmeye çalışmaz.
 
@@ -30,7 +30,7 @@ FastAPI her veri parçasını olduğu gibi `StreamingResponse`'a verir; JSON'a y
 
 Normal `def` fonksiyonlarını (yani `async` olmadan) da kullanabilir ve aynı şekilde `yield` yazabilirsiniz.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### Tip Annotasyonu Yok { #no-annotation }
 
@@ -38,7 +38,7 @@ Normal `def` fonksiyonlarını (yani `async` olmadan) da kullanabilir ve aynı �
 
 FastAPI veriyi Pydantic ile JSON'a çevirmeye veya herhangi bir şekilde serileştirmeye çalışmayacağı için, bu durumda tip annotasyonu sadece editörünüz ve araçlarınız içindir; FastAPI tarafından kullanılmaz.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 Bu aynı zamanda `StreamingResponse` ile veriyi tam olarak ihtiyaç duyduğunuz biçimde üretme ve encode etme konusunda hem bir **özgürlük** hem de bir **sorumluluk** verdiği anlamına gelir; tip annotasyonlarından bağımsızdır. 🤓
 
@@ -46,7 +46,7 @@ Bu aynı zamanda `StreamingResponse` ile veriyi tam olarak ihtiyaç duyduğunuz 
 
 Başlıca kullanım senaryolarından biri string yerine `bytes` akıtmaktır; elbette bunu yapabilirsiniz.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## Özel bir `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ Akıttığınız veri türüne uygun `Content-Type` header'ını ayarlayan, `Str
 
 Örneğin, `media_type` özniteliğini kullanarak `Content-Type` header'ını `image/png` olarak ayarlayan bir `PNGStreamingResponse` oluşturabilirsiniz:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 Ardından bu yeni sınıfı *path operation function* içinde `response_class=PNGStreamingResponse` olarak kullanabilirsiniz:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### Bir Dosyayı Simüle Etme { #simulate-a-file }
 
@@ -68,7 +68,7 @@ Bu örnekte, yalnızca bellekte yaşayan ama aynı arayüzü kullanmamıza izin 
 
 Örneğin, bir dosyada yapabileceğimiz gibi, içeriğini tüketmek için üzerinde iterate edebiliriz.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | Teknik Detaylar
 
@@ -100,7 +100,7 @@ Ancak çoğu durumda bir dosyayı veya dosya benzeri bir nesneyi okumak bloke ed
 
 Event loop'u bloke etmemek için, *path operation function*'ı `async def` yerine normal `def` ile tanımlayabilirsiniz; böylece FastAPI ana döngüyü bloke etmemek için bunu bir thread pool worker (iş parçacığı havuzu çalışanı) üzerinde çalıştırır.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip | İpucu
 
@@ -114,4 +114,4 @@ Bir şeyin (ör. dosya benzeri bir nesne) üzerinde iterate ederken, her öğe i
 
 Bu FastAPI'ye özgü değildir, tamamen Python'dur, ama bilinmesi güzel bir püf noktasıdır. 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

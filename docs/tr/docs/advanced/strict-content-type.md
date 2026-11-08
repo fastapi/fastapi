@@ -77,7 +77,7 @@ Bu risk ve saldırı, esasen uygulama sadece yerel ağda çalıştığında ve t
 
 Content-Type header’ı göndermeyen client’ları desteklemeniz gerekiyorsa, strict kontrolü strict_content_type=False ayarıyla kapatabilirsiniz:
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 Bu ayarla, Content-Type header’ı olmayan request’lerin body’si JSON olarak parse edilir. Bu, FastAPI’nin eski sürümlerindeki davranışla aynıdır.
 

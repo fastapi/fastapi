@@ -46,7 +46,7 @@ Vous pouvez également spécifier si votre backend autorise :
 * Des méthodes HTTP spécifiques (`POST`, `PUT`) ou toutes avec le caractère générique « * ».
 * Des en-têtes HTTP spécifiques ou tous avec le caractère générique « * ».
 
-{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 Les paramètres utilisés par défaut par l’implémentation de `CORSMiddleware` sont restrictifs, vous devez donc activer explicitement des origines, méthodes ou en-têtes particuliers afin que les navigateurs soient autorisés à les utiliser dans un contexte inter‑domaine.
 

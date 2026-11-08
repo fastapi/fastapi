@@ -14,7 +14,7 @@ This is supported since FastAPI version `0.115.0`. 🤓
 
 Declare the **query parameters** that you need in a **Pydantic model**, and then declare the parameter as `Query`:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI** will **extract** the data for **each field** from the **query parameters** in the request and give you the Pydantic model you defined.
 
@@ -32,7 +32,7 @@ In some special use cases (probably not very common), you might want to **restri
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 If a client tries to send some **extra** data in the **query parameters**, they will receive an **error** response.
 
@@ -61,7 +61,7 @@ They will receive an **error** response telling them that the query parameter `t
 
 You can declare multiple query parameter models, and combine them with individual query parameters or dependencies.
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 The request parameters stay at the same level.
 
@@ -81,7 +81,7 @@ This also works for `Header` and `Cookie` models.
 
 Declare a query parameter model with `| None` and a default of `None` to make the group optional.
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 If neither `start` nor `end` is sent, `date_range` is `None`. If either is sent, FastAPI validates the model and requires both fields.
 

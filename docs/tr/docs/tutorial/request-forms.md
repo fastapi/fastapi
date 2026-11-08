@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 `Form`'u `fastapi`'den import edin:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## `Form` Parametrelerini Tanımlayın { #define-form-parameters }
 
 Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Örneğin OAuth2 spesifikasyonunun kullanılabileceği ("password flow" olarak adlandırılan) yollardan birinde, form alanları olarak bir `username` ve `password` göndermek zorunludur.
 
@@ -48,7 +48,7 @@ Form body'lerini tanımlamak için `Form`'u açıkça kullanmanız gerekir; çü
 
 Tarayıcılar, HTML formlarını gönderirken işaretlenmemiş onay kutularını göndermez. Onay kutusu işaretlenmediğinde `False` almak için varsayılan değeri `False` olan bir boolean form parametresi tanımlayın:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 İşaretli bir onay kutusu, varsayılan olarak `"on"` olan değerini gönderir. **FastAPI**, `"on"` değerini `True` olarak kabul eder.
 
