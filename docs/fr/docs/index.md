@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI est un framework web moderne et rapide (haute performance) pour la création d'API avec Python, basé sur les annotations de type standard de Python.
 
+<!-- agent-banner -->
+
 Les principales fonctionnalités sont :
 
 * **Rapide** : très hautes performances, au niveau de **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
