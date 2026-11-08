@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Upgrades
+
+* ⬆️ Upgrade `markdown-include-variants` to 0.0.10. PR [#16705](https://github.com/fastapi/fastapi/pull/16705) by [@tiangolo](https://github.com/tiangolo).
+
 ### Docs
 
 * 🎨 Use the Zensical modern theme for docs. PR [#16701](https://github.com/fastapi/fastapi/pull/16701) by [@tiangolo](https://github.com/tiangolo).
