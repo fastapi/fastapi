@@ -45,6 +45,14 @@ $ uv add python-multipart
 
 ///
 
+## 불리언 폼 필드 { #boolean-form-fields }
+
+브라우저는 HTML 폼을 전송할 때 선택하지 않은 체크박스를 생략합니다. 선택하지 않았을 때 `False`를 받으려면, 기본값이 `False`인 불리언 폼 매개변수를 선언하세요:
+
+{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+
+선택한 체크박스는 자신의 값을 전송하며, 기본값은 `"on"`입니다. **FastAPI**는 `"on"`을 `True`로 처리합니다.
+
 ## "폼 필드"에 대해 { #about-form-fields }
 
 HTML 폼(`<form></form>`)이 데이터를 서버로 보내는 방식은 일반적으로 해당 데이터에 대해 "특수" 인코딩을 사용하며, 이는 JSON과 다릅니다.
@@ -56,6 +64,8 @@ HTML 폼(`<form></form>`)이 데이터를 서버로 보내는 방식은 일반�
 폼의 데이터는 일반적으로 "미디어 유형(media type)" `application/x-www-form-urlencoded`를 사용하여 인코딩합니다.
 
 그러나 폼에 파일이 포함된 경우, `multipart/form-data`로 인코딩합니다. 다음 장에서 파일 처리에 대해 읽을 겁니다.
+
+`Form(media_type="multipart/form-data")`을 사용하면 OpenAPI에서 멀티파트 폼으로 설명할 수 있습니다. 폼 매개변수나 모델을 함께 사용할 때는 한 매개변수에만 설정해도 충분합니다.
 
 이러한 인코딩 및 폼 필드에 대해 더 읽고 싶다면, [`POST`에 대한 <abbr title="Mozilla Developer Network - 모질라 개발자 네트워크">MDN</abbr> 웹 문서를 참조하세요](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 

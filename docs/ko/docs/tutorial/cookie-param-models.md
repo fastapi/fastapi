@@ -71,6 +71,22 @@ Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forb
 }
 ```
 
+## 매개변수 모델 조합하기 { #combine-parameter-models }
+
+여러 쿠키 매개변수 모델을 개별 쿠키 매개변수 및 의존성과 함께 사용할 수 있습니다. [쿼리 매개변수 모델](query-param-models.md#combine-parameter-models)에서 설명한 것처럼 각 모델은 독립적으로 추출되고 검증됩니다.
+
+각 모델의 `extra` 설정은 다른 모델이나 의존성에 선언된 쿠키를 포함하여 모든 쿠키 매개변수에 적용됩니다. `extra="forbid"`이면 해당 모델에 없는 쿠키는 모두 거부됩니다. `extra="allow"`이면 이러한 쿠키는 모델의 추가 필드로 포함됩니다.
+
+## 선택적 쿠키 매개변수 모델 { #optional-cookie-parameter-models }
+
+쿠키 매개변수 그룹을 선택적으로 만들려면, 모델에 `| None`을 사용하고 기본값을 `None`으로 선언하세요.
+
+{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+
+`theme`과 `locale`이 모두 전송되지 않으면 `preferences`는 `None`입니다. 둘 중 하나라도 전송되면 FastAPI는 모델을 검증하며 두 필드를 모두 요구합니다.
+
+기본값, 추가 필드, OpenAPI에 대해서는 [선택적 쿼리 매개변수 모델](query-param-models.md#optional-query-parameter-models)과 같은 규칙이 적용됩니다.
+
 ## 요약 { #summary }
 
 **Pydantic 모델**을 사용하여 **FastAPI**에서 <dfn title="가시기 전에 마지막 쿠키 하나 드세요. 🍪">**쿠키**</dfn>를 선언할 수 있습니다. 😎

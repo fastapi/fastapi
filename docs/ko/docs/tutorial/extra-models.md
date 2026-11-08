@@ -54,10 +54,10 @@ Python의 `dict`가 다음과 같이 출력됩니다:
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ UserInDB(
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 

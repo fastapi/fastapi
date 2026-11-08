@@ -136,11 +136,11 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
