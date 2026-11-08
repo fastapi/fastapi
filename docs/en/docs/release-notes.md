@@ -19,6 +19,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Portuguese translations. PR [#16714](https://github.com/fastapi/fastapi/pull/16714) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Korean translations. PR [#16713](https://github.com/fastapi/fastapi/pull/16713) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Japanese translations. PR [#16712](https://github.com/fastapi/fastapi/pull/16712) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Hindi translations. PR [#16711](https://github.com/fastapi/fastapi/pull/16711) by [@tiangolo](https://github.com/tiangolo).
