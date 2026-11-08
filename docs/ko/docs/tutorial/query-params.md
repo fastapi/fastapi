@@ -60,7 +60,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 ## 선택적 매개변수 { #optional-parameters }
 
-같은 방법으로 기본값을 `None`으로 설정하여 선택적 매개변수를 선언할 수 있습니다:
+같은 방법으로 기본값을 `None`으로 설정하여 선택적 쿼리 매개변수를 선언할 수 있습니다:
 
 {* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
 
@@ -108,7 +108,13 @@ http://127.0.0.1:8000/items/foo?short=on
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-또는 다른 어떤 변형(대문자, 첫글자만 대문자 등)이더라도 함수는 `bool` 값이 `True`인 매개변수 `short`를 보게 됩니다. 그렇지 않은 경우 `False`입니다.
+또는 다른 어떤 변형(대문자, 첫글자만 대문자 등)이더라도 함수는 `bool` 값이 `True`인 매개변수 `short`를 보게 됩니다.
+
+`0`, `false`, `off`, `no`와 같은 값(대소문자 변형 포함)은 `False`로 변환됩니다.
+
+`short`를 생략하면 **FastAPI**는 기본값을 사용하며, 이 예제에서는 `False`입니다.
+
+빈 값(`?short=`)이나 인식할 수 없는 값(예: `?short=maybe`)은 `422` 검증 오류를 발생시킵니다.
 
 
 ## 여러 경로/쿼리 매개변수 { #multiple-path-and-query-parameters }

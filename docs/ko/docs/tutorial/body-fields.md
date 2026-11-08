@@ -42,13 +42,13 @@
 
 ## 별도 정보 추가 { #add-extra-information }
 
-`Field`, `Query`, `Body`, 그 외 안에 별도 정보를 선언할 수 있습니다. 이는 생성된 JSON 스키마에 포함됩니다.
+`Field`, `Query`, `Body` 등에서 `json_schema_extra`를 사용하여 별도 정보를 선언할 수 있습니다. 이는 생성된 JSON 스키마에 포함됩니다.
 
 여러분이 예제를 선언할 때 나중에 이 공식 문서에서 별도 정보를 추가하는 방법을 배울 것입니다.
 
 /// warning | 경고
 
-별도 키가 전달된 `Field` 또한 여러분의 애플리케이션의 OpenAPI 스키마에 나타날 것입니다.
+`json_schema_extra`에 전달된 별도 키 또한 여러분의 애플리케이션의 OpenAPI 스키마에 나타날 것입니다.
 이런 키가 OpenAPI 명세서의 일부가 아닐 수도 있으므로, [OpenAPI validator](https://validator.swagger.io/) 같은 몇몇 OpenAPI 도구들은 여러분이 생성한 스키마와 호환되지 않을 수 있습니다.
 
 ///
@@ -57,4 +57,4 @@
 
 모델 어트리뷰트를 위한 추가 검증과 메타데이터 선언하기 위해 Pydantic의 `Field` 를 사용할 수 있습니다.
 
-또한 추가적인 JSON 스키마 메타데이터를 전달하기 위한 별도의 키워드 인자를 사용할 수 있습니다.
+또한 추가적인 JSON 스키마 메타데이터를 전달하기 위해 `json_schema_extra`를 사용할 수 있습니다.
