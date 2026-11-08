@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI は、Python の標準である型ヒントに基づいて Python で API を構築するための、モダンで、高速（高パフォーマンス）な Web フレームワークです。
 
+<!-- agent-banner -->
+
 主な特徴:
 
 * **高速**: **NodeJS** や **Go** 並みのとても高いパフォーマンス（Starlette と Pydantic のおかげです）。 [利用可能な最も高速な Python フレームワークの一つです](#performance)。
