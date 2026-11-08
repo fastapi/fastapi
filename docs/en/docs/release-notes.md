@@ -19,6 +19,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update Traditional Chinese translations. PR [#16719](https://github.com/fastapi/fastapi/pull/16719) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Chinese translations. PR [#16718](https://github.com/fastapi/fastapi/pull/16718) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Ukrainian translations. PR [#16717](https://github.com/fastapi/fastapi/pull/16717) by [@tiangolo](https://github.com/tiangolo).
 * 🌐 Update Turkish translations. PR [#16716](https://github.com/fastapi/fastapi/pull/16716) by [@tiangolo](https://github.com/tiangolo).
