@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्शन) web framework है जो standard Python type hints के आधार पर Python से APIs बनाने के लिए है।
 
+<!-- agent-banner -->
+
 मुख्य features:
 
 * **तेज़**: बहुत उच्च प्रदर्शन, **NodeJS** और **Go** के समकक्ष (Starlette और Pydantic की बदौलत)। [उपलब्ध सबसे तेज़ Python frameworks में से एक](#performance)।
