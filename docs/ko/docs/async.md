@@ -16,7 +16,7 @@ results = await some_library()
 다음처럼 *경로 처리 함수*를 `async def`를 사용해 선언하십시오:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -33,7 +33,7 @@ async def read_results():
 데이터베이스, API, 파일시스템 등과 의사소통하는 제3자 라이브러리를 사용하고, 그것이 `await` 사용을 지원하지 않는 경우(현재 대부분의 데이터베이스 라이브러리가 그러합니다), *경로 처리 함수*를 일반적인 `def`를 사용해 선언하십시오:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -194,7 +194,7 @@ def results():
 
 <img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
-그러다 점원/요리사 👨‍🍳 가 카운터 앞에서 오랫동안 기다린 🕙 끝에 마침내 햄버거를 가지고 돌아옵니다.
+그러다 여러분이 카운터 앞에서 오랫동안 기다린 🕙 끝에 점원/요리사 👨‍🍳 가 마침내 햄버거를 가지고 돌아옵니다.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-05.png" class="illustration">
 
@@ -344,7 +344,7 @@ burgers = get_burgers(2)
 따라서, `await`로 호출할 수 있다고 말하는 라이브러리를 사용한다면, 다음과 같이 그것을 사용하는 *경로 처리 함수*를 `async def`로 만들어야 합니다:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
