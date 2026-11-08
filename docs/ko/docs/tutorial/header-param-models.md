@@ -67,6 +67,26 @@ Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forb
 
 ///
 
+## 매개변수 모델 조합하기 { #combine-parameter-models }
+
+여러 헤더 매개변수 모델을 개별 헤더 매개변수 및 의존성과 함께 사용할 수 있습니다. [쿼리 매개변수 모델](query-param-models.md#combine-parameter-models)에서 설명한 것처럼 각 모델은 독립적으로 추출되고 검증됩니다.
+
+각 모델의 `extra` 설정은 다른 모델이나 의존성에 선언된 헤더를 포함하여 모든 헤더 매개변수에 적용됩니다. `extra="forbid"`이면 해당 모델에 없는 헤더는 모두 거부됩니다. `extra="allow"`이면 이러한 헤더는 모델의 추가 필드로 포함됩니다.
+
+각 모델은 요청을 읽을 때와 OpenAPI를 생성할 때 모두 자체 `Header(convert_underscores=...)` 설정을 사용합니다. 명시적으로 지정한 필드 별칭은 그대로 헤더 이름으로 사용됩니다.
+
+## 선택적 헤더 매개변수 모델 { #optional-header-parameter-models }
+
+헤더 매개변수 그룹을 선택적으로 만들려면, 모델에 `| None`을 사용하고 기본값을 `None`으로 선언하세요.
+
+{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+
+`x-client-name`과 `x-client-version`이 모두 전송되지 않으면 `client`는 `None`입니다. 둘 중 하나라도 전송되면 FastAPI는 모델을 검증하며 두 필드를 모두 요구합니다.
+
+기본값, 추가 필드, OpenAPI에 대해서는 [선택적 쿼리 매개변수 모델](query-param-models.md#optional-query-parameter-models)과 같은 규칙이 적용됩니다.
+
+`Host` 같은 헤더도 모델의 `extra` 설정을 따릅니다. `extra="allow"`이면 선언된 두 필드가 모두 제공되지 않아도 이러한 헤더로 인해 모델이 제공된 것으로 간주됩니다.
+
 ## 요약 { #summary }
 
 **Pydantic 모델**을 사용하여 **FastAPI**에서 **헤더**를 선언할 수 있습니다. 😎

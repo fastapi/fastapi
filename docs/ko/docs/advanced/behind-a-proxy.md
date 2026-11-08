@@ -8,7 +8,7 @@
 
 애플리케이션 앞단의 **프록시**는 보통 **서버**로 요청을 보내기 전에, 해당 요청이 프록시에 의해 **전달(forwarded)**되었다는 것을 서버가 알 수 있도록 몇몇 헤더를 동적으로 설정합니다. 이를 통해 서버는 도메인을 포함한 원래의 (공개) URL, HTTPS 사용 여부 등 정보를 알 수 있습니다.
 
-**서버** 프로그램(예: **FastAPI CLI**를 통해 실행되는 **Uvicorn**)은 이런 헤더를 해석할 수 있고, 그 정보를 애플리케이션으로 전달할 수 있습니다.
+`fastapi run`으로 시작한 **서버**는 이런 헤더를 해석할 수 있고, 그 정보를 애플리케이션으로 전달할 수 있습니다.
 
 하지만 보안상, 서버는 자신이 신뢰할 수 있는 프록시 뒤에 있다는 것을 모르면 해당 헤더를 해석하지 않습니다.
 
@@ -34,8 +34,6 @@ FastAPI CLI를 *CLI 옵션* `--forwarded-allow-ips`로 실행하고, 전달 헤�
 
 ```console
 $ uv run fastapi run --forwarded-allow-ips="*"
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -101,7 +99,7 @@ sequenceDiagram
 
 애플리케이션에 경로 접두사(prefix)를 추가하는 프록시를 둘 수도 있습니다.
 
-이런 경우 `root_path`를 사용해 애플리케이션을 구성할 수 있습니다.
+이런 경우 `fastapi run --root-path`로 서버를 설정할 수 있습니다.
 
 `root_path`는 (FastAPI가 Starlette를 통해 기반으로 하는) ASGI 사양에서 제공하는 메커니즘입니다.
 
@@ -117,7 +115,7 @@ sequenceDiagram
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
 
-그리고 프록시는 요청을 앱 서버(아마 FastAPI CLI를 통해 실행되는 Uvicorn)로 전달하기 전에, 동적으로 **경로 접두사**를 **"제거"**합니다. 그래서 애플리케이션은 여전히 `/app`에서 서비스된다고 믿게 되고, 코드 전체를 `/api/v1` 접두사를 포함하도록 수정할 필요가 없어집니다.
+그리고 프록시는 요청을 서버로 전달하기 전에, 동적으로 **경로 접두사**를 **"제거"**합니다. 그래서 애플리케이션은 여전히 `/app`에서 서비스된다고 믿게 되고, 코드 전체를 `/api/v1` 접두사를 포함하도록 수정할 필요가 없어집니다.
 
 여기까지는 보통 정상적으로 동작합니다.
 
@@ -161,7 +159,7 @@ IP `0.0.0.0`은 보통 해당 머신/서버에서 사용 가능한 모든 IP에�
 }
 ```
 
-이 예시에서 "Proxy"는 **Traefik** 같은 것이고, 서버는 **Uvicorn**을 사용하는 FastAPI CLI처럼, FastAPI 애플리케이션을 실행하는 구성일 수 있습니다.
+이 예시에서 "Proxy"는 **Traefik** 같은 것이고, `fastapi run`은 FastAPI 애플리케이션을 실행하는 서버를 시작합니다.
 
 ### `root_path` 제공하기 { #providing-the-root-path }
 
@@ -171,13 +169,9 @@ IP `0.0.0.0`은 보통 해당 머신/서버에서 사용 가능한 모든 IP에�
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
-
-Hypercorn을 사용한다면, Hypercorn에도 `--root-path` 옵션이 있습니다.
 
 /// note | 기술 세부사항
 
@@ -195,14 +189,12 @@ ASGI 사양은 이 사용 사례를 위해 `root_path`를 정의합니다.
 
 {* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
 
-그 다음 Uvicorn을 다음과 같이 시작하면:
+그 다음 서버를 다음과 같이 시작하면:
 
 <div class="termy">
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
@@ -216,30 +208,11 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 }
 ```
 
-### FastAPI 앱에서 `root_path` 설정하기 { #setting-the-root-path-in-the-fastapi-app }
+/// warning | 사용이 권장되지 않는 `root_path` 매개변수
 
-또는 `--root-path` 같은 커맨드 라인 옵션(또는 동등한 방법)을 제공할 수 없는 경우, FastAPI 앱을 생성할 때 `root_path` 파라미터를 설정할 수 있습니다:
+FastAPI 0.145.0 및 이전 버전에서는 `FastAPI()`에서도 `root_path`를 설정할 수 있었습니다. 이 매개변수는 서버 설정과 동작이 일관되지 않아 이제 사용이 권장되지 않습니다. 대신 `fastapi run --root-path /api/v1`을 사용하세요.
 
-{* ../../docs_src/behind_a_proxy/tutorial002_py310.py hl[3] *}
-
-`FastAPI`에 `root_path`를 전달하는 것은 Uvicorn이나 Hypercorn에 커맨드 라인 옵션 `--root-path`를 전달하는 것과 동일합니다.
-
-### `root_path`에 대하여 { #about-root-path }
-
-서버(Uvicorn)는 그 `root_path`를 앱에 전달하는 것 외에는 다른 용도로 사용하지 않는다는 점을 기억하세요.
-
-하지만 브라우저로 [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app)에 접속하면 정상 응답을 볼 수 있습니다:
-
-```JSON
-{
-    "message": "Hello World",
-    "root_path": "/api/v1"
-}
-```
-
-따라서 `http://127.0.0.1:8000/api/v1/app`로 접근될 것이라고 기대하지는 않습니다.
-
-Uvicorn은 프록시가 `http://127.0.0.1:8000/app`에서 Uvicorn에 접근할 것을 기대하고, 그 위에 `/api/v1` 접두사를 추가하는 것은 프록시의 책임입니다.
+///
 
 ## 제거된 경로 접두사를 가진 프록시에 대하여 { #about-proxies-with-a-stripped-path-prefix }
 
@@ -247,7 +220,7 @@ Uvicorn은 프록시가 `http://127.0.0.1:8000/app`에서 Uvicorn에 접근할 �
 
 많은 경우 기본값은 프록시가 경로 접두사를 제거하지 않는 방식일 것입니다.
 
-그런 경우(경로 접두사를 제거하지 않는 경우) 프록시는 `https://myawesomeapp.com` 같은 곳에서 리슨하고, 브라우저가 `https://myawesomeapp.com/api/v1/app`로 접근하면, 서버(예: Uvicorn)가 `http://127.0.0.1:8000`에서 리슨하고 있을 때 프록시(경로 접두사를 제거하지 않는)는 동일한 경로로 Uvicorn에 접근합니다: `http://127.0.0.1:8000/api/v1/app`.
+그런 경우(경로 접두사를 제거하지 않는 경우) 프록시는 `https://myawesomeapp.com` 같은 곳에서 리슨하고, 브라우저가 `https://myawesomeapp.com/api/v1/app`로 접근하면, 서버가 `http://127.0.0.1:8000`에서 리슨하고 있을 때 프록시(경로 접두사를 제거하지 않는)는 동일한 경로로 서버에 접근합니다: `http://127.0.0.1:8000/api/v1/app`.
 
 ## Traefik으로 로컬 테스트하기 { #testing-locally-with-traefik }
 
@@ -302,7 +275,7 @@ Uvicorn은 프록시가 `http://127.0.0.1:8000/app`에서 Uvicorn에 접근할 �
 
 이 파일은 Traefik이 경로 접두사 `/api/v1`을 사용하도록 설정합니다.
 
-그리고 Traefik은 요청을 `http://127.0.0.1:8000`에서 실행 중인 Uvicorn으로 전달합니다.
+그리고 Traefik은 요청을 `http://127.0.0.1:8000`에서 실행 중인 서버로 전달합니다.
 
 이제 Traefik을 시작하세요:
 
@@ -322,15 +295,13 @@ INFO[0000] Configuration loaded from file: /home/user/awesomeapi/traefik.toml
 
 ```console
 $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
-
-<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
 ### 응답 확인하기 { #check-the-responses }
 
-이제 Uvicorn의 포트로 된 URL인 [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app)로 접속하면 정상 응답을 볼 수 있습니다:
+이제 서버의 포트로 된 URL인 [http://127.0.0.1:8000/app](http://127.0.0.1:8000/app)로 접속하면 정상 응답을 볼 수 있습니다:
 
 ```JSON
 {
@@ -360,15 +331,15 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 물론 여기서의 아이디어는 모두가 프록시를 통해 앱에 접근한다는 것이므로, `/api/v1` 경로 접두사가 있는 버전이 "올바른" 접근입니다.
 
-그리고 경로 접두사가 없는 버전(`http://127.0.0.1:8000/app`)은 Uvicorn이 직접 제공하는 것이며, 오직 _프록시_(Traefik)가 접근하기 위한 용도입니다.
+그리고 경로 접두사가 없는 버전(`http://127.0.0.1:8000/app`)은 서버가 직접 제공하는 것이며, 오직 _프록시_(Traefik)가 접근하기 위한 용도입니다.
 
-이는 프록시(Traefik)가 경로 접두사를 어떻게 사용하는지, 그리고 서버(Uvicorn)가 옵션 `--root-path`로부터의 `root_path`를 어떻게 사용하는지를 보여줍니다.
+이는 프록시(Traefik)가 경로 접두사를 어떻게 사용하는지, 그리고 서버가 옵션 `--root-path`로부터의 `root_path`를 어떻게 사용하는지를 보여줍니다.
 
 ### 문서 UI 확인하기 { #check-the-docs-ui }
 
 하지만 재미있는 부분은 여기입니다. ✨
 
-앱에 접근하는 "공식" 방법은 우리가 정의한 경로 접두사를 가진 프록시를 통해서입니다. 따라서 기대하는 대로, URL에 경로 접두사가 없는 상태에서 Uvicorn이 직접 제공하는 docs UI를 시도하면, 프록시를 통해 접근된다고 가정하고 있기 때문에 동작하지 않습니다.
+앱에 접근하는 "공식" 방법은 우리가 정의한 경로 접두사를 가진 프록시를 통해서입니다. 따라서 기대하는 대로, URL에 경로 접두사가 없는 상태에서 서버가 직접 제공하는 docs UI를 시도하면, 프록시를 통해 접근된다고 가정하고 있기 때문에 동작하지 않습니다.
 
 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)에서 확인할 수 있습니다:
 
@@ -398,7 +369,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 사용자 정의 `servers` 리스트를 전달했고 `root_path`(API가 프록시 뒤에 있기 때문)가 있다면, **FastAPI**는 리스트의 맨 앞에 이 `root_path`를 가진 "server"를 삽입합니다.
 
-예:
+예를 들어, 동일한 `fastapi run --root-path /api/v1` 서버 설정을 사용하면:
 
 {* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
 
@@ -455,7 +426,7 @@ OpenAPI 사양에서 `servers` 속성은 선택 사항입니다.
 
 **FastAPI**가 `root_path`를 사용한 자동 server를 포함하지 않게 하려면, `root_path_in_servers=False` 파라미터를 사용할 수 있습니다:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[9] *}
+{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
 
 그러면 OpenAPI 스키마에 포함되지 않습니다.
 

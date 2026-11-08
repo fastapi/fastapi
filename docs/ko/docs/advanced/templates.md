@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # 템플릿 { #templates }
 
 **FastAPI**와 함께 원하는 어떤 템플릿 엔진도 사용할 수 있습니다.
@@ -63,13 +67,9 @@ FastAPI 0.108.0 이전, Starlette 0.29.0에서는 `name`이 첫 번째 매개변
 
 다음과 같은 HTML에서:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...이는 전달한 "컨텍스트" `dict`에서 가져온 `id`를 표시합니다:
 
@@ -89,21 +89,47 @@ Item ID: 42
 
 따라서 다음과 같은 부분에서:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ...이는 *경로 처리 함수* `read_item(id=id)`가 처리할 동일한 URL로 링크를 생성합니다.
 
-예를 들어, ID가 `42`일 경우, 이는 다음과 같이 렌더링됩니다:
+`url_for()`는 현재 요청을 기반으로 스킴과 호스트를 포함한 절대 URL을 반환합니다.
+
+예를 들어, 애플리케이션이 `https://example.com`에서 제공되고 ID가 `42`일 경우, 이는 다음과 같이 렌더링됩니다:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### 템플릿에서 URL 경로 사용하기 { #url-paths-in-templates }
+
+같은 사이트로 연결하는 링크에는 `.path` 속성을 사용하여 URL 경로만 가져올 수 있습니다. 예를 들어, `templates/item_path.html`에서는 다음과 같이 사용할 수 있습니다:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+템플릿의 이름을 `TemplateResponse`에 전달하세요:
+
+{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+
+같은 예제에서 항목 링크는 다음과 같이 렌더링됩니다:
 
 ```html
 <a href="/items/42">
 ```
+
+맨 앞의 `/`는 이 경로가 현재 사이트의 루트를 기준으로 한다는 뜻입니다.
+
+`.path` 속성에는 스킴, 호스트, 쿼리 매개변수, 프래그먼트가 포함되지 않습니다. 다른 호스트로 연결하는 링크에는 전체 URL을 사용하세요.
+
+/// tip | 팁
+
+애플리케이션이 프록시 뒤에 있다면, [프록시 뒤에서 실행하기](behind-a-proxy.md)에 설명된 대로 전달 헤더와 `root_path`를 설정하세요.
+
+///
 
 ## 템플릿과 정적 파일 { #templates-and-static-files }
 

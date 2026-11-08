@@ -220,13 +220,21 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 {* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
 
-### 필수지만 `None` 가능 { #required-can-be-none }
+### 필수 매개변수와 `None` { #required-parameters-and-none }
 
-매개변수가 `None`을 허용하지만 여전히 필수라고 선언할 수 있습니다. 이렇게 하면 값이 `None`이더라도 클라이언트는 값을 반드시 전송해야 합니다.
-
-이를 위해 `None`이 유효한 타입이라고 선언하되, 기본값은 선언하지 않으면 됩니다:
+`str | None` 타입은 Python 값으로 `None`을 허용하지만, 쿼리 매개변수를 선택 사항으로 만들지는 않습니다. 기본값이 없으면 매개변수는 여전히 필수입니다:
 
 {* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+
+쿼리 매개변수 값은 문자열로 전달되며, `None`을 나타내는 내장 표현이 없습니다. `?q=None`이나 `?q=null`을 보내면 각각 문자열 `"None"`과 `"null"`이 전달됩니다. `?q=`를 보내면 빈 문자열이 전달되며, 이 예제에서는 `min_length=3` 검증에 실패합니다.
+
+클라이언트가 `q`를 생략하고 그 값으로 `None`을 사용하도록 하려면, 기본값을 `None`으로 지정하세요:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+쿼리 매개변수와 달리 JSON 요청 본문에는 명시적인 `null` 값을 포함할 수 있습니다.
 
 ## 쿼리 매개변수 리스트 / 다중값 { #query-parameter-list-multiple-values }
 

@@ -45,7 +45,9 @@ dependency를 사용해 사용자명과 비밀번호가 올바른지 확인하�
 이는 다음과 비슷합니다:
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # 어떤 오류를 반환
     ...
 ```
