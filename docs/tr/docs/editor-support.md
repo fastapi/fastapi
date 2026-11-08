@@ -21,3 +21,7 @@ Varsayılan olarak, eklenti çalışma alanınızda `FastAPI()` örnekleyen dosy
 - **Stream Application Logs** - FastAPI Cloud’a deploy ettiğiniz uygulamadan, seviye filtreleme ve metin arama ile gerçek zamanlı log akışı.
 
 Eklentinin özelliklerine hızlıca aşina olmak isterseniz, Komut Paleti’ni açın (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> veya macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>), "Welcome: Open walkthrough..." öğesini seçin ve ardından "Get started with FastAPI" walkthrough’unu açın.
+
+## Yapay Zeka Kodlama Ajanları { #ai-coding-agents }
+
+Resmi FastAPI skill'ini yüklemek ve kullanmak için [Yapay Zeka ile Geliştirme](ai-development.md) sayfasına bakın.
