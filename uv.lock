@@ -1122,7 +1122,7 @@ dev = [
     { name = "inline-snapshot", specifier = ">=0.21.1" },
     { name = "jieba", specifier = ">=0.42.1" },
     { name = "logfire", specifier = ">=5.1.0" },
-    { name = "markdown-include-variants", specifier = ">=0.0.8" },
+    { name = "markdown-include-variants", specifier = ">=0.0.10" },
     { name = "mdx-include", specifier = ">=1.4.1,<2.0.0" },
     { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.3" },
     { name = "mypy", specifier = ">=1.14.1" },
@@ -1162,7 +1162,7 @@ docs = [
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
     { name = "httpx2", specifier = ">=2.0.0" },
     { name = "jieba", specifier = ">=0.42.1" },
-    { name = "markdown-include-variants", specifier = ">=0.0.8" },
+    { name = "markdown-include-variants", specifier = ">=0.0.10" },
     { name = "mdx-include", specifier = ">=1.4.1,<2.0.0" },
     { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.3" },
     { name = "pillow", specifier = ">=11.3.0" },
@@ -2214,14 +2214,14 @@ wheels = [
 
 [[package]]
 name = "markdown-include-variants"
-version = "0.0.8"
+version = "0.0.10"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markdown" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c5/47/ec9eae4a6d2f336d95681df43720e2b25b045dc3ed44ae6d30a5ce2f5dff/markdown_include_variants-0.0.8.tar.gz", hash = "sha256:46d812340c64dcd3646b1eaa356bafb31626dd7b4955d15c44ff8c48c6357227", size = 46882, upload-time = "2025-12-12T16:11:04.254Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ab/dc/429e70f873f8460ea0d21405032dfb5322192a9376f539aa5cc0ccb7d9de/markdown_include_variants-0.0.10.tar.gz", hash = "sha256:55b73051c2f825f85f274eebd3fecb0e099dd25ec12e488471ee349e734d0396", size = 62994, upload-time = "2026-11-08T16:42:10.799Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4e/0e/130958e7ec50d13f2ee7b6c142df5c352520a9251baf1652e41262703857/markdown_include_variants-0.0.8-py3-none-any.whl", hash = "sha256:425a300ae25fbcd598506cba67859a9dfa047333e869e0ff2e11a5e354b326dc", size = 8120, upload-time = "2025-12-12T16:11:02.881Z" },
+    { url = "https://files.pythonhosted.org/packages/50/55/bee38139f45ced70ce20d46cb18969602109bb14cb1c04c4749b3257dd2e/markdown_include_variants-0.0.10-py3-none-any.whl", hash = "sha256:fe889fd21ab85332814810108ae8b70ca1549818cfe349c3426025d9bc15855b", size = 8760, upload-time = "2026-11-08T16:42:09.337Z" },
 ]
 
 [[package]]
