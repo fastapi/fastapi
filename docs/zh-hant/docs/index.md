@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python 並基於標準的 Python 型別提示來構建 API。
 
+<!-- agent-banner -->
+
 主要特點包含：
 
 * **快速**：非常高的效能，可與 **NodeJS** 和 **Go** 相當（歸功於 Starlette 和 Pydantic）。[最快的 Python 框架之一](#performance)。
