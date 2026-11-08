@@ -58,7 +58,7 @@ Usarlo en tu editor es lo que realmente te muestra los beneficios de FastAPI, al
 
 ---
 
-## Instalar FastAPI { #install-fastapi }
+## Instala FastAPI { #install-fastapi }
 
 El primer paso es configurar tu proyecto y añadir FastAPI.
 
@@ -129,6 +129,8 @@ uvx library-skills
 ///
 
 La habilidad es compatible con Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI, Pi, OpenCode, y la mayoría de otros agentes de programación. Para Claude Code, selecciona `.claude/skills` cuando se te pregunte dónde instalar la habilidad.
+
+Consulta [Desarrolla con IA](../ai-development.md) para más detalles.
 
 ## Guía Avanzada del Usuario { #advanced-user-guide }
 
