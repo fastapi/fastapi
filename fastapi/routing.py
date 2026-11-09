@@ -119,7 +119,7 @@ from starlette.routing import (
 )
 from starlette.routing import Mount as Mount  # noqa
 from starlette.staticfiles import StaticFiles
-from starlette.types import AppType, ASGIApp, Lifespan, Receive, Scope, Send
+from starlette.types import ASGIApp, Lifespan, Receive, Scope, Send
 from starlette.websockets import WebSocket
 from typing_extensions import deprecated
 
@@ -238,23 +238,6 @@ def _wrap_gen_lifespan_context(
     return wrapper
 
 
-def _merge_lifespan_context(
-    original_context: Lifespan[Any], nested_context: Lifespan[Any]
-) -> Lifespan[Any]:
-    @asynccontextmanager
-    async def merged_lifespan(
-        app: AppType,
-    ) -> AsyncIterator[Mapping[str, Any] | None]:
-        async with original_context(app) as maybe_original_state:
-            async with nested_context(app) as maybe_nested_state:
-                if maybe_nested_state is None and maybe_original_state is None:
-                    yield None  # old ASGI compatibility
-                else:
-                    yield {**(maybe_nested_state or {}), **(maybe_original_state or {})}
-
-    return merged_lifespan  # type: ignore[return-value]  # ty: ignore[invalid-return-type]
-
-
 class _DefaultLifespan:
     """
     Default lifespan context manager that runs on_startup and on_shutdown handlers.
@@ -277,6 +260,74 @@ class _DefaultLifespan:
 
     def __call__(self: _T, app: object) -> _T:
         return self
+
+
+def _iter_router_lifespans(router: "APIRouter") -> Iterator[Lifespan[Any]]:
+    """
+    Yield the lifespans of `router` and of every router included in it, in
+    pre-order: a router first, then the routers included in it, in inclusion order.
+
+    The router tree is read when this is called (at startup), so routers included
+    after their parent was included are part of it, like their path operations.
+    It's iterative, so a large number of included routers doesn't hit the
+    recursion limit.
+
+    A router's `on_startup` and `on_shutdown` handlers run once for each time it's
+    included, through its own `_DefaultLifespan`. When an included router also
+    has a custom `lifespan`, its handlers run around that lifespan. The root router
+    keeps the previous behavior: a custom `lifespan` replaces its handlers.
+    """
+    pending: list[tuple[APIRouter, bool]] = [(router, True)]
+    while pending:
+        current, is_root = pending.pop()
+        lifespan = current._lifespan_context
+        has_handlers = bool(current.on_startup or current.on_shutdown)
+        if isinstance(lifespan, _DefaultLifespan):
+            if has_handlers:
+                yield lifespan
+        else:
+            if has_handlers and not is_root:
+                yield _DefaultLifespan(current)
+            yield lifespan
+        pending.extend(
+            (route.original_router, False)
+            for route in reversed(current.routes)
+            if isinstance(route, _IncludedRouter)
+        )
+
+
+class _RouterTreeLifespan:
+    """
+    Lifespan of an `APIRouter` together with every router included in it.
+
+    All the lifespans are entered in a single `AsyncExitStack`, so shutdown runs
+    in reverse order and, if a startup fails, the lifespans already started are
+    shut down. The lifespan states are merged, the earlier ones (parents first)
+    taking precedence, and `None` is kept when no lifespan returns a state.
+    """
+
+    def __init__(self, router: "APIRouter") -> None:
+        self._router = router
+
+    def __call__(
+        self, app: Any
+    ) -> AbstractAsyncContextManager[Mapping[str, Any] | None]:
+        return self._lifespan(app)
+
+    @asynccontextmanager
+    async def _lifespan(self, app: Any) -> AsyncIterator[Mapping[str, Any] | None]:
+        async with AsyncExitStack() as stack:
+            states = [
+                await stack.enter_async_context(lifespan(app))
+                for lifespan in _iter_router_lifespans(self._router)
+            ]
+            if all(state is None for state in states):
+                yield None  # old ASGI compatibility
+            else:
+                merged_state: dict[str, Any] = {}
+                for state in reversed(states):
+                    merged_state.update(state or {})
+                yield merged_state
 
 
 # Cache for endpoint context to avoid re-extracting on every request
@@ -2639,6 +2690,22 @@ class APIRouter(routing.Router):
         self._low_priority_routes: list[BaseRoute] = []
         self._frontend_routes: _FrontendRouteGroup | None = None
 
+    @property
+    def lifespan_context(self) -> Lifespan[Any]:
+        """
+        The lifespan of this router and of all the routers included in it.
+
+        The included routers are collected when the lifespan starts, so routers
+        included at any point before startup run their lifespan.
+        """
+        # Lifespan is a union over the state type, this returns either of them.
+        return cast(Lifespan[Any], _RouterTreeLifespan(self))
+
+    @lifespan_context.setter
+    def lifespan_context(self, value: Lifespan[Any]) -> None:
+        # Sets this router's own lifespan, included routers keep running theirs.
+        self._lifespan_context = value
+
     def _mark_routes_changed(self) -> None:
         self._routes_version += 1
 
@@ -3415,14 +3482,6 @@ class APIRouter(routing.Router):
             _IncludedRouter(original_router=router, include_context=include_context)
         )
         self._mark_routes_changed()
-        for handler in router.on_startup:
-            self.add_event_handler("startup", handler)
-        for handler in router.on_shutdown:
-            self.add_event_handler("shutdown", handler)
-        self.lifespan_context = _merge_lifespan_context(
-            self.lifespan_context,
-            router.lifespan_context,
-        )
 
     def get(
         self,
