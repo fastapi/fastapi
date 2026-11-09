@@ -759,7 +759,7 @@ def remove_unused_docs_src() -> None:
     all_docs_content = ""
     for md_file in docs_path.rglob("*.md"):
         all_docs_content += md_file.read_text(encoding="utf-8")
-    # Build a set of directory-based package roots (e.g. docs_src/bigger_applications/app)
+    # Build a set of directory-based package roots (e.g. docs_src/bigger_applications/app_py39)
     # where at least one file is referenced in docs. All files in these directories
     # should be kept since they may be internally imported by the referenced files.
     used_package_dirs: set[Path] = set()
@@ -790,42 +790,52 @@ def remove_unused_docs_src() -> None:
             package_root = docs_src_path / parts[0] / parts[1]
             if package_root in used_package_dirs:
                 continue
-        # If either the default or _non_an variant is included, keep both.
-        # Handle file variants (tutorial001_non_an.py) and directory variants
-        # (app_non_an/main.py).
+        # Check if the _an counterpart (or non-_an counterpart) is referenced.
+        # If either variant is included, keep both.
+        # Handle both file-level _an (tutorial001_an.py) and directory-level _an
+        # (app_an/main.py)
         counterpart_found = False
         full_path_str = str(py_file)
-        if "_non_an" in py_file.stem:
-            # Check whether the default version is referenced.
+        if "_an" in py_file.stem:
+            # This is an _an file, check if the non-_an version is referenced
             counterpart = full_path_str.replace(
-                f"/{py_file.stem}", f"/{py_file.stem.replace('_non_an', '', 1)}"
+                f"/{py_file.stem}", f"/{py_file.stem.replace('_an', '', 1)}"
             )
             if counterpart in all_docs_content:
                 counterpart_found = True
         else:
-            # Insert _non_an before any version suffix or at the end of the stem.
+            # This is a non-_an file, check if there's an _an version referenced
+            # Insert _an before any version suffix or at the end of the stem
             stem = py_file.stem
-            non_an_stem = re.sub(r"(_py\d+)?$", r"_non_an\1", stem, count=1)
-            counterpart = full_path_str.replace(f"/{stem}.", f"/{non_an_stem}.")
+            for suffix in ("_py39", "_py310"):
+                if suffix in stem:
+                    an_stem = stem.replace(suffix, f"_an{suffix}", 1)
+                    break
+            else:
+                an_stem = f"{stem}_an"
+            counterpart = full_path_str.replace(f"/{stem}.", f"/{an_stem}.")
             if counterpart in all_docs_content:
                 counterpart_found = True
-        # Also check directory-level _non_an counterparts
+        # Also check directory-level _an counterparts
         if not counterpart_found:
             parent_name = py_file.parent.name
-            if "_non_an" in parent_name:
-                counterpart_parent = parent_name.replace("_non_an", "", 1)
+            if "_an" in parent_name:
+                counterpart_parent = parent_name.replace("_an", "", 1)
                 counterpart_dir = str(py_file).replace(
                     f"/{parent_name}/", f"/{counterpart_parent}/"
                 )
                 if counterpart_dir in all_docs_content:
                     counterpart_found = True
             else:
-                # Insert _non_an before any version suffix in the directory name.
-                non_an_parent = re.sub(
-                    r"(_py\d+)?$", r"_non_an\1", parent_name, count=1
-                )
+                # Try inserting _an into parent directory name
+                for suffix in ("_py39", "_py310"):
+                    if suffix in parent_name:
+                        an_parent = parent_name.replace(suffix, f"_an{suffix}", 1)
+                        break
+                else:
+                    an_parent = f"{parent_name}_an"
                 counterpart_dir = str(py_file).replace(
-                    f"/{parent_name}/", f"/{non_an_parent}/"
+                    f"/{parent_name}/", f"/{an_parent}/"
                 )
                 if counterpart_dir in all_docs_content:
                     counterpart_found = True
