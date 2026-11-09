@@ -21,7 +21,7 @@
 
 下面的代码展示了不同模型处理密码字段的方式，及使用位置的大致思路：
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### 关于 `**user_in.model_dump()` { #about-user-in-model-dump }
 
@@ -155,7 +155,7 @@ UserInDB(
 
 这样，就可以仅声明模型之间的差异部分（具有明文的 `password`、具有 `hashed_password` 以及不包括密码）：
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` 或 `anyOf` { #union-or-anyof }
 
@@ -171,7 +171,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### Python 3.10 中的 `Union` { #union-in-python-3-10 }
 
@@ -193,7 +193,7 @@ some_variable: PlaneItem | CarItem
 
 为此，请使用标准的 Python `list`：
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## 任意 `dict` 的响应 { #response-with-arbitrary-dict }
 
@@ -203,7 +203,7 @@ some_variable: PlaneItem | CarItem
 
 此时，可以使用 `dict`：
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## 小结 { #recap }
 

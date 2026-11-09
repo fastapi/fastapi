@@ -20,7 +20,7 @@ Puedes usar `jsonable_encoder` para eso.
 
 Recibe un objeto, como un modelo de Pydantic, y devuelve una versión compatible con JSON:
 
-{* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
+{* ../../docs_src/encoder/tutorial001.py hl[4,21] *}
 
 En este ejemplo, convertiría el modelo de Pydantic a un `dict`, y el `datetime` a un `str`.
 

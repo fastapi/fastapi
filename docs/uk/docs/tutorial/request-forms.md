@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 Імпортуйте `Form` з `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## Оголошення параметрів `Form` { #define-form-parameters }
 
 Створюйте параметри форми так само як ви б створювали `Body` або `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Наприклад, один зі способів використання специфікації OAuth2 (так званий «потік паролю») вимагає надсилати `username` та `password` як поля форми.
 
@@ -48,7 +48,7 @@ $ uv add python-multipart
 
 Браузери пропускають невстановлені прапорці під час надсилання HTML-форм. Оголосіть булевий параметр форми зі значенням за замовчуванням `False`, щоб отримувати `False`, коли прапорець не встановлено:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 Встановлений прапорець надсилає своє значення, яке за замовчуванням дорівнює `"on"`. **FastAPI** приймає `"on"` як `True`.
 

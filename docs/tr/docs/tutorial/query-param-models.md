@@ -14,7 +14,7 @@ Bu özellik FastAPI `0.115.0` sürümünden beri desteklenmektedir. 🤓
 
 İhtiyacınız olan **query parameter**'ları bir **Pydantic model** içinde tanımlayın, ardından parametreyi `Query` olarak belirtin:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI**, request'teki **query parameter**'lardan **her field** için veriyi **extract** eder ve tanımladığınız Pydantic model'i size verir.
 
@@ -32,7 +32,7 @@ Bazı özel kullanım senaryolarında (muhtemelen çok yaygın değil), almak is
 
 Pydantic'in model konfigürasyonunu kullanarak `extra` field'ları `forbid` edebilirsiniz:
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 Bir client, **query parameter**'larda **ek (extra)** veri göndermeye çalışırsa, **error** response alır.
 
@@ -61,7 +61,7 @@ https://example.com/items/?limit=10&tool=plumbus
 
 Birden fazla query parameter modeli tanımlayabilir ve bunları tekil query parameter'larla veya dependency'lerle birleştirebilirsiniz.
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 Request parametreleri aynı seviyede kalır.
 
@@ -81,7 +81,7 @@ Bu, `Header` ve `Cookie` modelleri için de geçerlidir.
 
 Grubu isteğe bağlı hale getirmek için query parameter modelini `| None` ile tanımlayın ve varsayılan değerini `None` olarak ayarlayın.
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 Ne `start` ne de `end` gönderilirse, `date_range` değeri `None` olur. İkisinden biri gönderilirse, FastAPI modeli doğrular ve her iki field'ı da zorunlu kılar.
 

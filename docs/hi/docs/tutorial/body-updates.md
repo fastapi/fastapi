@@ -6,7 +6,7 @@
 
 आप input data को ऐसे data में बदलने के लिए `jsonable_encoder` का उपयोग कर सकते हैं जिसे JSON के रूप में संग्रहीत किया जा सके (जैसे NoSQL database के साथ)। उदाहरण के लिए, `datetime` को `str` में बदलना।
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[28:33] *}
 
 `PUT` का उपयोग ऐसा data प्राप्त करने के लिए किया जाता है जो मौजूदा data को बदल दे।
 
@@ -54,7 +54,7 @@
 
 फिर आप इसका उपयोग केवल उस data के साथ एक `dict` बनाने के लिए कर सकते हैं जो सेट किया गया था (request में भेजा गया), default values को छोड़ते हुए:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[32] *}
 
 ### Pydantic के `update` parameter का उपयोग करना { #using-pydantics-update-parameter }
 
@@ -62,7 +62,7 @@
 
 जैसे `stored_item_model.model_copy(update=update_data)`:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[33] *}
 
 ### आंशिक अपडेट्स Recap { #partial-updates-recap }
 
@@ -79,7 +79,7 @@
 * data को अपनी DB में सहेजें।
 * अपडेट किया गया model लौटाएँ।
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[28:35] *}
 
 /// tip | टिप
 

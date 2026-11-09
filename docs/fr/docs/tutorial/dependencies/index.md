@@ -31,7 +31,7 @@ Concentrons-nous d’abord sur la dépendance.
 
 C’est simplement une fonction qui peut prendre tous les mêmes paramètres qu’une fonction de chemin d’accès peut prendre :
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8:9] *}
 
 C’est tout.
 
@@ -63,13 +63,13 @@ Vous devez vous assurer de [mettre à niveau la version de FastAPI](../../deploy
 
 ### Importer `Depends` { #import-depends }
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### Déclarer la dépendance, dans le « dependant » { #declare-the-dependency-in-the-dependant }
 
 De la même manière que vous utilisez `Body`, `Query`, etc. avec les paramètres de votre fonction de chemin d’accès, utilisez `Depends` avec un nouveau paramètre :
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 Même si vous utilisez `Depends` dans les paramètres de votre fonction de la même façon que `Body`, `Query`, etc., `Depends` fonctionne un peu différemment.
 
@@ -126,7 +126,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Mais comme nous utilisons `Annotated`, nous pouvons stocker cette valeur `Annotated` dans une variable et l’utiliser à plusieurs endroits :
 
-{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
+{* ../../docs_src/dependencies/tutorial001_02.py hl[12,16,21] *}
 
 /// tip | Astuce
 

@@ -10,7 +10,7 @@ Bunları çözme işini **FastAPI** üstlenir.
 
 Şöyle bir ilk bağımlılık ("dependable") oluşturabilirsiniz:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 Burada `q` adında opsiyonel bir query parametresi `str` olarak tanımlanır ve sonra doğrudan geri döndürülür.
 
@@ -20,7 +20,7 @@ Bu oldukça basit (pek faydalı değil), ama alt bağımlılıkların nasıl ça
 
 Ardından, aynı zamanda kendi içinde bir bağımlılık da tanımlayan başka bir bağımlılık fonksiyonu (bir "dependable") oluşturabilirsiniz (yani o da bir "dependant" olur):
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 Tanımlanan parametrelere odaklanalım:
 
@@ -33,7 +33,7 @@ Tanımlanan parametrelere odaklanalım:
 
 Sonra bu bağımlılığı şöyle kullanabiliriz:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | Not
 

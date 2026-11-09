@@ -16,7 +16,7 @@
 
 Якщо ви не пам'ятаєте призначення числових кодів, скористайтеся скороченими константами в `status`:
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 Цей код статусу буде використано у відповіді та додано до схеми OpenAPI.
 
@@ -32,7 +32,7 @@
 
 Ви можете додати мітки до вашої «операції шляху», передайте параметр `tags` зі `list` із `str` (зазвичай лише один `str`):
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 Вони будуть додані до схеми OpenAPI та використані інтерфейсами автоматичної документації:
 
@@ -46,13 +46,13 @@
 
 **FastAPI** підтримує це так само, як і зі звичайними строками:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## Короткий опис і опис { #summary-and-description }
 
 Ви можете додати `summary` і `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## Опис зі строки документації { #description-from-docstring }
 
@@ -60,7 +60,7 @@
 
 Ви можете писати [Markdown](https://en.wikipedia.org/wiki/Markdown) у строці документації, його буде інтерпретовано та показано коректно (з урахуванням відступів у строці документації).
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 Його буде використано в інтерактивній документації:
 
@@ -70,7 +70,7 @@
 
 Ви можете вказати опис відповіді параметром `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | Примітка
 
@@ -92,7 +92,7 @@ OpenAPI визначає, що кожна «операція шляху» пот
 
 Якщо потрібно позначити «операцію шляху» як <dfn title="застарілий, не рекомендується використовувати">застарілу</dfn>, але не видаляючи її, передайте параметр `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 У інтерактивній документації вона буде чітко позначена як застаріла:
 

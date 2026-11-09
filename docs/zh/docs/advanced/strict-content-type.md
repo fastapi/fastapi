@@ -77,7 +77,7 @@ http://localhost:8000/v1/agents/multivac
 
 如果你需要兼容不发送 `Content-Type` 头的客户端，可以通过设置 `strict_content_type=False` 来关闭严格检查：
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 启用该设置后，缺少 `Content-Type` 头的请求其请求体也会按 JSON 解析，这与旧版本 FastAPI 的行为一致。
 

@@ -31,7 +31,7 @@
 
 Ця частина цілком звична, більшість коду вам, ймовірно, уже знайома:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | Порада
 
@@ -90,7 +90,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 Спочатку створіть новий `APIRouter`, який міститиме один або кілька зворотних викликів.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Створіть *операцію шляху* зворотного виклику { #create-the-callback-path-operation }
 
@@ -101,7 +101,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * Ймовірно має містити оголошення тіла, яке вона приймає, наприклад `body: InvoiceEvent`.
 * І також може містити оголошення відповіді, яку вона повертає, наприклад `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 Є 2 основні відмінності від звичайної *операції шляху*:
 
@@ -169,7 +169,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 Тепер використайте параметр `callbacks` у *декораторі операції шляху вашого API*, щоб передати атрибут `.routes` з цього маршрутизатора зворотного виклику:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | Порада
 

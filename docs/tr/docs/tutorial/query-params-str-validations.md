@@ -5,7 +5,7 @@
 
 Örnek olarak şu uygulamayı ele alalım:
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 Query parametresi `q`, `str | None` tipindedir. Yani tipi `str`'dir ama `None` da olabilir. Nitekim varsayılan değer `None` olduğu için FastAPI bunun zorunlu olmadığını anlar.
 
@@ -28,7 +28,7 @@ Bunu yapmak için önce şunları import edin:
 * `fastapi` içinden `Query`
 * `typing` içinden `Annotated`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | Not
 
@@ -66,7 +66,7 @@ Bu iki sürüm de aynı anlama gelir: `q`, `str` veya `None` olabilen bir parame
 
 Artık ek bilgi (bu durumda ek doğrulama) koyabildiğimiz bir `Annotated`'ımız olduğuna göre, `Annotated` içine `Query` ekleyin ve `max_length` parametresini `50` olarak ayarlayın:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 Varsayılan değerin hâlâ `None` olduğuna dikkat edin; yani parametre hâlâ opsiyonel.
 
@@ -96,7 +96,7 @@ Yeni kodlarda ve mümkün olduğunda, yukarıda anlatıldığı gibi `Annotated`
 
 Fonksiyon parametresinin varsayılan değeri olarak `Query()` kullanıp `max_length` parametresini 50 yapmak şöyle olurdu:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 Bu senaryoda (`Annotated` kullanmadığımız için) fonksiyondaki `None` varsayılan değerini `Query()` ile değiştirmemiz gerekiyor. Bu durumda varsayılan değeri `Query(default=None)` ile vermeliyiz; bu, (en azından FastAPI açısından) aynı varsayılan değeri tanımlama amacına hizmet eder.
 
@@ -165,13 +165,13 @@ Aynı fonksiyonu FastAPI olmadan **başka yerlerde** de **çağırabilirsiniz** 
 
 `min_length` parametresini de ekleyebilirsiniz:
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## Regular expression ekleyin { #add-regular-expressions }
 
 Parametrenin eşleşmesi gereken bir `pattern` <dfn title="Düzenli ifade, regex veya regexp, string'ler için arama deseni tanımlayan bir karakter dizisidir.">düzenli ifade</dfn> tanımlayabilirsiniz:
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 Bu özel regular expression pattern'i, gelen parametre değerinin şunları sağladığını kontrol eder:
 
@@ -189,7 +189,7 @@ Elbette `None` dışında varsayılan değerler de kullanabilirsiniz.
 
 Örneğin `q` query parametresi için `min_length` değerini `3` yapmak ve varsayılan değer olarak `"fixedquery"` vermek istediğinizi düşünelim:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | Not
 
@@ -219,13 +219,13 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 Dolayısıyla `Query` kullanırken bir değeri zorunlu yapmak istediğinizde, varsayılan değer tanımlamamanız yeterlidir:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
 ### Zorunlu parametreler ve `None` { #required-parameters-and-none }
 
 `str | None` tipi, Python değeri olarak `None` kullanılmasına izin verir ancak query parametresini opsiyonel yapmaz. Varsayılan bir değer yoksa parametre hâlâ zorunludur:
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
 Query parametrelerinin değerleri string olarak gelir ve `None` için yerleşik bir gösterimleri yoktur. `?q=None` veya `?q=null` göndermek, sırasıyla `"None"` ve `"null"` string'lerini gönderir. `?q=` göndermek ise boş bir string gönderir; bu da bu örnekteki `min_length=3` doğrulamasından geçemez.
 
@@ -243,7 +243,7 @@ Bir query parametresini `Query` ile açıkça tanımladığınızda, bir değer 
 
 Örneğin URL'de `q` query parametresinin birden fazla kez görünebilmesini istiyorsanız şöyle yazabilirsiniz:
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 Sonra şu URL ile:
 
@@ -278,7 +278,7 @@ Etkileşimli API dokümanları da buna göre güncellenir ve birden fazla değer
 
 Hiç değer verilmezse varsayılan bir `list` de tanımlayabilirsiniz:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 Şu adrese giderseniz:
 
@@ -301,7 +301,7 @@ http://localhost:8000/items/
 
 `list[str]` yerine doğrudan `list` de kullanabilirsiniz:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | Not
 
@@ -327,11 +327,11 @@ Bazıları tanımladığınız ek bilgilerin hepsini göstermeyebilir; ancak ço
 
 Bir `title` ekleyebilirsiniz:
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 Ve bir `description`:
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## Alias parametreleri { #alias-parameters }
 
@@ -351,7 +351,7 @@ Ama sizin hâlâ tam olarak `item-query` olmasına ihtiyacınız var...
 
 O zaman bir `alias` tanımlayabilirsiniz; bu alias, parametre değerini bulmak için kullanılacaktır:
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## Parametreleri deprecated yapmak { #deprecating-parameters }
 
@@ -361,7 +361,7 @@ Bazı client'lar hâlâ kullandığı için bir süre tutmanız gerekiyor, ama d
 
 O zaman `Query`'ye `deprecated=True` parametresini geçin:
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 Dokümanlarda şöyle görünür:
 
@@ -371,7 +371,7 @@ Dokümanlarda şöyle görünür:
 
 Oluşturulan OpenAPI şemasından (dolayısıyla otomatik dokümantasyon sistemlerinden) bir query parametresini hariç tutmak için `Query`'nin `include_in_schema` parametresini `False` yapın:
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## Özel Doğrulama { #custom-validation }
 
@@ -389,7 +389,7 @@ Pydantic'te [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/conc
 
 Örneğin bu custom validator, bir item ID'sinin <abbr title="International Standard Book Number - Uluslararası Standart Kitap Numarası">ISBN</abbr> kitap numarası için `isbn-` ile veya <abbr title="Internet Movie Database - İnternet Film Veritabanı: filmler hakkında bilgi içeren bir web sitesi">IMDB</abbr> film URL ID'si için `imdb-` ile başladığını kontrol eder:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | Not
 
@@ -417,7 +417,7 @@ Ama bu özel kod örneğini merak ediyorsanız ve hâlâ eğleniyorsanız, işte
 
 Fark ettiniz mi? `value.startswith()` ile bir string, tuple alabilir ve tuple içindeki her değeri kontrol eder:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### Rastgele Bir Item { #a-random-item }
 
@@ -433,7 +433,7 @@ Böylece kullanıcı bir item ID'si vermemiş olsa bile yine de rastgele bir ön
 
 ...bütün bunları **tek bir basit satırda** yapıyoruz. 🤯 Python'u sevmemek elde mi? 🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## Özet { #recap }
 

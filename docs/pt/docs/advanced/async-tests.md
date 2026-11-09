@@ -32,11 +32,11 @@ Para um exemplo simples, vamos considerar uma estrutura de arquivos semelhante �
 
 O arquivo `main.py` teria:
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 O arquivo `test_main.py` teria os testes para o arquivo `main.py`, ele poderia ficar assim agora:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
 ## Execute { #run-it }
 
@@ -56,7 +56,7 @@ $ uv run pytest
 
 O marcador `@pytest.mark.anyio` informa ao pytest que esta função de teste deve ser invocada de maneira assíncrona:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | Dica
 
@@ -66,7 +66,7 @@ Note que a função de teste é `async def` agora, no lugar de apenas `def` como
 
 Então podemos criar um `AsyncClient` com a aplicação, e enviar requisições assíncronas para ela utilizando `await`.
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 Isso é equivalente a:
 

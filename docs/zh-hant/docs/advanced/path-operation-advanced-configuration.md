@@ -12,7 +12,7 @@
 
 你必須確保每個操作的 `operationId` 都是唯一的。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
 ### 使用路徑操作函式（path operation function）的名稱作為 operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@
 
 該函式會接收每個 `APIRoute` 並回傳該路徑操作要使用的 `operationId`。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,5:6,9] *}
 
 /// warning
 
@@ -34,7 +34,7 @@
 
 若要從產生的 OpenAPI 結構（也就是自動文件系統）中排除某個*路徑操作*，使用參數 `include_in_schema` 並將其設為 `False`：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
 ## 從 docstring 提供進階描述 { #advanced-description-from-docstring }
 
@@ -44,7 +44,7 @@
 
 這個字元不會出現在文件中，但其他工具（例如 Sphinx）仍可使用其後的內容。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[17:27] *}
 
 ## 額外回應 { #additional-responses }
 
@@ -86,7 +86,7 @@
 
 `openapi_extra` 可用來宣告例如 [OpenAPI 擴充](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) 的資料：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
 打開自動產生的 API 文件時，你的擴充會顯示在該*路徑操作*頁面的底部。
 
@@ -133,7 +133,7 @@
 
 你可以透過 `openapi_extra` 辦到：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
 
 在這個範例中，我們沒有宣告任何 Pydantic 模型。事實上，請求本文甚至不會被 <dfn title="從某種純格式（例如 bytes）轉換為 Python 物件">解析</dfn> 為 JSON，而是直接以 `bytes` 讀取，並由函式 `magic_data_reader()` 以某種方式負責解析。
 
@@ -147,7 +147,7 @@
 
 例如，在這個應用中，我們不使用 FastAPI 內建的從 Pydantic 模型擷取 JSON Schema 的功能，也不使用 JSON 的自動驗證。實際上，我們將請求的 content type 宣告為 YAML，而非 JSON：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[15:20, 22] *}
 
 儘管沒有使用預設的內建功能，我們仍透過 Pydantic 模型手動產生想以 YAML 接收之資料的 JSON Schema。
 
@@ -155,7 +155,7 @@
 
 然後在程式中直接解析該 YAML 內容，並再次使用相同的 Pydantic 模型來驗證該 YAML 內容：
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[24:31] *}
 
 /// tip
 

@@ -22,7 +22,7 @@
 
 如果在你的路徑操作函式中宣告 `response_class=StreamingResponse`，就可以用 `yield` 逐一送出每個資料區塊。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI 會如實將每個資料區塊交給 `StreamingResponse`，不會嘗試將其轉換為 JSON 或其他格式。
 
@@ -30,7 +30,7 @@ FastAPI 會如實將每個資料區塊交給 `StreamingResponse`，不會嘗試�
 
 你也可以使用一般的 `def` 函式（沒有 `async`），並以相同方式使用 `yield`。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### 不需要型別註解 { #no-annotation }
 
@@ -38,7 +38,7 @@ FastAPI 會如實將每個資料區塊交給 `StreamingResponse`，不會嘗試�
 
 由於 FastAPI 不會試圖用 Pydantic 將資料轉成 JSON，或以其他方式序列化，在這種情況下，型別註解僅供編輯器與工具使用，FastAPI 並不會用到它。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 這也意味著使用 `StreamingResponse` 時，你擁有**自由**與**責任**，需依需求自行產生並編碼要傳送的位元組資料，與型別註解無關。 🤓
 
@@ -46,7 +46,7 @@ FastAPI 會如實將每個資料區塊交給 `StreamingResponse`，不會嘗試�
 
 一個主要用例是串流 `bytes` 而非字串，當然可以這麼做。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## 自訂 `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ FastAPI 會如實將每個資料區塊交給 `StreamingResponse`，不會嘗試�
 
 例如，你可以建立 `PNGStreamingResponse`，透過 `media_type` 屬性把 `Content-Type` 設為 `image/png`：
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 接著在路徑操作函式中用 `response_class=PNGStreamingResponse` 使用這個新類別：
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### 模擬檔案 { #simulate-a-file }
 
@@ -68,7 +68,7 @@ FastAPI 會如實將每個資料區塊交給 `StreamingResponse`，不會嘗試�
 
 例如，我們可以像讀取一般檔案一樣，透過迭代來消耗其內容。
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | 技術細節
 
@@ -100,7 +100,7 @@ FastAPI 會如實將每個資料區塊交給 `StreamingResponse`，不會嘗試�
 
 為了避免阻塞事件迴圈，你可以將路徑操作函式宣告為一般的 `def`（而非 `async def`），這樣 FastAPI 會在 threadpool worker 上執行它，避免阻塞主事件迴圈。
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip
 
@@ -114,4 +114,4 @@ FastAPI 會如實將每個資料區塊交給 `StreamingResponse`，不會嘗試�
 
 這不是 FastAPI 特有的功能，而是 Python 語法；不過這招很實用。 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

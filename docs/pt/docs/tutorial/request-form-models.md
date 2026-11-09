@@ -24,7 +24,7 @@ Isto é suportado desde a versão `0.113.0` do FastAPI. 🤓
 
 Você precisa apenas declarar um **modelo Pydantic** com os campos que deseja receber como **campos de formulários**, e então declarar o parâmetro como um `Form`:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 O **FastAPI** irá **extrair** as informações para **cada campo** dos **dados do formulário** na requisição e dar para você o modelo Pydantic que você definiu.
 
@@ -50,7 +50,7 @@ Isso é suportado desde a versão `0.114.0` do FastAPI. 🤓
 
 Você pode utilizar a configuração de modelo do Pydantic para definir `forbid` para qualquer campo `extra`:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 Caso um cliente tente enviar informações adicionais, ele receberá um retorno de **erro**.
 
@@ -79,7 +79,7 @@ Ele receberá um retorno de erro informando-o que o campo `extra` não é permit
 
 Você pode combinar vários modelos de formulários com parâmetros `Form` individuais.
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 O cliente envia `name`, `tags` e `token` como campos de formulário. Cada modelo valida os campos do formulário de forma independente.
 
@@ -91,7 +91,7 @@ Se várias declarações usarem o mesmo nome de campo de formulário, cada uma v
 
 Declare um modelo de formulário com `| None` e um valor padrão `None` para tornar o grupo opcional.
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 Se nem `name` nem `age` forem enviados, `profile` será `None`. Se qualquer um deles for enviado, o FastAPI validará o modelo e exigirá ambos os campos. Um valor vazio enviado também conta como fornecimento de um campo.
 
@@ -105,7 +105,7 @@ Um modelo opcional que contenha apenas caixas de seleção desmarcadas é omitid
 
 Você também pode usar uma união opcional de modelos.
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 Se nenhum campo de formulário for enviado, `contact` será `None`. Envie `kind=person` com `name`, ou `kind=company` com `company_name`. O discriminador seleciona qual modelo validar.
 
@@ -113,7 +113,7 @@ Se nenhum campo de formulário for enviado, `contact` será `None`. Envie `kind=
 
 Você pode combinar uniões com outros modelos de formulários, parâmetros `Form` individuais e parâmetros `File`. Cada união é validada de forma independente.
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 Envie todos os campos no mesmo formulário. Por exemplo, envie `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com` e `token=secret`.
 
@@ -123,7 +123,7 @@ Omita os campos de notificação para deixar `notification` como `None`.
 
 Você também pode combinar um modelo de formulário com [parâmetros de arquivo](request-files.md).
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 Aqui, o cliente envia o campo `name` e o arquivo `avatar` usando `multipart/form-data`.
 

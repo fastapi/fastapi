@@ -24,7 +24,7 @@ $ uv add python-multipart
 
 你只需声明一个 **Pydantic 模型**，其中包含你希望接收的**表单字段**，然后将参数声明为 `Form`：
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI** 将从请求中的**表单数据**中**提取**出**每个字段**的数据，并提供你定义的 Pydantic 模型。
 
@@ -50,7 +50,7 @@ $ uv add python-multipart
 
 你可以使用 Pydantic 的模型配置来 `forbid` 任何 `extra` 字段：
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 如果客户端尝试发送一些额外的数据，他们将收到**错误**响应。
 
@@ -79,7 +79,7 @@ $ uv add python-multipart
 
 你可以将多个表单模型与单独的 `Form` 参数组合使用。
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 客户端将 `name`、`tags` 和 `token` 作为表单字段发送。每个模型独立验证表单字段。
 
@@ -91,7 +91,7 @@ $ uv add python-multipart
 
 使用 `| None` 并将默认值设为 `None` 来声明表单模型，即可使这组字段变为可选。
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 如果既未发送 `name` 也未发送 `age`，则 `profile` 为 `None`。如果发送了其中任意一个字段，FastAPI 就会验证模型，并要求提供这两个字段。提交空值也算作提供了字段。
 
@@ -105,7 +105,7 @@ $ uv add python-multipart
 
 你也可以使用可选的模型联合类型。
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 如果未发送任何表单字段，则 `contact` 为 `None`。发送 `kind=person` 和 `name`，或发送 `kind=company` 和 `company_name`。判别器会选择要验证的模型。
 
@@ -113,7 +113,7 @@ $ uv add python-multipart
 
 你可以将联合类型与其他表单模型、单独的 `Form` 参数以及 `File` 参数组合使用。每个联合类型都会独立验证。
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 在同一个表单中发送所有字段。例如，发送 `contact_type=person`、`name=Rick`、`notification_type=email`、`email=rick@example.com` 和 `token=secret`。
 
@@ -123,7 +123,7 @@ $ uv add python-multipart
 
 你也可以将表单模型与[文件参数](request-files.md)组合使用。
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 这里，客户端使用 `multipart/form-data` 发送 `name` 字段和 `avatar` 文件。
 

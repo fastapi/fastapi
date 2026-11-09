@@ -14,7 +14,7 @@
 
 जिन **header parameters** की आपको ज़रूरत है, उन्हें एक **Pydantic model** में declare करें, और फिर parameter को `Header` के रूप में declare करें:
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI** request में **headers** से **हर field** का data **extract** करेगा और आपको वह Pydantic model देगा जिसे आपने define किया है।
 
@@ -32,7 +32,7 @@
 
 आप Pydantic की model configuration का उपयोग करके किसी भी `extra` fields को `forbid` कर सकते हैं:
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 अगर कोई client कुछ **extra headers** भेजने की कोशिश करता है, तो उन्हें एक **error** response मिलेगा।
 
@@ -59,7 +59,7 @@
 
 अगर किसी कारण से आपको इस automatic conversion को disable करना है, तो आप header parameters के लिए Pydantic models में भी ऐसा कर सकते हैं।
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | चेतावनी
 
@@ -79,7 +79,7 @@
 
 पूरे समूह को वैकल्पिक बनाने के लिए header parameter model को `| None` और `None` की default value के साथ declare करें।
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 अगर न तो `x-client-name` और न ही `x-client-version` भेजा जाता है, तो `client` की value `None` होती है। अगर इनमें से कोई भी भेजा जाता है, तो FastAPI model को validate करता है और दोनों fields को required मानता है।
 

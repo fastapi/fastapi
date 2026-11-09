@@ -116,7 +116,7 @@ pwdlibはbcryptハッシュアルゴリズムもサポートしていますが�
 
 さらに、ユーザーを認証して返す関数も作成します。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 `authenticate_user` がデータベースに存在しないユーザー名で呼び出された場合でも、ダミーのハッシュを使って `verify_password` を実行します。
 
@@ -156,7 +156,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 新しいアクセストークンを生成するユーティリティ関数を作成します。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## 依存関係の更新 { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 トークンが無効な場合は、すぐにHTTPエラーを返します。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## `/token` *path operation* の更新 { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ JWTトークンの署名に使用するアルゴリズム`"HS256"`を指定し�
 
 実際のJWTアクセストークンを作成し、それを返します。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### JWTの「subject」`sub` についての技術的な詳細 { #technical-details-about-the-jwt-subject-sub }
 

@@ -2,7 +2,7 @@
 
 Vous pouvez déclarer des « paramètres » ou « variables » de chemin avec la même syntaxe utilisée par les chaînes de format Python :
 
-{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 La valeur du paramètre de chemin `item_id` sera transmise à votre fonction dans l'argument `item_id`.
 
@@ -16,7 +16,7 @@ Donc, si vous exécutez cet exemple et allez sur [http://127.0.0.1:8000/items/fo
 
 Vous pouvez déclarer le type d'un paramètre de chemin dans la fonction, en utilisant les annotations de type Python standard :
 
-{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 Ici, `item_id` est déclaré comme `int`.
 
@@ -118,13 +118,13 @@ Et vous pouvez aussi avoir un chemin `/users/{user_id}` pour récupérer des don
 
 Comme les *chemins d'accès* sont évalués dans l'ordre, vous devez vous assurer que le chemin `/users/me` est déclaré avant celui de `/users/{user_id}` :
 
-{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 Sinon, le chemin `/users/{user_id}` correspondrait aussi à `/users/me`, « pensant » qu'il reçoit un paramètre `user_id` avec la valeur `"me"`.
 
 De même, vous ne pouvez pas redéfinir un chemin d'accès :
 
-{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 Le premier sera toujours utilisé puisque le chemin correspond en premier.
 
@@ -140,7 +140,7 @@ En héritant de `str`, la documentation de l'API saura que les valeurs doivent �
 
 Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les valeurs valides disponibles :
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// tip | Astuce
 
@@ -152,7 +152,7 @@ Si vous vous demandez, « AlexNet », « ResNet » et « LeNet » sont juste des
 
 Créez ensuite un *paramètre de chemin* avec une annotation de type utilisant la classe d'énumération que vous avez créée (`ModelName`) :
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Consultez les documents { #check-the-docs }
 
@@ -168,13 +168,13 @@ La valeur du *paramètre de chemin* sera un *membre d'énumération*.
 
 Vous pouvez le comparer avec le *membre d'énumération* dans votre enum `ModelName` :
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### Obtenir la *valeur de l'énumération* { #get-the-enumeration-value }
 
 Vous pouvez obtenir la valeur réelle (une `str` dans ce cas) avec `model_name.value`, ou en général, `votre_membre_d_enum.value` :
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | Astuce
 
@@ -188,7 +188,7 @@ Vous pouvez retourner des *membres d'énumération* depuis votre *chemin d'accè
 
 Ils seront convertis vers leurs valeurs correspondantes (des chaînes de caractères ici) avant d'être renvoyés au client :
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 Dans votre client, vous recevrez une réponse JSON comme :
 
@@ -227,7 +227,7 @@ Dans ce cas, le nom du paramètre est `file_path`, et la dernière partie, `:pat
 
 Vous pouvez donc l'utiliser ainsi :
 
-{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip | Astuce
 

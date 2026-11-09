@@ -31,7 +31,7 @@ $ uv add jinja2
 * Déclarez un paramètre `Request` dans le *chemin d'accès* qui renverra un template.
 * Utilisez l'objet `templates` que vous avez créé pour rendre et retourner une `TemplateResponse`, en transmettant le nom du template, l'objet de requête et un dictionnaire de « context » avec des paires clé-valeur à utiliser dans le template Jinja2.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Remarque
 
@@ -113,7 +113,7 @@ Pour les liens vers le même site, vous pouvez utiliser l'attribut `.path` pour 
 
 Passez le nom du template à `TemplateResponse` :
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 Avec le même exemple, le lien vers l'élément donnerait :
 

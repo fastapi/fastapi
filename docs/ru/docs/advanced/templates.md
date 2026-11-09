@@ -31,7 +31,7 @@ $ uv add jinja2
 * Объявите параметр `Request` в *операции пути*, которая будет возвращать шаблон.
 * Используйте созданный `templates`, чтобы отрендерить и вернуть `TemplateResponse`; передайте имя шаблона, объект HTTP-запроса и словарь «context» с парами ключ-значение для использования внутри шаблона Jinja2.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Примечание
 
@@ -113,7 +113,7 @@ Item ID: 42
 
 Передайте имя шаблона в `TemplateResponse`:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 В том же примере ссылка на элемент отрендерится как:
 

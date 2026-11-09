@@ -10,13 +10,13 @@ Bunun nasıl çalıştığına ve gerekirse nasıl değiştirebileceğinize bir 
 
 Default değerleri olan bir Pydantic modeliniz olduğunu varsayalım; örneğin şöyle:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### Input için Model { #model-for-input }
 
 Bu modeli şöyle input olarak kullanırsanız:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ...`description` alanı **zorunlu olmaz**. Çünkü `None` default değerine sahiptir.
 
@@ -32,7 +32,7 @@ Bunu dokümanlarda da doğrulayabilirsiniz; `description` alanında **kırmızı
 
 Ancak aynı modeli output olarak şöyle kullanırsanız:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ...`description` default değere sahip olduğu için, o alan için **hiçbir şey döndürmeseniz** bile yine de **o default değeri** alır.
 
@@ -91,7 +91,7 @@ Bu durumda **FastAPI**'de bu özelliği `separate_input_output_schemas=False` pa
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### Dokümanlarda Input ve Output Modelleri için Aynı Schema { #same-schema-for-input-and-output-models-in-docs }
 

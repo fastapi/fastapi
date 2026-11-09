@@ -24,7 +24,7 @@ Bu özellik FastAPI `0.113.0` sürümünden itibaren desteklenmektedir. 🤓
 
 Sadece, **form field** olarak almak istediğiniz alanlarla bir **Pydantic model** tanımlayın ve ardından parametreyi `Form` olarak bildirin:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI**, request içindeki **form data**'dan **her bir field** için veriyi **çıkarır** ve size tanımladığınız Pydantic model'ini verir.
 
@@ -50,7 +50,7 @@ Bu özellik FastAPI `0.114.0` sürümünden itibaren desteklenmektedir. 🤓
 
 Herhangi bir `extra` field'ı `forbid` etmek için Pydantic'in model konfigürasyonunu kullanabilirsiniz:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 Bir client fazladan veri göndermeye çalışırsa, bir **error** response alır.
 
@@ -79,7 +79,7 @@ Bir client fazladan veri göndermeye çalışırsa, bir **error** response alır
 
 Birden fazla form model'ini ayrı `Form` parametreleriyle birleştirebilirsiniz.
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 Client, `name`, `tags` ve `token` değerlerini form field'ları olarak gönderir. Her model, form field'larını bağımsız olarak doğrular.
 
@@ -91,7 +91,7 @@ Birden fazla tanım aynı form field adını kullanıyorsa, her biri o field'ın
 
 Grubu isteğe bağlı hale getirmek için form model'ini `| None` ile tanımlayın ve varsayılan değerini `None` olarak belirleyin.
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 Ne `name` ne de `age` gönderilirse, `profile` değeri `None` olur. İkisinden biri gönderilirse, FastAPI model'i doğrular ve her iki field'ı da zorunlu tutar. Boş bir değer gönderilmesi de field'ın sağlandığı anlamına gelir.
 
@@ -105,7 +105,7 @@ Yalnızca işaretlenmemiş onay kutuları içeren isteğe bağlı bir model, gö
 
 Model'lerden oluşan isteğe bağlı bir union da kullanabilirsiniz.
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 Hiçbir form field'ı gönderilmezse, `contact` değeri `None` olur. `name` ile birlikte `kind=person` veya `company_name` ile birlikte `kind=company` gönderin. Discriminator (ayırt edici), hangi model'in doğrulanacağını seçer.
 
@@ -113,7 +113,7 @@ Hiçbir form field'ı gönderilmezse, `contact` değeri `None` olur. `name` ile 
 
 Union'ları diğer form model'leriyle, ayrı `Form` parametreleriyle ve `File` parametreleriyle birleştirebilirsiniz. Her union bağımsız olarak doğrulanır.
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 Tüm field'ları aynı form içinde gönderin. Örneğin, `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com` ve `token=secret` gönderin.
 
@@ -123,7 +123,7 @@ Tüm field'ları aynı form içinde gönderin. Örneğin, `contact_type=person`,
 
 Bir form model'ini [dosya parametreleriyle](request-files.md) de birleştirebilirsiniz.
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 Burada client, `name` field'ını ve `avatar` dosyasını `multipart/form-data` kullanarak gönderir.
 

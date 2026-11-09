@@ -20,7 +20,7 @@
 
 在 **Pydantic** 模型中声明所需的 **cookie** 参数，然后将参数声明为 `Cookie` ：
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI** 将从请求中接收到的 **cookie** 中**提取**出**每个字段**的数据，并提供你定义的 Pydantic 模型。
 
@@ -50,7 +50,7 @@
 
 你可以使用 Pydantic 的模型配置来禁止（ `forbid` ）任何额外（ `extra` ）字段：
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 如果客户端尝试发送一些**额外的 cookie**，他们将收到**错误**响应。
 
@@ -81,7 +81,7 @@
 
 使用 `| None` 并将默认值设为 `None` 来声明 cookie 参数模型，即可将这组参数设为可选。
 
-{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
 
 如果既未发送 `theme` 也未发送 `locale`，则 `preferences` 为 `None`。如果发送了其中任意一个，FastAPI 就会验证模型，并要求两个字段都存在。
 

@@ -116,7 +116,7 @@ Y otra utilidad para verificar si una contraseña recibida coincide con el hash 
 
 Y otra más para autenticar y devolver un usuario.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 Cuando `authenticate_user` se llama con un nombre de usuario que no existe en la base de datos, aun así ejecutamos `verify_password` contra un hash ficticio.
 
@@ -156,7 +156,7 @@ Define un Modelo de Pydantic que se usará en el endpoint de token para el respo
 
 Crea una función de utilidad para generar un nuevo token de acceso.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Actualizar las dependencias { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ Decodifica el token recibido, verifícalo y devuelve el usuario actual.
 
 Si el token es inválido, devuelve un error HTTP de inmediato.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## Actualizar la *path operation* `/token` { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ Crea un `timedelta` con el tiempo de expiración del token.
 
 Crea un verdadero token de acceso JWT y devuélvelo.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### Detalles técnicos sobre el "sujeto" `sub` de JWT { #technical-details-about-the-jwt-subject-sub }
 

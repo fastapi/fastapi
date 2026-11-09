@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 Импортируйте `Form` из `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## Определение параметров `Form` { #define-form-parameters }
 
 Создайте параметры формы так же, как это делается для `Body` или `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Например, в одном из способов использования спецификации OAuth2 (называемом «password flow» - аутентификация по паролю) требуется отправить `username` и `password` в виде полей формы.
 
@@ -48,7 +48,7 @@ $ uv add python-multipart
 
 При отправке HTML-форм браузеры пропускают неотмеченные флажки. Объявите булев параметр формы со значением по умолчанию `False`, чтобы получать `False`, когда флажок не отмечен:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 Отмеченный флажок отправляет своё значение, которое по умолчанию равно `"on"`. **FastAPI** принимает `"on"` как `True`.
 

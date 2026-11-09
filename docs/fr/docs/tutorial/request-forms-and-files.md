@@ -16,13 +16,13 @@ $ uv add python-multipart
 
 ## Importer `File` et `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[3] *}
 
 ## Définir des paramètres `File` et `Form` { #define-file-and-form-parameters }
 
 Créez des paramètres de fichier et de formulaire de la même manière que pour `Body` ou `Query` :
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[10:12] *}
 
 Les fichiers et les champs de formulaire seront téléversés en tant que données de formulaire et vous recevrez les fichiers et les champs de formulaire.
 

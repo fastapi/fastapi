@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 Örneğin `/items/` adında bir *path operation* tanımladığınızı düşünelim:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 Client `/items`'a gitmeye çalışırsa, varsayılan olarak `/items/`'a redirect edilir.
 
@@ -113,7 +113,7 @@ Bu durumda, orijinal `/app` path'i aslında `/api/v1/app` altında servis edilir
 
 Kodunuzun tamamı sadece `/app` varmış gibi yazılmış olsa bile.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 Proxy, request'i server'a iletmeden önce **path prefix**'i anlık olarak **"kırpar"** (strip). Böylece uygulamanız hâlâ `/app` altında servis ediliyormuş gibi davranır ve tüm kodunuzu `/api/v1` prefix'ini içerecek şekilde güncellemeniz gerekmez.
 
@@ -187,7 +187,7 @@ Uygulamanızın her request için kullandığı mevcut `root_path` değerini ala
 
 Burada sadece göstermek için bunu mesaja dahil ediyoruz.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 Ardından server'ı şu şekilde başlatırsanız:
 
@@ -371,7 +371,7 @@ Ancak başka alternatif `servers` da sağlayabilirsiniz; örneğin *aynı* docs 
 
 Örneğin, aynı `fastapi run --root-path /api/v1` server yapılandırmasını kullanarak:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 Şöyle bir OpenAPI şeması üretir:
 
@@ -426,7 +426,7 @@ OpenAPI spesifikasyonunda `servers` özelliği opsiyoneldir.
 
 **FastAPI**'nin `root_path` kullanarak otomatik bir server eklemesini istemiyorsanız, `root_path_in_servers=False` parametresini kullanabilirsiniz:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 Böylece OpenAPI şemasına dahil etmez.
 

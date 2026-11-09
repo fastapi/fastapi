@@ -51,19 +51,19 @@ parameter `summary` OpenAPI 3.1.0 और उससे ऊपर में उप
 
 सबसे पहले, अपनी पूरी **FastAPI** application सामान्य रूप से लिखें:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### OpenAPI schema generate करें { #generate-the-openapi-schema }
 
 फिर, `custom_openapi()` function के अंदर, OpenAPI schema generate करने के लिए उसी utility function का उपयोग करें:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### OpenAPI schema को संशोधित करें { #modify-the-openapi-schema }
 
 अब आप OpenAPI schema में `info` "object" में custom `x-logo` जोड़कर ReDoc extension जोड़ सकते हैं:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### OpenAPI schema को cache करें { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@ parameter `summary` OpenAPI 3.1.0 और उससे ऊपर में उप
 
 यह केवल एक बार generate होगा, और फिर अगली requests के लिए वही cached schema उपयोग किया जाएगा।
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### Method को override करें { #override-the-method }
 
 अब आप `.openapi()` method को अपने नए function से replace कर सकते हैं।
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### इसे check करें { #check-it }
 

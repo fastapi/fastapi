@@ -18,7 +18,7 @@ Settings बदले बिना, syntax highlighting default रूप से
 
 लेकिन आप `syntaxHighlight` को `False` पर set करके इसे disable कर सकते हैं:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
 ...और फिर Swagger UI अब syntax highlighting नहीं दिखाएगा:
 
@@ -28,7 +28,7 @@ Settings बदले बिना, syntax highlighting default रूप से
 
 इसी तरह आप key `"syntaxHighlight.theme"` के साथ syntax highlighting theme set कर सकते हैं (ध्यान दें कि इसके बीच में एक dot है):
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
 वह configuration syntax highlighting color theme बदल देगी:
 
@@ -46,7 +46,7 @@ FastAPI में ज़्यादातर use cases के लिए उप�
 
 उदाहरण के लिए, `deepLinking` disable करने के लिए आप ये settings `swagger_ui_parameters` में pass कर सकते हैं:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
 ## अन्य Swagger UI Parameters { #other-swagger-ui-parameters }
 

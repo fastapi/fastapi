@@ -56,8 +56,8 @@
 
 以下是一個帶有參數、使用上述部分型別的 *路徑操作 (path operation)* 範例。
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 請注意，函式內的參數會是它們的自然資料型別，因此你可以進行一般的日期運算，例如：
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

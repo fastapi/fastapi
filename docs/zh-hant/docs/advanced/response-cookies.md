@@ -6,7 +6,7 @@
 
 接著你可以在那個*暫時*的 `Response` 物件上設定 Cookie。
 
-{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 之後如常回傳你需要的任何物件（例如 `dict`、資料庫模型等）。
 
@@ -24,7 +24,7 @@
 
 接著在其中設定 Cookie，然後回傳它：
 
-{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | 提示
 

@@ -2,7 +2,7 @@
 
 Önceki bölümde güvenlik sistemi (dependency injection sistemine dayanır) *path operation function*'a `str` olarak bir `token` veriyordu:
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Ancak bu hâlâ pek kullanışlı değil.
 
@@ -14,7 +14,7 @@ Bize mevcut kullanıcıyı verecek şekilde düzenleyelim.
 
 Body'leri bildirmek için Pydantic'i nasıl kullanıyorsak, aynı şekilde onu başka her yerde de kullanabiliriz:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## `get_current_user` dependency'si oluşturun { #create-a-get-current-user-dependency }
 
@@ -26,19 +26,19 @@ Dependency'lerin alt dependency'leri olabileceğini hatırlıyor musunuz?
 
 Daha önce *path operation* içinde doğrudan yaptığımız gibi, yeni dependency'miz `get_current_user`, alt dependency olan `oauth2_scheme` üzerinden `str` olarak bir `token` alacak:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## Kullanıcıyı alın { #get-the-user }
 
 `get_current_user`, oluşturduğumuz (sahte) bir yardımcı (utility) fonksiyonu kullanacak; bu fonksiyon `str` olarak bir token alır ve Pydantic `User` modelimizi döndürür:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## Mevcut kullanıcıyı enjekte edin { #inject-the-current-user }
 
 Artık *path operation* içinde `get_current_user` ile aynı `Depends` yaklaşımını kullanabiliriz:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 `current_user` tipini Pydantic `User` modeli olarak belirttiğimize dikkat edin.
 
@@ -92,7 +92,7 @@ Ve bunların hepsi (ya da istediğiniz bir kısmı) bu dependency'leri veya olu�
 
 Hatta bu binlerce *path operation* 3 satır kadar kısa olabilir:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## Özet { #recap }
 

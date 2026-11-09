@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 Створіть файл `main.py`:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 Вам не потрібно писати власний код для збирання телеметрії.
 
@@ -92,7 +92,7 @@ $ curl http://127.0.0.1:8000/items/1
 
 Ви також можете передати провайдер безпосередньо у словнику `telemetry`. Наприклад, цей провайдер використовує консольний експортер OpenTelemetry для виведення span запитів у вашому терміналі:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 **Експортер** надсилає span до їхнього місця призначення. `BatchSpanProcessor` групує span і надсилає їх у фоновому режимі. Замініть консольний експортер на той, який надає ваша бібліотека моніторингу, щоб використовувати її місце призначення. Додаткові параметри налаштування наведено в [посібнику з інструментування Python для OpenTelemetry](https://opentelemetry.io/docs/languages/python/instrumentation/).
 
@@ -112,7 +112,7 @@ Span фонових завдань залишаються частиною тр�
 
 Щоб записувати лише span HTTP-запиту, задайте `operation_spans` значення `False`:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### Трасуйте з'єднання WebSocket { #trace-websocket-connections }

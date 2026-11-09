@@ -21,7 +21,7 @@
 
 Потім ви можете встановити `status_code` у цьому *тимчасовому* об'єкті відповіді.
 
-{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
 Після цього ви можете повернути будь-який потрібний об'єкт, як зазвичай (`dict`, модель бази даних тощо).
 

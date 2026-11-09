@@ -24,7 +24,7 @@ $ uv add python-multipart
 
 Вам просто потрібно оголосити **Pydantic-модель** з полями, які ви хочете отримати як **поля форми**, а потім оголосити параметр як `Form`:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI**  **витягне** дані для **кожного поля** з **формових даних** у запиті та надасть вам Pydantic-модель, яку ви визначили.
 
@@ -50,7 +50,7 @@ $ uv add python-multipart
 
 Ви можете використати конфігурацію Pydantic-моделі, щоб заборонити `forbid` будь-які додаткові `extra` поля:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 Якщо клієнт спробує надіслати додаткові дані, він отримає **відповідь з помилкою**.
 
@@ -79,7 +79,7 @@ $ uv add python-multipart
 
 Ви можете поєднувати кілька моделей форм з окремими параметрами `Form`.
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 Клієнт надсилає `name`, `tags` і `token` як поля форми. Кожна модель перевіряє поля форми незалежно.
 
@@ -91,7 +91,7 @@ $ uv add python-multipart
 
 Оголосіть модель форми з `| None` і значенням за замовчуванням `None`, щоб зробити групу необов'язковою.
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 Якщо не надіслано ані `name`, ані `age`, `profile` має значення `None`. Якщо надіслано хоча б одне з них, FastAPI перевіряє модель і вимагає обидва поля. Надіслане порожнє значення також вважається наданням поля.
 
@@ -105,7 +105,7 @@ $ uv add python-multipart
 
 Ви також можете використовувати необов'язкове об'єднання моделей.
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 Якщо жодного поля форми не надіслано, `contact` має значення `None`. Надішліть `kind=person` разом із `name` або `kind=company` разом із `company_name`. Дискримінатор вибирає модель для перевірки.
 
@@ -113,7 +113,7 @@ $ uv add python-multipart
 
 Ви можете поєднувати об'єднання з іншими моделями форм, окремими параметрами `Form` і параметрами `File`. Кожне об'єднання перевіряється незалежно.
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 Надсилайте всі поля в одній формі. Наприклад, надішліть `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com` і `token=secret`.
 
@@ -123,7 +123,7 @@ $ uv add python-multipart
 
 Ви також можете поєднувати модель форми з [параметрами файлів](request-files.md).
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 Тут клієнт надсилає поле `name` і файл `avatar`, використовуючи `multipart/form-data`.
 

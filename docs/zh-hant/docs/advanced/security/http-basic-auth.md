@@ -20,7 +20,7 @@
 - 它會回傳一個 `HTTPBasicCredentials` 型別的物件：
     - 其中包含傳來的 `username` 與 `password`。
 
-{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006.py hl[4,8,12] *}
 
 當你第一次嘗試開啟該 URL（或在文件中點擊 "Execute" 按鈕）時，瀏覽器會要求輸入你的使用者名稱與密碼：
 
@@ -40,7 +40,7 @@
 
 接著我們可以使用 `secrets.compare_digest()` 來確認 `credentials.username` 等於 `"stanleyjobson"`，而 `credentials.password` 等於 `"swordfish"`。
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007.py hl[1,12:24] *}
 
 這大致等同於：
 
@@ -106,4 +106,4 @@ Python 會必須先比較完整的 `stanleyjobso`（在 `stanleyjobsox` 與 `sta
 
 在偵測到憑證不正確之後，回傳一個狀態碼為 401 的 `HTTPException`（與未提供憑證時相同），並加上 `WWW-Authenticate` 標頭，讓瀏覽器再次顯示登入提示：
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007.py hl[26:30] *}

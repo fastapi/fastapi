@@ -8,7 +8,7 @@ Zuerst einmal, Sie können `Path`-, `Query`- und Requestbody-Parameter-Deklarati
 
 Und Sie können auch Body-Parameter als optional kennzeichnen, indem Sie den Defaultwert auf `None` setzen:
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | Hinweis
 
@@ -31,7 +31,7 @@ Im vorherigen Beispiel erwarteten die *Pfadoperationen* einen JSON-Body mit den 
 
 Aber Sie können auch mehrere Body-Parameter deklarieren, z. B. `item` und `user`:
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 In diesem Fall wird **FastAPI** bemerken, dass es mehr als einen Body-Parameter in der Funktion gibt (zwei Parameter, die Pydantic-Modelle sind).
 
@@ -72,7 +72,7 @@ Wenn Sie diesen Parameter einfach so hinzufügen, wird **FastAPI** annehmen, das
 
 Aber Sie können **FastAPI** instruieren, ihn als weiteren Body-Schlüssel zu erkennen, indem Sie `Body` verwenden:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 In diesem Fall erwartet **FastAPI** einen Body wie:
 
@@ -106,7 +106,7 @@ q: str | None = None
 
 Zum Beispiel:
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 /// note | Hinweis
 
@@ -128,7 +128,7 @@ item: Annotated[Item, Body(embed=True)]
 
 so wie in:
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 In diesem Fall erwartet **FastAPI** einen Body wie:
 

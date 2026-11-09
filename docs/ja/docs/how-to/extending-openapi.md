@@ -51,19 +51,19 @@
 
 まず、通常どおりに **FastAPI** アプリケーションを実装します:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### OpenAPI スキーマの生成 { #generate-the-openapi-schema }
 
 次に、`custom_openapi()` 関数内で同じユーティリティ関数を使って OpenAPI スキーマを生成します:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### OpenAPI スキーマの変更 { #modify-the-openapi-schema }
 
 OpenAPI スキーマの `info`「オブジェクト」にカスタムの `x-logo` を追加して、ReDoc 拡張を加えます:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### OpenAPI スキーマのキャッシュ { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@ OpenAPI スキーマの `info`「オブジェクト」にカスタムの `x-logo
 
 最初の1回だけ生成され、その後は同じキャッシュ済みスキーマが以降のリクエストで使われます。
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### メソッドの上書き { #override-the-method }
 
 これで、`.openapi()` メソッドを新しい関数に置き換えられます。
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### 確認 { #check-it }
 

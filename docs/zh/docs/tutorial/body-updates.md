@@ -6,7 +6,7 @@
 
 把输入数据转换为以 JSON 格式存储的数据（比如，使用 NoSQL 数据库时），可以使用 `jsonable_encoder`。例如，把 `datetime` 转换为 `str`。
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[28:33] *}
 
 `PUT` 用于接收替换现有数据的数据。
 
@@ -54,7 +54,7 @@
 
 然后再用它生成一个只含已设置（在请求中发送）数据、且省略默认值的 `dict`：
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[32] *}
 
 ### 使用 Pydantic 的 `update` 参数 { #using-pydantics-update-parameter }
 
@@ -62,7 +62,7 @@
 
 例如，`stored_item_model.model_copy(update=update_data)`：
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[33] *}
 
 ### 部分更新小结 { #partial-updates-recap }
 
@@ -79,7 +79,7 @@
 * 把数据保存至数据库。
 * 返回更新后的模型。
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[28:35] *}
 
 /// tip | 提示
 

@@ -14,7 +14,7 @@
 
 जिन **query parameters** की आपको ज़रूरत है उन्हें एक **Pydantic model** में declare करें, और फिर parameter को `Query` के रूप में declare करें:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI** request में मौजूद **query parameters** से **हर field** के लिए data **extract** करेगा और आपको वह Pydantic model देगा जिसे आपने define किया है।
 
@@ -32,7 +32,7 @@
 
 आप किसी भी `extra` fields को `forbid` करने के लिए Pydantic की model configuration का उपयोग कर सकते हैं:
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 अगर कोई client **query parameters** में कुछ **extra** data भेजने की कोशिश करता है, तो उसे एक **error** response मिलेगा।
 
@@ -61,7 +61,7 @@ https://example.com/items/?limit=10&tool=plumbus
 
 आप कई query parameter models declare कर सकते हैं, और उन्हें अलग-अलग query parameters या dependencies के साथ उपयोग कर सकते हैं।
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 request parameters एक ही स्तर पर रहते हैं।
 
@@ -81,7 +81,7 @@ query string में `pagination` या `filters` keys नहीं होत
 
 समूह को वैकल्पिक बनाने के लिए query parameter model को `| None` और `None` की default value के साथ declare करें।
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 अगर न तो `start` और न ही `end` भेजा जाता है, तो `date_range` की value `None` होती है। अगर इनमें से कोई भी भेजा जाता है, तो FastAPI model को validate करता है और दोनों fields को required मानता है।
 

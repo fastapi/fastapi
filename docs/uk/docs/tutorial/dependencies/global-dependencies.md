@@ -6,7 +6,7 @@
 
 У такому разі вони будуть застосовані до всіх *операцій шляху* в застосунку:
 
-{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial012.py hl[17] *}
 
 Усі ідеї з розділу про [додавання `dependencies` до *декораторів операцій шляху*](dependencies-in-path-operation-decorators.md) так само застосовні, але в цьому випадку - до всіх *операцій шляху* в застосунку.
 

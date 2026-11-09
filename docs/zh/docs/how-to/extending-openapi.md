@@ -51,19 +51,19 @@
 
 首先，像平常一样编写你的 **FastAPI** 应用：
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### 生成 OpenAPI 架构 { #generate-the-openapi-schema }
 
 然后，在一个 `custom_openapi()` 函数中使用同一个工具函数生成 OpenAPI 架构：
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### 修改 OpenAPI 架构 { #modify-the-openapi-schema }
 
 现在你可以添加 ReDoc 扩展，在 OpenAPI 架构的 `info` “对象”中加入自定义 `x-logo`：
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### 缓存 OpenAPI 架构 { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@
 
 它只会生成一次，后续请求都会使用同一份缓存的架构。
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### 覆盖方法 { #override-the-method }
 
 现在你可以用你的新函数替换 `.openapi()` 方法。
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### 验证 { #check-it }
 

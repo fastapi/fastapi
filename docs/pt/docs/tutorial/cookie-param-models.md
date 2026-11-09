@@ -20,7 +20,7 @@ Essa mesma técnica se aplica para `Query`, `Cookie`, e `Header`. 😎
 
 Declare os parâmetros de **cookie** de que você precisa em um **modelo Pydantic**, e depois declare o parâmetro como `Cookie`:
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 O **FastAPI** irá **extrair** os dados para **cada campo** dos **cookies** recebidos na requisição e lhe fornecer o modelo Pydantic que você definiu.
 
@@ -50,7 +50,7 @@ Agora a sua API possui o poder de controlar o seu próprio <dfn title="Isso é u
 
 Você pode utilizar a configuração do modelo Pydantic para proibir com `forbid` qualquer campo `extra`:
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 Se o cliente tentar enviar alguns **cookies extras**, ele receberá uma resposta de **erro**.
 
@@ -81,7 +81,7 @@ A configuração `extra` de cada modelo se aplica a todos os parâmetros de cook
 
 Declare um modelo de parâmetros de cookie com `| None` e um valor padrão de `None` para tornar o grupo opcional.
 
-{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
 
 Se nem `theme` nem `locale` forem enviados, `preferences` será `None`. Se qualquer um deles for enviado, o FastAPI validará o modelo e exigirá ambos os campos.
 

@@ -6,7 +6,7 @@
 
 Önce import etmeniz gerekir:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
 
 
 /// warning | Uyarı
@@ -19,7 +19,7 @@
 
 Ardından `Field`'i model attribute'larıyla birlikte kullanabilirsiniz:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field`, `Query`, `Path` ve `Body` ile aynı şekilde çalışır; aynı parametrelerin tamamına sahiptir, vb.
 

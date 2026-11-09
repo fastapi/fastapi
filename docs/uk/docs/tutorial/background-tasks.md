@@ -15,7 +15,7 @@
 
 Спочатку імпортуйте `BackgroundTasks` і оголосіть параметр у вашій функції операції шляху з анотацією типу `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** створить для вас об’єкт типу `BackgroundTasks` і передасть його як цей параметр.
 
@@ -31,13 +31,13 @@
 
 І оскільки операція запису не використовує `async` та `await`, ми визначаємо функцію як звичайну `def`:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## Додавання фонової задачі { #add-the-background-task }
 
 Усередині вашої функції операції шляху, передайте функцію задачі в об'єкт background tasks, використовуючи метод `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` приймає аргументи:
 
@@ -52,7 +52,7 @@
 **FastAPI** знає, як діяти в кожному випадку і як повторно використовувати один і той самий об'єкт, щоб усі фонові задачі були об’єднані та виконувалися у фоновому режимі після завершення основного запиту:
 
 
-{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 
 У цьому прикладі повідомлення будуть записані у файл `log.txt` після того, як відповідь буде надіслана.

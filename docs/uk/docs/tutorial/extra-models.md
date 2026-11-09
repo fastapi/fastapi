@@ -20,7 +20,7 @@
 
 Ось загальна ідея того, як можуть виглядати моделі з їхніми полями пароля та місцями використання:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### Про `**user_in.model_dump()` { #about-user-in-model-dump }
 
@@ -154,7 +154,7 @@ UserInDB(
 
 Таким чином, ми оголошуємо лише відмінності між моделями (з відкритим `password`, з `hashed_password` і без пароля):
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` або `anyOf` { #union-or-anyof }
 
@@ -170,7 +170,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### `Union` у Python 3.10 { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ some_variable: PlaneItem | CarItem
 
 Для цього використайте стандартний Python `list`:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## Відповідь з довільним `dict` { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ some_variable: PlaneItem | CarItem
 
 У такому разі можна використати `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## Підсумок { #recap }
 

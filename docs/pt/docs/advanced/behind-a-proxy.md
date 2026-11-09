@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 Por exemplo, suponha que você defina uma *operação de rota* `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 Se o cliente tentar ir para `/items`, por padrão, ele seria redirecionado para `/items/`.
 
@@ -113,7 +113,7 @@ Nesse caso, o path original `/app` seria servido em `/api/v1/app`.
 
 Embora todo o seu código esteja escrito assumindo que existe apenas `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 E o proxy estaria **"removendo"** o **prefixo de path** dinamicamente antes de transmitir a requisição para o servidor, mantendo sua aplicação convencida de que está sendo servida em `/app`, para que você não precise atualizar todo o seu código para incluir o prefixo `/api/v1`.
 
@@ -187,7 +187,7 @@ Você pode obter o `root_path` atual usado pela sua aplicação para cada requis
 
 Aqui estamos incluindo-o na mensagem apenas para fins de demonstração.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 Então, se você iniciar o servidor com:
 
@@ -371,7 +371,7 @@ Se você passar uma lista personalizada de `servers` e houver um `root_path` (po
 
 Por exemplo, usando a mesma configuração de servidor `fastapi run --root-path /api/v1`:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 Gerará um OpenAPI schema como:
 
@@ -426,7 +426,7 @@ Se você não especificar o parâmetro `servers` e `root_path` for igual a `/`, 
 
 Se você não quiser que o **FastAPI** inclua um servidor automático usando o `root_path`, você pode usar o parâmetro `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 e então ele não será incluído no OpenAPI schema.
 

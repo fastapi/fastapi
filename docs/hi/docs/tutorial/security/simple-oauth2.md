@@ -52,7 +52,7 @@ OAuth2 के लिए वे बस strings हैं।
 
 पहले, `OAuth2PasswordRequestForm` import करें, और `/token` के *path operation* में `Depends` के साथ इसे dependency के रूप में उपयोग करें:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` एक class dependency है जो एक form body घोषित करती है जिसमें:
 
@@ -100,7 +100,7 @@ dependency class `OAuth2PasswordRequestForm` के instance में spaces �
 
 Error के लिए, हम exception `HTTPException` का उपयोग करते हैं:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### password जाँचें { #check-the-password }
 
@@ -126,7 +126,7 @@ Error के लिए, हम exception `HTTPException` का उपयोग 
 
 इसलिए, चोर उन same passwords को किसी दूसरे system में उपयोग करने की कोशिश नहीं कर पाएगा (क्योंकि कई users हर जगह वही password उपयोग करते हैं, यह खतरनाक होगा)।
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### `**user_dict` के बारे में { #about-user-dict }
 
@@ -168,7 +168,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | टिप
 
@@ -194,7 +194,7 @@ Specifications के compliant होने के लिए, यह लगभ�
 
 इसलिए, हमारे endpoint में, हमें user केवल तभी मिलेगा जब user मौजूद हो, सही तरीके से authenticated हो, और active हो:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | नोट
 

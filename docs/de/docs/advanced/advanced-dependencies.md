@@ -19,7 +19,7 @@ Nicht die Klasse selbst (die bereits aufrufbar ist), sondern eine Instanz dieser
 
 Dazu deklarieren wir eine Methode `__call__`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zusätzlichen Parametern und Unterabhängigkeiten zu suchen, und das ist es auch, was später aufgerufen wird, um einen Wert an den Parameter in Ihrer *Pfadoperation-Funktion* zu übergeben.
 
@@ -27,7 +27,7 @@ In diesem Fall ist dieses `__call__` das, was **FastAPI** verwendet, um nach zus
 
 Und jetzt können wir `__init__` verwenden, um die Parameter der Instanz zu deklarieren, die wir zum „Parametrisieren“ der Abhängigkeit verwenden können:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmern, wir werden es direkt in unserem Code verwenden.
 
@@ -35,7 +35,7 @@ In diesem Fall wird **FastAPI** `__init__` nie berühren oder sich darum kümmer
 
 Wir könnten eine Instanz dieser Klasse erstellen mit:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 Und auf diese Weise können wir unsere Abhängigkeit „parametrisieren“, die jetzt `"bar"` enthält, als das Attribut `checker.fixed_content`.
 
@@ -51,7 +51,7 @@ checker(q="somequery")
 
 ... und übergibt, was immer das als Wert dieser Abhängigkeit in unserer *Pfadoperation-Funktion* zurückgibt, als den Parameter `fixed_content_included`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip | Tipp
 
@@ -115,21 +115,21 @@ In diesem Fall würde die Datenbanksession gehalten, bis das Senden der Response
 
 So könnte es aussehen:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 Der Exit-Code, das automatische Schließen der `Session` in:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 ... würde ausgeführt, nachdem die Response das langsame Senden der Daten beendet:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 Da `generate_stream()` die Datenbanksession jedoch nicht verwendet, ist es nicht wirklich notwendig, die Session während des Sendens der Response offen zu halten.
 
 Wenn Sie diesen spezifischen Anwendungsfall mit SQLModel (oder SQLAlchemy) haben, könnten Sie die Session explizit schließen, nachdem Sie sie nicht mehr benötigen:
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 Auf diese Weise würde die Session die Datenbankverbindung freigeben, sodass andere Requests sie verwenden könnten.
 

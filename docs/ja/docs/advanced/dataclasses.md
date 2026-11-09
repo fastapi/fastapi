@@ -4,7 +4,7 @@ FastAPI は **Pydantic** の上に構築されており、これまでにリク�
 
 しかし FastAPI は、同様の方法で [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) もサポートします:
 
-{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
+{* ../../docs_src/dataclasses_/tutorial001.py hl[1,6:11,18:19] *}
 
 これは **Pydantic** によって引き続きサポートされています。Pydantic には [`dataclasses` の内部サポート](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel) があるためです。
 
@@ -32,7 +32,7 @@ dataclasses は、Pydantic モデルができることをすべては行えな�
 
 `response_model` パラメータでも `dataclasses` を使用できます:
 
-{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
+{* ../../docs_src/dataclasses_/tutorial002.py hl[1,6:12,18] *}
 
 dataclass は自動的に Pydantic の dataclass に変換されます。
 
@@ -48,7 +48,7 @@ dataclass は自動的に Pydantic の dataclass に変換されます。
 
 その場合は、標準の `dataclasses` を `pydantic.dataclasses` に置き換えるだけで済みます。これはドロップイン置換です:
 
-{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
+{* ../../docs_src/dataclasses_/tutorial003.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. 依然として標準の `dataclasses` から `field` をインポートします。
 

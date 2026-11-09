@@ -22,7 +22,7 @@ Python में वैकल्पिक "type hints" (जिन्हें "t
 
 आइए एक सरल उदाहरण से शुरू करें:
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 इस program को call करने पर output आता है:
 
@@ -36,7 +36,7 @@ Function निम्नलिखित करता है:
 * प्रत्येक के पहले अक्षर को `title()` के साथ upper case में बदलता है।
 * उन्हें बीच में एक space के साथ <dfn title="उन्हें एक साथ रखता है, एक के रूप में। एक की सामग्री के बाद दूसरे की सामग्री के साथ।">Concatenate</dfn> करता है।
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### इसे edit करें { #edit-it }
 
@@ -78,7 +78,7 @@ Function निम्नलिखित करता है:
 
 यही "type hints" हैं:
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 यह default values declare करने जैसा नहीं है, जैसा कि इसमें होता:
 
@@ -106,7 +106,7 @@ Function निम्नलिखित करता है:
 
 इस function को देखें, इसमें पहले से type hints हैं:
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 क्योंकि editor variables के types जानता है, आपको केवल completion ही नहीं मिलता, आपको error checks भी मिलते हैं:
 
@@ -114,7 +114,7 @@ Function निम्नलिखित करता है:
 
 अब आप जानते हैं कि आपको इसे ठीक करना है, `age` को `str(age)` के साथ string में convert करना है:
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Types declare करना { #declaring-types }
 
@@ -133,7 +133,7 @@ Function निम्नलिखित करता है:
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### `typing` module { #typing-module }
 
@@ -170,7 +170,7 @@ Type के रूप में, `list` रखें।
 
 क्योंकि list एक ऐसा type है जिसमें कुछ internal types होते हैं, आप उन्हें square brackets में रखते हैं:
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | नोट
 
@@ -196,7 +196,7 @@ Types के बिना, इसे हासिल करना लगभग �
 
 आप `tuple`s और `set`s declare करने के लिए भी ऐसा ही करेंगे:
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 इसका मतलब है:
 
@@ -211,7 +211,7 @@ Types के बिना, इसे हासिल करना लगभग �
 
 दूसरा type parameter `dict` की values के लिए होता है:
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 इसका मतलब है:
 
@@ -228,7 +228,7 @@ Types के बिना, इसे हासिल करना लगभग �
 इसे "union" कहा जाता है, क्योंकि variable उन दो type sets के union में कुछ भी हो सकता है।
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 इसका मतलब है कि `item` एक `int` या एक `str` हो सकता है।
@@ -240,7 +240,7 @@ Types के बिना, इसे हासिल करना लगभग �
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -253,11 +253,11 @@ Types के बिना, इसे हासिल करना लगभग �
 
 मान लें आपके पास एक class `Person` है, जिसमें एक name है:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 फिर आप किसी variable को `Person` type का declare कर सकते हैं:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 और फिर, फिर से, आपको पूरा editor support मिलता है:
 
@@ -281,7 +281,7 @@ Types के बिना, इसे हासिल करना लगभग �
 
 Official Pydantic docs से एक उदाहरण:
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | नोट
 
@@ -299,7 +299,7 @@ Python में एक feature भी है जो `Annotated` का उप�
 
 आप `typing` से `Annotated` import कर सकते हैं।
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Python खुद इस `Annotated` के साथ कुछ नहीं करता। और editors और अन्य tools के लिए, type अभी भी `str` है।
 

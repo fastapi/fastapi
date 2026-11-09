@@ -6,7 +6,7 @@
 
 सबसे पहले, `fastapi` से `Path` import करें, और `Annotated` import करें:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[1,3] *}
 
 /// note | नोट
 
@@ -24,7 +24,7 @@ FastAPI ने version 0.95.0 में `Annotated` के लिए support ज
 
 उदाहरण के लिए, path parameter `item_id` के लिए `title` metadata value घोषित करने के लिए आप लिख सकते हैं:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[10] *}
 
 /// note | नोट
 
@@ -54,11 +54,11 @@ FastAPI ने version 0.95.0 में `Annotated` के लिए support ज
 
 तो, आप अपनी function इस तरह घोषित कर सकते हैं:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_non_an.py hl[7] *}
 
 लेकिन ध्यान रखें कि यदि आप `Annotated` का उपयोग करते हैं, तो आपको यह समस्या नहीं होगी, क्योंकि आप `Query()` या `Path()` के लिए function parameter default values का उपयोग नहीं कर रहे हैं।
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py *}
 
 ## Parameters को अपनी ज़रूरत के अनुसार क्रम दें, tricks { #order-the-parameters-as-you-need-tricks }
 
@@ -83,13 +83,13 @@ function के पहले parameter के रूप में `*` पास 
 
 Python उस `*` के साथ कुछ नहीं करेगा, लेकिन उसे पता चल जाएगा कि उसके बाद आने वाले सभी parameters को keyword arguments (key-value pairs) के रूप में call किया जाना चाहिए, जिन्हें <abbr title="से: K-ey W-ord Arg-uments - कीवर्ड आर्ग्युमेंट्स"><code>kwargs</code></abbr> भी कहा जाता है। भले ही उनके पास default value न हो।
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_non_an.py hl[7] *}
 
 ### `Annotated` के साथ बेहतर { #better-with-annotated }
 
 ध्यान रखें कि यदि आप `Annotated` का उपयोग करते हैं, तो चूँकि आप function parameter default values का उपयोग नहीं कर रहे हैं, आपको यह समस्या नहीं होगी, और शायद आपको `*` का उपयोग करने की ज़रूरत नहीं पड़ेगी।
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[10] *}
 
 ## Number validations: greater than or equal { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Python उस `*` के साथ कुछ नहीं करेगा, ल�
 
 यहाँ, `ge=1` के साथ, `item_id` को `1` से "`g`reater than or `e`qual" integer number होना होगा।
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004.py hl[10] *}
 
 ## Number validations: greater than और less than or equal { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ Python उस `*` के साथ कुछ नहीं करेगा, ल�
 * `gt`: `g`reater `t`han
 * `le`: `l`ess than or `e`qual
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005.py hl[10] *}
 
 ## Number validations: floats, greater than और less than { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ Number validations `float` values के लिए भी काम करती
 
 और यही बात <abbr title="less than - इससे कम"><code>lt</code></abbr> के लिए भी है।
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006.py hl[13] *}
 
 ## Recap { #recap }
 

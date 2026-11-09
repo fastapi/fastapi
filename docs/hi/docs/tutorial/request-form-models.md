@@ -24,7 +24,7 @@ $ uv add python-multipart
 
 आपको बस उन fields के साथ एक **Pydantic model** declare करना है जिन्हें आप **form fields** के रूप में receive करना चाहते हैं, और फिर parameter को `Form` के रूप में declare करना है:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI** request में मौजूद **form data** से **हर field** के लिए data **extract** करेगा और आपको वह Pydantic model देगा जिसे आपने define किया है।
 
@@ -50,7 +50,7 @@ $ uv add python-multipart
 
 आप किसी भी `extra` fields को `forbid` करने के लिए Pydantic की model configuration का उपयोग कर सकते हैं:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 अगर कोई client कुछ extra data भेजने की कोशिश करता है, तो उन्हें एक **error** response मिलेगा।
 
@@ -79,7 +79,7 @@ $ uv add python-multipart
 
 आप कई form models को अलग-अलग `Form` parameters के साथ संयोजित कर सकते हैं।
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 client `name`, `tags`, और `token` को form fields के रूप में भेजता है। हर model form fields को स्वतंत्र रूप से validate करता है।
 
@@ -91,7 +91,7 @@ client `name`, `tags`, और `token` को form fields के रूप मे
 
 समूह को वैकल्पिक बनाने के लिए, form model को `| None` और `None` की default value के साथ declare करें।
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 अगर न तो `name` और न ही `age` भेजा जाता है, तो `profile` की value `None` होती है। अगर इनमें से कोई भी भेजा जाता है, तो FastAPI model को validate करता है और दोनों fields को required मानता है। खाली value सबमिट करना भी field प्रदान करना माना जाता है।
 
@@ -105,7 +105,7 @@ Extra fields model की `extra` configuration का पालन करते
 
 आप models के वैकल्पिक union का भी उपयोग कर सकते हैं।
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 अगर कोई form fields नहीं भेजे जाते हैं, तो `contact` की value `None` होती है। `name` के साथ `kind=person`, या `company_name` के साथ `kind=company` भेजें। discriminator चुनता है कि किस model को validate करना है।
 
@@ -113,7 +113,7 @@ Extra fields model की `extra` configuration का पालन करते
 
 आप unions को अन्य form models, अलग-अलग `Form` parameters, और `File` parameters के साथ संयोजित कर सकते हैं। हर union को स्वतंत्र रूप से validate किया जाता है।
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 सभी fields एक ही form में भेजें। उदाहरण के लिए, `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com`, और `token=secret` भेजें।
 
@@ -123,7 +123,7 @@ Extra fields model की `extra` configuration का पालन करते
 
 आप form model को [file parameters](request-files.md) के साथ भी संयोजित कर सकते हैं।
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 यहाँ client `multipart/form-data` का उपयोग करके `name` field और `avatar` file भेजता है।
 

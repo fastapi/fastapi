@@ -20,7 +20,7 @@ JSON互換のデータのみを受信するデータベース`fake_db`がある�
 
 Pydanticモデルのようなオブジェクトを受け取り、JSON互換版を返します:
 
-{* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
+{* ../../docs_src/encoder/tutorial001.py hl[4,21] *}
 
 この例では、Pydanticモデルを`dict`に、`datetime`を`str`に変換します。
 

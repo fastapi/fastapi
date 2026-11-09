@@ -4,7 +4,7 @@
 
 関数**パラメータ**の入力データと同じように **型アノテーション** を使用できます。Pydanticモデル、リスト、辞書、整数や真偽値などのスカラー値を使用できます。
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 FastAPIはこの戻り値の型を使って以下を行います:
 
@@ -38,7 +38,7 @@ FastAPIはこの戻り値の型を使って以下を行います:
 * `@app.delete()`
 * など。
 
-{* ../../docs_src/response_model/tutorial001_py310.py hl[17,22,24:27] *}
+{* ../../docs_src/response_model/tutorial001.py hl[17,22,24:27] *}
 
 /// note | 備考
 
@@ -70,7 +70,7 @@ FastAPIはこの `response_model` を使って、データのドキュメント�
 
 ここでは `UserIn` モデルを宣言しています。これには平文のパスワードが含まれます:
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
+{* ../../docs_src/response_model/tutorial002.py hl[7,9] *}
 
 /// note | 備考
 
@@ -92,7 +92,7 @@ $ uv add "pydantic[email]"
 
 そして、このモデルを使用して入力を宣言し、同じモデルを使って出力を宣言しています:
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[16] *}
+{* ../../docs_src/response_model/tutorial002.py hl[16] *}
 
 これで、ブラウザがパスワードを使ってユーザーを作成する際に、APIがレスポンスで同じパスワードを返すようになりました。
 
@@ -110,15 +110,15 @@ $ uv add "pydantic[email]"
 
 代わりに、平文のパスワードを持つ入力モデルと、パスワードを持たない出力モデルを作成できます:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[9,11,16] *}
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 ここでは、*path operation 関数*がパスワードを含む同じ入力ユーザーを返しているにもかかわらず:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...`response_model`を、パスワードを含まない `UserOut` モデルとして宣言しました:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 そのため、**FastAPI** は出力モデルで宣言されていないすべてのデータをフィルタリングしてくれます（Pydanticを使用）。
 
@@ -142,7 +142,7 @@ FastAPIにはレスポンスモデルを使用してデータを**フィルタ�
 
 そのような場合、クラスと継承を利用して関数の**型アノテーション**を活用し、エディタやツールのサポートを改善しつつ、FastAPIの**データフィルタリング**も得られます。
 
-{* ../../docs_src/response_model/tutorial003_01_py310.py hl[7:10,13:14,18] *}
+{* ../../docs_src/response_model/tutorial003_01.py hl[7:10,13:14,18] *}
 
 これにより、このコードは型として正しいためエディタやmypyからのツール支援を得られますし、FastAPIによるデータフィルタリングも得られます。
 
@@ -184,7 +184,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 最も一般的なケースは、[高度なドキュメントで後述する「Responseを直接返す」](../advanced/response-directly.md)場合です。
 
-{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
 
 このシンプルなケースは、戻り値の型アノテーションが `Response` のクラス（またはサブクラス）であるため、FastAPIが自動的に処理します。
 
@@ -194,7 +194,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 型アノテーションで `Response` のサブクラスを使うこともできます:
 
-{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
 
 これは `RedirectResponse` が `Response` のサブクラスであり、FastAPIがこのシンプルなケースを自動処理するため、同様に動作します。
 
@@ -204,7 +204,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 同様に、<dfn title="複数の型のユニオンは「これらの型のいずれか」を意味します。">ユニオン</dfn>のように、複数の型のうち1つ以上がPydantic型として有効でないものを含む場合も起こります。例えば次は失敗します 💥:
 
-{* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
+{* ../../docs_src/response_model/tutorial003_04.py hl[8] *}
 
 ...これは、型アノテーションがPydantic型ではなく、単一の `Response` クラス（またはサブクラス）でもないために失敗します。`Response` と `dict` の間のunion（どちらか）になっているからです。
 
@@ -216,7 +216,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 その場合、`response_model=None` を設定することでレスポンスモデルの生成を無効にできます:
 
-{* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
+{* ../../docs_src/response_model/tutorial003_05.py hl[7] *}
 
 これによりFastAPIはレスポンスモデル生成をスキップし、FastAPIアプリケーションに影響させずに必要な戻り値の型アノテーションを付けられます。🤓
 
@@ -224,7 +224,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 レスポンスモデルには次のようにデフォルト値を設定できます:
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[9,11:12] *}
+{* ../../docs_src/response_model/tutorial004.py hl[9,11:12] *}
 
 * `description: Union[str, None] = None`（またはPython 3.10では `str | None = None`）はデフォルトが `None` です。
 * `tax: float = 10.5` はデフォルトが `10.5` です。
@@ -238,7 +238,7 @@ Pydanticフィールドとして有効ではないものを返し、ツール（
 
 *path operation デコレータ*のパラメータ `response_model_exclude_unset=True` を設定できます:
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial004.py hl[22] *}
 
 そうすると、デフォルト値はレスポンスに含まれず、実際に設定された値のみが含まれます。
 
@@ -325,7 +325,7 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）�
 
 ///
 
-{* ../../docs_src/response_model/tutorial005_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial005.py hl[29,35] *}
 
 /// tip | 豆知識
 
@@ -339,7 +339,7 @@ FastAPIは十分に賢いので（実際には、Pydanticが十分に賢い）�
 
 もし `set` を使用することを忘れて、代わりに `list` や `tuple` を使用しても、FastAPIはそれを `set` に変換して正しく動作します:
 
-{* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial006.py hl[29,35] *}
 
 ## まとめ { #recap }
 

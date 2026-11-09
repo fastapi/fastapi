@@ -36,7 +36,7 @@ npm run build
 
 そして `app.frontend()` で配信します。
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 これにより、`/assets/app.js` へのリクエストで `dist/assets/app.js` を配信できます。
 
@@ -50,7 +50,7 @@ npm run build
 
 そのためには、`fallback="index.html"` を使います。
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI** は、このフォールバックを、通常のブラウザナビゲーションリクエストのように `Accept: text/html` または `Accept: application/xhtml+xml` で明示的に HTML を受け付ける `GET` および `HEAD` リクエストにのみ使用します。JavaScript、CSS、画像などの存在しないファイルは引き続き `404` を返します。
 
@@ -68,7 +68,7 @@ npm run build
 
 存在しないフロントエンドパスに対して、静的な `404.html` ページを配信することもできます。
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 そのレスポンスはステータスコード `404` を保持します。
 
@@ -94,13 +94,13 @@ npm run build
 
 そのため、ほとんどの場合、`fallback` 引数を指定せずに `app.frontend("/", directory="dist")` を使用できます。
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## フォールバックの無効化 { #disable-fallback }
 
 存在しないフロントエンドパスに対してフォールバックファイルを配信したくない場合は、`fallback=None` を使います。
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 すると、存在しないフロントエンドパスは通常の `404` を返します。
 
@@ -116,7 +116,7 @@ npm run build
 
 フロントエンドファイルが後で作成される場合、たとえばアプリオブジェクトの作成後に別のビルドステップで作成される場合は、`check_dir=False` を設定します。
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 `check_dir=False` を指定すると、**FastAPI** はアプリ作成時にディレクトリをチェックしません。リクエストが処理される時点で設定されたディレクトリがまだ存在しない場合、**FastAPI** はその時点でエラーを発生させます。
 
@@ -124,7 +124,7 @@ npm run build
 
 フロントエンドファイルを `APIRouter` に追加し、prefix 付きで include することもできます。
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 この例では、フロントエンドのパスは `/app` 配下で配信されます。
 

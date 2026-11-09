@@ -20,7 +20,7 @@
 
 必要な複数の**クッキー**パラメータを**Pydanticモデル**で宣言し、さらに、パラメータを `Cookie` として宣言しましょう:
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI**は、リクエストで受け取った**クッキー**から**それぞれのフィールド**のデータを**抽出**し、定義したPydanticモデルを提供します。
 
@@ -50,7 +50,7 @@
 
 Pydanticのモデルの Configuration を利用して、 `extra` フィールドを `forbid` とすることができます。
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 もしクライアントが**余分なクッキー**を送ろうとすると、**エラー**レスポンスが返されます。
 
@@ -81,7 +81,7 @@ Pydanticのモデルの Configuration を利用して、 `extra` フィールド
 
 クッキーパラメータモデルに `| None` とデフォルト値 `None` を指定して宣言すると、グループを任意にできます。
 
-{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
 
 `theme` も `locale` も送信されない場合、`preferences` は `None` になります。どちらかが送信されると、FastAPIはモデルをバリデーションし、両方のフィールドを必須とします。
 

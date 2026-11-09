@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 `fastapi` से `Form` import करें:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## `Form` parameters परिभाषित करें { #define-form-parameters }
 
 form parameters उसी तरह बनाएं जैसे आप `Body` या `Query` के लिए बनाते:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 उदाहरण के लिए, OAuth2 specification का उपयोग जिन तरीकों से किया जा सकता है उनमें से एक में (जिसे "password flow" कहा जाता है) `username` और `password` को form fields के रूप में भेजना required है।
 
@@ -48,7 +48,7 @@ form bodies declare करने के लिए, आपको स्पष्�
 
 HTML forms submit करते समय browsers unchecked checkboxes को छोड़ देते हैं। unchecked होने पर `False` प्राप्त करने के लिए `False` default वाला boolean form parameter declare करें:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 एक checked checkbox अपनी value भेजता है, जो default रूप से `"on"` होती है। **FastAPI** `"on"` को `True` के रूप में स्वीकार करता है।
 

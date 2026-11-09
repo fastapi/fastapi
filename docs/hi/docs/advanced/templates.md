@@ -31,7 +31,7 @@ $ uv add jinja2
 * उस *path operation* में एक `Request` parameter declare करें जो एक template return करेगा।
 * आपने जो `templates` बनाया है, उसका उपयोग करके एक `TemplateResponse` render और return करें; template का नाम, request object, और key-value pairs वाली एक "context" dictionary pass करें, जिनका उपयोग Jinja2 template के अंदर किया जाएगा।
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | नोट
 
@@ -113,7 +113,7 @@ Item ID: 42
 
 Template का नाम `TemplateResponse` को pass करें:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 उसी उदाहरण में, item का link इस तरह render होगा:
 

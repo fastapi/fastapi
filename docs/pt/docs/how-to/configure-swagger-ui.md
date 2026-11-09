@@ -19,7 +19,7 @@ Sem alterar as configurações, o destaque de sintaxe é habilitado por padrão:
 
 Mas você pode desabilitá-lo definindo `syntaxHighlight` como `False`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
 ...e então o Swagger UI não mostrará mais o destaque de sintaxe:
 
@@ -29,7 +29,7 @@ Mas você pode desabilitá-lo definindo `syntaxHighlight` como `False`:
 
 Da mesma forma que você pode definir o tema de destaque de sintaxe com a chave `"syntaxHighlight.theme"` (observe que há um ponto no meio):
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
 Essa configuração alteraria o tema de cores de destaque de sintaxe:
 
@@ -47,7 +47,7 @@ Você pode substituir qualquer um deles definindo um valor diferente no argument
 
 Por exemplo, para desabilitar `deepLinking` você pode passar essas configurações para `swagger_ui_parameters`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
 ## Outros parâmetros da UI do Swagger { #other-swagger-ui-parameters }
 

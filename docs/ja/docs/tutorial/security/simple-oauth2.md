@@ -52,7 +52,7 @@ OAuth2 にとっては単なる文字列です。
 
 まず、`OAuth2PasswordRequestForm` をインポートし、`/token` の *path operation* に `Depends` で依存関係として使います:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` は次のフォームボディを宣言するクラス依存関係です:
 
@@ -100,7 +100,7 @@ OAuth2 の仕様では、固定値 `password` を持つフィールド `grant_ty
 
 エラーには `HTTPException` 例外を使います:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### パスワードのチェック { #check-the-password }
 
@@ -126,7 +126,7 @@ OAuth2 の仕様では、固定値 `password` を持つフィールド `grant_ty
 
 したがって、盗んだ側は同じパスワードを別のシステムで試すことができません（多くのユーザーがあらゆる場所で同じパスワードを使っているため、これは危険になり得ます）。
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### `**user_dict` について { #about-user-dict }
 
@@ -168,7 +168,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | 豆知識
 
@@ -194,7 +194,7 @@ UserInDB(
 
 したがって、エンドポイントでは、ユーザーが存在し、正しく認証され、かつアクティブである場合にのみ、ユーザーを取得します:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | 備考
 

@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 예를 들어, *경로 처리* `/items/`를 정의했다고 해봅시다:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 클라이언트가 `/items`로 접근하면, 기본적으로 `/items/`로 리디렉션됩니다.
 
@@ -113,7 +113,7 @@ sequenceDiagram
 
 코드는 모두 `/app`만 있다고 가정하고 작성되어 있는데도 말입니다.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 그리고 프록시는 요청을 서버로 전달하기 전에, 동적으로 **경로 접두사**를 **"제거"**합니다. 그래서 애플리케이션은 여전히 `/app`에서 서비스된다고 믿게 되고, 코드 전체를 `/api/v1` 접두사를 포함하도록 수정할 필요가 없어집니다.
 
@@ -187,7 +187,7 @@ ASGI 사양은 이 사용 사례를 위해 `root_path`를 정의합니다.
 
 여기서는 데모 목적을 위해 메시지에 포함하고 있습니다.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 그 다음 서버를 다음과 같이 시작하면:
 
@@ -371,7 +371,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 예를 들어, 동일한 `fastapi run --root-path /api/v1` 서버 설정을 사용하면:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 다음과 같은 OpenAPI 스키마를 생성합니다:
 
@@ -426,7 +426,7 @@ OpenAPI 사양에서 `servers` 속성은 선택 사항입니다.
 
 **FastAPI**가 `root_path`를 사용한 자동 server를 포함하지 않게 하려면, `root_path_in_servers=False` 파라미터를 사용할 수 있습니다:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 그러면 OpenAPI 스키마에 포함되지 않습니다.
 

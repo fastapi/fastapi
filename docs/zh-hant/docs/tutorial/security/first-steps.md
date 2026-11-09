@@ -20,7 +20,7 @@
 
 將範例複製到檔案 `main.py`：
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## 執行 { #run-it }
 
@@ -132,7 +132,7 @@ OAuth2 的設計讓後端或 API 可以獨立於執行使用者驗證的伺服�
 
 當我們建立 `OAuth2PasswordBearer` 類別的實例時，會傳入 `tokenUrl` 參數。這個參數包含了客戶端（在使用者瀏覽器中執行的前端）用來送出 `username` 與 `password` 以取得 token 的 URL。
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip
 
@@ -170,7 +170,7 @@ oauth2_scheme(some, parameters)
 
 現在你可以在相依性中傳入 `oauth2_scheme` 與 `Depends` 搭配。
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 此相依性會提供一個 `str`，指派給 *路徑操作函式* 的參數 `token`。
 

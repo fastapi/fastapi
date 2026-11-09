@@ -20,7 +20,7 @@ HTTP Basic 認証では、アプリケーションはユーザー名とパスワ
 - `HTTPBasicCredentials` 型のオブジェクトが返ります:
     - 送信された `username` と `password` を含みます。
 
-{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006.py hl[4,8,12] *}
 
 URL を最初に開こうとしたとき（またはドキュメントで「Execute」ボタンをクリックしたとき）、ブラウザはユーザー名とパスワードの入力を求めます:
 
@@ -40,7 +40,7 @@ URL を最初に開こうとしたとき（またはドキュメントで「Exec
 
 そのうえで、`secrets.compare_digest()` を使って、`credentials.username` が `"stanleyjobson"` であり、`credentials.password` が `"swordfish"` であることを確認します。
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007.py hl[1,12:24] *}
 
 これは次のようなコードに相当します:
 
@@ -106,4 +106,4 @@ if "stanleyjobsox" == "stanleyjobson" and "love123" == "swordfish":
 
 認証情報が不正であることを検出したら、ステータスコード 401（認証情報が提供されない場合と同じ）で `HTTPException` を返し、ブラウザに再度ログインプロンプトを表示させるためにヘッダー `WWW-Authenticate` を追加します:
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007.py hl[26:30] *}

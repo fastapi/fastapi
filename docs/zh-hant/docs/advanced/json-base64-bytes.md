@@ -16,7 +16,7 @@ Base64 可以把二進位資料編碼成字串，但為此會使用比原始二�
 
 你可以宣告含有 `bytes` 欄位的 Pydantic 模型，並在模型設定中使用 `val_json_bytes`，使其在*驗證*輸入的 JSON 資料時使用 base64；在驗證過程中，它會將 base64 字串解碼為位元組。
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:9,29:35] hl[9] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:9,29:35] hl[9] *}
 
 如果你查看 `/docs`，會看到欄位 `data` 需要 base64 編碼的位元組：
 
@@ -54,10 +54,10 @@ Base64 可以把二進位資料編碼成字串，但為此會使用比原始二�
 
 你也可以在模型設定中搭配 `ser_json_bytes` 使用 `bytes` 欄位來處理輸出資料；當產生 JSON 回應時，Pydantic 會將位元組以 base64 進行*序列化*。
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:2,12:16,29,38:41] hl[16] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:2,12:16,29,38:41] hl[16] *}
 
 ## Pydantic `bytes` 用於輸入與輸出資料 { #pydantic-bytes-for-input-and-output-data }
 
 當然，你也可以使用同一個以 base64 設定的模型，同時處理接收與傳送 JSON 資料時的輸入（以 `val_json_bytes` *驗證*）與輸出（以 `ser_json_bytes` *序列化*）。
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:2,19:26,29,44:46] hl[23:26] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:2,19:26,29,44:46] hl[23:26] *}

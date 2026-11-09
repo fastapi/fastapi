@@ -30,7 +30,7 @@ Si vous déclarez une `response_class` avec un media type JSON (`application/jso
 
 En bref, si vous voulez la performance maximale, utilisez un [Modèle de réponse](../tutorial/response-model.md) et ne déclarez pas de `response_class` dans le décorateur de *chemin d'accès*.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
+{* ../../docs_src/response_model/tutorial001_01.py ln[15:17] hl[16] *}
 
 ## Réponse HTML { #html-response }
 
@@ -39,7 +39,7 @@ Pour renvoyer une réponse avec du HTML directement depuis **FastAPI**, utilisez
 - Importez `HTMLResponse`.
 - Passez `HTMLResponse` comme paramètre `response_class` de votre *décorateur de chemin d'accès*.
 
-{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// note | Remarque
 
@@ -57,7 +57,7 @@ Comme vu dans [Renvoyer une Response directement](response-directly.md), vous po
 
 Le même exemple ci-dessus, renvoyant une `HTMLResponse`, pourrait ressembler à :
 
-{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning | Alertes
 
@@ -81,7 +81,7 @@ Si vous voulez remplacer la réponse depuis l'intérieur de la fonction mais en 
 
 Par exemple, cela pourrait être quelque chose comme :
 
-{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 Dans cet exemple, la fonction `generate_html_response()` génère déjà et renvoie une `Response` au lieu de renvoyer le HTML dans une `str`.
 
@@ -120,7 +120,7 @@ Elle accepte les paramètres suivants :
 
 FastAPI (en fait Starlette) inclura automatiquement un en-tête Content-Length. Il inclura aussi un en-tête Content-Type, basé sur `media_type` et en ajoutant un charset pour les types textuels.
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -130,7 +130,7 @@ Prend du texte ou des octets et renvoie une réponse HTML, comme vous l'avez vu 
 
 Prend du texte ou des octets et renvoie une réponse en texte brut.
 
-{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -152,13 +152,13 @@ Renvoie une redirection HTTP. Utilise par défaut un code d'état 307 (Temporary
 
 Vous pouvez renvoyer directement une `RedirectResponse` :
 
-{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 Ou vous pouvez l'utiliser dans le paramètre `response_class` :
 
-{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 Si vous faites cela, vous pouvez alors renvoyer directement l'URL depuis votre *fonction de chemin d'accès*.
 
@@ -168,13 +168,13 @@ Dans ce cas, le `status_code` utilisé sera celui par défaut pour `RedirectResp
 
 Vous pouvez aussi utiliser le paramètre `status_code` combiné avec le paramètre `response_class` :
 
-{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 Prend un générateur async ou un générateur/itérateur normal (une fonction avec `yield`) et diffuse le corps de la réponse.
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+{* ../../docs_src/custom_response/tutorial007.py hl[3,16] *}
 
 /// note | Détails techniques
 
@@ -207,11 +207,11 @@ Prend un ensemble de paramètres différent à l'instanciation par rapport aux a
 
 Les réponses de type fichier incluront les en-têtes appropriés `Content-Length`, `Last-Modified` et `ETag`.
 
-{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 Vous pouvez aussi utiliser le paramètre `response_class` :
 
-{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 Dans ce cas, vous pouvez renvoyer directement le chemin du fichier depuis votre *fonction de chemin d'accès*.
 
@@ -225,7 +225,7 @@ Disons que vous voulez renvoyer du JSON indenté et formaté, donc vous voulez u
 
 Vous pourriez créer une `CustomORJSONResponse`. L'essentiel est de créer une méthode `Response.render(content)` qui renvoie le contenu en `bytes` :
 
-{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 Maintenant, au lieu de renvoyer :
 
@@ -259,7 +259,7 @@ Le paramètre qui le définit est `default_response_class`.
 
 Dans l'exemple ci-dessous, **FastAPI** utilisera `HTMLResponse` par défaut, dans tous les *chemins d'accès*, au lieu de JSON.
 
-{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip | Astuce
 

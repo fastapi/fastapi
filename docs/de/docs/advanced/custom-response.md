@@ -30,7 +30,7 @@ Wenn Sie eine `response_class` mit einem JSON-Medientyp (`application/json`) dek
 
 Kurz gesagt: Wenn Sie die maximale Leistung möchten, verwenden Sie ein [Responsemodell](../tutorial/response-model.md) und deklarieren Sie keine `response_class` im *Pfadoperation-Dekorator*.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
+{* ../../docs_src/response_model/tutorial001_01.py ln[15:17] hl[16] *}
 
 ## HTML-Response { #html-response }
 
@@ -39,7 +39,7 @@ Um eine Response mit HTML direkt von **FastAPI** zurückzugeben, verwenden Sie `
 * Importieren Sie `HTMLResponse`.
 * Übergeben Sie `HTMLResponse` als den Parameter `response_class` Ihres *Pfadoperation-Dekorators*.
 
-{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// note | Hinweis
 
@@ -57,7 +57,7 @@ Wie in [Eine Response direkt zurückgeben](response-directly.md) gezeigt, könne
 
 Das gleiche Beispiel von oben, das eine `HTMLResponse` zurückgibt, könnte so aussehen:
 
-{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning | Achtung
 
@@ -81,7 +81,7 @@ Die `response_class` wird dann nur zur Dokumentation der OpenAPI-*Pfadoperation*
 
 Es könnte zum Beispiel so etwas sein:
 
-{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 In diesem Beispiel generiert die Funktion `generate_html_response()` bereits eine `Response` und gibt sie zurück, anstatt das HTML in einem `str` zurückzugeben.
 
@@ -120,7 +120,7 @@ Sie akzeptiert die folgenden Parameter:
 
 FastAPI (eigentlich Starlette) fügt automatisch einen Content-Length-Header ein. Außerdem wird es einen Content-Type-Header einfügen, der auf dem `media_type` basiert, und für Texttypen einen Zeichensatz (charset) anfügen.
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -130,7 +130,7 @@ Nimmt Text oder Bytes entgegen und gibt eine HTML-Response zurück, wie Sie oben
 
 Nimmt Text oder Bytes entgegen und gibt eine Plain-Text-Response zurück.
 
-{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -152,14 +152,14 @@ Gibt eine HTTP-Weiterleitung (HTTP-Redirect) zurück. Verwendet standardmäßig 
 
 Sie können eine `RedirectResponse` direkt zurückgeben:
 
-{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 Oder Sie können sie im Parameter `response_class` verwenden:
 
 
-{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 Wenn Sie das tun, können Sie die URL direkt von Ihrer *Pfadoperation*-Funktion zurückgeben.
 
@@ -169,13 +169,13 @@ In diesem Fall ist der verwendete `status_code` der Standardcode für die `Redir
 
 Sie können den Parameter `status_code` auch in Kombination mit dem Parameter `response_class` verwenden:
 
-{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 Nimmt einen asynchronen Generator oder einen normalen Generator/Iterator (eine Funktion mit `yield`) und streamt den Responsebody.
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+{* ../../docs_src/custom_response/tutorial007.py hl[3,16] *}
 
 /// note | Technische Details
 
@@ -208,11 +208,11 @@ Nimmt zur Instanziierung einen anderen Satz von Argumenten entgegen als die ande
 
 Datei-Responses enthalten die entsprechenden `Content-Length`-, `Last-Modified`- und `ETag`-Header.
 
-{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 Sie können auch den Parameter `response_class` verwenden:
 
-{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 In diesem Fall können Sie den Dateipfad direkt von Ihrer *Pfadoperation*-Funktion zurückgeben.
 
@@ -226,7 +226,7 @@ Sie möchten etwa, dass Ihre Response eingerücktes und formatiertes JSON zurüc
 
 Sie könnten eine `CustomORJSONResponse` erstellen. Das Wichtigste, was Sie tun müssen, ist, eine `Response.render(content)`-Methode zu erstellen, die den Inhalt als `bytes` zurückgibt:
 
-{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 Anstatt Folgendes zurückzugeben:
 
@@ -260,7 +260,7 @@ Der Parameter, der das definiert, ist `default_response_class`.
 
 Im folgenden Beispiel verwendet **FastAPI** standardmäßig `HTMLResponse` in allen *Pfadoperationen*, anstelle von JSON.
 
-{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip | Tipp
 

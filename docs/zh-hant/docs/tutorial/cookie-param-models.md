@@ -20,7 +20,7 @@
 
 在 **Pydantic 模型**中宣告所需的 **Cookie** 參數，接著將參數宣告為 `Cookie`：
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI** 會從請求收到的 **Cookie** 中擷取 **每個欄位** 的資料，並交給你定義的 Pydantic 模型。
 
@@ -50,7 +50,7 @@
 
 你可以使用 Pydantic 的模型設定來 `forbid` 任何 `extra` 欄位：
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 如果客戶端嘗試送出**額外的 Cookie**，會收到**錯誤**回應。
 
@@ -81,7 +81,7 @@
 
 宣告 Cookie 參數模型時，使用 `| None` 並將預設值設為 `None`，即可讓整組參數變成可選。
 
-{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
 
 如果 `theme` 和 `locale` 都未送出，`preferences` 就是 `None`。如果送出了其中任一個，FastAPI 就會驗證模型，並要求提供這兩個欄位。
 

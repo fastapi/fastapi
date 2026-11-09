@@ -41,7 +41,7 @@
 
 对于这些情况，在将数据传递给响应之前，你可以使用 `jsonable_encoder` 来转换你的数据：
 
-{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
+{* ../../docs_src/response_directly/tutorial001.py hl[5:6,20:21] *}
 
 /// note | 技术细节
 
@@ -61,13 +61,13 @@
 
 你可以把你的 XML 内容放到一个字符串中，放到一个 `Response` 中，然后返回：
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## 响应模型如何工作 { #how-a-response-model-works }
 
 当你在路径操作中声明一个 [响应模型 - 返回类型](../tutorial/response-model.md) 时，**FastAPI** 会使用它通过 Pydantic 将数据序列化为 JSON。
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 由于这些工作会在 Rust 侧完成，性能将比在常规 Python 中配合 `JSONResponse` 类完成要好得多。
 

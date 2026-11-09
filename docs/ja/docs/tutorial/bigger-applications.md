@@ -85,7 +85,7 @@ from app.routers import items
 
 クラス `FastAPI` と同様にインポートし、「インスタンス」を作成します:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### `APIRouter` での *path operations* { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ from app.routers import items
 
 使い方は `FastAPI` クラスと同じです:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 `APIRouter` は「ミニ `FastAPI`」のようなクラスと考えられます。
 
@@ -117,7 +117,7 @@ from app.routers import items
 
 ここではカスタムヘッダー `X-Token` を読む簡単な依存関係を使います:
 
-{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | 豆知識
 
@@ -149,7 +149,7 @@ from app.routers import items
 
 そこで、各 *path operation* に個別に追加する代わりに、これらを `APIRouter` に追加できます。
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 各 *path operation* のパスは次のように `/` で始める必要があるため:
 
@@ -207,7 +207,7 @@ async def read_item(item_id: str): ...
 
 そこで、依存関係には `..` を使った相対インポートを使います:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### 相対インポートの仕組み { #how-relative-imports-work }
 
@@ -278,7 +278,7 @@ from ...dependencies import get_token_header
 
 しかし、特定の *path operation* に適用される _追加の_ `tags` や、その *path operation* 固有の追加の `responses` を加えることはできます:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | 豆知識
 
@@ -304,13 +304,13 @@ from ...dependencies import get_token_header
 
 さらに、各 `APIRouter` の依存関係と組み合わされる[グローバル依存関係](dependencies/global-dependencies.md)も宣言できます:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### `APIRouter` のインポート { #import-the-apirouter }
 
 次に、`APIRouter` を持つ他のサブモジュールをインポートします:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[4:5] title["app/main.py"] *}
 
 `app/routers/users.py` と `app/routers/items.py` は同じ Python パッケージ `app` のサブモジュールなので、1つのドット `.` を使った「相対インポート」でインポートできます。
 
@@ -373,13 +373,13 @@ from .routers.users import router
 
 同じファイルで両方を使えるようにするため、サブモジュールを直接インポートします:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[5] title["app/main.py"] *}
 
 ### `users` と `items` の `APIRouter` を取り込む { #include-the-apirouters-for-users-and-items }
 
 では、サブモジュール `users` と `items` から `router` を取り込みます:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[10:11] title["app/main.py"] *}
 
 /// note | 備考
 
@@ -419,13 +419,13 @@ FastAPI は、ルーターをメインアプリに取り込んだ後も、元の
 
 この例ではとてもシンプルですが、組織内の他プロジェクトと共有しているため、`APIRouter` 自体を直接変更して `prefix`、`dependencies`、`tags` などを追加できないとします:
 
-{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 それでも、`APIRouter` を取り込む際にカスタムの `prefix` を設定してすべての *path operations* を `/admin` で始めたい、既存の `dependencies` で保護したい、さらに `tags` と `responses` も含めたいとします。
 
 元の `APIRouter` を変更することなく、`app.include_router()` にこれらのパラメータを渡すことで宣言できます:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[14:17] title["app/main.py"] *}
 
 このようにすると、元の `APIRouter` は未変更のままなので、同じ `app/internal/admin.py` ファイルを組織内の他プロジェクトとも引き続き共有できます。
 
@@ -446,7 +446,7 @@ FastAPI は、ルーターをメインアプリに取り込んだ後も、元の
 
 ここでは（できることを示すためだけに）追加します 🤷:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[21:23] title["app/main.py"] *}
 
 そして、`app.include_router()` で追加したほかの *path operations* と一緒に正しく動作します。
 

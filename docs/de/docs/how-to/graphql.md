@@ -36,7 +36,7 @@ Abhängig von Ihrem Anwendungsfall könnten Sie eine andere Bibliothek vorziehen
 
 Hier ist eine kleine Vorschau, wie Sie Strawberry mit FastAPI integrieren können:
 
-{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
+{* ../../docs_src/graphql_/tutorial001.py hl[3,22,25] *}
 
 Weitere Informationen zu Strawberry finden Sie in der [Strawberry-Dokumentation](https://strawberry.rocks/).
 

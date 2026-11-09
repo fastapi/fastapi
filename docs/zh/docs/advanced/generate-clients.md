@@ -24,7 +24,7 @@ FastAPI 会自动生成 **OpenAPI 3.1** 规范，因此你使用的任何工具�
 
 先从一个简单的 FastAPI 应用开始：
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 请注意，这些*路径操作*使用 `Item` 和 `ResponseMessage` 模型来定义它们的请求载荷和响应载荷。
 
@@ -82,7 +82,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 例如，你可以有一个 **items** 相关的部分和另一个 **users** 相关的部分，它们可以用标签来分隔：
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### 生成带标签的 TypeScript 客户端 { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ FastAPI 为每个*路径操作*使用一个**唯一 ID**，它既用于**操作 
 
 然后你可以把这个自定义函数通过 `generate_unique_id_function` 参数传给 **FastAPI**：
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### 使用自定义操作 ID 生成 TypeScript 客户端 { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ FastAPI 为每个*路径操作*使用一个**唯一 ID**，它既用于**操作 
 
 我们可以把 OpenAPI JSON 下载到 `openapi.json` 文件中，然后用如下脚本**移除这个标签前缀**：
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

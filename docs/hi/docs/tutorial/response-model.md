@@ -4,7 +4,7 @@
 
 आप **type annotations** का उपयोग उसी तरह कर सकते हैं जैसे आप function **parameters** में input data के लिए करते हैं, आप Pydantic models, lists, dictionaries, scalar values जैसे integers, booleans, आदि का उपयोग कर सकते हैं।
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 FastAPI इस return type का उपयोग इनके लिए करेगा:
 
@@ -38,7 +38,7 @@ FastAPI इस return type का उपयोग इनके लिए कर�
 * `@app.delete()`
 * आदि।
 
-{* ../../docs_src/response_model/tutorial001_py310.py hl[17,22,24:27] *}
+{* ../../docs_src/response_model/tutorial001.py hl[17,22,24:27] *}
 
 /// note | नोट
 
@@ -70,7 +70,7 @@ FastAPI इस `response_model` का उपयोग सभी data documentat
 
 यहाँ हम एक `UserIn` model declare कर रहे हैं, इसमें plaintext password होगा:
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
+{* ../../docs_src/response_model/tutorial002.py hl[7,9] *}
 
 /// note | नोट
 
@@ -92,7 +92,7 @@ $ uv add "pydantic[email]"
 
 और हम इस model का उपयोग अपने input को declare करने और उसी model का उपयोग अपने output को declare करने के लिए कर रहे हैं:
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[16] *}
+{* ../../docs_src/response_model/tutorial002.py hl[16] *}
 
 अब, जब भी कोई browser password के साथ user बना रहा होगा, API response में वही password return करेगी।
 
@@ -110,15 +110,15 @@ $ uv add "pydantic[email]"
 
 इसके बजाय हम plaintext password के साथ एक input model और उसके बिना एक output model बना सकते हैं:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[9,11,16] *}
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 यहाँ, भले ही हमारा *path operation function* वही input user return कर रहा है जिसमें password शामिल है:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...हमने `response_model` को अपना model `UserOut` declare किया है, जिसमें password शामिल नहीं है:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 इसलिए, **FastAPI** output model में declare न किए गए सभी data को filter out करने का ध्यान रखेगा (Pydantic का उपयोग करके)।
 
@@ -142,7 +142,7 @@ $ uv add "pydantic[email]"
 
 और उन cases में, हम classes और inheritance का उपयोग करके function **type annotations** का लाभ उठा सकते हैं ताकि editor और tools में बेहतर support मिले, और फिर भी FastAPI **data filtering** मिल सके।
 
-{* ../../docs_src/response_model/tutorial003_01_py310.py hl[7:10,13:14,18] *}
+{* ../../docs_src/response_model/tutorial003_01.py hl[7:10,13:14,18] *}
 
 इसके साथ, हमें editors और mypy से tooling support मिलता है क्योंकि यह code types के संदर्भ में सही है, लेकिन हमें FastAPI से data filtering भी मिलती है।
 
@@ -184,7 +184,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 
 सबसे common case होगा [advanced docs में बाद में समझाए अनुसार सीधे Response return करना](../advanced/response-directly.md)।
 
-{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
 
 यह simple case FastAPI द्वारा automatically handle किया जाता है क्योंकि return type annotation `Response` class (या उसका subclass) है।
 
@@ -194,7 +194,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 
 आप type annotation में `Response` के subclass का भी उपयोग कर सकते हैं:
 
-{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
 
 यह भी काम करेगा क्योंकि `RedirectResponse`, `Response` का subclass है, और FastAPI इस simple case को automatically handle करेगा।
 
@@ -204,7 +204,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 
 ऐसा ही होगा अगर आपके पास अलग-अलग types के बीच <dfn title='कई types के बीच union का मतलब है "इनमें से कोई भी type".'>union</dfn> जैसा कुछ हो जहाँ उनमें से एक या अधिक valid Pydantic types नहीं हैं, उदाहरण के लिए यह fail होगा 💥:
 
-{* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
+{* ../../docs_src/response_model/tutorial003_04.py hl[8] *}
 
 ...यह fail होता है क्योंकि type annotation Pydantic type नहीं है और केवल एक single `Response` class या subclass भी नहीं है, यह `Response` और `dict` के बीच union (दोनों में से कोई भी) है।
 
@@ -216,7 +216,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 
 इस case में, आप `response_model=None` set करके response model generation disable कर सकते हैं:
 
-{* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
+{* ../../docs_src/response_model/tutorial003_05.py hl[7] *}
 
 इससे FastAPI response model generation skip कर देगा और इस तरह आप अपनी जरूरत के किसी भी return type annotations का उपयोग कर सकते हैं, बिना इसके कि वह आपकी FastAPI application को प्रभावित करे। 🤓
 
@@ -224,7 +224,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 
 आपके response model में default values हो सकते हैं, जैसे:
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[9,11:12] *}
+{* ../../docs_src/response_model/tutorial004.py hl[9,11:12] *}
 
 * `description: Union[str, None] = None` (या Python 3.10 में `str | None = None`) का default `None` है।
 * `tax: float = 10.5` का default `10.5` है।
@@ -238,7 +238,7 @@ FastAPI internally Pydantic के साथ कई चीज़ें करत
 
 आप *path operation decorator* parameter `response_model_exclude_unset=True` set कर सकते हैं:
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial004.py hl[22] *}
 
 और वे default values response में शामिल नहीं होंगे, केवल वास्तव में set किए गए values ही शामिल होंगे।
 
@@ -325,7 +325,7 @@ FastAPI इतना smart है (दरअसल, Pydantic इतना smart 
 
 ///
 
-{* ../../docs_src/response_model/tutorial005_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial005.py hl[29,35] *}
 
 /// tip | सुझाव
 
@@ -339,7 +339,7 @@ Syntax `{"name", "description"}` उन दो values के साथ एक `s
 
 अगर आप `set` का उपयोग करना भूल जाते हैं और इसके बजाय `list` या `tuple` का उपयोग करते हैं, तो FastAPI फिर भी उसे `set` में convert कर देगा और यह सही तरह काम करेगा:
 
-{* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial006.py hl[29,35] *}
 
 ## Recap { #recap }
 

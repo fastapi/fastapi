@@ -24,7 +24,7 @@ Ceci est pris en charge depuis la version `0.113.0` de FastAPI. 🤓
 
 Vous avez simplement besoin de déclarer un **modèle Pydantic** avec les champs que vous souhaitez recevoir comme **champs de formulaire**, puis de déclarer le paramètre comme `Form` :
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI** va **extraire** les données pour **chaque champ** à partir des **données de formulaire** de la requête et vous fournir le modèle Pydantic que vous avez défini.
 
@@ -50,7 +50,7 @@ Ceci est pris en charge depuis la version `0.114.0` de FastAPI. 🤓
 
 Vous pouvez utiliser la configuration du modèle Pydantic pour `forbid` tout champ `extra` :
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 Si un client tente d'envoyer des données supplémentaires, il recevra une **réponse d'erreur**.
 
@@ -79,7 +79,7 @@ Il recevra une réponse d'erreur lui indiquant que le champ `extra` n'est pas au
 
 Vous pouvez combiner plusieurs modèles de formulaire avec des paramètres `Form` individuels.
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 Le client envoie `name`, `tags` et `token` comme champs de formulaire. Chaque modèle valide les champs de formulaire indépendamment.
 
@@ -91,7 +91,7 @@ Si plusieurs déclarations utilisent le même nom de champ de formulaire, chacun
 
 Déclarez un modèle de formulaire avec `| None` et une valeur par défaut de `None` pour rendre le groupe optionnel.
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 Si ni `name` ni `age` ne sont envoyés, `profile` vaut `None`. Si l'un des deux est envoyé, FastAPI valide le modèle et exige les deux champs. Une valeur vide soumise compte également comme un champ fourni.
 
@@ -105,7 +105,7 @@ Un modèle optionnel ne contenant que des cases à cocher non cochées est omis.
 
 Vous pouvez également utiliser une union optionnelle de modèles.
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 Si aucun champ de formulaire n'est envoyé, `contact` vaut `None`. Envoyez `kind=person` avec `name`, ou `kind=company` avec `company_name`. Le discriminateur sélectionne le modèle à valider.
 
@@ -113,7 +113,7 @@ Si aucun champ de formulaire n'est envoyé, `contact` vaut `None`. Envoyez `kind
 
 Vous pouvez combiner des unions avec d'autres modèles de formulaire, des paramètres `Form` individuels et des paramètres `File`. Chaque union est validée indépendamment.
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 Envoyez tous les champs dans le même formulaire. Par exemple, envoyez `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com` et `token=secret`.
 
@@ -123,7 +123,7 @@ Omettez les champs de notification pour laisser `notification` à `None`.
 
 Vous pouvez également combiner un modèle de formulaire avec des [paramètres de fichier](request-files.md).
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 Ici, le client envoie le champ `name` et le fichier `avatar` en utilisant `multipart/form-data`.
 

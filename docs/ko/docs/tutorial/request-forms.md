@@ -19,13 +19,13 @@ $ uv add python-multipart
 
 `fastapi`에서 `Form`을 임포트합니다:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## `Form` 매개변수 정의하기 { #define-form-parameters }
 
 `Body` 또는 `Query`와 동일한 방식으로 폼 매개변수를 만듭니다:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 예를 들어, OAuth2 사양을 사용할 수 있는 방법 중 하나("패스워드 플로우"라고 함)로 `username`과 `password`를 폼 필드로 보내야 합니다.
 
@@ -49,7 +49,7 @@ $ uv add python-multipart
 
 브라우저는 HTML 폼을 전송할 때 선택하지 않은 체크박스를 생략합니다. 선택하지 않았을 때 `False`를 받으려면, 기본값이 `False`인 불리언 폼 매개변수를 선언하세요:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 선택한 체크박스는 자신의 값을 전송하며, 기본값은 `"on"`입니다. **FastAPI**는 `"on"`을 `True`로 처리합니다.
 

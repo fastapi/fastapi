@@ -18,7 +18,7 @@ FastAPI 會把這些設定轉換成 **JSON**，以便與 JavaScript 相容，因
 
 但你可以將 `syntaxHighlight` 設為 `False` 來停用它：
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
 ...然後 Swagger UI 就不會再顯示語法醒目提示：
 
@@ -28,7 +28,7 @@ FastAPI 會把這些設定轉換成 **JSON**，以便與 JavaScript 相容，因
 
 同樣地，你可以用鍵 `"syntaxHighlight.theme"` 設定語法醒目提示主題（注意中間有一個點）：
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
 這個設定會變更語法醒目提示的配色主題：
 
@@ -46,7 +46,7 @@ FastAPI 內建一些預設參數，適用於大多數情境。
 
 例如，要停用 `deepLinking`，可以在 `swagger_ui_parameters` 傳入以下設定：
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
 ## 其他 Swagger UI 參數 { #other-swagger-ui-parameters }
 

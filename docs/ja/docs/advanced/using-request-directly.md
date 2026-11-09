@@ -29,7 +29,7 @@
 
 そのためには、リクエストに直接アクセスする必要があります。
 
-{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 *path operation 関数*の引数として `Request` 型のパラメータを宣言すると、**FastAPI** はその引数に `Request` を渡します。
 

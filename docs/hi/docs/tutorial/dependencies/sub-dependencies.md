@@ -10,7 +10,7 @@
 
 आप पहली dependency ("dependable") इस तरह बना सकते हैं:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 यह एक optional query parameter `q` को `str` के रूप में declare करता है, और फिर बस उसे return करता है।
 
@@ -20,7 +20,7 @@
 
 फिर आप एक और dependency function (एक "dependable") बना सकते हैं जो उसी समय अपनी खुद की dependency declare करता है (इसलिए यह एक "dependant" भी है):
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 आइए declared parameters पर ध्यान दें:
 
@@ -33,7 +33,7 @@
 
 फिर हम dependency का उपयोग इस तरह कर सकते हैं:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | नोट
 

@@ -20,7 +20,7 @@
 
 और फिर आप उस *temporary* response object में `status_code` सेट कर सकते हैं।
 
-{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
 और फिर आप अपनी ज़रूरत का कोई भी object लौटा सकते हैं, जैसा कि आप सामान्य रूप से करते हैं (एक `dict`, एक database model, आदि)।
 

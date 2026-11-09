@@ -31,7 +31,7 @@ $ uv add jinja2
 * Deklarieren Sie einen `<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>`-Parameter in der *Pfadoperation*, welcher ein Template zurückgibt.
 * Verwenden Sie die von Ihnen erstellten `templates`, um eine `TemplateResponse` zu rendern und zurückzugeben, übergeben Sie den Namen des Templates, das Requestobjekt und ein „Kontext“-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Schlüssel-Wert-Paaren, die innerhalb des Jinja2-Templates verwendet werden sollen.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Hinweis
 
@@ -113,7 +113,7 @@ Für Links zur selben Website können Sie das Attribut `.path` verwenden, um nur
 
 Übergeben Sie den Namen des Templates an `TemplateResponse`:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 Im selben Beispiel würde der Link zum Item wie folgt gerendert werden:
 

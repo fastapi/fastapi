@@ -38,13 +38,13 @@ production में आपके पास ऊपर दिए गए विक
 
 लेकिन WebSockets के server-side पर ध्यान केंद्रित करने और एक working उदाहरण पाने का यह सबसे सरल तरीका है:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[2,6:38,41:43] *}
 
 ## एक `websocket` बनाएँ { #create-a-websocket }
 
 अपने **FastAPI** application में, एक `websocket` बनाएँ:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[1,46:47] *}
 
 /// note | तकनीकी विवरण
 
@@ -58,7 +58,7 @@ production में आपके पास ऊपर दिए गए विक
 
 अपने WebSocket route में आप messages के लिए `await` कर सकते हैं और messages भेज सकते हैं।
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[48:52] *}
 
 आप binary, text, और JSON data receive और send कर सकते हैं।
 
@@ -109,7 +109,7 @@ WebSocket endpoints में आप `fastapi` से import कर सकते
 
 वे अन्य FastAPI endpoints/*path operations* की तरह ही काम करते हैं:
 
-{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002.py hl[68:69,82] *}
 
 /// note | नोट
 
@@ -154,7 +154,7 @@ $ uv run fastapi dev
 
 जब WebSocket connection बंद होता है, तो `await websocket.receive_text()` एक `WebSocketDisconnect` exception raise करेगा, जिसे आप इस उदाहरण की तरह catch और handle कर सकते हैं।
 
-{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003.py hl[79:81] *}
 
 इसे आज़माने के लिए:
 

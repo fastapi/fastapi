@@ -31,7 +31,7 @@
 
 Эта часть вполне обычна, большая часть кода вам уже знакома:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | Совет
 
@@ -90,7 +90,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 Сначала создайте новый `APIRouter`, который будет содержать один или несколько обратных вызовов.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Создайте *операцию пути* для обратного вызова { #create-the-callback-path-operation }
 
@@ -101,7 +101,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * Вероятно, в ней должно быть объявление тела запроса, например `body: InvoiceEvent`.
 * А также может быть объявление HTTP-ответа, который она должна возвращать, например `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 Есть 2 основных отличия от обычной *операции пути*:
 
@@ -169,7 +169,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 Теперь используйте параметр `callbacks` в *декораторе операции пути вашего API*, чтобы передать атрибут `.routes` из этого роутера обратных вызовов:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | Совет
 

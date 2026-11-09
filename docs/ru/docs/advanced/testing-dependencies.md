@@ -28,7 +28,7 @@
 
 Тогда **FastAPI** будет вызывать это переопределение вместо исходной зависимости.
 
-{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
 /// tip | Совет
 

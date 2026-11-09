@@ -20,7 +20,7 @@
 
 जिन **cookie** parameters की आपको ज़रूरत है, उन्हें एक **Pydantic model** में declare करें, और फिर parameter को `Cookie` के रूप में declare करें:
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI** request में प्राप्त **cookies** से **हर field** के लिए data **extract** करेगा और आपको वह Pydantic model देगा जिसे आपने define किया है।
 
@@ -50,7 +50,7 @@
 
 आप Pydantic के model configuration का उपयोग करके किसी भी `extra` fields को `forbid` कर सकते हैं:
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 अगर कोई client कुछ **extra cookies** भेजने की कोशिश करता है, तो उन्हें एक **error** response मिलेगा।
 
@@ -81,7 +81,7 @@
 
 समूह को वैकल्पिक बनाने के लिए cookie parameter model को `| None` और `None` की default value के साथ declare करें।
 
-{* ../../docs_src/cookie_param_models/tutorial003_an_py310.py hl[15] *}
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
 
 अगर न तो `theme` और न ही `locale` भेजा जाता है, तो `preferences` की value `None` होती है। अगर इनमें से कोई भी भेजा जाता है, तो FastAPI model को validate करता है और दोनों fields को required मानता है।
 

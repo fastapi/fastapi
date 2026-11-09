@@ -29,7 +29,7 @@ Imaginons que vous souhaitiez obtenir l'adresse IP/l'hôte du client dans votre 
 
 Pour cela, vous devez accéder directement à la requête.
 
-{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 En déclarant un paramètre de *fonction de chemin d'accès* de type `Request`, **FastAPI** saura passer la `Request` dans ce paramètre.
 

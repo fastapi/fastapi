@@ -55,8 +55,8 @@ Aqui estão alguns dos tipos de dados adicionais que você pode usar:
 
 Aqui está um exemplo de *operação de rota* com parâmetros utilizando-se de alguns dos tipos acima.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Note que os parâmetros dentro da função têm seu tipo de dados natural, e você pode, por exemplo, realizar manipulações normais de data, como:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

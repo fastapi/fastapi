@@ -2,7 +2,7 @@
 
 Fonksiyonda path parametrelerinin parçası olmayan diğer parametreleri tanımladığınızda, bunlar otomatik olarak "query" parametreleri olarak yorumlanır.
 
-{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 Query, bir URL'de `?` işaretinden sonra gelen ve `&` karakterleriyle ayrılan anahtar-değer çiftlerinin kümesidir.
 
@@ -61,7 +61,7 @@ Fonksiyonunuzdaki parametre değerleri şöyle olacaktır:
 
 Aynı şekilde, varsayılan değerlerini `None` yaparak isteğe bağlı query parametreleri tanımlayabilirsiniz:
 
-{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial002.py hl[7] *}
 
 Bu durumda, fonksiyon parametresi `q` isteğe bağlı olur ve varsayılan olarak `None` olur.
 
@@ -75,7 +75,7 @@ Ayrıca, **FastAPI** path parametresi olan `item_id`'nin bir path parametresi ol
 
 `bool` tipleri de tanımlayabilirsiniz, ve bunlar dönüştürülür:
 
-{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial003.py hl[7] *}
 
 Bu durumda, şuraya giderseniz:
 
@@ -124,7 +124,7 @@ Ayrıca bunları belirli bir sırayla tanımlamanız gerekmez.
 
 İsme göre tespit edilirler:
 
-{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
+{* ../../docs_src/query_params/tutorial004.py hl[6,8] *}
 
 ## Zorunlu query parametreleri { #required-query-parameters }
 
@@ -134,7 +134,7 @@ Belirli bir değer eklemek istemiyor ama sadece opsiyonel olmasını istiyorsan�
 
 Ancak bir query parametresini zorunlu yapmak istediğinizde, herhangi bir varsayılan değer tanımlamamanız yeterlidir:
 
-{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 Burada query parametresi `needy`, `str` tipinde zorunlu bir query parametresidir.
 
@@ -179,7 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 Ve elbette, bazı parametreleri zorunlu, bazılarını varsayılan değerli, bazılarını da tamamen isteğe bağlı olarak tanımlayabilirsiniz:
 
-{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
+{* ../../docs_src/query_params/tutorial006.py hl[8] *}
 
 Bu durumda, 3 tane query parametresi vardır:
 

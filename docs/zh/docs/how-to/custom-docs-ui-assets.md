@@ -18,7 +18,7 @@ API 文档使用 Swagger UI 和 ReDoc，它们各自需要一些 JavaScript 和 
 
 要关闭它们，在创建 `FastAPI` 应用时将其 URL 设为 `None`：
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### 包含自定义文档 { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ API 文档使用 Swagger UI 和 ReDoc，它们各自需要一些 JavaScript 和 
 
 ReDoc 也类似...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | 提示
 
@@ -50,7 +50,7 @@ Swagger UI 会在幕后为你处理这些，但它需要这个“重定向”辅
 
 现在，为了测试一切是否正常，创建一个*路径操作*：
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
 ### 测试 { #test-it }
 
@@ -118,7 +118,7 @@ Swagger UI 使用以下文件：
 - 导入 `StaticFiles`。
 - 在特定路径上“挂载”一个 `StaticFiles()` 实例。
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### 测试静态文件 { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Swagger UI 使用以下文件：
 
 要关闭它们，在创建 `FastAPI` 应用时将其 URL 设为 `None`：
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### 为静态文件包含自定义文档 { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Swagger UI 使用以下文件：
 
 ReDoc 也类似...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | 提示
 
@@ -176,7 +176,7 @@ Swagger UI 会在幕后为你处理这些，但它需要这个“重定向”辅
 
 现在，为了测试一切是否正常，创建一个*路径操作*：
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
 ### 测试静态文件 UI { #test-static-files-ui }
 

@@ -6,7 +6,7 @@ Da mesma forma que você pode declarar validações adicionais e metadados nos p
 
 Primeiro, você tem que importá-lo:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
 
 
 /// warning | Atenção
@@ -19,7 +19,7 @@ Note que `Field` é importado diretamente do `pydantic`, não do `fastapi` como 
 
 Você pode então utilizar `Field` com atributos do modelo:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field` funciona da mesma forma que `Query`, `Path` e `Body`, ele possui todos os mesmos parâmetros, etc.
 
