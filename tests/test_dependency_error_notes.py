@@ -1,5 +1,6 @@
 import inspect
 import sys
+import traceback
 from typing import Annotated, Any
 
 import pytest
@@ -58,6 +59,29 @@ def test_nested_dependency_error_notes_show_the_chain() -> None:
         f"While analyzing {located(read_me)}",
         "While creating the path operation GET /tenants/{tenant_id}/me",
     ]
+
+
+@needs_notes
+def test_error_notes_are_visible_in_the_traceback() -> None:
+    app = FastAPI()
+
+    def read_me(user=Depends(get_user)):
+        return user  # pragma: no cover
+
+    with pytest.raises(AssertionError) as exc_info:
+        app.get("/tenants/{tenant_id}/me")(read_me)
+
+    # What a developer sees at the end of the traceback when the app starts.
+    output = "".join(traceback.format_exception(exc_info.value))
+    assert output.endswith(
+        "AssertionError: Path params must be of one of the supported types\n"
+        f"While analyzing {located(get_tenant)}, "
+        "the dependency for the parameter 'tenant'\n"
+        f"While analyzing {located(get_user)}, "
+        "the dependency for the parameter 'user'\n"
+        f"While analyzing {located(read_me)}\n"
+        "While creating the path operation GET /tenants/{tenant_id}/me\n"
+    )
 
 
 @needs_notes
