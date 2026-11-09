@@ -58,6 +58,7 @@ from fastapi.dependencies.models import (
 )
 from fastapi.dependencies.utils import (
     SolvedDependency,
+    _add_error_note,
     _get_body_field,
     _get_flat_body_params,
     _should_embed_body_fields,
@@ -874,6 +875,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
             path=self.path_format,
             call=self.endpoint,
             dependencies=self.dependencies,
+            route_description=f"the WebSocket route {self.path_format}",
         )
         self.app = websocket_session(
             get_websocket_app(
@@ -910,13 +912,19 @@ def _build_dependant_with_parameterless_dependencies(
     path: str,
     call: Callable[..., Any],
     dependencies: Sequence[params.Depends],
+    route_description: str | None = None,
 ) -> tuple[Dependant, list[ModelField], bool]:
-    dependant = get_dependant(path=path, call=call, scope="function")
-    for depends in dependencies[::-1]:
-        dependant.dependencies.insert(
-            0,
-            get_parameterless_sub_dependant(depends=depends, path=path),
-        )
+    try:
+        dependant = get_dependant(path=path, call=call, scope="function")
+        for depends in dependencies[::-1]:
+            dependant.dependencies.insert(
+                0,
+                get_parameterless_sub_dependant(depends=depends, path=path),
+            )
+    except Exception as error:
+        if route_description is not None:
+            _add_error_note(error, f"While creating {route_description}")
+        raise
     body_params = _get_flat_body_params(dependant)
     embed_body_fields = _should_embed_body_fields(body_params)
     return dependant, body_params, embed_body_fields
@@ -1115,6 +1123,9 @@ def _populate_api_route_state(
         path=route.path_format,
         call=route.endpoint,
         dependencies=route.dependencies,
+        route_description=(
+            f"the path operation {', '.join(sorted(route.methods))} {route.path_format}"
+        ),
     )
     route.body_field = _get_body_field(
         body_params=body_params,

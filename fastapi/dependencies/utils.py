@@ -63,6 +63,7 @@ from fastapi.dependencies.models import (
     _is_async_gen_callable,
     _is_coroutine_callable,
     _is_gen_callable,
+    _unwrapped_call,
     _UsesScopesCache,
 )
 from fastapi.exceptions import DependencyScopeError
@@ -297,6 +298,26 @@ def get_stream_item_type(annotation: Any) -> Any | None:
     return None
 
 
+def _add_error_note(error: BaseException, note: str) -> None:
+    # PEP 678 notes are shown below the exception message in tracebacks, they keep
+    # the original exception, message, and traceback. Not available in Python 3.10.
+    if sys.version_info >= (3, 11):
+        error.add_note(note)
+
+
+def _describe_callable(call: Callable[..., Any]) -> str:
+    target = _unwrapped_call(call)
+    name = getattr(target, "__qualname__", None) or (
+        f"{type(target).__qualname__} instance"
+    )
+    try:
+        _, line = inspect.getsourcelines(target)
+        source_file = inspect.getfile(target)
+    except (OSError, TypeError):
+        return name
+    return f"{name} ({source_file}, line {line})"
+
+
 def get_dependant(
     *,
     path: str,
@@ -306,6 +327,36 @@ def get_dependant(
     parent_oauth_scopes: list[str] | None = None,
     use_cache: bool = True,
     scope: Literal["function", "request"] | None = None,
+) -> Dependant:
+    try:
+        return _build_dependant(
+            path=path,
+            call=call,
+            name=name,
+            own_oauth_scopes=own_oauth_scopes,
+            parent_oauth_scopes=parent_oauth_scopes,
+            use_cache=use_cache,
+            scope=scope,
+        )
+    except Exception as error:
+        # Each level of nested dependencies adds its own note, so the notes show
+        # the chain from the function with the problem up to the path operation.
+        note = f"While analyzing {_describe_callable(call)}"
+        if name is not None:
+            note += f", the dependency for the parameter {name!r}"
+        _add_error_note(error, note)
+        raise
+
+
+def _build_dependant(
+    *,
+    path: str,
+    call: Callable[..., Any],
+    name: str | None,
+    own_oauth_scopes: list[str] | None,
+    parent_oauth_scopes: list[str] | None,
+    use_cache: bool,
+    scope: Literal["function", "request"] | None,
 ) -> Dependant:
     dependant = Dependant(
         call=call,
