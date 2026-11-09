@@ -6,7 +6,7 @@ De la même manière que vous pouvez déclarer des validations supplémentaires 
 
 D'abord, vous devez l'importer :
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
 
 
 /// warning | Alertes
@@ -19,7 +19,7 @@ Notez que `Field` est importé directement depuis `pydantic`, et non depuis `fas
 
 Vous pouvez ensuite utiliser `Field` avec des attributs de modèle :
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field` fonctionne de la même manière que `Query`, `Path` et `Body`, il dispose des mêmes paramètres, etc.
 

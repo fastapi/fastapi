@@ -18,7 +18,7 @@ No la clase en sí (que ya es un callable), sino una instance de esa clase.
 
 Para hacer eso, declaramos un método `__call__`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 En este caso, este `__call__` es lo que **FastAPI** usará para comprobar parámetros adicionales y sub-dependencias, y es lo que llamará para pasar un valor al parámetro en tu *path operation function* más adelante.
 
@@ -26,7 +26,7 @@ En este caso, este `__call__` es lo que **FastAPI** usará para comprobar parám
 
 Y ahora, podemos usar `__init__` para declarar los parámetros de la instance que podemos usar para "parametrizar" la dependencia:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 En este caso, **FastAPI** nunca tocará ni se preocupará por `__init__`, lo usaremos directamente en nuestro código.
 
@@ -34,7 +34,7 @@ En este caso, **FastAPI** nunca tocará ni se preocupará por `__init__`, lo usa
 
 Podríamos crear una instance de esta clase con:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 Y de esa manera podemos "parametrizar" nuestra dependencia, que ahora tiene `"bar"` dentro de ella, como el atributo `checker.fixed_content`.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...y pasará lo que eso retorne como el valor de la dependencia en nuestra *path operation function* como el parámetro `fixed_content_included`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip | Consejo
 
@@ -114,21 +114,21 @@ En este caso, la sesión de base de datos se mantendría hasta que la response t
 
 Así es como se vería:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 El código de salida, el cierre automático de la `Session` en:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 ...se ejecutaría después de que la response termine de enviar los datos lentos:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 Pero como `generate_stream()` no usa la sesión de base de datos, no es realmente necesario mantener la sesión abierta mientras se envía la response.
 
 Si tienes este caso de uso específico usando SQLModel (o SQLAlchemy), podrías cerrar explícitamente la sesión después de que ya no la necesites:
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 De esa manera la sesión liberaría la conexión a la base de datos, para que otras requests puedan usarla.
 

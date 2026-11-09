@@ -6,7 +6,7 @@
 
 然後你可以在那個*暫時性的* `Response` 物件上設定標頭。
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 接著你可以像平常一樣回傳任何你需要的物件（`dict`、資料庫模型等）。
 
@@ -22,7 +22,7 @@
 
 依照[直接回傳 Response](response-directly.md)中的說明建立回應，並把標頭作為額外參數傳入：
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | 技術細節
 

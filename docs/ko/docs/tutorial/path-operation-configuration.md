@@ -17,7 +17,7 @@
 
 하지만 각 숫자 코드가 무엇을 의미하는지 기억하지 못한다면, `status`에 있는 단축 상수들을 사용할 수 있습니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 해당 상태 코드는 응답에 사용되며, OpenAPI 스키마에 추가됩니다.
 
@@ -33,7 +33,7 @@
 
 (보통 단일 `str`인) `str`로 구성된 `list`와 함께 매개변수 `tags`를 전달하여, *경로 처리*에 태그를 추가할 수 있습니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 전달된 태그들은 OpenAPI의 스키마에 추가되며, 자동 문서 인터페이스에서 사용됩니다:
 
@@ -47,13 +47,13 @@
 
 **FastAPI**는 일반 문자열과 동일한 방식으로 이를 지원합니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## 요약과 설명 { #summary-and-description }
 
 `summary`와 `description`을 추가할 수 있습니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## 독스트링으로 만든 설명 { #description-from-docstring }
 
@@ -61,7 +61,7 @@
 
 독스트링에는 [Markdown](https://en.wikipedia.org/wiki/Markdown)을 작성할 수 있으며, (독스트링의 들여쓰기를 고려하여) 올바르게 해석되고 표시됩니다.
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 이는 대화형 문서에서 사용됩니다:
 
@@ -71,7 +71,7 @@
 
 `response_description` 매개변수로 응답에 관한 설명을 명시할 수 있습니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | 참고
 
@@ -93,7 +93,7 @@ OpenAPI는 각 *경로 처리*가 응답에 관한 설명을 요구할 것을 �
 
 *경로 처리*를 제거하지 않고 <dfn title="구식이며 사용하지 않는 것이 권장됨">지원중단</dfn>으로 표시해야 한다면, `deprecated` 매개변수를 전달하면 됩니다:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 대화형 문서에서 지원중단으로 명확하게 표시됩니다:
 

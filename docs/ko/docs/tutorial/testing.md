@@ -30,7 +30,7 @@ $ uv add httpx
 
 표준적인 파이썬 표현식으로 확인이 필요한 곳에 간단한 `assert` 문장을 작성하세요(역시 표준적인 `pytest` 관례입니다).
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | 팁
 
@@ -76,7 +76,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 `main.py` 파일 안에 **FastAPI** 애플리케이션이 있습니다:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### 테스트 파일 { #testing-file }
 
@@ -92,7 +92,7 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 파일들이 동일한 패키지에 위치해 있으므로, 상대 임포트를 사용하여 `main` 모듈(`main.py`)에서 `app` 객체를 임포트 해올 수 있습니다.
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...그리고 이전에 작성했던 것과 같은 테스트 코드를 작성할 수 있습니다.
@@ -121,13 +121,13 @@ FastAPI 애플리케이션에 요청을 보내는 것 외에도 테스트에서 
 
 두 *경로 처리* 모두 `X-Token` 헤더를 요구합니다.
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### 확장된 테스트 파일 { #extended-testing-file }
 
 이제는 `test_main.py`를 확장된 테스트들로 수정할 수 있습니다:
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 클라이언트가 요청에 정보를 전달해야 하는데 방법을 모르겠다면, Requests의 디자인을 기반으로 설계된 HTTPX처럼 `httpx`에서 해당 작업을 수행하는 방법을 검색(Google)하거나, `requests`에서의 방법을 검색해보세요.

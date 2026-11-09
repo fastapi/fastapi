@@ -31,7 +31,7 @@
 
 この部分はとても普通で、ほとんどのコードはすでに見覚えがあるはずです:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | 豆知識
 
@@ -90,7 +90,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 まず、1 つ以上のコールバックを含む新しい `APIRouter` を作成します。
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### コールバックの *path operation* を作成 { #create-the-callback-path-operation }
 
@@ -101,7 +101,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * 受け取るボディの宣言（例: `body: InvoiceEvent`）が必要でしょう。
 * 返すレスポンスの宣言（例: `response_model=InvoiceEventReceived`）も持てます。
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 通常の *path operation* と異なる主な点が 2 つあります:
 
@@ -169,7 +169,7 @@ JSON ボディは次のような内容です:
 
 次に、*あなたの API の path operation デコレータ*の `callbacks` パラメータに、そのコールバック用ルーターの属性 `.routes` を渡します:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | 豆知識
 

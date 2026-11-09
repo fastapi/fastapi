@@ -10,7 +10,7 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 
 你可以创建一个第一层依赖项（“dependable”），如下：
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 这段代码声明了类型为 `str` 的可选查询参数 `q`，然后返回这个查询参数。
 
@@ -20,7 +20,7 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 
 接下来，创建另一个依赖项函数（一个“dependable”），并同时为它自身再声明一个依赖项（因此它同时也是一个“dependant”）：
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 这里重点说明一下声明的参数：
 
@@ -33,7 +33,7 @@ FastAPI 支持创建含**子依赖项**的依赖项。
 
 接下来，就可以使用依赖项：
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | 注意
 

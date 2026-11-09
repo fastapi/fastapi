@@ -31,7 +31,7 @@ $ uv add jinja2
 * 템플릿을 반환할 *경로 처리*에 `Request` 매개변수를 선언합니다.
 * 생성한 `templates`를 사용하여 `TemplateResponse`를 렌더링하고 반환합니다. 템플릿의 이름, 요청 객체 및 Jinja2 템플릿 내에서 사용될 키-값 쌍이 포함된 "컨텍스트" 딕셔너리도 전달합니다.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | 참고
 
@@ -113,7 +113,7 @@ Item ID: 42
 
 템플릿의 이름을 `TemplateResponse`에 전달하세요:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 같은 예제에서 항목 링크는 다음과 같이 렌더링됩니다:
 

@@ -32,11 +32,11 @@
 
 file `main.py` में यह होगा:
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 file `test_main.py` में `main.py` के लिए tests होंगे, यह अब कुछ ऐसा दिख सकता है:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
 ## इसे चलाएँ { #run-it }
 
@@ -56,7 +56,7 @@ $ uv run pytest
 
 marker `@pytest.mark.anyio` pytest को बताता है कि इस test function को asynchronously call किया जाना चाहिए:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | सुझाव
 
@@ -66,7 +66,7 @@ marker `@pytest.mark.anyio` pytest को बताता है कि इस t
 
 फिर हम app के साथ एक `AsyncClient` बना सकते हैं, और `await` का उपयोग करते हुए इसमें async requests भेज सकते हैं।
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 यह इसके बराबर है:
 

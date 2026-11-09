@@ -14,7 +14,7 @@
 
 **Pydantic 모델**에 필요한 **헤더 매개변수**를 선언한 다음, 해당 매개변수를 `Header`로 선언합니다:
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI**는 요청에서 받은 **헤더**에서 **각 필드**에 대한 데이터를 **추출**하고 정의한 Pydantic 모델을 줍니다.
 
@@ -32,7 +32,7 @@
 
 Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forbid`)할 수 있습니다:
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 클라이언트가 **추가 헤더**를 보내려고 시도하면, **오류** 응답을 받게 됩니다.
 
@@ -59,7 +59,7 @@ Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forb
 
 어떤 이유로든 이 자동 변환을 비활성화해야 한다면, 헤더 매개변수용 Pydantic 모델에서도 비활성화할 수 있습니다.
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | 경고
 
@@ -79,7 +79,7 @@ Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forb
 
 헤더 매개변수 그룹을 선택적으로 만들려면, 모델에 `| None`을 사용하고 기본값을 `None`으로 선언하세요.
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 `x-client-name`과 `x-client-version`이 모두 전송되지 않으면 `client`는 `None`입니다. 둘 중 하나라도 전송되면 FastAPI는 모델을 검증하며 두 필드를 모두 요구합니다.
 

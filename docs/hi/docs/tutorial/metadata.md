@@ -18,7 +18,7 @@
 
 आप इन्हें इस तरह set कर सकते हैं:
 
-{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001.py hl[3:16, 19:32] *}
 
 /// tip | सुझाव
 
@@ -36,7 +36,7 @@ OpenAPI 3.1.0 और FastAPI 0.99.0 से, आप `license_info` को `url` �
 
 उदाहरण के लिए:
 
-{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
 
 ## Tags के लिए Metadata { #metadata-for-tags }
 
@@ -58,7 +58,7 @@ OpenAPI 3.1.0 और FastAPI 0.99.0 से, आप `license_info` को `url` �
 
 अपने tags के लिए metadata बनाएँ और उसे `openapi_tags` parameter में pass करें:
 
-{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004.py hl[3:16,18] *}
 
 ध्यान दें कि आप descriptions के अंदर Markdown का उपयोग कर सकते हैं, उदाहरण के लिए "login" bold (**login**) में दिखेगा और "fancy" italics (_fancy_) में दिखेगा।
 
@@ -72,7 +72,7 @@ OpenAPI 3.1.0 और FastAPI 0.99.0 से, आप `license_info` को `url` �
 
 अपने *path operations* (और `APIRouter`s) के साथ `tags` parameter का उपयोग करें, ताकि उन्हें अलग-अलग tags में assign किया जा सके:
 
-{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
 
 /// note | नोट
 
@@ -100,7 +100,7 @@ Default रूप से, OpenAPI schema `/openapi.json` पर serve किय�
 
 उदाहरण के लिए, इसे `/api/v1/openapi.json` पर serve करने के लिए set करने हेतु:
 
-{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002.py hl[3] *}
 
 यदि आप OpenAPI schema को पूरी तरह disable करना चाहते हैं, तो आप `openapi_url=None` set कर सकते हैं, इससे इसका उपयोग करने वाले documentation user interfaces भी disable हो जाएँगे।
 
@@ -117,4 +117,4 @@ Default रूप से, OpenAPI schema `/openapi.json` पर serve किय�
 
 उदाहरण के लिए, Swagger UI को `/documentation` पर serve करने के लिए set करना और ReDoc को disable करना:
 
-{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003.py hl[3] *}

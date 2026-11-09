@@ -16,7 +16,7 @@
 
 लेकिन अगर आपको याद नहीं है कि हर number code किसके लिए है, तो आप `status` में shortcut constants का उपयोग कर सकते हैं:
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 वह status code response में उपयोग किया जाएगा और OpenAPI schema में जोड़ा जाएगा।
 
@@ -32,7 +32,7 @@
 
 आप अपनी *path operation* में tags जोड़ सकते हैं, parameter `tags` को `str` की `list` के साथ pass करें (आम तौर पर सिर्फ एक `str`):
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 वे OpenAPI schema में जोड़े जाएंगे और automatic documentation interfaces द्वारा उपयोग किए जाएंगे:
 
@@ -46,13 +46,13 @@
 
 **FastAPI** इसे plain strings की तरह ही support करता है:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## Summary और description { #summary-and-description }
 
 आप `summary` और `description` जोड़ सकते हैं:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## Docstring से description { #description-from-docstring }
 
@@ -60,7 +60,7 @@
 
 आप docstring में [Markdown](https://en.wikipedia.org/wiki/Markdown) लिख सकते हैं, इसे सही तरीके से interpret और display किया जाएगा (docstring indentation को ध्यान में रखते हुए)।
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 इसे interactive docs में उपयोग किया जाएगा:
 
@@ -70,7 +70,7 @@
 
 आप parameter `response_description` के साथ response description specify कर सकते हैं:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | नोट
 
@@ -92,7 +92,7 @@ OpenAPI specify करता है कि प्रत्येक *path operat
 
 अगर आपको किसी *path operation* को <dfn title="पुराना, इसका उपयोग न करने की सलाह दी जाती है">deprecated</dfn> के रूप में mark करना है, लेकिन उसे हटाना नहीं है, तो parameter `deprecated` pass करें:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 इसे interactive docs में स्पष्ट रूप से deprecated के रूप में mark किया जाएगा:
 

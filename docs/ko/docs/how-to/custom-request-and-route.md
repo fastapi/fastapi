@@ -42,7 +42,7 @@
 
 이렇게 하면 동일한 route 클래스가 gzip으로 압축된 요청과 압축되지 않은 요청을 모두 처리할 수 있습니다.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### 커스텀 `GzipRoute` 클래스 만들기 { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@
 
 여기서는 원본 요청으로부터 `GzipRequest`를 만들기 위해 이를 사용합니다.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | 기술 세부사항
 
@@ -92,18 +92,18 @@
 
 필요한 것은 `try`/`except` 블록 안에서 요청을 처리하는 것뿐입니다:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 예외가 발생하더라도 `Request` 인스턴스는 여전히 스코프 안에 남아 있으므로, 오류를 처리할 때 요청 바디를 읽고 활용할 수 있습니다:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## 라우터에서의 커스텀 `APIRoute` 클래스 { #custom-apiroute-class-in-a-router }
 
 `APIRouter`의 `route_class` 파라미터를 설정할 수도 있습니다:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 이 예시에서는 `router` 아래의 *경로 처리*들이 커스텀 `TimedRoute` 클래스를 사용하며, 응답을 생성하는 데 걸린 시간을 담은 추가 `X-Response-Time` 헤더가 응답에 포함됩니다:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

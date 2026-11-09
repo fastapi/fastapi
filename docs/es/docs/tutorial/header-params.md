@@ -6,7 +6,7 @@ Puedes definir los parámetros de Header de la misma manera que defines los par�
 
 Primero importa `Header`:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## Declarar parámetros de `Header` { #declare-header-parameters }
 
@@ -14,7 +14,7 @@ Luego declara los parámetros de header usando la misma estructura que con `Path
 
 Puedes definir el valor por defecto así como toda la validación extra o los parámetros de anotaciones:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | Detalles Técnicos
 
@@ -46,7 +46,7 @@ Así que, puedes usar `user_agent` como normalmente lo harías en código Python
 
 Si por alguna razón necesitas desactivar la conversión automática de guiones bajos a guiones, establece el parámetro `convert_underscores` de `Header` a `False`:
 
-{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning | Advertencia
 
@@ -64,7 +64,7 @@ Recibirás todos los valores del header duplicado como una `list` de Python.
 
 Por ejemplo, para declarar un header de `X-Token` que puede aparecer más de una vez, puedes escribir:
 
-{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 Si te comunicas con esa *path operation* enviando dos headers HTTP como:
 

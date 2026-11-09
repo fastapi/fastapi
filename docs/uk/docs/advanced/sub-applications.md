@@ -10,7 +10,7 @@
 
 Спочатку створіть головний, верхньорівневий застосунок **FastAPI** та його _операції шляху_:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### Підзастосунок { #sub-application }
 
@@ -18,7 +18,7 @@
 
 Цей підзастосунок - просто ще один стандартний застосунок FastAPI, але саме його буде «змонтовано»:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### Змонтуйте підзастосунок { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@
 
 У цьому випадку його буде змонтовано за шляхом `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### Перевірте автоматичну документацію API { #check-the-automatic-api-docs }
 

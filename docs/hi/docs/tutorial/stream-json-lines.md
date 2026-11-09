@@ -76,11 +76,11 @@ sequenceDiagram
 
 FastAPI के साथ JSON Lines stream करने के लिए, आप अपनी *path operation function* में `return` का उपयोग करने के बजाय, हर item को बारी-बारी से produce करने के लिए `yield` का उपयोग कर सकते हैं।
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 अगर हर JSON item जिसे आप वापस भेजना चाहते हैं, type `Item` (एक Pydantic model) का है और यह एक async function है, तो आप return type को `AsyncIterable[Item]` के रूप में declare कर सकते हैं:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 अगर आप return type declare करते हैं, तो FastAPI इसका उपयोग data को **validate** करने, OpenAPI में इसे **document** करने, इसे **filter** करने, और Pydantic का उपयोग करके इसे **serialize** करने के लिए करेगा।
 
@@ -98,13 +98,13 @@ FastAPI यह सुनिश्चित करेगा कि यह सह�
 
 क्योंकि इस मामले में function async नहीं है, सही return type `Iterable[Item]` होगा:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### कोई Return Type नहीं { #no-return-type }
 
 आप return type को omit भी कर सकते हैं। FastAPI फिर data को ऐसी चीज़ में convert करने के लिए [`jsonable_encoder`](./encoder.md) का उपयोग करेगा जिसे JSON में serialize किया जा सके और फिर उसे JSON Lines के रूप में भेजेगा।
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## Server-Sent Events (SSE) { #server-sent-events-sse }
 

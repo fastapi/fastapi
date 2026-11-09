@@ -6,7 +6,7 @@ Bevor wir tiefer in das **Dependency Injection** System eintauchen, lassen Sie u
 
 Im vorherigen Beispiel haben wir ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> von unserer Abhängigkeit („Dependable“) zurückgegeben:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 Aber dann haben wir ein `dict` im Parameter `commons` der *Pfadoperation-Funktion*.
 
@@ -69,15 +69,15 @@ Das gilt auch für Callables ohne Parameter. So wie es auch für *Pfadoperation-
 
 Dann können wir das „Dependable“ `common_parameters` der Abhängigkeit von oben in die Klasse `CommonQueryParams` ändern:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 Achten Sie auf die Methode `__init__`, die zum Erstellen der Instanz der Klasse verwendet wird:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ... sie hat die gleichen Parameter wie unsere vorherige `common_parameters`:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 Diese Parameter werden von **FastAPI** verwendet, um die Abhängigkeit „aufzulösen“.
 
@@ -93,7 +93,7 @@ In beiden Fällen werden die Daten konvertiert, validiert, im OpenAPI-Schema dok
 
 Jetzt können Sie Ihre Abhängigkeit mithilfe dieser Klasse deklarieren.
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** ruft die Klasse `CommonQueryParams` auf. Dadurch wird eine „Instanz“ dieser Klasse erstellt und die Instanz wird als Parameter `commons` an Ihre Funktion überreicht.
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ... wie in:
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 Es wird jedoch empfohlen, den Typ zu deklarieren, da Ihr Editor so weiß, was als Parameter `commons` übergeben wird, und Ihnen dann bei der Codevervollständigung, Typprüfungen, usw. helfen kann:
 
@@ -275,7 +275,7 @@ Sie deklarieren die Abhängigkeit als Typ des Parameters und verwenden `Depends(
 
 Dasselbe Beispiel würde dann so aussehen:
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ... und **FastAPI** wird wissen, was zu tun ist.
 

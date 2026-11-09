@@ -2,7 +2,7 @@
 
 Wenn Sie in Ihrer Funktion andere Parameter deklarieren, die nicht Teil der Pfad-Parameter sind, dann werden diese automatisch als „Query“-Parameter interpretiert.
 
-{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 Die <abbr title="Abfrage">Query</abbr> ist die Menge von Schlüssel-Wert-Paaren, die nach dem `?` in einer URL folgen und durch `&`-Zeichen getrennt sind.
 
@@ -61,7 +61,7 @@ gehen, werden die Parameterwerte Ihrer Funktion sein:
 
 Auf die gleiche Weise können Sie optionale Query-Parameter deklarieren, indem Sie deren Defaultwert auf `None` setzen:
 
-{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial002.py hl[7] *}
 
 In diesem Fall wird der Funktionsparameter `q` optional und standardmäßig `None` sein.
 
@@ -75,7 +75,7 @@ Beachten Sie auch, dass **FastAPI** intelligent genug ist, um zu erkennen, dass 
 
 Sie können auch `bool`-Typen deklarieren, und sie werden konvertiert:
 
-{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial003.py hl[7] *}
 
 Wenn Sie in diesem Fall zu:
 
@@ -124,7 +124,7 @@ Und Sie müssen sie auch nicht in einer spezifischen Reihenfolge deklarieren.
 
 Parameter werden anhand ihres Namens erkannt:
 
-{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
+{* ../../docs_src/query_params/tutorial004.py hl[6,8] *}
 
 ## Erforderliche Query-Parameter { #required-query-parameters }
 
@@ -134,7 +134,7 @@ Wenn Sie keinen spezifischen Wert haben wollen, sondern der Parameter einfach op
 
 Aber wenn Sie wollen, dass ein Query-Parameter erforderlich ist, vergeben Sie einfach keinen Defaultwert:
 
-{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 Hier ist der Query-Parameter `needy` ein erforderlicher Query-Parameter vom Typ `str`.
 
@@ -179,7 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 Und natürlich können Sie einige Parameter als erforderlich, einige mit Defaultwert, und einige als vollständig optional definieren:
 
-{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
+{* ../../docs_src/query_params/tutorial006.py hl[8] *}
 
 In diesem Fall gibt es 3 Query-Parameter:
 

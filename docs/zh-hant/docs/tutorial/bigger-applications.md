@@ -85,7 +85,7 @@ from app.routers import items
 
 你可以像對 `FastAPI` 類別那樣匯入並建立一個「實例」：
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### 使用 `APIRouter` 宣告路徑操作 { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ from app.routers import items
 
 用法就和 `FastAPI` 類別一樣：
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 你可以把 `APIRouter` 想成是「迷你版的 `FastAPI`」類別。
 
@@ -117,7 +117,7 @@ from app.routers import items
 
 接下來我們會用一個簡單的相依性來讀取自訂的 `X-Token` 標頭：
 
-{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | 提示
 
@@ -149,7 +149,7 @@ from app.routers import items
 
 因此，我們可以不必把這些都加在每個路徑操作上，而是把它們加在 `APIRouter` 上。
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 由於每個路徑操作的路徑都必須以 `/` 開頭，例如：
 
@@ -207,7 +207,7 @@ async def read_item(item_id: str): ...
 
 因此我們用 `..` 做相對匯入相依性：
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### 相對匯入如何運作 { #how-relative-imports-work }
 
@@ -278,7 +278,7 @@ from ...dependencies import get_token_header
 
 但我們仍可以在特定的路徑操作上再加上更多的 `tags`，以及一些只屬於該路徑操作的額外 `responses`：
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | 提示
 
@@ -304,13 +304,13 @@ from ...dependencies import get_token_header
 
 我們甚至可以宣告[全域相依性](dependencies/global-dependencies.md)，它們會與各 `APIRouter` 的相依性合併：
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### 匯入 `APIRouter` { #import-the-apirouter }
 
 現在我們匯入包含 `APIRouter` 的其他子模組：
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[4:5] title["app/main.py"] *}
 
 由於 `app/routers/users.py` 與 `app/routers/items.py` 是同一個 Python 套件 `app` 的子模組，我們可以用單一的點號 `.` 來進行「相對匯入」。
 
@@ -373,13 +373,13 @@ from .routers.users import router
 
 因此，為了能在同一個檔案中同時使用它們，我們直接匯入子模組：
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[5] title["app/main.py"] *}
 
 ### 將 `users` 與 `items` 的 `APIRouter` 納入 { #include-the-apirouters-for-users-and-items }
 
 現在，把子模組 `users` 與 `items` 的 `router` 納入：
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[10:11] title["app/main.py"] *}
 
 /// note | 注意
 
@@ -419,13 +419,13 @@ from .routers.users import router
 
 為了這個範例它會非常簡單。但假設因為它會與組織內的其他專案共用，我們不能直接修改它並把 `prefix`、`dependencies`、`tags` 等加在 `APIRouter` 上：
 
-{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 但當我們把這個 `APIRouter` 納入時，仍然希望設定自訂的 `prefix`，讓它所有的路徑操作都以 `/admin` 開頭；我們想用這個專案已經有的 `dependencies` 來保護它，並且要加入 `tags` 與 `responses`。
 
 我們可以在不修改原始 `APIRouter` 的情況下，將這些參數傳給 `app.include_router()` 來達成：
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[14:17] title["app/main.py"] *}
 
 如此一來，原始的 `APIRouter` 將保持不變，因此我們仍然可以把同一個 `app/internal/admin.py` 檔案與組織中的其他專案共用。
 
@@ -446,7 +446,7 @@ from .routers.users import router
 
 這裡我們就加一下... 只是為了示範可以這麼做 🤷：
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[21:23] title["app/main.py"] *}
 
 而且它會和透過 `app.include_router()` 加入的其他路徑操作正確地一起運作。
 

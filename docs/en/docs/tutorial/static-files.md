@@ -15,7 +15,7 @@ If you need to host a frontend, use `app.frontend()` instead, read about it in [
 * Import `StaticFiles`.
 * "Mount" a `StaticFiles()` instance in a specific path.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | Technical Details
 

@@ -21,7 +21,7 @@ Eğer bilmiyorsanız, "password hash" nedir konusunu [güvenlik bölümlerinde](
 
 `password` alanlarıyla birlikte modellerin genel olarak nasıl görünebileceğine ve nerelerde kullanılacaklarına dair bir fikir:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### `**user_in.model_dump()` Hakkında { #about-user-in-model-dump }
 
@@ -155,7 +155,7 @@ Tüm veri dönüştürme, doğrulama, dokümantasyon vb. her zamanki gibi çalı
 
 Bu sayede modeller arasındaki farkları (plaintext `password` olan, `hashed_password` olan ve `password` olmayan) sadece o farklılıklar olarak tanımlayabiliriz:
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` veya `anyOf` { #union-or-anyof }
 
@@ -171,7 +171,7 @@ Bir [`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/) tan�
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### Python 3.10'da `Union` { #union-in-python-3-10 }
 
@@ -193,7 +193,7 @@ Aynı şekilde, nesne listesi döndüren response'ları da tanımlayabilirsiniz.
 
 Bunun için standart Python `list`'i kullanın:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## Serbest Biçimli `dict` ile Response { #response-with-arbitrary-dict }
 
@@ -203,7 +203,7 @@ Bu, geçerli field/attribute adlarını (Pydantic modeli için gerekli olurdu) �
 
 Bu durumda `dict` kullanabilirsiniz:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## Özet { #recap }
 

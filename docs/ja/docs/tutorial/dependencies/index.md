@@ -31,7 +31,7 @@
 
 以下のように、*path operation 関数*と同じパラメータを全て取ることができる関数にすぎません:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8:9] *}
 
 これだけです。
 
@@ -63,13 +63,13 @@ FastAPI はバージョン 0.95.0 で `Annotated` のサポートを追加し（
 
 ### `Depends`のインポート { #import-depends }
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### 「dependant」での依存関係の宣言 { #declare-the-dependency-in-the-dependant }
 
 *path operation 関数*のパラメータに`Body`や`Query`などを使用するのと同じように、新しいパラメータに`Depends`を使用することができます:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 関数のパラメータに`Depends`を使用するのは`Body`や`Query`などと同じですが、`Depends`の動作は少し異なります。
 
@@ -126,7 +126,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 しかし、`Annotated` を使用しているので、その `Annotated` 値を変数に格納して複数箇所で使えます:
 
-{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
+{* ../../docs_src/dependencies/tutorial001_02.py hl[12,16,21] *}
 
 /// tip | 豆知識
 

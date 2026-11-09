@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 Например, вы объявили операцию пути `/items/`:
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 Если клиент обратится к `/items`, по умолчанию произойдёт редирект на `/items/`.
 
@@ -113,7 +113,7 @@ sequenceDiagram
 
 Хотя весь ваш код написан с расчётом, что путь один — `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 Прокси будет «обрезать» префикс пути на лету перед передачей HTTP-запроса на сервер, поддерживая у вашего приложения иллюзию, что его обслуживают по `/app`, чтобы вам не пришлось менять весь код и добавлять префикс `/api/v1`.
 
@@ -187,7 +187,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Здесь мы добавляем его в сообщение лишь для демонстрации.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 Затем, если вы запустите сервер так:
 
@@ -371,7 +371,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Например, используя ту же конфигурацию сервера `fastapi run --root-path /api/v1`:
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 Будет сгенерирована схема OpenAPI примерно такая:
 
@@ -426,7 +426,7 @@ $ uv run fastapi run main.py --forwarded-allow-ips="*" --root-path /api/v1
 
 Если вы не хотите, чтобы FastAPI добавлял автоматический сервер, используя `root_path`, укажите параметр `root_path_in_servers=False`:
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 и тогда этот сервер не будет добавлен в схему OpenAPI.
 

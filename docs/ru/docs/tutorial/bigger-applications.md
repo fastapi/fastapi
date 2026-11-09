@@ -85,7 +85,7 @@ from app.routers import items
 
 Точно так же, как и в случае с классом `FastAPI`, вам нужно импортировать и создать его «экземпляр»:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### *Операции пути* с `APIRouter` { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ from app.routers import items
 
 Используйте его так же, как вы использовали бы класс `FastAPI`:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 Вы можете думать об `APIRouter` как об «мини-классе `FastAPI`».
 
@@ -117,7 +117,7 @@ from app.routers import items
 
 Теперь мы воспользуемся простой зависимостью, чтобы прочитать кастомный HTTP-заголовок `X-Token`:
 
-{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | Подсказка
 
@@ -149,7 +149,7 @@ from app.routers import items
 
 Таким образом, вместо того чтобы добавлять всё это в каждую *операцию пути*, мы можем добавить это в `APIRouter`.
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 Так как путь каждой *операции пути* должен начинаться с `/`, как здесь:
 
@@ -207,7 +207,7 @@ async def read_item(item_id: str): ...
 
 Поэтому мы используем относительный импорт с `..` для зависимостей:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### Как работает относительный импорт { #how-relative-imports-work }
 
@@ -278,7 +278,7 @@ from ...dependencies import get_token_header
 
 Но мы всё равно можем добавить _ещё_ `tags`, которые будут применяться к конкретной *операции пути*, а также дополнительные `responses`, специфичные для этой *операции пути*:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | Подсказка
 
@@ -304,13 +304,13 @@ from ...dependencies import get_token_header
 
 И мы даже можем объявить [глобальные зависимости](dependencies/global-dependencies.md), которые будут объединены с зависимостями для каждого `APIRouter`:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### Импорт `APIRouter` { #import-the-apirouter }
 
 Теперь мы импортируем другие подмодули, содержащие `APIRouter`:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[4:5] title["app/main.py"] *}
 
 Так как файлы `app/routers/users.py` и `app/routers/items.py` являются подмодулями, входящими в один и тот же Python-пакет `app`, мы можем использовать одну точку `.` для импорта через «относительные импорты».
 
@@ -373,13 +373,13 @@ from .routers.users import router
 
 Поэтому, чтобы иметь возможность использовать обе в одном файле, мы импортируем подмодули напрямую:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[5] title["app/main.py"] *}
 
 ### Подключение `APIRouter` для `users` и `items` { #include-the-apirouters-for-users-and-items }
 
 Теперь давайте подключим `router` из подмодулей `users` и `items`:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[10:11] title["app/main.py"] *}
 
 /// note | Примечание
 
@@ -419,13 +419,13 @@ FastAPI сохраняет исходный `APIRouter` и его `APIRoute` а�
 
 Для этого примера всё будет очень просто. Но допустим, что поскольку он используется совместно с другими проектами в организации, мы не можем модифицировать его и добавить `prefix`, `dependencies`, `tags` и т.д. непосредственно в `APIRouter`:
 
-{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 Но мы всё равно хотим задать пользовательский `prefix` при подключении `APIRouter`, чтобы все его *операции пути* начинались с `/admin`, хотим защитить его с помощью `dependencies`, которые у нас уже есть для этого проекта, и хотим включить `tags` и `responses`.
 
 Мы можем объявить всё это, не изменяя исходный `APIRouter`, передав эти параметры в `app.include_router()`:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[14:17] title["app/main.py"] *}
 
 Таким образом исходный `APIRouter` не будет модифицирован, и мы сможем использовать файл `app/internal/admin.py` сразу в нескольких проектах организации.
 
@@ -446,7 +446,7 @@ FastAPI сохраняет исходный `APIRouter` и его `APIRoute` а�
 
 Здесь мы делаем это... просто чтобы показать, что можем 🤷:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[21:23] title["app/main.py"] *}
 
 и это будет работать корректно вместе со всеми другими *операциями пути*, добавленными через `app.include_router()`.
 

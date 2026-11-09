@@ -42,7 +42,7 @@ $ uv run fastapi run --forwarded-allow-ips="*"
 
 Par exemple, disons que vous définissez un *chemin d'accès* `/items/` :
 
-{* ../../docs_src/behind_a_proxy/tutorial001_01_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001_01.py hl[6] *}
 
 Si le client essaie d'aller à `/items`, par défaut, il sera redirigé vers `/items/`.
 
@@ -113,7 +113,7 @@ Dans ce cas, le chemin original `/app` serait en réalité servi à `/api/v1/app
 
 Même si tout votre code est écrit en supposant qu'il n'y a que `/app`.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[6] *}
 
 Et le proxy **« supprimerait »** le **préfixe de chemin** à la volée avant de transmettre la requête au serveur, en gardant votre application convaincue qu'elle est servie à `/app`, afin que vous n'ayez pas à mettre à jour tout votre code pour inclure le préfixe `/api/v1`.
 
@@ -187,7 +187,7 @@ Vous pouvez obtenir le `root_path` actuel utilisé par votre application pour ch
 
 Ici, nous l'incluons dans le message uniquement à des fins de démonstration.
 
-{* ../../docs_src/behind_a_proxy/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial001.py hl[8] *}
 
 Ensuite, si vous démarrez le serveur avec :
 
@@ -371,7 +371,7 @@ Si vous passez une liste personnalisée de `servers` et qu'il y a un `root_path`
 
 Par exemple, en utilisant la même configuration de serveur `fastapi run --root-path /api/v1` :
 
-{* ../../docs_src/behind_a_proxy/tutorial003_py310.py hl[4:7] *}
+{* ../../docs_src/behind_a_proxy/tutorial003.py hl[4:7] *}
 
 Générera un schéma OpenAPI comme :
 
@@ -426,7 +426,7 @@ Si vous ne spécifiez pas le paramètre `servers` et que `root_path` est égal �
 
 Si vous ne voulez pas que **FastAPI** inclue un serveur automatique utilisant le `root_path`, vous pouvez utiliser le paramètre `root_path_in_servers=False` :
 
-{* ../../docs_src/behind_a_proxy/tutorial004_py310.py hl[8] *}
+{* ../../docs_src/behind_a_proxy/tutorial004.py hl[8] *}
 
 et il ne l'inclura alors pas dans le schéma OpenAPI.
 

@@ -14,7 +14,7 @@ Dies wird seit FastAPI Version `0.115.0` unterstützt. 🤓
 
 Deklarieren Sie die erforderlichen **Header-Parameter** in einem **Pydantic-Modell** und dann den Parameter als `Header`:
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI** wird die Daten für **jedes Feld** aus den **Headern** des <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> extrahieren und Ihnen das von Ihnen definierte Pydantic-Modell geben.
 
@@ -32,7 +32,7 @@ In einigen speziellen Anwendungsfällen (wahrscheinlich nicht sehr häufig) möc
 
 Sie können Pydantics Modellkonfiguration verwenden, um `extra` Felder zu verbieten (`forbid`):
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 Wenn ein Client versucht, einige **zusätzliche Header** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
@@ -59,7 +59,7 @@ Wenn Sie beispielsweise einen Header-Parameter `save_data` im Code haben, wird d
 
 Falls Sie aus irgendeinem Grund diese automatische Umwandlung deaktivieren müssen, können Sie dies auch für Pydantic-Modelle für Header-Parameter tun.
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | Achtung
 
@@ -79,7 +79,7 @@ Jedes Modell verwendet seine eigene Einstellung für `Header(convert_underscores
 
 Deklarieren Sie ein Header-Parameter-Modell mit `| None` und einem Defaultwert von `None`, um die Gruppe optional zu machen.
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 Wenn weder `x-client-name` noch `x-client-version` gesendet wird, ist `client` gleich `None`. Wenn einer von beiden gesendet wird, validiert FastAPI das Modell und erfordert beide Felder.
 

@@ -56,7 +56,7 @@ $ uv add sqlmodel
 
 `SQLModel`을 가져오고 데이터베이스 모델을 생성합니다:
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[1:11] hl[7:11] *}
 
 `Hero` 클래스는 Pydantic 모델과 매우 유사합니다 (실제로 내부적으로 *Pydantic 모델이기도 합니다*).
 
@@ -78,7 +78,7 @@ SQLModel의 `engine` (내부적으로는 SQLAlchemy `engine`)은 데이터베이
 
 코드 전체에서 동일한 데이터베이스에 연결하기 위해 **하나의 단일 `engine` 객체**를 사용합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[14:18] hl[14:15,17:18] *}
 
 `check_same_thread=False`를 사용하면 FastAPI에서 여러 스레드에서 동일한 SQLite 데이터베이스를 사용할 수 있습니다. 이는 **하나의 단일 요청**이 **둘 이상의 스레드**를 사용할 수 있기 때문에 필요합니다(예: 의존성에서 사용되는 경우).
 
@@ -88,7 +88,7 @@ SQLModel의 `engine` (내부적으로는 SQLAlchemy `engine`)은 데이터베이
 
 그 다음 `SQLModel.metadata.create_all(engine)`을 사용하여 모든 *테이블 모델*의 **테이블을 생성**하는 함수를 추가합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[21:22] hl[21:22] *}
 
 ### 세션 의존성 생성하기 { #create-a-session-dependency }
 
@@ -98,13 +98,13 @@ SQLModel의 `engine` (내부적으로는 SQLAlchemy `engine`)은 데이터베이
 
 그런 다음 이 의존성을 사용하는 나머지 코드를 간소화하기 위해 `Annotated` 의존성 `SessionDep`을 생성합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[25:30]  hl[25:27,30] *}
 
 ### 시작 시 데이터베이스 테이블 생성하기 { #create-database-tables-on-startup }
 
 애플리케이션 시작 시 데이터베이스 테이블을 생성합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[32:37] hl[35:37] *}
 
 여기서는 애플리케이션 시작 이벤트 시 테이블을 생성합니다.
 
@@ -124,7 +124,7 @@ SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 �
 
 마찬가지로, 함수의 **반환 타입**으로 선언하면 해당 데이터의 구조가 자동으로 생성되는 API 문서의 UI에 나타납니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[40:45] hl[40:45] *}
 
 여기서는 `SessionDep` 의존성(`Session`)을 사용하여 새로운 `Hero`를 `Session` 인스턴스에 추가하고, 데이터베이스에 변경 사항을 커밋하고, `hero` 데이터의 최신 상태를 갱신한 다음 이를 반환합니다.
 
@@ -132,19 +132,19 @@ SQLModel은 Alembic을 감싸는 마이그레이션 유틸리티를 제공할 �
 
 `select()`를 사용하여 데이터베이스에서 `Hero`를 **조회**할 수 있습니다. 결과에 페이지네이션을 적용하기 위해 `limit`와 `offset`을 포함할 수 있습니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[48:55] hl[51:52,54] *}
 
 ### 단일 Hero 조회하기 { #read-one-hero }
 
 단일 `Hero`를 **조회**할 수도 있습니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[58:63] hl[60] *}
 
 ### Hero 삭제하기 { #delete-a-hero }
 
 `Hero`를 **삭제**하는 것도 가능합니다.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[66:73] hl[71] *}
 
 ### 애플리케이션 실행하기 { #run-the-app }
 
@@ -193,7 +193,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:9] hl[7:9] *}
 
 #### `Hero` - *테이블 모델* { #hero-the-table-model }
 
@@ -209,7 +209,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:14] hl[12:14] *}
 
 #### `HeroPublic` - 공개 *데이터 모델* { #heropublic-the-public-data-model }
 
@@ -235,7 +235,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:18] hl[17:18] *}
 
 #### `HeroCreate` - hero 생성용 *데이터 모델* { #herocreate-the-data-model-to-create-a-hero }
 
@@ -259,7 +259,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:22] hl[21:22] *}
 
 #### `HeroUpdate` - hero 수정용 *데이터 모델* { #heroupdate-the-data-model-to-update-a-hero }
 
@@ -277,7 +277,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:28] hl[25:28] *}
 
 ### `HeroCreate`로 생성하고 `HeroPublic` 반환하기 { #create-with-herocreate-and-return-a-heropublic }
 
@@ -289,7 +289,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 그런 다음 함수를 통해 동일한 *테이블 모델* `Hero`를 그대로 반환합니다. 하지만 `response_model`로 `HeroPublic` *데이터 모델*을 선언했기 때문에, **FastAPI**는 `HeroPublic`을 사용하여 데이터를 검증하고 직렬화합니다.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[56:62] hl[56:58] *}
 
 /// tip | 팁
 
@@ -305,13 +305,13 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 이전과 동일하게 `Hero`를 **조회**할 수 있습니다. 이번에도 `response_model=list[HeroPublic]`을 사용하여 데이터가 올바르게 검증되고 직렬화되도록 보장합니다.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[65:72] hl[65] *}
 
 ### `HeroPublic`으로 단일 Hero 조회하기 { #read-one-hero-with-heropublic }
 
 단일 hero를 **조회**할 수도 있습니다:
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[75:80] hl[77] *}
 
 ### `HeroUpdate`로 Hero 수정하기 { #update-a-hero-with-heroupdate }
 
@@ -321,7 +321,7 @@ SQLModel을 사용하면 **상속**을 통해 모든 경우에 필드를 **중�
 
 그런 다음, `hero_db.sqlmodel_update(hero_data)`를 사용하여 `hero_data`의 데이터로 `hero_db`를 업데이트합니다.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[83:93] hl[83:84,88:89] *}
 
 ### Hero 다시 삭제하기 { #delete-a-hero-again }
 
@@ -329,7 +329,7 @@ hero **삭제**는 이전과 거의 동일합니다.
 
 이번에는 모든 것을 리팩터링하고 싶은 욕구를 만족시키지 못하겠습니다. 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[96:103] hl[101] *}
 
 ### 애플리케이션 다시 실행하기 { #run-the-app-again }
 

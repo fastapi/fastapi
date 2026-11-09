@@ -36,7 +36,7 @@ npm run build
 
 फिर इसे `app.frontend()` के साथ serve करें:
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 इसके साथ, `/assets/app.js` के लिए एक request `dist/assets/app.js` serve कर सकती है।
 
@@ -50,7 +50,7 @@ npm run build
 
 इसके लिए, `fallback="index.html"` का उपयोग करें:
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI** इस fallback का उपयोग केवल उन `GET` और `HEAD` requests के लिए करता है जो स्पष्ट रूप से `Accept: text/html` या `Accept: application/xhtml+xml` के साथ HTML accept करती हैं, जैसा browser navigation requests सामान्यतः करती हैं। JavaScript, CSS, और images जैसी missing files अभी भी `404` लौटाती हैं।
 
@@ -68,7 +68,7 @@ Default रूप से, `fallback` की value `fallback="auto"` होती
 
 आप missing frontend paths के लिए static `404.html` page भी serve कर सकते हैं:
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 वह response `404` का status code बनाए रखती है।
 
@@ -94,13 +94,13 @@ Default रूप से, `app.frontend()` `fallback="auto"` का उपयो
 
 इसलिए, अधिकतर मामलों में आप `fallback` argument specify किए बिना `app.frontend("/", directory="dist")` का उपयोग कर सकते हैं।
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## Fallback बंद करें { #disable-fallback }
 
 अगर आप missing frontend paths के लिए fallback file serve नहीं करना चाहते, तो `fallback=None` का उपयोग करें:
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 फिर missing frontend paths सामान्य `404` लौटाते हैं।
 
@@ -116,7 +116,7 @@ Default रूप से, `app.frontend()` `check_dir="auto"` का उपय�
 
 अगर आपकी frontend files बाद में बनाई जाती हैं, उदाहरण के लिए app object बनने के बाद किसी अलग build step द्वारा, तो `check_dir=False` set करें:
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 `check_dir=False` के साथ, **FastAPI** app बनाते समय directory की जाँच नहीं करेगा। अगर configured directory किसी request को handle करते समय अभी भी missing है, तो **FastAPI** तब error raise करेगा।
 
@@ -124,7 +124,7 @@ Default रूप से, `app.frontend()` `check_dir="auto"` का उपय�
 
 आप frontend files को `APIRouter` में भी जोड़ सकते हैं और उसे prefix के साथ include कर सकते हैं:
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 इस उदाहरण में, frontend paths `/app` के अंतर्गत serve किए जाते हैं।
 

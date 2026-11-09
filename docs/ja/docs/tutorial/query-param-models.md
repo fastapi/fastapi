@@ -14,7 +14,7 @@
 
 必要な**クエリパラメータ**を**Pydanticモデル**で宣言し、さらに、そのパラメータを `Query` として宣言しましょう:
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI**は、リクエストの**クエリパラメータ**からそれぞれの**フィールド**のデータを**抽出**し、定義したPydanticモデルを提供します。
 
@@ -32,7 +32,7 @@
 
 Pydanticのモデル設定を使って、あらゆる `extra` フィールドを `forbid` にできます。
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 もしクライアントが**クエリパラメータ**として**余分な**データを送ろうとすると、**エラー**レスポンスが返されます。
 
@@ -61,7 +61,7 @@ https://example.com/items/?limit=10&tool=plumbus
 
 複数のクエリパラメータモデルを宣言し、個別のクエリパラメータや依存関係と組み合わせることができます。
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 リクエストパラメータは同じ階層のままです。
 
@@ -81,7 +81,7 @@ https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
 
 クエリパラメータモデルに `| None` とデフォルト値 `None` を指定して宣言すると、そのグループを任意にできます。
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 `start` も `end` も送信されない場合、`date_range` は `None` になります。どちらかが送信された場合、FastAPIはモデルを検証し、両方のフィールドを必須とします。
 

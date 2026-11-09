@@ -19,13 +19,13 @@ $ uv add python-multipart
 
 從 `fastapi` 匯入 `Form`：
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## 定義 `Form` 參數 { #define-form-parameters }
 
 以與 `Body` 或 `Query` 相同的方式建立表單參數：
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 例如，在 OAuth2 規範的一種用法（稱為「password flow」）中，必須以表單欄位傳送 `username` 與 `password`。
 
@@ -49,7 +49,7 @@ $ uv add python-multipart
 
 瀏覽器在提交 HTML 表單時會省略未勾選的核取方塊。宣告預設值為 `False` 的布林表單參數，即可在未勾選時接收到 `False`：
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 已勾選的核取方塊會傳送其值，預設為 `"on"`。**FastAPI** 會將 `"on"` 視為 `True`。
 

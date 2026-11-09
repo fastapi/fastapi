@@ -2,7 +2,7 @@ from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from docs_src.openapi_webhooks.tutorial001_py310 import app
+from docs_src.openapi_webhooks.tutorial001 import app
 
 client = TestClient(app)
 

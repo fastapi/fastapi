@@ -31,7 +31,7 @@ $ uv add jinja2
 * テンプレートを返す *path operation* に `Request` パラメータを宣言します。
 * 作成した `templates` を使って `TemplateResponse` をレンダリングして返します。テンプレート名、リクエストオブジェクト、Jinja2 テンプレート内で使用するキーと値のペアからなる「context」の辞書を渡します。
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | 備考
 
@@ -113,7 +113,7 @@ Item ID: 42
 
 テンプレート名を `TemplateResponse` に渡します:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 同じ例では、アイテムへのリンクは次のようにレンダリングされます:
 

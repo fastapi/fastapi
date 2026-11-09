@@ -18,7 +18,7 @@ FastAPI преобразует эти настройки в **JSON**, чтобы
 
 Но вы можете отключить её, установив `syntaxHighlight` в `False`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
 …и после этого Swagger UI больше не будет показывать подсветку синтаксиса:
 
@@ -28,7 +28,7 @@ FastAPI преобразует эти настройки в **JSON**, чтобы
 
 Аналогично вы можете задать тему подсветки синтаксиса с ключом `"syntaxHighlight.theme"` (обратите внимание, что посередине стоит точка):
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
 Эта настройка изменит цветовую тему подсветки синтаксиса:
 
@@ -46,7 +46,7 @@ FastAPI включает некоторые параметры конфигур�
 
 Например, чтобы отключить `deepLinking`, можно передать такие настройки в `swagger_ui_parameters`:
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
 ## Другие параметры Swagger UI { #other-swagger-ui-parameters }
 

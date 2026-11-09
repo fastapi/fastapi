@@ -52,7 +52,7 @@ Ahora vamos a usar las utilidades proporcionadas por **FastAPI** para manejar es
 
 Primero, importa `OAuth2PasswordRequestForm`, y úsalo como una dependencia con `Depends` en la *path operation* para `/token`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` es una dependencia de clase que declara un body de formulario con:
 
@@ -100,7 +100,7 @@ Si no existe tal usuario, devolvemos un error diciendo "Incorrect username or pa
 
 Para el error, usamos la excepción `HTTPException`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### Revisa el password { #check-the-password }
 
@@ -126,7 +126,7 @@ Si tu base de datos es robada, el ladrón no tendrá los passwords en texto plan
 
 Entonces, el ladrón no podrá intentar usar esos mismos passwords en otro sistema (como muchos usuarios usan el mismo password en todas partes, esto sería peligroso).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### Sobre `**user_dict` { #about-user-dict }
 
@@ -168,7 +168,7 @@ Pero por ahora, enfoquémonos en los detalles específicos que necesitamos.
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | Consejo
 
@@ -194,7 +194,7 @@ Ambas dependencias solo devolverán un error HTTP si el usuario no existe, o si 
 
 Así que, en nuestro endpoint, solo obtendremos un usuario si el usuario existe, fue autenticado correctamente, y está activo:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | Nota
 

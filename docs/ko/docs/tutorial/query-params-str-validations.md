@@ -4,7 +4,7 @@
 
 이 애플리케이션을 예로 들어보겠습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 쿼리 매개변수 `q`는 `str | None` 자료형입니다. 즉, `str` 자료형이지만 `None` 역시 될 수 있음을 뜻하고, 실제로 기본값은 `None`이기 때문에 FastAPI는 이 매개변수가 필수가 아니라는 것을 압니다.
 
@@ -27,7 +27,7 @@ FastAPI는 `q`의 기본값이 `= None`이기 때문에 필수가 아님을 압�
 * `fastapi`에서 `Query`
 * `typing`에서 `Annotated`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | 참고
 
@@ -65,7 +65,7 @@ q: Annotated[str | None] = None
 
 이제 이 `Annotated`에 더 많은 정보를 넣을 수 있으므로(이 경우에는 추가 검증), `Annotated` 안에 `Query`를 추가하고 `max_length` 매개변수를 `50`으로 설정합니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 기본값은 여전히 `None`이므로, 매개변수는 여전히 선택적입니다.
 
@@ -95,7 +95,7 @@ q: Annotated[str | None] = None
 
 다음은 함수 매개변수의 기본값으로 `Query()`를 사용하면서 `max_length`를 50으로 설정하는 방법입니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 이 경우(`Annotated`를 사용하지 않는 경우) 함수에서 기본값 `None`을 `Query()`로 바꿔야 하므로, 이제 `Query(default=None)`로 기본값을 설정해야 합니다. (최소한 FastAPI 입장에서는) 이 인자는 해당 기본값을 정의하는 것과 같은 목적을 수행합니다.
 
@@ -164,13 +164,13 @@ FastAPI 없이도 **다른 곳에서** 같은 함수를 **호출**할 수 있고
 
 `min_length` 매개변수도 추가할 수 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## 정규식 추가 { #add-regular-expressions }
 
 매개변수와 일치해야 하는 <dfn title="정규 표현식(regex 또는 regexp)은 문자열에 대한 검색 패턴을 정의하는 문자 시퀀스입니다.">정규 표현식</dfn> `pattern`을 정의할 수 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 이 특정 정규표현식 패턴은 전달 받은 매개변수 값이 다음을 만족하는지 검사합니다:
 
@@ -188,7 +188,7 @@ FastAPI 없이도 **다른 곳에서** 같은 함수를 **호출**할 수 있고
 
 `q` 쿼리 매개변수에 `min_length`를 `3`으로 설정하고, 기본값을 `"fixedquery"`로 선언하고 싶다고 해봅시다:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | 참고
 
@@ -218,13 +218,13 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 따라서 `Query`를 사용하면서 값을 필수로 선언해야 할 때는, 기본값을 선언하지 않으면 됩니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
 ### 필수 매개변수와 `None` { #required-parameters-and-none }
 
 `str | None` 타입은 Python 값으로 `None`을 허용하지만, 쿼리 매개변수를 선택 사항으로 만들지는 않습니다. 기본값이 없으면 매개변수는 여전히 필수입니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
 쿼리 매개변수 값은 문자열로 전달되며, `None`을 나타내는 내장 표현이 없습니다. `?q=None`이나 `?q=null`을 보내면 각각 문자열 `"None"`과 `"null"`이 전달됩니다. `?q=`를 보내면 빈 문자열이 전달되며, 이 예제에서는 `min_length=3` 검증에 실패합니다.
 
@@ -242,7 +242,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 예를 들어, URL에서 여러 번 나타날 수 있는 `q` 쿼리 매개변수를 선언하려면 다음과 같이 작성할 수 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 그 다음, 아래와 같은 URL로:
 
@@ -277,7 +277,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 제공된 값이 없으면 기본 `list` 값을 정의할 수도 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 다음으로 이동하면:
 
@@ -300,7 +300,7 @@ http://localhost:8000/items/
 
 `list[str]` 대신 `list`를 직접 사용할 수도 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | 참고
 
@@ -326,11 +326,11 @@ http://localhost:8000/items/
 
 `title`을 추가할 수 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 그리고 `description`도 추가할 수 있습니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## 별칭 매개변수 { #alias-parameters }
 
@@ -350,7 +350,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 이럴 경우 `alias`를 선언할 수 있으며, 해당 별칭은 매개변수 값을 찾는 데 사용됩니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## 매개변수 사용 중단하기 { #deprecating-parameters }
 
@@ -360,7 +360,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 그렇다면 `deprecated=True` 매개변수를 `Query`로 전달합니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 문서가 아래와 같이 보일겁니다:
 
@@ -370,7 +370,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 생성된 OpenAPI 스키마(따라서 자동 문서화 시스템)에서 쿼리 매개변수를 제외하려면 `Query`의 `include_in_schema` 매개변수를 `False`로 설정하세요:
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## 커스텀 검증 { #custom-validation }
 
@@ -388,7 +388,7 @@ Pydantic에는 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/c
 
 예를 들어, 이 커스텀 validator는 <abbr title="International Standard Book Number - 국제 표준 도서 번호">ISBN</abbr> 도서 번호의 경우 아이템 ID가 `isbn-`으로 시작하고, <abbr title="Internet Movie Database - 인터넷 영화 데이터베이스: 영화에 대한 정보를 제공하는 웹사이트">IMDB</abbr> 영화 URL ID의 경우 `imdb-`로 시작하는지 확인합니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | 참고
 
@@ -416,7 +416,7 @@ Pydantic에는 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/c
 
 알고 계셨나요? `value.startswith()`를 사용하는 문자열은 튜플을 받을 수 있으며, 튜플에 있는 각 값을 확인합니다:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### 임의의 항목 { #a-random-item }
 
@@ -432,7 +432,7 @@ Pydantic에는 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/c
 
 ...이 모든 것을 **단 하나의 간단한 줄**로 합니다. 🤯 Python 정말 좋지 않나요? 🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## 요약 { #recap }
 

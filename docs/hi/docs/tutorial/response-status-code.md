@@ -8,7 +8,7 @@
 * `@app.delete()`
 * आदि।
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 /// note | नोट
 
@@ -74,7 +74,7 @@ HTTP में, आप response के हिस्से के रूप म�
 
 आइए पिछले example को फिर से देखें:
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` "Created" के लिए status code है।
 
@@ -82,7 +82,7 @@ HTTP में, आप response के हिस्से के रूप म�
 
 आप `fastapi.status` से convenience variables इस्तेमाल कर सकते हैं।
 
-{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 वे सिर्फ़ एक सुविधा हैं, उनमें वही number होता है, लेकिन इस तरह आप उन्हें खोजने के लिए editor के autocomplete का इस्तेमाल कर सकते हैं:
 

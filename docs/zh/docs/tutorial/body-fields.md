@@ -6,7 +6,7 @@
 
 首先，从 Pydantic 中导入 `Field`：
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
 
 /// warning | 警告
 
@@ -18,7 +18,7 @@
 
 然后，使用 `Field` 定义模型的属性：
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field` 的工作方式和 `Query`、`Path`、`Body` 相同，参数也相同。
 

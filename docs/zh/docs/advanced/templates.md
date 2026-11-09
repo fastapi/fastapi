@@ -31,7 +31,7 @@ $ uv add jinja2
 * 在返回模板的*路径操作*中声明 `Request` 参数。
 * 使用你创建的 `templates` 渲染并返回 `TemplateResponse`，传递模板的名称、请求对象以及一个包含多个键值对（用于 Jinja2 模板）的 "context" 字典。
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | 注意
 
@@ -113,7 +113,7 @@ Item ID: 42
 
 将模板名称传递给 `TemplateResponse`：
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 使用同一个示例，条目链接会渲染成：
 

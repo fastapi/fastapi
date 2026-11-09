@@ -10,7 +10,7 @@ O **FastAPI** se encarrega de resolver essas dependências.
 
 Você pode criar uma primeira dependência ("dependable") dessa forma:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 Esse código declara um parâmetro de consulta opcional, `q`, com o tipo `str`, e então retorna esse parâmetro.
 
@@ -20,7 +20,7 @@ Isso é bastante simples (e não muito útil), mas irá nos ajudar a focar em co
 
 Então, você pode criar uma outra função para uma dependência (um "dependable") que ao mesmo tempo declara sua própria dependência (o que faz dela um "dependente" também):
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 Vamos focar nos parâmetros declarados:
 
@@ -33,7 +33,7 @@ Vamos focar nos parâmetros declarados:
 
 Então podemos utilizar a dependência com:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | Nota
 

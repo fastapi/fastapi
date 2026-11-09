@@ -40,7 +40,7 @@
 
 このようなケースでは、レスポンスにデータを含める前に `jsonable_encoder` を使ってデータを変換できます。
 
-{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
+{* ../../docs_src/response_directly/tutorial001.py hl[5:6,20:21] *}
 
 /// note | 技術詳細
 
@@ -60,13 +60,13 @@
 
 XMLを文字列にし、`Response` に含め、それを返します。
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## Response Model の仕組み { #how-a-response-model-works }
 
 path operation で [Response Model - 戻り値の型](../tutorial/response-model.md) を宣言すると、**FastAPI** はそれを使って Pydantic によりデータをJSONにシリアライズします。
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 これは Rust 側で行われるため、通常の Python と `JSONResponse` クラスで行う場合より、パフォーマンスははるかに良くなります。
 

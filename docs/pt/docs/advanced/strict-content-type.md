@@ -77,7 +77,7 @@ Esse risco e ataque é relevante principalmente quando a aplicação roda na **r
 
 Se você precisa dar suporte a clientes que não enviam um cabeçalho `Content-Type`, você pode desativar a verificação estrita definindo `strict_content_type=False`:
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 Com essa configuração, requisições sem um cabeçalho `Content-Type` terão o corpo interpretado como JSON, o mesmo comportamento das versões mais antigas do FastAPI.
 

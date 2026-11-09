@@ -36,7 +36,7 @@ Proje yapınız şöyle görünebilir:
 
 Ardından bunu `app.frontend()` ile sunun:
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 Böylece `/assets/app.js` için gelen bir request, `dist/assets/app.js` dosyasını sunabilir.
 
@@ -50,7 +50,7 @@ Bu yüzden, o URL'ye doğrudan erişildiğinde (uygulama içinde gezinmek yerine
 
 Bunun için `fallback="index.html"` kullanın:
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI** bu fallback'i yalnızca, tarayıcı gezinme request'lerinin normalde yaptığı gibi `Accept: text/html` veya `Accept: application/xhtml+xml` ile HTML'i açıkça kabul eden `GET` ve `HEAD` request'leri için kullanır. JavaScript, CSS ve görseller gibi eksik dosyalar yine `404` döndürür.
 
@@ -68,7 +68,7 @@ Client-side routing kullanan birçok frontend uygulamasında istediğiniz davran
 
 Bulunamayan frontend path'leri için statik bir `404.html` sayfası da sunabilirsiniz:
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 Bu response, `404` status code'unu korur.
 
@@ -94,13 +94,13 @@ Aksi halde bir `index.html` dosyası varsa, bulunamayan tarayıcı gezinme path'
 
 Bu yüzden çoğu durumda `fallback` argümanını belirtmeden `app.frontend("/", directory="dist")` kullanabilirsiniz.
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## Fallback'i Devre Dışı Bırakma { #disable-fallback }
 
 Bulunamayan frontend path'leri için fallback dosyası sunmak istemiyorsanız `fallback=None` kullanın:
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 Bundan sonra bulunamayan frontend path'leri normal `404` döndürür.
 
@@ -116,7 +116,7 @@ App oluşturulduğunda dizini her zaman kontrol etmek için `check_dir=True` de 
 
 Frontend dosyalarınız daha sonra oluşturuluyorsa, örneğin app nesnesi oluşturulduktan sonra ayrı bir build adımıyla, `check_dir=False` ayarlayın:
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 `check_dir=False` ile **FastAPI**, app oluşturulduğunda dizini kontrol etmez. Yapılandırılan dizin bir request işlendiği sırada hâlâ yoksa, **FastAPI** o zaman hata verir.
 
@@ -124,7 +124,7 @@ Frontend dosyalarınız daha sonra oluşturuluyorsa, örneğin app nesnesi oluş
 
 Frontend dosyalarını bir `APIRouter`'a da ekleyebilir ve bunu bir prefix ile dahil edebilirsiniz:
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 Bu örnekte frontend path'leri `/app` altında sunulur.
 

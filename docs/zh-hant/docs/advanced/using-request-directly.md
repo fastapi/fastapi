@@ -29,7 +29,7 @@
 
 為此，你需要直接存取請求。
 
-{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 只要在 *路徑操作函式* 中宣告一個型別為 `Request` 的參數，**FastAPI** 就會將當前的 `Request` 傳入該參數。
 

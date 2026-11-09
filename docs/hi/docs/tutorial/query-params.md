@@ -2,7 +2,7 @@
 
 जब आप ऐसे दूसरे function parameters declare करते हैं जो path parameters का हिस्सा नहीं हैं, तो उन्हें अपने-आप "query" parameters के रूप में समझा जाता है।
 
-{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 query उन key-value pairs का सेट है जो URL में `?` के बाद आते हैं, और `&` characters से अलग किए जाते हैं।
 
@@ -61,7 +61,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 उसी तरह, आप optional query parameters declare कर सकते हैं, उनका default `None` सेट करके:
 
-{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial002.py hl[7] *}
 
 इस मामले में, function parameter `q` optional होगा, और default रूप से `None` होगा।
 
@@ -75,7 +75,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 आप `bool` types भी declare कर सकते हैं, और वे convert हो जाएँगे:
 
-{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial003.py hl[7] *}
 
 इस मामले में, अगर आप इस पर जाते हैं:
 
@@ -124,7 +124,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 उन्हें नाम से detect किया जाएगा:
 
-{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
+{* ../../docs_src/query_params/tutorial004.py hl[6,8] *}
 
 ## Required query parameters { #required-query-parameters }
 
@@ -134,7 +134,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 लेकिन जब आप किसी query parameter को required बनाना चाहते हैं, तो आप बस कोई default value declare न करें:
 
-{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 यहाँ query parameter `needy` type `str` का एक required query parameter है।
 
@@ -179,7 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 और निश्चित रूप से, आप कुछ parameters को required, कुछ को default value वाला, और कुछ को पूरी तरह optional define कर सकते हैं:
 
-{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
+{* ../../docs_src/query_params/tutorial006.py hl[8] *}
 
 इस मामले में, 3 query parameters हैं:
 

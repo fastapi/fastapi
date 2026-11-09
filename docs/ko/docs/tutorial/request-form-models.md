@@ -24,7 +24,7 @@ $ uv add python-multipart
 
 **폼 필드**로 받고 싶은 필드를 **Pydantic 모델**로 선언한 다음, 매개변수를 `Form`으로 선언하면 됩니다:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI**는 요청에서 받은 **폼 데이터**에서 **각 필드**에 대한 데이터를 **추출**하고 정의한 Pydantic 모델을 줍니다.
 
@@ -50,7 +50,7 @@ $ uv add python-multipart
 
 Pydantic의 모델 구성을 사용하여 `extra` 필드를 `forbid`할 수 있습니다:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 클라이언트가 추가 데이터를 보내려고 하면 **오류** 응답을 받게 됩니다.
 
@@ -79,7 +79,7 @@ Pydantic의 모델 구성을 사용하여 `extra` 필드를 `forbid`할 수 있�
 
 여러 폼 모델을 개별 `Form` 매개변수와 함께 사용할 수 있습니다.
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 클라이언트는 `name`, `tags`, `token`을 폼 필드로 전송합니다. 각 모델은 폼 필드를 독립적으로 검증합니다.
 
@@ -91,7 +91,7 @@ Pydantic의 모델 구성을 사용하여 `extra` 필드를 `forbid`할 수 있�
 
 폼 필드 그룹을 선택적으로 만들려면, 모델에 `| None`을 사용하고 기본값을 `None`으로 선언하세요.
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 `name`과 `age`가 모두 전송되지 않으면 `profile`은 `None`입니다. 둘 중 하나라도 전송되면 FastAPI는 모델을 검증하며 두 필드를 모두 요구합니다. 빈 값을 전송해도 해당 필드를 제공한 것으로 간주됩니다.
 
@@ -105,7 +105,7 @@ Pydantic의 모델 구성을 사용하여 `extra` 필드를 `forbid`할 수 있�
 
 모델들의 선택적 유니온을 사용할 수도 있습니다.
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 폼 필드가 전송되지 않으면 `contact`는 `None`입니다. `kind=person`과 `name`을 함께 보내거나, `kind=company`와 `company_name`을 함께 보내세요. 판별자(discriminator)가 검증할 모델을 선택합니다.
 
@@ -113,7 +113,7 @@ Pydantic의 모델 구성을 사용하여 `extra` 필드를 `forbid`할 수 있�
 
 유니온을 다른 폼 모델, 개별 `Form` 매개변수, `File` 매개변수와 함께 사용할 수 있습니다. 각 유니온은 독립적으로 검증됩니다.
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 모든 필드를 같은 폼에 담아 전송하세요. 예를 들어, `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com`, `token=secret`을 전송합니다.
 
@@ -123,7 +123,7 @@ Pydantic의 모델 구성을 사용하여 `extra` 필드를 `forbid`할 수 있�
 
 폼 모델을 [파일 매개변수](request-files.md)와 함께 사용할 수도 있습니다.
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 여기서 클라이언트는 `multipart/form-data`를 사용하여 `name` 필드와 `avatar` 파일을 전송합니다.
 

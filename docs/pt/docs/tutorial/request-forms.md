@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 Importe `Form` de `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## Defina parâmetros de `Form` { #define-form-parameters }
 
 Crie parâmetros de formulário da mesma forma que você faria para `Body` ou `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Por exemplo, em uma das maneiras que a especificação OAuth2 pode ser usada (chamada "fluxo de senha"), é necessário enviar um `username` e uma `password` como campos do formulário.
 
@@ -48,7 +48,7 @@ Para declarar corpos de formulário, você precisa usar `Form` explicitamente, p
 
 Os navegadores omitem caixas de seleção desmarcadas ao enviar formulários HTML. Declare um parâmetro booleano de formulário com o valor padrão `False` para receber `False` quando a caixa estiver desmarcada:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 Uma caixa de seleção marcada envia seu valor, que por padrão é `"on"`. O **FastAPI** aceita `"on"` como `True`.
 

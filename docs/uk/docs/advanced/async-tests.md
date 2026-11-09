@@ -32,11 +32,11 @@
 
 Файл `main.py` міститиме:
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 Файл `test_main.py` міститиме тести для `main.py`, тепер це може виглядати так:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
 ## Запуск { #run-it }
 
@@ -56,7 +56,7 @@ $ uv run pytest
 
 Маркер `@pytest.mark.anyio` повідомляє pytest, що цю тестову функцію слід викликати асинхронно:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | Порада
 
@@ -66,7 +66,7 @@ $ uv run pytest
 
 Далі ми можемо створити `AsyncClient` із застосунком і надсилати до нього асинхронні запити, використовуючи `await`.
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 Це еквівалентно:
 

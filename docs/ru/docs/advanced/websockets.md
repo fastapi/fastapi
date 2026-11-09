@@ -38,13 +38,13 @@ $ uv add websockets
 
 Но это самый простой способ сосредоточиться на серверной части веб‑сокетов и получить рабочий пример:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[2,6:38,41:43] *}
 
 ## Создание `websocket` { #create-a-websocket }
 
 В вашем **FastAPI** приложении создайте `websocket`:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[1,46:47] *}
 
 /// note | Технические детали
 
@@ -58,7 +58,7 @@ $ uv add websockets
 
 В вашем WebSocket-маршруте вы можете `await` сообщения и отправлять сообщения.
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[48:52] *}
 
 Вы можете получать и отправлять двоичные, текстовые и JSON данные.
 
@@ -109,7 +109,7 @@ $ uv run fastapi dev
 
 Они работают так же, как и в других FastAPI эндпоинтах/*операциях пути*:
 
-{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002.py hl[68:69,82] *}
 
 /// note | Примечание
 
@@ -154,7 +154,7 @@ $ uv run fastapi dev
 
 Когда WebSocket-соединение закрыто, `await websocket.receive_text()` вызовет исключение `WebSocketDisconnect`, которое можно поймать и обработать как в этом примере.
 
-{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003.py hl[79:81] *}
 
 Чтобы воспроизвести пример:
 

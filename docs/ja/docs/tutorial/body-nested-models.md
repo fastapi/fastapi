@@ -7,7 +7,7 @@
 
 属性をサブタイプとして定義することができます。例えば、Pythonの`list`:
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 これにより、各項目の型は宣言されていませんが、`tags`はリストになります。
 
@@ -30,7 +30,7 @@ my_list: list[str]
 
 そのため、以下の例では`tags`を具体的な「文字列のリスト」にすることができます:
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## セット型 { #set-types }
 
@@ -40,7 +40,7 @@ my_list: list[str]
 
 そして、`tags`を文字列のセットとして宣言できます:
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 これを使えば、データが重複しているリクエストを受けた場合でも、ユニークな項目のセットに変換されます。
 
@@ -62,13 +62,13 @@ Pydanticモデルの各属性には型があります。
 
 例えば、`Image`モデルを定義することができます:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### サブモデルを型として使用 { #use-the-submodel-as-a-type }
 
 そして、それを属性の型として使用することができます:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 これは **FastAPI** が以下のようなボディを期待することを意味します:
 
@@ -101,7 +101,7 @@ Pydanticモデルの各属性には型があります。
 
 例えば、`Image`モデルのように`url`フィールドがある場合、`str`の代わりにPydanticの`HttpUrl`のインスタンスとして宣言することができます:
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 文字列は有効なURLであることが確認され、そのようにJSON Schema / OpenAPIで文書化されます。
 
@@ -109,7 +109,7 @@ Pydanticモデルの各属性には型があります。
 
 Pydanticモデルを`list`や`set`などのサブタイプとして使用することもできます:
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 これは、次のようなJSONボディを期待します（変換、検証、ドキュメントなど）:
 
@@ -146,7 +146,7 @@ Pydanticモデルを`list`や`set`などのサブタイプとして使用する�
 
 深くネストされた任意のモデルを定義することができます:
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note | 備考
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 以下のように:
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## あらゆる場所でのエディタサポート { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Pydanticモデルではなく、`dict`を直接使用している場合はこの
 
 この場合、`int`のキーと`float`の値を持つものであれば、どんな`dict`でも受け入れることができます:
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip | 豆知識
 

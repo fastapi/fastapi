@@ -2,7 +2,7 @@
 
 Cuando declaras otros parámetros de función que no son parte de los parámetros de path, son automáticamente interpretados como parámetros de "query".
 
-{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 La query es el conjunto de pares clave-valor que van después del `?` en una URL, separados por caracteres `&`.
 
@@ -61,7 +61,7 @@ Los valores de los parámetros en tu función serán:
 
 De la misma manera, puedes declarar parámetros de query opcionales, estableciendo su valor por defecto en `None`:
 
-{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial002.py hl[7] *}
 
 En este caso, el parámetro de función `q` será opcional y será `None` por defecto.
 
@@ -75,7 +75,7 @@ Además, nota que **FastAPI** es lo suficientemente inteligente para notar que e
 
 También puedes declarar tipos `bool`, y serán convertidos:
 
-{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial003.py hl[7] *}
 
 En este caso, si vas a:
 
@@ -124,7 +124,7 @@ Y no tienes que declararlos en un orden específico.
 
 Serán detectados por nombre:
 
-{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
+{* ../../docs_src/query_params/tutorial004.py hl[6,8] *}
 
 ## Parámetros de query requeridos { #required-query-parameters }
 
@@ -134,7 +134,7 @@ Si no quieres agregar un valor específico pero solo hacer que sea opcional, est
 
 Pero cuando quieres hacer un parámetro de query requerido, simplemente no declares ningún valor por defecto:
 
-{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 Aquí el parámetro de query `needy` es un parámetro de query requerido de tipo `str`.
 
@@ -179,7 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 Y por supuesto, puedes definir algunos parámetros como requeridos, algunos con un valor por defecto, y algunos enteramente opcionales:
 
-{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
+{* ../../docs_src/query_params/tutorial006.py hl[8] *}
 
 En este caso, hay 3 parámetros de query:
 

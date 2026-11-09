@@ -55,7 +55,7 @@ $ uv add sqlmodel
 
 `SQLModel` をインポートしてデータベースモデルを作成します:
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[1:11] hl[7:11] *}
 
 `Hero` クラスは Pydantic モデルによく似ています（実際には内部的に*Pydantic モデルでもあります*）。
 
@@ -77,7 +77,7 @@ SQLModel の `engine`（内部的には SQLAlchemy の `engine`）は、デー�
 
 同じデータベースに接続するために、コード全体で**単一の `engine` オブジェクト**を共有します。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[14:18] hl[14:15,17:18] *}
 
 `check_same_thread=False` を使うと、FastAPI が異なるスレッドで同じ SQLite データベースを使えるようになります。これは、**1 つのリクエスト**が**複数スレッド**を使う可能性があるため（例えば依存関係で）、必要です。
 
@@ -87,7 +87,7 @@ SQLModel の `engine`（内部的には SQLAlchemy の `engine`）は、デー�
 
 `SQLModel.metadata.create_all(engine)` を使って、すべての*テーブルモデル*の**テーブルを作成**する関数を追加します。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[21:22] hl[21:22] *}
 
 ### Session 依存関係の作成 { #create-a-session-dependency }
 
@@ -97,13 +97,13 @@ SQLModel の `engine`（内部的には SQLAlchemy の `engine`）は、デー�
 
 続いて、この依存関係を使うコードを簡潔にするために、`Annotated` による依存関係 `SessionDep` を作成します。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[25:30]  hl[25:27,30] *}
 
 ### 起動時にテーブルを作成 { #create-database-tables-on-startup }
 
 アプリケーションの起動時にデータベースのテーブルを作成します。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[32:37] hl[35:37] *}
 
 ここでは、アプリケーションのスタートアップイベントでテーブルを作成しています。
 
@@ -123,7 +123,7 @@ SQLModel は Alembic をラップしたマイグレーションユーティリ�
 
 同様に、関数の**戻り値の型**として宣言すると、そのデータ形状が自動 API ドキュメントの UI に表示されます。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[40:45] hl[40:45] *}
 
 ここでは `SessionDep` 依存関係（`Session`）を使って、新しい `Hero` を `Session` インスタンスに追加し、データベースにコミットし、`hero` のデータをリフレッシュしてから返します。
 
@@ -131,19 +131,19 @@ SQLModel は Alembic をラップしたマイグレーションユーティリ�
 
 `select()` を使ってデータベースから `Hero` を**取得**できます。結果のページネーションのために `limit` と `offset` を含められます。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[48:55] hl[51:52,54] *}
 
 ### 単一の Hero を取得 { #read-one-hero }
 
 単一の `Hero` を**取得**できます。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[58:63] hl[60] *}
 
 ### Hero の削除 { #delete-a-hero }
 
 `Hero` を**削除**することもできます。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[66:73] hl[71] *}
 
 ### アプリの起動 { #run-the-app }
 
@@ -192,7 +192,7 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:9] hl[7:9] *}
 
 #### `Hero` - *テーブルモデル* { #hero-the-table-model }
 
@@ -208,7 +208,7 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:14] hl[12:14] *}
 
 #### `HeroPublic` - 公開用*データモデル* { #heropublic-the-public-data-model }
 
@@ -234,7 +234,7 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:18] hl[17:18] *}
 
 #### `HeroCreate` - 作成用*データモデル* { #herocreate-the-data-model-to-create-a-hero }
 
@@ -258,7 +258,7 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:22] hl[21:22] *}
 
 #### `HeroUpdate` - 更新用*データモデル* { #heroupdate-the-data-model-to-update-a-hero }
 
@@ -276,7 +276,7 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:28] hl[25:28] *}
 
 ### `HeroCreate` で作成し `HeroPublic` を返す { #create-with-herocreate-and-return-a-heropublic }
 
@@ -288,7 +288,7 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 
 関数からはこの*テーブルモデル* `Hero` をそのまま返します。しかし `response_model` に `HeroPublic` *データモデル*を指定しているため、**FastAPI** が `HeroPublic` を使ってデータをバリデート・シリアライズします。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[56:62] hl[56:58] *}
 
 /// tip | 豆知識
 
@@ -304,13 +304,13 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 
 前と同様に `Hero` を**取得**できます。再び `response_model=list[HeroPublic]` を使って、データが正しくバリデート・シリアライズされることを保証します。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[65:72] hl[65] *}
 
 ### `HeroPublic` で単一の Hero を取得 { #read-one-hero-with-heropublic }
 
 単一のヒーローを**取得**します:
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[75:80] hl[77] *}
 
 ### `HeroUpdate` で Hero を更新 { #update-a-hero-with-heroupdate }
 
@@ -320,7 +320,7 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 
 その後、`hero_db.sqlmodel_update(hero_data)` を使って、`hero_db` を `hero_data` の内容で更新します。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[83:93] hl[83:84,88:89] *}
 
 ### 再度 Hero を削除 { #delete-a-hero-again }
 
@@ -328,7 +328,7 @@ SQLModel では**継承**を使って、あらゆるケースでフィールド�
 
 ここはリファクタリング欲求を満たさないままにしておきます。😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[96:103] hl[101] *}
 
 ### アプリの再起動 { #run-the-app-again }
 

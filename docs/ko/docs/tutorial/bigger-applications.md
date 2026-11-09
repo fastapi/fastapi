@@ -85,7 +85,7 @@ from app.routers import items
 
 `FastAPI` 클래스와 동일한 방식으로 import하고 "instance"를 생성합니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### `APIRouter`로 *경로 처리* 만들기 { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ from app.routers import items
 
 `FastAPI` 클래스를 사용할 때와 동일한 방식으로 사용합니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 `APIRouter`는 "미니 `FastAPI`" 클래스라고 생각할 수 있습니다.
 
@@ -117,7 +117,7 @@ from app.routers import items
 
 이제 간단한 dependency를 사용해 커스텀 `X-Token` 헤더를 읽어 보겠습니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | 팁
 
@@ -149,7 +149,7 @@ from app.routers import items
 
 따라서 각 *경로 처리*마다 매번 모두 추가하는 대신, `APIRouter`에 한 번에 추가할 수 있습니다.
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 각 *경로 처리*의 경로는 다음처럼 `/`로 시작해야 하므로:
 
@@ -207,7 +207,7 @@ async def read_item(item_id: str): ...
 
 그래서 dependencies에 대해 `..`를 사용하는 상대 import를 사용합니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### 상대 import가 동작하는 방식 { #how-relative-imports-work }
 
@@ -278,7 +278,7 @@ from ...dependencies import get_token_header
 
 하지만 특정 *경로 처리*에만 적용될 _추가_ `tags`를 더할 수도 있고, 그 *경로 처리* 전용의 추가 `responses`도 넣을 수 있습니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | 팁
 
@@ -304,13 +304,13 @@ from ...dependencies import get_token_header
 
 또한 각 `APIRouter`의 dependencies와 결합될 [global dependencies](dependencies/global-dependencies.md)도 선언할 수 있습니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### `APIRouter` import하기 { #import-the-apirouter }
 
 이제 `APIRouter`가 있는 다른 submodule들을 import합니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[4:5] title["app/main.py"] *}
 
 `app/routers/users.py`와 `app/routers/items.py` 파일은 같은 Python package `app`에 속한 submodule들이므로, 점 하나 `.`를 사용해 "상대 import"로 가져올 수 있습니다.
 
@@ -373,13 +373,13 @@ from .routers.users import router
 
 따라서 같은 파일에서 둘 다 사용할 수 있도록 submodule들을 직접 import합니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[5] title["app/main.py"] *}
 
 ### `users`와 `items`용 `APIRouter` 포함하기 { #include-the-apirouters-for-users-and-items }
 
 이제 submodule `users`와 `items`의 `router`를 포함해 봅시다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[10:11] title["app/main.py"] *}
 
 /// note | 참고
 
@@ -419,13 +419,13 @@ router를 포함(include)할 때 성능을 걱정할 필요는 없습니다.
 
 이 예시에서는 매우 단순하게 만들겠습니다. 하지만 조직 내 다른 프로젝트와 공유되기 때문에, 이를 수정할 수 없어 `prefix`, `dependencies`, `tags` 등을 `APIRouter`에 직접 추가할 수 없다고 해봅시다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 하지만 `APIRouter`를 포함할 때 커스텀 `prefix`를 지정해 모든 *경로 처리*가 `/admin`으로 시작하게 하고, 이 프로젝트에서 이미 가진 `dependencies`로 보호하고, `tags`와 `responses`도 포함하고 싶습니다.
 
 원래 `APIRouter`를 수정하지 않고도 `app.include_router()`에 파라미터를 전달해서 이를 선언할 수 있습니다:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[14:17] title["app/main.py"] *}
 
 이렇게 하면 원래 `APIRouter`는 수정되지 않으므로, 조직 내 다른 프로젝트에서도 동일한 `app/internal/admin.py` 파일을 계속 공유할 수 있습니다.
 
@@ -446,7 +446,7 @@ router를 포함(include)할 때 성능을 걱정할 필요는 없습니다.
 
 여기서는 가능하다는 것을 보여주기 위해... 그냥 해봅니다 🤷:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[21:23] title["app/main.py"] *}
 
 그리고 `app.include_router()`로 추가한 다른 모든 *경로 처리*와 함께 올바르게 동작합니다.
 

@@ -14,7 +14,7 @@
 
 Это должен быть `list` состоящий из `Depends()`:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[19] *}
 
 Зависимости из dependencies выполнятся так же, как и обычные зависимости. Но их значения (если они были) не будут переданы в *функцию операции пути*.
 
@@ -44,13 +44,13 @@
 
 Они могут объявлять требования к запросу (например HTTP-заголовки) или другие подзависимости:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[8,13] *}
 
 ### Вызов исключений { #raise-exceptions }
 
 Зависимости из dependencies могут вызывать исключения с помощью `raise`, как и обычные зависимости:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[10,15] *}
 
 ### Возвращаемые значения { #return-values }
 
@@ -58,7 +58,7 @@
 
 Таким образом, вы можете переиспользовать обычную зависимость (возвращающую значение), которую вы уже используете где-то в другом месте, и хотя значение не будет использоваться, зависимость будет выполнена:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[11,16] *}
 
 ## Зависимости для группы *операций путей* { #dependencies-for-a-group-of-path-operations }
 

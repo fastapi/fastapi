@@ -31,7 +31,7 @@
 
 이 부분은 꽤 일반적이며, 대부분의 코드는 이미 익숙할 것입니다:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | 팁
 
@@ -90,7 +90,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 먼저 하나 이상의 콜백을 담을 새 `APIRouter`를 만듭니다.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### 콜백 *경로 처리* 생성하기 { #create-the-callback-path-operation }
 
@@ -101,7 +101,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * 아마도 받아야 할 body 선언이 있을 것입니다(예: `body: InvoiceEvent`).
 * 그리고 반환해야 할 응답 선언도 있을 수 있습니다(예: `response_model=InvoiceEventReceived`).
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 일반적인 *경로 처리*와의 주요 차이점은 2가지입니다:
 
@@ -169,7 +169,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 이제 *여러분의 API 경로 처리 데코레이터*에서 `callbacks` 파라미터를 사용해, 그 콜백 라우터의 `.routes` 속성을 전달합니다:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | 팁
 

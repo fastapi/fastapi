@@ -56,8 +56,8 @@ Aquí hay algunos de los tipos de datos adicionales que puedes usar:
 
 Aquí tienes un ejemplo de una *path operation* con parámetros usando algunos de los tipos anteriores.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Nota que los parámetros dentro de la función tienen su tipo de dato natural, y puedes, por ejemplo, realizar manipulaciones de fechas normales, como:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

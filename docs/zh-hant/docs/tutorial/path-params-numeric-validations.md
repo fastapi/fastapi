@@ -6,7 +6,7 @@
 
 首先，從 `fastapi` 匯入 `Path`，並匯入 `Annotated`：
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[1,3] *}
 
 /// note
 
@@ -24,7 +24,7 @@ FastAPI 在 0.95.0 版加入並開始推薦使用 `Annotated`。
 
 例如，若要為路徑參數 `item_id` 宣告 `title` 中繼資料，可以這樣寫：
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[10] *}
 
 /// note
 
@@ -54,11 +54,11 @@ FastAPI 在 0.95.0 版加入並開始推薦使用 `Annotated`。
 
 因此，你可以這樣宣告你的函式：
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_non_an.py hl[7] *}
 
 但請記住，若使用 `Annotated`，你就不會有這個問題，因為你不是用函式參數預設值來放 `Query()` 或 `Path()`。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py *}
 
 ## 依需求調整參數順序的技巧 { #order-the-parameters-as-you-need-tricks }
 
@@ -83,13 +83,13 @@ FastAPI 在 0.95.0 版加入並開始推薦使用 `Annotated`。
 
 Python 不會對這個 `*` 做任何事，但它會知道後續的所有參數都必須以關鍵字引數（key-value pairs）方式呼叫，也就是所謂的 <abbr title="源自：K-ey W-ord Arg-uments - 關鍵字參數"><code>kwargs</code></abbr>。即便它們沒有預設值也一樣。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_non_an.py hl[7] *}
 
 ### 使用 `Annotated` 更好 { #better-with-annotated }
 
 記住，如果你使用 `Annotated`，因為不是用函式參數預設值，所以你不會遇到這個問題，也可能不需要使用 `*`。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[10] *}
 
 ## 數值驗證：大於或等於 { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Python 不會對這個 `*` 做任何事，但它會知道後續的所有參數�
 
 這裡用 `ge=1`，代表 `item_id` 必須是「大於（`g`reater）或等於（`e`qual）」`1` 的整數。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004.py hl[10] *}
 
 ## 數值驗證：大於與小於或等於 { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ Python 不會對這個 `*` 做任何事，但它會知道後續的所有參數�
 * `gt`：大於（`g`reater `t`han）
 * `le`：小於或等於（`l`ess than or `e`qual）
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005.py hl[10] *}
 
 ## 數值驗證：浮點數、大於與小於 { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ Python 不會對這個 `*` 做任何事，但它會知道後續的所有參數�
 
 <abbr title="less than - 小於"><code>lt</code></abbr> 也是同樣的道理。
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006.py hl[13] *}
 
 ## 小結 { #recap }
 

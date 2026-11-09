@@ -10,7 +10,7 @@ Diese können so **tief** verschachtelt sein, wie nötig.
 
 Sie könnten eine erste Abhängigkeit („Dependable“) wie folgt erstellen:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 Diese deklariert einen optionalen Query-Parameter `q` vom Typ `str` und gibt ihn dann einfach zurück.
 
@@ -20,7 +20,7 @@ Das ist recht einfach (nicht sehr nützlich), hilft uns aber dabei, uns auf die 
 
 Dann können Sie eine weitere Abhängigkeitsfunktion (ein „Dependable“) erstellen, die gleichzeitig eine eigene Abhängigkeit deklariert (also auch ein „Dependant“ ist):
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 Betrachten wir die deklarierten Parameter:
 
@@ -33,7 +33,7 @@ Betrachten wir die deklarierten Parameter:
 
 Diese Abhängigkeit verwenden wir nun wie folgt:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | Hinweis
 

@@ -22,7 +22,7 @@ FastAPI 0.134.0 में जोड़ा गया।
 
 अगर आप अपने *path operation function* में `response_class=StreamingResponse` declare करते हैं, तो आप data के प्रत्येक chunk को क्रम से भेजने के लिए `yield` का उपयोग कर सकते हैं।
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI data के प्रत्येक chunk को `StreamingResponse` को जैसा है वैसा ही देगा, यह उसे JSON या किसी समान चीज़ में convert करने की कोशिश नहीं करेगा।
 
@@ -30,7 +30,7 @@ FastAPI data के प्रत्येक chunk को `StreamingResponse` �
 
 आप regular `def` functions (`async` के बिना) का भी उपयोग कर सकते हैं, और उसी तरह `yield` का उपयोग कर सकते हैं।
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### Annotation नहीं { #no-annotation }
 
@@ -38,7 +38,7 @@ Streaming binary data के लिए आपको return type annotation decla
 
 क्योंकि FastAPI data को Pydantic के साथ JSON में convert करने या किसी भी तरह serialize करने की कोशिश नहीं करेगा, इस मामले में type annotation केवल आपके editor और tools के उपयोग के लिए है, FastAPI इसका उपयोग नहीं करेगा।
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 इसका मतलब यह भी है कि `StreamingResponse` के साथ आपके पास type annotations से स्वतंत्र होकर data bytes को ठीक वैसे produce और encode करने की **स्वतंत्रता** और **ज़िम्मेदारी** है, जैसे उन्हें भेजा जाना चाहिए। 🤓
 
@@ -46,7 +46,7 @@ Streaming binary data के लिए आपको return type annotation decla
 
 मुख्य उपयोग मामलों में से एक strings के बजाय `bytes` stream करना होगा, और आप निश्चित रूप से ऐसा कर सकते हैं।
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## एक Custom `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ Streaming binary data के लिए आपको return type annotation decla
 
 उदाहरण के लिए, आप एक `PNGStreamingResponse` बना सकते हैं जो `media_type` attribute का उपयोग करके `Content-Type` header को `image/png` पर set करता है:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 फिर आप अपने *path operation function* में `response_class=PNGStreamingResponse` में इस नई class का उपयोग कर सकते हैं:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### एक File का Simulation करें { #simulate-a-file }
 
@@ -68,7 +68,7 @@ Streaming binary data के लिए आपको return type annotation decla
 
 उदाहरण के लिए, हम इसके contents consume करने के लिए इस पर iterate कर सकते हैं, जैसे हम किसी file के साथ कर सकते हैं।
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | तकनीकी विवरण
 
@@ -100,7 +100,7 @@ Streaming binary data के लिए आपको return type annotation decla
 
 event loop को block करने से बचने के लिए, आप बस *path operation function* को `async def` के बजाय regular `def` के साथ declare कर सकते हैं, इस तरह FastAPI इसे main loop को block करने से बचाने के लिए threadpool worker पर run करेगा।
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip | सुझाव
 
@@ -114,4 +114,4 @@ event loop को block करने से बचने के लिए, आ�
 
 यह FastAPI के लिए विशेष नहीं है, यह सिर्फ Python है, लेकिन यह जानने लायक एक अच्छा trick है। 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

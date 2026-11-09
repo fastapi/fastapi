@@ -14,7 +14,7 @@ FastAPI 从 `0.115.0` 版本开始支持这个特性。🤓
 
 在一个 **Pydantic 模型**中声明你需要的**查询参数**，然后将参数声明为 `Query`：
 
-{* ../../docs_src/query_param_models/tutorial001_an_py310.py hl[9:13,17] *}
+{* ../../docs_src/query_param_models/tutorial001.py hl[9:13,17] *}
 
 **FastAPI** 将会从请求的**查询参数**中**提取**出**每个字段**的数据，并将你定义的 Pydantic 模型提供给你。
 
@@ -32,7 +32,7 @@ FastAPI 从 `0.115.0` 版本开始支持这个特性。🤓
 
 你可以使用 Pydantic 的模型配置来 `forbid` 任何 `extra` 字段：
 
-{* ../../docs_src/query_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/query_param_models/tutorial002.py hl[10] *}
 
 假设有一个客户端尝试在**查询参数**中发送一些**额外的**数据，它将会收到一个**错误**响应。
 
@@ -61,7 +61,7 @@ https://example.com/items/?limit=10&tool=plumbus
 
 你可以声明多个查询参数模型，并将它们与单独的查询参数或依赖项组合使用。
 
-{* ../../docs_src/query_param_models/tutorial003_an_py310.py hl[9:15,20:22] *}
+{* ../../docs_src/query_param_models/tutorial003.py hl[9:15,20:22] *}
 
 请求参数仍处于同一层级。
 
@@ -81,7 +81,7 @@ https://example.com/items/?limit=5&offset=10&tags=red&tags=blue&search=shirt
 
 声明查询参数模型时，使用 `| None` 并将默认值设为 `None`，即可使这组参数变为可选。
 
-{* ../../docs_src/query_param_models/tutorial004_an_py310.py hl[18] *}
+{* ../../docs_src/query_param_models/tutorial004.py hl[18] *}
 
 如果既未发送 `start` 也未发送 `end`，则 `date_range` 为 `None`。如果发送了其中任意一个，FastAPI 就会验证模型，并要求提供两个字段。
 

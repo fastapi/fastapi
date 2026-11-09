@@ -31,7 +31,7 @@ $ uv add jinja2
 * Template döndürecek *path operation* içinde bir `Request` parametresi tanımlayın.
 * Oluşturduğunuz `templates` nesnesini kullanarak bir `TemplateResponse` render edip döndürün; template'in adını, request nesnesini ve Jinja2 template'i içinde kullanılacak anahtar-değer çiftlerini içeren bir "context" sözlüğünü (dict) iletin.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Not
 
@@ -113,7 +113,7 @@ Aynı siteye verilen linklerde yalnızca URL path'ini almak için `.path` niteli
 
 Template'in adını `TemplateResponse`'a iletin:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 Aynı örnekte, öğenin linki şu şekilde render edilir:
 

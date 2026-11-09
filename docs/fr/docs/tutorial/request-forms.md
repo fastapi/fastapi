@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 Importez `Form` depuis `fastapi` :
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## Définir les paramètres `Form` { #define-form-parameters }
 
 Créez des paramètres de formulaire comme vous le feriez pour `Body` ou `Query` :
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Par exemple, dans l'une des manières dont la spécification OAuth2 peut être utilisée (appelée « password flow »), il est requis d'envoyer un `username` et un `password` comme champs de formulaire.
 
@@ -48,7 +48,7 @@ Pour déclarer des corps de formulaire, vous devez utiliser `Form` explicitement
 
 Les navigateurs omettent les cases à cocher non cochées lors de l'envoi des formulaires HTML. Déclarez un paramètre de formulaire booléen avec une valeur par défaut de `False` pour recevoir `False` lorsque la case n'est pas cochée :
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 Une case cochée envoie sa valeur, qui est par défaut `"on"`. **FastAPI** accepte `"on"` comme `True`.
 

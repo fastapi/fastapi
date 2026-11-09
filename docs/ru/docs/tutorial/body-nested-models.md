@@ -6,7 +6,7 @@
 
 Вы можете определить атрибут как подтип. Например, Python-тип `list`:
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 Это приведёт к тому, что `tags` будет списком, несмотря на то, что тип его элементов не объявлен.
 
@@ -29,7 +29,7 @@ my_list: list[str]
 
 Таким образом, в нашем примере мы можем явно указать тип данных для поля `tags` как «список строк»:
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## Типы множеств { #set-types }
 
@@ -39,7 +39,7 @@ my_list: list[str]
 
 Тогда мы можем объявить поле `tags` как множество строк:
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 С помощью этого, даже если вы получите запрос с повторяющимися данными, они будут преобразованы в множество уникальных элементов.
 
@@ -61,13 +61,13 @@ my_list: list[str]
 
 Например, мы можем определить модель `Image`:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### Использование подмодели как типа { #use-the-submodel-as-a-type }
 
 Также мы можем использовать эту модель как тип атрибута:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 Это означает, что **FastAPI** будет ожидать тело запроса, аналогичное этому:
 
@@ -100,7 +100,7 @@ my_list: list[str]
 
 Например, так как в модели `Image` у нас есть поле `url`, то мы можем объявить его как тип `HttpUrl` из Pydantic вместо типа `str`:
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 Строка будет проверена на соответствие допустимому URL-адресу и задокументирована в JSON Schema / OpenAPI как таковая.
 
@@ -108,7 +108,7 @@ my_list: list[str]
 
 Вы также можете использовать модели Pydantic в качестве подтипов для `list`, `set` и т.д.:
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 Такая реализация будет ожидать (конвертировать, валидировать, документировать и т.д.) JSON-тело запроса в следующем формате:
 
@@ -146,7 +146,7 @@ my_list: list[str]
 
 Вы можете определять модели с произвольным уровнем вложенности:
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note | Примечание
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 например так:
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## Поддержка редактора кода везде { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ images: list[Image]
 
 В этом случае вы принимаете любой `dict`, пока у него есть ключи типа `int` со значениями типа `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip | Совет
 

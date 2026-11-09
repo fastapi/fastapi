@@ -4,7 +4,7 @@
 
 和为输入数据在函数**参数**里做类型注解的方式相同，你可以使用 Pydantic 模型、`list`、`dict`、以及整数、布尔值等标量类型。
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 FastAPI 会使用这个返回类型来：
 
@@ -38,7 +38,7 @@ FastAPI 会使用这个返回类型来：
 * `@app.delete()`
 * 等等。
 
-{* ../../docs_src/response_model/tutorial001_py310.py hl[17,22,24:27] *}
+{* ../../docs_src/response_model/tutorial001.py hl[17,22,24:27] *}
 
 /// note | 注意
 
@@ -70,7 +70,7 @@ FastAPI 会使用这个 `response_model` 来完成数据文档、校验等，并
 
 这里我们声明一个 `UserIn` 模型，它包含一个明文密码：
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
+{* ../../docs_src/response_model/tutorial002.py hl[7,9] *}
 
 /// note | 注意
 
@@ -92,7 +92,7 @@ $ uv add "pydantic[email]"
 
 我们使用这个模型来声明输入，同时也用相同的模型来声明输出：
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[16] *}
+{* ../../docs_src/response_model/tutorial002.py hl[16] *}
 
 现在，每当浏览器使用密码创建用户时，API 会在响应中返回相同的密码。
 
@@ -110,15 +110,15 @@ $ uv add "pydantic[email]"
 
 相反，我们可以创建一个包含明文密码的输入模型和一个不包含它的输出模型：
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[9,11,16] *}
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 这里，即使我们的*路径操作函数*返回的是包含密码的同一个输入用户：
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...我们仍将 `response_model` 声明为不包含密码的 `UserOut` 模型：
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 因此，**FastAPI** 会负责过滤掉输出模型中未声明的所有数据（使用 Pydantic）。
 
@@ -142,7 +142,7 @@ $ uv add "pydantic[email]"
 
 在这些场景里，我们可以使用类和继承，既利用函数的**类型注解**获取更好的编辑器和工具支持，又能获得 FastAPI 的**数据过滤**。
 
-{* ../../docs_src/response_model/tutorial003_01_py310.py hl[7:10,13:14,18] *}
+{* ../../docs_src/response_model/tutorial003_01.py hl[7:10,13:14,18] *}
 
 这样一来，我们既能从编辑器和 mypy 获得工具支持（这段代码在类型上是正确的），也能从 FastAPI 获得数据过滤。
 
@@ -184,7 +184,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 最常见的情况是[直接返回 Response，详见进阶文档](../advanced/response-directly.md)。
 
-{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
 
 这个简单场景 FastAPI 会自动处理，因为返回类型注解是 `Response`（或其子类）。
 
@@ -194,7 +194,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 你也可以在类型注解中使用 `Response` 的子类：
 
-{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
 
 这同样可行，因为 `RedirectResponse` 是 `Response` 的子类，FastAPI 会自动处理这个简单场景。
 
@@ -204,7 +204,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 如果你有一个在多个类型之间的<dfn title="多个类型的联合表示“这些类型中的任意一个”。">联合类型</dfn>，其中一个或多个不是有效的 Pydantic 类型，也会发生同样的情况，例如这个会失败 💥：
 
-{* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
+{* ../../docs_src/response_model/tutorial003_04.py hl[8] *}
 
 ...它失败是因为该类型注解不是 Pydantic 类型，也不只是单个 `Response` 类或其子类，而是 `Response` 与 `dict` 的联合类型（任意其一）。
 
@@ -216,7 +216,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 在这种情况下，你可以通过设置 `response_model=None` 来禁用响应模型生成：
 
-{* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
+{* ../../docs_src/response_model/tutorial003_05.py hl[7] *}
 
 这会让 FastAPI 跳过响应模型的生成，这样你就可以按需使用任意返回类型注解，而不会影响你的 FastAPI 应用。🤓
 
@@ -224,7 +224,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 你的响应模型可以具有默认值，例如：
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[9,11:12] *}
+{* ../../docs_src/response_model/tutorial004.py hl[9,11:12] *}
 
 * `description: Union[str, None] = None`（或在 Python 3.10 中的 `str | None = None`）默认值为 `None`。
 * `tax: float = 10.5` 默认值为 `10.5`。
@@ -238,7 +238,7 @@ FastAPI 在内部配合 Pydantic 做了多项处理，确保不会把类继承�
 
 你可以设置*路径操作装饰器*参数 `response_model_exclude_unset=True`：
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial004.py hl[22] *}
 
 这样响应中将不会包含那些默认值，而只包含实际设置的值。
 
@@ -325,7 +325,7 @@ FastAPI 足够聪明（实际上是 Pydantic 足够聪明）去认识到，即�
 
 ///
 
-{* ../../docs_src/response_model/tutorial005_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial005.py hl[29,35] *}
 
 /// tip | 提示
 
@@ -339,7 +339,7 @@ FastAPI 足够聪明（实际上是 Pydantic 足够聪明）去认识到，即�
 
 如果你忘记使用 `set` 而是使用了 `list` 或 `tuple`，FastAPI 仍会将其转换为 `set` 并正常工作：
 
-{* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial006.py hl[29,35] *}
 
 ## 总结 { #recap }
 

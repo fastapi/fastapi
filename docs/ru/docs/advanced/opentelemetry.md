@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 Создайте файл `main.py`:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 Вам не нужно писать какой-либо пользовательский код для сбора телеметрии.
 
@@ -92,7 +92,7 @@ $ curl http://127.0.0.1:8000/items/1
 
 Вы также можете передать провайдер напрямую в словаре `telemetry`. Например, этот провайдер использует консольный экспортер OpenTelemetry, чтобы печатать спаны HTTP-запросов в вашем терминале:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 **Экспортер** отправляет спаны их получателю. `BatchSpanProcessor` группирует спаны и отправляет их в фоне. Замените консольный экспортер на экспортер, предоставленный вашей библиотекой мониторинга, чтобы использовать её получателя. См. [руководство OpenTelemetry по инструментированию Python](https://opentelemetry.io/docs/languages/python/instrumentation/) для дополнительных вариантов настройки.
 
@@ -112,7 +112,7 @@ OpenTelemetry по умолчанию использует глобальные 
 
 Чтобы записывать только спан HTTP-запроса, установите `operation_spans` в `False`:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### Трассировка WebSocket-соединений { #trace-websocket-connections }

@@ -52,7 +52,7 @@ Pydantic v2 inclut tout Pydantic v1 sous la forme du sous-module `pydantic.v1`. 
 
 Cela signifie que vous pouvez installer la dernière version de Pydantic v2 et importer/utiliser les anciens composants de Pydantic v1 depuis ce sous-module, comme si vous aviez l'ancien Pydantic v1 installé.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### Prise en charge de FastAPI pour Pydantic v1 dans v2 { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ Depuis FastAPI 0.119.0, il existe également une prise en charge partielle de Py
 
 Vous pouvez donc mettre à niveau Pydantic vers la dernière version 2 et modifier les imports pour utiliser le sous-module `pydantic.v1`, et dans de nombreux cas cela fonctionnera tel quel.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning | Alertes
 
@@ -122,7 +122,7 @@ graph TB
 
 Dans certains cas, il est même possible d'avoir des modèles Pydantic v1 et v2 dans le même **chemin d'accès** de votre application FastAPI :
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 Dans l'exemple ci-dessus, le modèle d'entrée est un modèle Pydantic v1 et le modèle de sortie (défini dans `response_model=ItemV2`) est un modèle Pydantic v2.
 
@@ -130,7 +130,7 @@ Dans l'exemple ci-dessus, le modèle d'entrée est un modèle Pydantic v1 et le 
 
 Si vous devez utiliser certains des outils spécifiques à FastAPI pour les paramètres comme `Body`, `Query`, `Form`, etc., avec des modèles Pydantic v1, vous pouvez les importer depuis `fastapi.temp_pydantic_v1_params` le temps de terminer la migration vers Pydantic v2 :
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### Migrer par étapes { #migrate-in-steps }
 

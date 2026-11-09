@@ -6,7 +6,7 @@
 
 Сначала импортируйте `Path` из `fastapi`, а также импортируйте `Annotated`:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[1,3] *}
 
 /// note | Примечание
 
@@ -24,7 +24,7 @@
 
 Например, чтобы указать значение метаданных `title` для path-параметра `item_id`, вы можете написать:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[10] *}
 
 /// note | Примечание
 
@@ -54,11 +54,11 @@ Path-параметр всегда является обязательным, п
 
 Поэтому вы можете объявить функцию так:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_non_an.py hl[7] *}
 
 Но имейте в виду, что если вы используете `Annotated`, вы не столкнётесь с этой проблемой, так как вы не используете значения по умолчанию параметров функции для `Query()` или `Path()`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py *}
 
 ## Задайте нужный вам порядок параметров, полезные приёмы { #order-the-parameters-as-you-need-tricks }
 
@@ -83,13 +83,13 @@ Path-параметр всегда является обязательным, п
 
 Python не будет ничего делать с `*`, но он будет знать, что все следующие параметры являются именованными аргументами (парами ключ-значение), также известными как <abbr title="От: K-ey W-ord Arg-uments - именованные аргументы"><code>kwargs</code></abbr>, даже если у них нет значений по умолчанию.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_non_an.py hl[7] *}
 
 ### Лучше с `Annotated` { #better-with-annotated }
 
 Имейте в виду, что если вы используете `Annotated`, то, поскольку вы не используете значений по умолчанию для параметров функции, у вас не возникнет подобной проблемы и вам, вероятно, не придётся использовать `*`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[10] *}
 
 ## Валидация числовых данных: больше или равно { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ Python не будет ничего делать с `*`, но он будет з
 
 В этом примере при указании `ge=1`, параметр `item_id` должен быть целым числом "`g`reater than or `e`qual" — больше или равно `1`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004.py hl[10] *}
 
 ## Валидация числовых данных: больше и меньше или равно { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ Python не будет ничего делать с `*`, но он будет з
 * `gt`: больше (`g`reater `t`han)
 * `le`: меньше или равно (`l`ess than or `e`qual)
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005.py hl[10] *}
 
 ## Валидация числовых данных: числа с плавающей точкой, больше и меньше { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ Python не будет ничего делать с `*`, но он будет з
 
 То же самое справедливо и для <abbr title="less than - меньше чем"><code>lt</code></abbr>.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006.py hl[13] *}
 
 ## Резюме { #recap }
 

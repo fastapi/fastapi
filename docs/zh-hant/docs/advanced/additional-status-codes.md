@@ -15,7 +15,7 @@
 
 要達成這點，匯入 `JSONResponse`，直接在那裡回傳內容，並設定你想要的 `status_code`：
 
-{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
+{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
 
 /// warning
 

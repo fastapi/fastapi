@@ -30,7 +30,7 @@ $ uv add httpx
 
 为你需要检查的地方用标准的Python表达式写个简单的 `assert` 语句（重申，标准的`pytest`）。
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | 提示
 
@@ -76,7 +76,7 @@ $ uv add httpx
 在 `main.py` 文件中你有一个 **FastAPI** app:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### 测试文件 { #testing-file }
 
@@ -92,7 +92,7 @@ $ uv add httpx
 
 因为这文件在同一个包中，所以你可以通过相对导入从 `main` 模块（`main.py`）导入`app`对象：
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...然后测试代码和之前一样的。
@@ -121,13 +121,13 @@ $ uv add httpx
 
 两个*路径操作* 都需要一个`X-Token` 头。
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### 扩展后的测试文件 { #extended-testing-file }
 
 然后你可以使用扩展后的测试更新`test_main.py`：
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 每当你需要客户端在请求中传递信息，但你不知道如何传递时，你可以通过搜索（谷歌）如何用 `httpx` 做，或者是用 `requests` 做，毕竟HTTPX的设计是基于Requests的设计的。

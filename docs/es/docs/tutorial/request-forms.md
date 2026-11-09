@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 Importa `Form` desde `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## Define parámetros de `Form` { #define-form-parameters }
 
 Crea parámetros de formulario de la misma manera que lo harías para `Body` o `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Por ejemplo, en una de las formas en las que se puede usar la especificación OAuth2 (llamada "password flow") se requiere enviar un `username` y `password` como campos de formulario.
 
@@ -48,7 +48,7 @@ Para declarar bodies de formularios, necesitas usar `Form` explícitamente, porq
 
 Los navegadores omiten las casillas de verificación no marcadas al enviar formularios HTML. Declara un parámetro de formulario booleano con un valor por defecto de `False` para recibir `False` cuando la casilla no esté marcada:
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 Una casilla de verificación marcada envía su valor, que por defecto es `"on"`. **FastAPI** acepta `"on"` como `True`.
 

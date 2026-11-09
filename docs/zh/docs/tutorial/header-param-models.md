@@ -14,7 +14,7 @@
 
 在 **Pydantic 模型**中声明所需的 **header 参数**，然后将参数声明为 `Header` :
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI** 将从请求中接收到的 **headers** 中**提取**出**每个字段**的数据，并提供您定义的 Pydantic 模型。
 
@@ -32,7 +32,7 @@
 
 您可以使用 Pydantic 的模型配置来禁止（ `forbid` ）任何额外（ `extra` ）字段：
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 如果客户尝试发送一些**额外的 headers**，他们将收到**错误**响应。
 
@@ -59,7 +59,7 @@
 
 如果由于某些原因你需要禁用这种自动转换，你也可以在用于 header 参数的 Pydantic 模型中进行设置。
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | 警告
 
@@ -79,7 +79,7 @@
 
 使用 `| None` 声明 header 参数模型，并将默认值设为 `None`，即可将这组参数设为可选。
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 如果既未发送 `x-client-name` 也未发送 `x-client-version`，则 `client` 为 `None`。如果发送了其中任意一个，FastAPI 就会验证模型，并要求提供这两个字段。
 

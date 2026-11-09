@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 从 `fastapi` 导入 `Form`：
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## 定义 `Form` 参数 { #define-form-parameters }
 
 创建表单参数的方式与 `Body` 或 `Query` 相同：
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 例如，在 OAuth2 规范的一种使用方式（称为“密码流”）中，要求将 `username` 和 `password` 作为表单字段发送。
 
@@ -48,7 +48,7 @@ $ uv add python-multipart
 
 浏览器在提交 HTML 表单时会忽略未选中的复选框。将布尔表单参数的默认值声明为 `False`，即可在复选框未选中时接收到 `False`：
 
-{* ../../docs_src/request_forms/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
 
 选中的复选框会发送其值，默认值为 `"on"`。**FastAPI** 会将 `"on"` 解析为 `True`。
 

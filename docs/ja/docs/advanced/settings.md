@@ -58,7 +58,7 @@ Pydantic モデルと同様に、型アノテーションと（必要なら）�
 
 異なるデータ型や `Field()` による追加バリデーションなど、Pydantic モデルで使えるのと同じバリデーション機能とツールをすべて利用できます。
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip | 豆知識
 
@@ -74,7 +74,7 @@ Pydantic モデルと同様に、型アノテーションと（必要なら）�
 
 次に、アプリケーションで新しい `settings` オブジェクトを使用できます:
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### サーバーを実行 { #run-the-server }
 
@@ -128,11 +128,11 @@ Bash で1つのコマンドに複数の環境変数を設定するには、ス�
 
 たとえば、`config.py` というファイルに次のように書けます:
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 そして、`main.py` というファイルでそれを使います:
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip | 豆知識
 
@@ -150,7 +150,7 @@ Bash で1つのコマンドに複数の環境変数を設定するには、ス�
 
 前の例から続けると、`config.py` ファイルは次のようになります:
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 ここでは、デフォルトのインスタンス `settings = Settings()` を作成していないことに注意してください。
 
@@ -158,7 +158,7 @@ Bash で1つのコマンドに複数の環境変数を設定するには、ス�
 
 ここでは、新しい `config.Settings()` を返す依存関係を作成します。
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip | 豆知識
 
@@ -170,13 +170,13 @@ Bash で1つのコマンドに複数の環境変数を設定するには、ス�
 
 そして、*path operation 関数*から依存関係として要求し、必要な場所でどこでも使えます。
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### 設定とテスト { #settings-and-testing }
 
 次に、`get_settings` の依存関係オーバーライドを作ることで、テスト中に別の設定オブジェクトを提供するのがとても簡単になります:
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 依存関係オーバーライドでは、新しい `Settings` オブジェクトを作る際に `admin_email` に新しい値を設定し、その新しいオブジェクトを返します。
 
@@ -217,7 +217,7 @@ APP_NAME="ChimichangApp"
 
 そして、`config.py` を次のように更新します:
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip | 豆知識
 
@@ -250,7 +250,7 @@ def get_settings():
 
 しかし、上に `@lru_cache` デコレータを使っているので、`Settings` オブジェクトは最初に呼び出されたときに一度だけ作成されます。✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 その後のリクエスト用の依存関係で `get_settings()` が呼ばれるたびに、`get_settings()` の内部コードを実行して新しい `Settings` オブジェクトを作るのではなく、最初の呼び出しで返されたのと同じオブジェクトを何度でも返します。
 

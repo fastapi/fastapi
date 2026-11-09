@@ -76,11 +76,11 @@ Si quieres hacer stream de datos binarios, por ejemplo video o audio, Revisa la 
 
 Para transmitir JSON Lines con FastAPI puedes, en lugar de usar `return` en tu *path operation function*, usar `yield` para producir cada ítem a su turno.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 Si cada ítem JSON que quieres enviar de vuelta es de tipo `Item` (un modelo de Pydantic) y es una función async, puedes declarar el tipo de retorno como `AsyncIterable[Item]`:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 Si declaras el tipo de retorno, FastAPI lo usará para **validar** los datos, **documentarlos** en OpenAPI, **filtrarlos** y **serializarlos** usando Pydantic.
 
@@ -98,13 +98,13 @@ FastAPI se asegurará de que se ejecute correctamente para que no bloquee el eve
 
 Como en este caso la función no es async, el tipo de retorno correcto sería `Iterable[Item]`:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### Sin tipo de retorno { #no-return-type }
 
 También puedes omitir el tipo de retorno. Entonces FastAPI usará [`jsonable_encoder`](./encoder.md) para convertir los datos a algo que se pueda serializar a JSON y luego enviarlo como JSON Lines.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## Server-Sent Events (SSE) { #server-sent-events-sse }
 

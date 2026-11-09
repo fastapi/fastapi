@@ -8,7 +8,7 @@
 
 Вы также можете объявить параметры тела запроса как необязательные, установив значение по умолчанию, равное `None`:
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | Заметка
 
@@ -31,7 +31,7 @@
 
 Но вы также можете объявить множество параметров тела запроса, например `item` и `user`:
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 В этом случае **FastAPI** заметит, что в функции есть более одного параметра тела (два параметра, которые являются Pydantic-моделями).
 
@@ -72,7 +72,7 @@
 
 Но вы можете указать **FastAPI** обрабатывать его, как ещё один ключ тела запроса, используя `Body`:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 В этом случае, **FastAPI** будет ожидать тело запроса в формате:
 
@@ -106,7 +106,7 @@ q: str | None = None
 
 Например:
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 /// note | Заметка
 
@@ -128,7 +128,7 @@ item: Annotated[Item, Body(embed=True)]
 
 так же, как в этом примере:
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 В этом случае **FastAPI** будет ожидать тело запроса в формате:
 

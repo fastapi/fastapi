@@ -52,7 +52,7 @@ OAuth2 açısından bunlar sadece string'lerdir.
 
 Önce `OAuth2PasswordRequestForm`'u import edin ve `/token` için *path operation* içinde `Depends` ile dependency olarak kullanın:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm`, şu alanları içeren bir form body tanımlayan bir class dependency'sidir:
 
@@ -100,7 +100,7 @@ Böyle bir kullanıcı yoksa, "Incorrect username or password" diyerek bir hata 
 
 Hata için `HTTPException` exception'ını kullanıyoruz:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### Password'ü Kontrol Etme { #check-the-password }
 
@@ -126,7 +126,7 @@ Veritabanınız çalınırsa, hırsız kullanıcılarınızın düz metin passwo
 
 Dolayısıyla hırsız, aynı password'leri başka bir sistemde denemeye çalışamaz (birçok kullanıcı her yerde aynı password'ü kullandığı için bu tehlikeli olurdu).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### `**user_dict` Hakkında { #about-user-dict }
 
@@ -168,7 +168,7 @@ Ama şimdilik ihtiyacımız olan spesifik detaylara odaklanalım.
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | İpucu
 
@@ -194,7 +194,7 @@ Bu iki dependency de kullanıcı yoksa veya pasifse sadece HTTP hatası döndür
 
 Dolayısıyla endpoint'imizde kullanıcıyı ancak kullanıcı varsa, doğru şekilde authenticate edildiyse ve aktifse alacağız:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | Not
 

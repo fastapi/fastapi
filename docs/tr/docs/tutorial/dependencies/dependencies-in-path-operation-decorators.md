@@ -14,7 +14,7 @@ Bu gibi durumlarda, `Depends` ile bir *path operation function* parametresi tan�
 
 Bu, `Depends()` öğelerinden oluşan bir `list` olmalıdır:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[19] *}
 
 Bu dependency'ler normal dependency'lerle aynı şekilde çalıştırılır/çözülür. Ancak (eğer bir değer döndürüyorlarsa) bu değer *path operation function*'ınıza aktarılmaz.
 
@@ -44,13 +44,13 @@ Normalde kullandığınız aynı dependency *function*'larını burada da kullan
 
 Request gereksinimleri (header'lar gibi) veya başka alt dependency'ler tanımlayabilirler:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[8,13] *}
 
 ### Exception Fırlatmak { #raise-exceptions }
 
 Bu dependency'ler, normal dependency'lerde olduğu gibi `raise` ile exception fırlatabilir:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[10,15] *}
 
 ### Return Değerleri { #return-values }
 
@@ -58,7 +58,7 @@ Ayrıca değer döndürebilirler ya da döndürmeyebilirler; dönen değer kulla
 
 Yani başka bir yerde zaten kullandığınız, değer döndüren normal bir dependency'yi tekrar kullanabilirsiniz; değer kullanılmasa bile dependency çalıştırılacaktır:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[11,16] *}
 
 ## Bir *Path Operation* Grubu İçin Dependency'ler { #dependencies-for-a-group-of-path-operations }
 

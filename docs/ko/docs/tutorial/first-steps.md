@@ -2,7 +2,7 @@
 
 가장 단순한 FastAPI 파일은 다음과 같이 보일 것입니다:
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 위 코드를 `main.py`에 복사합니다.
 
@@ -230,7 +230,7 @@ CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하고 클�
 
 ### 1 단계: `FastAPI` 임포트 { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI`는 여러분의 API를 위한 모든 기능을 제공하는 파이썬 클래스입니다.
 
@@ -244,7 +244,7 @@ CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하고 클�
 
 ### 2 단계: `FastAPI` "인스턴스" 생성 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 여기에서 `app` 변수는 `FastAPI` 클래스의 "인스턴스"가 됩니다.
 
@@ -313,7 +313,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 
 #### *경로 처리 데코레이터* 정의 { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")`은 **FastAPI**에게 바로 아래에 있는 함수가 다음으로 이동하는 요청을 처리한다는 것을 알려줍니다:
 
@@ -367,7 +367,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * **작동**: 은 `get`입니다.
 * **함수**: 는 "데코레이터" 아래에 있는 함수입니다 (`@app.get("/")` 아래).
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 이것은 파이썬 함수입니다.
 
@@ -379,7 +379,7 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 
 `async def`을 이용하는 대신 일반 함수로 정의할 수 있습니다:
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | 참고
 
@@ -389,7 +389,7 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 
 ### 5 단계: 콘텐츠 반환 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 `dict`, `list`, 단일값을 가진 `str`, `int` 등을 반환할 수 있습니다.
 

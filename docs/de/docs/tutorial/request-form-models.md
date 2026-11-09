@@ -24,7 +24,7 @@ Dies wird seit FastAPI Version `0.113.0` unterstützt. 🤓
 
 Sie müssen nur ein **Pydantic-Modell** mit den Feldern deklarieren, die Sie als **Formularfelder** erhalten möchten, und dann den Parameter als `Form` deklarieren:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI** wird die Daten für **jedes Feld** aus den **Formulardaten** im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell übergeben.
 
@@ -50,7 +50,7 @@ Dies wird seit FastAPI Version `0.114.0` unterstützt. 🤓
 
 Sie können Pydantics Modellkonfiguration verwenden, um jegliche `extra`-Felder auf `forbid` zu setzen:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 Wenn ein Client versucht, einige zusätzliche Daten zu senden, erhält er eine **Error**-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>.
 
@@ -79,7 +79,7 @@ Er erhält eine Error-Response, die ihm mitteilt, dass das Feld `extra` nicht er
 
 Sie können mehrere Formularmodelle mit einzelnen `Form`-Parametern kombinieren.
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 Der Client sendet `name`, `tags` und `token` als Formularfelder. Jedes Modell validiert die Formularfelder unabhängig.
 
@@ -91,7 +91,7 @@ Wenn mehrere Deklarationen denselben Formularfeldnamen verwenden, validiert jede
 
 Deklarieren Sie ein Formularmodell mit `| None` und dem Defaultwert `None`, um die Gruppe optional zu machen.
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 Wenn weder `name` noch `age` gesendet wird, ist `profile` gleich `None`. Wenn eines der beiden gesendet wird, validiert FastAPI das Modell und erfordert beide Felder. Auch ein übermittelter leerer Wert zählt als Angabe eines Feldes.
 
@@ -105,7 +105,7 @@ Ein optionales Modell, das nur nicht aktivierte Checkboxen enthält, wird weggel
 
 Sie können auch eine optionale Union von Modellen verwenden.
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 Wenn keine Formularfelder gesendet werden, ist `contact` gleich `None`. Senden Sie `kind=person` mit `name` oder `kind=company` mit `company_name`. Der Diskriminator wählt aus, welches Modell validiert werden soll.
 
@@ -113,7 +113,7 @@ Wenn keine Formularfelder gesendet werden, ist `contact` gleich `None`. Senden S
 
 Sie können Unions mit anderen Formularmodellen, einzelnen `Form`-Parametern und `File`-Parametern kombinieren. Jede Union wird unabhängig validiert.
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 Senden Sie alle Felder im selben Formular. Senden Sie beispielsweise `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com` und `token=secret`.
 
@@ -123,7 +123,7 @@ Lassen Sie die Benachrichtigungsfelder weg, damit `notification` gleich `None` b
 
 Sie können ein Formularmodell auch mit [Dateiparametern](request-files.md) kombinieren.
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 Hier sendet der Client das Feld `name` und die Datei `avatar` mittels `multipart/form-data`.
 

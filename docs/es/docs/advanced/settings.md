@@ -58,7 +58,7 @@ De la misma forma que con los modelos de Pydantic, declaras atributos de clase c
 
 Puedes usar todas las mismas funcionalidades de validación y herramientas que usas para los modelos de Pydantic, como diferentes tipos de datos y validaciones adicionales con `Field()`.
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip | Consejo
 
@@ -74,7 +74,7 @@ Luego convertirá y validará los datos. Así que, cuando uses ese objeto `setti
 
 Luego puedes usar el nuevo objeto `settings` en tu aplicación:
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### Ejecutar el servidor { #run-the-server }
 
@@ -128,11 +128,11 @@ Podrías poner esas configuraciones en otro archivo de módulo como viste en [Ap
 
 Por ejemplo, podrías tener un archivo `config.py` con:
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 Y luego usarlo en un archivo `main.py`:
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip | Consejo
 
@@ -150,7 +150,7 @@ Esto podría ser especialmente útil al escribir pruebas, ya que es muy fácil s
 
 Proveniente del ejemplo anterior, tu archivo `config.py` podría verse como:
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 Nota que ahora no creamos un instance por defecto `settings = Settings()`.
 
@@ -158,7 +158,7 @@ Nota que ahora no creamos un instance por defecto `settings = Settings()`.
 
 Ahora creamos una dependencia que devuelve un nuevo `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip | Consejo
 
@@ -170,13 +170,13 @@ Por ahora puedes asumir que `get_settings()` es una función normal.
 
 Y luego podemos requerirlo desde la *path operation function* como una dependencia y usarlo donde lo necesitemos.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### Configuraciones y escribir pruebas { #settings-and-testing }
 
 Luego sería muy fácil proporcionar un objeto de configuraciones diferente al escribir pruebas creando una sobrescritura de dependencia para `get_settings`:
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 En la sobrescritura de dependencia establecemos un nuevo valor para el `admin_email` al crear el nuevo objeto `Settings`, y luego devolvemos ese nuevo objeto.
 
@@ -217,7 +217,7 @@ APP_NAME="ChimichangApp"
 
 Y luego actualizar tu `config.py` con:
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip | Consejo
 
@@ -250,7 +250,7 @@ crearíamos ese objeto para cada request, y estaríamos leyendo el archivo `.env
 
 Pero como estamos usando el decorador `@lru_cache` encima, el objeto `Settings` se creará solo una vez, la primera vez que se llame. ✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 Entonces, para cualquier llamada subsiguiente de `get_settings()` en las dependencias de los próximos requests, en lugar de ejecutar el código interno de `get_settings()` y crear un nuevo objeto `Settings`, devolverá el mismo objeto que fue devuelto en la primera llamada, una y otra vez.
 

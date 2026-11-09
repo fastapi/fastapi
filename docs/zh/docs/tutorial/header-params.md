@@ -6,7 +6,7 @@
 
 首先，导入 `Header`：
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## 声明 `Header` 参数 { #declare-header-parameters }
 
@@ -14,7 +14,7 @@
 
 第一个值是默认值，还可以传递所有验证参数或注释参数：
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | 技术细节
 
@@ -46,7 +46,7 @@
 
 如需禁用下划线自动转换为连字符，可以把 `Header` 的 `convert_underscores` 参数设置为 `False`：
 
-{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning
 
@@ -64,7 +64,7 @@
 
 例如，声明 `X-Token` 多次出现的请求头，可以写成这样：
 
-{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 与*路径操作*通信时，以下面的方式发送两个 HTTP 请求头：
 

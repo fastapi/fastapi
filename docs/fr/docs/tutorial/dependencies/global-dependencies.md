@@ -6,7 +6,7 @@ Comme vous pouvez [ajouter des `dependencies` aux *décorateurs de chemin d'acc�
 
 Dans ce cas, elles seront appliquées à tous les *chemins d'accès* de l'application :
 
-{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial012.py hl[17] *}
 
 Et toutes les idées de la section sur [l'ajout de `dependencies` aux *décorateurs de chemin d'accès*](dependencies-in-path-operation-decorators.md) s'appliquent toujours, mais dans ce cas à tous les *chemins d'accès* de l'application.
 

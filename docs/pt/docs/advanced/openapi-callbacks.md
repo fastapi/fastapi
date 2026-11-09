@@ -31,7 +31,7 @@ Ela terá uma *operação de rota* que receberá um corpo `Invoice`, e um parâm
 
 Essa parte é bastante normal, a maior parte do código provavelmente já é familiar para você:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | Dica
 
@@ -90,7 +90,7 @@ Adotar temporariamente esse ponto de vista (do *desenvolvedor externo*) pode aju
 
 Primeiro crie um novo `APIRouter` que conterá um ou mais callbacks.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Crie a *operação de rota* do callback { #create-the-callback-path-operation }
 
@@ -101,7 +101,7 @@ Ela deve parecer exatamente como uma *operação de rota* normal do FastAPI:
 * Ela provavelmente deveria ter uma declaração do corpo que deveria receber, por exemplo, `body: InvoiceEvent`.
 * E também poderia ter uma declaração da resposta que deveria retornar, por exemplo, `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 Há 2 diferenças principais de uma *operação de rota* normal:
 
@@ -169,7 +169,7 @@ Nesse ponto você tem a(s) *operação(ões) de rota de callback* necessária(s)
 
 Agora use o parâmetro `callbacks` no decorador da *operação de rota da sua API* para passar o atributo `.routes` desse router de callback:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | Dica
 

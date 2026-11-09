@@ -14,7 +14,7 @@ default रूप से, **FastAPI** responses को `JSONResponse` का उ
 
 ऐसा करने के लिए, `JSONResponse` import करें, और अपना content वहीं सीधे return करें, साथ में अपनी पसंद का `status_code` set करें:
 
-{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
+{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
 
 /// warning | चेतावनी
 

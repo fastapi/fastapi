@@ -14,7 +14,7 @@ Bu özellik FastAPI `0.115.0` sürümünden beri desteklenmektedir. 🤓
 
 İhtiyacınız olan **header parametreleri**ni bir **Pydantic model** içinde tanımlayın, ardından parametreyi `Header` olarak belirtin:
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI**, request içindeki **headers** bölümünden **her alan** için veriyi **çıkarır** ve size tanımladığınız Pydantic model örneğini verir.
 
@@ -32,7 +32,7 @@ Bazı özel kullanım senaryolarında (muhtemelen çok yaygın değil), kabul et
 
 Pydantic'in model yapılandırmasını kullanarak `extra` alanları `forbid` edebilirsiniz:
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 Bir client bazı **ek header'lar** göndermeye çalışırsa, **hata** response'u alır.
 
@@ -59,7 +59,7 @@ Normal header parametrelerinde olduğu gibi, parametre adlarında alt çizgi kar
 
 Herhangi bir sebeple bu otomatik dönüşümü kapatmanız gerekiyorsa, header parametreleri için kullandığınız Pydantic model'lerde de bunu devre dışı bırakabilirsiniz.
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning | Uyarı
 
@@ -79,7 +79,7 @@ Her model, hem request'i okurken hem de OpenAPI oluştururken kendi `Header(conv
 
 Grubu isteğe bağlı yapmak için header parametre modelini `| None` ile tanımlayın ve varsayılan değerini `None` olarak ayarlayın.
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 Ne `x-client-name` ne de `x-client-version` gönderilirse, `client` değeri `None` olur. İkisinden biri gönderilirse, FastAPI modeli doğrular ve her iki alanı da zorunlu tutar.
 

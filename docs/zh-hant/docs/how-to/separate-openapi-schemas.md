@@ -10,13 +10,13 @@
 
 假設你有一個帶有預設值的 Pydantic 模型，如下所示：
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### 輸入用模型 { #model-for-input }
 
 如果你把這個模型用作輸入，如下所示：
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ...則 `description` 欄位將**不是必填**。因為它的預設值是 `None`。
 
@@ -32,7 +32,7 @@
 
 但如果你把同一個模型用作輸出，如下所示：
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ...由於 `description` 有預設值，就算你**沒有為該欄位回傳任何內容**，它仍會有那個**預設值**。
 
@@ -91,7 +91,7 @@
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### 文件中輸入與輸出使用相同結構描述的模型 { #same-schema-for-input-and-output-models-in-docs }
 

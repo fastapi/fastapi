@@ -6,7 +6,7 @@
 
 Ви можете використати `jsonable_encoder`, щоб перетворити вхідні дані на такі, які можна зберігати як JSON (наприклад, у NoSQL базі даних). Наприклад, перетворюючи `datetime` у `str`.
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[28:33] *}
 
 `PUT` використовується для отримання даних, які мають замінити чинні дані.
 
@@ -54,7 +54,7 @@
 
 Тоді Ви можете використовувати це, щоб згенерувати `dict` лише з даними, які були встановлені (надіслані у запиті), пропускаючи значення за замовчуванням:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[32] *}
 
 ### Використання параметра `update` у Pydantic { #using-pydantics-update-parameter }
 
@@ -62,7 +62,7 @@
 
 Наприклад: `stored_item_model.model_copy(update=update_data)`:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[33] *}
 
 ### Підсумок часткових оновлень { #partial-updates-recap }
 
@@ -79,7 +79,7 @@
 * Зберігаєте дані у вашу БД.
 * Повертаєте оновлену модель.
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[28:35] *}
 
 /// tip | Порада
 

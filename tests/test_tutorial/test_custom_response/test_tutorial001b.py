@@ -7,7 +7,7 @@ from inline_snapshot import snapshot
 
 with warnings.catch_warnings():
     warnings.simplefilter("ignore", FastAPIDeprecationWarning)
-    from docs_src.custom_response.tutorial001b_py310 import app
+    from docs_src.custom_response.tutorial001b import app
 
 client = TestClient(app)
 

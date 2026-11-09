@@ -24,7 +24,7 @@ $ uv add python-multipart
 
 你只需要宣告一個 **Pydantic 模型**，包含你要接收為 **表單欄位** 的欄位，然後將參數宣告為 `Form`：
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI** 會從請求中的 **表單資料** **擷取** **每個欄位** 的資料，並給你所定義的 Pydantic 模型。
 
@@ -50,7 +50,7 @@ $ uv add python-multipart
 
 你可以使用 Pydantic 的模型設定來 `forbid` 任何 `extra` 欄位：
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 如果用戶端嘗試傳送額外資料，將會收到**錯誤**回應。
 
@@ -79,7 +79,7 @@ $ uv add python-multipart
 
 你可以將多個表單模型與個別的 `Form` 參數組合使用。
 
-{* ../../docs_src/request_form_models/tutorial003_an_py310.py hl[9:14,19:21] *}
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
 
 用戶端以表單欄位傳送 `name`、`tags` 和 `token`。每個模型會獨立驗證表單欄位。
 
@@ -91,7 +91,7 @@ $ uv add python-multipart
 
 宣告表單模型時使用 `| None` 並將預設值設為 `None`，即可讓整組欄位變為可選。
 
-{* ../../docs_src/request_form_models/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
 
 如果既未傳送 `name` 也未傳送 `age`，`profile` 就會是 `None`。如果傳送了其中任一欄位，FastAPI 就會驗證模型，並要求提供這兩個欄位。提交空值也算是提供了欄位。
 
@@ -105,7 +105,7 @@ $ uv add python-multipart
 
 你也可以使用可選的模型聯集。
 
-{* ../../docs_src/request_form_models/tutorial006_an_py310.py hl[9:16,21] *}
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
 
 如果未傳送任何表單欄位，`contact` 就會是 `None`。請傳送 `kind=person` 搭配 `name`，或 `kind=company` 搭配 `company_name`。判別欄位會決定要驗證哪個模型。
 
@@ -113,7 +113,7 @@ $ uv add python-multipart
 
 你可以將聯集與其他表單模型、個別的 `Form` 參數及 `File` 參數組合使用。每個聯集都會獨立驗證。
 
-{* ../../docs_src/request_form_models/tutorial007_an_py310.py hl[31:35] *}
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
 
 在同一份表單中傳送所有欄位。例如，傳送 `contact_type=person`、`name=Rick`、`notification_type=email`、`email=rick@example.com` 和 `token=secret`。
 
@@ -123,7 +123,7 @@ $ uv add python-multipart
 
 你也可以將表單模型與[檔案參數](request-files.md)組合使用。
 
-{* ../../docs_src/request_form_models/tutorial004_an_py310.py hl[14] *}
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
 
 在此，用戶端使用 `multipart/form-data` 傳送 `name` 欄位和 `avatar` 檔案。
 

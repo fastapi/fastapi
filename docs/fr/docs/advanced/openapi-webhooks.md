@@ -32,7 +32,7 @@ Les webhooks sont disponibles dans OpenAPI 3.1.0 et versions ultérieures, pris 
 
 Lorsque vous créez une application **FastAPI**, il existe un attribut `webhooks` que vous pouvez utiliser pour définir des webhooks, de la même manière que vous définiriez des chemins d'accès, par exemple avec `@app.webhooks.post()`.
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
+{* ../../docs_src/openapi_webhooks/tutorial001.py hl[9:12,15:20] *}
 
 Les webhooks que vous définissez apparaîtront dans le schéma **OpenAPI** et dans l'**interface de documentation** automatique.
 

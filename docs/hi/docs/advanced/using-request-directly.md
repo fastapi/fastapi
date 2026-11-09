@@ -29,7 +29,7 @@ Data लेना:
 
 इसके लिए आपको request को सीधे access करना होगा।
 
-{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 `Request` type वाले *path operation function* parameter को declare करके, **FastAPI** जान जाएगा कि उस parameter में `Request` pass करना है।
 

@@ -55,8 +55,8 @@
 
 위의 몇몇 자료형을 매개변수로 사용하는 *경로 처리* 예시입니다.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 함수 안의 매개변수가 그들만의 데이터 자료형을 가지고 있으며, 예를 들어, 다음과 같이 날짜를 조작할 수 있음을 참고하십시오:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

@@ -14,7 +14,7 @@ This is supported since FastAPI version `0.115.0`. 🤓
 
 Declare the **header parameters** that you need in a **Pydantic model**, and then declare the parameter as `Header`:
 
-{* ../../docs_src/header_param_models/tutorial001_an_py310.py hl[9:14,18] *}
+{* ../../docs_src/header_param_models/tutorial001.py hl[9:14,18] *}
 
 **FastAPI** will **extract** the data for **each field** from the **headers** in the request and give you the Pydantic model you defined.
 
@@ -32,7 +32,7 @@ In some special use cases (probably not very common), you might want to **restri
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
-{* ../../docs_src/header_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_param_models/tutorial002.py hl[10] *}
 
 If a client tries to send some **extra headers**, they will receive an **error** response.
 
@@ -59,7 +59,7 @@ For example, if you have a header parameter `save_data` in the code, the expecte
 
 If for some reason you need to disable this automatic conversion, you can do it as well for Pydantic models for header parameters.
 
-{* ../../docs_src/header_param_models/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/header_param_models/tutorial003.py hl[19] *}
 
 /// warning
 
@@ -79,7 +79,7 @@ Each model uses its own `Header(convert_underscores=...)` setting, both when rea
 
 Declare a header parameter model with `| None` and a default of `None` to make the group optional.
 
-{* ../../docs_src/header_param_models/tutorial004_an_py310.py hl[15] *}
+{* ../../docs_src/header_param_models/tutorial004.py hl[15] *}
 
 If neither `x-client-name` nor `x-client-version` is sent, `client` is `None`. If either is sent, FastAPI validates the model and requires both fields.
 

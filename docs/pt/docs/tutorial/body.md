@@ -23,7 +23,7 @@ Como é desencorajado, a documentação interativa com Swagger UI não irá most
 
 Primeiro, você precisa importar `BaseModel` do `pydantic`:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## Crie seu modelo de dados { #create-your-data-model }
 
@@ -31,7 +31,7 @@ Então você declara seu modelo de dados como uma classe que herda `BaseModel`.
 
 Utilize os tipos Python padrão para todos os atributos:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 Assim como quando declaramos parâmetros de consulta, quando um atributo do modelo possui um valor padrão, ele não é obrigatório. Caso contrário, é obrigatório. Use `None` para torná-lo apenas opcional.
@@ -60,7 +60,7 @@ Por exemplo, o modelo acima declara um JSON "`object`" (ou `dict` no Python) com
 
 Para adicioná-lo à sua *operação de rota*, declare-o da mesma maneira que você declarou parâmetros de rota e de consulta:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...e declare o seu tipo como o modelo que você criou, `Item`.
 
@@ -127,7 +127,7 @@ Melhora o suporte do editor para seus modelos Pydantic com:
 
 Dentro da função, você pode acessar todos os atributos do objeto do modelo diretamente:
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## Corpo da requisição + parâmetros de rota { #request-body-path-parameters }
 
@@ -135,7 +135,7 @@ Você pode declarar parâmetros de rota e corpo da requisição ao mesmo tempo.
 
 O **FastAPI** irá reconhecer que os parâmetros da função que combinam com parâmetros de rota devem ser **retirados da rota**, e que parâmetros da função que são declarados como modelos Pydantic sejam **retirados do corpo da requisição**.
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## Corpo da requisição + parâmetros de rota + parâmetros de consulta { #request-body-path-query-parameters }
@@ -144,7 +144,7 @@ Você também pode declarar parâmetros de **corpo**, **rota** e **consulta**, a
 
 O **FastAPI** irá reconhecer cada um deles e retirar a informação do local correto.
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 Os parâmetros da função serão reconhecidos conforme abaixo:
 
