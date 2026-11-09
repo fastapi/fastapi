@@ -299,6 +299,8 @@ extra:
   alternate:
   - link: /
     name: en - English
+  - link: /bn/
+    name: bn - বাংলা
   - link: /de/
     name: de - Deutsch
   - link: /es/

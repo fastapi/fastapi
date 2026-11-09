@@ -33,6 +33,7 @@ SUPPORTED_LANGS = {
     "zh",
     "zh-hant",
     "hi",
+    "bn",
 }
 
 
