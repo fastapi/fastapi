@@ -36,6 +36,7 @@ hide:
 
 ### Internal
 
+* 🔥 Remove obsolete docs snippet commands. PR [#16724](https://github.com/fastapi/fastapi/pull/16724) by [@tiangolo](https://github.com/tiangolo).
 * 🐛 Preserve snippet variants when cleaning up docs sources. PR [#16722](https://github.com/fastapi/fastapi/pull/16722) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.162.2 (2026-11-07)
