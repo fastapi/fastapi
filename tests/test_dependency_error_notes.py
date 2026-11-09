@@ -146,7 +146,7 @@ def test_error_notes_keep_the_original_exception_type() -> None:
     def read_items(item: NotAModel):
         return item  # pragma: no cover
 
-    with pytest.raises(FastAPIError, match="Invalid args for response field") as e:
+    with pytest.raises(FastAPIError, match="request parameter 'item'") as e:
         app.post("/items")(read_items)
 
     assert notes(e.value) == [

@@ -54,6 +54,12 @@ _invalid_args_message = (
     "https://fastapi.tiangolo.com/tutorial/response-model/"
 )
 
+_invalid_param_type_message = (
+    "Invalid type annotation for the request parameter {name!r}! Hint: "
+    "check that {type_} is a valid Pydantic field type. Read more: "
+    "https://fastapi.tiangolo.com/tutorial/extra-data-types/"
+)
+
 
 def create_model_field(
     name: str,
@@ -72,8 +78,15 @@ def create_model_field(
     try:
         return v2.ModelField(mode=mode, name=name, field_info=field_info)
     except PydanticSchemaGenerationError:
+        # Response fields are created in serialization mode, request parameters
+        # and bodies in validation mode.
+        message = (
+            _invalid_args_message
+            if mode == "serialization"
+            else _invalid_param_type_message
+        )
         raise fastapi.exceptions.FastAPIError(
-            _invalid_args_message.format(type_=type_)
+            message.format(type_=type_, name=name)
         ) from None
 
 
