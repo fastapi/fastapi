@@ -1010,6 +1010,7 @@ docs = [
 docs-tests = [
     { name = "httpx" },
     { name = "httpx2" },
+    { name = "python-slugify" },
     { name = "ruff" },
 ]
 github-actions = [
@@ -1042,6 +1043,7 @@ tests = [
     { name = "pytest-sugar" },
     { name = "pytest-timeout" },
     { name = "pytest-xdist", extra = ["psutil"] },
+    { name = "python-slugify" },
     { name = "pyyaml" },
     { name = "ruff" },
     { name = "sentry-sdk" },
@@ -1175,6 +1177,7 @@ docs = [
 docs-tests = [
     { name = "httpx", specifier = ">=0.23.0,<1.0.0" },
     { name = "httpx2", specifier = ">=2.0.0" },
+    { name = "python-slugify", specifier = ">=8.0.4" },
     { name = "ruff", specifier = ">=0.14.14,<0.17.0" },
 ]
 github-actions = [
@@ -1207,6 +1210,7 @@ tests = [
     { name = "pytest-sugar", specifier = ">=1.0.0" },
     { name = "pytest-timeout", specifier = ">=2.4.0" },
     { name = "pytest-xdist", extras = ["psutil"], specifier = ">=3.0.2" },
+    { name = "python-slugify", specifier = ">=8.0.4" },
     { name = "pyyaml", specifier = ">=5.3.1,<7.0.0" },
     { name = "ruff", specifier = ">=0.14.14,<0.17.0" },
     { name = "sentry-sdk", specifier = ">=2.70.0" },

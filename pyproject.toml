@@ -153,7 +153,6 @@ docs = [
     "mdx-include >=1.4.1,<2.0.0",
     "mkdocstrings[python] >=1.0.3",
     "pillow >=11.3.0",
-    "python-slugify >=8.0.4",
     "pyyaml >=5.3.1,<7.0.0",
     "typer >=0.21.1",
     "zensical >=0.0.42",
@@ -161,6 +160,7 @@ docs = [
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
     "httpx2>=2.0.0",
+    "python-slugify >=8.0.4",
     "ruff>=0.14.14,<0.17.0",
 ]
 github-actions = [
