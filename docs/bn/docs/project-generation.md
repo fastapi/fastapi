@@ -8,7 +8,7 @@ GitHub Repository: [Full Stack FastAPI Template](https://github.com/fastapi/full
 
 ## Full Stack FastAPI Template - Technology Stack আর Features { #full-stack-fastapi-template-technology-stack-and-features }
 
-- ⚡ Python backend API-এর জন্য [**FastAPI**](https://fastapi.tiangolo.com/bn/)।
+- ⚡ Python backend API-এর জন্য [**FastAPI**](https://fastapi.tiangolo.com/bn)।
   - 🧰 Python SQL database interactions (ORM)-এর জন্য [SQLModel](https://sqlmodel.tiangolo.com)।
   - 🔍 data validation আর settings management-এর জন্য [Pydantic](https://pydantic.dev/docs/), যেটা FastAPI ব্যবহার করে।
   - 💾 SQL database হিসেবে [PostgreSQL](https://www.postgresql.org)।

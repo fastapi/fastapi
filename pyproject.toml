@@ -359,7 +359,6 @@ extend-exclude = [
     "docs/zh/",
     "docs/zh-hant/",
     "docs/hi/",
-    "docs/bn/",
     "htmlcov/",
     "scripts/general-llm-prompt.md",
     "scripts/tests/test_translation_fixer/test_complex_doc/",
