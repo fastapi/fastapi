@@ -197,7 +197,7 @@ def test_python_310_errors_are_unchanged() -> None:
     app = FastAPI()
 
     def read_me(user=Depends(get_user)):
-        return user
+        return user  # pragma: no cover
 
     with pytest.raises(AssertionError) as exc_info:
         app.get("/tenants/{tenant_id}/me")(read_me)
