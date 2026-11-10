@@ -45,7 +45,7 @@ Yine de `app.routes`'i `get_openapi()`'ye geçebilirsiniz. FastAPI, etkili path 
 
 Yukarıdaki bilgileri kullanarak aynı yardımcı fonksiyonla OpenAPI şemasını üretebilir ve ihtiyacınız olan her parçayı override edebilirsiniz.
 
-Örneğin, [özel bir logo eklemek için ReDoc'un OpenAPI extension'ını](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo) ekleyelim.
+Örneğin, [özel bir logo eklemek için ReDoc'un OpenAPI extension'ını](https://redocly.com/docs/redoc/redoc-vendor-extensions) ekleyelim.
 
 ### Normal **FastAPI** { #normal-fastapi }
 
