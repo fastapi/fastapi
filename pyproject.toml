@@ -38,12 +38,14 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
     "starlette>=0.46.0",
-    "pydantic>=2.9.0",
+    "pydantic>=2.9.0; python_version < '3.15'",
+    "pydantic>=2.14.0; python_version >= '3.15'",
     "typing-extensions>=4.8.0",
     "typing-inspection>=0.4.2",
     "annotated-doc>=0.0.2",
@@ -255,6 +257,8 @@ filterwarnings = [
 timeout = "20"
 
 [tool.coverage.run]
+# Dynamic test contexts require the C tracer.
+core = "ctrace"
 patch = ["subprocess", "_exit"]
 parallel = true
 data_file = "coverage/.coverage"
