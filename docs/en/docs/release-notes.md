@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.162.4 (2026-11-10)
+
 ### Fixes
 
 * 🐛 Require AnyIO 4.1.0 or newer at runtime. PR [#16730](https://github.com/fastapi/fastapi/pull/16730) by [@tiangolo](https://github.com/tiangolo).
