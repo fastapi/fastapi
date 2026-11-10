@@ -52,7 +52,7 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
-        python-version: [ "3.14", "3.14t" ]
+        python-version: [ "3.14", "3.14t", "3.15", "3.15t" ]
         deprecated-tests: [ "no-deprecation" ]
         uv-resolution:
           - highest
@@ -93,6 +93,17 @@ jobs:
             deprecated-tests: "test-deprecation"
           - os: ubuntu-latest
             python-version: "3.14t"
+            coverage: coverage
+            uv-resolution: highest
+            deprecated-tests: "no-deprecation"
+          - os: ubuntu-latest
+            python-version: "3.15"
+            coverage: coverage
+            uv-resolution: highest
+            starlette-src: starlette-git
+            deprecated-tests: "test-deprecation"
+          - os: ubuntu-latest
+            python-version: "3.15t"
             coverage: coverage
             uv-resolution: highest
             deprecated-tests: "no-deprecation"
