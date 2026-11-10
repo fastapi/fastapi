@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.162.3 (2026-11-10)
+
 ### Upgrades
 
 * ⬆️ Add support for Python 3.15. PR [#16727](https://github.com/fastapi/fastapi/pull/16727) by [@tiangolo](https://github.com/tiangolo).
