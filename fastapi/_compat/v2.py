@@ -161,7 +161,7 @@ class ModelField:
                 Field(**field_dict["attributes"]),
             )
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[annotated_args],  # ty: ignore[invalid-type-form]
+                cast(Any, Annotated[annotated_args]),  # ty: ignore[invalid-type-form]
                 config=self.config,
             )
 
