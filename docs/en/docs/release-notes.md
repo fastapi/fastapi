@@ -9,6 +9,7 @@ hide:
 
 ### Upgrades
 
+* ⬆️ Update locked Pydantic to 2.14.3. PR [#16728](https://github.com/fastapi/fastapi/pull/16728) by [@tiangolo](https://github.com/tiangolo).
 * ⬆️ Upgrade `markdown-include-variants` to 0.0.10. PR [#16705](https://github.com/fastapi/fastapi/pull/16705) by [@tiangolo](https://github.com/tiangolo).
 
 ### Docs
