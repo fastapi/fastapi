@@ -1076,6 +1076,7 @@ name = "fastapi"
 source = { editable = "." }
 dependencies = [
     { name = "annotated-doc" },
+    { name = "anyio" },
     { name = "opentelemetry-api" },
     { name = "pydantic" },
     { name = "starlette" },
@@ -1255,6 +1256,7 @@ translations = [
 [package.metadata]
 requires-dist = [
     { name = "annotated-doc", specifier = ">=0.0.2" },
+    { name = "anyio", specifier = ">=4.1.0" },
     { name = "email-validator", marker = "extra == 'all'", specifier = ">=2.0.0" },
     { name = "email-validator", marker = "extra == 'standard'", specifier = ">=2.0.0" },
     { name = "email-validator", marker = "extra == 'standard-no-fastapi-cloud-cli'", specifier = ">=2.0.0" },
@@ -1304,7 +1306,7 @@ provides-extras = ["opentelemetry", "standard", "standard-no-fastapi-cloud-cli",
 [package.metadata.requires-dev]
 dev = [
     { name = "a2wsgi", specifier = ">=1.9.0,<=2.0.0" },
-    { name = "anyio", extras = ["trio"], specifier = ">=3.2.1,<5.0.0" },
+    { name = "anyio", extras = ["trio"], specifier = ">=4.1.0,<5.0.0" },
     { name = "black", specifier = ">=25.1.0" },
     { name = "cairosvg", specifier = ">=2.8.2" },
     { name = "coverage", extras = ["toml"], specifier = ">=7.13,<8.0" },
@@ -1384,7 +1386,7 @@ github-actions = [
 ]
 tests = [
     { name = "a2wsgi", specifier = ">=1.9.0,<=2.0.0" },
-    { name = "anyio", extras = ["trio"], specifier = ">=3.2.1,<5.0.0" },
+    { name = "anyio", extras = ["trio"], specifier = ">=4.1.0,<5.0.0" },
     { name = "coverage", extras = ["toml"], specifier = ">=7.13,<8.0" },
     { name = "dirty-equals", specifier = ">=0.9.0" },
     { name = "flask", specifier = ">=3.0.0,<4.0.0" },
