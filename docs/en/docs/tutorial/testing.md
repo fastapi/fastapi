@@ -10,12 +10,12 @@ With it, you can use [pytest](https://docs.pytest.org/) directly with **FastAPI*
 
 /// note
 
-To use `TestClient`, first install [`httpx`](https://www.python-httpx.org).
+To use `TestClient`, first install [`httpx2`](https://pypi.org/project/httpx2/).
 
 Add it to your project:
 
 ```console
-$ uv add httpx
+$ uv add httpx2
 ```
 
 ///
