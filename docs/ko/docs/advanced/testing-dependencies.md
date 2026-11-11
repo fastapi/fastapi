@@ -28,7 +28,7 @@
 
 그럼 **FastAPI**는 원래 의존성 대신 오버라이드된 의존성을 호출합니다.
 
-{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
 /// tip | 팁
 

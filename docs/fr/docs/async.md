@@ -15,7 +15,7 @@ results = await some_library()
 Alors, déclarez vos *fonctions de chemin d'accès* avec `async def` comme ceci :
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ Vous pouvez uniquement utiliser `await` dans les fonctions créées avec `async 
 Si vous utilisez une bibliothèque externe qui communique avec quelque chose (une base de données, une API, le système de fichiers, etc.) et qui ne supporte pas l'utilisation d'`await` (ce qui est actuellement le cas pour la majorité des bibliothèques de base de données), alors déclarez vos *fonctions de chemin d'accès* normalement, avec le classique `def`, comme ceci :
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -189,7 +189,7 @@ Vous attendez, debout devant le comptoir 🕙, afin que personne d'autre ne pren
 
 Vous et votre crush étant occupés à ne laisser personne passer devant vous et prendre vos burgers au moment où ils arriveront, vous ne pouvez pas prêter attention à votre crush. 😞
 
-C'est du travail « synchrone », vous être « synchronisés » avec le caissier/cuisinier 👨‍🍳. Vous devez attendre 🕙 et être présent au moment exact où le caissier/cuisinier 👨‍🍳 finira les burgers et vous les donnera, sinon quelqu'un d'autre risque de vous les prendre.
+C'est du travail « synchrone », vous êtes « synchronisés » avec le caissier/cuisinier 👨‍🍳. Vous devez attendre 🕙 et être présent au moment exact où le caissier/cuisinier 👨‍🍳 finira les burgers et vous les donnera, sinon quelqu'un d'autre risque de vous les prendre.
 
 <img src="/img/async/parallel-burgers/parallel-burgers-04.png" class="illustration">
 
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 Donc, si vous utilisez une bibliothèque qui vous indique que vous pouvez l'appeler avec `await`, vous devez créer les *fonctions de chemin d'accès* qui l'utilisent avec `async def`, comme dans :
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
@@ -361,7 +361,7 @@ Si vous utilisez **FastAPI**, pas besoin de vous en inquiéter, car cette « pre
 
 Mais si vous souhaitez utiliser `async` / `await` sans FastAPI, vous pouvez également le faire.
 
-### Écrire votre propre code async { #write-your-own-async-code }
+### Écrivez votre propre code async { #write-your-own-async-code }
 
 Starlette (et **FastAPI**) s’appuie sur [AnyIO](https://anyio.readthedocs.io/en/stable/), ce qui le rend compatible à la fois avec la bibliothèque standard [asyncio](https://docs.python.org/3/library/asyncio-task.html) de Python et avec [Trio](https://trio.readthedocs.io/en/stable/).
 

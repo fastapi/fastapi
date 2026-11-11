@@ -20,13 +20,13 @@ $ uv add python-multipart
 
 `fastapi` 에서 `File` 과 `UploadFile` 을 임포트 합니다:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## `File` 매개변수 정의 { #define-file-parameters }
 
 `Body` 및 `Form` 과 동일한 방식으로 파일의 매개변수를 생성합니다:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | 참고
 
@@ -54,7 +54,7 @@ File의 본문을 선언할 때, 매개변수가 쿼리 매개변수 또는 본�
 
 `File` 매개변수를 `UploadFile` 타입으로 정의합니다:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 `UploadFile` 을 사용하는 것은 `bytes` 과 비교해 다음과 같은 장점이 있습니다:
 
@@ -137,13 +137,13 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 표준 타입 애너테이션을 사용하고 기본값을 `None`으로 설정하여 파일을 선택적으로 만들 수 있습니다:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## 추가 메타데이터를 포함한 `UploadFile` { #uploadfile-with-additional-metadata }
 
 추가 메타데이터를 설정하기 위해 예를 들어 `UploadFile`과 함께 `File()`을 사용할 수도 있습니다:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## 다중 파일 업로드 { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 이 기능을 사용하려면 `bytes` 또는 `UploadFile`의 `list`를 선언하기 바랍니다:
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 선언한 대로, `bytes` 또는 `UploadFile`의 `list`를 받게 됩니다.
 
@@ -169,7 +169,7 @@ HTML의 폼들(`<form></form>`)이 서버에 데이터를 전송하는 방식은
 
 이전과 같은 방식으로 `UploadFile`에 대해서도 `File()`을 사용해 추가 매개변수를 설정할 수 있습니다:
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## 요약 { #recap }
 

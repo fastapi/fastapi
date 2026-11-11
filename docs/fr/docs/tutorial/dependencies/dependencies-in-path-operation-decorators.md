@@ -14,7 +14,7 @@ Le *décorateur de chemin d'accès* accepte un argument optionnel `dependencies`
 
 Il doit s'agir d'une `list` de `Depends()` :
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[19] *}
 
 Ces dépendances seront exécutées/résolues de la même manière que des dépendances normales. Mais leur valeur (si elles en retournent une) ne sera pas transmise à votre *fonction de chemin d'accès*.
 
@@ -44,13 +44,13 @@ Vous pouvez utiliser les mêmes *fonctions* de dépendance que d'habitude.
 
 Elles peuvent déclarer des exigences pour la requête (comme des en-têtes) ou d'autres sous-dépendances :
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[8,13] *}
 
 ### Lever des exceptions { #raise-exceptions }
 
 Ces dépendances peuvent `raise` des exceptions, comme des dépendances normales :
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[10,15] *}
 
 ### Gérer les valeurs de retour { #return-values }
 
@@ -58,7 +58,7 @@ Elles peuvent retourner des valeurs ou non, ces valeurs ne seront pas utilisées
 
 Vous pouvez donc réutiliser une dépendance normale (qui retourne une valeur) que vous utilisez déjà ailleurs ; même si la valeur n'est pas utilisée, la dépendance sera exécutée :
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[11,16] *}
 
 ## Définir des dépendances pour un groupe de chemins d'accès { #dependencies-for-a-group-of-path-operations }
 

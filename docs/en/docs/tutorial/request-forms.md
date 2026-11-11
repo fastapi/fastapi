@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 Import `Form` from `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## Define `Form` parameters { #define-form-parameters }
 
 Create form parameters the same way you would for `Body` or `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 For example, in one of the ways the OAuth2 specification can be used (called "password flow") it is required to send a `username` and `password` as form fields.
 
@@ -46,9 +46,11 @@ To declare form bodies, you need to use `Form` explicitly, because without it th
 
 ## Boolean Form Fields { #boolean-form-fields }
 
-Browsers omit unchecked checkboxes. **FastAPI** treats omitted `bool` and `bool | None` form fields as `False`, even when their default is `True` or `None`.
+Browsers omit unchecked checkboxes when submitting HTML forms. Declare a boolean form parameter with a default of `False` to receive `False` when unchecked:
 
-For JSON requests and direct Pydantic validation, required fields and defaults work as usual.
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
+
+A checked checkbox sends its value, which defaults to `"on"`. **FastAPI** accepts `"on"` as `True`.
 
 ## About "Form Fields" { #about-form-fields }
 
@@ -61,6 +63,8 @@ The way HTML forms (`<form></form>`) send the data to the server normally uses a
 Data from forms is normally encoded using the "media type" `application/x-www-form-urlencoded`.
 
 But when the form includes files, it is encoded as `multipart/form-data`. You'll read about handling files in the next chapter.
+
+You can use `Form(media_type="multipart/form-data")` to describe a multipart form in OpenAPI. Setting it on one parameter is enough when combining form parameters or models.
 
 If you want to read more about these encodings and form fields, head to the [<abbr title="Mozilla Developer Network">MDN</abbr> web docs for `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 

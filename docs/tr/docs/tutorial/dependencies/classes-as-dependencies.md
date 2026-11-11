@@ -6,7 +6,7 @@
 
 Önceki örnekte, dependency'mizden ("dependable") bir `dict` döndürüyorduk:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 Ama sonra *path operation function* içindeki `commons` parametresinde bir `dict` alıyoruz.
 
@@ -69,15 +69,15 @@ Bu, hiç parametresi olmayan callable'lar için de geçerlidir. Tıpkı hiç par
 
 O zaman yukarıdaki `common_parameters` adlı "dependable" dependency'sini `CommonQueryParams` class'ına çevirebiliriz:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 Class instance'ını oluşturmak için kullanılan `__init__` metoduna dikkat edin:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ...bizim önceki `common_parameters` ile aynı parametrelere sahip:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 Bu parametreler, dependency'yi "çözmek" için **FastAPI**'nin kullanacağı şeylerdir.
 
@@ -93,7 +93,7 @@ Her iki durumda da veriler dönüştürülecek, doğrulanacak, OpenAPI şemasın
 
 Artık bu class'ı kullanarak dependency'nizi tanımlayabilirsiniz.
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI**, `CommonQueryParams` class'ını çağırır. Bu, o class'ın bir "instance"ını oluşturur ve bu instance, sizin function'ınıza `commons` parametresi olarak geçirilir.
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ...şu örnekte olduğu gibi:
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 Ancak type'ı belirtmeniz önerilir; böylece editor'ünüz `commons` parametresine ne geçirileceğini bilir ve size code completion, type check'leri vb. konularda yardımcı olur:
 
@@ -275,7 +275,7 @@ Dependency'yi parametrenin type'ı olarak tanımlarsınız ve `Depends(CommonQue
 
 Aynı örnek şu hale gelir:
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ...ve **FastAPI** ne yapması gerektiğini bilir.
 

@@ -30,7 +30,7 @@ FastAPI 預設回傳 JSON 回應。
 
 簡而言之，若你想要最佳效能，請使用[回應模型](../tutorial/response-model.md)，並且不要在「路徑操作裝飾器」中宣告 `response_class`。
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
+{* ../../docs_src/response_model/tutorial001_01.py ln[15:17] hl[16] *}
 
 ## HTML 回應 { #html-response }
 
@@ -39,7 +39,7 @@ FastAPI 預設回傳 JSON 回應。
 - 匯入 `HTMLResponse`。
 - 在「路徑操作裝飾器」中，將 `HTMLResponse` 傳給 `response_class` 參數。
 
-{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// note
 
@@ -57,7 +57,7 @@ FastAPI 預設回傳 JSON 回應。
 
 上面的相同範例，回傳 `HTMLResponse`，可以像這樣：
 
-{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning
 
@@ -81,7 +81,7 @@ FastAPI 預設回傳 JSON 回應。
 
 例如，可能會像這樣：
 
-{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 在這個例子中，函式 `generate_html_response()` 已經產生並回傳了一個 `Response`，而不是把 HTML 當作 `str` 回傳。
 
@@ -120,7 +120,7 @@ FastAPI 預設回傳 JSON 回應。
 
 FastAPI（實際上是 Starlette）會自動包含 Content-Length 標頭。也會根據 `media_type`（並為文字型別附加 charset）包含 Content-Type 標頭。
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -130,7 +130,7 @@ FastAPI（實際上是 Starlette）會自動包含 Content-Length 標頭。也�
 
 接收文字或位元組並回傳純文字回應。
 
-{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -152,13 +152,13 @@ FastAPI（實際上是 Starlette）會自動包含 Content-Length 標頭。也�
 
 你可以直接回傳 `RedirectResponse`：
 
-{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 或者你可以在 `response_class` 參數中使用它：
 
-{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 若這麼做，你就可以在「路徑操作函式」中直接回傳 URL。
 
@@ -168,13 +168,13 @@ FastAPI（實際上是 Starlette）會自動包含 Content-Length 標頭。也�
 
 你也可以同時搭配 `status_code` 與 `response_class` 參數：
 
-{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 接收一個 async 產生器或一般的產生器／疊代器（帶有 `yield` 的函式），並以串流方式傳送回應本文。
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+{* ../../docs_src/custom_response/tutorial007.py hl[3,16] *}
 
 /// note | 技術細節
 
@@ -207,11 +207,11 @@ FastAPI（實際上是 Starlette）會自動包含 Content-Length 標頭。也�
 
 檔案回應會包含適當的 `Content-Length`、`Last-Modified` 與 `ETag` 標頭。
 
-{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 你也可以使用 `response_class` 參數：
 
-{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 在此情況下，你可以在「路徑操作函式」中直接回傳檔案路徑。
 
@@ -225,7 +225,7 @@ FastAPI（實際上是 Starlette）會自動包含 Content-Length 標頭。也�
 
 你可以建立 `CustomORJSONResponse`。你主要需要做的是建立一個 `Response.render(content)` 方法，將內容以 `bytes` 回傳：
 
-{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 現在，不再是回傳：
 
@@ -259,7 +259,7 @@ FastAPI（實際上是 Starlette）會自動包含 Content-Length 標頭。也�
 
 在下面的例子中，**FastAPI** 會在所有「路徑操作」中預設使用 `HTMLResponse`，而不是 JSON。
 
-{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip
 

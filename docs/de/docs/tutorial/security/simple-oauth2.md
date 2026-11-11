@@ -52,7 +52,7 @@ Lassen Sie uns nun die von **FastAPI** bereitgestellten Werkzeuge verwenden, um 
 
 Importieren Sie zunächst `OAuth2PasswordRequestForm` und verwenden Sie es als Abhängigkeit mit `Depends` in der *Pfadoperation* für `/token`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` ist eine Klassenabhängigkeit, die einen Formularbody deklariert mit:
 
@@ -78,7 +78,7 @@ Wenn Sie es erzwingen müssen, verwenden Sie `OAuth2PasswordRequestFormStrict` a
 
 `OAuth2PasswordBearer` lässt **FastAPI** wissen, dass es sich um ein Sicherheitsschema handelt. Daher wird es auf diese Weise zu OpenAPI hinzugefügt.
 
-Aber `OAuth2PasswordRequestForm` ist nur eine Klassenabhängigkeit, die Sie selbst hätten schreiben können, oder Sie hätten `Form`ular-Parameter direkt deklarieren können.
+Aber `OAuth2PasswordRequestForm` ist nur eine Klassenabhängigkeit, die Sie selbst hätten schreiben können, oder Sie hätten Formular-Parameter mit `Form` direkt deklarieren können.
 
 Da es sich jedoch um einen häufigen Anwendungsfall handelt, wird er zur Vereinfachung direkt von **FastAPI** bereitgestellt.
 
@@ -100,7 +100,7 @@ Wenn es keinen solchen Benutzer gibt, geben wir die Fehlermeldung „Incorrect u
 
 Für den Fehler verwenden wir die Exception `HTTPException`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### Das Passwort überprüfen { #check-the-password }
 
@@ -126,21 +126,21 @@ Wenn Ihre Datenbank gestohlen wird, hat der Dieb nicht die Klartext-Passwörter 
 
 Der Dieb kann also nicht versuchen, die gleichen Passwörter in einem anderen System zu verwenden (da viele Benutzer überall das gleiche Passwort verwenden, wäre dies gefährlich).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### Über `**user_dict` { #about-user-dict }
 
 `UserInDB(**user_dict)` bedeutet:
 
-*Übergib die Schlüssel und Werte des `user_dict` direkt als Schlüssel-Wert-Argumente, äquivalent zu:*
+*Übergeben Sie die Schlüssel und Werte des `user_dict` direkt als Schlüssel-Wert-Argumente, äquivalent zu:*
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
@@ -168,7 +168,7 @@ Aber konzentrieren wir uns zunächst auf die spezifischen Details, die wir benö
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | Tipp
 
@@ -194,7 +194,7 @@ Beide Abhängigkeiten geben nur dann einen HTTP-Error zurück, wenn der Benutzer
 
 In unserem Endpunkt erhalten wir also nur dann einen Benutzer, wenn der Benutzer existiert, korrekt authentifiziert wurde und aktiv ist:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | Hinweis
 

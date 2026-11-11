@@ -40,7 +40,7 @@ Pydantic 모델로 데이터 변환을 수행하지 않으며, 내용을 다른 
 
 이러한 경우, 데이터를 응답에 전달하기 전에 `jsonable_encoder`를 사용하여 변환할 수 있습니다:
 
-{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
+{* ../../docs_src/response_directly/tutorial001.py hl[5:6,20:21] *}
 
 /// note | 기술 세부사항
 
@@ -60,13 +60,13 @@ Pydantic 모델로 데이터 변환을 수행하지 않으며, 내용을 다른 
 
 XML 내용을 문자열에 넣고, 이를 `Response`에 넣어 반환할 수 있습니다:
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## 응답 모델 동작 방식 { #how-a-response-model-works }
 
 경로 처리에서 [응답 모델 - 반환 타입](../tutorial/response-model.md)을 선언하면 **FastAPI**는 Pydantic을 사용해 데이터를 JSON으로 직렬화합니다.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 이는 Rust 측에서 처리되므로, 일반적인 Python과 `JSONResponse` 클래스로 수행하는 것보다 성능이 훨씬 좋습니다.
 

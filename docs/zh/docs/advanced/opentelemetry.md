@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 创建文件 `main.py`：
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 你无需编写任何自定义代码即可收集遥测数据。
 
@@ -92,7 +92,7 @@ $ curl http://127.0.0.1:8000/items/1
 
 你也可以直接在 `telemetry` 字典中传入 provider。例如，下面的 provider 使用 OpenTelemetry 的控制台 exporter，在终端中打印请求 span：
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 **exporter** 将 span 发送到目标位置。`BatchSpanProcessor` 将 span 分组，并在后台发送。要使用监控库的目标位置，请将控制台 exporter 替换为该库提供的 exporter。更多配置选项请参阅 [OpenTelemetry 的 Python 插桩指南](https://opentelemetry.io/docs/languages/python/instrumentation/)。
 
@@ -112,7 +112,7 @@ OpenTelemetry 默认使用全局 provider。不保证[挂载的子应用](sub-ap
 
 要仅记录 HTTP 请求 span，请将 `operation_spans` 设置为 `False`：
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### 追踪 WebSocket 连接 { #trace-websocket-connections }

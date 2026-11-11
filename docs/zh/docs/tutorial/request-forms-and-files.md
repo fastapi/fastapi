@@ -16,13 +16,13 @@ $ uv add python-multipart
 
 ## 导入 `File` 与 `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[3] *}
 
 ## 定义 `File` 与 `Form` 参数 { #define-file-and-form-parameters }
 
 创建文件和表单参数的方式与 `Body` 和 `Query` 一样：
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[10:12] *}
 
 文件和表单字段作为表单数据上传与接收。
 

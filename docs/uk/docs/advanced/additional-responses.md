@@ -26,7 +26,7 @@
 
 Наприклад, щоб оголосити іншу відповідь з кодом статусу `404` і Pydantic-моделлю `Message`, ви можете написати:
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | Примітка
 
@@ -175,7 +175,7 @@
 
 Наприклад, можна додати додатковий тип медіа `image/png`, оголосивши, що ваша *операція шляху* може повертати JSON-об'єкт (з типом медіа `application/json`) або PNG-зображення:
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | Примітка
 
@@ -203,7 +203,7 @@
 
 І відповідь з кодом статусу `200`, яка використовує ваш `response_model`, але містить власний `example`:
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 Усе це буде поєднано та включено до вашого OpenAPI і показано в документації API:
 
@@ -237,7 +237,7 @@ new_dict = {**old_dict, "new key": "new value"}
 
 Наприклад:
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## Докладніше про відповіді OpenAPI { #more-information-about-openapi-responses }
 

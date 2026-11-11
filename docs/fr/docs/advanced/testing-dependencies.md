@@ -28,7 +28,7 @@ Pour surcharger une dépendance lors des tests, vous mettez comme clé la dépen
 
 Ensuite, **FastAPI** appellera cette surcharge au lieu de la dépendance originale.
 
-{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
 /// tip | Astuce
 

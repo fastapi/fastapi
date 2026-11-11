@@ -12,7 +12,7 @@ HTTP Basic Auth में, application एक header की अपेक्ष�
 
 फिर, जब आप वह username और password टाइप करते हैं, तो browser उन्हें header में अपने-आप भेज देता है।
 
-## Simple HTTP Basic Auth { #simple-http-basic-auth }
+## सरल HTTP Basic Auth { #simple-http-basic-auth }
 
 * `HTTPBasic` और `HTTPBasicCredentials` import करें।
 * `HTTPBasic` का उपयोग करके एक "`security` scheme" बनाएँ।
@@ -20,7 +20,7 @@ HTTP Basic Auth में, application एक header की अपेक्ष�
 * यह `HTTPBasicCredentials` type का एक object लौटाता है:
     * इसमें भेजे गए `username` और `password` होते हैं।
 
-{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006.py hl[4,8,12] *}
 
 जब आप पहली बार URL खोलने की कोशिश करते हैं (या docs में "Execute" button पर क्लिक करते हैं), तो browser आपसे आपका username और password पूछेगा:
 
@@ -40,12 +40,14 @@ HTTP Basic Auth में, application एक header की अपेक्ष�
 
 फिर हम `secrets.compare_digest()` का उपयोग करके यह सुनिश्चित कर सकते हैं कि `credentials.username` `"stanleyjobson"` है, और `credentials.password` `"swordfish"` है।
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007.py hl[1,12:24] *}
 
 यह इसके समान होगा:
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # कोई error लौटाएँ
     ...
 ```
@@ -104,4 +106,4 @@ Python को यह समझने से पहले कि दोनों 
 
 यह detect करने के बाद कि credentials incorrect हैं, status code 401 (वही जो तब लौटाया जाता है जब कोई credentials provide नहीं किए जाते) के साथ एक `HTTPException` लौटाएँ और browser को login prompt फिर से दिखाने के लिए `WWW-Authenticate` header जोड़ें:
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007.py hl[26:30] *}

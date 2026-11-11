@@ -17,7 +17,7 @@
 
 * [**Swagger UI**](https://github.com/swagger-api/swagger-ui)로 대화형 탐색이 가능하며 브라우저에서 직접 API를 호출하고 테스트할 수 있습니다.
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![Swagger UI 상호작용](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
 * [**ReDoc**](https://github.com/Redocly/redoc)을 이용한 대체 API 문서화.
 
@@ -35,6 +35,7 @@ Python 타입을 어떻게 사용하는지 2분 정도 복습이 필요하다면
 from datetime import date
 
 from pydantic import BaseModel
+
 
 # 변수를 str로 선언합니다
 # 그리고 함수 내부에서 편집기 지원을 받습니다
@@ -85,11 +86,11 @@ Python 개발자 설문조사에서 [가장 많이 사용되는 기능 중 하�
 
 * [Visual Studio Code](https://code.visualstudio.com/)에서:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![편집기 지원](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * [PyCharm](https://www.jetbrains.com/pycharm/)에서:
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![편집기 지원](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 이전에 불가능하다고 생각했을 코드에서도 자동 완성을 받을 수 있습니다. 예를 들어, 요청에서 전달되는(중첩될 수도 있는) JSON 본문 내부의 `price` 키 같은 경우입니다.
 
@@ -111,7 +112,7 @@ Python 개발자 설문조사에서 [가장 많이 사용되는 기능 중 하�
 
 * 다음과 같은 좀 더 이색적인 타입에 대한 검증:
     * URL.
-    * Email.
+    * 이메일.
     * UUID.
     * ...그 외.
 
@@ -124,7 +125,7 @@ Python 개발자 설문조사에서 [가장 많이 사용되는 기능 중 하�
 다음을 포함해 OpenAPI에 정의된 모든 보안 스키마:
 
 * HTTP Basic.
-* **OAuth2**(**JWT tokens** 또한 포함). [JWT를 사용한 OAuth2](tutorial/security/oauth2-jwt.md) 자습서를 확인해 보세요.
+* **OAuth2**(**JWT 토큰** 또한 포함). [JWT를 사용한 OAuth2](tutorial/security/oauth2-jwt.md) 자습서를 확인해 보세요.
 * 다음에 들어 있는 API 키:
     * 헤더.
     * 쿼리 매개변수.
@@ -187,7 +188,7 @@ FastAPI는 사용하기 매우 쉽지만, 매우 강력한 <dfn title='또한 �
 
 **FastAPI**를 사용하면(모든 데이터 처리를 위해 FastAPI가 Pydantic을 기반으로 하기에) **Pydantic**의 모든 기능을 얻게 됩니다:
 
-* **No brainfuck**:
+* **골치 아픈 복잡함 없음**:
     * 새로운 스키마 정의 마이크로 언어를 배울 필요가 없습니다.
     * Python 타입을 알고 있다면 Pydantic 사용법도 알고 있는 것입니다.
 * 여러분의 **<abbr title="Integrated Development Environment - 통합 개발 환경: 코드 편집기와 비슷합니다">IDE</abbr>/<dfn title="코드 오류를 확인하는 프로그램">린터</dfn>/뇌**와 잘 어울립니다:

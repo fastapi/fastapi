@@ -51,19 +51,19 @@
 
 Спочатку напишіть ваш застосунок **FastAPI** як зазвичай:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### Згенерувати схему OpenAPI { #generate-the-openapi-schema }
 
 Далі використайте ту ж утилітарну функцію для генерації схеми OpenAPI всередині функції `custom_openapi()`:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### Змінити схему OpenAPI { #modify-the-openapi-schema }
 
 Тепер можна додати розширення ReDoc, додавши власний `x-logo` до «об'єкта» `info` у схемі OpenAPI:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### Кешувати схему OpenAPI { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@
 
 Вона буде згенерована лише один раз, а потім та сама закешована схема використовуватиметься для наступних запитів.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### Переписати метод { #override-the-method }
 
 Тепер ви можете замінити метод `.openapi()` вашою новою функцією.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### Перевірте { #check-it }
 

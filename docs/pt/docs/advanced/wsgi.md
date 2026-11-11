@@ -19,7 +19,7 @@ Em seguida, encapsule a aplicação WSGI (e.g. Flask) com o middleware.
 
 E então monte isso sob um path.
 
-{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001.py hl[1,3,23] *}
 
 /// note | Nota
 

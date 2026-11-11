@@ -29,7 +29,7 @@ documentation को छिपाना बस यह समझना अधि�
 
 उदाहरण के लिए:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001.py hl[6,11] *}
 
 यहाँ हम setting `openapi_url` को उसी default `"/openapi.json"` के साथ declare करते हैं।
 

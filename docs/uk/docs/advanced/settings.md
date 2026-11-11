@@ -58,7 +58,7 @@ $ uv add "fastapi[all]"
 
 Ви можете використовувати всі ті самі можливості перевірки та інструменти, що й для моделей Pydantic, як-от різні типи даних і додаткові перевірки з `Field()`.
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip | Порада
 
@@ -74,7 +74,7 @@ $ uv add "fastapi[all]"
 
 Потім ви можете використати новий об'єкт `settings` у вашому застосунку:
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### Запустіть сервер { #run-the-server }
 
@@ -128,11 +128,11 @@ $ uv run fastapi run main.py
 
 Наприклад, у вас може бути файл `config.py` з:
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 А потім використати його у файлі `main.py`:
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip | Порада
 
@@ -150,7 +150,7 @@ $ uv run fastapi run main.py
 
 Продовжуючи попередній приклад, ваш файл `config.py` може виглядати так:
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 Зверніть увагу, що тепер ми не створюємо екземпляр за замовчуванням `settings = Settings()`.
 
@@ -158,7 +158,7 @@ $ uv run fastapi run main.py
 
 Тепер ми створюємо залежність, яка повертає новий `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip | Порада
 
@@ -170,13 +170,13 @@ $ uv run fastapi run main.py
 
 А далі ми можемо вимагати її у *функції операції шляху* як залежність і використовувати будь-де, де це потрібно.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### Налаштування і тестування { #settings-and-testing }
 
 Потім буде дуже просто надати інший об'єкт налаштувань під час тестування, створивши переписування залежності для `get_settings`:
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 У переписуванні залежності ми встановлюємо нове значення `admin_email` під час створення нового об'єкта `Settings`, а потім повертаємо цей новий об'єкт.
 
@@ -217,7 +217,7 @@ APP_NAME="ChimichangApp"
 
 Потім оновіть ваш `config.py` так:
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip | Порада
 
@@ -250,7 +250,7 @@ def get_settings():
 
 Але оскільки ми використовуємо декоратор `@lru_cache` зверху, об'єкт `Settings` буде створено лише один раз, під час першого виклику. ✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 Потім для будь-якого подальшого виклику `get_settings()` у залежностях для наступних запитів, замість виконання внутрішнього коду `get_settings()` і створення нового об'єкта `Settings`, він повертатиме той самий об'єкт, що був повернутий під час першого виклику, знову і знову.
 

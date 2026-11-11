@@ -15,7 +15,7 @@ Si necesitas alojar un frontend, usa `app.frontend()` en su lugar, lee sobre ell
 * Importa `StaticFiles`.
 * "Monta" una instance de `StaticFiles()` en un path específico.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | Detalles Técnicos
 

@@ -18,7 +18,7 @@ API ドキュメントは **Swagger UI** と **ReDoc** を使用しており、�
 
 無効化するには、`FastAPI` アプリ作成時にそれらの URL を `None` に設定します:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### カスタムドキュメントの追加 { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ FastAPI の内部関数を再利用してドキュメント用の HTML ページ
 
 ReDoc についても同様です...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | 豆知識
 
@@ -50,7 +50,7 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 
 すべてが動作するかをテストできるように、*path operation* を作成します:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
 ### テスト { #test-it }
 
@@ -118,7 +118,7 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 - `StaticFiles` をインポートします。
 - 特定のパスに `StaticFiles()` インスタンスを「マウント」します。
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### 静的ファイルのテスト { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 
 無効化するには、`FastAPI` アプリ作成時にそれらの URL を `None` に設定します:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### 静的ファイル用のカスタムドキュメントを追加 { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 
 ReDoc についても同様です...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | 豆知識
 
@@ -176,7 +176,7 @@ Swagger UI がこの処理を裏側で行いますが、そのためにこの「
 
 すべてが動作するかをテストできるように、*path operation* を作成します:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
 ### 静的ファイル UI のテスト { #test-static-files-ui }
 

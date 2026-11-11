@@ -6,7 +6,7 @@
 
 先匯入 `Header`：
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## 宣告 `Header` 參數 { #declare-header-parameters }
 
@@ -14,7 +14,7 @@
 
 你可以設定預設值，以及所有額外的驗證或註解參數：
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | 技術細節
 
@@ -46,7 +46,7 @@
 
 若因某些原因需要停用底線自動轉連字號的行為，將 `Header` 的 `convert_underscores` 參數設為 `False`：
 
-{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning | 警告
 
@@ -64,7 +64,7 @@
 
 例如，要宣告可以出現多次的 `X-Token` 標頭，可以這樣寫：
 
-{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 如果你在與該*路徑操作 (path operation)* 溝通時送出兩個 HTTP 標頭如下：
 

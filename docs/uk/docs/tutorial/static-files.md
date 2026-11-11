@@ -15,7 +15,7 @@
 * Імпортуйте `StaticFiles`.
 * «Змонтуйте» екземпляр `StaticFiles()` у певному шляху.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | Технічні деталі
 

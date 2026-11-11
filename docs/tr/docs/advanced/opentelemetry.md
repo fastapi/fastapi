@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 `main.py` adlı bir dosya oluşturun:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 Telemetri toplamak için özel bir kod yazmanız gerekmez.
 
@@ -92,7 +92,7 @@ Aynı hedefe veri aktarımını zaten başka bir kütüphane yapılandırıyorsa
 
 Ayrıca `telemetry` sözlüğünde doğrudan bir provider da iletebilirsiniz. Örneğin aşağıdaki provider, request span'lerini terminalinize yazdırmak için OpenTelemetry'nin konsol exporter'ını kullanır:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 **Exporter** (dışa aktarıcı), span'leri hedeflerine gönderir. `BatchSpanProcessor`, span'leri gruplandırıp arka planda gönderir. İzleme kütüphanenizin hedefini kullanmak için konsol exporter'ını, o kütüphanenin sağladığı bir exporter ile değiştirin. Daha fazla yapılandırma seçeneği için [OpenTelemetry'nin Python enstrümantasyon rehberine](https://opentelemetry.io/docs/languages/python/instrumentation/) bakın.
 
@@ -112,7 +112,7 @@ Arka plan görevlerinin span'leri, request'in trace'inin bir parçası olmaya de
 
 Yalnızca HTTP request span'ini kaydetmek için `operation_spans` değerini `False` olarak ayarlayın:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### WebSocket Bağlantılarını İzleyin { #trace-websocket-connections }

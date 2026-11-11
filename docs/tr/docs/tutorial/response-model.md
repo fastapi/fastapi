@@ -4,7 +4,7 @@
 
 Fonksiyon **parametreleri** için input data’da kullandığınız **type annotations** yaklaşımının aynısını burada da kullanabilirsiniz; Pydantic model’leri, list’ler, dict’ler, integer, boolean gibi skaler değerler vb.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 FastAPI bu dönüş tipini şunlar için kullanır:
 
@@ -38,7 +38,7 @@ Bu gibi durumlarda, dönüş tipi yerine *path operation decorator* parametresi 
 * `@app.delete()`
 * vb.
 
-{* ../../docs_src/response_model/tutorial001_py310.py hl[17,22,24:27] *}
+{* ../../docs_src/response_model/tutorial001.py hl[17,22,24:27] *}
 
 /// note | Not
 
@@ -70,7 +70,7 @@ Ayrıca `response_model=None` kullanarak, ilgili *path operation* için response
 
 Burada `UserIn` adında bir model declare ediyoruz; bu model plaintext bir password içerecek:
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
+{* ../../docs_src/response_model/tutorial002.py hl[7,9] *}
 
 /// note | Not
 
@@ -92,7 +92,7 @@ $ uv add "pydantic[email]"
 
 Bu model ile hem input’u declare ediyoruz hem de output’u aynı model ile declare ediyoruz:
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[16] *}
+{* ../../docs_src/response_model/tutorial002.py hl[16] *}
 
 Artık bir browser password ile user oluşturduğunda, API response içinde aynı password’ü geri döndürecek.
 
@@ -110,15 +110,15 @@ Tüm riskleri bildiğinizden ve ne yaptığınızdan emin olmadığınız sürec
 
 Bunun yerine, plaintext password içeren bir input modeli ve password’ü içermeyen bir output modeli oluşturabiliriz:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[9,11,16] *}
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 Burada *path operation function* password içeren aynı input user’ı döndürüyor olsa bile:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...`response_model` olarak, password’ü içermeyen `UserOut` modelimizi declare ettik:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 Dolayısıyla **FastAPI**, output model’de declare edilmemiş tüm verileri (Pydantic kullanarak) filtrelemekle ilgilenir.
 
@@ -142,7 +142,7 @@ Ama bu tarz durumların çoğunda modelin amacı, bu örnekteki gibi bazı veril
 
 Bu gibi durumlarda class’lar ve inheritance kullanarak, fonksiyon **type annotations** sayesinde editör ve araçlarda daha iyi destek alabilir, aynı zamanda FastAPI’nin **veri filtrelemesini** de koruyabiliriz.
 
-{* ../../docs_src/response_model/tutorial003_01_py310.py hl[7:10,13:14,18] *}
+{* ../../docs_src/response_model/tutorial003_01.py hl[7:10,13:14,18] *}
 
 Bununla birlikte, code type’lar açısından doğru olduğu için editörler ve mypy araç desteği verir; ayrıca FastAPI’den veri filtrelemeyi de alırız.
 
@@ -184,7 +184,7 @@ Bazı durumlarda Pydantic field olarak geçerli olmayan bir şey döndürebilir 
 
 En yaygın durum, [ileri seviye dokümanlarda daha sonra anlatıldığı gibi doğrudan bir Response döndürmektir](../advanced/response-directly.md).
 
-{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
 
 Bu basit durum FastAPI tarafından otomatik olarak ele alınır; çünkü dönüş tipi annotation’ı `Response` class’ıdır (veya onun bir subclass’ı).
 
@@ -194,7 +194,7 @@ Araçlar da memnun olur; çünkü hem `RedirectResponse` hem `JSONResponse`, `Re
 
 Type annotation içinde `Response`’un bir subclass’ını da kullanabilirsiniz:
 
-{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
 
 Bu da çalışır; çünkü `RedirectResponse`, `Response`’un subclass’ıdır ve FastAPI bu basit durumu otomatik olarak yönetir.
 
@@ -204,7 +204,7 @@ Ancak geçerli bir Pydantic tipi olmayan başka rastgele bir obje (ör. bir veri
 
 Aynı şey, farklı tipler arasında bir <dfn title="Birden fazla tip arasındaki bir birleşim, 'bu tiplerden herhangi biri' anlamına gelir.">birleşim</dfn> kullandığınızda ve bu tiplerden biri veya birkaçı geçerli bir Pydantic tipi değilse de olur; örneğin şu kullanım patlar 💥:
 
-{* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
+{* ../../docs_src/response_model/tutorial003_04.py hl[8] *}
 
 ...bu, type annotation Pydantic tipi olmadığı ve tek bir `Response` class’ı (veya subclass’ı) olmadığı için başarısız olur; bu, bir `Response` ile bir `dict` arasında union’dır (ikiden herhangi biri).
 
@@ -216,7 +216,7 @@ Ancak yine de editörler ve type checker’lar (ör. mypy) gibi araçların dest
 
 Bu durumda `response_model=None` ayarlayarak response model üretimini devre dışı bırakabilirsiniz:
 
-{* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
+{* ../../docs_src/response_model/tutorial003_05.py hl[7] *}
 
 Bu, FastAPI’nin response model üretimini atlamasını sağlar; böylece FastAPI uygulamanızı etkilemeden ihtiyacınız olan herhangi bir return type annotation’ını kullanabilirsiniz. 🤓
 
@@ -224,7 +224,7 @@ Bu, FastAPI’nin response model üretimini atlamasını sağlar; böylece FastA
 
 Response model’inizde şu şekilde default değerler olabilir:
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[9,11:12] *}
+{* ../../docs_src/response_model/tutorial004.py hl[9,11:12] *}
 
 * `description: Union[str, None] = None` (veya Python 3.10’da `str | None = None`) için default `None`’dır.
 * `tax: float = 10.5` için default `10.5`’tir.
@@ -238,7 +238,7 @@ Ancak gerçekte kaydedilmedilerse, bunları sonuçtan çıkarmak isteyebilirsini
 
 *Path operation decorator* parametresi olarak `response_model_exclude_unset=True` ayarlayabilirsiniz:
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial004.py hl[22] *}
 
 böylece response’a default değerler dahil edilmez; yalnızca gerçekten set edilmiş değerler gelir.
 
@@ -266,6 +266,7 @@ Bunlar, `exclude_defaults` ve `exclude_none` için [Pydantic dokümanlarında](h
 
 Ama data’nız modelde default değeri olan field’lar için değer içeriyorsa, örneğin ID’si `bar` olan item gibi:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ Ama data’nız modelde default değeri olan field’lar için değer içeriyors
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 bunlar response’a dahil edilir.
 
@@ -281,6 +283,7 @@ bunlar response’a dahil edilir.
 
 Eğer data, default değerlerle aynı değerlere sahipse, örneğin ID’si `baz` olan item gibi:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ Eğer data, default değerlerle aynı değerlere sahipse, örneğin ID’si `baz
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI yeterince akıllıdır (aslında Pydantic yeterince akıllıdır) ve `description`, `tax`, `tags` default ile aynı olsa bile bunların explicit olarak set edildiğini (default’tan alınmadığını) anlar.
 
@@ -321,7 +325,7 @@ Bu durum, benzer şekilde çalışan `response_model_by_alias` için de geçerli
 
 ///
 
-{* ../../docs_src/response_model/tutorial005_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial005.py hl[29,35] *}
 
 /// tip | İpucu
 
@@ -335,7 +339,7 @@ Bu, `set(["name", "description"])` ile eşdeğerdir.
 
 Yanlışlıkla `set` yerine `list` veya `tuple` kullanırsanız, FastAPI bunu yine `set`’e çevirir ve doğru şekilde çalışır:
 
-{* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial006.py hl[29,35] *}
 
 ## Özet { #recap }
 

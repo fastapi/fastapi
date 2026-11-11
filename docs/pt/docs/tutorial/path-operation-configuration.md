@@ -16,7 +16,7 @@ Você pode passar diretamente o código `int`, como `404`.
 
 Mas se você não se lembrar o que cada código numérico significa, pode usar as constantes de atalho em `status`:
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 Esse código de status será usado na resposta e será adicionado ao esquema OpenAPI.
 
@@ -32,7 +32,7 @@ Você também poderia usar `from starlette import status`.
 
 Você pode adicionar tags para sua *operação de rota*, passe o parâmetro `tags` com uma `list` de `str` (comumente apenas um `str`):
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 Eles serão adicionados ao esquema OpenAPI e usados pelas interfaces de documentação automática:
 
@@ -46,13 +46,13 @@ Nestes casos, pode fazer sentido armazenar as tags em um `Enum`.
 
 **FastAPI** suporta isso da mesma maneira que com strings simples:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## Resumo e descrição { #summary-and-description }
 
 Você pode adicionar um `summary` e uma `description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## Descrição do docstring { #description-from-docstring }
 
@@ -60,7 +60,7 @@ Como as descrições tendem a ser longas e cobrir várias linhas, você pode dec
 
 Você pode escrever [Markdown](https://en.wikipedia.org/wiki/Markdown) na docstring, ele será interpretado e exibido corretamente (levando em conta a indentação da docstring).
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 Ela será usada nas documentações interativas:
 
@@ -70,7 +70,7 @@ Ela será usada nas documentações interativas:
 
 Você pode especificar a descrição da resposta com o parâmetro `response_description`:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | Nota
 
@@ -92,7 +92,7 @@ Então, se você não fornecer uma, o **FastAPI** irá gerar automaticamente uma
 
 Se você precisar marcar uma *operação de rota* como <dfn title="obsoleta, recomendado não usar">descontinuada</dfn>, mas sem removê-la, passe o parâmetro `deprecated`:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 Ela será claramente marcada como descontinuada nas documentações interativas:
 

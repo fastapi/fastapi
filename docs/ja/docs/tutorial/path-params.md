@@ -2,7 +2,7 @@
 
 Pythonのformat文字列と同様のシンタックスで「パスパラメータ」や「パス変数」を宣言できます:
 
-{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 パスパラメータ `item_id` の値は、引数 `item_id` として関数に渡されます。
 
@@ -16,7 +16,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 標準のPythonの型アノテーションを使用して、関数内のパスパラメータの型を宣言できます:
 
-{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 ここでは、 `item_id` は `int` として宣言されています。
 
@@ -118,13 +118,13 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 *path operations* は順に評価されるので、 `/users/me` が `/users/{user_id}` よりも先に宣言されているか確認する必要があります:
 
-{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 それ以外の場合、 `/users/{user_id}` は `/users/me` としてもマッチします。値が `"me"` であるパラメータ `user_id` を受け取ると「考え」ます。
 
 同様に、path operation を再定義することはできません:
 
-{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 パスは最初にマッチしたものが常に使われるため、最初のものが常に使用されます。
 
@@ -140,7 +140,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 そして、固定値のクラス属性を作ります。すると、その値が使用可能な値となります:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// tip | 豆知識
 
@@ -152,7 +152,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 次に、作成したenumクラスである`ModelName`を使用した型アノテーションをもつ*パスパラメータ*を作成します:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### ドキュメントの確認 { #check-the-docs }
 
@@ -168,13 +168,13 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 これは、作成した列挙型 `ModelName` の*列挙型メンバ*と比較できます:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### *列挙値*の取得 { #get-the-enumeration-value }
 
 `model_name.value` 、もしくは一般に、 `your_enum_member.value` を使用して実際の値 (この場合は `str`) を取得できます。
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | 豆知識
 
@@ -188,7 +188,7 @@ Pythonのformat文字列と同様のシンタックスで「パスパラメー�
 
 それらはクライアントに返される前に適切な値 (この場合は文字列) に変換されます。
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 クライアントは以下の様なJSONレスポンスを得ます:
 
@@ -227,7 +227,7 @@ Starletteのオプションを直接使用することで、以下のURLの様�
 
 したがって、以下の様に使用できます:
 
-{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip | 豆知識
 

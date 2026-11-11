@@ -15,7 +15,7 @@
 * `StaticFiles` import करें।
 * किसी विशिष्ट path में `StaticFiles()` instance को "Mount" करें।
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | तकनीकी विवरण
 

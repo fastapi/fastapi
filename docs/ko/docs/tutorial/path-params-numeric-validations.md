@@ -6,7 +6,7 @@
 
 먼저 `fastapi`에서 `Path`를 임포트하고, `Annotated`도 임포트합니다:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[1,3] *}
 
 /// note | 참고
 
@@ -20,15 +20,15 @@ FastAPI는 0.95.0 버전에서 `Annotated` 지원을 추가했고(그리고 이�
 
 ## 메타데이터 선언 { #declare-metadata }
 
-`Query`에 동일한 매개변수를 선언할 수 있습니다.
+`Query`에서와 동일한 모든 매개변수를 선언할 수 있습니다.
 
 예를 들어, 경로 매개변수 `item_id`에 `title` 메타데이터 값을 선언하려면 다음과 같이 입력할 수 있습니다:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[10] *}
 
 /// note | 참고
 
-경로 매개변수는 경로의 일부여야 하므로 언제나 필수입니다. `None`으로 선언하거나 기본값을 지정하더라도 아무 영향이 없으며, 항상 필수입니다.
+경로 매개변수는 URL 경로의 일부여야 하므로 언제나 필수입니다. 타입에 `None`을 추가해도 선택 사항이 되지 않습니다. `Path`로 선언한 매개변수는 기본값을 가질 수 없습니다.
 
 ///
 
@@ -54,11 +54,11 @@ FastAPI는 0.95.0 버전에서 `Annotated` 지원을 추가했고(그리고 이�
 
 따라서 함수를 다음과 같이 선언할 수 있습니다:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_non_an.py hl[7] *}
 
 하지만 `Annotated`를 사용하면 이 문제가 없다는 점을 기억하세요. `Query()`나 `Path()`에 함수 매개변수 기본값을 사용하지 않기 때문에, 순서는 중요하지 않습니다.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py *}
 
 ## 필요한 대로 매개변수 정렬하기, 트릭 { #order-the-parameters-as-you-need-tricks }
 
@@ -83,13 +83,13 @@ FastAPI는 0.95.0 버전에서 `Annotated` 지원을 추가했고(그리고 이�
 
 파이썬은 `*`으로 아무것도 하지 않지만, 뒤따르는 모든 매개변수는 키워드 인자(키-값 쌍)로 호출되어야 함을 알게 됩니다. 이는 <abbr title="출처: K-ey W-ord Arg-uments - 키워드 인자"><code>kwargs</code></abbr>로도 알려져 있습니다. 기본값이 없더라도 마찬가지입니다.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_non_an.py hl[7] *}
 
 ### `Annotated`를 쓰면 더 좋습니다 { #better-with-annotated }
 
 `Annotated`를 사용하면 함수 매개변수 기본값을 사용하지 않기 때문에 이 문제가 발생하지 않으며, 아마 `*`도 사용할 필요가 없다는 점을 기억하세요.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[10] *}
 
 ## 숫자 검증: 크거나 같음 { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ FastAPI는 0.95.0 버전에서 `Annotated` 지원을 추가했고(그리고 이�
 
 여기서 `ge=1`인 경우, `item_id`는 `1`보다 "`g`reater than or `e`qual"(크거나 같은) 정수형 숫자여야 합니다.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004.py hl[10] *}
 
 ## 숫자 검증: 크거나 및 작거나 같음 { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ FastAPI는 0.95.0 버전에서 `Annotated` 지원을 추가했고(그리고 이�
 * `gt`: `g`reater `t`han
 * `le`: `l`ess than or `e`qual
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005.py hl[10] *}
 
 ## 숫자 검증: 부동소수, 크거나 및 작거나 { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ FastAPI는 0.95.0 버전에서 `Annotated` 지원을 추가했고(그리고 이�
 
 <abbr title="less than - 보다 작음"><code>lt</code></abbr> 역시 마찬가지입니다.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006.py hl[13] *}
 
 ## 요약 { #recap }
 

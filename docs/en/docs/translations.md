@@ -24,5 +24,3 @@ Let's say that you want to request translations for a language that is not yet t
 Once there are several people in the discussion, the FastAPI team can evaluate it and can make it an official translation.
 
 Then the docs will be automatically translated using LLMs, and the team of native speakers can review the translation, and help tweak the LLM prompts.
-
-Once there's a new translation, for example if docs are updated or there's a new section, there will be a comment in the same discussion with the link to the new translation to review.

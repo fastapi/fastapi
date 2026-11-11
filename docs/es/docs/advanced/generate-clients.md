@@ -24,7 +24,7 @@ FastAPI genera automáticamente especificaciones **OpenAPI 3.1**, así que cualq
 
 Empecemos con una aplicación simple de FastAPI:
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 Nota que las *path operations* definen los modelos que usan para el payload del request y el payload del response, usando los modelos `Item` y `ResponseMessage`.
 
@@ -82,7 +82,7 @@ En muchos casos tu app de FastAPI será más grande, y probablemente usarás tag
 
 Por ejemplo, podrías tener una sección para **items** y otra sección para **users**, y podrían estar separadas por tags:
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### Genera un Cliente TypeScript con tags { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ Por ejemplo, aquí está usando el primer tag (probablemente tendrás solo un ta
 
 Puedes entonces pasar esa función personalizada a **FastAPI** como el parámetro `generate_unique_id_function`:
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### Genera un Cliente TypeScript con operation IDs personalizados { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ Pero para el cliente generado podríamos **modificar** los operation IDs de Open
 
 Podríamos descargar el JSON de OpenAPI a un archivo `openapi.json` y luego podríamos **remover ese tag prefijado** con un script como este:
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

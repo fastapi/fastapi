@@ -36,7 +36,7 @@ npm run build
 
 然後使用 `app.frontend()` 來提供它：
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 如此一來，對 `/assets/app.js` 的請求就可以提供 `dist/assets/app.js`。
 
@@ -50,7 +50,7 @@ npm run build
 
 為此，請使用 `fallback="index.html"`：
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI** 只會對明確使用 `Accept: text/html` 或 `Accept: application/xhtml+xml` 接受 HTML 的 `GET` 和 `HEAD` 請求使用這個 fallback，就像瀏覽器導覽請求通常會做的那樣。遺失的檔案，例如 JavaScript、CSS 和圖片，仍會回傳 `404`。
 
@@ -68,7 +68,7 @@ npm run build
 
 你也可以為遺失的前端路徑提供靜態 `404.html` 頁面：
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 該回應會保留 `404` 狀態碼。
 
@@ -94,13 +94,13 @@ npm run build
 
 因此，在大多數情況下，你可以使用 `app.frontend("/", directory="dist")`，而不需要指定 `fallback` 引數。
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## 停用 Fallback { #disable-fallback }
 
 如果你不想為遺失的前端路徑提供 fallback 檔案，請使用 `fallback=None`：
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 接著，遺失的前端路徑會回傳一般的 `404`。
 
@@ -116,7 +116,7 @@ npm run build
 
 如果你的前端檔案稍後才會建立，例如在建立 app 物件之後由另一個建置步驟產生，請設定 `check_dir=False`：
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 使用 `check_dir=False` 時，**FastAPI** 不會在建立應用程式時檢查目錄。如果在處理請求時，設定的目錄仍然不存在，**FastAPI** 會在那時引發錯誤。
 
@@ -124,7 +124,7 @@ npm run build
 
 你也可以將前端檔案加入 `APIRouter`，並使用前綴包含它：
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 在這個範例中，前端路徑會在 `/app` 底下提供。
 

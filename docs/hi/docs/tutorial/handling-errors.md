@@ -25,7 +25,7 @@ Client को errors वाली HTTP responses return करने के ल�
 
 ### `HTTPException` import करें { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
 ### अपने code में `HTTPException` raise करें { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ Client को errors वाली HTTP responses return करने के ल�
 
 इस example में, जब client किसी ऐसे ID से item request करता है जो मौजूद नहीं है, तो `404` के status code के साथ exception raise करें:
 
-{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
 ### परिणामी response { #the-resulting-response }
 
@@ -77,7 +77,7 @@ Client को errors वाली HTTP responses return करने के ल�
 
 लेकिन अगर किसी advanced scenario में आपको इसकी ज़रूरत पड़े, तो आप custom headers जोड़ सकते हैं:
 
-{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
 ## custom exception handlers install करें { #install-custom-exception-handlers }
 
@@ -89,7 +89,7 @@ Client को errors वाली HTTP responses return करने के ल�
 
 आप `@app.exception_handler()` के साथ custom exception handler जोड़ सकते हैं:
 
-{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
 यहाँ, अगर आप `/unicorns/yolo` request करते हैं, तो *path operation* एक `UnicornException` `raise` करेगा।
 
@@ -127,7 +127,7 @@ Client को errors वाली HTTP responses return करने के ल�
 
 Exception handler को एक `Request` और exception मिलेगा।
 
-{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:19] *}
 
 अब, अगर आप `/items/foo` पर जाते हैं, तो default JSON error पाने के बजाय:
 
@@ -159,7 +159,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 उदाहरण के लिए, आप इन errors के लिए JSON के बजाय plain text response return करना चाह सकते हैं:
 
-{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,25] *}
 
 /// note | तकनीकी विवरण
 
@@ -183,7 +183,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 आप अपनी app develop करते समय body को log और debug करने, user को return करने आदि के लिए इसका उपयोग कर सकते हैं।
 
-{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
 
 अब ऐसा invalid item भेजकर देखें:
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 अगर आप **FastAPI** के उन्हीं default exception handlers के साथ exception का उपयोग करना चाहते हैं, तो आप `fastapi.exception_handlers` से default exception handlers import करके उनका फिर से उपयोग कर सकते हैं:
 
-{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
 इस example में आप केवल error को बहुत expressive message के साथ print कर रहे हैं, लेकिन आप बात समझ गए। आप exception का उपयोग कर सकते हैं और फिर बस default exception handlers का फिर से उपयोग कर सकते हैं।

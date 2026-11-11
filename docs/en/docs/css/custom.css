@@ -3,14 +3,14 @@
 /* Noto Color Emoji for emoji support with the same font everywhere */
 @import url(https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap);
 
-/* Override default code font in Material for MkDocs to Fira Code */
+/* Use Fira Code for code blocks */
 :root {
     --md-code-font: "Fira Code", monospace, "Noto Color Emoji";
 }
 
-/* Override default regular font in Material for MkDocs to include Noto Color Emoji */
+/* Keep the modern theme font and include Noto Color Emoji */
 :root {
-    --md-text-font: "Roboto", "Noto Color Emoji";
+    --md-text-font: "Inter", "Noto Color Emoji";
 }
 
 .termynal-comment {
@@ -151,13 +151,20 @@ a[data-internal-link][target="_blank"]:not(:has(img)):not(.no-link-icon):not(.an
   text-align: center;
 }
 
+/* Keep FastAPI's announcement banner dark in both color schemes. */
+[data-md-component="announce"] .md-banner {
+  color: #fff;
+  background-color: #212121;
+}
+
 a.announce-link:link,
 a.announce-link:visited {
-  color: #fff;
+  color: inherit;
 }
 
 a.announce-link:hover {
-  color: var(--md-accent-fg-color);
+  color: inherit;
+  text-decoration: underline;
 }
 
 .announce-wrapper {
@@ -435,105 +442,6 @@ Inspired by Termynal's CSS tricks with modifications
 @media (max-width: 600px) {
   .fastapi-sponsors__card--gold   .fastapi-sponsors__banner { height: 64px; }
   .fastapi-sponsors__card--silver .fastapi-sponsors__banner { height: 50px; }
-}
-
-.fastapi-conf-rail {
-  display: block;
-  margin: 1.25rem 0.5rem 0;
-  padding: 0.9rem 0.85rem 0.85rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-left: 3px solid var(--md-primary-fg-color);
-  border-radius: 0.2rem;
-  background: color-mix(in srgb, var(--md-primary-fg-color) 6%, transparent);
-  color: var(--md-default-fg-color);
-  text-decoration: none;
-  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
-}
-
-.fastapi-conf-rail__eyebrow {
-  display: block;
-  font-size: 0.56rem;
-  font-weight: 700;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--md-primary-fg-color);
-}
-
-.fastapi-conf-rail__date {
-  display: block;
-  margin-top: 0.45rem;
-  font-size: 0.74rem;
-  font-weight: 700;
-  line-height: 1.25;
-}
-
-.fastapi-conf-rail__place {
-  display: block;
-  margin-top: 0.1rem;
-  font-size: 0.68rem;
-  line-height: 1.3;
-  color: var(--md-default-fg-color--light);
-}
-
-.fastapi-conf-rail__summary {
-  display: block;
-  margin-top: 0.55rem;
-  font-size: 0.67rem;
-  line-height: 1.5;
-  color: var(--md-default-fg-color--light);
-}
-
-.fastapi-conf-rail__cta {
-  display: block;
-  margin-top: 0.65rem;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--md-primary-fg-color);
-}
-
-.fastapi-conf-rail:hover {
-  border-color: var(--md-primary-fg-color);
-  background: color-mix(in srgb, var(--md-primary-fg-color) 10%, transparent);
-}
-
-.fastapi-conf-rail:hover .fastapi-conf-rail__cta,
-.fastapi-conf-rail:focus-visible .fastapi-conf-rail__cta {
-  color: var(--md-accent-fg-color);
-  text-decoration: underline;
-}
-
-.fastapi-conf-rail:focus-visible {
-  outline: 2px solid var(--md-accent-fg-color);
-  outline-offset: 2px;
-}
-
-.fastapi-conf-rail--mobile {
-  display: none;
-}
-
-@media screen and (max-width: 76.234375em) {
-  .fastapi-conf-rail:not(.fastapi-conf-rail--mobile) {
-    display: none;
-  }
-
-  .md-typeset .fastapi-conf-rail--mobile {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    margin: 0 0 1.25rem;
-    text-decoration: none;
-  }
-
-  .fastapi-conf-rail--mobile .fastapi-conf-rail__summary {
-    display: none;
-  }
-
-  .fastapi-conf-rail--mobile .fastapi-conf-rail__cta {
-    grid-column: 2;
-    grid-row: 1 / 4;
-    align-self: center;
-    margin: 0 0 0 0.8rem;
-    white-space: nowrap;
-  }
 }
 
 .fastapi-feature-banner {

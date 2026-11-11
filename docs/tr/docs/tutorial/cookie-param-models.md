@@ -20,7 +20,7 @@ Aynı teknik `Query`, `Cookie` ve `Header` için de geçerlidir. 😎
 
 İhtiyacınız olan **cookie** parametrelerini bir **Pydantic model** içinde tanımlayın ve ardından parametreyi `Cookie` olarak bildirin:
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI**, request ile gelen **cookies** içinden **her bir field** için veriyi **extract** eder ve size tanımladığınız Pydantic model'i verir.
 
@@ -50,7 +50,7 @@ API'niz artık kendi <dfn title="Bu bir şaka, sadece bilginize. Cookie onaylar�
 
 Pydantic'in model configuration'ını kullanarak `extra` olan herhangi bir field'ı `forbid` edebilirsiniz:
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 Bir client **fazladan cookie** göndermeye çalışırsa, bir **error** response alır.
 
@@ -70,6 +70,22 @@ Onayınızı almak için bunca çaba harcayan zavallı cookie banner'ları... <d
     ]
 }
 ```
+
+## Parametre Modellerini Birleştirin { #combine-parameter-models }
+
+Birden fazla cookie parametre modelini, tek tek tanımlanan cookie parametreleri ve dependency'lerle birleştirebilirsiniz. [Query parametre modelleri](query-param-models.md#combine-parameter-models) için açıklandığı gibi, her modelin verileri bağımsız olarak çıkarılır ve doğrulanır.
+
+Her modelin `extra` yapılandırması, diğer modellerde veya dependency'lerde tanımlananlar da dahil olmak üzere tüm cookie parametrelerine uygulanır. `extra="forbid"` ile o modelin dışındaki tüm cookie'ler reddedilir. `extra="allow"` ile bu cookie'ler modele ek alanlar olarak dahil edilir.
+
+## İsteğe Bağlı Cookie Parametre Modelleri { #optional-cookie-parameter-models }
+
+Grubu isteğe bağlı hale getirmek için cookie parametre modelini `| None` ile tanımlayın ve varsayılan değerini `None` olarak ayarlayın.
+
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
+
+Ne `theme` ne de `locale` gönderilirse, `preferences` değeri `None` olur. Bunlardan biri gönderilirse, FastAPI modeli doğrular ve her iki alanı da zorunlu kılar.
+
+Varsayılan değerler, ek alanlar ve OpenAPI için [isteğe bağlı query parametre modelleri](query-param-models.md#optional-query-parameter-models) ile aynı kurallar geçerlidir.
 
 ## Özet { #summary }
 

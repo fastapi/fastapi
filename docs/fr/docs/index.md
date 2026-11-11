@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI est un framework web moderne et rapide (haute performance) pour la création d'API avec Python, basé sur les annotations de type standard de Python.
 
+<!-- agent-banner -->
+
 Les principales fonctionnalités sont :
 
 * **Rapide** : très hautes performances, au niveau de **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
@@ -213,7 +215,7 @@ def read_item(item_id: int, q: str | None = None):
 ```
 
 <details markdown="1">
-<summary>Ou utilisez <code>async def</code>...</summary>
+<summary>Ou utilisez <code>async def</code> ...</summary>
 
 Si votre code utilise `async` / `await`, utilisez `async def` :
 
@@ -235,7 +237,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **Remarque** :
 
-Si vous ne savez pas, consultez la section « Vous êtes pressés ? » à propos de [`async` et `await` dans les documents](https://fastapi.tiangolo.com/fr/async/#in-a-hurry).
+Si vous ne savez pas, consultez la section _« Vous êtes pressés ? »_ à propos de [`async` et `await` dans les documents](https://fastapi.tiangolo.com/fr/async/#in-a-hurry).
 
 </details>
 
@@ -271,13 +273,13 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>À propos de la commande <code>fastapi dev</code>...</summary>
+<summary>À propos de la commande <code>fastapi dev</code> ...</summary>
 
 La commande `fastapi dev` lit automatiquement votre fichier `main.py`, détecte l'application **FastAPI** qu'il contient et lance un serveur avec [Uvicorn](https://uvicorn.dev).
 
 Par défaut, `fastapi dev` démarre avec le rechargement automatique activé pour le développement local.
 
-Vous pouvez en savoir plus dans la [documentation de la CLI FastAPI](https://fastapi.tiangolo.com/fr/fastapi-cli/).
+Vous pouvez en savoir plus dans les [documents de la CLI FastAPI](https://fastapi.tiangolo.com/fr/fastapi-cli/).
 
 </details>
 
@@ -544,9 +546,9 @@ Utilisées par Pydantic :
 
 Utilisées par Starlette :
 
-* [`httpx`](https://www.python-httpx.org) - Obligatoire si vous souhaitez utiliser le `TestClient`.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (ou `httpx`) - Utilisé par le `TestClient`.
 * [`jinja2`](https://jinja.palletsprojects.com) - Obligatoire si vous souhaitez utiliser la configuration de template par défaut.
-* [`python-multipart`](https://github.com/Kludex/python-multipart) - Obligatoire si vous souhaitez prendre en charge l’<dfn title="convertir la chaîne issue d'une requête HTTP en données Python">« parsing »</dfn> de formulaires avec `request.form()`.
+* [`python-multipart`](https://github.com/Kludex/python-multipart) - Obligatoire si vous souhaitez prendre en charge le <dfn title="convertir la chaîne issue d'une requête HTTP en données Python">« parsing »</dfn> de formulaires avec `request.form()`.
 
 Utilisées par FastAPI :
 

@@ -15,7 +15,7 @@
 * `StaticFiles`를 임포트합니다.
 * 특정 경로에 `StaticFiles()` 인스턴스를 "마운트"합니다.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | 기술 세부사항
 

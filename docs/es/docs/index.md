@@ -17,16 +17,16 @@ include_yaml:
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster">
-    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Pruebas">
 </a>
 <a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Cobertura">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Versión del paquete">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Versiones de Python compatibles">
 </a>
 </p>
 
@@ -39,6 +39,8 @@ include_yaml:
 ---
 
 FastAPI es un framework web moderno, rápido (de alto rendimiento), para construir APIs con Python basado en las anotaciones de tipos estándar de Python.
+
+<!-- agent-banner -->
 
 Las funcionalidades clave son:
 
@@ -133,7 +135,7 @@ Las funcionalidades clave son:
 
 "_Adoptamos el paquete **FastAPI** para crear un servidor **REST** que pueda ser consultado para obtener **predicciones**. [para Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, y Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -155,7 +157,7 @@ Las funcionalidades clave son:
 
 Hay un [mini documental de FastAPI](https://www.youtube.com/watch?v=mpR8ngthqiE) lanzado a finales de 2025, puedes verlo online:
 
-<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="Mini documental de FastAPI"></a>
 
 ## **Typer**, el FastAPI de las CLIs { #typer-the-fastapi-of-clis }
 
@@ -360,11 +362,11 @@ Ahora ve a [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 * Haz clic en el botón "Try it out", te permite llenar los parámetros e interactuar directamente con la API:
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
+![Interacción con Swagger UI](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
 * Luego haz clic en el botón "Execute", la interfaz de usuario se comunicará con tu API, enviará los parámetros, obtendrá los resultados y los mostrará en la pantalla:
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
+![Interacción con Swagger UI](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
 ### Actualización de la documentación alternativa de la API { #alternative-api-docs-upgrade }
 
@@ -467,7 +469,7 @@ Intenta cambiar la línea con:
 
 ...y observa cómo tu editor autocompleta los atributos y conoce sus tipos:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![soporte para editores](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 Para un ejemplo más completo incluyendo más funcionalidades, ve al <a href="https://fastapi.tiangolo.com/es/tutorial/">Tutorial - Guía del Usuario</a>.
 
@@ -544,9 +546,9 @@ Usadas por Pydantic:
 
 Usadas por Starlette:
 
-* [`httpx`](https://www.python-httpx.org) - Requerido si deseas usar el `TestClient`.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (o `httpx`) - Usado por el `TestClient`.
 * [`jinja2`](https://jinja.palletsprojects.com) - Requerido si deseas usar la configuración de plantilla por defecto.
-* [`python-multipart`](https://github.com/Kludex/python-multipart) - Requerido si deseas soportar form <dfn title="convertir el string que viene de un request HTTP en datos de Python">"parsing"</dfn>, con `request.form()`.
+* [`python-multipart`](https://github.com/Kludex/python-multipart) - Requerido si deseas soportar el <dfn title="convertir el string que viene de un request HTTP en datos de Python">"parsing"</dfn> de formularios, con `request.form()`.
 
 Usadas por FastAPI:
 

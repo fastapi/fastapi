@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 `main.py`ファイルを作成します:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 テレメトリーを収集するための独自のコードを書く必要はありません。
 
@@ -92,7 +92,7 @@ $ curl http://127.0.0.1:8000/items/1
 
 `telemetry`辞書にプロバイダーを直接渡すこともできます。例えば、次のプロバイダーはOpenTelemetryのコンソールエクスポーターを使用して、リクエストのスパンをターミナルに出力します:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 **エクスポーター**は、スパンを送信先に送ります。`BatchSpanProcessor`はスパンをまとめ、バックグラウンドで送信します。監視ライブラリの送信先を使用するには、コンソールエクスポーターをそのライブラリが提供するエクスポーターに置き換えてください。その他の設定オプションについては、[OpenTelemetryのPython計装ガイド](https://opentelemetry.io/docs/languages/python/instrumentation/)を参照してください。
 
@@ -112,7 +112,7 @@ OpenTelemetryはデフォルトでグローバルプロバイダーを使用し�
 
 HTTPリクエストのスパンのみを記録するには、`operation_spans`を`False`に設定します:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### WebSocket接続のトレース { #trace-websocket-connections }

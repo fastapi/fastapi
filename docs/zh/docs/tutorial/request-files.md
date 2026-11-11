@@ -20,13 +20,13 @@ $ uv add python-multipart
 
 从 `fastapi` 导入 `File` 和 `UploadFile`：
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## 定义 `File` 参数 { #define-file-parameters }
 
 像为 `Body` 或 `Form` 一样创建文件参数：
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | 注意
 
@@ -54,7 +54,7 @@ $ uv add python-multipart
 
 将文件参数的类型声明为 `UploadFile`：
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 与 `bytes` 相比，使用 `UploadFile` 有多项优势：
 
@@ -137,13 +137,13 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 你可以通过使用标准类型注解并将 `None` 作为默认值的方式将一个文件参数设为可选:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## 带有额外元数据的 `UploadFile` { #uploadfile-with-additional-metadata }
 
 你也可以将 `File()` 与 `UploadFile` 一起使用，例如，设置额外的元数据:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## 多文件上传 { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 要实现这一点，声明一个由 `bytes` 或 `UploadFile` 组成的列表：
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 接收的也是含 `bytes` 或 `UploadFile` 的列表（`list`）。
 
@@ -169,7 +169,7 @@ HTML 表单（`<form></form>`）向服务器发送数据的方式通常会对数
 
 和之前的方式一样，你可以为 `File()` 设置额外参数，即使是 `UploadFile`：
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## 小结 { #recap }
 

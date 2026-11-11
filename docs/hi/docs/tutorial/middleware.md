@@ -31,7 +31,7 @@ middleware function को मिलता है:
     * फिर यह संबंधित *path operation* द्वारा generate किया गया `response` लौटाता है।
 * फिर आप `response` लौटाने से पहले उसे और modify कर सकते हैं।
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | सुझाव
 
@@ -57,7 +57,7 @@ middleware function को मिलता है:
 
 उदाहरण के लिए, आप एक custom header `X-Process-Time` जोड़ सकते हैं जिसमें seconds में वह time हो जो request को process करने और response generate करने में लगा:
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip | सुझाव
 

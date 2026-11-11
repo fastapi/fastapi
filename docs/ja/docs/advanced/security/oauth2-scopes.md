@@ -63,7 +63,7 @@ OAuth2 にとっては、単に文字列に過ぎません。
 
 まず、メインの**チュートリアル - ユーザーガイド**にある [OAuth2（パスワード［ハッシュ化あり］）、Bearer と JWT トークン](../../tutorial/security/oauth2-jwt.md) の例から変更される部分を、スコープ付き OAuth2 を使って手早く見てみましょう。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 では、これらの変更を一つずつ確認していきます。
 
@@ -73,7 +73,7 @@ OAuth2 にとっては、単に文字列に過ぎません。
 
 `scopes` パラメータは、各スコープをキー、その説明を値とする `dict` を受け取ります:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 これらのスコープを宣言しているため、ログイン／認可時に API ドキュメントに表示されます。
 
@@ -99,7 +99,7 @@ OAuth2 にとっては、単に文字列に過ぎません。
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## path operation と依存関係でスコープを宣言 { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -125,7 +125,7 @@ OAuth2 にとっては、単に文字列に過ぎません。
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | 技術詳細
 
@@ -151,7 +151,7 @@ OAuth2 にとっては、単に文字列に過ぎません。
 
 この `SecurityScopes` クラスは `Request` に似ています（`Request` はリクエストオブジェクトを直接取得するために使いました）。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## `scopes` を使う { #use-the-scopes }
 
@@ -165,7 +165,7 @@ OAuth2 にとっては、単に文字列に過ぎません。
 
 この例外には、要求されたスコープがあればそれらを空白区切りの文字列（`scope_str` を使用）として含めます。このスコープ文字列は `WWW-Authenticate` ヘッダに入れます（仕様の一部です）。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## `username` とデータ構造の検証 { #verify-the-username-and-data-shape }
 
@@ -181,7 +181,7 @@ Pydantic でデータを検証することで、例えばスコープは `str` �
 
 また、その `username` を持つユーザーが存在することも確認し、存在しなければ、やはり先ほどの例外を送出します。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## `scopes` の検証 { #verify-the-scopes }
 
@@ -189,7 +189,7 @@ Pydantic でデータを検証することで、例えばスコープは `str` �
 
 そのために、これらすべてのスコープを `str` の `list` として含む `security_scopes.scopes` を使います。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## 依存関係ツリーとスコープ { #dependency-tree-and-scopes }
 

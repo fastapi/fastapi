@@ -20,13 +20,13 @@ Bunun nedeni, upload edilen dosyaların "form data" olarak gönderilmesidir.
 
 `fastapi` içinden `File` ve `UploadFile` import edin:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## `File` Parametrelerini Tanımlayın { #define-file-parameters }
 
 `Body` veya `Form` için yaptığınız gibi dosya parametreleri oluşturun:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | Not
 
@@ -54,7 +54,7 @@ Ancak bazı durumlarda `UploadFile` kullanmak size fayda sağlayabilir.
 
 Tipi `UploadFile` olan bir dosya parametresi tanımlayın:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 `UploadFile` kullanmanın `bytes`’a göre birkaç avantajı vardır:
 
@@ -137,13 +137,13 @@ Bu, **FastAPI**’nin bir kısıtı değildir; HTTP protocol’ünün bir parça
 
 Standart type annotation’ları kullanıp varsayılan değeri `None` yaparak bir dosyayı opsiyonel hale getirebilirsiniz:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## Ek Metadata ile `UploadFile` { #uploadfile-with-additional-metadata }
 
 Ek metadata ayarlamak için `UploadFile` ile birlikte `File()` da kullanabilirsiniz. Örneğin:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## Birden Fazla Dosya Upload { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ Bu dosyalar, "form data" ile gönderilen aynı "form field" ile ilişkilendirili
 
 Bunu kullanmak için `bytes` veya `UploadFile` listesini tanımlayın:
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 Tanımladığınız gibi, `bytes` veya `UploadFile`’lardan oluşan bir `list` alırsınız.
 
@@ -169,7 +169,7 @@ Tanımladığınız gibi, `bytes` veya `UploadFile`’lardan oluşan bir `list` 
 
 Daha önce olduğu gibi, `UploadFile` için bile ek parametreler ayarlamak amacıyla `File()` kullanabilirsiniz:
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## Özet { #recap }
 

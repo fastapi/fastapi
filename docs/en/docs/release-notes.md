@@ -7,6 +7,309 @@ hide:
 
 ## Latest Changes
 
+### Internal
+
+* ➖ Drop `pydantic-ai` dependency, use `pydantic-ai-slim[openai]` instead. PR [#16526](https://github.com/fastapi/fastapi/pull/16526) by [@YuriiMotov](https://github.com/YuriiMotov).
+
+## 0.162.4 (2026-11-10)
+
+### Fixes
+
+* 🐛 Require AnyIO 4.1.0 or newer at runtime. PR [#16730](https://github.com/fastapi/fastapi/pull/16730) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.162.3 (2026-11-10)
+
+### Upgrades
+
+* ⬆️ Add support for Python 3.15. PR [#16727](https://github.com/fastapi/fastapi/pull/16727) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Update locked Pydantic to 2.14.3. PR [#16728](https://github.com/fastapi/fastapi/pull/16728) by [@tiangolo](https://github.com/tiangolo).
+* ⬆️ Upgrade `markdown-include-variants` to 0.0.10. PR [#16705](https://github.com/fastapi/fastapi/pull/16705) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Adopt unversioned snippets and `_non_an` variants. PR [#16707](https://github.com/fastapi/fastapi/pull/16707) by [@tiangolo](https://github.com/tiangolo).
+* 🎨 Use the Zensical modern theme for docs. PR [#16701](https://github.com/fastapi/fastapi/pull/16701) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix AI coding agent notice links in previews. PR [#16700](https://github.com/fastapi/fastapi/pull/16700) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add an AI coding agent notice to the docs. PR [#16699](https://github.com/fastapi/fastapi/pull/16699) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update Traditional Chinese translations. PR [#16719](https://github.com/fastapi/fastapi/pull/16719) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Chinese translations. PR [#16718](https://github.com/fastapi/fastapi/pull/16718) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Ukrainian translations. PR [#16717](https://github.com/fastapi/fastapi/pull/16717) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Turkish translations. PR [#16716](https://github.com/fastapi/fastapi/pull/16716) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Russian translations. PR [#16715](https://github.com/fastapi/fastapi/pull/16715) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Portuguese translations. PR [#16714](https://github.com/fastapi/fastapi/pull/16714) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Korean translations. PR [#16713](https://github.com/fastapi/fastapi/pull/16713) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Japanese translations. PR [#16712](https://github.com/fastapi/fastapi/pull/16712) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Hindi translations. PR [#16711](https://github.com/fastapi/fastapi/pull/16711) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update French translations. PR [#16710](https://github.com/fastapi/fastapi/pull/16710) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Spanish translations. PR [#16709](https://github.com/fastapi/fastapi/pull/16709) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update German translations. PR [#16708](https://github.com/fastapi/fastapi/pull/16708) by [@tiangolo](https://github.com/tiangolo).
+* 🌐 Update Korean translations to match the English docs. PR [#16706](https://github.com/fastapi/fastapi/pull/16706) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔥 Remove obsolete docs snippet commands. PR [#16724](https://github.com/fastapi/fastapi/pull/16724) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Preserve snippet variants when cleaning up docs sources. PR [#16722](https://github.com/fastapi/fastapi/pull/16722) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.162.2 (2026-11-07)
+
+### Docs
+
+* 📝 Add FastAPI Cloud guidance to the FastAPI skill. PR [#16697](https://github.com/fastapi/fastapi/pull/16697) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Add guidance for developing FastAPI apps with AI. PR [#16695](https://github.com/fastapi/fastapi/pull/16695) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 🔧 Add an agent skills note to GitHub releases. PR [#16696](https://github.com/fastapi/fastapi/pull/16696) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.162.1 (2026-11-07)
+
+### Docs
+
+* 📝 Add parameter model guidance to the FastAPI skill. PR [#16693](https://github.com/fastapi/fastapi/pull/16693) by [@tiangolo](https://github.com/tiangolo).
+
+### Translations
+
+* 🌐 Update translations for zh-hant (update-outdated). PR [#16654](https://github.com/fastapi/fastapi/pull/16654) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for uk (update-outdated). PR [#16655](https://github.com/fastapi/fastapi/pull/16655) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for de (update-outdated). PR [#16652](https://github.com/fastapi/fastapi/pull/16652) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for pt (update-outdated). PR [#16653](https://github.com/fastapi/fastapi/pull/16653) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for fr (update-outdated). PR [#16649](https://github.com/fastapi/fastapi/pull/16649) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for tr (update-outdated). PR [#16651](https://github.com/fastapi/fastapi/pull/16651) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ja (update-outdated). PR [#16648](https://github.com/fastapi/fastapi/pull/16648) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for zh (update-outdated). PR [#16644](https://github.com/fastapi/fastapi/pull/16644) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for hi (update-outdated). PR [#16647](https://github.com/fastapi/fastapi/pull/16647) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for es (update-outdated). PR [#16645](https://github.com/fastapi/fastapi/pull/16645) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 🌐 Update translations for ru (update-outdated). PR [#16650](https://github.com/fastapi/fastapi/pull/16650) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+
+### Internal
+
+* ⬆️ Bump pillow to 13.0.0 and dnspython to 2.9.2. PR [#16685](https://github.com/fastapi/fastapi/pull/16685) by [@YuriiMotov](https://github.com/YuriiMotov).
+* 📝 Update FastAPI Cloud docs banner for general availability. PR [#16684](https://github.com/fastapi/fastapi/pull/16684) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Update sponsors: add Encore. PR [#16683](https://github.com/fastapi/fastapi/pull/16683) by [@tiangolo](https://github.com/tiangolo).
+* 🔥 Remove conference rail component and related styles. PR [#16679](https://github.com/fastapi/fastapi/pull/16679) by [@alejsdev](https://github.com/alejsdev).
+* 👥 Update FastAPI People - Sponsors. PR [#16656](https://github.com/fastapi/fastapi/pull/16656) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* 👥 Update FastAPI GitHub topic repositories. PR [#16660](https://github.com/fastapi/fastapi/pull/16660) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* ⬆ Bump the github-actions group with 7 updates. PR [#16658](https://github.com/fastapi/fastapi/pull/16658) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump pre-commit hooks. PR [#16659](https://github.com/fastapi/fastapi/pull/16659) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+* ⬆ Bump authlib from 1.7.2 to 1.9.1. PR [#16637](https://github.com/fastapi/fastapi/pull/16637) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* 🔧 Update sponsors: add MicroAuth. PR [#16641](https://github.com/fastapi/fastapi/pull/16641) by [@tiangolo](https://github.com/tiangolo).
+* 🔧 Pin pytest below 9.2 for pytest-xdist compatibility. PR [#16642](https://github.com/fastapi/fastapi/pull/16642) by [@tiangolo](https://github.com/tiangolo).
+* ⬆ Bump graphql-core from 3.2.7 to 3.3.1. PR [#16613](https://github.com/fastapi/fastapi/pull/16613) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump black from 26.5.1 to 26.10.1. PR [#16611](https://github.com/fastapi/fastapi/pull/16611) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump gitpython from 3.1.62 to 3.2.1. PR [#16612](https://github.com/fastapi/fastapi/pull/16612) by [@dependabot[bot]](https://github.com/apps/dependabot).
+* ⬆ Bump opentelemetry-api from 1.44.0 to 1.45.1. PR [#16610](https://github.com/fastapi/fastapi/pull/16610) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.162.0 (2026-10-23)
+
+Omitted `bool` and `bool | None` form fields now use their declared defaults or produce missing-field errors, consistent with other fields and Pydantic behavior. FastAPI no longer infers `False` for omitted booleans. This applies to individual form parameters, form models, and unions of form models.
+
+Omitted boolean model fields are excluded from `model_dump(exclude_unset=True)`, and their defaults no longer count as submitted fields during union selection. Default factories and `validate_default` follow the usual rules.
+
+For HTML checkboxes, declare a boolean with a default of `False`. See [Boolean Form Fields](https://fastapi.tiangolo.com/tutorial/request-forms/#boolean-form-fields).
+
+### Breaking Changes
+
+* 🐛 Restore default handling for omitted boolean form fields. PR [#16605](https://github.com/fastapi/fastapi/pull/16605) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.161.1 (2026-10-22)
+
+### Fixes
+
+* 🐛 Fix OpenAPI schemas for standalone nullable form unions. PR [#16598](https://github.com/fastapi/fastapi/pull/16598) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.161.0 (2026-10-22)
+
+### Features
+
+* ✨ Add support for combining unions of form models. PR [#16596](https://github.com/fastapi/fastapi/pull/16596) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.160.0 (2026-10-22)
+
+Query, header, cookie, and form parameter models now apply their `extra` configuration to all submitted fields in the same parameter location, consistent with Pydantic behavior. This includes fields declared in other models, individual parameters, or dependencies, which were previously excluded.
+
+With `extra="forbid"`, fields outside the model are rejected even if another parameter declares them. With `extra="allow"`, those fields are included as model extras. With the default `extra="ignore"`, they are ignored.
+
+### Breaking Changes
+
+* 🐛 Apply each parameter model's `extra` configuration to sibling fields. PR [#16594](https://github.com/fastapi/fastapi/pull/16594) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* ⬆ Bump certifi from 2026.1.4 to 2026.10.19. PR [#16571](https://github.com/fastapi/fastapi/pull/16571) by [@dependabot[bot]](https://github.com/apps/dependabot).
+
+## 0.159.1 (2026-10-21)
+
+### Features
+
+* ✨ Add support for optional unions of form models. PR [#16586](https://github.com/fastapi/fastapi/pull/16586) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.159.0 (2026-10-21)
+
+### Features
+
+* ✨ Add support for optional query, header, and cookie parameter models. PR [#16584](https://github.com/fastapi/fastapi/pull/16584) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.158.2 (2026-10-21)
+
+### Features
+
+* ✨ Add support for optional form models. PR [#16582](https://github.com/fastapi/fastapi/pull/16582) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.158.1 (2026-10-21)
+
+### Fixes
+
+* 🐛 Preserve form media types in OpenAPI. PR [#16579](https://github.com/fastapi/fastapi/pull/16579) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.158.0 (2026-10-21)
+
+### Features
+
+* ✨ Add support for combining form models. PR [#16577](https://github.com/fastapi/fastapi/pull/16577) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.157.0 (2026-10-21)
+
+### Features
+
+* ✨ Add support for combining query, header, and cookie parameter models. PR [#16573](https://github.com/fastapi/fastapi/pull/16573) by [@tiangolo](https://github.com/tiangolo).
+
+### Docs
+
+* 📝 Clarify boolean query parameter parsing. PR [#16569](https://github.com/fastapi/fastapi/pull/16569) by [@tiangolo](https://github.com/tiangolo).
+* 📝 Clarify nullable query parameters and path parameter defaults. PR [#16568](https://github.com/fastapi/fastapi/pull/16568) by [@tiangolo](https://github.com/tiangolo).
+
+### Internal
+
+* 👷 Remove translation notifications and approval labeling. PR [#16570](https://github.com/fastapi/fastapi/pull/16570) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.8 (2026-10-21)
+
+### Fixes
+
+* 🐛 Preserve uploaded file positions when converting to `bytes`. PR [#16566](https://github.com/fastapi/fastapi/pull/16566) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.7 (2026-10-21)
+
+### Fixes
+
+* 🐛 Fix validation error locations for form and file `AliasChoices`. PR [#16564](https://github.com/fastapi/fastapi/pull/16564) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.6 (2026-10-21)
+
+### Fixes
+
+* 🐛 Respect model alias settings for query, header, and cookie parameters. PR [#16562](https://github.com/fastapi/fastapi/pull/16562) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.5 (2026-10-21)
+
+### Fixes
+
+* 🐛 Fix `AliasChoices` for path parameters. PR [#16560](https://github.com/fastapi/fastapi/pull/16560) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.4 (2026-10-21)
+
+### Fixes
+
+* 🐛 Fix `AliasChoices` for named JSON body parameters. PR [#16559](https://github.com/fastapi/fastapi/pull/16559) by [@tiangolo](https://github.com/tiangolo).
+* 🐛 Fix `AliasChoices` extraction for form models. PR [#16557](https://github.com/fastapi/fastapi/pull/16557) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.3 (2026-10-20)
+
+### Fixes
+
+* 🐛 Fix `AliasChoices` for query parameters, headers, and cookies. PR [#16555](https://github.com/fastapi/fastapi/pull/16555) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.2 (2026-10-20)
+
+### Fixes
+
+* 🐛 Preserve Pydantic field metadata in inferred request parameters. PR [#16553](https://github.com/fastapi/fastapi/pull/16553) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.1 (2026-10-20)
+
+### Fixes
+
+* 🐛 Preserve Pydantic field metadata when request options are omitted. PR [#16549](https://github.com/fastapi/fastapi/pull/16549) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.156.0 (2026-10-20)
+
+### Fixes
+
+* 🐛 Preserve Pydantic `Field()` attributes in request parameters. PR [#16547](https://github.com/fastapi/fastapi/pull/16547) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.155.0 (2026-10-20)
+
+The deprecated `**extra` keyword arguments have been removed from `Path`, `Query`, `Header`, `Cookie`, `Body`, `Form`, and `File`. Unknown keyword arguments now raise `TypeError`. For additional JSON Schema properties, replace, for example, `Query(custom="value")` with `Query(json_schema_extra={"custom": "value"})`.
+
+### Breaking Changes
+
+* 🔥 Remove deprecated `**extra` from request parameters. PR [#16545](https://github.com/fastapi/fastapi/pull/16545) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.154.0 (2026-10-20)
+
+### Features
+
+* ✨ Add Pydantic validation options to request parameters. PR [#16542](https://github.com/fastapi/fastapi/pull/16542) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.153.0 (2026-10-20)
+
+Unions of form models now apply the same browser form handling as individual models. Empty scalar fields use defaults or produce missing-field errors, empty list items are preserved, omitted boolean fields become `False`, and unselected files are treated as missing. JSON request bodies are unchanged.
+
+### Fixes
+
+* 🐛 Apply browser form handling to unions of Pydantic models. PR [#16540](https://github.com/fastapi/fastapi/pull/16540) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.152.0 (2026-10-20)
+
+Validation errors for header parameter models now report the HTTP header name, such as `int-val`, instead of the Python field name, `int_val`. Explicit aliases, `Header(convert_underscores=False)`, and Pydantic models with `loc_by_alias=False` keep their existing behavior.
+
+### Fixes
+
+* 🐛 Fix header model validation errors to report HTTP header names. PR [#16538](https://github.com/fastapi/fastapi/pull/16538) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.151.0 (2026-10-20)
+
+JSON request bodies now distinguish an explicit `null` from an omitted value. For individual `Body` parameters, `null` is validated as `None`: nullable types accept it, and non-nullable types reject it even when a default is defined. Defaults and default factories apply only when the value is omitted. This applies both to parameters inside JSON objects and to parameters representing the entire body. Clients that used `null` to request a default should omit the value instead.
+
+When a JSON object is expected because of `Body(embed=True)` or multiple body parameters, sending `null` as the entire body now returns a validation error.
+
+### Breaking Changes
+
+* 🐛 Distinguish JSON null from omitted body values. PR [#16536](https://github.com/fastapi/fastapi/pull/16536) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.150.0 (2026-10-20)
+
+When no file is selected, browsers submit a file part with an empty filename and empty content. FastAPI now treats this as missing: required file fields return a validation error, and fields with defaults or default factories use them. Unselected inputs are ignored in lists of files. Named zero-byte files are still accepted.
+
+### Breaking Changes
+
+* 🐛 Treat unselected browser file inputs as missing. PR [#16534](https://github.com/fastapi/fastapi/pull/16534) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.149.0 (2026-10-19)
+
+Browsers submit empty text inputs as empty strings (`""`). FastAPI now treats empty scalar form values as missing in form models, matching individual `Form` parameters. Required fields return a validation error. Fields with defaults or default factories use them and remain unset in `model_dump(exclude_unset=True)`.
+
+Empty strings inside lists are preserved. Omitted boolean form fields still become `False`. JSON requests and direct Pydantic validation are unchanged.
+
+### Breaking Changes
+
+* 🐛 Treat empty scalar values as missing in form models. PR [#16529](https://github.com/fastapi/fastapi/pull/16529) by [@tiangolo](https://github.com/tiangolo).
+
+## 0.148.0 (2026-10-19)
+
+Defaults for omitted `Query`, `Header`, `Cookie`, and `Form` parameters and model fields are no longer treated as user input. Defaults are not validated unless `validate_default=True` is enabled. If you rely on validators running for omitted values, enable default validation with `Field(validate_default=True)` for model fields or, for example, `Query(validate_default=True)` for individual parameters. `Body(validate_default=True)` is now honored too.
+
+For parameter models, applying a default no longer marks a field as explicitly set, so `model_dump(exclude_unset=True)` excludes it. Default factories run once, and validation errors no longer include injected defaults in `input`.
+
+Omitted boolean form fields still become `False` and count as explicitly set.
+
+### Breaking Changes
+
+* 🐛 Fix default handling for request parameters and models. PR [#16527](https://github.com/fastapi/fastapi/pull/16527) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.147.0 (2026-10-19)
 
 Omitted `bool` and `bool | None` form fields are now interpreted as `False`, matching unchecked HTML checkboxes. This applies to individual `Form` parameters and form models, including required fields and fields with defaults of `True` or `None`. The inferred value is considered explicitly set, including in `model_dump(exclude_unset=True)`.

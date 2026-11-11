@@ -4,7 +4,7 @@
 
 以下のアプリケーションを例にしてみましょう:
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 クエリパラメータ `q` は `str | None` 型で、`str` 型ですが `None` にもなり得ることを意味し、実際にデフォルト値は `None` なので、FastAPIはそれが必須ではないと理解します。
 
@@ -27,7 +27,7 @@ FastAPIは、 `q` はデフォルト値が `= None` であるため、必須で�
 - `fastapi` から `Query`
 - `typing` から `Annotated`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | 備考
 
@@ -65,7 +65,7 @@ q: Annotated[str | None] = None
 
 追加情報（この場合は追加のバリデーション）を入れられる `Annotated` ができたので、`Annotated` の中に `Query` を追加し、パラメータ `max_length` を `50` に設定します:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 デフォルト値は引き続き `None` なので、このパラメータは依然としてオプショナルです。
 
@@ -95,7 +95,7 @@ FastAPI の以前のバージョン（<dfn title="2023-03 より前">0.95.0</dfn
 
 関数パラメータのデフォルト値として `Query()` を使い、パラメータ `max_length` を 50 に設定する方法は次のとおりです:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 この場合（`Annotated` を使わない場合）、関数内のデフォルト値 `None` を `Query()` に置き換える必要があるため、`Query(default=None)` のパラメータでデフォルト値を設定する必要があります。これは（少なくとも FastAPI にとっては）そのデフォルト値を定義するのと同じ目的を果たします。
 
@@ -164,13 +164,13 @@ FastAPI なしで同じ関数を **別の場所** から **呼び出しても**�
 
 パラメータ`min_length`も追加することができます:
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## 正規表現の追加 { #add-regular-expressions }
 
 パラメータが一致するべき <dfn title="正規表現、regex、regexp は、文字列に対する検索パターンを定義する文字の並びです。">正規表現</dfn> `pattern` を定義することができます:
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 この特定の正規表現パターンは受け取ったパラメータの値をチェックします:
 
@@ -188,7 +188,7 @@ FastAPI なしで同じ関数を **別の場所** から **呼び出しても**�
 
 クエリパラメータ `q` の `min_length` を `3` とし、デフォルト値を `"fixedquery"` として宣言したいとします:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | 備考
 
@@ -218,15 +218,23 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 そのため、`Query` を使いながら値を必須として宣言したい場合は、単にデフォルト値を宣言しません:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
-### 必須、`None` にできる { #required-can-be-none }
+### 必須パラメータと `None` { #required-parameters-and-none }
 
-パラメータが `None` を受け付けるが、それでも必須である、と宣言できます。これにより、値が `None` であってもクライアントは値を送らなければならなくなります。
+`str | None` 型は Python の値として `None` を許可しますが、クエリパラメータをオプショナルにするわけではありません。デフォルト値がなければ、パラメータは依然として必須です:
 
-そのために、`None` が有効な型であることを宣言しつつ、単にデフォルト値を宣言しません:
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+クエリパラメータの値は文字列として届き、`None` を表す組み込みの表現はありません。`?q=None` や `?q=null` を送信すると、それぞれ文字列 `"None"` と `"null"` が送信されます。`?q=` を送信すると空文字列が送信され、この例では `min_length=3` のバリデーションに失敗します。
+
+クライアントが `q` を省略し、その値として `None` を使えるようにするには、デフォルト値を `None` にします:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+JSON リクエストボディは、クエリパラメータとは異なり、明示的な `null` 値を含むことができます。
 
 ## クエリパラメータのリスト / 複数の値 { #query-parameter-list-multiple-values }
 
@@ -234,7 +242,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 例えば、URL内に複数回出現するクエリパラメータ`q`を宣言するには以下のように書きます:
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 そして、次のような URL なら:
 
@@ -269,7 +277,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 また、値が指定されていない場合はデフォルトの `list` を定義することもできます。
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 以下にアクセスすると:
 
@@ -292,7 +300,7 @@ http://localhost:8000/items/
 
 `list[str]` の代わりに直接 `list` を使うこともできます:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | 備考
 
@@ -318,11 +326,11 @@ http://localhost:8000/items/
 
 `title`を追加できます:
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 `description`を追加できます:
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## エイリアスパラメータ { #alias-parameters }
 
@@ -342,7 +350,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 それならば、`alias`を宣言することができます。エイリアスはパラメータの値を見つけるのに使用されます:
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## パラメータを非推奨にする { #deprecating-parameters }
 
@@ -352,7 +360,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 その場合、`Query`にパラメータ`deprecated=True`を渡します:
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 ドキュメントは以下のようになります:
 
@@ -362,7 +370,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 生成される OpenAPI スキーマ（つまり自動ドキュメントシステム）からクエリパラメータを除外するには、`Query` のパラメータ `include_in_schema` を `False` に設定します:
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## カスタムバリデーション { #custom-validation }
 
@@ -380,7 +388,7 @@ Pydantic には [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/
 
 例えば、このカスタムバリデータは、<abbr title="International Standard Book Number - 国際標準図書番号">ISBN</abbr> の書籍番号なら item ID が `isbn-` で始まること、<abbr title="Internet Movie Database - インターネット・ムービー・データベース: 映画に関する情報を掲載する Web サイト">IMDB</abbr> の movie URL ID なら `imdb-` で始まることをチェックします:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | 備考
 
@@ -408,7 +416,7 @@ Pydantic には [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/
 
 気づきましたか？`value.startswith()` を使う文字列はタプルを受け取れ、そのタプル内の各値をチェックします:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### ランダムなアイテム { #a-random-item }
 
@@ -424,7 +432,7 @@ Pydantic には [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/
 
 ...これを **単一のシンプルな1行** で行っています。 🤯 Python が好きになりませんか？ 🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## まとめ { #recap }
 

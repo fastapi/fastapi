@@ -11,8 +11,8 @@ from tests.utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial003_py310", marks=needs_py310),
-        pytest.param("tutorial003_an_py310", marks=needs_py310),
+        pytest.param("tutorial003_non_an", marks=needs_py310),
+        pytest.param("tutorial003", marks=needs_py310),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -65,7 +65,6 @@ def test_header_param_model_no_underscore(client: TestClient):
                     "input": {
                         "host": "testserver",
                         "traceparent": "123",
-                        "x_tag": [],
                         "accept": "*/*",
                         "accept-encoding": IsOneOf(
                             "gzip, deflate", "gzip, deflate, zstd"
@@ -105,7 +104,6 @@ def test_header_param_model_invalid(client: TestClient):
                     "loc": ["header", "save_data"],
                     "msg": "Field required",
                     "input": {
-                        "x_tag": [],
                         "host": "testserver",
                         "accept": "*/*",
                         "accept-encoding": IsOneOf(

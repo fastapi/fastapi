@@ -6,7 +6,7 @@
 
 在前一個範例中，我們從相依項（"dependable"）回傳了一個 `dict`：
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 但接著我們在路徑操作函式（*path operation function*）的參數 `commons` 中取得的是一個 `dict`。
 
@@ -69,15 +69,15 @@ FastAPI 其實檢查的是它是否為「callable」（函式、類別或其他�
 
 接著，我們可以把上面的相依項（dependable）`common_parameters` 改成類別 `CommonQueryParams`：
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 注意用來建立該類別實例的 `__init__` 方法：
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ...它的參數與我們之前的 `common_parameters` 相同：
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 **FastAPI** 會用這些參數來「解析」該相依性。
 
@@ -93,7 +93,7 @@ FastAPI 其實檢查的是它是否為「callable」（函式、類別或其他�
 
 現在你可以用這個類別來宣告你的相依性。
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** 會呼叫 `CommonQueryParams` 類別。這會建立該類別的一個「實例」，而該實例會以參數 `commons` 的形式傳給你的函式。
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ...像是：
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 但仍建議宣告型別，這樣你的編輯器就知道會以何種型別作為參數 `commons` 傳入，進而幫助你做自動完成、型別檢查等：
 
@@ -275,7 +275,7 @@ commons: CommonQueryParams = Depends()
 
 整個範例就會變成：
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ...而 **FastAPI** 會知道該怎麼做。
 

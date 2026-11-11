@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 Erstellen Sie eine Datei `main.py`:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 Sie müssen keinen eigenen Code schreiben, um Telemetriedaten zu erfassen.
 
@@ -92,7 +92,7 @@ Wenn eine andere Bibliothek bereits den Export an dasselbe Ziel konfiguriert, la
 
 Sie können auch einen Provider direkt im Dictionary `telemetry` übergeben. Dieser Provider verwendet beispielsweise den Konsolenexporter von OpenTelemetry, um Request-Spans in Ihrem Terminal auszugeben:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 Der **Exporter** sendet die Spans an ihr Ziel. `BatchSpanProcessor` gruppiert Spans und sendet sie im Hintergrund. Ersetzen Sie den Konsolenexporter durch einen Exporter Ihrer Monitoring-Bibliothek, um deren Ziel zu verwenden. Weitere Konfigurationsoptionen finden Sie im [Leitfaden zur Python-Instrumentierung von OpenTelemetry](https://opentelemetry.io/docs/languages/python/instrumentation/).
 
@@ -112,7 +112,7 @@ Die Spans der Hintergrundtasks bleiben Teil des Request-Traces. Sie werden ausge
 
 Um nur den HTTP-Request-Span aufzuzeichnen, setzen Sie `operation_spans` auf `False`:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### WebSocket-Verbindungen nachverfolgen { #trace-websocket-connections }

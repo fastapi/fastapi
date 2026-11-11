@@ -77,7 +77,7 @@ http://localhost:8000/v1/agents/multivac
 
 Якщо вам потрібно підтримувати клієнтів, які не надсилають заголовок `Content-Type`, ви можете вимкнути сувору перевірку, встановивши `strict_content_type=False`:
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 З цим налаштуванням запити без заголовка `Content-Type` матимуть тіло, розібране як JSON, що відповідає поведінці старіших версій FastAPI.
 

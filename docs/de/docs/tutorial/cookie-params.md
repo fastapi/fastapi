@@ -6,7 +6,7 @@ Sie können Cookie-Parameter auf die gleiche Weise definieren wie `Query`- und `
 
 Importieren Sie zuerst `Cookie`:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## `Cookie`-Parameter deklarieren { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@ Deklarieren Sie dann die Cookie-Parameter mit derselben Struktur wie bei `Path` 
 
 Sie können den Defaultwert sowie alle zusätzlichen Validierungen oder Annotierungsparameter definieren:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | Technische Details
 

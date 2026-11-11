@@ -2,7 +2,7 @@
 
 이전 장에서 (의존성 주입 시스템을 기반으로 한) 보안 시스템은 *경로 처리 함수*에 `str`로 `token`을 제공했습니다:
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 하지만 이는 여전히 그다지 유용하지 않습니다.
 
@@ -14,7 +14,7 @@
 
 Pydantic을 사용해 본문을 선언하는 것과 같은 방식으로, 다른 곳에서도 어디서든 사용할 수 있습니다:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## `get_current_user` 의존성 생성하기 { #create-a-get-current-user-dependency }
 
@@ -26,19 +26,19 @@ Pydantic을 사용해 본문을 선언하는 것과 같은 방식으로, 다른 
 
 이전에 *경로 처리*에서 직접 수행했던 것과 동일하게, 새 의존성 `get_current_user`는 하위 의존성 `oauth2_scheme`로부터 `str`로 `token`을 받게 됩니다:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## 사용자 가져오기 { #get-the-user }
 
 `get_current_user`는 우리가 만든 (가짜) 유틸리티 함수를 사용합니다. 이 함수는 `str`로 토큰을 받아 Pydantic `User` 모델을 반환합니다:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## 현재 사용자 주입하기 { #inject-the-current-user }
 
 이제 *경로 처리*에서 `get_current_user`와 함께 같은 `Depends`를 사용할 수 있습니다:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 `current_user`의 타입을 Pydantic 모델 `User`로 선언한다는 점에 주목하세요.
 
@@ -92,7 +92,7 @@ Pydantic을 사용해 본문을 선언하는 것과 같은 방식으로, 다른 
 
 그리고 이 수천 개의 *경로 처리*는 3줄 정도로도 만들 수 있습니다:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## 요약 { #recap }
 

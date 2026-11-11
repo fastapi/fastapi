@@ -15,12 +15,12 @@ Ensuite, lorsque vous saisissez ce nom d'utilisateur et ce mot de passe, le navi
 ## Authentification HTTP Basic simple { #simple-http-basic-auth }
 
 - Importer `HTTPBasic` et `HTTPBasicCredentials`.
-- Créer un « schéma de sécurité » en utilisant `HTTPBasic`.
-- Utiliser ce `security` avec une dépendance dans votre chemin d'accès.
+- Créer un « schéma `security` » en utilisant `HTTPBasic`.
+- Utiliser ce `security` avec une dépendance dans votre *chemin d'accès*.
 - Cela renvoie un objet de type `HTTPBasicCredentials` :
     - Il contient le `username` et le `password` envoyés.
 
-{* ../../docs_src/security/tutorial006_an_py310.py hl[4,8,12] *}
+{* ../../docs_src/security/tutorial006.py hl[4,8,12] *}
 
 Lorsque vous essayez d'ouvrir l'URL pour la première fois (ou cliquez sur le bouton « Execute » dans les documents) le navigateur vous demandera votre nom d'utilisateur et votre mot de passe :
 
@@ -38,14 +38,16 @@ Pour cela, utilisez le module standard Python [`secrets`](https://docs.python.or
 
 Pour gérer cela, nous convertissons d'abord `username` et `password` en `bytes` en les encodant en UTF-8.
 
-Nous pouvons ensuite utiliser `secrets.compare_digest()` pour vérifier que `credentials.username` est « stanleyjobson » et que `credentials.password` est « swordfish ».
+Nous pouvons ensuite utiliser `secrets.compare_digest()` pour vérifier que `credentials.username` est `"stanleyjobson"` et que `credentials.password` est `"swordfish"`.
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[1,12:24] *}
+{* ../../docs_src/security/tutorial007.py hl[1,12:24] *}
 
-Cela serait équivalent à :
+Cela serait similaire à :
 
 ```Python
-if not (credentials.username == "stanleyjobson") or not (credentials.password == "swordfish"):
+if not (credentials.username == "stanleyjobson") or not (
+    credentials.password == "swordfish"
+):
     # Renvoyer une erreur
     ...
 ```
@@ -82,7 +84,7 @@ Python devra comparer tout `stanleyjobso` dans `stanleyjobsox` et `stanleyjobson
 
 #### Le temps de réponse aide les attaquants { #the-time-to-answer-helps-the-attackers }
 
-À ce stade, en remarquant que le serveur a mis quelques microsecondes de plus à envoyer la réponse « Nom d'utilisateur ou mot de passe incorrect », les attaquants sauront qu'ils ont trouvé quelque chose de juste : certaines des premières lettres étaient correctes.
+À ce stade, en remarquant que le serveur a mis quelques microsecondes de plus à envoyer la réponse « Nom d'utilisateur ou mot de passe incorrect », les attaquants sauront qu'ils ont trouvé _quelque chose_ de juste : certaines des premières lettres étaient correctes.
 
 Ils peuvent alors réessayer en sachant que c'est probablement quelque chose de plus proche de `stanleyjobsox` que de `johndoe`.
 
@@ -104,4 +106,4 @@ Ainsi, en utilisant `secrets.compare_digest()` dans le code de votre application
 
 Après avoir détecté que les identifiants sont incorrects, renvoyez une `HTTPException` avec un code d'état 401 (le même que lorsque aucun identifiant n'est fourni) et ajoutez l'en-tête `WWW-Authenticate` pour que le navigateur affiche à nouveau l'invite de connexion :
 
-{* ../../docs_src/security/tutorial007_an_py310.py hl[26:30] *}
+{* ../../docs_src/security/tutorial007.py hl[26:30] *}

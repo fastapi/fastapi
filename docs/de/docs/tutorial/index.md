@@ -1,10 +1,10 @@
 # Tutorial – Benutzerhandbuch { #tutorial-user-guide }
 
-This tutorial shows you how to use **FastAPI** with most of its features, step by step.
+Dieses Tutorial zeigt Ihnen Schritt für Schritt, wie Sie **FastAPI** mit den meisten seiner Funktionen verwenden.
 
-Each section gradually builds on the previous ones, but it's structured to separate topics, so that you can go directly to any specific one to solve your specific API needs.
+Jeder Abschnitt baut nach und nach auf den vorherigen auf, aber die Themen sind voneinander getrennt, sodass Sie direkt zu einem bestimmten Thema springen können, um Ihre spezifischen API-Anforderungen zu erfüllen.
 
-It is also built to work as a future reference so you can come back and see exactly what you need.
+Es ist auch als Nachschlagewerk für später gedacht, sodass Sie zurückkommen und genau das nachlesen können, was Sie benötigen.
 
 ## Den Code ausführen { #run-the-code }
 
@@ -129,6 +129,8 @@ uvx library-skills
 ///
 
 Der Skill ist kompatibel mit Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI, Pi, OpenCode und den meisten anderen Coding-Agenten. Wählen Sie bei Claude Code `.claude/skills`, wenn Sie gefragt werden, wo der Skill installiert werden soll.
+
+Weitere Details finden Sie unter [Mit AI entwickeln](../ai-development.md).
 
 ## Handbuch für fortgeschrittene Benutzer { #advanced-user-guide }
 

@@ -52,7 +52,7 @@ Pydantic v2 內含子模組 `pydantic.v1`，提供 Pydantic v1 的所有內容�
 
 這表示你可以安裝最新的 Pydantic v2，並從該子模組匯入並使用舊的 Pydantic v1 元件，就像安裝了舊版 Pydantic v1 一樣。
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### FastAPI 對 v2 中 Pydantic v1 的支援 { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ FastAPI 對 `pydantic.v1` 模型的支援是在 **FastAPI 0.119.0** 加入，並
 
 因此，你可以先升級到最新的 Pydantic v2，並將匯入改為使用 `pydantic.v1` 子模組，在多數情況下即可正常運作。
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning
 
@@ -122,7 +122,7 @@ graph TB
 
 在某些情況下，你甚至可以在同一個 FastAPI 路徑操作（path operation）中同時使用 Pydantic v1 與 v2 模型：
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 在上面的範例中，輸入模型是 Pydantic v1，輸出模型（於 `response_model=ItemV2` 定義）是 Pydantic v2。
 
@@ -130,7 +130,7 @@ graph TB
 
 若你需要在 Pydantic v1 模型上使用 FastAPI 的參數工具（例如 `Body`、`Query`、`Form` 等），在完成遷移到 Pydantic v2 之前，可以從 `fastapi.temp_pydantic_v1_params` 匯入：
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### 分步遷移 { #migrate-in-steps }
 

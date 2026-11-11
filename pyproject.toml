@@ -38,11 +38,13 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
     "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
     "Topic :: Internet :: WWW/HTTP",
 ]
 dependencies = [
     "starlette>=0.46.0",
+    "anyio>=4.1.0",
     "pydantic>=2.9.0",
     "typing-extensions>=4.8.0",
     "typing-inspection>=0.4.2",
@@ -149,11 +151,10 @@ docs = [
     "griffe-typingdoc >=0.3.0",
     "griffe-warnings-deprecated >=1.1.0",
     "jieba >=0.42.1",
-    "markdown-include-variants >=0.0.8",
+    "markdown-include-variants >=0.0.10",
     "mdx-include >=1.4.1,<2.0.0",
     "mkdocstrings[python] >=1.0.3",
     "pillow >=11.3.0",
-    "python-slugify >=8.0.4",
     "pyyaml >=5.3.1,<7.0.0",
     "typer >=0.21.1",
     "zensical >=0.0.42",
@@ -161,6 +162,7 @@ docs = [
 docs-tests = [
     "httpx >=0.23.0,<1.0.0",
     "httpx2>=2.0.0",
+    "python-slugify >=8.0.4",
     "ruff>=0.14.14,<0.17.0",
 ]
 github-actions = [
@@ -179,7 +181,7 @@ tests = [
     "opentelemetry-exporter-otlp-proto-http>=1.44.0",
 
     { include-group = "docs-tests" },
-    "anyio[trio] >=3.2.1,<5.0.0",
+    "anyio[trio] >=4.1.0,<5.0.0",
     "coverage[toml] >=7.13,<8.0",
     "dirty-equals >=0.9.0",
     "flask >=3.0.0,<4.0.0",
@@ -187,7 +189,9 @@ tests = [
     "mypy >=1.14.1",
     "pwdlib[argon2] >=0.2.1",
     "pyjwt >=2.9.0",
-    "pytest >=9.0.0",
+    # Remove this cap after requiring a pytest-xdist release with the fix for
+    # pytest >=9.2 loadgroup compatibility: https://github.com/pytest-dev/pytest-xdist/pull/1388
+    "pytest >=9.0.0,<9.2",
     "pytest-codspeed >=4.3.0",
     "pyyaml >=5.3.1,<7.0.0",
     "sqlmodel >=0.0.31",
@@ -202,7 +206,7 @@ tests = [
 ]
 translations = [
     "gitpython >=3.1.46",
-    "pydantic-ai >=0.4.10",
+    "pydantic-ai-slim[openai] >=2.0.0",
     "pygithub >=2.8.1",
 ]
 
@@ -253,6 +257,8 @@ filterwarnings = [
 timeout = "20"
 
 [tool.coverage.run]
+# Dynamic test contexts require the C tracer.
+core = "ctrace"
 patch = ["subprocess", "_exit"]
 parallel = true
 data_file = "coverage/.coverage"
@@ -266,14 +272,14 @@ context = '${CONTEXT}'
 omit = [
     "tests/benchmarks/*",
     "tests/memory_benchmarks/*",
-    "docs_src/response_model/tutorial003_04_py310.py",
-    "docs_src/dependencies/tutorial013_an_py310.py",  # temporary code example?
-    "docs_src/dependencies/tutorial014_an_py310.py",  # temporary code example?
+    "docs_src/response_model/tutorial003_04.py",
+    "docs_src/dependencies/tutorial013.py",  # temporary code example?
+    "docs_src/dependencies/tutorial014.py",  # temporary code example?
     # Pydantic v1 migration, no longer tested
-    "docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py",
-    "docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py",
-    "docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py",
-    "docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial001.py",
+    "docs_src/pydantic_v1_in_v2/tutorial002.py",
+    "docs_src/pydantic_v1_in_v2/tutorial003.py",
+    "docs_src/pydantic_v1_in_v2/tutorial004.py",
 ]
 
 [tool.coverage.report]
@@ -305,27 +311,27 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
-"docs_src/custom_request_and_route/tutorial002_an_py310.py" = ["B904"]
-"docs_src/custom_request_and_route/tutorial002_py310.py" = ["B904"]
-"docs_src/custom_response/tutorial007_py310.py" = ["B007"]
-"docs_src/dependencies/tutorial007_py310.py" = ["F821"]
-"docs_src/dependencies/tutorial008_an_py310.py" = ["F821"]
-"docs_src/dependencies/tutorial008_py310.py" = ["F821"]
-"docs_src/dependencies/tutorial008b_an_py310.py" = ["B904"]
-"docs_src/dependencies/tutorial008b_py310.py" = ["B904"]
-"docs_src/dependencies/tutorial010_py310.py" = ["F821"]
-"docs_src/path_operation_advanced_configuration/tutorial007_py310.py" = ["B904"]
-"docs_src/query_params_str_validations/tutorial012_an_py310.py" = ["B006"]
-"docs_src/query_params_str_validations/tutorial013_an_py310.py" = ["B006"]
-"docs_src/security/tutorial004_an_py310.py" = ["B904"]
-"docs_src/security/tutorial004_py310.py" = ["B904"]
-"docs_src/security/tutorial005_an_py310.py" = ["B904"]
-"docs_src/security/tutorial005_py310.py" = ["B904"]
-"docs_src/json_base64_bytes/tutorial001_py310.py" = ["UP012"]
-"docs_src/stream_json_lines/tutorial001_py310.py" = ["UP028"]
-"docs_src/stream_data/tutorial001_py310.py" = ["UP028"]
-"docs_src/stream_data/tutorial002_py310.py" = ["UP028"]
-"docs_src/server_sent_events/tutorial001_py310.py" = ["UP028"]
+"docs_src/custom_request_and_route/tutorial002.py" = ["B904"]
+"docs_src/custom_request_and_route/tutorial002_non_an.py" = ["B904"]
+"docs_src/custom_response/tutorial007.py" = ["B007"]
+"docs_src/dependencies/tutorial007.py" = ["F821"]
+"docs_src/dependencies/tutorial008.py" = ["F821"]
+"docs_src/dependencies/tutorial008_non_an.py" = ["F821"]
+"docs_src/dependencies/tutorial008b.py" = ["B904"]
+"docs_src/dependencies/tutorial008b_non_an.py" = ["B904"]
+"docs_src/dependencies/tutorial010.py" = ["F821"]
+"docs_src/path_operation_advanced_configuration/tutorial007.py" = ["B904"]
+"docs_src/query_params_str_validations/tutorial012.py" = ["B006"]
+"docs_src/query_params_str_validations/tutorial013.py" = ["B006"]
+"docs_src/security/tutorial004.py" = ["B904"]
+"docs_src/security/tutorial004_non_an.py" = ["B904"]
+"docs_src/security/tutorial005.py" = ["B904"]
+"docs_src/security/tutorial005_non_an.py" = ["B904"]
+"docs_src/json_base64_bytes/tutorial001.py" = ["UP012"]
+"docs_src/stream_json_lines/tutorial001.py" = ["UP028"]
+"docs_src/stream_data/tutorial001.py" = ["UP028"]
+"docs_src/stream_data/tutorial002.py" = ["UP028"]
+"docs_src/server_sent_events/tutorial001.py" = ["UP028"]
 
 [tool.ruff.lint.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]
@@ -380,6 +386,7 @@ alls = "alls"
 
 [tool.typos.default.extend-words]
 ba = "ba"
+certifi = "certifi"
 fo = "fo"
 havin = "havin"
 Ines = "Ines"
@@ -390,35 +397,35 @@ exclude = [
     # These docs examples are intentionally partial, dynamic, environment-driven,
     # deprecated, or currently require broader tutorial rewrites to satisfy ty.
     "docs_src/additional_status_codes/",
-    "docs_src/app_testing/tutorial003_py310.py",
+    "docs_src/app_testing/tutorial003.py",
     "docs_src/body_multiple_params/",
-    "docs_src/body_updates/tutorial002_py310.py",
+    "docs_src/body_updates/tutorial002.py",
     "docs_src/custom_docs_ui/",
-    "docs_src/custom_response/tutorial001_py310.py",
-    "docs_src/custom_response/tutorial001b_py310.py",
-    "docs_src/custom_response/tutorial009c_py310.py",
-    "docs_src/dependencies/tutorial007_py310.py",
-    "docs_src/dependencies/tutorial008_an_py310.py",
-    "docs_src/dependencies/tutorial008_py310.py",
-    "docs_src/dependencies/tutorial010_py310.py",
+    "docs_src/custom_response/tutorial001.py",
+    "docs_src/custom_response/tutorial001b.py",
+    "docs_src/custom_response/tutorial009c.py",
+    "docs_src/dependencies/tutorial007.py",
+    "docs_src/dependencies/tutorial008.py",
+    "docs_src/dependencies/tutorial008_non_an.py",
+    "docs_src/dependencies/tutorial010.py",
     "docs_src/events/",
-    "docs_src/extending_openapi/tutorial001_py310.py",
+    "docs_src/extending_openapi/tutorial001.py",
     "docs_src/path_params_numeric_validations/",
-    "docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py",
-    "docs_src/python_types/tutorial003_py310.py",
-    "docs_src/python_types/tutorial011_py310.py",
+    "docs_src/pydantic_v1_in_v2/tutorial004.py",
+    "docs_src/python_types/tutorial003.py",
+    "docs_src/python_types/tutorial011.py",
     "docs_src/query_params_str_validations/",
-    "docs_src/response_model/tutorial006_py310.py",
-    "docs_src/security/tutorial003_an_py310.py",
-    "docs_src/security/tutorial003_py310.py",
-    "docs_src/security/tutorial004_an_py310.py",
-    "docs_src/security/tutorial004_py310.py",
-    "docs_src/security/tutorial005_an_py310.py",
-    "docs_src/security/tutorial005_py310.py",
+    "docs_src/response_model/tutorial006.py",
+    "docs_src/security/tutorial003.py",
+    "docs_src/security/tutorial003_non_an.py",
+    "docs_src/security/tutorial004.py",
+    "docs_src/security/tutorial004_non_an.py",
+    "docs_src/security/tutorial005.py",
+    "docs_src/security/tutorial005_non_an.py",
     "docs_src/settings/",
     "docs_src/sql_databases/",
-    "docs_src/using_request_directly/tutorial001_py310.py",
-    "docs_src/wsgi/tutorial001_py310.py",
+    "docs_src/using_request_directly/tutorial001.py",
+    "docs_src/wsgi/tutorial001.py",
 ]
 
 [tool.ty.terminal]

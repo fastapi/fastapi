@@ -3,6 +3,7 @@ from unittest.mock import Mock
 
 import pytest
 from fastapi import Body, Cookie, FastAPI, Form, Header, Query
+from fastapi._compat import PYDANTIC_VERSION_MINOR_TUPLE
 from fastapi.testclient import TestClient
 from pydantic import BaseModel, Field
 
@@ -331,27 +332,15 @@ def test_missing_none_default_is_unset(parameter):
 @pytest.mark.parametrize(
     "parameter,annotation,default",
     [
-        pytest.param(
-            source,
-            annotation,
-            default,
-            marks=pytest.mark.xfail(
-                source is not Body,
-                reason="Missing model fields are populated with defaults before validation",
-                raises=AssertionError,
-            ),
-        )
-        for source, annotation, default in [
-            (Query, int | None, 10),
-            (Header, int | None, 10),
-            (Cookie, int | None, 10),
-            (Form, int | None, 10),
-            (Body, int | None, 10),
-            (Query, list[int] | None, [10]),
-            (Header, list[int] | None, [10]),
-            (Form, list[int] | None, [10]),
-            (Body, list[int] | None, [10]),
-        ]
+        (Query, int | None, 10),
+        (Header, int | None, 10),
+        (Cookie, int | None, 10),
+        (Form, int | None, 10),
+        (Body, int | None, 10),
+        (Query, list[int] | None, [10]),
+        (Header, list[int] | None, [10]),
+        (Form, list[int] | None, [10]),
+        (Body, list[int] | None, [10]),
     ],
 )
 def test_missing_non_null_default_is_unset(parameter, annotation, default):
@@ -376,27 +365,15 @@ def test_missing_non_null_default_is_unset(parameter, annotation, default):
 @pytest.mark.parametrize(
     "parameter,annotation,default",
     [
-        pytest.param(
-            source,
-            annotation,
-            default,
-            marks=pytest.mark.xfail(
-                source is not Body,
-                reason="Missing model fields are populated with defaults before validation",
-                raises=AssertionError,
-            ),
-        )
-        for source, annotation, default in [
-            (Query, int | None, 10),
-            (Header, int | None, 10),
-            (Cookie, int | None, 10),
-            (Form, int | None, 10),
-            (Body, int | None, 10),
-            (Query, list[int] | None, [10]),
-            (Header, list[int] | None, [10]),
-            (Form, list[int] | None, [10]),
-            (Body, list[int] | None, [10]),
-        ]
+        (Query, int | None, 10),
+        (Header, int | None, 10),
+        (Cookie, int | None, 10),
+        (Form, int | None, 10),
+        (Body, int | None, 10),
+        (Query, list[int] | None, [10]),
+        (Header, list[int] | None, [10]),
+        (Form, list[int] | None, [10]),
+        (Body, list[int] | None, [10]),
     ],
 )
 def test_missing_factory_default_is_unset(parameter, annotation, default):
@@ -418,25 +395,9 @@ def test_missing_factory_default_is_unset(parameter, annotation, default):
     assert response.json() == {"value": default, "fields_set": []}
 
 
-@pytest.mark.parametrize(
-    "parameter,path,default",
-    [
-        pytest.param(
-            source,
-            path,
-            default,
-            marks=pytest.mark.xfail(
-                source is not Body
-                and (default is None or (path == "/parameter" and source is not Form)),
-                reason="The default factory is called more than once for an omitted value",
-                raises=AssertionError,
-            ),
-        )
-        for source in (Query, Header, Cookie, Form, Body)
-        for path in ("/parameter", "/model")
-        for default in (None, 10)
-    ],
-)
+@pytest.mark.parametrize("parameter", [Query, Header, Cookie, Form, Body])
+@pytest.mark.parametrize("path", ["/parameter", "/model"])
+@pytest.mark.parametrize("default", [None, 10])
 def test_missing_value_calls_default_factory_once(parameter, path, default):
     app = FastAPI()
     default_factory = Mock(return_value=default)
@@ -466,6 +427,43 @@ def test_missing_value_calls_default_factory_once(parameter, path, default):
     assert response.status_code == 200
     assert response.json() == default
     default_factory.assert_called_once_with()
+
+
+@pytest.mark.parametrize("parameter", [Query, Header, Cookie, Form, Body])
+@pytest.mark.skipif(
+    PYDANTIC_VERSION_MINOR_TUPLE < (2, 10),
+    reason="Default factories receiving validated data require Pydantic 2.10",
+)
+def test_model_default_factory_receives_validated_data(parameter):
+    app = FastAPI()
+
+    class Model(BaseModel):
+        value: int
+        doubled: Annotated[int, Field(default_factory=lambda data: data["value"] * 2)]
+
+    @app.post("/")
+    def read_model(params: Annotated[Model, parameter()]):
+        return {
+            "values": params.model_dump(),
+            "supplied": params.model_dump(exclude_unset=True),
+        }
+
+    client = TestClient(app)
+    if parameter is Query:
+        response = client.post("/", params={"value": "5"})
+    elif parameter is Header:
+        response = client.post("/", headers={"value": "5"})
+    elif parameter is Cookie:
+        response = client.post("/", headers={"cookie": "value=5"})
+    elif parameter is Form:
+        response = client.post("/", data={"value": "5"})
+    else:
+        response = client.post("/", json={"value": 5})
+    assert response.status_code == 200
+    assert response.json() == {
+        "values": {"value": 5, "doubled": 10},
+        "supplied": {"value": 5},
+    }
 
 
 @pytest.mark.parametrize("parameter", [Query, Header, Cookie, Form, Body])
@@ -532,20 +530,7 @@ def test_value_equal_to_default_is_explicitly_set(parameter):
     assert response.json() == {"value": 0, "fields_set": ["value"]}
 
 
-@pytest.mark.parametrize(
-    "parameter",
-    [
-        pytest.param(
-            parameter,
-            marks=pytest.mark.xfail(
-                reason="Omitted model fields are marked as explicitly set",
-                raises=AssertionError,
-            ),
-        )
-        for parameter in (Query, Header, Cookie, Form)
-    ]
-    + [Body],
-)
+@pytest.mark.parametrize("parameter", [Query, Header, Cookie, Form, Body])
 def test_partial_model_submission(parameter):
     app = FastAPI()
 

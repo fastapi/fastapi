@@ -6,7 +6,7 @@ To update an item you can use the [HTTP `PUT`](https://developer.mozilla.org/en-
 
 You can use the `jsonable_encoder` to convert the input data to data that can be stored as JSON (e.g. with a NoSQL database). For example, converting `datetime` to `str`.
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:32] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[28:32] *}
 
 `PUT` is used to receive data that should replace the existing data.
 
@@ -54,7 +54,7 @@ That would generate a `dict` with only the data that was set when creating the `
 
 Then you can use this to generate a `dict` with only the data that was set (sent in the request), omitting default values:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[32] *}
 
 ### Using Pydantic's `update` parameter { #using-pydantics-update-parameter }
 
@@ -62,7 +62,7 @@ Now, you can create a copy of the existing model using `.model_copy()`, and pass
 
 Like `stored_item_model.model_copy(update=update_data)`:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[33] *}
 
 ### Partial updates recap { #partial-updates-recap }
 
@@ -79,7 +79,7 @@ In summary, to apply partial updates you would:
 * Save the data to your DB.
 * Return the updated model.
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[28:35] *}
 
 /// tip
 

@@ -22,7 +22,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 まず、`pydantic` から `BaseModel` をインポートする必要があります:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## データモデルの作成 { #create-your-data-model }
 
@@ -30,7 +30,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 すべての属性に標準のPython型を使用します:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 クエリパラメータの宣言と同様に、モデル属性がデフォルト値を持つ場合は必須ではありません。そうでなければ必須です。単にオプションにするには `None` を使用してください。
@@ -59,7 +59,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 *path operation* に追加するには、パスパラメータやクエリパラメータを宣言したのと同じ方法で宣言します:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...そして、作成したモデル `Item` を型として宣言します。
 
@@ -126,7 +126,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 関数内では、モデルオブジェクトのすべての属性に直接アクセスできます:
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## リクエストボディ + パスパラメータ { #request-body-path-parameters }
 
@@ -134,7 +134,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 **FastAPI** は、パスパラメータに一致する関数パラメータは **パスから取得** し、Pydanticモデルとして宣言された関数パラメータは **リクエストボディから取得** すべきだと認識します。
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## リクエストボディ + パス + クエリパラメータ { #request-body-path-query-parameters }
@@ -143,7 +143,7 @@ APIはほとんどの場合 **レスポンス** ボディを送信する必要�
 
 **FastAPI** はそれぞれを認識し、正しい場所からデータを取得します。
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 関数パラメータは以下のように認識されます:
 

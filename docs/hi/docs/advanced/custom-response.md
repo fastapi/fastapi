@@ -30,7 +30,7 @@ Default रूप से FastAPI JSON responses लौटाता है।
 
 संक्षेप में, यदि आप maximum performance चाहते हैं, तो [Response Model](../tutorial/response-model.md) का उपयोग करें और *path operation decorator* में `response_class` declare न करें।
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
+{* ../../docs_src/response_model/tutorial001_01.py ln[15:17] hl[16] *}
 
 ## HTML Response { #html-response }
 
@@ -39,7 +39,7 @@ Default रूप से FastAPI JSON responses लौटाता है।
 * `HTMLResponse` import करें।
 * अपने *path operation decorator* के parameter `response_class` के रूप में `HTMLResponse` pass करें।
 
-{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// note | नोट
 
@@ -57,7 +57,7 @@ Parameter `response_class` का उपयोग response के "media type" �
 
 ऊपर वाला वही उदाहरण, जो `HTMLResponse` लौटाता है, इस तरह दिख सकता है:
 
-{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning | चेतावनी
 
@@ -81,7 +81,7 @@ Parameter `response_class` का उपयोग response के "media type" �
 
 उदाहरण के लिए, यह कुछ ऐसा हो सकता है:
 
-{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 इस उदाहरण में, function `generate_html_response()` पहले से ही HTML को `str` में लौटाने के बजाय `Response` generate करके लौटाता है।
 
@@ -120,7 +120,7 @@ Parameter `response_class` का उपयोग response के "media type" �
 
 FastAPI (असल में Starlette) अपने आप एक Content-Length header शामिल करेगा। यह `media_type` के आधार पर Content-Type header भी शामिल करेगा और text types के लिए charset append करेगा।
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -130,7 +130,7 @@ FastAPI (असल में Starlette) अपने आप एक Content-Lengt
 
 कुछ text या bytes लेता है और plain text response लौटाता है।
 
-{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -152,14 +152,14 @@ HTTP redirect लौटाता है। Default रूप से 307 status c
 
 आप सीधे `RedirectResponse` लौटा सकते हैं:
 
-{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 या आप इसे `response_class` parameter में उपयोग कर सकते हैं:
 
 
-{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 यदि आप ऐसा करते हैं, तो आप अपनी *path operation* function से URL सीधे लौटा सकते हैं।
 
@@ -169,13 +169,13 @@ HTTP redirect लौटाता है। Default रूप से 307 status c
 
 आप `status_code` parameter को `response_class` parameter के साथ combine करके भी उपयोग कर सकते हैं:
 
-{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 एक async generator या सामान्य generator/iterator (`yield` वाली function) लेता है और response body को stream करता है।
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+{* ../../docs_src/custom_response/tutorial007.py hl[3,16] *}
 
 /// note | तकनीकी विवरण
 
@@ -208,11 +208,11 @@ Instantiate करने के लिए अन्य response types की त
 
 File responses में उपयुक्त `Content-Length`, `Last-Modified` और `ETag` headers शामिल होंगे।
 
-{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 आप `response_class` parameter का उपयोग भी कर सकते हैं:
 
-{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 इस मामले में, आप अपनी *path operation* function से file path सीधे लौटा सकते हैं।
 
@@ -226,7 +226,7 @@ File responses में उपयुक्त `Content-Length`, `Last-Modified`
 
 आप `CustomORJSONResponse` बना सकते हैं। आपको मुख्य रूप से `Response.render(content)` method बनाना है जो content को `bytes` के रूप में लौटाता है:
 
-{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 अब यह लौटाने के बजाय:
 
@@ -260,7 +260,7 @@ Response model के साथ, FastAPI data को JSON में serialize �
 
 नीचे दिए गए उदाहरण में, **FastAPI** सभी *path operations* में JSON के बजाय default रूप से `HTMLResponse` का उपयोग करेगा।
 
-{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip | टिप
 

@@ -20,7 +20,7 @@ This same technique applies to `Query`, `Cookie`, and `Header`. 😎
 
 Declare the **cookie** parameters that you need in a **Pydantic model**, and then declare the parameter as `Cookie`:
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI** will **extract** the data for **each field** from the **cookies** received in the request and give you the Pydantic model you defined.
 
@@ -50,7 +50,7 @@ Your API now has the power to control its own <dfn title="This is a joke, just i
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 If a client tries to send some **extra cookies**, they will receive an **error** response.
 
@@ -70,6 +70,22 @@ For example, if the client tries to send a `santa_tracker` cookie with a value o
     ]
 }
 ```
+
+## Combine Parameter Models { #combine-parameter-models }
+
+You can combine multiple cookie parameter models with individual cookie parameters and dependencies. Each model is extracted and validated independently, as explained for [query parameter models](query-param-models.md#combine-parameter-models).
+
+Each model's `extra` configuration applies to all cookie parameters, including those declared in other models or dependencies. With `extra="forbid"`, any cookie outside that model is rejected. With `extra="allow"`, those cookies are included as model extras.
+
+## Optional Cookie Parameter Models { #optional-cookie-parameter-models }
+
+Declare a cookie parameter model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
+
+If neither `theme` nor `locale` is sent, `preferences` is `None`. If either is sent, FastAPI validates the model and requires both fields.
+
+The same rules for defaults, extra fields, and OpenAPI apply as for [optional query parameter models](query-param-models.md#optional-query-parameter-models).
 
 ## Summary { #summary }
 

@@ -15,7 +15,7 @@ results = await some_library()
 *path operation 関数*は次のように `async def` で宣言します:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ async def read_results():
 データベース、API、ファイルシステムなどと通信しつつ `await` の使用をサポートしていないサードパーティライブラリ (現在のところ多くのデータベースライブラリが該当します) を使っている場合、*path operation 関数*は通常どおり `def` で宣言してください:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -129,7 +129,7 @@ def results():
 
 <img src="/img/async/concurrent-burgers/concurrent-burgers-05.png" class="illustration">
 
-時々カウンターの表示を見て、自分の番号になっているか確認します。
+好きな人と話しながら待つ間、時々カウンターの表示を見て、自分の番号になっているか確認します。
 
 やがてあなたの番になります。カウンターに行き、ハンバーガーを受け取り、テーブルに戻ります。
 
@@ -155,7 +155,7 @@ def results():
 
 しかし、ハンバーガーはまだ出来上がっていないので、レジ係とのやり取りは「一時停止」⏸ になります。ハンバーガーができるまで待つ 🕙 必要があるからです。
 
-ただし、番号札を持ってカウンターから離れテーブルに座れば、注意を好きな人に切り替え 🔀、「その作業」⏯ 🤓 に取り組めます。好きな人といちゃつくという、とても「生産的」🤓 なことがまたできます。
+ただし、番号札を持ってカウンターから離れテーブルに座れば、注意を好きな人に切り替え 🔀、「その作業」⏯ 🤓 に取り組めます。好きな人といちゃつくという、とても「生産的」なことがまたできます 😍。
 
 レジ係 💁 がカウンターの表示にあなたの番号を出して「ハンバーガーができました」と知らせても、あなたは表示が切り替わった瞬間に飛び跳ねたりしません。自分の番号札があり、他の人にもそれぞれ番号札があるので、ハンバーガーを盗られることはないと知っているからです。
 
@@ -169,13 +169,13 @@ def results():
 
 あなたは好きな人と「並列」ファストフードを買いに行きます。
 
-複数のレジ係 (例えば 8 人) が同時に料理人でもあり、前の人たちの注文を受けています。
+複数のレジ係 (例えば 8 人) が同時に料理人でもあり、前の人たちの注文を受ける間、あなたは列に並びます。
 
 8 人のレジ係はそれぞれ、次の注文を取る前にすぐに調理に取りかかるため、あなたの前の人たちはカウンターを離れず、ハンバーガーができるのを待っています。
 
 <img src="/img/async/parallel-burgers/parallel-burgers-01.png" class="illustration">
 
-ようやくあなたの番になり、好きな人と自分のために豪華なハンバーガーを 2 つ注文します。
+ようやくあなたの番になり、好きな人と自分のためにとても豪華なハンバーガーを 2 つ注文します。
 
 支払いをします 💸。
 
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 そのため、`await` で呼べると謳っているライブラリを使っている場合は、それを使う *path operation 関数* を `async def` で作る必要があります。例えば:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
@@ -359,7 +359,7 @@ async def read_burgers():
 
 **FastAPI** を使っている場合は心配ありません。その「最初の」関数は *path operation 関数* で、FastAPI が適切に実行してくれます。
 
-しかし、FastAPI を使わずに `async` / `await` を使いたい場合もあります。
+しかし、FastAPI を使わずに `async` / `await` を使いたい場合も、それは可能です。
 
 ### 自分で async コードを書く { #write-your-own-async-code }
 

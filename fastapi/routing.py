@@ -100,7 +100,7 @@ from starlette import routing
 from starlette._exception_handler import wrap_app_handling_exceptions
 from starlette._utils import get_route_path, is_async_callable
 from starlette.concurrency import iterate_in_threadpool, run_in_threadpool
-from starlette.datastructures import URL, FormData, URLPath
+from starlette.datastructures import URL, URLPath
 from starlette.exceptions import HTTPException
 from starlette.requests import Request
 from starlette.responses import (
@@ -449,7 +449,7 @@ def get_request_handler(
 
         # Read body and auto-close files
         try:
-            body: Any = None
+            body: Any = Undefined
             if body_field:
                 if is_body_form:
                     body = await request.form()
@@ -469,7 +469,7 @@ def get_request_handler(
                                 subtype = message.get_content_subtype()
                                 if subtype == "json" or subtype.endswith("+json"):
                                     json_body = await request.json()
-                        if json_body != Undefined:
+                        if json_body is not Undefined:
                             body = json_body
                         else:
                             body = body_bytes
@@ -499,7 +499,7 @@ def get_request_handler(
             raise http_error from e
 
         if telemetry_data is not None:
-            telemetry_data.body = body
+            telemetry_data.body = None if body is Undefined else body
 
         # Solve dependencies and run path operation function, auto-closing dependencies
         errors: list[Any] = []
@@ -511,7 +511,7 @@ def get_request_handler(
             solved_result = await solve_dependencies(
                 request=request,
                 dependant=dependant,
-                body=cast(dict[str, Any] | FormData | bytes | None, body),
+                body=body,
                 dependency_overrides_provider=dependency_overrides_provider,
                 async_exit_stack=async_exit_stack,
                 embed_body_fields=embed_body_fields,
@@ -790,7 +790,9 @@ def get_request_handler(
                     response.headers.raw.extend(solved_result.response.headers.raw)
         if errors:
             validation_error = RequestValidationError(
-                errors, body=body, endpoint_ctx=endpoint_ctx
+                errors,
+                body=None if body is Undefined else body,
+                endpoint_ctx=endpoint_ctx,
             )
             _validation_failed(validation_error)
             raise validation_error

@@ -20,7 +20,7 @@
 
 아래는 비밀번호 필드와 해당 필드가 사용되는 위치를 포함하여, 각 모델들이 어떤 형태를 가질 수 있는지 전반적인 예시입니다:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### `**user_in.model_dump()` 에 대하여 { #about-user-in-model-dump }
 
@@ -54,10 +54,10 @@ Python의 `dict`가 다음과 같이 출력됩니다:
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ UserInDB(
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -154,7 +154,7 @@ UserInDB(
 
 이렇게 하면 각 모델 간의 차이점만 선언할 수 있습니다(평문 `password`, `hashed_password`, 그리고 비밀번호가 없는 경우):
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` 또는 `anyOf` { #union-or-anyof }
 
@@ -170,7 +170,7 @@ OpenAPI에서는 이를 `anyOf`로 정의합니다.
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### Python 3.10에서 `Union` { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ some_variable: PlaneItem | CarItem
 
 이를 위해 표준 Python의 `list`를 사용하세요:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## 임의의 `dict` 응답 { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ Pydantic 모델을 사용하지 않고, 키와 값의 타입만 선언하여 평
 
 이 경우, `dict`를 사용할 수 있습니다:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## 요약 { #recap }
 

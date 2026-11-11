@@ -85,7 +85,7 @@ from app.routers import items
 
 आप इसे import करते हैं और उसी तरह एक "instance" बनाते हैं जैसे आप `FastAPI` class के साथ करते:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[1,3] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[1,3] title["app/routers/users.py"] *}
 
 ### `APIRouter` के साथ *Path operations* { #path-operations-with-apirouter }
 
@@ -93,7 +93,7 @@ from app.routers import items
 
 इसे उसी तरह उपयोग करें जैसे आप `FastAPI` class का उपयोग करते:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/users.py hl[6,11,16] title["app/routers/users.py"] *}
 
 आप `APIRouter` को एक "mini `FastAPI`" class की तरह सोच सकते हैं।
 
@@ -117,7 +117,7 @@ from app.routers import items
 
 अब हम एक custom `X-Token` header पढ़ने के लिए एक सरल dependency का उपयोग करेंगे:
 
-{* ../../docs_src/bigger_applications/app_an_py310/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
+{* ../../docs_src/bigger_applications/app/dependencies.py hl[3,6:8] title["app/dependencies.py"] *}
 
 /// tip | टिप
 
@@ -149,14 +149,13 @@ from app.routers import items
 
 इसलिए, यह सब प्रत्येक *path operation* में जोड़ने के बजाय, हम इसे `APIRouter` में जोड़ सकते हैं।
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[5:10,16,21] title["app/routers/items.py"] *}
 
 क्योंकि प्रत्येक *path operation* का path `/` से शुरू होना चाहिए, जैसे:
 
 ```Python hl_lines="1"
 @router.get("/{item_id}")
-async def read_item(item_id: str):
-    ...
+async def read_item(item_id: str): ...
 ```
 
 ...prefix में अंत में `/` शामिल नहीं होना चाहिए।
@@ -208,7 +207,7 @@ async def read_item(item_id: str):
 
 इसलिए हम dependencies के लिए `..` के साथ relative import का उपयोग करते हैं:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[3] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[3] title["app/routers/items.py"] *}
 
 #### Relative imports कैसे काम करते हैं { #how-relative-imports-work }
 
@@ -279,7 +278,7 @@ from ...dependencies import get_token_header
 
 लेकिन हम अभी भी _अधिक_ `tags` जोड़ सकते हैं जो किसी specific *path operation* पर लागू होंगे, और उस *path operation* के लिए specific कुछ अतिरिक्त `responses` भी:
 
-{* ../../docs_src/bigger_applications/app_an_py310/routers/items.py hl[30:31] title["app/routers/items.py"] *}
+{* ../../docs_src/bigger_applications/app/routers/items.py hl[30:31] title["app/routers/items.py"] *}
 
 /// tip | टिप
 
@@ -305,13 +304,13 @@ from ...dependencies import get_token_header
 
 और हम [global dependencies](dependencies/global-dependencies.md) भी declare कर सकते हैं जिन्हें प्रत्येक `APIRouter` के लिए dependencies के साथ combine किया जाएगा:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[1,3,7] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[1,3,7] title["app/main.py"] *}
 
 ### `APIRouter` import करें { #import-the-apirouter }
 
 अब हम उन अन्य submodules को import करते हैं जिनके पास `APIRouter`s हैं:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[4:5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[4:5] title["app/main.py"] *}
 
 क्योंकि files `app/routers/users.py` और `app/routers/items.py` ऐसे submodules हैं जो उसी Python package `app` का हिस्सा हैं, हम "relative imports" का उपयोग करके उन्हें import करने के लिए single dot `.` का उपयोग कर सकते हैं।
 
@@ -374,13 +373,13 @@ from .routers.users import router
 
 इसलिए, उन्हें एक ही file में दोनों को use करने में सक्षम होने के लिए, हम submodules को directly import करते हैं:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[5] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[5] title["app/main.py"] *}
 
 ### `users` और `items` के लिए `APIRouter`s include करें { #include-the-apirouters-for-users-and-items }
 
 अब, submodules `users` और `items` से `router`s include करें:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[10:11] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[10:11] title["app/main.py"] *}
 
 /// note | नोट
 
@@ -420,13 +419,13 @@ routers include करते समय आपको performance के बार
 
 इस उदाहरण के लिए यह बहुत सरल होगा। लेकिन मान लीजिए कि क्योंकि यह organization में अन्य projects के साथ shared है, हम इसे modify नहीं कर सकते और `prefix`, `dependencies`, `tags`, आदि directly `APIRouter` में नहीं जोड़ सकते:
 
-{* ../../docs_src/bigger_applications/app_an_py310/internal/admin.py hl[3] title["app/internal/admin.py"] *}
+{* ../../docs_src/bigger_applications/app/internal/admin.py hl[3] title["app/internal/admin.py"] *}
 
 लेकिन हम फिर भी `APIRouter` include करते समय एक custom `prefix` set करना चाहते हैं ताकि इसके सभी *path operations* `/admin` से शुरू हों, हम इसे इस project के लिए पहले से मौजूद `dependencies` के साथ secure करना चाहते हैं, और हम `tags` और `responses` include करना चाहते हैं।
 
 हम original `APIRouter` को modify किए बिना यह सब declare कर सकते हैं, उन parameters को `app.include_router()` में pass करके:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[14:17] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[14:17] title["app/main.py"] *}
 
 इस तरह, original `APIRouter` unmodified रहेगा, इसलिए हम वही `app/internal/admin.py` file organization में अन्य projects के साथ अब भी share कर सकते हैं।
 
@@ -447,7 +446,7 @@ routers include करते समय आपको performance के बार
 
 यहाँ हम ऐसा करते हैं... बस यह दिखाने के लिए कि हम कर सकते हैं 🤷:
 
-{* ../../docs_src/bigger_applications/app_an_py310/main.py hl[21:23] title["app/main.py"] *}
+{* ../../docs_src/bigger_applications/app/main.py hl[21:23] title["app/main.py"] *}
 
 और यह `app.include_router()` के साथ जोड़े गए सभी अन्य *path operations* के साथ सही तरीके से काम करेगा।
 

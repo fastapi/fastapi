@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `http` 또는 `ws`로 들어오는 모든 요청은 대신 보안 스킴으로 리디렉션됩니다.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 HTTP Host Header 공격을 방어하기 위해, 들어오는 모든 요청에 올바르게 설정된 `Host` 헤더가 있어야 하도록 강제합니다.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 다음 인자들을 지원합니다:
 
@@ -78,7 +78,7 @@ HTTP Host Header 공격을 방어하기 위해, 들어오는 모든 요청에 �
 
 이 middleware는 일반 응답과 스트리밍 응답을 모두 처리합니다.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 다음 인자들을 지원합니다:
 

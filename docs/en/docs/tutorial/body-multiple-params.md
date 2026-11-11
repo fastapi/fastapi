@@ -8,7 +8,7 @@ First, of course, you can mix `Path`, `Query` and request body parameter declara
 
 And you can also declare body parameters as optional, by setting the default to `None`:
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note
 
@@ -31,7 +31,7 @@ In the previous example, the *path operations* would expect a JSON body with the
 
 But you can also declare multiple body parameters, e.g. `item` and `user`:
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 
 In this case, **FastAPI** will notice that there is more than one body parameter in the function (there are two parameters that are Pydantic models).
@@ -73,7 +73,7 @@ If you declare it as is, because it is a singular value, **FastAPI** will assume
 
 But you can instruct **FastAPI** to treat it as another body key using `Body`:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 
 In this case, **FastAPI** will expect a body like:
@@ -108,7 +108,7 @@ q: str | None = None
 
 For example:
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 
 /// note
@@ -131,7 +131,7 @@ item: Annotated[Item, Body(embed=True)]
 
 as in:
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 
 In this case **FastAPI** will expect a body like:

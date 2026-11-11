@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python 並基於標準的 Python 型別提示來構建 API。
 
+<!-- agent-banner -->
+
 主要特點包含：
 
 * **快速**：非常高的效能，可與 **NodeJS** 和 **Go** 相當（歸功於 Starlette 和 Pydantic）。[最快的 Python 框架之一](#performance)。
@@ -109,7 +111,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
     <div class="fastapi-opinions__attr">— Kabir Khan，<strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
-    <blockquote class="fastapi-opinions__quote">「我們採用了 <strong>FastAPI</strong> 函式庫來啟動一個可供查詢以取得 <strong>預測</strong> 的 <strong>REST</strong> 伺服器。」 <em>[for Ludwig]</em></blockquote>
+    <blockquote class="fastapi-opinions__quote">「我們採用了 <strong>FastAPI</strong> 函式庫來啟動一個可供查詢以取得 <strong>預測</strong> 的 <strong>REST</strong> 伺服器。」 <em>[用於 Ludwig]</em></blockquote>
     <div class="fastapi-opinions__attr">— Piero Molino、Yaroslav Dudin、Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
@@ -131,7 +133,7 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 ---
 
-"_我們採用了 **FastAPI** 函式庫來啟動一個 **REST** 伺服器，供查詢以取得**預測**。[for Ludwig]_"
+"_我們採用了 **FastAPI** 函式庫來啟動一個 **REST** 伺服器，供查詢以取得**預測**。[用於 Ludwig]_"
 
 <div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
@@ -235,7 +237,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **注意**：
 
-如果你不確定，請查看文件中 _"In a hurry?"_ 章節的[關於文件中的 `async` 與 `await`](https://fastapi.tiangolo.com/zh-hant/async/#in-a-hurry)。
+如果你不確定，請查看[文件中關於 `async` 與 `await`](https://fastapi.tiangolo.com/zh-hant/async/#in-a-hurry)的 _「趕時間嗎？」_ 章節。
 
 </details>
 
@@ -473,7 +475,7 @@ item: Item
 
 **劇透警告**：教學 - 使用者指南包含：
 
-* 來自不同來源的**參數**宣告：例如 **headers**、**cookies**、**form fields** 和 **files**。
+* 來自不同來源的**參數**宣告：例如 **標頭**、**cookies**、**表單欄位** 和 **檔案**。
 * 如何設定**驗證限制**，如 `maximum_length` 或 `regex`。
 * 一個非常強大且易用的 **<dfn title="也稱為：元件、資源、提供者、服務、可注入物">依賴注入</dfn>** 系統。
 * 安全與驗證，包含支援 **OAuth2** 搭配 **JWT tokens** 與 **HTTP Basic** 驗證。
@@ -544,7 +546,7 @@ Pydantic 會使用：
 
 Starlette 會使用：
 
-* [`httpx`](https://www.python-httpx.org) - 若要使用 `TestClient` 必須安裝。
+* [`httpx2`](https://pydantic.dev/docs/httpx2/)（或 `httpx`）- 供 `TestClient` 使用。
 * [`jinja2`](https://jinja.palletsprojects.com) - 若要使用預設的模板設定必須安裝。
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - 若要支援表單 <dfn title="將來自 HTTP 請求的字串轉換為 Python 資料">"解析"</dfn>，搭配 `request.form()`。
 

@@ -7,7 +7,7 @@
 
 Bir attribute’u bir alt tipe sahip olacak şekilde tanımlayabilirsiniz. Örneğin, bir Python `list`:
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 Bu, `tags`’in bir list olmasını sağlar; ancak list’in elemanlarının tipini belirtmez.
 
@@ -29,7 +29,7 @@ Bu, tip tanımları için standart Python sözdizimidir.
 
 Dolayısıyla örneğimizde, `tags`’i özel olarak bir "string list’i" yapabiliriz:
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## Set tipleri { #set-types }
 
@@ -39,7 +39,7 @@ Python’da benzersiz öğelerden oluşan kümeler için özel bir veri tipi var
 
 O zaman `tags`’i string’lerden oluşan bir set olarak tanımlayabiliriz:
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 Böylece duplicate veri içeren bir request alsanız bile, bu veri benzersiz öğelerden oluşan bir set’e dönüştürülür.
 
@@ -61,13 +61,13 @@ Hem de istediğiniz kadar iç içe.
 
 Örneğin bir `Image` modeli tanımlayabiliriz:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### Alt modeli tip olarak kullanın { #use-the-submodel-as-a-type }
 
 Ardından bunu bir attribute’un tipi olarak kullanabiliriz:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 Bu da **FastAPI**’nin aşağıdakine benzer bir body bekleyeceği anlamına gelir:
 
@@ -100,7 +100,7 @@ Tüm seçenekleri görmek için [Pydantic Türlerine Genel Bakış](https://pyda
 
 Örneğin `Image` modelinde bir `url` alanımız olduğuna göre, bunu `str` yerine Pydantic’in `HttpUrl` tipinden bir instance olacak şekilde tanımlayabiliriz:
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 String’in geçerli bir URL olup olmadığı kontrol edilir ve JSON Schema / OpenAPI’de de buna göre dokümante edilir.
 
@@ -108,7 +108,7 @@ String’in geçerli bir URL olup olmadığı kontrol edilir ve JSON Schema / Op
 
 Pydantic modellerini `list`, `set` vb. tiplerin alt tipi olarak da kullanabilirsiniz:
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 Bu, aşağıdaki gibi bir JSON body bekler (dönüştürür, doğrular, dokümante eder vb.):
 
@@ -146,7 +146,7 @@ Bu, aşağıdaki gibi bir JSON body bekler (dönüştürür, doğrular, doküman
 
 İstediğiniz kadar derin iç içe modeller tanımlayabilirsiniz:
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note | Not
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 şu örnekte olduğu gibi:
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## Her yerde editör desteği { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Burada göreceğimiz şey de bu.
 
 Bu durumda, `int` key’lere ve `float` value’lara sahip olduğu sürece herhangi bir `dict` kabul edersiniz:
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip | İpucu
 

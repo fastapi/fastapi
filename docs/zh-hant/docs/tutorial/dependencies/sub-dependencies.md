@@ -10,7 +10,7 @@
 
 你可以建立第一個相依項（"dependable"）如下：
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 它宣告了一個可選的查詢參數 `q`（型別為 `str`），然後直接回傳它。
 
@@ -20,7 +20,7 @@
 
 接著你可以建立另一個相依函式（"dependable"），同時它也宣告了自己的相依（因此它同時也是 "dependant"）：
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 來看它所宣告的參數：
 
@@ -33,7 +33,7 @@
 
 然後我們可以這樣使用這個相依項：
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note
 
@@ -64,8 +64,10 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+```Python hl_lines="2"
+async def needy_dependency(
+    fresh_value: Annotated[str, Depends(get_value, use_cache=False)],
+):
     return {"fresh_value": fresh_value}
 ```
 

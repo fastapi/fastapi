@@ -11,13 +11,13 @@ Sehen wir uns an, wie das funktioniert und wie Sie es bei Bedarf ändern können
 
 Nehmen wir an, Sie haben ein Pydantic-Modell mit Defaultwerten wie dieses:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### Modell für Eingabe { #model-for-input }
 
 Wenn Sie dieses Modell wie hier als Eingabe verwenden:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ... dann ist das Feld `description` **nicht erforderlich**. Weil es den Defaultwert `None` hat.
 
@@ -33,7 +33,7 @@ Sie können überprüfen, dass das Feld `description` in der Dokumentation kein 
 
 Wenn Sie jedoch dasselbe Modell als Ausgabe verwenden, wie hier:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ... dann, weil `description` einen Defaultwert hat, wird es, wenn Sie für dieses Feld **nichts zurückgeben**, immer noch diesen **Defaultwert** haben.
 
@@ -92,7 +92,7 @@ Unterstützung für `separate_input_output_schemas` wurde in FastAPI `0.102.0` h
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### Gleiches Schema für Eingabe- und Ausgabemodelle in der Dokumentation { #same-schema-for-input-and-output-models-in-docs }
 

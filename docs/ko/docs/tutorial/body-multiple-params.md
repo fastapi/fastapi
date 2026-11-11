@@ -8,7 +8,7 @@
 
 또한 기본 값을 `None`으로 설정해 본문 매개변수를 선택사항으로 선언할 수 있습니다:
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | 참고
 
@@ -31,7 +31,7 @@
 
 하지만, 다중 본문 매개변수 역시 선언할 수 있습니다. 예. `item`과 `user`:
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 
 이 경우에, **FastAPI**는 이 함수에 본문 매개변수가 1개보다 많다는 것을 알아챌 것입니다(두 매개변수가 Pydantic 모델입니다).
@@ -73,7 +73,7 @@
 
 하지만 `Body`를 사용하여 다른 본문 키로 처리하도록 **FastAPI**에 지시할 수 있습니다:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 
 이 경우에는 **FastAPI**가 다음과 같은 본문을 예상할 것입니다:
@@ -108,7 +108,7 @@ q: str | None = None
 
 예를 들어:
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 
 /// note | 참고
@@ -131,7 +131,7 @@ item: Annotated[Item, Body(embed=True)]
 
 다음과 같이요:
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 
 이 경우 **FastAPI**는 다음과 같은 본문을 예상합니다:

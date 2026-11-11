@@ -21,3 +21,7 @@ Par défaut, l’extension détecte automatiquement les applications FastAPI dan
 - **Diffuser les journaux de l’application** — Diffusion en temps réel des journaux de votre application déployée sur FastAPI Cloud, avec filtrage par niveau et recherche textuelle.
 
 Si vous souhaitez vous familiariser avec les fonctionnalités de l’extension, vous pouvez consulter le guide pas à pas de l’extension en ouvrant la palette de commandes (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> ou sur macOS : <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>) et en sélectionnant « Welcome: Open walkthrough ... » puis en choisissant le guide « Get started with FastAPI ».
+
+## Agents de programmation IA { #ai-coding-agents }
+
+Consultez [Développer avec l’IA](ai-development.md) pour installer et utiliser le skill officiel de FastAPI.

@@ -18,7 +18,7 @@ Pas la classe elle‑même (qui est déjà un callable), mais une instance de ce
 
 Pour cela, nous déclarons une méthode `__call__` :
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 Dans ce cas, ce `__call__` est ce que **FastAPI** utilisera pour détecter des paramètres supplémentaires et des sous‑dépendances, et c’est ce qui sera appelé pour transmettre ensuite une valeur au paramètre dans votre *fonction de chemin d'accès*.
 
@@ -26,7 +26,7 @@ Dans ce cas, ce `__call__` est ce que **FastAPI** utilisera pour détecter des p
 
 Et maintenant, nous pouvons utiliser `__init__` pour déclarer les paramètres de l’instance, que nous utiliserons pour « paramétrer » la dépendance :
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 Dans ce cas, **FastAPI** n’accèdera pas à `__init__` et ne s’en souciera pas ; nous l’utiliserons directement dans notre code.
 
@@ -34,7 +34,7 @@ Dans ce cas, **FastAPI** n’accèdera pas à `__init__` et ne s’en souciera p
 
 Nous pouvons créer une instance de cette classe avec :
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 Et de cette façon, nous pouvons « paramétrer » notre dépendance, qui contient maintenant `"bar"`, en tant qu’attribut `checker.fixed_content`.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ... et passera ce que cela renvoie comme valeur de la dépendance à notre *fonction de chemin d'accès*, en tant que paramètre `fixed_content_included` :
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip | Astuce
 
@@ -114,21 +114,21 @@ Dans ce cas, la session de base de données serait conservée jusqu’à la fin 
 
 Voici à quoi cela pourrait ressembler :
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 Le code d’arrêt, la fermeture automatique de la `Session` dans :
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 ... serait exécuté après que la réponse a fini d’envoyer les données lentes :
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 Mais comme `generate_stream()` n’utilise pas la session de base de données, il n’est pas vraiment nécessaire de garder la session ouverte pendant l’envoi de la réponse.
 
 Si vous avez ce cas d’utilisation spécifique avec SQLModel (ou SQLAlchemy), vous pouvez fermer explicitement la session dès que vous n’en avez plus besoin :
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 De cette manière, la session libérera la connexion à la base de données, afin que d’autres requêtes puissent l’utiliser.
 

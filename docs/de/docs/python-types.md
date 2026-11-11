@@ -22,7 +22,7 @@ Wenn Sie ein Python-Experte sind und bereits alles über Typhinweise wissen, üb
 
 Fangen wir mit einem einfachen Beispiel an:
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 Dieses Programm gibt aus:
 
@@ -36,7 +36,7 @@ Die Funktion macht Folgendes:
 * Schreibt den ersten Buchstaben eines jeden Wortes groß, mithilfe von `title()`.
 * <dfn title="Fügt sie zu einer Einheit zusammen. Mit dem Inhalt des einen nach dem anderen.">Verkettet</dfn> sie mit einem Leerzeichen in der Mitte.
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Es bearbeiten { #edit-it }
 
@@ -78,7 +78,7 @@ Das war's.
 
 Das sind die „Typhinweise“:
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 Das ist nicht das gleiche wie das Deklarieren von Defaultwerten, wie es hier der Fall ist:
 
@@ -106,7 +106,7 @@ Hier können Sie durch die Optionen blättern, bis Sie diejenige finden, bei der
 
 Sehen Sie sich diese Funktion an, sie hat bereits Typhinweise:
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Da der Editor die Typen der Variablen kennt, erhalten Sie nicht nur Code-Vervollständigung, sondern auch eine Fehlerprüfung:
 
@@ -114,7 +114,7 @@ Da der Editor die Typen der Variablen kennt, erhalten Sie nicht nur Code-Vervoll
 
 Jetzt, da Sie wissen, dass Sie das reparieren müssen, konvertieren Sie `age` mittels `str(age)` in einen String:
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Typen deklarieren { #declaring-types }
 
@@ -133,7 +133,7 @@ Zum Beispiel diese:
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### `typing`-Modul { #typing-module }
 
@@ -170,7 +170,7 @@ Als Typ nehmen Sie `list`.
 
 Da die Liste ein Typ ist, welcher innere Typen enthält, werden diese von eckigen Klammern umfasst:
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | Hinweis
 
@@ -196,7 +196,7 @@ Und trotzdem weiß der Editor, dass es sich um ein `str` handelt, und bietet ent
 
 Das Gleiche gilt für die Deklaration eines Tupels – `tuple` – und einer Menge – `set`:
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 Das bedeutet:
 
@@ -211,7 +211,7 @@ Der erste Typ-Parameter ist für die Schlüssel des `dict`.
 
 Der zweite Typ-Parameter ist für die Werte des `dict`:
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 Das bedeutet:
 
@@ -228,7 +228,7 @@ Um das zu definieren, verwenden Sie den <dfn title="auch „bitweiser Oder-Opera
 Das wird „Union“ genannt, weil die Variable etwas aus der Vereinigung dieser beiden Typmengen sein kann.
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 Das bedeutet, dass `item` ein `int` oder ein `str` sein könnte.
@@ -240,7 +240,7 @@ Sie können deklarieren, dass ein Wert einen Typ haben könnte, wie `str`, dass 
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -253,11 +253,11 @@ Sie können auch eine Klasse als Typ einer Variablen deklarieren.
 
 Nehmen wir an, Sie haben eine Klasse `Person`, mit einem Namen:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Dann können Sie eine Variable vom Typ `Person` deklarieren:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 Und wiederum bekommen Sie die volle Editor-Unterstützung:
 
@@ -281,7 +281,7 @@ Und Sie erhalten volle Editor-Unterstützung für dieses Objekt.
 
 Ein Beispiel aus der offiziellen Pydantic-Dokumentation:
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | Hinweis
 
@@ -299,7 +299,7 @@ Python bietet auch die Möglichkeit, **zusätzliche <dfn title="Daten über die 
 
 Sie können `Annotated` von `typing` importieren.
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Python selbst macht nichts mit diesem `Annotated`. Für Editoren und andere Tools ist der Typ immer noch `str`.
 

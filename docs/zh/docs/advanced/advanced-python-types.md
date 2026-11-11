@@ -13,7 +13,7 @@ from typing import Union
 
 
 def say_hi(name: Union[str, None]):
-        print(f"Hi {name}!")
+    print(f"Hi {name}!")
 ```
 
 `typing` 也提供了一个声明“可能为 `None`”的快捷方式：`Optional`。

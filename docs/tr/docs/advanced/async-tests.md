@@ -14,7 +14,7 @@ Testlerimizde asenkron fonksiyonlar çağırmak istiyorsak, test fonksiyonlarım
 
 **FastAPI** uygulamanız `async def` yerine normal `def` fonksiyonları kullanıyor olsa bile, altta yatan yapı hâlâ bir `async` uygulamadır.
 
-`TestClient`, standart pytest kullanarak normal `def` test fonksiyonlarınızın içinden asenkron FastAPI uygulamasını çağırmak için içeride bazı “sihirli” işlemler yapar. Ancak bu sihir, onu asenkron fonksiyonların içinde kullandığımızda artık çalışmaz. Testlerimizi asenkron çalıştırdığımızda, test fonksiyonlarımızın içinde `TestClient` kullanamayız.
+`TestClient`, standart pytest kullanarak normal `def` test fonksiyonlarınızın içinden asenkron FastAPI uygulamasını çağırmak için içeride bazı "sihirli" işlemler yapar. Ancak bu sihir, onu asenkron fonksiyonların içinde kullandığımızda artık çalışmaz. Testlerimizi asenkron çalıştırdığımızda, test fonksiyonlarımızın içinde `TestClient` kullanamayız.
 
 `TestClient`, [HTTPX](https://www.python-httpx.org) tabanlıdır ve neyse ki API'yi test etmek için HTTPX'i doğrudan kullanabiliriz.
 
@@ -32,11 +32,11 @@ Basit bir örnek için, [Daha Büyük Uygulamalar](../tutorial/bigger-applicatio
 
 `main.py` dosyası şöyle olur:
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 `test_main.py` dosyasında `main.py` için testler yer alır, artık şöyle görünebilir:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
 ## Çalıştırma { #run-it }
 
@@ -56,7 +56,7 @@ $ uv run pytest
 
 `@pytest.mark.anyio` marker'ı, pytest'e bu test fonksiyonunun asenkron olarak çağrılması gerektiğini söyler:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | İpucu
 
@@ -66,12 +66,12 @@ Test fonksiyonu artık `TestClient` kullanırken eskiden olduğu gibi sadece `de
 
 Ardından app ile bir `AsyncClient` oluşturup `await` kullanarak ona async request'ler gönderebiliriz.
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 Bu, şu kullanıma denktir:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...ki daha önce request'leri `TestClient` ile bu şekilde gönderiyorduk.

@@ -28,7 +28,7 @@
 
 接著 FastAPI 會呼叫這個覆寫，而不是原本的相依。
 
-{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
 /// tip
 

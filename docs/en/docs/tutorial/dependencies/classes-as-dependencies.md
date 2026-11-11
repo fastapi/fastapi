@@ -6,7 +6,7 @@ Before diving deeper into the **Dependency Injection** system, let's upgrade the
 
 In the previous example, we were returning a `dict` from our dependency ("dependable"):
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 But then we get a `dict` in the parameter `commons` of the *path operation function*.
 
@@ -69,15 +69,15 @@ That also applies to callables with no parameters at all. The same as it would b
 
 Then, we can change the dependency "dependable" `common_parameters` from above to the class `CommonQueryParams`:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 Pay attention to the `__init__` method used to create the instance of the class:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ...it has the same parameters as our previous `common_parameters`:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 Those parameters are what **FastAPI** will use to "solve" the dependency.
 
@@ -93,7 +93,7 @@ In both cases the data will be converted, validated, documented on the OpenAPI s
 
 Now you can declare your dependency using this class.
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** calls the `CommonQueryParams` class. This creates an "instance" of that class and the instance will be passed as the parameter `commons` to your function.
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ...as in:
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 But declaring the type is encouraged as that way your editor will know what will be passed as the parameter `commons`, and then it can help you with code completion, type checks, etc:
 
@@ -275,7 +275,7 @@ You declare the dependency as the type of the parameter, and you use `Depends()`
 
 The same example would then look like:
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ...and **FastAPI** will know what to do.
 

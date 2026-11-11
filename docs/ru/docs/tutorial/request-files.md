@@ -20,13 +20,13 @@ $ uv add python-multipart
 
 Импортируйте `File` и `UploadFile` из модуля `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## Определите параметры `File` { #define-file-parameters }
 
 Создайте параметры `File` так же, как вы это делаете для `Body` или `Form`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | Примечание
 
@@ -54,7 +54,7 @@ $ uv add python-multipart
 
 Определите параметр файла с типом `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 Использование `UploadFile` имеет ряд преимуществ перед `bytes`:
 
@@ -137,13 +137,13 @@ contents = myfile.file.read()
 
 Вы можете сделать загрузку файла необязательной, используя стандартные аннотации типов и установив значение по умолчанию `None`:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## `UploadFile` с дополнительными метаданными { #uploadfile-with-additional-metadata }
 
 Вы также можете использовать `File()` вместе с `UploadFile`, например, для установки дополнительных метаданных:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## Загрузка нескольких файлов { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ contents = myfile.file.read()
 
 Для этого необходимо объявить список `bytes` или `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 Вы получите, как и было объявлено, список `list` из `bytes` или объектов `UploadFile`.
 
@@ -169,7 +169,7 @@ contents = myfile.file.read()
 
 Так же, как и раньше, вы можете использовать `File()` для задания дополнительных параметров, даже для `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## Резюме { #recap }
 

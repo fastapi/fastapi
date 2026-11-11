@@ -76,11 +76,11 @@ JSON 배열(Python의 list에 해당)과 매우 비슷하지만, 항목들을 `[
 
 FastAPI에서 JSON Lines를 스트리밍하려면, *경로 처리 함수*에서 `return`을 사용하는 대신 `yield`로 각 항목을 차례로 생성하면 됩니다.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 보내려는 각 JSON 항목의 타입이 `Item`(Pydantic 모델)이고 함수가 async라면, 반환 타입을 `AsyncIterable[Item]`로 선언할 수 있습니다:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 반환 타입을 선언하면 FastAPI가 이를 사용해 데이터를 **검증**하고, OpenAPI에 **문서화**하고, **필터링**하고, Pydantic으로 **직렬화**합니다.
 
@@ -98,13 +98,13 @@ FastAPI가 이벤트 루프를 막지 않도록 올바르게 실행되게 보장
 
 이 경우 함수가 async가 아니므로, 올바른 반환 타입은 `Iterable[Item]`입니다:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### 반환 타입 생략 { #no-return-type }
 
 반환 타입을 생략할 수도 있습니다. 그러면 FastAPI가 [`jsonable_encoder`](./encoder.md)를 사용해 데이터를 JSON으로 직렬화 가능한 형태로 변환한 뒤 JSON Lines로 전송합니다.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## 서버 전송 이벤트(SSE) { #server-sent-events-sse }
 

@@ -29,15 +29,15 @@ Por ejemplo, podrías usar esto para crear una sesión de base de datos y cerrar
 
 Solo el código anterior e incluyendo el `yield` statement se ejecuta antes de crear un response:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 El valor generado es lo que se inyecta en *path operations* y otras dependencias:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 El código posterior al `yield` statement se ejecuta después del response:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
 /// tip | Consejo
 
@@ -57,7 +57,7 @@ Por lo tanto, puedes buscar esa excepción específica dentro de la dependencia 
 
 Del mismo modo, puedes usar `finally` para asegurarte de que los pasos de salida se ejecuten, sin importar si hubo una excepción o no.
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## Sub-dependencias con `yield` { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ Puedes tener sub-dependencias y "árboles" de sub-dependencias de cualquier tama
 
 Por ejemplo, `dependency_c` puede tener una dependencia de `dependency_b`, y `dependency_b` de `dependency_a`:
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[6,14,22] *}
 
 Y todas ellas pueden usar `yield`.
 
@@ -75,7 +75,7 @@ En este caso, `dependency_c`, para ejecutar su código de salida, necesita que e
 
 Y, a su vez, `dependency_b` necesita que el valor de `dependency_a` (aquí llamado `dep_a`) esté disponible para su código de salida.
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[18:19,26:27] *}
 
 De la misma manera, podrías tener algunas dependencias con `yield` y otras dependencias con `return`, y hacer que algunas de esas dependan de algunas de las otras.
 
@@ -109,7 +109,7 @@ Pero está ahí para ti si la necesitas. 🤓
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b.py hl[18:22,31] *}
 
 Si quieres capturar excepciones y crear un response personalizado en base a eso, crea un [Manejador de Excepciones Personalizado](../handling-errors.md#install-custom-exception-handlers).
 
@@ -117,7 +117,7 @@ Si quieres capturar excepciones y crear un response personalizado en base a eso,
 
 Si capturas una excepción usando `except` en una dependencia con `yield` y no la lanzas nuevamente (o lanzas una nueva excepción), FastAPI no podrá notar que hubo una excepción, al igual que sucedería con Python normal:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c.py hl[15:16] *}
 
 En este caso, el cliente verá un response *HTTP 500 Internal Server Error* como debería, dado que no estamos lanzando una `HTTPException` o similar, pero el servidor **no tendrá ningún registro** ni ninguna otra indicación de cuál fue el error. 😱
 
@@ -127,7 +127,7 @@ Si capturas una excepción en una dependencia con `yield`, a menos que estés la
 
 Puedes volver a lanzar la misma excepción usando `raise`:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d.py hl[17] *}
 
 Ahora el cliente obtendrá el mismo response *HTTP 500 Internal Server Error*, pero el servidor tendrá nuestro `InternalError` personalizado en los registros. 😎
 
@@ -190,7 +190,7 @@ Normalmente, el código de salida de las dependencias con `yield` se ejecuta **d
 
 Pero si sabes que no necesitarás usar la dependencia después de regresar de la *path operation function*, puedes usar `Depends(scope="function")` para decirle a FastAPI que debe cerrar la dependencia después de que la *path operation function* regrese, pero **antes** de que se envíe el **response**.
 
-{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e.py hl[12,16] *}
 
 `Depends()` recibe un parámetro `scope` que puede ser:
 
@@ -270,7 +270,7 @@ En Python, puedes crear Context Managers [creando una clase con dos métodos: `_
 También puedes usarlos dentro de las dependencias de **FastAPI** con `yield` usando
 `with` o `async with` en la función de dependencia:
 
-{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
 /// tip | Consejo
 

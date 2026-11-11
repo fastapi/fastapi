@@ -76,11 +76,11 @@ Si vous voulez diffuser des données binaires, par exemple de la vidéo ou de l'
 
 Pour diffuser des JSON Lines avec FastAPI, au lieu d'utiliser `return` dans votre fonction de chemin d'accès, utilisez `yield` pour produire chaque élément à tour de rôle.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 Si chaque élément JSON que vous voulez renvoyer est de type `Item` (un modèle Pydantic) et que c'est une fonction async, vous pouvez déclarer le type de retour comme `AsyncIterable[Item]` :
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 Si vous déclarez le type de retour, FastAPI l'utilisera pour **valider** les données, les **documenter** dans OpenAPI, les **filtrer**, et les **sérialiser** avec Pydantic.
 
@@ -98,13 +98,13 @@ FastAPI s'assure qu'elle s'exécute correctement afin de ne pas bloquer la boucl
 
 Comme dans ce cas la fonction n'est pas async, le bon type de retour serait `Iterable[Item]` :
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### Sans type de retour { #no-return-type }
 
 Vous pouvez également omettre le type de retour. FastAPI utilisera alors [`jsonable_encoder`](./encoder.md) pour convertir les données en quelque chose qui peut être sérialisé en JSON, puis les enverra en JSON Lines.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## Événements envoyés par le serveur (SSE) { #server-sent-events-sse }
 

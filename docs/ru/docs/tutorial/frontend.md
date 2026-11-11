@@ -36,7 +36,7 @@ npm run build
 
 Затем «отдавайте» её с помощью `app.frontend()`:
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 При этом запрос к `/assets/app.js` может отдать `dist/assets/app.js`.
 
@@ -50,7 +50,7 @@ npm run build
 
 Для этого используйте `fallback="index.html"`:
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI** использует этот fallback только для HTTP-запросов `GET` и `HEAD`, которые явно принимают HTML с `Accept: text/html` или `Accept: application/xhtml+xml`, как обычно делают запросы навигации в браузере. Отсутствующие файлы, такие как JavaScript, CSS и изображения, по-прежнему возвращают `404`.
 
@@ -68,7 +68,7 @@ npm run build
 
 Вы также можете отдавать статическую страницу `404.html` для отсутствующих путей фронтенда:
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 Этот HTTP-ответ сохраняет статус-код `404`.
 
@@ -94,13 +94,13 @@ npm run build
 
 Поэтому в большинстве случаев можно использовать `app.frontend("/", directory="dist")` без указания аргумента `fallback`.
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## Отключение fallback { #disable-fallback }
 
 Если вы не хотите отдавать fallback-файл для отсутствующих путей фронтенда, используйте `fallback=None`:
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 Тогда отсутствующие пути фронтенда будут возвращать обычный `404`.
 
@@ -116,7 +116,7 @@ npm run build
 
 Если ваши фронтенд-файлы создаются позже, например отдельным этапом сборки после создания объекта приложения, установите `check_dir=False`:
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 С `check_dir=False` **FastAPI** не будет проверять директорию при создании приложения. Если настроенная директория всё ещё отсутствует во время обработки HTTP-запроса, **FastAPI** вызовет ошибку тогда.
 
@@ -124,7 +124,7 @@ npm run build
 
 Вы также можете добавить фронтенд-файлы в `APIRouter` и включить его с префиксом:
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 В этом примере пути фронтенда отдаются под `/app`.
 

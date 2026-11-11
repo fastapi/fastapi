@@ -4,7 +4,7 @@ WebSocket をテストするのにも同じ `TestClient` を使用できます�
 
 そのために、`with` 文の中で `TestClient` を使用し、WebSocket に接続します:
 
-{* ../../docs_src/app_testing/tutorial002_py310.py hl[27:31] *}
+{* ../../docs_src/app_testing/tutorial002.py hl[27:31] *}
 
 /// note | 備考
 
