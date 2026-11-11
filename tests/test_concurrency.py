@@ -82,7 +82,7 @@ async def test_failed_enter_does_not_call_exit(
     cm = RecordingContextManager(enter_error=error)
     with pytest.raises(error_type) as caught:
         async with contextmanager_in_threadpool(cm):
-            pytest.fail("Entry should fail")
+            pytest.fail("Entry should fail")  # pragma: no cover
     assert caught.value is error
     assert cm.exit_threads == []
 
@@ -163,7 +163,9 @@ async def test_cancelled_wait_for_worker_does_not_enter_or_exit() -> None:
         with anyio.CancelScope() as scope:
             task_status.started(scope)
             async with contextmanager_in_threadpool(cm):
-                pytest.fail("No worker capacity should be available")
+                pytest.fail(
+                    "No worker capacity should be available"
+                )  # pragma: no cover
         finished.set()
 
     try:
