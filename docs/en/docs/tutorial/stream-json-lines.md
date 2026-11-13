@@ -106,6 +106,22 @@ You can also omit the return type. FastAPI will then use the [`jsonable_encoder`
 
 {* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
+## Proxy Buffering { #proxy-buffering }
+
+When a JSON Lines response is served behind a proxy that buffers responses by default (for example Nginx with `proxy_buffering on`), the proxy could hold back the lines and deliver them all at once, which would defeat the streaming.
+
+To prevent that, FastAPI sets the `X-Accel-Buffering: no` header on JSON Lines responses, telling Nginx (and compatible proxies) not to buffer them.
+
+If you need a different behavior, you can set that header yourself in a dependency, declaring a [`Response` parameter](../advanced/response-headers.md) in it, and your value will be used instead.
+
+It has to be in a dependency, because the code inside a *path operation function* with `yield` only starts running once the response has already started, when it's too late to set headers.
+
+/// note
+
+Caching headers (like `Cache-Control`) are **not** set automatically, they are left up to you. JSON Lines is also used for bulk exports where caching can be legitimate, so FastAPI doesn't impose a caching policy. If you need one, you can set it in a dependency the same way.
+
+///
+
 ## Server-Sent Events (SSE) { #server-sent-events-sse }
 
 FastAPI also has first-class support for Server-Sent Events (SSE), which are quite similar but with a couple of extra details. You can learn about them in the next chapter: [Server-Sent Events (SSE)](server-sent-events.md). 🤓
