@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Fixes
+
+* 🐛 Fix async yield dependency cleanup on cancellation. PR [#16739](https://github.com/fastapi/fastapi/pull/16739) by [@tiangolo](https://github.com/tiangolo).
+
 ### Internal
 
 * 🔒️ Generate GH actions worklow lockfile and bump Zizmor. PR [#16736](https://github.com/fastapi/fastapi/pull/16736) by [@YuriiMotov](https://github.com/YuriiMotov).
