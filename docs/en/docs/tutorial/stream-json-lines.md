@@ -72,20 +72,6 @@ If you want to stream binary data, for example video or audio, check the advance
 
 ///
 
-## Proxy Buffering { #proxy-buffering }
-
-When a JSON Lines response is served behind a proxy that buffers responses by default (for example Nginx with `proxy_buffering on`), the proxy could hold back the lines and deliver them all at once, which would defeat the streaming.
-
-To prevent that, FastAPI sets the `X-Accel-Buffering: no` header on JSON Lines responses, telling Nginx (and compatible proxies) not to buffer them.
-
-If you need a different behavior, you can set that header yourself on the [`Response`](../advanced/response-headers.md) and your value will be used instead.
-
-/// note
-
-Caching headers (like `Cache-Control`) are **not** set automatically, they are left up to you. JSON Lines is also used for bulk exports where caching can be legitimate, so FastAPI doesn't impose a caching policy. If you need one, you can set it on the [`Response`](../advanced/response-headers.md).
-
-///
-
 ## Stream JSON Lines with FastAPI { #stream-json-lines-with-fastapi }
 
 To stream JSON Lines with FastAPI you can, instead of using `return` in your *path operation function*, use `yield` to produce each item in turn.
@@ -119,6 +105,22 @@ As in this case the function is not async, the right return type would be `Itera
 You can also omit the return type. FastAPI will then use the [`jsonable_encoder`](./encoder.md) to convert the data to something that can be serialized to JSON and then send it as JSON Lines.
 
 {* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
+
+## Proxy Buffering { #proxy-buffering }
+
+When a JSON Lines response is served behind a proxy that buffers responses by default (for example Nginx with `proxy_buffering on`), the proxy could hold back the lines and deliver them all at once, which would defeat the streaming.
+
+To prevent that, FastAPI sets the `X-Accel-Buffering: no` header on JSON Lines responses, telling Nginx (and compatible proxies) not to buffer them.
+
+If you need a different behavior, you can set that header yourself in a dependency, declaring a [`Response` parameter](../advanced/response-headers.md) in it, and your value will be used instead.
+
+It has to be in a dependency, because the code inside a *path operation function* with `yield` only starts running once the response has already started, when it's too late to set headers.
+
+/// note
+
+Caching headers (like `Cache-Control`) are **not** set automatically, they are left up to you. JSON Lines is also used for bulk exports where caching can be legitimate, so FastAPI doesn't impose a caching policy. If you need one, you can set it in a dependency the same way.
+
+///
 
 ## Server-Sent Events (SSE) { #server-sent-events-sse }
 

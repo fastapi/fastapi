@@ -48,6 +48,12 @@ def test_stream_sync_disables_proxy_buffering():
     assert response.headers["x-accel-buffering"] == "no"
 
 
+def test_stream_does_not_set_cache_control():
+    response = client.get("/items/stream")
+    assert response.status_code == 200, response.text
+    assert "cache-control" not in response.headers
+
+
 def test_stream_buffering_header_can_be_overridden():
     response = client.get("/items/stream-buffering-enabled")
     assert response.status_code == 200, response.text
