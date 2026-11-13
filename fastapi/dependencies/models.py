@@ -12,6 +12,9 @@ from fastapi.types import DependencyCacheKey
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
 else:  # pragma: no cover
+    # Preserve legacy _is_coroutine marker detection on Python 3.11 and 3.12.
+    # inspect.iscoroutinefunction does not recognize that marker, which affects
+    # whether FastAPI awaits a dependency or runs it in a thread.
     from asyncio import iscoroutinefunction
 
 
@@ -197,10 +200,13 @@ def _is_async_gen_callable(call: Callable[..., Any] | None) -> bool:
 @lru_cache(maxsize=_CALLABLE_CLASSIFICATION_CACHE_SIZE)
 def _is_coroutine_callable_cached(call_identity: _CallIdentity) -> bool:
     call = call_identity.call
-    if inspect.isroutine(_impartial(call)) and iscoroutinefunction(_impartial(call)):
+    if (
+        inspect.isroutine(_impartial(call)) and iscoroutinefunction(_impartial(call))  # ty: ignore[deprecated]
+    ):
         return True
-    if inspect.isroutine(_unwrapped_call(call)) and iscoroutinefunction(
-        _unwrapped_call(call)
+    if (
+        inspect.isroutine(_unwrapped_call(call))
+        and iscoroutinefunction(_unwrapped_call(call))  # ty: ignore[deprecated]
     ):
         return True
     if inspect.isclass(_unwrapped_call(call)):
@@ -208,16 +214,19 @@ def _is_coroutine_callable_cached(call_identity: _CallIdentity) -> bool:
     dunder_call = getattr(_impartial(call), "__call__", None)  # noqa: B004
     if dunder_call is None:
         return False  # pragma: no cover
-    if iscoroutinefunction(_impartial(dunder_call)) or iscoroutinefunction(
-        _unwrapped_call(dunder_call)
+    if (
+        iscoroutinefunction(_impartial(dunder_call))  # ty: ignore[deprecated]
+        or iscoroutinefunction(_unwrapped_call(dunder_call))  # ty: ignore[deprecated]
     ):
         return True
     dunder_unwrapped_call = getattr(_unwrapped_call(call), "__call__", None)  # noqa: B004
     if dunder_unwrapped_call is None:
         return False  # pragma: no cover
-    return iscoroutinefunction(
+    return iscoroutinefunction(  # ty: ignore[deprecated]
         _impartial(dunder_unwrapped_call)
-    ) or iscoroutinefunction(_unwrapped_call(dunder_unwrapped_call))
+    ) or iscoroutinefunction(  # ty: ignore[deprecated]
+        _unwrapped_call(dunder_unwrapped_call)
+    )
 
 
 def _is_coroutine_callable(call: Callable[..., Any] | None) -> bool:

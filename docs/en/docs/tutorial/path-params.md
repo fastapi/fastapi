@@ -134,9 +134,9 @@ If you have a *path operation* that receives a *path parameter*, but you want th
 
 ### Create an `Enum` class { #create-an-enum-class }
 
-Import `Enum` and create a sub-class that inherits from `str` and from `Enum`.
+Import `StrEnum` and create a subclass that inherits from it.
 
-By inheriting from `str` the API docs will be able to know that the values must be of type `string` and will be able to render correctly.
+`StrEnum` members are also strings, so the API docs will know that the values must be of type `string` and will render them correctly.
 
 Then create class attributes with fixed values, which will be the available valid values:
 
