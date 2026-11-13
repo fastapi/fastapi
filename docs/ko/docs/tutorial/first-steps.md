@@ -2,16 +2,22 @@
 
 가장 단순한 FastAPI 파일은 다음과 같이 보일 것입니다:
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 위 코드를 `main.py`에 복사합니다.
+
+/// tip | 팁
+
+FastAPI에는 VS Code(및 Cursor)를 위한 [공식 확장](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)이 있으며, 에디터에서 바로 경로 처리 탐색기, 경로 처리 검색, 테스트에서의 CodeLens 탐색(테스트에서 정의로 이동), FastAPI Cloud 배포와 로그를 포함한 많은 기능을 제공합니다.
+
+///
 
 라이브 서버를 실행합니다:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 그리고 이제, [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)로 가봅니다.
 
-대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Rebilly/ReDoc) 제공):
+대안 자동 문서를 볼 수 있습니다 ([ReDoc](https://github.com/Redocly/redoc) 제공):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 `fastapi dev` 명령어에 파일 경로를 전달할 수도 있으며, 그러면 사용할 FastAPI 애플리케이션 객체를 추정합니다:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 또는 `fastapi dev` 명령어에 `--entrypoint` 옵션을 전달할 수도 있습니다:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 하지만 매번 `fastapi` 명령어를 호출할 때마다 올바른 path\entrypoint를 전달해야 합니다.
@@ -205,7 +211,7 @@ $ fastapi dev --entrypoint main:app
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -224,7 +230,7 @@ CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하고 클�
 
 ### 1 단계: `FastAPI` 임포트 { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI`는 여러분의 API를 위한 모든 기능을 제공하는 파이썬 클래스입니다.
 
@@ -232,13 +238,13 @@ CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하고 클�
 
 `FastAPI`는 `Starlette`를 직접 상속하는 클래스입니다.
 
-`FastAPI`로 [Starlette](https://www.starlette.dev/)의 모든 기능을 사용할 수 있습니다.
+`FastAPI`로 [Starlette](https://starlette.dev/)의 모든 기능을 사용할 수 있습니다.
 
 ///
 
 ### 2 단계: `FastAPI` "인스턴스" 생성 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 여기에서 `app` 변수는 `FastAPI` 클래스의 "인스턴스"가 됩니다.
 
@@ -307,7 +313,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 
 #### *경로 처리 데코레이터* 정의 { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")`은 **FastAPI**에게 바로 아래에 있는 함수가 다음으로 이동하는 요청을 처리한다는 것을 알려줍니다:
 
@@ -361,7 +367,7 @@ API를 설계할 때 일반적으로 특정 행동을 수행하기 위해 특정
 * **작동**: 은 `get`입니다.
 * **함수**: 는 "데코레이터" 아래에 있는 함수입니다 (`@app.get("/")` 아래).
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 이것은 파이썬 함수입니다.
 
@@ -373,7 +379,7 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 
 `async def`을 이용하는 대신 일반 함수로 정의할 수 있습니다:
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | 참고
 
@@ -383,7 +389,7 @@ URL "`/`"에 대한 `GET` 작동을 사용하는 요청을 받을 때마다 **Fa
 
 ### 5 단계: 콘텐츠 반환 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 `dict`, `list`, 단일값을 가진 `str`, `int` 등을 반환할 수 있습니다.
 

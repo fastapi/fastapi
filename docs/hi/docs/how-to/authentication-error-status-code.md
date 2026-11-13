@@ -8,7 +8,7 @@ FastAPI version `0.122.0` से शुरू होकर, वे अधिक 
 
 उदाहरण के लिए, आप `HTTPBearer` का एक subclass बना सकते हैं जो default `401 Unauthorized` error के बजाय `403 Forbidden` error लौटाता है:
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001.py hl[9:13] *}
 
 /// tip | टिप
 

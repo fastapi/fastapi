@@ -2,7 +2,7 @@
 
 **FastAPI <abbr title="command line interface - कमांड लाइन इंटरफ़ेस">CLI</abbr>** एक command line प्रोग्राम है जिसका उपयोग आप अपने FastAPI ऐप को serve करने, अपने FastAPI project को manage करने, और भी बहुत कुछ करने के लिए कर सकते हैं।
 
-जब आप FastAPI install करते हैं (जैसे `pip install "fastapi[standard]"` के साथ), तो इसके साथ एक command line प्रोग्राम आता है जिसे आप terminal में चला सकते हैं।
+जब आप अपने project में FastAPI add करते हैं (जैसे `uv add "fastapi[standard]"` के साथ), तो इसके साथ एक command line प्रोग्राम आता है जिसे आप terminal में चला सकते हैं।
 
 development के लिए अपना FastAPI ऐप चलाने के लिए, आप `fastapi dev` command का उपयोग कर सकते हैं:
 
@@ -48,11 +48,11 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 /// tip | सुझाव
 
-production के लिए आप `fastapi dev` की जगह `fastapi run` का उपयोग करेंगे। 🚀
+production के लिए आप `fastapi run` का उपयोग करेंगे, `fastapi dev` की जगह। 🚀
 
 ///
 
-आंतरिक रूप से, **FastAPI CLI** [Uvicorn](https://www.uvicorn.dev) का उपयोग करता है, जो एक high-performance, production-ready, ASGI server है। 😎
+आंतरिक रूप से, **FastAPI CLI** [Uvicorn](https://uvicorn.dev) का उपयोग करता है, जो एक high-performance, production-ready, ASGI server है। 😎
 
 `fastapi` CLI चलाने के लिए FastAPI ऐप को अपने-आप detect करने की कोशिश करेगा, यह मानते हुए कि यह `main.py` file में `app` नाम का object है (या कुछ अन्य variants में से कोई एक)।
 
@@ -95,18 +95,18 @@ entrypoint = "backend.main:app"
 from backend.main import app
 ```
 
-### path के साथ या `--entrypoint` CLI option के साथ `fastapi dev` { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
+### `fastapi dev` path के साथ या `--entrypoint` CLI option के साथ { #fastapi-dev-with-path-or-with-entrypoint-cli-option }
 
 आप `fastapi dev` command को file path भी pass कर सकते हैं, और यह उपयोग किए जाने वाले FastAPI app object का अनुमान लगा लेगा:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 या, आप `fastapi dev` command को `--entrypoint` option भी pass कर सकते हैं:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 लेकिन आपको हर बार `fastapi` command call करते समय सही path\entrypoint pass करना याद रखना होगा।
@@ -118,6 +118,10 @@ $ fastapi dev --entrypoint main:app
 `fastapi dev` चलाने से development mode शुरू होता है।
 
 Default रूप से, **auto-reload** enabled होता है, जो आपके code में changes करने पर server को अपने-आप reload कर देता है। यह resource-intensive है और disabled होने की तुलना में कम stable हो सकता है। आपको इसे केवल development के लिए ही उपयोग करना चाहिए। यह IP address `127.0.0.1` पर भी listen करता है, जो आपकी machine का खुद से ही communicate करने वाला IP है (`localhost`)।
+
+आपके ऐप को import करने से पहले, `fastapi dev` `FASTAPI_ENV` environment variable को `development` पर set करता है। अगर `FASTAPI_ENV` पहले से set है, तो इसकी मौजूदा value सुरक्षित रखी जाती है। इससे app startup code development-friendly व्यवहार चुन सकता है, जबकि आपको `staging` जैसा app-specific environment देने की अनुमति मिलती है।
+
+Conventional `FASTAPI_ENV` values `development` और `production` हैं। `fastapi run` वर्तमान में `FASTAPI_ENV` को unchanged छोड़ देता है, इसलिए अगर आपके ऐप को production mode detect करने की ज़रूरत है तो इसे स्पष्ट रूप से set करें।
 
 ## `fastapi run` { #fastapi-run }
 

@@ -57,13 +57,13 @@ Gelen tüm request'lerin `https` veya `wss` olmasını zorunlu kılar.
 
 `http` veya `ws` olarak gelen herhangi bir request, bunun yerine güvenli şemaya redirect edilir.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 HTTP Host Header saldırılarına karşı korunmak için, gelen tüm request'lerde `Host` header'ının doğru ayarlanmış olmasını zorunlu kılar.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 Aşağıdaki argümanlar desteklenir:
 
@@ -78,7 +78,7 @@ Gelen bir request doğru şekilde doğrulanmazsa `400` response gönderilir.
 
 Middleware hem standart hem de streaming response'ları ele alır.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 Aşağıdaki argümanlar desteklenir:
 
@@ -91,7 +91,7 @@ Başka birçok ASGI middleware'i vardır.
 
 Örneğin:
 
-* [Uvicorn'un `ProxyHeadersMiddleware`'i](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [Uvicorn'un `ProxyHeadersMiddleware`'i](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Diğer mevcut middleware'leri görmek için [Starlette'in Middleware dokümanlarına](https://www.starlette.dev/middleware/) ve [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi) listesine bakın.
+Diğer mevcut middleware'leri görmek için [Starlette'in Middleware dokümanlarına](https://starlette.dev/middleware/) ve [ASGI Awesome List](https://github.com/florimondmanca/awesome-asgi) listesine bakın.

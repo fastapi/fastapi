@@ -25,7 +25,7 @@ Para retornar responses HTTP com erros ao cliente, use o `HTTPException`.
 
 ### Importe `HTTPException` { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
 ### Lance uma `HTTPException` no seu código { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ O benefício de lançar uma exceção em vez de retornar um valor ficará mais e
 
 Neste exemplo, quando o cliente solicita um item por um ID que não existe, lance uma exceção com status code `404`:
 
-{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
 ### A response resultante { #the-resulting-response }
 
@@ -77,11 +77,11 @@ Você provavelmente não precisará usar isso diretamente no seu código.
 
 Mas caso precise em um cenário avançado, você pode adicionar headers customizados:
 
-{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
 ## Instale manipuladores de exceções customizados { #install-custom-exception-handlers }
 
-Você pode adicionar manipuladores de exceção customizados com [as mesmas utilidades de exceção do Starlette](https://www.starlette.dev/exceptions/).
+Você pode adicionar manipuladores de exceção customizados com [as mesmas utilidades de exceção do Starlette](https://starlette.dev/exceptions/).
 
 Digamos que você tenha uma exceção customizada `UnicornException` que você (ou uma biblioteca que você usa) possa lançar com `raise`.
 
@@ -89,7 +89,7 @@ E você quer manipular essa exceção globalmente com o FastAPI.
 
 Você poderia adicionar um manipulador de exceção customizado com `@app.exception_handler()`:
 
-{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
 Aqui, se você fizer uma request para `/unicorns/yolo`, a *operação de rota* vai lançar com `raise` uma `UnicornException`.
 
@@ -127,7 +127,7 @@ Para sobrescrevê-lo, importe o `RequestValidationError` e use-o com `@app.excep
 
 O manipulador de exceções receberá um `Request` e a exceção.
 
-{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:19] *}
 
 Agora, se você for para `/items/foo`, em vez de receber o erro JSON padrão com:
 
@@ -159,7 +159,7 @@ Do mesmo modo, você pode sobrescrever o manipulador de `HTTPException`.
 
 Por exemplo, você poderia querer retornar uma response em texto simples em vez de JSON para estes erros:
 
-{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,25] *}
 
 /// note | Detalhes Técnicos
 
@@ -183,7 +183,7 @@ O `RequestValidationError` contém o `body` que ele recebeu com dados inválidos
 
 Você poderia usá-lo enquanto desenvolve sua aplicação para registrar o body e depurá-lo, retorná-lo ao usuário, etc.
 
-{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
 
 Agora tente enviar um item inválido como:
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 Se você quiser usar a exceção junto com os mesmos manipuladores de exceção padrão do **FastAPI**, você pode importar e reutilizar os manipuladores de exceção padrão de `fastapi.exception_handlers`:
 
-{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
 Neste exemplo, você está apenas imprimindo o erro com uma mensagem muito expressiva, mas a ideia é essa. Você pode usar a exceção e então simplesmente reutilizar os manipuladores de exceção padrão.

@@ -9,6 +9,7 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.routing import (
     APIRoute,
+    APIWebSocketRoute,
     RouteContext,
     _IncludedRouter,
     _iter_included_route_candidates,
@@ -18,7 +19,16 @@ from fastapi.routing import (
 from fastapi.security import HTTPBearer
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
-from starlette.routing import BaseRoute, Host, Match, Mount, NoMatchFound, Route, Router
+from starlette.routing import (
+    BaseRoute,
+    Host,
+    Match,
+    Mount,
+    NoMatchFound,
+    Route,
+    Router,
+    WebSocketRoute,
+)
 
 
 def dependency_a():
@@ -53,6 +63,65 @@ def test_iter_route_contexts_returns_direct_route_context():
     assert contexts[0].path_format == "/items/{item_id}"
     assert contexts[0].methods == {"GET"}
     assert contexts[0].endpoint is read_item
+
+
+@pytest.mark.parametrize(
+    ("route_class", "methods"),
+    [
+        (APIWebSocketRoute, None),
+        (Route, {"GET", "HEAD"}),
+        (WebSocketRoute, None),
+    ],
+)
+def test_iter_route_contexts_returns_included_route_metadata(route_class, methods):
+    async def endpoint():  # pragma: no cover
+        pass
+
+    route = route_class("/items/{item_id:int}", endpoint=endpoint, name="items")
+    router = APIRouter(routes=[route])
+    app = FastAPI(openapi_url=None)
+    app.include_router(router, prefix="/api")
+
+    [context] = iter_route_contexts(app.routes)
+
+    assert context.route is route
+    assert context.original_route is route
+    assert context.path == "/api/items/{item_id:int}"
+    assert context.path_format == "/api/items/{item_id}"
+    assert context.name == "items"
+    assert context.methods == methods
+    assert context.endpoint is endpoint
+    assert context.param_convertors["item_id"].convert("42") == 42
+    assert route.path == "/items/{item_id:int}"
+
+
+def test_iter_route_contexts_supports_nested_repeated_live_websocket_routes():
+    router = APIRouter(prefix="/stream", dependencies=[Depends(dependency_b)])
+    parent = APIRouter(prefix="/parent")
+    parent.include_router(router, prefix="/child")
+    app = FastAPI(openapi_url=None)
+    for prefix in ["/v1", "/v2"]:
+        app.include_router(parent, prefix=prefix, dependencies=[Depends(dependency_a)])
+
+    # Populate the inclusion caches before adding the endpoint.
+    assert list(iter_route_contexts(app.routes)) == []
+
+    @router.websocket("/{job_id}")
+    async def stream():  # pragma: no cover
+        pass
+
+    contexts = list(iter_route_contexts(app.routes))
+
+    assert [context.path for context in contexts] == [
+        "/v1/parent/child/stream/{job_id}",
+        "/v2/parent/child/stream/{job_id}",
+    ]
+    for context in contexts:
+        assert context.original_route is router.routes[0]
+        assert [dependency.dependency for dependency in context.dependencies] == [
+            dependency_a,
+            dependency_b,
+        ]
 
 
 def test_iter_route_contexts_supports_nested_conflict_detection():
@@ -713,6 +782,15 @@ def test_included_starlette_mount_keeps_prefix_runtime_and_url_path_for():
     client = TestClient(app)
     response = client.get("/api/mounted/items/abc")
 
+    context = list(iter_route_contexts(app.routes))[-1]
+    assert context.original_route is router.routes[0]
+    assert context.path == "/api/mounted"
+    assert context.path_format == "/api/mounted/{path}"
+    assert context.name == "mounted"
+    assert context.methods is None
+    assert context.endpoint is None
+    assert context.routes == cast(Mount, router.routes[0]).routes
+
     assert response.status_code == 200
     assert response.text == "mounted"
     assert (
@@ -735,6 +813,15 @@ def test_included_starlette_host_keeps_prefix_runtime_and_url_path_for():
 
     client = TestClient(app, base_url="http://api.example.com")
     response = client.get("/api/items/abc")
+
+    context = list(iter_route_contexts(app.routes))[-1]
+    assert context.original_route is router.routes[0]
+    assert context.path is None
+    assert context.path_format is None
+    assert context.name == "hosted"
+    assert context.methods is None
+    assert context.endpoint is None
+    assert context.host == "{subdomain}.example.com"
 
     assert response.status_code == 200
     assert response.text == "hosted"

@@ -4,12 +4,12 @@
 
 ## `websockets` Kurulumu { #install-websockets }
 
-Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden ve `websockets`'i ("WebSocket" protokolünü kullanmayı kolaylaştıran bir Python kütüphanesi) kurduğunuzdan emin olun:
+Projenize `websockets`'i ("WebSocket" protokolünü kullanmayı kolaylaştıran bir Python kütüphanesi) ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -38,13 +38,13 @@ Production'da yukarıdaki seçeneklerden birini kullanırsınız.
 
 Ama WebSockets'in server tarafına odaklanmak ve çalışan bir örnek görmek için en basit yol bu:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[2,6:38,41:43] *}
 
 ## Bir `websocket` Oluşturun { #create-a-websocket }
 
 **FastAPI** uygulamanızda bir `websocket` oluşturun:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[1,46:47] *}
 
 /// note | Teknik Detaylar
 
@@ -58,7 +58,7 @@ Ama WebSockets'in server tarafına odaklanmak ve çalışan bir örnek görmek i
 
 WebSocket route'unuzda mesajları `await` edebilir ve mesaj gönderebilirsiniz.
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[48:52] *}
 
 Binary, text ve JSON verisi alıp gönderebilirsiniz.
 
@@ -69,7 +69,7 @@ Kodunuzu `main.py` dosyasına koyun ve ardından uygulamanızı çalıştırın:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -109,9 +109,9 @@ WebSocket endpoint'lerinde `fastapi` içinden import edip şunları kullanabilir
 
 Diğer FastAPI endpoint'leri/*path operations* ile aynı şekilde çalışırlar:
 
-{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002.py hl[68:69,82] *}
 
-/// note
+/// note | Not
 
 Bu bir WebSocket olduğu için `HTTPException` raise etmek pek anlamlı değildir; bunun yerine `WebSocketException` raise ederiz.
 
@@ -126,7 +126,7 @@ Uygulamanızı çalıştırın:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -140,7 +140,7 @@ Burada şunları ayarlayabilirsiniz:
 * path'te kullanılan "Item ID".
 * query parametresi olarak kullanılan "Token".
 
-/// tip
+/// tip | İpucu
 
 query'deki `token` değerinin bir dependency tarafından ele alınacağına dikkat edin.
 
@@ -154,7 +154,7 @@ Bununla WebSocket'e bağlanabilir, ardından mesaj gönderip alabilirsiniz:
 
 Bir WebSocket bağlantısı kapandığında, `await websocket.receive_text()` bir `WebSocketDisconnect` exception'ı raise eder; ardından bunu bu örnekteki gibi yakalayıp (catch) yönetebilirsiniz.
 
-{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003.py hl[79:81] *}
 
 Denemek için:
 
@@ -168,7 +168,7 @@ Bu, `WebSocketDisconnect` exception'ını raise eder ve diğer tüm client'lar �
 Client #1596980209979 left the chat
 ```
 
-/// tip
+/// tip | İpucu
 
 Yukarıdaki uygulama, birden fazla WebSocket bağlantısına mesajları nasıl yönetip broadcast edeceğinizi göstermek için minimal ve basit bir örnektir.
 
@@ -182,5 +182,5 @@ FastAPI ile kolay entegre olan ama Redis, PostgreSQL vb. tarafından desteklenen
 
 Seçenekler hakkında daha fazlasını öğrenmek için Starlette dokümantasyonunda şunlara bakın:
 
-* [`WebSocket` class'ı](https://www.starlette.dev/websockets/).
-* [Class tabanlı WebSocket yönetimi](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [`WebSocket` class'ı](https://starlette.dev/websockets/).
+* [Class tabanlı WebSocket yönetimi](https://starlette.dev/endpoints/#websocketendpoint).

@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Templates { #templates }
 
 Você pode usar qualquer template engine com o **FastAPI**.
@@ -6,14 +10,14 @@ Uma escolha comum é o Jinja2, o mesmo usado pelo Flask e outras ferramentas.
 
 Existem utilitários para configurá-lo facilmente que você pode usar diretamente em sua aplicação **FastAPI** (fornecidos pelo Starlette).
 
-## Instalar dependências { #install-dependencies }
+## Instale dependências { #install-dependencies }
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e instalar `jinja2`:
+Adicione `jinja2` ao seu projeto:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -24,22 +28,22 @@ $ pip install jinja2
 
 * Importe `Jinja2Templates`.
 * Crie um objeto `templates` que você possa reutilizar posteriormente.
-* Declare um parâmetro `Request` no *path operation* que retornará um template.
-* Use o `templates` que você criou para renderizar e retornar uma `TemplateResponse`, passe o nome do template, o objeto `request` e um dicionário "context" com pares chave-valor a serem usados dentro do template do Jinja2.
+* Declare um parâmetro `Request` na *operação de rota* que retornará um template.
+* Use o `templates` que você criou para renderizar e retornar uma `TemplateResponse`, passe o nome do template, o objeto request e um dicionário "context" com pares chave-valor a serem usados dentro do template do Jinja2.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Nota
 
-Antes do FastAPI 0.108.0, Starlette 0.29.0, `name` era o primeiro parâmetro.
+Antes do FastAPI 0.108.0, Starlette 0.29.0, o `name` era o primeiro parâmetro.
 
-Além disso, em versões anteriores, o objeto `request` era passado como parte dos pares chave-valor no "context" dict para o Jinja2.
+Além disso, antes disso, em versões anteriores, o objeto `request` era passado como parte dos pares chave-valor no context para o Jinja2.
 
 ///
 
 /// tip | Dica
 
-Ao declarar `response_class=HTMLResponse`, a documentação entenderá que a resposta será HTML.
+Ao declarar `response_class=HTMLResponse`, a interface da documentação poderá saber que a resposta será HTML.
 
 ///
 
@@ -53,7 +57,7 @@ Você também poderia usar `from starlette.templating import Jinja2Templates`.
 
 ## Escrevendo templates { #writing-templates }
 
-Então você pode escrever um template em `templates/item.html`, por exemplo:
+Então você pode escrever um template em `templates/item.html` com, por exemplo:
 
 ```jinja hl_lines="7"
 {!../../docs_src/templates/templates/item.html!}
@@ -63,13 +67,9 @@ Então você pode escrever um template em `templates/item.html`, por exemplo:
 
 No código HTML que contém:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...aparecerá o `id` obtido do "context" `dict` que você passou:
 
@@ -77,7 +77,7 @@ Item ID: {{ id }}
 {"id": id}
 ```
 
-Por exemplo, dado um ID de valor `42`, aparecerá:
+Por exemplo, com um ID de `42`, isso renderizará:
 
 ```html
 Item ID: 42
@@ -85,25 +85,51 @@ Item ID: 42
 
 ### Argumentos do `url_for` no template { #template-url-for-arguments }
 
-Você também pode usar `url_for()` dentro do template, ele recebe como argumentos os mesmos argumentos que seriam usados pela sua *path operation function*.
+Você também pode usar `url_for()` dentro do template, ele recebe como argumentos os mesmos argumentos que seriam usados pela sua *função de operação de rota*.
 
 Logo, a seção com:
-
-{% raw %}
 
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
+...irá gerar um link para a mesma URL que será tratada pela *função de operação de rota* `read_item(id=id)`.
 
-...irá gerar um link para a mesma URL que será tratada pela *path operation function* `read_item(id=id)`.
+`url_for()` retorna uma URL absoluta, incluindo o esquema e o host, com base no request atual.
 
-Por exemplo, com um ID de `42`, isso renderizará:
+Por exemplo, se sua aplicação for servida em `https://example.com`, com um ID de `42`, isso renderizará:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### Paths de URL em templates { #url-paths-in-templates }
+
+Para links para o mesmo site, você pode usar o atributo `.path` para obter apenas o path da URL, por exemplo, em `templates/item_path.html`:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Passe o nome do template para `TemplateResponse`:
+
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
+
+Com o mesmo exemplo, o link do item seria renderizado assim:
 
 ```html
 <a href="/items/42">
 ```
+
+A `/` inicial torna esse path relativo à raiz do site atual.
+
+O atributo `.path` exclui o esquema, o host, os parâmetros de consulta e o fragmento. Use a URL completa para links para outro host.
+
+/// tip | Dica
+
+Se sua aplicação estiver atrás de um proxy, configure os cabeçalhos encaminhados e o `root_path` conforme descrito em [Atrás de um Proxy](behind-a-proxy.md).
+
+///
 
 ## Templates e arquivos estáticos { #templates-and-static-files }
 
@@ -123,4 +149,4 @@ E como você está usando `StaticFiles`, este arquivo CSS será automaticamente 
 
 ## Mais detalhes { #more-details }
 
-Para obter mais detalhes, incluindo como testar templates, consulte a [documentação da Starlette sobre templates](https://www.starlette.dev/templates/).
+Para obter mais detalhes, incluindo como testar templates, consulte a [documentação da Starlette sobre templates](https://starlette.dev/templates/).

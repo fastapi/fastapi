@@ -15,7 +15,7 @@ Data लेना:
 
 ## `Request` object के बारे में विवरण { #details-about-the-request-object }
 
-क्योंकि **FastAPI** असल में नीचे से **Starlette** है, जिसके ऊपर कई tools की एक layer है, इसलिए जब ज़रूरत हो, आप Starlette के [`Request`](https://www.starlette.dev/requests/) object को सीधे इस्तेमाल कर सकते हैं।
+क्योंकि **FastAPI** असल में नीचे से **Starlette** है, जिसके ऊपर कई tools की एक layer है, इसलिए जब ज़रूरत हो, आप Starlette के [`Request`](https://starlette.dev/requests/) object को सीधे इस्तेमाल कर सकते हैं।
 
 इसका मतलब यह भी होगा कि अगर आप `Request` object से सीधे data लेते हैं (उदाहरण के लिए, body पढ़ते हैं), तो FastAPI उसे validate, convert या document नहीं करेगा (OpenAPI के साथ, automatic API user interface के लिए)।
 
@@ -29,7 +29,7 @@ Data लेना:
 
 इसके लिए आपको request को सीधे access करना होगा।
 
-{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 `Request` type वाले *path operation function* parameter को declare करके, **FastAPI** जान जाएगा कि उस parameter में `Request` pass करना है।
 
@@ -45,7 +45,7 @@ Data लेना:
 
 ## `Request` documentation { #request-documentation }
 
-आप [`Request` object के बारे में official Starlette documentation site](https://www.starlette.dev/requests/) पर और विवरण पढ़ सकते हैं।
+आप [`Request` object के बारे में official Starlette documentation site](https://starlette.dev/requests/) पर और विवरण पढ़ सकते हैं।
 
 /// note | तकनीकी विवरण
 

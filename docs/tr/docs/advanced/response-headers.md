@@ -1,13 +1,12 @@
 # Response Header'ları { #response-headers }
 
-
 ## Bir `Response` parametresi kullanın { #use-a-response-parameter }
 
 *Path operation function* içinde (cookie'lerde yapabildiğiniz gibi) tipi `Response` olan bir parametre tanımlayabilirsiniz.
 
 Sonra da bu *geçici* response nesnesi üzerinde header'ları ayarlayabilirsiniz.
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 Ardından normalde yaptığınız gibi ihtiyacınız olan herhangi bir nesneyi döndürebilirsiniz (bir `dict`, bir veritabanı modeli vb.).
 
@@ -23,7 +22,7 @@ Doğrudan bir `Response` döndürdüğünüzde de header ekleyebilirsiniz.
 
 [Bir Response'u Doğrudan Döndürün](response-directly.md) bölümünde anlatıldığı gibi bir response oluşturun ve header'ları ek bir parametre olarak geçin:
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | Teknik Detaylar
 
@@ -39,4 +38,4 @@ Ayrıca `Response` header ve cookie ayarlamak için sık kullanıldığından, *
 
 Özel/proprietary header'ların [`X-` prefix'i kullanılarak](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) eklenebileceğini unutmayın.
 
-Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS ayarlarınıza eklemeniz gerekir ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) bölümünde daha fazla bilgi), bunun için [Starlette'in CORS dokümanında](https://www.starlette.dev/middleware/#corsmiddleware) açıklanan `expose_headers` parametresini kullanın.
+Ancak tarayıcıdaki bir client'ın görebilmesini istediğiniz özel header'larınız varsa, bunları CORS ayarlarınıza eklemeniz gerekir ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) bölümünde daha fazla bilgi), bunun için [Starlette'in CORS dokümanında](https://starlette.dev/middleware/#corsmiddleware) açıklanan `expose_headers` parametresini kullanın.

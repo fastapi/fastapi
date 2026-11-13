@@ -119,6 +119,10 @@ Running `fastapi dev` initiates development mode.
 
 By default, **auto-reload** is enabled, automatically reloading the server when you make changes to your code. This is resource-intensive and could be less stable than when it's disabled. You should only use it for development. It also listens on the IP address `127.0.0.1`, which is the IP for your machine to communicate with itself alone (`localhost`).
 
+Before importing your app, `fastapi dev` sets the `FASTAPI_ENV` environment variable to `development`. If `FASTAPI_ENV` is already set, its existing value is preserved. This lets app startup code choose development-friendly behavior while allowing you to provide an app-specific environment such as `staging`.
+
+The conventional `FASTAPI_ENV` values are `development` and `production`. `fastapi run` currently leaves `FASTAPI_ENV` unchanged, so set it explicitly if your app needs to detect production mode.
+
 ## `fastapi run` { #fastapi-run }
 
 Executing `fastapi run` starts FastAPI in production mode.

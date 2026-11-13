@@ -4,7 +4,7 @@
 
 これは比較的高度なトピックです。
 
-FastAPI を使い始めたばかりであれば、これは不要かもしれません。
+**FastAPI** を使い始めたばかりであれば、これは不要かもしれません。
 
 ///
 
@@ -22,11 +22,11 @@ FastAPI を使い始めたばかりであれば、これは不要かもしれま
 
 それぞれのレスポンス `dict` には、`response_model` と同様に Pydantic モデルを格納する `model` キーを含められます。
 
-FastAPI はそのモデルから JSON Schema を生成し、OpenAPI の適切な場所に含めます。
+**FastAPI** はそのモデルから JSON Schema を生成し、OpenAPI の適切な場所に含めます。
 
 例えば、ステータスコード `404` と Pydantic モデル `Message` を持つ別のレスポンスを宣言するには、次のように書けます:
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | 備考
 
@@ -38,14 +38,14 @@ FastAPI はそのモデルから JSON Schema を生成し、OpenAPI の適切な
 
 `model` キーは OpenAPI の一部ではありません。
 
-FastAPI はそこから Pydantic モデルを取得して JSON Schema を生成し、適切な場所に配置します。
+**FastAPI** はそこから Pydantic モデルを取得して JSON Schema を生成し、適切な場所に配置します。
 
 適切な場所は次のとおりです:
 
 - `content` キーの中。これは値として別の JSON オブジェクト（`dict`）を持ち、その中に次が含まれます:
     - メディアタイプ（例: `application/json`）をキーとし、値としてさらに別の JSON オブジェクトを持ち、その中に次が含まれます:
         - `schema` キー。値としてモデル由来の JSON Schema を持ち、ここが正しい配置場所です。
-            - FastAPI はここに、スキーマを直接埋め込む代わりに OpenAPI 内のグローバルな JSON Schema への参照を追加します。これにより、他のアプリケーションやクライアントがそれらの JSON Schema を直接利用し、より良いコード生成ツール等を提供できます。
+            - **FastAPI** はここに、スキーマを直接埋め込む代わりに OpenAPI 内のグローバルな JSON Schema への参照を追加します。これにより、他のアプリケーションやクライアントがそれらの JSON Schema を直接利用し、より良いコード生成ツール等を提供できます。
 
 ///
 
@@ -175,7 +175,7 @@ FastAPI はそこから Pydantic モデルを取得して JSON Schema を生成�
 
 例えば、`image/png` の追加メディアタイプを加え、あなたの *path operation* が JSON オブジェクト（メディアタイプ `application/json`）または PNG 画像を返せることを宣言できます:
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | 備考
 
@@ -197,13 +197,13 @@ FastAPI はそこから Pydantic モデルを取得して JSON Schema を生成�
 
 `response_model` を宣言し、デフォルトのステータスコード `200`（必要なら任意のコード）を使い、その同じレスポンスに対する追加情報を `responses` で OpenAPI スキーマに直接記述できます。
 
-FastAPI は `responses` にある追加情報を保持し、モデルの JSON Schema と結合します。
+**FastAPI** は `responses` にある追加情報を保持し、モデルの JSON Schema と結合します。
 
 例えば、Pydantic モデルを用い、独自の `description` を持つステータスコード `404` のレスポンスを宣言できます。
 
 さらに、`response_model` を使うステータスコード `200` のレスポンスに独自の `example` を含めることもできます:
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 これらはすべて結合されて OpenAPI に含まれ、API ドキュメントに表示されます:
 
@@ -237,11 +237,11 @@ new_dict = {**old_dict, "new key": "new value"}
 
 例えば:
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## OpenAPI レスポンスの詳細 { #more-information-about-openapi-responses }
 
 レスポンスに正確に何を含められるかは、OpenAPI 仕様の次のセクションを参照してください:
 
-- [OpenAPI の Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object)、ここには `Response Object` が含まれます。
-- [OpenAPI の Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object)、`responses` パラメータ内の各レスポンスに、ここで定義されている要素を直接含められます。`description`、`headers`、`content`（ここで異なるメディアタイプや JSON Schema を宣言します）、`links` など。
+- [OpenAPI の Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object)、ここには `Response Object` が含まれます。
+- [OpenAPI の Response Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object)、`responses` パラメータ内の各レスポンスに、ここで定義されている要素を直接含められます。`description`、`headers`、`content`（ここで異なるメディアタイプや JSON Schema を宣言します）、`links` など。

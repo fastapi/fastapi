@@ -7,7 +7,7 @@ Bir **request** body, client'in API'nize gönderdiği veridir. Bir **response** 
 
 API'niz neredeyse her zaman bir **response** body göndermek zorundadır. Ancak client'lerin her zaman **request body** göndermesi gerekmez; bazen sadece bir path isterler, belki birkaç query parametresiyle birlikte, ama body göndermezler.
 
-Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla [Pydantic](https://docs.pydantic.dev/) modellerini kullanırsınız.
+Bir **request** body tanımlamak için, tüm gücü ve avantajlarıyla [Pydantic](https://pydantic.dev/docs/) modellerini kullanırsınız.
 
 /// note | Not
 
@@ -23,7 +23,7 @@ Veri göndermek için şunlardan birini kullanmalısınız: `POST` (en yaygını
 
 Önce, `pydantic` içinden `BaseModel`'i import etmeniz gerekir:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## Veri modelinizi oluşturun { #create-your-data-model }
 
@@ -31,7 +31,7 @@ Sonra veri modelinizi, `BaseModel`'den kalıtım alan bir class olarak tanımlar
 
 Tüm attribute'lar için standart Python type'larını kullanın:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 Query parametrelerini tanımlarken olduğu gibi, bir model attribute'ü default bir değere sahipse zorunlu değildir. Aksi halde zorunludur. Sadece opsiyonel yapmak için `None` kullanın.
@@ -60,7 +60,7 @@ Query parametrelerini tanımlarken olduğu gibi, bir model attribute'ü default 
 
 Bunu *path operation*'ınıza eklemek için, path ve query parametrelerini tanımladığınız şekilde tanımlayın:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...ve type'ını, oluşturduğunuz model olan `Item` olarak belirtin.
 
@@ -127,7 +127,7 @@ Pydantic modelleri için editor desteğini şu açılardan iyileştirir:
 
 Fonksiyonun içinde model nesnesinin tüm attribute'larına doğrudan erişebilirsiniz:
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## Request body + path parametreleri { #request-body-path-parameters }
 
@@ -135,7 +135,7 @@ Path parametrelerini ve request body'yi aynı anda tanımlayabilirsiniz.
 
 **FastAPI**, path parametreleriyle eşleşen fonksiyon parametrelerinin **path'ten alınması** gerektiğini ve Pydantic model olarak tanımlanan fonksiyon parametrelerinin **request body'den alınması** gerektiğini anlayacaktır.
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## Request body + path + query parametreleri { #request-body-path-query-parameters }
@@ -144,7 +144,7 @@ Path parametrelerini ve request body'yi aynı anda tanımlayabilirsiniz.
 
 **FastAPI** bunların her birini tanır ve veriyi doğru yerden alır.
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 Fonksiyon parametreleri şu şekilde tanınır:
 

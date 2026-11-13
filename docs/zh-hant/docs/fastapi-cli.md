@@ -2,7 +2,7 @@
 
 **FastAPI <abbr title="command line interface - 命令列介面">CLI</abbr>** 是一個命令列程式，你可以用它來啟動你的 FastAPI 應用程式、管理你的 FastAPI 專案，等等。
 
-當你安裝 FastAPI（例如使用 `pip install "fastapi[standard]"`）時，會附帶一個可以在終端機執行的命令列程式。
+當你將 FastAPI 加入專案（例如使用 `uv add "fastapi[standard]"`）時，會附帶一個可以在終端機執行的命令列程式。
 
 要在開發時運行你的 FastAPI 應用程式，你可以使用 `fastapi dev` 指令：
 
@@ -52,7 +52,7 @@ $ <font color="#4E9A06">fastapi</font> dev
 
 ///
 
-在內部，**FastAPI CLI** 使用 [Uvicorn](https://www.uvicorn.dev)，這是一個高效能、適用於生產環境的 ASGI 伺服器。😎
+在內部，**FastAPI CLI** 使用 [Uvicorn](https://uvicorn.dev)，這是一個高效能、適用於生產環境的 ASGI 伺服器。😎
 
 `fastapi` CLI 會嘗試自動偵測要執行的 FastAPI 應用程式，預設假設它是檔案 `main.py` 中名為 `app` 的物件（或其他幾種變體）。
 
@@ -100,13 +100,13 @@ from backend.main import app
 你也可以把檔案路徑傳給 `fastapi dev` 指令，它會推測要使用的 FastAPI app 物件：
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 或者，你也可以把 `--entrypoint` 選項傳給 `fastapi dev` 指令：
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 但這樣每次呼叫 `fastapi` 指令時都得記得傳入正確的路徑或 entrypoint。
@@ -118,6 +118,10 @@ $ fastapi dev --entrypoint main:app
 執行 `fastapi dev` 會啟動開發模式。
 
 預設情況下，**auto-reload** 功能是啟用的，當你對程式碼進行修改時，伺服器會自動重新載入。這會消耗較多資源，並且可能比禁用時更不穩定。因此，你應該只在開發環境中使用此功能。它也會在 IP 位址 `127.0.0.1` 上監聽，這是用於你的機器與自身通訊的 IP 位址（`localhost`）。
+
+在匯入你的 app 之前，`fastapi dev` 會將 `FASTAPI_ENV` 環境變數設為 `development`。如果 `FASTAPI_ENV` 已經設定，則會保留其既有值。這讓 app 啟動程式碼可以選擇適合開發的行為，同時允許你提供 app 專用的環境，例如 `staging`。
+
+慣例的 `FASTAPI_ENV` 值是 `development` 和 `production`。`fastapi run` 目前會讓 `FASTAPI_ENV` 保持不變，因此如果你的 app 需要偵測生產模式，請明確設定它。
 
 ## `fastapi run` { #fastapi-run }
 

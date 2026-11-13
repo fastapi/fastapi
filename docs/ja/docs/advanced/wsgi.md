@@ -9,7 +9,7 @@
 
 /// note | 備考
 
-これには `a2wsgi` のインストールが必要です。例: `pip install a2wsgi`。
+これにはプロジェクトに `a2wsgi` を追加する必要があります。例: `uv add a2wsgi`。
 
 ///
 
@@ -19,7 +19,7 @@
 
 そして、それをあるパスの下にマウントします。
 
-{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001.py hl[1,3,23] *}
 
 /// note | 備考
 

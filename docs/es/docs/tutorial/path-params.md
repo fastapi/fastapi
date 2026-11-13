@@ -2,7 +2,7 @@
 
 Puedes declarar "parámetros" o "variables" de path con la misma sintaxis que se usa en los format strings de Python:
 
-{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 El valor del parámetro de path `item_id` se pasará a tu función como el argumento `item_id`.
 
@@ -16,7 +16,7 @@ Así que, si ejecutas este ejemplo y vas a [http://127.0.0.1:8000/items/foo](htt
 
 Puedes declarar el tipo de un parámetro de path en la función, usando anotaciones de tipos estándar de Python:
 
-{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 En este caso, `item_id` se declara como un `int`.
 
@@ -92,7 +92,7 @@ Nota que el parámetro de path está declarado como un entero.
 
 ## Beneficios basados en estándares, documentación alternativa { #standards-based-benefits-alternative-documentation }
 
-Y porque el esquema generado es del estándar [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md), hay muchas herramientas compatibles.
+Y porque el esquema generado es del estándar [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md), hay muchas herramientas compatibles.
 
 Debido a esto, el propio **FastAPI** proporciona una documentación de API alternativa (usando ReDoc), a la cual puedes acceder en [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc):
 
@@ -102,7 +102,7 @@ De la misma manera, hay muchas herramientas compatibles. Incluyendo herramientas
 
 ## Pydantic { #pydantic }
 
-Toda la validación de datos se realiza internamente con [Pydantic](https://docs.pydantic.dev/), así que obtienes todos los beneficios de esta. Y sabes que estás en buenas manos.
+Toda la validación de datos se realiza internamente con [Pydantic](https://pydantic.dev/docs/), así que obtienes todos los beneficios de esta. Y sabes que estás en buenas manos.
 
 Puedes usar las mismas declaraciones de tipo con `str`, `float`, `bool` y muchos otros tipos de datos complejos.
 
@@ -118,13 +118,13 @@ Y luego también puedes tener un path `/users/{user_id}` para obtener datos sobr
 
 Debido a que las *path operations* se evalúan en orden, necesitas asegurarte de que el path para `/users/me` se declara antes que el de `/users/{user_id}`:
 
-{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 De lo contrario, el path para `/users/{user_id}` también coincidiría para `/users/me`, "pensando" que está recibiendo un parámetro `user_id` con un valor de `"me"`.
 
 De manera similar, no puedes redefinir una path operation:
 
-{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 La primera siempre será utilizada ya que el path coincide primero.
 
@@ -140,7 +140,7 @@ Al heredar de `str`, la documentación de la API podrá saber que los valores de
 
 Luego crea atributos de clase con valores fijos, que serán los valores válidos disponibles:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// tip | Consejo
 
@@ -152,7 +152,7 @@ Si te estás preguntando, "AlexNet", "ResNet" y "LeNet" son solo nombres de <dfn
 
 Luego crea un *path parameter* con una anotación de tipo usando la clase enum que creaste (`ModelName`):
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Revisa la documentación { #check-the-docs }
 
@@ -168,13 +168,13 @@ El valor del *path parameter* será un *miembro* de enumeración.
 
 Puedes compararlo con el *miembro* de enumeración en tu enum creada `ModelName`:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### Obtener el valor de *enumeración* { #get-the-enumeration-value }
 
 Puedes obtener el valor actual (un `str` en este caso) usando `model_name.value`, o en general, `your_enum_member.value`:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | Consejo
 
@@ -188,7 +188,7 @@ Puedes devolver *miembros de enum* desde tu *path operation*, incluso anidados e
 
 Serán convertidos a sus valores correspondientes (cadenas en este caso) antes de devolverlos al cliente:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 En tu cliente recibirás un response JSON como:
 
@@ -227,7 +227,7 @@ En este caso, el nombre del parámetro es `file_path`, y la última parte, `:pat
 
 Así que, puedes usarlo con:
 
-{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip | Consejo
 

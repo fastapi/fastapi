@@ -1,6 +1,5 @@
 # Benutzerdefinierte Request- und APIRoute-Klasse { #custom-request-and-apiroute-class }
 
-
 In einigen Fällen möchten Sie möglicherweise die von den Klassen `Request` und `APIRoute` verwendete Logik überschreiben.
 
 Das kann insbesondere eine gute Alternative zur Logik in einer Middleware sein.
@@ -43,7 +42,7 @@ Wenn der Header kein `gzip` enthält, wird nicht versucht, den Body zu dekomprim
 
 Auf diese Weise kann dieselbe Routenklasse gzip-komprimierte oder unkomprimierte Requests verarbeiten.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### Eine benutzerdefinierte `GzipRoute`-Klasse erstellen { #create-a-custom-gziproute-class }
 
@@ -55,7 +54,7 @@ Diese Methode gibt eine Funktion zurück. Und diese Funktion empfängt einen <ab
 
 Hier verwenden wir sie, um aus dem ursprünglichen Request einen `GzipRequest` zu erstellen.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | Technische Details
 
@@ -67,7 +66,7 @@ Das `scope`-`dict` und die `receive`-Funktion sind beide Teil der ASGI-Spezifika
 
 Und diese beiden Dinge, `scope` und `receive`, werden benötigt, um eine neue `Request`-Instanz zu erstellen.
 
-Um mehr über den `Request` zu erfahren, schauen Sie sich [Starlettes Dokumentation zu Requests](https://www.starlette.dev/requests/) an.
+Um mehr über den `Request` zu erfahren, schauen Sie sich [Starlettes Dokumentation zu Requests](https://starlette.dev/requests/) an.
 
 ///
 
@@ -93,18 +92,18 @@ Wir können denselben Ansatz auch verwenden, um in einem Exceptionhandler auf de
 
 Alles, was wir tun müssen, ist, den Request innerhalb eines `try`/`except`-Blocks zu handhaben:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 Wenn eine Exception auftritt, befindet sich die `Request`-Instanz weiterhin im Gültigkeitsbereich, sodass wir den Requestbody lesen und bei der Fehlerbehandlung verwenden können:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## Benutzerdefinierte `APIRoute`-Klasse in einem Router { #custom-apiroute-class-in-a-router }
 
 Sie können auch den Parameter `route_class` eines `APIRouter` festlegen:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 In diesem Beispiel verwenden die *Pfadoperationen* unter dem `router` die benutzerdefinierte `TimedRoute`-Klasse und haben in der Response einen zusätzlichen `X-Response-Time`-Header mit der Zeit, die zum Generieren der Response benötigt wurde:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

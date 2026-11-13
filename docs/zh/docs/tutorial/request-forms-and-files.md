@@ -6,23 +6,23 @@ FastAPI 支持同时使用 `File` 和 `Form` 定义文件和表单字段。
 
 接收上传的文件和/或表单数据，首先安装 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-请先创建并激活一个[虚拟环境](../virtual-environments.md)，然后再安装，例如：
+将它添加到你的项目中：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
 
 ## 导入 `File` 与 `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[3] *}
 
 ## 定义 `File` 与 `Form` 参数 { #define-file-and-form-parameters }
 
 创建文件和表单参数的方式与 `Body` 和 `Query` 一样：
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[10:12] *}
 
 文件和表单字段作为表单数据上传与接收。
 

@@ -6,10 +6,10 @@
 
 Щоб використовувати форми, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, і потім встановили бібліотеку, наприклад:
+Додайте його до вашого проєкту:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -18,13 +18,13 @@ $ pip install python-multipart
 
 Імпортуйте `Form` з `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## Оголошення параметрів `Form` { #define-form-parameters }
 
 Створюйте параметри форми так само як ви б створювали `Body` або `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Наприклад, один зі способів використання специфікації OAuth2 (так званий «потік паролю») вимагає надсилати `username` та `password` як поля форми.
 
@@ -44,6 +44,14 @@ $ pip install python-multipart
 
 ///
 
+## Булеві поля форми { #boolean-form-fields }
+
+Браузери пропускають невстановлені прапорці під час надсилання HTML-форм. Оголосіть булевий параметр форми зі значенням за замовчуванням `False`, щоб отримувати `False`, коли прапорець не встановлено:
+
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
+
+Встановлений прапорець надсилає своє значення, яке за замовчуванням дорівнює `"on"`. **FastAPI** приймає `"on"` як `True`.
+
 ## Про «поля форми» { #about-form-fields }
 
 HTML-форми (`<form></form>`) надсилають дані на сервер у «спеціальному» кодуванні, яке відрізняється від JSON.
@@ -55,6 +63,8 @@ HTML-форми (`<form></form>`) надсилають дані на серве�
 Дані з форм зазвичай кодуються за допомогою «типу медіа» `application/x-www-form-urlencoded`.
 
 Але якщо форма містить файли, вона кодується як `multipart/form-data`. Ви дізнаєтеся про обробку файлів у наступному розділі.
+
+Ви можете використовувати `Form(media_type="multipart/form-data")`, щоб описати багаточастинну форму в OpenAPI. Під час поєднання параметрів форми або моделей достатньо встановити це для одного параметра.
 
 Якщо ви хочете дізнатися більше про ці кодування та поля форм, зверніться до [<abbr title="Mozilla Developer Network - Мережа Розробників Mozilla">MDN</abbr> вебдокументації для `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 

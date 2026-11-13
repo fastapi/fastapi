@@ -7,7 +7,7 @@
 
 У вашому FastAPI-додатку імпортуйте та запустіть `uvicorn` безпосередньо:
 
-{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
 ### Про `__name__ == "__main__"` { #about-name-main }
 
@@ -16,7 +16,7 @@
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -36,7 +36,7 @@ from myapp import app
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>

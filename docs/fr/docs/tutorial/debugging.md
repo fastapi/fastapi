@@ -6,7 +6,7 @@ Vous pouvez connecter le <abbr title="En anglais: debugger">débogueur</abbr> da
 
 Dans votre application FastAPI, importez et exécutez directement `uvicorn` :
 
-{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
 ### À propos de `__name__ == "__main__"` { #about-name-main }
 
@@ -15,7 +15,7 @@ Le but principal de `__name__ == "__main__"` est d'avoir du code qui est exécut
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ Si vous l'exécutez avec :
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -54,7 +54,7 @@ va s'exécuter.
 
 Cela ne se produira pas si vous importez ce module (fichier).
 
-Par exemple, si vous avez un autre fichier `importer.py` qui contient :
+Donc, si vous avez un autre fichier `importer.py` avec :
 
 ```Python
 from myapp import app
@@ -88,7 +88,7 @@ Par exemple, dans Visual Studio Code, vous pouvez :
 
 * Allez dans le panneau « Debug ».
 * « Add configuration... ».
-* Sélectionnez « Python ».
+* Sélectionnez « Python »
 * Lancez le <abbr title="En anglais: debugger">débogueur</abbr> avec l'option « `Python: Current File (Integrated Terminal)` ».
 
 Il démarrera alors le serveur avec votre code **FastAPI**, s'arrêtera à vos points d'arrêt, etc.

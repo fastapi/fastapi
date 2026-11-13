@@ -34,12 +34,12 @@
 
 ## 安裝 `SQLModel` { #install-sqlmodel }
 
-首先，請先建立你的[虛擬環境](../virtual-environments.md)、啟用它，然後安裝 `sqlmodel`：
+將 `sqlmodel` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -55,7 +55,7 @@ $ pip install sqlmodel
 
 匯入 `SQLModel` 並建立一個資料庫模型：
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[1:11] hl[7:11] *}
 
 `Hero` 類別與 Pydantic 模型非常相似（事實上，在底層它其實*就是一個 Pydantic 模型*）。
 
@@ -77,7 +77,7 @@ SQLModel 的 `engine`（底層實際上是 SQLAlchemy 的 `engine`）是用來**
 
 你的程式中應該只有**單一 `engine` 物件**來連到同一個資料庫。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[14:18] hl[14:15,17:18] *}
 
 使用 `check_same_thread=False` 允許 FastAPI 在不同執行緒中使用同一個 SQLite 資料庫。這是必要的，因為**單一請求**可能會使用**多個執行緒**（例如在依賴項中）。
 
@@ -87,7 +87,7 @@ SQLModel 的 `engine`（底層實際上是 SQLAlchemy 的 `engine`）是用來**
 
 接著我們新增一個函式，使用 `SQLModel.metadata.create_all(engine)` 為所有*資料表模型* **建立資料表**。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[21:22] hl[21:22] *}
 
 ### 建立 Session 依賴 { #create-a-session-dependency }
 
@@ -97,13 +97,13 @@ SQLModel 的 `engine`（底層實際上是 SQLAlchemy 的 `engine`）是用來**
 
 接著我們建立一個 `Annotated` 的依賴 `SessionDep`，讓後續使用這個依賴的程式碼更簡潔。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[25:30]  hl[25:27,30] *}
 
 ### 在啟動時建立資料表 { #create-database-tables-on-startup }
 
 我們會在應用啟動時建立資料庫的資料表。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[32:37] hl[35:37] *}
 
 這裡我們在應用的啟動事件中建立資料表。
 
@@ -123,7 +123,7 @@ SQLModel 之後會提供包裝 Alembic 的遷移工具，但目前你可以直�
 
 同樣地，你也可以將它宣告為函式的**回傳型別**，然後在自動產生的 API 文件 UI 中就會顯示其資料結構。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[40:45] hl[40:45] *}
 
 這裡我們使用 `SessionDep` 依賴（即一個 `Session`），把新的 `Hero` 加入 `Session` 實例，提交變更到資料庫，刷新 `hero` 的資料，然後回傳它。
 
@@ -131,19 +131,19 @@ SQLModel 之後會提供包裝 Alembic 的遷移工具，但目前你可以直�
 
 我們可以用 `select()` 從資料庫**讀取**多個 `Hero`。可以加入 `limit` 與 `offset` 來分頁。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[48:55] hl[51:52,54] *}
 
 ### 讀取單一 Hero { #read-one-hero }
 
 我們可以**讀取**單一的 `Hero`。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[58:63] hl[60] *}
 
 ### 刪除 Hero { #delete-a-hero }
 
 我們也可以**刪除**一個 `Hero`。
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[66:73] hl[71] *}
 
 ### 執行應用 { #run-the-app }
 
@@ -152,7 +152,7 @@ SQLModel 之後會提供包裝 Alembic 的遷移工具，但目前你可以直�
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -192,7 +192,7 @@ $ fastapi dev
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:9] hl[7:9] *}
 
 #### `Hero` - 資料表模型 { #hero-the-table-model }
 
@@ -208,7 +208,7 @@ $ fastapi dev
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:14] hl[12:14] *}
 
 #### `HeroPublic` - 公開的資料模型 { #heropublic-the-public-data-model }
 
@@ -234,7 +234,7 @@ $ fastapi dev
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:18] hl[17:18] *}
 
 #### `HeroCreate` - 用於建立 Hero 的資料模型 { #herocreate-the-data-model-to-create-a-hero }
 
@@ -258,7 +258,7 @@ $ fastapi dev
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:22] hl[21:22] *}
 
 #### `HeroUpdate` - 用於更新 Hero 的資料模型 { #heroupdate-the-data-model-to-update-a-hero }
 
@@ -276,7 +276,7 @@ $ fastapi dev
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:28] hl[25:28] *}
 
 ### 用 `HeroCreate` 建立並回傳 `HeroPublic` { #create-with-herocreate-and-return-a-heropublic }
 
@@ -288,7 +288,7 @@ $ fastapi dev
 
 然後我們直接從函式回傳這個*資料表模型* `Hero`。但因為我們用 `HeroPublic` *資料模型*當作 `response_model`，**FastAPI** 會用 `HeroPublic` 來驗證與序列化資料。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[56:62] hl[56:58] *}
 
 /// tip | 提示
 
@@ -304,13 +304,13 @@ $ fastapi dev
 
 我們可以像先前一樣**讀取**多個 `Hero`。同樣地，我們使用 `response_model=list[HeroPublic]` 來確保資料被正確驗證與序列化。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[65:72] hl[65] *}
 
 ### 使用 `HeroPublic` 讀取單一 Hero { #read-one-hero-with-heropublic }
 
 我們可以**讀取**單一 hero：
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[75:80] hl[77] *}
 
 ### 使用 `HeroUpdate` 更新 Hero { #update-a-hero-with-heroupdate }
 
@@ -320,7 +320,7 @@ $ fastapi dev
 
 然後我們使用 `hero_db.sqlmodel_update(hero_data)` 以 `hero_data` 的資料更新 `hero_db`。
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[83:93] hl[83:84,88:89] *}
 
 ### 再次刪除 Hero { #delete-a-hero-again }
 
@@ -328,7 +328,7 @@ $ fastapi dev
 
 我們不會為了重構而重構一切。😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[96:103] hl[101] *}
 
 ### 再次執行應用 { #run-the-app-again }
 
@@ -337,7 +337,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

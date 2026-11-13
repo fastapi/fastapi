@@ -6,10 +6,10 @@ Sie können Dateien, die vom Client hochgeladen werden, mithilfe von `File` defi
 
 Um hochgeladene Dateien zu empfangen, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und dann das Paket installieren, zum Beispiel:
+Fügen Sie es Ihrem Projekt hinzu:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Das liegt daran, dass hochgeladene Dateien als „Formulardaten“ gesendet werden.
@@ -20,13 +20,13 @@ Das liegt daran, dass hochgeladene Dateien als „Formulardaten“ gesendet werd
 
 Importieren Sie `File` und `UploadFile` von `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## `File`-Parameter definieren { #define-file-parameters }
 
 Erstellen Sie Datei-Parameter, so wie Sie es auch mit `Body` oder `Form` machen würden:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | Hinweis
 
@@ -54,7 +54,7 @@ Aber es gibt viele Fälle, in denen Sie davon profitieren, `UploadFile` zu verwe
 
 Definieren Sie einen Datei-Parameter mit dem Typ `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 `UploadFile` zu verwenden, hat mehrere Vorzüge gegenüber `bytes`:
 
@@ -137,29 +137,29 @@ Das ist keine Limitation von **FastAPI**, sondern Teil des HTTP-Protokolls.
 
 Sie können eine Datei optional machen, indem Sie Standard-Typannotationen verwenden und den Defaultwert auf `None` setzen:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## `UploadFile` mit zusätzlichen Metadaten { #uploadfile-with-additional-metadata }
 
 Sie können auch `File()` mit `UploadFile` verwenden, um zum Beispiel zusätzliche Metadaten zu setzen:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## Mehrere Datei-Uploads { #multiple-file-uploads }
 
-Es ist auch möglich, mehrere Dateien gleichzeitig hochzuladen.
+Es ist möglich, mehrere Dateien gleichzeitig hochzuladen.
 
 Diese werden demselben „Formularfeld“ zugeordnet, welches mittels „Formulardaten“ gesendet wird.
 
 Um das zu machen, deklarieren Sie eine Liste von `bytes` oder `UploadFile`s:
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 Sie erhalten, wie deklariert, eine `list` von `bytes` oder `UploadFile`s.
 
 /// note | Technische Details
 
-Sie können auch `from starlette.responses import HTMLResponse` verwenden.
+Sie könnten auch `from starlette.responses import HTMLResponse` verwenden.
 
 **FastAPI** bietet dieselben `starlette.responses` auch via `fastapi.responses` an, als Annehmlichkeit für Sie, den Entwickler. Die meisten verfügbaren <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Responses</abbr> kommen aber direkt von Starlette.
 
@@ -169,7 +169,7 @@ Sie können auch `from starlette.responses import HTMLResponse` verwenden.
 
 Und so wie zuvor können Sie `File()` verwenden, um zusätzliche Parameter zu setzen, sogar für `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## Zusammenfassung { #recap }
 

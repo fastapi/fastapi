@@ -22,7 +22,7 @@ Vous pouvez aussi diffuser de la **vidéo** ou de l'**audio** de cette manière 
 
 Si vous déclarez un `response_class=StreamingResponse` dans votre *fonction de chemin d'accès*, vous pouvez utiliser `yield` pour envoyer chaque bloc de données à son tour.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI transmettra chaque bloc de données à la `StreamingResponse` tel quel ; il n'essaiera pas de le convertir en JSON ni autre chose similaire.
 
@@ -30,7 +30,7 @@ FastAPI transmettra chaque bloc de données à la `StreamingResponse` tel quel ;
 
 Vous pouvez également utiliser des fonctions `def` classiques (sans `async`), et utiliser `yield` de la même manière.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### Sans annotation { #no-annotation }
 
@@ -38,7 +38,7 @@ Vous n'avez pas vraiment besoin de déclarer l'annotation de type de retour pour
 
 Comme FastAPI n'essaiera pas de convertir les données en JSON avec Pydantic ni de les sérialiser, dans ce cas l'annotation de type ne sert qu'à votre éditeur et à vos outils ; elle ne sera pas utilisée par FastAPI.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 Cela signifie aussi qu'avec `StreamingResponse` vous avez la **liberté** et la **responsabilité** de produire et d'encoder les octets de données exactement comme vous avez besoin de les envoyer, indépendamment des annotations de type. 🤓
 
@@ -46,7 +46,7 @@ Cela signifie aussi qu'avec `StreamingResponse` vous avez la **liberté** et la 
 
 L'un des principaux cas d'usage consiste à diffuser des `bytes` au lieu de chaînes ; vous pouvez bien sûr le faire.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## Créer une `PNGStreamingResponse` personnalisée { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ Vous pouvez créer une sous-classe personnalisée de `StreamingResponse` qui dé
 
 Par exemple, vous pouvez créer une `PNGStreamingResponse` qui définit l'en-tête `Content-Type` à `image/png` en utilisant l'attribut `media_type` :
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 Vous pouvez ensuite utiliser cette nouvelle classe dans `response_class=PNGStreamingResponse` dans votre *fonction de chemin d'accès* :
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### Simuler un fichier { #simulate-a-file }
 
@@ -68,7 +68,7 @@ Dans cet exemple, nous simulons un fichier avec `io.BytesIO`, qui est un objet d
 
 Par exemple, nous pouvons itérer dessus pour en consommer le contenu, comme nous le ferions avec un fichier.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | Détails techniques
 
@@ -100,7 +100,7 @@ Mais dans de nombreux cas, la lecture d'un fichier ou d'un objet de type fichier
 
 Pour éviter de bloquer la boucle d'événements, vous pouvez simplement déclarer la *fonction de chemin d'accès* avec un `def` classique au lieu de `async def`. Ainsi, FastAPI l'exécutera dans un worker de pool de threads, afin d'éviter de bloquer la boucle principale.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip | Astuce
 
@@ -114,4 +114,4 @@ Lorsque vous itérez sur quelque chose, comme un objet de type fichier, et que v
 
 Ce n'est pas spécifique à FastAPI, c'est simplement Python, mais c'est une astuce utile à connaître. 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

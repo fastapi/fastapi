@@ -45,25 +45,25 @@
 
 基於上述資訊，你可以用相同的工具函式來產生 OpenAPI 結構，並覆寫你需要客製的部分。
 
-例如，我們要加入 [ReDoc 的 OpenAPI 擴充，插入自訂 logo](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)。
+例如，我們要加入 [ReDoc 的 OpenAPI 擴充，插入自訂 logo](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo)。
 
 ### 一般的 **FastAPI** { #normal-fastapi }
 
 先照常撰寫你的 **FastAPI** 應用：
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### 產生 OpenAPI 結構 { #generate-the-openapi-schema }
 
 接著，在 `custom_openapi()` 函式內，使用相同的工具函式來產生 OpenAPI 結構：
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### 修改 OpenAPI 結構 { #modify-the-openapi-schema }
 
 現在可以加入 ReDoc 擴充，在 OpenAPI 結構的 `info`「物件」中新增自訂的 `x-logo`：
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### 快取 OpenAPI 結構 { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@
 
 結構只會產生一次，之後的請求都會使用相同的快取結果。
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### 覆寫方法 { #override-the-method }
 
 現在你可以用新的函式取代 `.openapi()` 方法。
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### 檢查看看 { #check-it }
 

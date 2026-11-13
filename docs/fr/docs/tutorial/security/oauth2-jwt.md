@@ -30,12 +30,12 @@ Si vous voulez expérimenter avec des jetons JWT et voir comment ils fonctionnen
 
 Nous devons installer `PyJWT` pour générer et vérifier les jetons JWT en Python.
 
-Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis d'installer `pyjwt` :
+Ajoutez `pyjwt` à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ Il prend en charge de nombreux algorithmes de hachage sécurisés et des utilita
 
 L'algorithme recommandé est « Argon2 ».
 
-Assurez-vous de créer un [environnement virtuel](../../virtual-environments.md), de l'activer, puis d'installer pwdlib avec Argon2 :
+Ajoutez `pwdlib` avec Argon2 à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -116,7 +116,7 @@ Et une autre pour vérifier si un mot de passe reçu correspond au hachage stock
 
 Et une autre pour authentifier et renvoyer un utilisateur.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 Lorsque `authenticate_user` est appelée avec un nom d'utilisateur qui n'existe pas dans la base de données, nous exécutons tout de même `verify_password` contre un hachage factice.
 
@@ -156,7 +156,7 @@ Définissez un modèle Pydantic qui sera utilisé dans l'endpoint du jeton pour 
 
 Créez une fonction utilitaire pour générer un nouveau jeton d'accès.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Mettre à jour les dépendances { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ Décodez le jeton reçu, vérifiez-le, et renvoyez l'utilisateur courant.
 
 Si le jeton est invalide, renvoyez immédiatement une erreur HTTP.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## Mettre à jour le *chemin d'accès* `/token` { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ Créez un `timedelta` avec la durée d'expiration du jeton.
 
 Créez un véritable jeton d'accès JWT et renvoyez-le.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### Détails techniques au sujet du « subject » JWT `sub` { #technical-details-about-the-jwt-subject-sub }
 

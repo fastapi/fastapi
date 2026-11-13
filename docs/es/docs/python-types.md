@@ -22,7 +22,7 @@ Si eres un experto en Python, y ya sabes todo sobre las anotaciones de tipos, sa
 
 Comencemos con un ejemplo simple:
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 Llamar a este programa genera:
 
@@ -36,7 +36,7 @@ La función hace lo siguiente:
 * Convierte la primera letra de cada uno a mayúsculas con `title()`.
 * <dfn title="Los une, como uno. Con el contenido de uno después del otro.">Concatena</dfn> ambos con un espacio en el medio.
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Edítalo { #edit-it }
 
@@ -78,7 +78,7 @@ Eso es todo.
 
 Esas son las "anotaciones de tipos":
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 Eso no es lo mismo que declarar valores por defecto como sería con:
 
@@ -106,7 +106,7 @@ Con eso, puedes desplazarte, viendo las opciones, hasta que encuentres la que "t
 
 Revisa esta función, ya tiene anotaciones de tipos:
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Porque el editor conoce los tipos de las variables, no solo obtienes autocompletado, también obtienes chequeo de errores:
 
@@ -114,7 +114,7 @@ Porque el editor conoce los tipos de las variables, no solo obtienes autocomplet
 
 Ahora sabes que debes corregirlo, convertir `age` a un string con `str(age)`:
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Declaración de tipos { #declaring-types }
 
@@ -133,7 +133,7 @@ Puedes usar, por ejemplo:
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### Módulo `typing` { #typing-module }
 
@@ -170,7 +170,7 @@ Como tipo, pon `list`.
 
 Como la `list` es un tipo que contiene algunos tipos internos, los pones entre corchetes:
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | Nota
 
@@ -196,7 +196,7 @@ Y aún así, el editor sabe que es un `str` y proporciona soporte para eso.
 
 Harías lo mismo para declarar `tuple`s y `set`s:
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 Esto significa:
 
@@ -211,7 +211,7 @@ El primer parámetro de tipo es para las claves del `dict`.
 
 El segundo parámetro de tipo es para los valores del `dict`:
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 Esto significa:
 
@@ -228,7 +228,7 @@ Para definirlo usas la <dfn title='también llamado "operador OR a nivel de bits
 Esto se llama una "unión", porque la variable puede ser cualquiera en la unión de esos dos conjuntos de tipos.
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 Esto significa que `item` podría ser un `int` o un `str`.
@@ -240,7 +240,7 @@ Puedes declarar que un valor podría tener un tipo, como `str`, pero que tambié
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -253,11 +253,11 @@ También puedes declarar una clase como el tipo de una variable.
 
 Digamos que tienes una clase `Person`, con un nombre:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Luego puedes declarar una variable para que sea de tipo `Person`:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 Y luego, nuevamente, obtienes todo el soporte del editor:
 
@@ -269,7 +269,7 @@ No significa "`one_person` es la **clase** llamada `Person`".
 
 ## Modelos Pydantic { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) es un paquete de Python para realizar la validación de datos.
+[Pydantic](https://pydantic.dev/docs/) es un paquete de Python para realizar la validación de datos.
 
 Declaras la "forma" de los datos como clases con atributos.
 
@@ -281,11 +281,11 @@ Y obtienes todo el soporte del editor con ese objeto resultante.
 
 Un ejemplo de la documentación oficial de Pydantic:
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | Nota
 
-Para saber más sobre [Pydantic, revisa su documentación](https://docs.pydantic.dev/).
+Para saber más sobre [Pydantic, revisa su documentación](https://pydantic.dev/docs/).
 
 ///
 
@@ -299,7 +299,7 @@ Python también tiene una funcionalidad que permite poner **<dfn title="Datos so
 
 Puedes importar `Annotated` desde `typing`.
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Python en sí no hace nada con este `Annotated`. Y para los editores y otras herramientas, el tipo sigue siendo `str`.
 

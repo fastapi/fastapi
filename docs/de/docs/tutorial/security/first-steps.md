@@ -1,6 +1,5 @@
 # Sicherheit – Erste Schritte { #security-first-steps }
 
-
 Stellen wir uns vor, dass Sie Ihre **Backend**-API auf einer Domain haben.
 
 Und Sie haben ein **Frontend** auf einer anderen Domain oder in einem anderen Pfad derselben Domain (oder in einer Mobile-Anwendung).
@@ -21,23 +20,21 @@ Lassen Sie uns zunächst einfach den Code verwenden und sehen, wie er funktionie
 
 Kopieren Sie das Beispiel in eine Datei `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## Ausführen { #run-it }
 
 /// note | Hinweis
 
-Das Paket [`python-multipart`](https://github.com/Kludex/python-multipart) wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `pip install "fastapi[standard]"` ausführen.
+Das Paket [`python-multipart`](https://github.com/Kludex/python-multipart) wird automatisch mit **FastAPI** installiert, wenn Sie den Befehl `uv add "fastapi[standard]"` ausführen.
 
-Wenn Sie jedoch den Befehl `pip install fastapi` verwenden, ist das Paket `python-multipart` nicht standardmäßig enthalten.
+Wenn Sie jedoch den Befehl `uv add fastapi` verwenden, ist das Paket `python-multipart` nicht standardmäßig enthalten.
 
-Um es manuell zu installieren, stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../../virtual-environments.md) erstellen, sie aktivieren und es dann mit:
+Um es manuell zu installieren, fügen Sie es Ihrem Projekt hinzu mit:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
-
-installieren.
 
 Das liegt daran, dass **OAuth2** „Formulardaten“ zum Senden von `username` und `password` verwendet.
 
@@ -48,7 +45,7 @@ Führen Sie das Beispiel aus mit:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -135,7 +132,7 @@ In dem Fall gibt Ihnen **FastAPI** ebenfalls die Tools, die Sie zum Erstellen br
 
 Wenn wir eine Instanz der Klasse `OAuth2PasswordBearer` erstellen, übergeben wir den Parameter `tokenUrl`. Dieser Parameter enthält die URL, die der Client (das Frontend, das im Browser des Benutzers ausgeführt wird) verwendet, wenn er den `username` und das `password` sendet, um einen Token zu erhalten.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip | Tipp
 
@@ -173,7 +170,7 @@ Es kann also mit `Depends` verwendet werden.
 
 Jetzt können Sie dieses `oauth2_scheme` als Abhängigkeit `Depends` übergeben.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Diese Abhängigkeit stellt einen `str` bereit, der dem Parameter `token` der *Pfadoperation-Funktion* zugewiesen wird.
 

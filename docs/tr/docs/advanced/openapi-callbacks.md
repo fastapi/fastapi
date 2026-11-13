@@ -31,11 +31,11 @@ Bir `Invoice` body alacak bir *path operation*'ı ve callback için URL'yi taş�
 
 Bu kısım oldukça standart; kodun çoğu muhtemelen size zaten tanıdık gelecektir:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | İpucu
 
-`callback_url` query parametresi, Pydantic'in [Url](https://docs.pydantic.dev/latest/api/networks/) tipini kullanır.
+`callback_url` query parametresi, Pydantic'in [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) tipini kullanır.
 
 ///
 
@@ -90,7 +90,7 @@ Bu bakış açısını (external geliştiricinin bakış açısını) geçici ol
 
 Önce bir veya daha fazla callback içerecek yeni bir `APIRouter` oluşturun.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Callback *path operation*'ını oluşturun { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ Normal bir FastAPI *path operation*'ı gibi görünmelidir:
 * Muhtemelen alması gereken body'nin bir deklarasyonu olmalı, örn. `body: InvoiceEvent`.
 * Ayrıca döndürmesi gereken response'un deklarasyonu da olabilir, örn. `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 Normal bir *path operation*'dan 2 temel farkı vardır:
 
 * Gerçek bir koda ihtiyaç duymaz; çünkü uygulamanız bu kodu asla çağırmayacak. Bu yalnızca *external API*'yi dokümante etmek için kullanılır. Yani fonksiyon sadece `pass` içerebilir.
-* *path*, bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (aşağıda daha fazlası) içerebilir; böylece parametreler ve sizin API'nize gönderilen orijinal request'in bazı parçalarıyla değişkenler kullanılabilir.
+* *path*, bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (aşağıda daha fazlası) içerebilir; böylece parametreler ve sizin API'nize gönderilen orijinal request'in bazı parçalarıyla değişkenler kullanılabilir.
 
 ### Callback path ifadesi { #the-callback-path-expression }
 
-Callback *path*'i, sizin API'nize gönderilen orijinal request'in bazı parçalarını içerebilen bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) barındırabilir.
+Callback *path*'i, sizin API'nize gönderilen orijinal request'in bazı parçalarını içerebilen bir [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) barındırabilir.
 
 Bu örnekte, bu bir `str`:
 
@@ -169,7 +169,7 @@ Bu noktada, yukarıda oluşturduğunuz callback router'ında gerekli callback *p
 
 Şimdi sizin API'nizin *path operation decorator*'ında `callbacks` parametresini kullanarak, callback router'ının `.routes` attribute'unu geçin:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | İpucu
 

@@ -12,7 +12,7 @@
 
 **TypeScript クライアント**向けには、[Hey API](https://heyapi.dev/) が目的特化のソリューションで、TypeScript エコシステムに最適化された体験を提供します。
 
-他の SDK ジェネレータは [OpenAPI.Tools](https://openapi.tools/#sdk) でも見つけられます。
+他の SDK ジェネレータは [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) でも見つけられます。
 
 /// tip | 豆知識
 
@@ -24,7 +24,7 @@ FastAPI は自動的に **OpenAPI 3.1** の仕様を生成します。したが�
 
 まずは簡単な FastAPI アプリから始めます:
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 ここで、*path operation* はリクエストとレスポンスのペイロードに使用するモデルを定義しており、`Item` と `ResponseMessage` を使っています。
 
@@ -82,7 +82,7 @@ FastAPI アプリの `Item` モデルで定義した `name` と `price` に補�
 
 例えば **items** 用と **users** 用のセクションがあり、タグで分けられます:
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### タグ付き TypeScript クライアントの生成 { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ FastAPI は各 *path operation* に**一意 ID**を用いており、これは *
 
 そのカスタム関数を **FastAPI** の `generate_unique_id_function` パラメータに渡します:
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### カスタム operation ID で TypeScript クライアントを生成 { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ OpenAPI 全体としては operation ID の**一意性**のために、このプ
 
 OpenAPI の JSON を `openapi.json` として保存し、次のようなスクリプトで**そのタグのプレフィックスを除去**できます:
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

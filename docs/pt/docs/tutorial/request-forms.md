@@ -6,10 +6,10 @@ Quando você precisar receber campos de formulário em vez de JSON, você pode u
 
 Para usar formulários, primeiro instale [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Certifique-se de criar um [ambiente virtual](../virtual-environments.md), ativá-lo e então instalá-lo, por exemplo:
+Adicione-o ao seu projeto:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -18,13 +18,13 @@ $ pip install python-multipart
 
 Importe `Form` de `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## Defina parâmetros de `Form` { #define-form-parameters }
 
 Crie parâmetros de formulário da mesma forma que você faria para `Body` ou `Query`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Por exemplo, em uma das maneiras que a especificação OAuth2 pode ser usada (chamada "fluxo de senha"), é necessário enviar um `username` e uma `password` como campos do formulário.
 
@@ -44,6 +44,14 @@ Para declarar corpos de formulário, você precisa usar `Form` explicitamente, p
 
 ///
 
+## Campos booleanos de formulário { #boolean-form-fields }
+
+Os navegadores omitem caixas de seleção desmarcadas ao enviar formulários HTML. Declare um parâmetro booleano de formulário com o valor padrão `False` para receber `False` quando a caixa estiver desmarcada:
+
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
+
+Uma caixa de seleção marcada envia seu valor, que por padrão é `"on"`. O **FastAPI** aceita `"on"` como `True`.
+
 ## Sobre "Campos de formulário" { #about-form-fields }
 
 A forma como os formulários HTML (`<form></form>`) enviam os dados para o servidor normalmente usa uma codificação "especial" para esses dados, é diferente do JSON.
@@ -55,6 +63,8 @@ O **FastAPI** fará a leitura desses dados no lugar certo em vez de JSON.
 Os dados dos formulários são normalmente codificados usando o "media type" `application/x-www-form-urlencoded`.
 
 Mas quando o formulário inclui arquivos, ele é codificado como `multipart/form-data`. Você lerá sobre como lidar com arquivos no próximo capítulo.
+
+Você pode usar `Form(media_type="multipart/form-data")` para descrever um formulário multipart no OpenAPI. Configurá-lo em um parâmetro é suficiente ao combinar parâmetros de formulário ou modelos.
 
 Se você quiser ler mais sobre essas codificações e campos de formulário, vá para a [documentação web da <abbr title="Mozilla Developer Network - Rede de Desenvolvedores da Mozilla">MDN</abbr> para `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 

@@ -4,13 +4,13 @@
 
 このテンプレートを使って開始できます。初期セットアップの多く、セキュリティ、データベース、いくつかのAPIエンドポイントがすでに用意されています。
 
-GitHubリポジトリ: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
+GitHubリポジトリ: [Full Stack FastAPI Template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ## Full Stack FastAPI テンプレート - 技術スタックと機能 { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ PythonバックエンドAPI向けの [**FastAPI**](https://fastapi.tiangolo.com/ja)。
   - 🧰 PythonのSQLデータベース操作（ORM）向けの [SQLModel](https://sqlmodel.tiangolo.com)。
-  - 🔍 FastAPIで使用される、データバリデーションと設定管理向けの [Pydantic](https://docs.pydantic.dev)。
+  - 🔍 FastAPIで使用される、データバリデーションと設定管理向けの [Pydantic](https://pydantic.dev/docs/)。
   - 💾 SQLデータベースとしての [PostgreSQL](https://www.postgresql.org)。
 - 🚀 フロントエンド向けの [React](https://react.dev)。
   - 💃 TypeScript、hooks、Vite、その他のモダンなフロントエンドスタックの各要素を使用。

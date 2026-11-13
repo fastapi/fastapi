@@ -7,8 +7,8 @@ import pytest
 @pytest.mark.parametrize(
     "module_name",
     [
-        "tutorial001_py310",
-        "tutorial002_py310",
+        "tutorial001",
+        "tutorial002",
     ],
 )
 def test_run_module(module_name: str):

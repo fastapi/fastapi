@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Plantillas { #templates }
 
 Puedes usar cualquier motor de plantillas que desees con **FastAPI**.
@@ -8,12 +12,12 @@ Hay utilidades para configurarlo fácilmente que puedes usar directamente en tu 
 
 ## Instala dependencias { #install-dependencies }
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo e instalar `jinja2`:
+Añade `jinja2` a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -27,7 +31,7 @@ $ pip install jinja2
 * Declara un parámetro `Request` en la *path operation* que devolverá una plantilla.
 * Usa los `templates` que creaste para renderizar y devolver un `TemplateResponse`, pasa el nombre de la plantilla, el objeto de request, y un diccionario "context" con pares clave-valor que se usarán dentro de la plantilla Jinja2.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Nota
 
@@ -63,13 +67,9 @@ Luego puedes escribir una plantilla en `templates/item.html` con, por ejemplo:
 
 En el HTML que contiene:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...mostrará el `id` tomado del `dict` de "contexto" que pasaste:
 
@@ -89,21 +89,47 @@ También puedes usar `url_for()` dentro de la plantilla, toma como argumentos lo
 
 Entonces, la sección con:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ...generará un enlace hacia la misma URL que manejaría la *path operation function* `read_item(id=id)`.
 
-Por ejemplo, con un ID de `42`, esto se renderizaría como:
+`url_for()` devuelve una URL absoluta, incluidos el esquema y el host, basada en el request actual.
+
+Por ejemplo, si tu aplicación se sirve en `https://example.com`, con un ID de `42`, esto se renderizaría como:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### Paths de URL en plantillas { #url-paths-in-templates }
+
+Para enlaces al mismo sitio, puedes usar el atributo `.path` para obtener solo el path de la URL, por ejemplo, en `templates/item_path.html`:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Pasa el nombre de la plantilla a `TemplateResponse`:
+
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
+
+Con el mismo ejemplo, el enlace al ítem se renderizaría como:
 
 ```html
 <a href="/items/42">
 ```
+
+La `/` inicial hace que este path sea relativo a la raíz del sitio actual.
+
+El atributo `.path` excluye el esquema, el host, los parámetros de query y el fragmento. Usa la URL completa para enlaces a otro host.
+
+/// tip | Consejo
+
+Si tu aplicación está detrás de un proxy, configura los headers reenviados y `root_path` como se describe en [Detrás de un proxy](behind-a-proxy.md).
+
+///
 
 ## Plantillas y archivos estáticos { #templates-and-static-files }
 
@@ -123,4 +149,4 @@ Y porque estás usando `StaticFiles`, ese archivo CSS sería servido automática
 
 ## Más detalles { #more-details }
 
-Para más detalles, incluyendo cómo testear plantillas, revisa [la documentación de Starlette sobre plantillas](https://www.starlette.dev/templates/).
+Para más detalles, incluyendo cómo escribir pruebas para plantillas, revisa [la documentación de Starlette sobre plantillas](https://starlette.dev/templates/).

@@ -31,12 +31,12 @@ JWT 토큰을 직접 다뤄보고 동작 방식을 확인해보고 싶다면 [ht
 
 Python에서 JWT 토큰을 생성하고 검증하려면 `PyJWT`를 설치해야 합니다.
 
-[가상환경](../../virtual-environments.md)을 만들고 활성화한 다음 `pyjwt`를 설치하십시오:
+프로젝트에 `pyjwt`를 추가하십시오:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -73,12 +73,12 @@ pwdlib는 패스워드 해시를 다루기 위한 훌륭한 Python 패키지입�
 
 추천 알고리즘은 "Argon2"입니다.
 
-[가상환경](../../virtual-environments.md)을 만들고 활성화한 다음 Argon2와 함께 pwdlib를 설치하십시오:
+프로젝트에 Argon2와 함께 `pwdlib`를 추가하십시오:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -117,7 +117,7 @@ pwdlib는 bcrypt 해싱 알고리즘도 지원하지만 레거시 알고리즘�
 
 그리고 사용자를 인증하고 반환하는 또 다른 함수도 생성합니다.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 `authenticate_user`가 데이터베이스에 존재하지 않는 사용자이름으로 호출되더라도, 여전히 `verify_password`를 더미 해시에 대해 실행합니다.
 
@@ -135,7 +135,7 @@ pwdlib는 bcrypt 해싱 알고리즘도 지원하지만 레거시 알고리즘�
 
 JWT 토큰을 서명하는 데 사용할 임의의 비밀 키를 생성합니다.
 
-안전한 임의의 비밀 키를 생성하려면 다음 명령을 사용하십시오:
+안전한 임의의 비밀 키를 생성하려면 다음 명령어를 사용하십시오:
 
 <div class="termy">
 
@@ -157,7 +157,7 @@ JWT 토큰을 서명하는 데 사용될 알고리즘을 위한 변수 `ALGORITH
 
 새 액세스 토큰을 생성하기 위한 유틸리티 함수를 생성합니다.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## 의존성 업데이트 { #update-the-dependencies }
 
@@ -167,7 +167,7 @@ JWT 토큰을 서명하는 데 사용될 알고리즘을 위한 변수 `ALGORITH
 
 토큰이 유효하지 않다면 즉시 HTTP 오류를 반환합니다.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## `/token` *경로 처리* 업데이트 { #update-the-token-path-operation }
 
@@ -175,7 +175,7 @@ JWT 토큰을 서명하는 데 사용될 알고리즘을 위한 변수 `ALGORITH
 
 실제 JWT 액세스 토큰을 생성하여 반환합니다.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### JWT "주체(subject)" `sub`에 대한 기술 세부사항 { #technical-details-about-the-jwt-subject-sub }
 

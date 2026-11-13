@@ -20,20 +20,20 @@ Primero solo usemos el código y veamos cómo funciona, y luego volveremos para 
 
 Copia el ejemplo en un archivo `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## Ejecútalo { #run-it }
 
 /// note | Nota
 
-El paquete [`python-multipart`](https://github.com/Kludex/python-multipart) se instala automáticamente con **FastAPI** cuando ejecutas el comando `pip install "fastapi[standard]"`.
+El paquete [`python-multipart`](https://github.com/Kludex/python-multipart) se instala automáticamente con **FastAPI** cuando ejecutas el comando `uv add "fastapi[standard]"`.
 
-Sin embargo, si usas el comando `pip install fastapi`, el paquete `python-multipart` no se incluye por defecto.
+Sin embargo, si usas el comando `uv add fastapi`, el paquete `python-multipart` no se incluye por defecto.
 
-Para instalarlo manualmente, asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo, y luego instalarlo con:
+Para instalarlo manualmente, agrégalo a tu proyecto con:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Esto se debe a que **OAuth2** utiliza "form data" para enviar el `username` y `password`.
@@ -45,7 +45,7 @@ Ejecuta el ejemplo con:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -132,7 +132,7 @@ En ese caso, **FastAPI** también te proporciona las herramientas para construir
 
 Cuando creamos una instance de la clase `OAuth2PasswordBearer` pasamos el parámetro `tokenUrl`. Este parámetro contiene la URL que el cliente (el frontend corriendo en el navegador del usuario) usará para enviar el `username` y `password` a fin de obtener un token.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip | Consejo
 
@@ -170,7 +170,7 @@ Así que, puede usarse con `Depends`.
 
 Ahora puedes pasar ese `oauth2_scheme` en una dependencia con `Depends`.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Esta dependencia proporcionará un `str` que se asigna al parámetro `token` de la *path operation function*.
 

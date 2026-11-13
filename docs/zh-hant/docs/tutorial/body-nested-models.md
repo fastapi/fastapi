@@ -7,7 +7,7 @@
 
 你可以將屬性定義為某個子型別。例如，Python 的 `list`：
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 這會讓 `tags` 成為一個列表，儘管尚未宣告列表元素的型別。
 
@@ -29,7 +29,7 @@ my_list: list[str]
 
 因此，在我們的範例中，可以讓 `tags` 明確成為「字串的列表」：
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## 集合型別 { #set-types }
 
@@ -39,7 +39,7 @@ my_list: list[str]
 
 因此我們可以將 `tags` 宣告為字串的 `set`：
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 這樣一來，即使收到包含重覆資料的請求，也會被轉換為由唯一元素組成的 `set`。
 
@@ -61,13 +61,13 @@ my_list: list[str]
 
 例如，我們可以定義一個 `Image` 模型：
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### 將子模型作為型別使用 { #use-the-submodel-as-a-type }
 
 然後把它作為某個屬性的型別使用：
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 這表示 **FastAPI** 會期望一個類似如下的本文：
 
@@ -96,11 +96,11 @@ my_list: list[str]
 
 除了 `str`、`int`、`float` 等一般的單一型別外，你也可以使用繼承自 `str` 的更複雜單一型別。
 
-若要查看所有可用選項，請參閱 [Pydantic 的型別總覽](https://docs.pydantic.dev/latest/concepts/types/)。你會在下一章看到一些範例。
+若要查看所有可用選項，請參閱 [Pydantic 的型別總覽](https://pydantic.dev/docs/validation/latest/concepts/types/)。你會在下一章看到一些範例。
 
 例如，在 `Image` 模型中有一個 `url` 欄位，我們可以將其宣告為 Pydantic 的 `HttpUrl`，而不是 `str`：
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 該字串會被檢查是否為有效的 URL，並在 JSON Schema / OpenAPI 中相應註記。
 
@@ -108,7 +108,7 @@ my_list: list[str]
 
 你也可以將 Pydantic 模型作為 `list`、`set` 等的子型別使用：
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 這會期望（並進行轉換、驗證、文件化等）如下的 JSON 本文：
 
@@ -145,7 +145,7 @@ my_list: list[str]
 
 你可以定義任意深度的巢狀模型：
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note
 
@@ -163,7 +163,7 @@ images: list[Image]
 
 如下所示：
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## 隨處可得的編輯器支援 { #editor-support-everywhere }
 
@@ -193,7 +193,7 @@ images: list[Image]
 
 在此情況下，只要是擁有 `int` 鍵且對應 `float` 值的 `dict` 都會被接受：
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip
 

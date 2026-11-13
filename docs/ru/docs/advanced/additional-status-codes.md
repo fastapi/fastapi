@@ -15,7 +15,7 @@
 
 Чтобы добиться этого, импортируйте `JSONResponse` и верните туда свой контент напрямую, установив нужный вам `status_code`:
 
-{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
+{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
 
 /// warning | Внимание
 

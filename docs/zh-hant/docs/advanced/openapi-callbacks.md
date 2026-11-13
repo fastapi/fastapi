@@ -31,11 +31,11 @@
 
 這部分很正常，多數程式碼你應該已經很熟悉了：
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip
 
-`callback_url` 查詢參數使用的是 Pydantic 的 [Url](https://docs.pydantic.dev/latest/api/networks/) 型別。
+`callback_url` 查詢參數使用的是 Pydantic 的 [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) 型別。
 
 ///
 
@@ -90,7 +90,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 先建立一個新的 `APIRouter`，用來放一個或多個回呼。
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### 建立回呼的「路徑操作」 { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * 可能需要宣告它應該接收的 body，例如 `body: InvoiceEvent`。
 * 也可以宣告它應該回傳的回應，例如 `response_model=InvoiceEventReceived`。
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 和一般「路徑操作」相比有兩個主要差異：
 
 * 不需要任何實際程式碼，因為你的應用永遠不會呼叫這段程式。它只用來文件化「外部 API」。因此函式可以只有 `pass`。
-* 「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)（見下文），可使用參數與原始送到「你的 API」的請求中的部分欄位。
+* 「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)（見下文），可使用參數與原始送到「你的 API」的請求中的部分欄位。
 
 ### 回呼路徑表達式 { #the-callback-path-expression }
 
-回呼的「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)，能引用原本送到「你的 API」的請求中的部分內容。
+回呼的「路徑」可以包含一個 [OpenAPI 3 表達式](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)，能引用原本送到「你的 API」的請求中的部分內容。
 
 在這個例子中，它是一個 `str`：
 
@@ -169,7 +169,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 現在在「你的 API 的路徑操作裝飾器」中使用參數 `callbacks`，將該回呼 router 的屬性 `.routes` 傳入：
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip
 

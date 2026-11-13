@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI ist ein modernes, schnelles (hoch performantes) Webframework zur Erstellung von APIs mit Python auf Basis von Standard-Python-Typhinweisen.
 
+<!-- agent-banner -->
+
 Seine Schlüssel-Merkmale sind:
 
 * **Schnell**: Sehr hohe Performanz, auf Augenhöhe mit **NodeJS** und **Go** (dank Starlette und Pydantic). [Eines der schnellsten verfügbaren Python-Frameworks](#performance).
@@ -89,7 +91,7 @@ Seine Schlüssel-Merkmale sind:
 
 <!-- only-mkdocs -->
 <div class="fastapi-opinions" data-fastapi-opinions>
-  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Unternehmen, die FastAPI verwenden">
     <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
       <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
     </button>
@@ -110,7 +112,7 @@ Seine Schlüssel-Merkmale sind:
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">„Wir haben die <strong>FastAPI</strong>-Bibliothek übernommen, um einen <strong>REST</strong>-Server zu erstellen, der für <strong>Vorhersagen</strong> abgefragt werden kann.“ <em>[für Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(Ref.)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(Ref.)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">„<strong>Netflix</strong> freut sich, die Open-Source-Veröffentlichung unseres <strong>Krisenmanagement</strong>-Orchestrierungsframeworks bekannt zu geben: <strong>Dispatch</strong>!“ <em>[erstellt mit FastAPI]</em></blockquote>
@@ -133,7 +135,7 @@ Seine Schlüssel-Merkmale sind:
 
 „_Wir haben die **FastAPI**-Bibliothek übernommen, um einen **REST**-Server zu erstellen, der für **Vorhersagen** abgefragt werden kann. [für Ludwig]_“
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, und Sai Sumanth Miryala – <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(Ref.)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, und Sai Sumanth Miryala – <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(Ref.)</small></a></div>
 
 ---
 
@@ -151,17 +153,11 @@ Seine Schlüssel-Merkmale sind:
 
 </div>
 
-## FastAPI Conf { #fastapi-conf }
-
-[**FastAPI Conf ’26**](https://fastapiconf.com) findet am **28. Oktober 2026** in **Amsterdam, NL** statt. Alles über FastAPI, direkt von der Quelle. 🎤
-
-<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf ’26 - 28. Oktober 2026 - Amsterdam, NL"></a>
-
-## FastAPI Mini-Dokumentarfilm { #fastapi-mini-documentary }
+## FastAPI-Mini-Dokumentarfilm { #fastapi-mini-documentary }
 
 Es gibt einen [FastAPI-Mini-Dokumentarfilm](https://www.youtube.com/watch?v=mpR8ngthqiE), veröffentlicht Ende 2025, Sie können ihn online ansehen:
 
-<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini-Dokumentarfilm"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI-Mini-Dokumentarfilm"></a>
 
 ## **Typer**, das FastAPI der CLIs { #typer-the-fastapi-of-clis }
 
@@ -175,28 +171,30 @@ Wenn Sie eine <abbr title="Command Line Interface - Kommandozeileninterface">CLI
 
 FastAPI steht auf den Schultern von Giganten:
 
-* [Starlette](https://www.starlette.dev/) für die Webanteile.
-* [Pydantic](https://docs.pydantic.dev/) für die Datenanteile.
+* [Starlette](https://starlette.dev/) für die Webanteile.
+* [Pydantic](https://pydantic.dev/docs/) für die Datenanteile.
 
 ## Installation { #installation }
 
-Erstellen und aktivieren Sie eine [virtuelle Umgebung](https://fastapi.tiangolo.com/de/virtual-environments/) und installieren Sie dann FastAPI:
+[Installieren Sie zuerst `uv`](https://docs.astral.sh/uv/getting-started/installation/) und fügen Sie dann FastAPI zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
 
 </div>
 
-**Hinweis**: Stellen Sie sicher, dass Sie „fastapi[standard]“ in Anführungszeichen setzen, damit es in allen Terminals funktioniert.
+**Hinweis**: Stellen Sie sicher, dass Sie `"fastapi[standard]"` in Anführungszeichen setzen, damit es in allen Terminals funktioniert.
+
+Wenn Sie lieber `pip` verwenden, installieren Sie `fastapi[standard]` innerhalb einer virtuellen Umgebung. Siehe die [Installationsanleitung](tutorial/#install-fastapi) für die alternativen Schritte.
 
 ## Beispiel { #example }
 
-### Erstellung { #create-it }
+### Erstellen { #create-it }
 
 Erstellen Sie eine Datei `main.py` mit:
 
@@ -250,7 +248,7 @@ Starten Sie den Server mit:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -277,11 +275,11 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>Über den Befehl <code>fastapi dev</code> ...</summary>
 
-Der Befehl `fastapi dev` liest Ihre `main.py`-Datei, erkennt die **FastAPI**-App darin und startet einen Server mit [Uvicorn](https://www.uvicorn.dev).
+Der Befehl `fastapi dev` liest Ihre `main.py`-Datei automatisch, erkennt die **FastAPI**-App darin und startet einen Server mit [Uvicorn](https://uvicorn.dev).
 
 Standardmäßig wird `fastapi dev` mit aktiviertem Auto-Reload für die lokale Entwicklung gestartet.
 
-Sie können mehr darüber in der [FastAPI CLI Dokumentation](https://fastapi.tiangolo.com/de/fastapi-cli/) lesen.
+Sie können mehr darüber in der [FastAPI-CLI-Dokumentation](https://fastapi.tiangolo.com/de/fastapi-cli/) lesen.
 
 </details>
 
@@ -314,7 +312,7 @@ Sie sehen die automatische interaktive API-Dokumentation (bereitgestellt von [Sw
 
 Und jetzt gehen Sie auf [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Sie sehen die alternative automatische Dokumentation (bereitgestellt von [ReDoc](https://github.com/Rebilly/ReDoc)):
+Sie sehen die alternative automatische Dokumentation (bereitgestellt von [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -471,7 +469,7 @@ Versuchen Sie, diese Zeile zu ändern:
 
 ... und sehen Sie, wie Ihr Editor die Attribute automatisch vervollständigt und ihre Typen kennt:
 
-![Editor Unterstützung](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![Editor-Unterstützung](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="https://fastapi.tiangolo.com/de/tutorial/">Tutorial – Benutzerhandbuch</a>.
 
@@ -497,7 +495,7 @@ Optional können Sie Ihre FastAPI-App mit einem einzigen Befehl in die [FastAPI 
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -526,7 +524,7 @@ FastAPI Cloud ist der Hauptsponsor und Finanzierer der *FastAPI and friends* Ope
 
 FastAPI ist Open Source und basiert auf Standards. Sie können FastAPI-Apps bei jedem Cloudanbieter Ihrer Wahl deployen.
 
-Folgen Sie den Anleitungen Ihres Cloudanbieters, um FastAPI-Apps dort bereitzustellen. 🤓
+Folgen Sie den Anleitungen Ihres Cloudanbieters, um FastAPI-Apps dort zu deployen. 🤓
 
 ## Performanz { #performance }
 
@@ -540,7 +538,7 @@ FastAPI hängt von Pydantic und Starlette ab.
 
 ### `standard`-Abhängigkeiten { #standard-dependencies }
 
-Wenn Sie FastAPI mit `pip install "fastapi[standard]"` installieren, kommt es mit der `standard`-Gruppe optionaler Abhängigkeiten:
+Wenn Sie FastAPI mit `uv add "fastapi[standard]"` installieren, kommt es mit der `standard`-Gruppe optionaler Abhängigkeiten:
 
 Verwendet von Pydantic:
 
@@ -548,23 +546,23 @@ Verwendet von Pydantic:
 
 Verwendet von Starlette:
 
-* [`httpx`](https://www.python-httpx.org) – erforderlich, wenn Sie den `TestClient` verwenden möchten.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (oder `httpx`) – wird vom `TestClient` verwendet.
 * [`jinja2`](https://jinja.palletsprojects.com) – erforderlich, wenn Sie die Default-Template-Konfiguration verwenden möchten.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) – erforderlich, wenn Sie Formulare mittels `request.form()` <dfn title="Konvertieren des Strings, der aus einem HTTP-Request stammt, nach Python-Daten">„parsen“</dfn> möchten.
 
 Verwendet von FastAPI:
 
-* [`uvicorn`](https://www.uvicorn.dev) – für den Server, der Ihre Anwendung lädt und bereitstellt. Dies umfasst `uvicorn[standard]`, das einige Abhängigkeiten (z. B. `uvloop`) beinhaltet, die für eine Bereitstellung mit hoher Performanz benötigt werden.
+* [`uvicorn`](https://uvicorn.dev) – für den Server, der Ihre Anwendung lädt und bereitstellt. Dies umfasst `uvicorn[standard]`, das einige Abhängigkeiten (z. B. `uvloop`) beinhaltet, die für eine Bereitstellung mit hoher Performanz benötigt werden.
 * `fastapi-cli[standard]` – um den `fastapi`-Befehl bereitzustellen.
-    * Dies beinhaltet `fastapi-cloud-cli`, das es Ihnen ermöglicht, Ihre FastAPI-Anwendung auf [FastAPI Cloud](https://fastapicloud.com) bereitzustellen.
+    * Dies beinhaltet `fastapi-cloud-cli`, das es Ihnen ermöglicht, Ihre FastAPI-Anwendung auf [FastAPI Cloud](https://fastapicloud.com) zu deployen.
 
 ### Ohne `standard`-Abhängigkeiten { #without-standard-dependencies }
 
-Wenn Sie die `standard` optionalen Abhängigkeiten nicht einschließen möchten, können Sie mit `pip install fastapi` statt `pip install "fastapi[standard]"` installieren.
+Wenn Sie die `standard` optionalen Abhängigkeiten nicht einschließen möchten, können Sie mit `uv add fastapi` statt `uv add "fastapi[standard]"` installieren.
 
 ### Ohne `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
-Wenn Sie FastAPI mit den Standardabhängigkeiten, aber ohne das `fastapi-cloud-cli` installieren möchten, können Sie mit `pip install "fastapi[standard-no-fastapi-cloud-cli]"` installieren.
+Wenn Sie FastAPI mit den Standardabhängigkeiten, aber ohne das `fastapi-cloud-cli` installieren möchten, können Sie mit `uv add "fastapi[standard-no-fastapi-cloud-cli]"` installieren.
 
 ### Zusätzliche optionale Abhängigkeiten { #additional-optional-dependencies }
 
@@ -572,13 +570,13 @@ Es gibt einige zusätzliche Abhängigkeiten, die Sie installieren möchten.
 
 Zusätzliche optionale Pydantic-Abhängigkeiten:
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) – für die Verwaltung von Einstellungen.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) – für zusätzliche Typen zur Verwendung mit Pydantic.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) – für die Verwaltung von Einstellungen.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) – für zusätzliche Typen zur Verwendung mit Pydantic.
 
 Zusätzliche optionale FastAPI-Abhängigkeiten:
 
 * [`orjson`](https://github.com/ijl/orjson) – erforderlich, wenn Sie `ORJSONResponse` verwenden möchten.
-* [`ujson`](https://github.com/esnme/ultrajson) – erforderlich, wenn Sie `UJSONResponse` verwenden möchten.
+* [`ujson`](https://github.com/ultrajson/ultrajson) – erforderlich, wenn Sie `UJSONResponse` verwenden möchten.
 
 ## Lizenz { #license }
 

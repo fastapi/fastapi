@@ -8,11 +8,11 @@ Aquí tienes varias formas de hacerlo.
 
 Puedes declarar `examples` para un modelo de Pydantic que se añadirá al JSON Schema generado.
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001.py hl[13:24] *}
 
 Esa información extra se añadirá tal cual al **JSON Schema** resultante para ese modelo, y se usará en la documentación de la API.
 
-Puedes usar el atributo `model_config` que toma un `dict` como se describe en [Documentación de Pydantic: Configuración](https://docs.pydantic.dev/latest/api/config/).
+Puedes usar el atributo `model_config` que toma un `dict` como se describe en [Documentación de Pydantic: Configuración](https://pydantic.dev/docs/validation/latest/api/pydantic/config/).
 
 Puedes establecer `"json_schema_extra"` con un `dict` que contenga cualquier dato adicional que te gustaría que aparezca en el JSON Schema generado, incluyendo `examples`.
 
@@ -38,7 +38,7 @@ Puedes leer más al final de esta página.
 
 Cuando usas `Field()` con modelos de Pydantic, también puedes declarar `examples` adicionales:
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002.py hl[2,8:11] *}
 
 ## `examples` en JSON Schema - OpenAPI { #examples-in-json-schema-openapi }
 
@@ -58,7 +58,7 @@ también puedes declarar un grupo de `examples` con información adicional que s
 
 Aquí pasamos `examples` que contiene un ejemplo de los datos esperados en `Body()`:
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003.py hl[22:29] *}
 
 ### Ejemplo en la interfaz de documentación { #example-in-the-docs-ui }
 
@@ -70,7 +70,7 @@ Con cualquiera de los métodos anteriores se vería así en los `/docs`:
 
 Por supuesto, también puedes pasar múltiples `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004.py hl[23:38] *}
 
 Cuando haces esto, los ejemplos serán parte del **JSON Schema** interno para esos datos del body.
 
@@ -111,7 +111,7 @@ Cada `dict` específico del ejemplo en los `examples` puede contener:
 
 Puedes usarlo así:
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005.py hl[23:49] *}
 
 ### Ejemplos de OpenAPI en la Interfaz de Documentación { #openapi-examples-in-the-docs-ui }
 

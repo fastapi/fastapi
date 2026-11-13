@@ -1,15 +1,18 @@
 # 설정과 환경 변수 { #settings-and-environment-variables }
 
-
 많은 경우 애플리케이션에는 외부 설정이나 구성(예: secret key, 데이터베이스 자격 증명, 이메일 서비스 자격 증명 등)이 필요할 수 있습니다.
 
 이러한 설정 대부분은 데이터베이스 URL처럼 변동 가능(변경될 수 있음)합니다. 그리고 많은 설정은 secret처럼 민감할 수 있습니다.
 
 이 때문에 보통 애플리케이션이 읽어들이는 환경 변수로 이를 제공하는 것이 일반적입니다.
 
+**환경 변수**(**env var**라고도 함)는 Python 코드 외부, 운영체제에 존재하는 값이며, 애플리케이션과 다른 프로그램에서 읽을 수 있습니다.
+
+명령어를 실행할 때 해당 명령어를 위한 환경 변수를 만들 수 있습니다. 아래에서 플랫폼별 명령어를 볼 수 있습니다.
+
 /// tip | 팁
 
-환경 변수를 이해하려면 [환경 변수](../environment-variables.md)를 읽어보세요.
+환경 변수가 어떻게 동작하는지 자세히 설명한 [환경 변수 가이드](https://tiangolo.com/guides/environment-variables/)를 읽어보세요.
 
 ///
 
@@ -21,16 +24,16 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-다행히 Pydantic은 환경 변수에서 오는 이러한 설정을 처리할 수 있는 훌륭한 유틸리티를 [Pydantic: Settings 관리](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)로 제공합니다.
+다행히 Pydantic은 환경 변수에서 오는 이러한 설정을 처리할 수 있는 훌륭한 유틸리티를 [Pydantic: Settings 관리](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/)로 제공합니다.
 
 ### `pydantic-settings` 설치하기 { #install-pydantic-settings }
 
-먼저 [가상 환경](../virtual-environments.md)을 만들고 활성화한 다음, `pydantic-settings` 패키지를 설치하세요:
+프로젝트에 `pydantic-settings` 패키지를 추가하세요:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -41,7 +44,7 @@ $ pip install pydantic-settings
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -55,7 +58,7 @@ Pydantic 모델과 같은 방식으로, 타입 어노테이션(그리고 필요�
 
 다양한 데이터 타입, `Field()`로 추가 검증 등 Pydantic 모델에서 사용하는 동일한 검증 기능과 도구를 모두 사용할 수 있습니다.
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip | 팁
 
@@ -71,25 +74,45 @@ Pydantic 모델과 같은 방식으로, 타입 어노테이션(그리고 필요�
 
 이제 애플리케이션에서 새 `settings` 객체를 사용할 수 있습니다:
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### 서버 실행하기 { #run-the-server }
 
 다음으로 환경 변수를 통해 구성을 전달하면서 서버를 실행합니다. 예를 들어 다음처럼 `ADMIN_EMAIL`과 `APP_NAME`을 설정할 수 있습니다:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | 팁
 
-하나의 명령에 여러 env var를 설정하려면 공백으로 구분하고, 모두 명령 앞에 두세요.
+Bash에서 하나의 명령에 여러 env var를 설정하려면 공백으로 구분하고, 모두 명령 앞에 두세요.
 
 ///
 
@@ -105,11 +128,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 예를 들어 `config.py` 파일을 다음처럼 만들 수 있습니다:
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 그리고 `main.py` 파일에서 이를 사용합니다:
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip | 팁
 
@@ -127,7 +150,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 이전 예시에서 이어서, `config.py` 파일은 다음과 같을 수 있습니다:
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 이제는 기본 인스턴스 `settings = Settings()`를 생성하지 않는다는 점에 유의하세요.
 
@@ -135,7 +158,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 이제 새로운 `config.Settings()`를 반환하는 의존성을 생성합니다.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip | 팁
 
@@ -147,13 +170,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 그 다음 *경로 처리 함수*에서 이를 의존성으로 요구하고, 필요한 어디서든 사용할 수 있습니다.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### 설정과 테스트 { #settings-and-testing }
 
 그 다음, `get_settings`에 대한 의존성 override를 만들어 테스트 중에 다른 설정 객체를 제공하기가 매우 쉬워집니다:
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 의존성 override에서는 새 `Settings` 객체를 생성할 때 `admin_email`의 새 값을 설정하고, 그 새 객체를 반환합니다.
 
@@ -173,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic은 외부 라이브러리를 사용해 이런 유형의 파일에서 읽는 기능을 지원합니다. 자세한 내용은 [Pydantic Settings: Dotenv (.env) 지원](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support)을 참고하세요.
+Pydantic은 외부 라이브러리를 사용해 이런 유형의 파일에서 읽는 기능을 지원합니다. 자세한 내용은 [Pydantic Settings: Dotenv (.env) 지원](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support)을 참고하세요.
 
 /// tip | 팁
 
-이를 사용하려면 `pip install python-dotenv`가 필요합니다.
+이를 사용하려면 `uv add python-dotenv`로 프로젝트에 `python-dotenv`를 추가하세요.
 
 ///
 
@@ -194,11 +217,11 @@ APP_NAME="ChimichangApp"
 
 그리고 `config.py`를 다음처럼 업데이트합니다:
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip | 팁
 
-`model_config` 속성은 Pydantic 설정을 위한 것입니다. 자세한 내용은 [Pydantic: 개념: 구성](https://docs.pydantic.dev/latest/concepts/config/)을 참고하세요.
+`model_config` 속성은 Pydantic 설정을 위한 것입니다. 자세한 내용은 [Pydantic: 개념: 구성](https://pydantic.dev/docs/validation/latest/concepts/config/)을 참고하세요.
 
 ///
 
@@ -227,7 +250,7 @@ def get_settings():
 
 하지만 위에 `@lru_cache` 데코레이터를 사용하고 있으므로, `Settings` 객체는 최초 호출 시 딱 한 번만 생성됩니다. ✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 그 다음 요청들에서 의존성으로 `get_settings()`가 다시 호출될 때마다, `get_settings()`의 내부 코드를 실행해서 새 `Settings` 객체를 만드는 대신, 첫 호출에서 반환된 동일한 객체를 계속 반환합니다.
 

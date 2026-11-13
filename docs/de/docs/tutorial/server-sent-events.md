@@ -39,13 +39,13 @@ Um SSE mit FastAPI zu streamen, verwenden Sie `yield` in Ihrer *Pfadoperation-Fu
 
 Importieren Sie `EventSourceResponse` aus `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 Jedes mit `yield` zurückgegebene Element wird als JSON kodiert und im Feld `data:` eines SSE-Events gesendet.
 
 Wenn Sie den Rückgabetyp als `AsyncIterable[Item]` deklarieren, verwendet FastAPI ihn, um die Daten mit Pydantic zu **validieren**, zu **dokumentieren** und zu **serialisieren**.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip | Tipp
 
@@ -61,13 +61,13 @@ FastAPI stellt sicher, dass sie korrekt ausgeführt wird, sodass sie die Event L
 
 Da die Funktion in diesem Fall nicht async ist, wäre der passende Rückgabetyp `Iterable[Item]`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### Kein Rückgabetyp { #no-return-type }
 
 Sie können den Rückgabetyp auch weglassen. FastAPI verwendet dann den [`jsonable_encoder`](./encoder.md), um die Daten zu konvertieren und zu senden.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ Wenn Sie SSE-Felder wie `event`, `id`, `retry` oder `comment` setzen müssen, k�
 
 Importieren Sie `ServerSentEvent` aus `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 Das Feld `data` wird immer als JSON kodiert. Sie können jeden Wert übergeben, der als JSON serialisierbar ist, einschließlich Pydantic-Modellen.
 
@@ -85,7 +85,7 @@ Wenn Sie Daten **ohne** JSON-Kodierung senden müssen, verwenden Sie `raw_data` 
 
 Das ist nützlich zum Senden vorformatierter Texte, Logzeilen oder spezieller <dfn title="Ein Wert, der verwendet wird, um eine besondere Bedingung oder einen besonderen Zustand anzuzeigen">„Sentinel“</dfn>-Werte wie `[DONE]`.
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note | Hinweis
 
@@ -99,7 +99,7 @@ Wenn ein Browser nach einem Verbindungsabbruch erneut verbindet, sendet er die z
 
 Sie können ihn als Header-Parameter einlesen und verwenden, um den Stream dort fortzusetzen, wo der Client aufgehört hat:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## SSE mit POST { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE funktioniert mit **jeder HTTP-Methode**, nicht nur mit `GET`.
 
 Das ist nützlich für Protokolle wie [MCP](https://modelcontextprotocol.io), die SSE über `POST` streamen:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## Technische Details { #technical-details }
 

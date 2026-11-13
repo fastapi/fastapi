@@ -31,13 +31,13 @@ La función middleware recibe:
     * Luego devuelve la `response` generada por la correspondiente *path operation*.
 * Puedes entonces modificar aún más la `response` antes de devolverla.
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | Consejo
 
 Ten en cuenta que los custom proprietary headers se pueden añadir [usando el prefijo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Pero si tienes custom headers que deseas que un cliente en un navegador pueda ver, necesitas añadirlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando el parámetro `expose_headers` documentado en [la documentación de CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Pero si tienes custom headers que deseas que un cliente en un navegador pueda ver, necesitas añadirlos a tus configuraciones de CORS ([CORS (Cross-Origin Resource Sharing)](cors.md)) usando el parámetro `expose_headers` documentado en [la documentación de CORS de Starlette](https://starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -57,7 +57,7 @@ Y también después de que se genere la `response`, antes de devolverla.
 
 Por ejemplo, podrías añadir un custom header `X-Process-Time` que contenga el tiempo en segundos que tomó procesar la request y generar una response:
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip | Consejo
 
@@ -67,9 +67,9 @@ Aquí usamos [`time.perf_counter()`](https://docs.python.org/3/library/time.html
 
 ## Orden de ejecución con múltiples middlewares { #multiple-middleware-execution-order }
 
-Cuando añades múltiples middlewares usando ya sea el decorador `@app.middleware()` o el método `app.add_middleware()`, cada nuevo middleware envuelve la aplicación, formando un stack. El último middleware añadido es el más externo, y el primero es el más interno.
+Cuando añades múltiples middlewares usando ya sea el decorador `@app.middleware()` o el método `app.add_middleware()`, cada nuevo middleware envuelve la aplicación, formando un stack. El último middleware añadido es el *más externo*, y el primero es el *más interno*.
 
-En el camino de la request, el middleware más externo se ejecuta primero.
+En el camino de la request, el middleware *más externo* se ejecuta primero.
 
 En el camino de la response, se ejecuta al final.
 

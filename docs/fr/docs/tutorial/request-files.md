@@ -7,10 +7,10 @@ Vous pouvez définir des fichiers à téléverser par le client en utilisant `Fi
 
 Pour recevoir des fichiers téléversés, installez d'abord [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Assurez-vous de créer un [environnement virtuel](../virtual-environments.md), de l'activer, puis d'installer le paquet, par exemple :
+Ajoutez-le à votre projet :
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 C'est parce que les fichiers téléversés sont envoyés en « données de formulaire ».
@@ -21,13 +21,13 @@ C'est parce que les fichiers téléversés sont envoyés en « données de formu
 
 Importez `File` et `UploadFile` depuis `fastapi` :
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## Définir des paramètres `File` { #define-file-parameters }
 
 Créez des paramètres de fichier de la même manière que pour `Body` ou `Form` :
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | Remarque
 
@@ -55,7 +55,7 @@ Mais dans plusieurs cas, vous pourriez bénéficier de l'utilisation d'`UploadFi
 
 Définissez un paramètre de fichier de type `UploadFile` :
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 Utiliser `UploadFile` présente plusieurs avantages par rapport à `bytes` :
 
@@ -138,13 +138,13 @@ Ce n'est pas une limitation de **FastAPI**, cela fait partie du protocole HTTP.
 
 Vous pouvez rendre un fichier facultatif en utilisant des annotations de type standard et en définissant une valeur par défaut à `None` :
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## `UploadFile` avec des métadonnées supplémentaires { #uploadfile-with-additional-metadata }
 
 Vous pouvez aussi utiliser `File()` avec `UploadFile`, par exemple pour définir des métadonnées supplémentaires :
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## Téléverser plusieurs fichiers { #multiple-file-uploads }
 
@@ -154,7 +154,7 @@ Ils seraient associés au même « champ de formulaire » envoyé en « données
 
 Pour cela, déclarez une `list` de `bytes` ou d'`UploadFile` :
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 Vous recevrez, comme déclaré, une `list` de `bytes` ou d'`UploadFile`.
 
@@ -170,8 +170,8 @@ Vous pourriez aussi utiliser `from starlette.responses import HTMLResponse`.
 
 Et de la même manière que précédemment, vous pouvez utiliser `File()` pour définir des paramètres supplémentaires, même pour `UploadFile` :
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## Récapitulatif { #recap }
 
-Utilisez `File`, `bytes` et `UploadFile` pour déclarer des fichiers à téléverser dans la requête, envoyés en « données de formulaire ».
+Utilisez `File`, `bytes` et `UploadFile` pour déclarer des fichiers à téléverser dans la requête, envoyés en données de formulaire.

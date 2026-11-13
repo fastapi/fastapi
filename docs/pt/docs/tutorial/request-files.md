@@ -6,10 +6,10 @@ Você pode definir arquivos para serem enviados pelo cliente usando `File`.
 
 Para receber arquivos enviados, primeiro instale [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Garanta que você criou um [ambiente virtual](../virtual-environments.md), o ativou e então o instalou, por exemplo:
+Adicione-o ao seu projeto:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Isso é necessário, visto que os arquivos enviados são enviados como "dados de formulário".
@@ -20,13 +20,13 @@ Isso é necessário, visto que os arquivos enviados são enviados como "dados de
 
 Importe `File` e `UploadFile` de `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## Definir Parâmetros `File` { #define-file-parameters }
 
 Crie parâmetros de arquivo da mesma forma que você faria para `Body` ou `Form`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | Nota
 
@@ -54,7 +54,7 @@ Mas há muitos casos em que você pode se beneficiar do uso de `UploadFile`.
 
 Defina um parâmetro de arquivo com um tipo de `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 Utilizar `UploadFile` tem várias vantagens sobre `bytes`:
 
@@ -137,13 +137,13 @@ Isso não é uma limitação do **FastAPI**, é parte do protocolo HTTP.
 
 Você pode tornar um arquivo opcional usando anotações de tipo padrão e definindo um valor padrão de `None`:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## `UploadFile` com Metadados Adicionais { #uploadfile-with-additional-metadata }
 
 Você também pode usar `File()` com `UploadFile`, por exemplo, para definir metadados adicionais:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## Uploads de Múltiplos Arquivos { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ Eles serão associados ao mesmo "campo de formulário" enviado usando "dados de 
 
 Para usar isso, declare uma lista de `bytes` ou `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 Você receberá, tal como declarado, uma `list` de `bytes` ou `UploadFile`.
 
@@ -169,7 +169,7 @@ Você também pode usar `from starlette.responses import HTMLResponse`.
 
 Da mesma forma de antes, você pode usar `File()` para definir parâmetros adicionais, mesmo para `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## Recapitulando { #recap }
 

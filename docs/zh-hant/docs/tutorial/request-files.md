@@ -7,10 +7,10 @@
 
 若要接收上傳的檔案，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後安裝，例如：
+將它加入你的專案：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 因為上傳的檔案是以「表單資料」送出的。
@@ -21,13 +21,13 @@ $ pip install python-multipart
 
 從 `fastapi` 匯入 `File` 與 `UploadFile`：
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## 定義 `File` 參數 { #define-file-parameters }
 
 和 `Body` 或 `Form` 一樣的方式建立檔案參數：
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note
 
@@ -55,7 +55,7 @@ $ pip install python-multipart
 
 將檔案參數型別設為 `UploadFile`：
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 使用 `UploadFile` 相較於 `bytes` 有數個優點：
 
@@ -138,13 +138,13 @@ HTML 表單（`<form></form>`）送到伺服器的資料通常使用一種「特
 
 可透過一般型別註解並將預設值設為 `None` 使檔案成為可選：
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## `UploadFile` 搭配額外中繼資料 { #uploadfile-with-additional-metadata }
 
 你也可以在 `UploadFile` 上搭配 `File()`，例如用來設定額外的中繼資料：
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## 多檔案上傳 { #multiple-file-uploads }
 
@@ -154,7 +154,7 @@ HTML 表單（`<form></form>`）送到伺服器的資料通常使用一種「特
 
 要這麼做，將型別宣告為 `bytes` 或 `UploadFile` 的 `list`：
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 你會如宣告所示，收到由 `bytes` 或 `UploadFile` 組成的 `list`。
 
@@ -170,7 +170,7 @@ HTML 表單（`<form></form>`）送到伺服器的資料通常使用一種「特
 
 同樣地，即使對 `UploadFile`，你也可以用 `File()` 設定額外參數：
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## 小結 { #recap }
 

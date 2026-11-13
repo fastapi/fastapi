@@ -31,13 +31,13 @@
     * 그런 다음 해당 *경로 처리*가 생성한 `response`를 반환합니다.
 * 그런 다음 반환하기 전에 `response`를 추가로 수정할 수 있습니다.
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | 팁
 
 사용자 정의 독점 헤더는 [`X-` 접두사를 사용](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)하여 추가할 수 있다는 점을 기억하세요.
 
-하지만 브라우저에서 클라이언트가 볼 수 있게 하려는 사용자 정의 헤더가 있다면, [CORS (Cross-Origin Resource Sharing)](cors.md) 설정에 [Starlette의 CORS 문서](https://www.starlette.dev/middleware/#corsmiddleware)에 문서화된 `expose_headers` 매개변수를 사용해 추가해야 합니다.
+하지만 브라우저에서 클라이언트가 볼 수 있게 하려는 사용자 정의 헤더가 있다면, [CORS (Cross-Origin Resource Sharing)](cors.md) 설정에 [Starlette의 CORS 문서](https://starlette.dev/middleware/#corsmiddleware)에 문서화된 `expose_headers` 매개변수를 사용해 추가해야 합니다.
 
 ///
 
@@ -57,7 +57,7 @@
 
 예를 들어, 요청을 처리하고 응답을 생성하는 데 걸린 시간을 초 단위로 담는 사용자 정의 헤더 `X-Process-Time`을 추가할 수 있습니다:
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip | 팁
 

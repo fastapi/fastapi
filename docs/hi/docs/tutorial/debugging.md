@@ -6,7 +6,7 @@
 
 अपने FastAPI application में, `uvicorn` को सीधे import करके run करें:
 
-{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
 ### `__name__ == "__main__"` के बारे में { #about-name-main }
 
@@ -15,7 +15,7 @@
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -35,7 +35,7 @@ from myapp import app
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>

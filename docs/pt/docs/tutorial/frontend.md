@@ -36,7 +36,7 @@ A estrutura do seu projeto poderia ser assim:
 
 Então sirva-o com `app.frontend()`:
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 Com isso, um request para `/assets/app.js` pode servir `dist/assets/app.js`.
 
@@ -50,9 +50,9 @@ Então, ao acessar essa URL diretamente (em vez de navegar pela aplicação), o 
 
 Para isso, use `fallback="index.html"`:
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
-**FastAPI** usa esse fallback somente para requests `GET` e `HEAD` que parecem navegação do navegador. Arquivos ausentes como JavaScript, CSS e imagens ainda retornam `404`.
+**FastAPI** usa esse fallback somente para requests `GET` e `HEAD` que aceitam HTML explicitamente com `Accept: text/html` ou `Accept: application/xhtml+xml`, como requests de navegação do navegador normalmente fazem. Arquivos ausentes como JavaScript, CSS e imagens ainda retornam `404`.
 
 Requests com outros métodos, como `POST` ou `PUT`, para paths que correspondem apenas ao fallback do frontend também retornam `404`. *Operações de rota* regulares do **FastAPI** ainda têm prioridade maior que rotas de frontend.
 
@@ -68,7 +68,7 @@ Isso é o que você desejaria com muitas aplicações frontend que usam roteamen
 
 Você também pode servir uma página estática `404.html` para paths de frontend ausentes:
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 Essa response mantém um código de status `404`.
 
@@ -94,25 +94,29 @@ Caso contrário, se houver um arquivo `index.html`, paths de navegação do nave
 
 Então, na maioria dos casos, você pode usar `app.frontend("/", directory="dist")` sem especificar o argumento `fallback`.
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## Desative o Fallback { #disable-fallback }
 
 Se você não quiser servir um arquivo de fallback para paths de frontend ausentes, use `fallback=None`:
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 Então paths de frontend ausentes retornam o `404` normal.
 
 ## Verifique o Diretório { #check-directory }
 
-Por padrão, `app.frontend()` verifica se o diretório existe quando a aplicação é criada.
+Por padrão, `app.frontend()` usa `check_dir="auto"`.
 
-Isso ajuda a identificar erros de configuração cedo. Por exemplo, se o diretório de saída do build do frontend estiver ausente, **FastAPI** gerará um erro na inicialização.
+Quando a variável de ambiente `FASTAPI_ENV` é definida como `development`, **FastAPI** mostra apenas um aviso se o diretório de saída do build do frontend estiver ausente. O [comando `fastapi dev`](https://github.com/fastapi/fastapi-cli#fastapi-dev) define essa variável de ambiente para você se ela ainda não estiver definida. Isso permite iniciar o backend antes de fazer o build ou iniciar o frontend durante o desenvolvimento.
+
+Em qualquer outro ambiente, **FastAPI** gera um erro quando a aplicação é criada. Isso ajuda a identificar erros de configuração cedo, antes de fazer deploy de uma aplicação sem seus arquivos de frontend.
+
+Você também pode definir `check_dir=True` para sempre verificar o diretório quando a aplicação for criada.
 
 Se seus arquivos de frontend forem criados depois, por exemplo por uma etapa de build separada após o objeto da aplicação ser criado, defina `check_dir=False`:
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 Com `check_dir=False`, **FastAPI** não verificará o diretório quando a aplicação for criada. Se o diretório configurado ainda estiver ausente quando um request for processado, **FastAPI** gerará um erro nesse momento.
 
@@ -120,7 +124,7 @@ Com `check_dir=False`, **FastAPI** não verificará o diretório quando a aplica
 
 Você também pode adicionar arquivos de frontend a um `APIRouter` e incluí-lo com um prefixo:
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 Neste exemplo, os paths de frontend são servidos em `/app`.
 
@@ -131,6 +135,8 @@ Quaisquer *operações de rota* regulares na aplicação ainda terão precedênc
 Responses de frontend são executadas dentro da aplicação **FastAPI** normal, então middlewares HTTP se aplicam a elas.
 
 Dependências da aplicação, de um `APIRouter` e de `include_router()` também se aplicam a responses de frontend. Isso pode ser útil para proteger um frontend com autenticação por cookie ou similar.
+
+Dependências também podem modificar headers de response e adicionar tarefas em segundo plano, como em *operações de rota* normais.
 
 ## Apenas Saída de Build Estático { #static-build-output-only }
 

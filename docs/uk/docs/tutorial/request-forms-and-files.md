@@ -6,23 +6,23 @@
 
 Щоб отримувати завантажені файли та/або дані форми, спочатку встановіть [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили бібліотеку, наприклад:
+Додайте його до вашого проєкту:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
 
 ## Імпорт `File` та `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[3] *}
 
 ## Оголошення параметрів `File` та `Form` { #define-file-and-form-parameters }
 
 Створіть параметри файлів та форми так само як і для `Body` або `Query`:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[10:12] *}
 
 Файли та поля форми будуть завантажені як формові дані, і ви отримаєте файли та поля форми.
 
@@ -30,7 +30,7 @@ $ pip install python-multipart
 
 /// warning | Попередження
 
-Ви можете оголосити кілька параметрів `File` і `Form` в операції *шляху*, але не можете одночасно оголошувати `Body`-поля, які очікуєте отримати у форматі JSON, оскільки запит матиме тіло, закодоване за допомогою `multipart/form-data`, а не `application/json`.
+Ви можете оголосити кілька параметрів `File` і `Form` в *операції шляху*, але не можете одночасно оголошувати `Body`-поля, які очікуєте отримати у форматі JSON, оскільки запит матиме тіло, закодоване за допомогою `multipart/form-data`, а не `application/json`.
 
 Це не обмеження **FastAPI**, а частина протоколу HTTP.
 

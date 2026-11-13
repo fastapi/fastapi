@@ -21,7 +21,7 @@
 * [Strawberry](https://strawberry.rocks/) 🍓
     * [FastAPI용 문서](https://strawberry.rocks/docs/integrations/fastapi) 제공
 * [Ariadne](https://ariadnegraphql.org/)
-    * [FastAPI용 문서](https://ariadnegraphql.org/docs/fastapi-integration) 제공
+    * [FastAPI용 문서](https://ariadnegraphql.org/server/Integrations/fastapi-integration) 제공
 * [Tartiflette](https://tartiflette.io/)
     * ASGI 통합을 제공하기 위해 [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) 사용
 * [Graphene](https://graphene-python.org/)
@@ -35,7 +35,7 @@
 
 다음은 Strawberry를 FastAPI와 통합하는 방법에 대한 간단한 미리보기입니다:
 
-{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
+{* ../../docs_src/graphql_/tutorial001.py hl[3,22,25] *}
 
 [Strawberry 문서](https://strawberry.rocks/)에서 Strawberry에 대해 더 알아볼 수 있습니다.
 

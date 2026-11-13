@@ -25,7 +25,7 @@ HTTP статус-коды в диапазоне 400 означают, что п
 
 ### Импортируйте `HTTPException` { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
 ### Вызовите `HTTPException` в своем коде { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@ HTTP статус-коды в диапазоне 400 означают, что п
 
 В данном примере, когда клиент запрашивает элемент по несуществующему ID, вызовите исключение со статус-кодом `404`:
 
-{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
 ### Возвращаемый ответ { #the-resulting-response }
 
@@ -77,11 +77,11 @@ HTTP статус-коды в диапазоне 400 означают, что п
 
 Но в случае, если это необходимо для продвинутого сценария, можно добавить пользовательские HTTP-заголовки:
 
-{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
 ## Установка пользовательских обработчиков исключений { #install-custom-exception-handlers }
 
-Вы можете добавить пользовательские обработчики исключений с помощью [тех же утилит обработки исключений из Starlette](https://www.starlette.dev/exceptions/).
+Вы можете добавить пользовательские обработчики исключений с помощью [тех же утилит обработки исключений из Starlette](https://starlette.dev/exceptions/).
 
 Допустим, у вас есть пользовательское исключение `UnicornException`, которое вы (или используемая вами библиотека) можете вызвать с помощью `raise`.
 
@@ -89,7 +89,7 @@ HTTP статус-коды в диапазоне 400 означают, что п
 
 Можно добавить собственный обработчик исключений с помощью `@app.exception_handler()`:
 
-{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
 Здесь, если запросить `/unicorns/yolo`, то *операция пути* вызовет `UnicornException`.
 
@@ -127,7 +127,7 @@ HTTP статус-коды в диапазоне 400 означают, что п
 
 Обработчик исключения получит объект `Request` и исключение.
 
-{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:19] *}
 
 Теперь, если перейти к `/items/foo`, то вместо стандартной JSON-ошибки с:
 
@@ -159,7 +159,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 Например, для этих ошибок можно вернуть обычный текстовый ответ вместо JSON:
 
-{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,25] *}
 
 /// note | Технические детали
 
@@ -183,7 +183,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 Вы можете использовать его при разработке приложения для логирования тела запроса и его отладки, возврата пользователю и т.д.
 
-{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
 
 Теперь попробуйте отправить недопустимый элемент, например:
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 Если вы хотите использовать исключение вместе с теми же обработчиками исключений по умолчанию из **FastAPI**, вы можете импортировать и повторно использовать обработчики исключений по умолчанию из `fastapi.exception_handlers`:
 
-{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
 В этом примере вы просто выводите ошибку с очень выразительным сообщением, но идея вам понятна. Вы можете использовать исключение, а затем просто повторно использовать стандартные обработчики исключений.

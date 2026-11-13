@@ -10,7 +10,7 @@
 
 सबसे पहले, मुख्य, top-level **FastAPI** application और उसके *path operations* बनाएँ:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### Sub-application { #sub-application }
 
@@ -18,7 +18,7 @@
 
 यह sub-application बस एक और standard FastAPI application है, लेकिन यही वह है जिसे "mounted" किया जाएगा:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### Sub-application को mount करें { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@
 
 इस मामले में, इसे path `/subapi` पर mount किया जाएगा:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### Automatic API docs देखें { #check-the-automatic-api-docs }
 
@@ -35,7 +35,7 @@
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

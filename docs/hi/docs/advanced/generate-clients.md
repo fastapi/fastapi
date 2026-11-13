@@ -2,7 +2,7 @@
 
 क्योंकि **FastAPI** **OpenAPI** specification पर आधारित है, इसकी APIs को एक standard format में वर्णित किया जा सकता है जिसे कई tools समझते हैं।
 
-इससे up-to-date **documentation**, कई भाषाओं में client libraries (<abbr title="Software Development Kits - सॉफ़्टवेयर Development Kits">**SDKs**</abbr>), और **testing** या **automation workflows** जेनरेट करना आसान हो जाता है, जो आपके code के साथ sync में रहते हैं।
+इससे up-to-date **documentation**, कई भाषाओं में client libraries (<abbr title="Software Development Kits - सॉफ़्टवेयर डेवलपमेंट किट्स">**SDKs**</abbr>), और **testing** या **automation workflows** जेनरेट करना आसान हो जाता है, जो आपके code के साथ sync में रहते हैं।
 
 इस guide में, आप सीखेंगे कि अपने FastAPI backend के लिए **TypeScript SDK** कैसे जेनरेट करें।
 
@@ -12,7 +12,7 @@
 
 **TypeScript clients** के लिए, [Hey API](https://heyapi.dev/) एक purpose-built solution है, जो TypeScript ecosystem के लिए optimized experience प्रदान करता है।
 
-आप [OpenAPI.Tools](https://openapi.tools/#sdk) पर और SDK generators खोज सकते हैं।
+आप [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) पर और SDK generators खोज सकते हैं।
 
 /// tip | सुझाव
 
@@ -24,7 +24,7 @@ FastAPI अपने-आप **OpenAPI 3.1** specifications जेनरेट �
 
 आइए एक सरल FastAPI application से शुरू करें:
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 ध्यान दें कि *path operations* उन models को define करते हैं जिनका उपयोग वे request payload और response payload के लिए करते हैं, `Item` और `ResponseMessage` models का उपयोग करके।
 
@@ -82,7 +82,7 @@ Response object में भी autocompletion होगा:
 
 उदाहरण के लिए, आपके पास **items** के लिए एक section और **users** के लिए दूसरा section हो सकता है, और उन्हें tags द्वारा separate किया जा सकता है:
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### Tags के साथ TypeScript Client जेनरेट करें { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ FastAPI प्रत्येक *path operation* के लिए एक **uniq
 
 फिर आप उस custom function को `generate_unique_id_function` parameter के रूप में **FastAPI** को pass कर सकते हैं:
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### Custom Operation IDs के साथ TypeScript Client जेनरेट करें { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ FastAPI प्रत्येक *path operation* के लिए एक **uniq
 
 हम OpenAPI JSON को `openapi.json` file में download कर सकते हैं और फिर इस तरह के script से **उस prefixed tag को remove** कर सकते हैं:
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

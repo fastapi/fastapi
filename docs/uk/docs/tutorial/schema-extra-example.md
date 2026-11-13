@@ -8,11 +8,11 @@
 
 Ви можете задати `examples` для моделі Pydantic, які буде додано до згенерованої Схеми JSON.
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001.py hl[13:24] *}
 
 Ця додаткова інформація буде додана як є до **Схеми JSON** для цієї моделі, і вона буде використана в документації до API.
 
-Ви можете використати атрибут `model_config`, який приймає `dict`, як описано в [документації Pydantic: Configuration](https://docs.pydantic.dev/latest/api/config/).
+Ви можете використати атрибут `model_config`, який приймає `dict`, як описано в [документації Pydantic: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/).
 
 Ви можете встановити `"json_schema_extra"` як `dict`, що містить будь-які додаткові дані, які ви хочете відобразити у згенерованій Схемі JSON, включаючи `examples`.
 
@@ -38,7 +38,7 @@ OpenAPI 3.1.0 (який використовується починаючи з F
 
 Коли ви використовуєте `Field()` у моделях Pydantic, ви також можете вказати додаткові `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002.py hl[2,8:11] *}
 
 ## `examples` у Схемі JSON - OpenAPI { #examples-in-json-schema-openapi }
 
@@ -58,7 +58,7 @@ OpenAPI 3.1.0 (який використовується починаючи з F
 
 Тут ми передаємо `examples`, які містять один приклад очікуваних даних у `Body()`:
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003.py hl[22:29] *}
 
 ### Приклад у UI документації { #example-in-the-docs-ui }
 
@@ -70,7 +70,7 @@ OpenAPI 3.1.0 (який використовується починаючи з F
 
 Звичайно, ви також можете передати кілька `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004.py hl[23:38] *}
 
 Коли ви це робите, приклади будуть частиною внутрішньої **Схеми JSON** для цих даних тіла.
 
@@ -111,7 +111,7 @@ OpenAPI 3.1.0 (який використовується починаючи з F
 
 Ви можете використати це так:
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005.py hl[23:49] *}
 
 ### Приклади OpenAPI в UI документації { #openapi-examples-in-the-docs-ui }
 

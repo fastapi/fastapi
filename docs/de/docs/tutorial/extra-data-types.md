@@ -1,6 +1,5 @@
 # Zusätzliche Datentypen { #extra-data-types }
 
-
 Bisher haben Sie gängige Datentypen verwendet, wie zum Beispiel:
 
 * `int`
@@ -37,7 +36,7 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 * `datetime.timedelta`:
     * Ein Python-`datetime.timedelta`.
     * Wird in Requests und Responses als `float` der Gesamtsekunden dargestellt.
-    * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, [siehe die Dokumentation für weitere Informationen](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
+    * Pydantic ermöglicht auch die Darstellung als „ISO 8601 Zeitdifferenz-Kodierung“, [siehe die Dokumentation für weitere Informationen](https://pydantic.dev/docs/validation/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * Wird in Requests und Responses wie ein `set` behandelt:
         * Bei Requests wird eine Liste gelesen, Duplikate entfernt und in ein `set` umgewandelt.
@@ -50,14 +49,14 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 * `Decimal`:
     * Standard-Python-`Decimal`.
     * In Requests und Responses wird es wie ein `float` behandelt.
-* Sie können alle gültigen Pydantic-Datentypen hier überprüfen: [Pydantic-Datentypen](https://docs.pydantic.dev/latest/usage/types/types/).
+* Sie können alle gültigen Pydantic-Datentypen hier überprüfen: [Pydantic-Datentypen](https://pydantic.dev/docs/validation/latest/concepts/types/).
 
 ## Beispiel { #example }
 
 Hier ist ein Beispiel für eine *Pfadoperation* mit Parametern, die einige der oben genannten Typen verwenden.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Beachten Sie, dass die Parameter innerhalb der Funktion ihren natürlichen Datentyp haben und Sie beispielsweise normale Datumsmanipulationen durchführen können, wie zum Beispiel:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

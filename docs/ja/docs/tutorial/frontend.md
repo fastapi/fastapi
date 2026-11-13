@@ -36,7 +36,7 @@ npm run build
 
 そして `app.frontend()` で配信します。
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 これにより、`/assets/app.js` へのリクエストで `dist/assets/app.js` を配信できます。
 
@@ -50,9 +50,9 @@ npm run build
 
 そのためには、`fallback="index.html"` を使います。
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
-**FastAPI** は、このフォールバックをブラウザのナビゲーションに見える `GET` および `HEAD` リクエストにのみ使用します。JavaScript、CSS、画像などの存在しないファイルは引き続き `404` を返します。
+**FastAPI** は、このフォールバックを、通常のブラウザナビゲーションリクエストのように `Accept: text/html` または `Accept: application/xhtml+xml` で明示的に HTML を受け付ける `GET` および `HEAD` リクエストにのみ使用します。JavaScript、CSS、画像などの存在しないファイルは引き続き `404` を返します。
 
 `POST` や `PUT` など、他のメソッドのリクエストがフロントエンドのフォールバックにのみ一致するパスへ送られた場合も、`404` を返します。通常の **FastAPI** の *path operations* は、フロントエンドのルートよりも引き続き高い優先順位を持ちます。
 
@@ -68,7 +68,7 @@ npm run build
 
 存在しないフロントエンドパスに対して、静的な `404.html` ページを配信することもできます。
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 そのレスポンスはステータスコード `404` を保持します。
 
@@ -94,25 +94,29 @@ npm run build
 
 そのため、ほとんどの場合、`fallback` 引数を指定せずに `app.frontend("/", directory="dist")` を使用できます。
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## フォールバックの無効化 { #disable-fallback }
 
 存在しないフロントエンドパスに対してフォールバックファイルを配信したくない場合は、`fallback=None` を使います。
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 すると、存在しないフロントエンドパスは通常の `404` を返します。
 
 ## ディレクトリのチェック { #check-directory }
 
-デフォルトでは、`app.frontend()` はアプリ作成時にディレクトリが存在することをチェックします。
+デフォルトでは、`app.frontend()` は `check_dir="auto"` を使います。
 
-これにより、設定エラーを早期に検出できます。たとえば、フロントエンドのビルド出力ディレクトリが存在しない場合、**FastAPI** は起動時にエラーを発生させます。
+`FASTAPI_ENV` 環境変数が `development` に設定されている場合、フロントエンドのビルド出力ディレクトリが存在しなくても、**FastAPI** は警告を表示するだけです。[`fastapi dev` コマンド](https://github.com/fastapi/fastapi-cli#fastapi-dev) は、この環境変数がまだ設定されていない場合に設定してくれます。これにより、開発中にフロントエンドをビルドまたは起動する前にバックエンドを起動できます。
 
-アプリオブジェクトの作成後に別のビルドステップなどでフロントエンドファイルが作成される場合は、`check_dir=False` を設定します。
+それ以外の環境では、**FastAPI** はアプリ作成時にエラーを発生させます。これにより、フロントエンドファイルなしでアプリをデプロイする前に、設定エラーを早期に検出できます。
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+`check_dir=True` を設定して、アプリ作成時に常にディレクトリをチェックすることもできます。
+
+フロントエンドファイルが後で作成される場合、たとえばアプリオブジェクトの作成後に別のビルドステップで作成される場合は、`check_dir=False` を設定します。
+
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 `check_dir=False` を指定すると、**FastAPI** はアプリ作成時にディレクトリをチェックしません。リクエストが処理される時点で設定されたディレクトリがまだ存在しない場合、**FastAPI** はその時点でエラーを発生させます。
 
@@ -120,7 +124,7 @@ npm run build
 
 フロントエンドファイルを `APIRouter` に追加し、prefix 付きで include することもできます。
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 この例では、フロントエンドのパスは `/app` 配下で配信されます。
 
@@ -131,6 +135,8 @@ npm run build
 フロントエンドのレスポンスは通常の **FastAPI** アプリケーション内で実行されるため、HTTP ミドルウェアが適用されます。
 
 アプリ、`APIRouter`、および `include_router()` からの依存関係もフロントエンドのレスポンスに適用されます。これは、cookie 認証などでフロントエンドを保護する場合に役立ちます。
+
+依存関係は、通常の *path operations* と同様に、レスポンスヘッダーを変更したりバックグラウンドタスクを追加したりすることもできます。
 
 ## 静的ビルド出力のみ { #static-build-output-only }
 

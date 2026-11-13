@@ -6,7 +6,7 @@
 
 你的 API 幾乎總是需要傳回**回應**本文。但用戶端不一定每次都要送出**請求本文**，有時只會請求某個路徑，可能帶一些查詢參數，但不會傳送本文。
 
-要宣告**請求**本文，你會使用 [Pydantic](https://docs.pydantic.dev/) 模型，享受其完整的功能與優點。
+要宣告**請求**本文，你會使用 [Pydantic](https://pydantic.dev/docs/) 模型，享受其完整的功能與優點。
 
 /// note
 
@@ -22,7 +22,7 @@
 
 首先，從 `pydantic` 匯入 `BaseModel`：
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## 建立你的資料模型 { #create-your-data-model }
 
@@ -30,7 +30,7 @@
 
 對所有屬性使用標準的 Python 型別：
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 就和宣告查詢參數時一樣，當模型屬性有預設值時，它就不是必填；否則就是必填。使用 `None` 可使其成為選填。
@@ -59,7 +59,7 @@
 
 要把它加到你的*路徑操作（path operation）*中，宣告方式與路徑與查詢參數相同：
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...並將其型別宣告為你建立的模型 `Item`。
 
@@ -126,7 +126,7 @@
 
 在函式內，你可以直接存取模型物件的所有屬性：
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## 請求本文 + 路徑參數 { #request-body-path-parameters }
 
@@ -134,7 +134,7 @@
 
 **FastAPI** 會辨識出與路徑參數相符的函式參數應該從**路徑**取得，而宣告為 Pydantic 模型的函式參數應該從**請求本文**取得。
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## 請求本文 + 路徑 + 查詢參數 { #request-body-path-query-parameters }
@@ -143,7 +143,7 @@
 
 **FastAPI** 會分別辨識並從正確的位置取得資料。
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 函式參數的辨識方式如下：
 

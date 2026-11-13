@@ -6,23 +6,23 @@
 
 Yüklenen dosyaları ve/veya form verisini almak için önce [`python-multipart`](https://github.com/Kludex/python-multipart) paketini kurun.
 
-Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden ve ardından paketi kurduğunuzdan emin olun, örneğin:
+Projenize ekleyin:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
 
 ## `File` ve `Form` Import Edin { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[3] *}
 
 ## `File` ve `Form` Parametrelerini Tanımlayın { #define-file-and-form-parameters }
 
 Dosya ve form parametrelerini, `Body` veya `Query` için yaptığınız şekilde oluşturun:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[10:12] *}
 
 Dosyalar ve form alanları form data olarak upload edilir ve siz de dosyaları ve form alanlarını alırsınız.
 

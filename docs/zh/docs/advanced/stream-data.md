@@ -22,7 +22,7 @@
 
 如果你在*路径操作函数*中声明 `response_class=StreamingResponse`，你就可以使用 `yield` 依次发送每个数据块。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI 会将每个数据块原样交给 `StreamingResponse`，不会尝试将其转换为 JSON 或做类似处理。
 
@@ -30,7 +30,7 @@ FastAPI 会将每个数据块原样交给 `StreamingResponse`，不会尝试将�
 
 你也可以使用常规的 `def` 函数（不带 `async`），并以相同方式使用 `yield`。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### 无需注解 { #no-annotation }
 
@@ -38,7 +38,7 @@ FastAPI 会将每个数据块原样交给 `StreamingResponse`，不会尝试将�
 
 由于 FastAPI 不会使用 Pydantic 将数据转换为 JSON，也不会以任何方式序列化，在这种情况下，类型注解只供你的编辑器和工具使用，FastAPI 不会使用它。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 这也意味着，使用 `StreamingResponse` 时，你拥有按需精确生成与编码字节数据的**自由**，同时也承担相应的**责任**，它与类型注解无关。🤓
 
@@ -46,7 +46,7 @@ FastAPI 会将每个数据块原样交给 `StreamingResponse`，不会尝试将�
 
 主要的用例之一是流式传输 `bytes` 而不是字符串，这当然可以做到。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## 自定义 `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ FastAPI 会将每个数据块原样交给 `StreamingResponse`，不会尝试将�
 
 例如，你可以创建一个 `PNGStreamingResponse`，通过 `media_type` 属性把 `Content-Type` 头设置为 `image/png`：
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 然后你可以在*路径操作函数*中通过 `response_class=PNGStreamingResponse` 使用这个新类：
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### 模拟文件 { #simulate-a-file }
 
@@ -68,7 +68,7 @@ FastAPI 会将每个数据块原样交给 `StreamingResponse`，不会尝试将�
 
 例如，我们可以像对文件那样迭代它来消费其内容。
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | 技术细节
 
@@ -100,7 +100,7 @@ FastAPI 会将每个数据块原样交给 `StreamingResponse`，不会尝试将�
 
 为避免阻塞事件循环，你可以简单地把*路径操作函数*声明为常规的 `def`（而不是 `async def`），这样 FastAPI 会在一个线程池工作线程上运行它，从而避免阻塞主事件循环。
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip | 提示
 
@@ -114,4 +114,4 @@ FastAPI 会将每个数据块原样交给 `StreamingResponse`，不会尝试将�
 
 这并不是 FastAPI 特有的功能，只是 Python 的语法，但这是一个值得知道的小技巧。😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

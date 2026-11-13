@@ -7,7 +7,7 @@ Un **request** body es un dato enviado por el cliente a tu API. Un **response** 
 
 Tu API casi siempre tiene que enviar un **response** body. Pero los clientes no necesariamente necesitan enviar **request bodies** todo el tiempo, a veces solo solicitan un path, quizás con algunos parámetros de query, pero no envían un body.
 
-Para declarar un **request** body, usas modelos de [Pydantic](https://docs.pydantic.dev/) con todo su poder y beneficios.
+Para declarar un **request** body, usas modelos de [Pydantic](https://pydantic.dev/docs/) con todo su poder y beneficios.
 
 /// note | Nota
 
@@ -23,7 +23,7 @@ Como no se recomienda, la documentación interactiva con Swagger UI no mostrará
 
 Primero, necesitas importar `BaseModel` de `pydantic`:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## Crea tu modelo de datos { #create-your-data-model }
 
@@ -31,7 +31,7 @@ Luego, declaras tu modelo de datos como una clase que hereda de `BaseModel`.
 
 Usa tipos estándar de Python para todos los atributos:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 Al igual que al declarar parámetros de query, cuando un atributo del modelo tiene un valor por defecto, no es obligatorio. De lo contrario, es obligatorio. Usa `None` para hacerlo solo opcional.
@@ -60,7 +60,7 @@ Por ejemplo, el modelo anterior declara un “`object`” JSON (o `dict` en Pyth
 
 Para añadirlo a tu *path operation*, decláralo de la misma manera que declaraste parámetros de path y query:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...y declara su tipo como el modelo que creaste, `Item`.
 
@@ -127,7 +127,7 @@ Mejora el soporte del editor para modelos de Pydantic, con:
 
 Dentro de la función, puedes acceder a todos los atributos del objeto modelo directamente:
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## Request body + parámetros de path { #request-body-path-parameters }
 
@@ -135,7 +135,7 @@ Puedes declarar parámetros de path y request body al mismo tiempo.
 
 **FastAPI** reconocerá que los parámetros de función que coinciden con los parámetros de path deben ser **tomados del path**, y que los parámetros de función que se declaran como modelos de Pydantic deben ser **tomados del request body**.
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## Request body + path + parámetros de query { #request-body-path-query-parameters }
@@ -144,7 +144,7 @@ También puedes declarar parámetros de **body**, **path** y **query**, todos al
 
 **FastAPI** reconocerá cada uno de ellos y tomará los datos del lugar correcto.
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 Los parámetros de la función se reconocerán de la siguiente manera:
 

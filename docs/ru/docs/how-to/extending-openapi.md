@@ -45,25 +45,25 @@
 
 Используя информацию выше, вы можете той же вспомогательной функцией сгенерировать схему OpenAPI и переопределить любые нужные части.
 
-Например, добавим [расширение OpenAPI ReDoc для включения собственного логотипа](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
+Например, добавим [расширение OpenAPI ReDoc для включения собственного логотипа](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo).
 
 ### Обычный **FastAPI** { #normal-fastapi }
 
 Сначала напишите приложение **FastAPI** как обычно:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### Сгенерируйте схему OpenAPI { #generate-the-openapi-schema }
 
 Затем используйте ту же вспомогательную функцию для генерации схемы OpenAPI внутри функции `custom_openapi()`:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### Измените схему OpenAPI { #modify-the-openapi-schema }
 
 Теперь можно добавить расширение ReDoc, добавив кастомный `x-logo` в «объект» `info` в схеме OpenAPI:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### Кэшируйте схему OpenAPI { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@
 
 Она будет создана один раз, а затем тот же кэшированный вариант будет использоваться для последующих запросов.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### Переопределите метод { #override-the-method }
 
 Теперь вы можете заменить метод `.openapi()` на вашу новую функцию.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### Проверьте { #check-it }
 

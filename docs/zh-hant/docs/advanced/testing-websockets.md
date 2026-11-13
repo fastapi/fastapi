@@ -4,10 +4,10 @@
 
 為此，你可以在 `with` 陳述式中使用 `TestClient`，連線到該 WebSocket：
 
-{* ../../docs_src/app_testing/tutorial002_py310.py hl[27:31] *}
+{* ../../docs_src/app_testing/tutorial002.py hl[27:31] *}
 
 /// note | 注意
 
-想了解更多，請參考 Starlette 的[測試 WebSocket](https://www.starlette.dev/testclient/#testing-websocket-sessions)文件。
+想了解更多，請參考 Starlette 的[測試 WebSocket](https://starlette.dev/testclient/#testing-websocket-sessions)文件。
 
 ///

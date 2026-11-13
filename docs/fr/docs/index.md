@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI est un framework web moderne et rapide (haute performance) pour la création d'API avec Python, basé sur les annotations de type standard de Python.
 
+<!-- agent-banner -->
+
 Les principales fonctionnalités sont :
 
 * **Rapide** : très hautes performances, au niveau de **NodeJS** et **Go** (grâce à Starlette et Pydantic). [L'un des frameworks Python les plus rapides](#performance).
@@ -110,7 +112,7 @@ Les principales fonctionnalités sont :
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">« Nous avons adopté la bibliothèque <strong>FastAPI</strong> pour lancer un serveur <strong>REST</strong> qui peut être interrogé pour obtenir des <strong>prédictions</strong>. » <em>[pour Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <div class="fastapi-opinions__attr">— Piero Molino, Yaroslav Dudin, Sai Sumanth Miryala, <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">« <strong>Netflix</strong> est heureux d’annoncer la publication en open source de notre framework d’orchestration de <strong>gestion de crise</strong> : <strong>Dispatch</strong> ! » <em>[construit avec FastAPI]</em></blockquote>
@@ -133,7 +135,7 @@ Les principales fonctionnalités sont :
 
 « _Nous avons adopté la bibliothèque **FastAPI** pour lancer un serveur **REST** qui peut être interrogé pour obtenir des **prédictions**. [pour Ludwig]_ »
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, et Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, et Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -150,12 +152,6 @@ Les principales fonctionnalités sont :
 ---
 
 </div>
-
-## FastAPI Conf { #fastapi-conf }
-
-[**FastAPI Conf '26**](https://fastapiconf.com) aura lieu le **28 octobre 2026** à **Amsterdam, NL**. Tout sur FastAPI, à la source. 🎤
-
-<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - 28 octobre 2026 - Amsterdam, NL"></a>
 
 ## Mini documentaire FastAPI { #fastapi-mini-documentary }
 
@@ -175,17 +171,17 @@ Si vous construisez une application <abbr title="Command Line Interface - Interf
 
 FastAPI repose sur les épaules de géants :
 
-* [Starlette](https://www.starlette.dev/) pour les parties web.
-* [Pydantic](https://docs.pydantic.dev/) pour les parties données.
+* [Starlette](https://starlette.dev/) pour les parties web.
+* [Pydantic](https://pydantic.dev/docs/) pour les parties données.
 
 ## Installation { #installation }
 
-Créez et activez un [environnement virtuel](https://fastapi.tiangolo.com/fr/virtual-environments/) puis installez FastAPI :
+Tout d'abord, [installez `uv`](https://docs.astral.sh/uv/getting-started/installation/), puis ajoutez FastAPI à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -193,6 +189,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **Remarque** : Vous devez vous assurer de mettre `"fastapi[standard]"` entre guillemets pour garantir que cela fonctionne dans tous les terminaux.
+
+Si vous préférez utiliser `pip`, installez `fastapi[standard]` dans un environnement virtuel. Consultez le [guide d'installation](tutorial/#install-fastapi) pour les étapes alternatives.
 
 ## Exemple { #example }
 
@@ -217,7 +215,7 @@ def read_item(item_id: int, q: str | None = None):
 ```
 
 <details markdown="1">
-<summary>Ou utilisez <code>async def</code>...</summary>
+<summary>Ou utilisez <code>async def</code> ...</summary>
 
 Si votre code utilise `async` / `await`, utilisez `async def` :
 
@@ -239,7 +237,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **Remarque** :
 
-Si vous ne savez pas, consultez la section « Vous êtes pressés ? » à propos de [`async` et `await` dans les documents](https://fastapi.tiangolo.com/fr/async/#in-a-hurry).
+Si vous ne savez pas, consultez la section _« Vous êtes pressés ? »_ à propos de [`async` et `await` dans les documents](https://fastapi.tiangolo.com/fr/async/#in-a-hurry).
 
 </details>
 
@@ -250,7 +248,7 @@ Lancez le serveur avec :
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -275,13 +273,13 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary>À propos de la commande <code>fastapi dev</code>...</summary>
+<summary>À propos de la commande <code>fastapi dev</code> ...</summary>
 
-La commande `fastapi dev` lit automatiquement votre fichier `main.py`, détecte l'application **FastAPI** qu'il contient et lance un serveur avec [Uvicorn](https://www.uvicorn.dev).
+La commande `fastapi dev` lit automatiquement votre fichier `main.py`, détecte l'application **FastAPI** qu'il contient et lance un serveur avec [Uvicorn](https://uvicorn.dev).
 
 Par défaut, `fastapi dev` démarre avec le rechargement automatique activé pour le développement local.
 
-Vous pouvez en savoir plus dans la [documentation de la CLI FastAPI](https://fastapi.tiangolo.com/fr/fastapi-cli/).
+Vous pouvez en savoir plus dans les [documents de la CLI FastAPI](https://fastapi.tiangolo.com/fr/fastapi-cli/).
 
 </details>
 
@@ -314,7 +312,7 @@ Vous verrez la documentation interactive automatique de l'API (fournie par [Swag
 
 Et maintenant, rendez-vous sur [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Vous verrez la documentation alternative automatique (fournie par [ReDoc](https://github.com/Rebilly/ReDoc)) :
+Vous verrez la documentation alternative automatique (fournie par [ReDoc](https://github.com/Redocly/redoc)) :
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -497,7 +495,7 @@ Vous pouvez, si vous le souhaitez, déployer votre application FastAPI sur [Fast
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -540,7 +538,7 @@ FastAPI dépend de Pydantic et Starlette.
 
 ### Dépendances `standard` { #standard-dependencies }
 
-Lorsque vous installez FastAPI avec `pip install "fastapi[standard]"`, il inclut le groupe `standard` de dépendances optionnelles :
+Lorsque vous installez FastAPI avec `uv add "fastapi[standard]"`, il inclut le groupe `standard` de dépendances optionnelles :
 
 Utilisées par Pydantic :
 
@@ -548,23 +546,23 @@ Utilisées par Pydantic :
 
 Utilisées par Starlette :
 
-* [`httpx`](https://www.python-httpx.org) - Obligatoire si vous souhaitez utiliser le `TestClient`.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (ou `httpx`) - Utilisé par le `TestClient`.
 * [`jinja2`](https://jinja.palletsprojects.com) - Obligatoire si vous souhaitez utiliser la configuration de template par défaut.
-* [`python-multipart`](https://github.com/Kludex/python-multipart) - Obligatoire si vous souhaitez prendre en charge l’<dfn title="convertir la chaîne issue d'une requête HTTP en données Python">« parsing »</dfn> de formulaires avec `request.form()`.
+* [`python-multipart`](https://github.com/Kludex/python-multipart) - Obligatoire si vous souhaitez prendre en charge le <dfn title="convertir la chaîne issue d'une requête HTTP en données Python">« parsing »</dfn> de formulaires avec `request.form()`.
 
 Utilisées par FastAPI :
 
-* [`uvicorn`](https://www.uvicorn.dev) - pour le serveur qui charge et sert votre application. Cela inclut `uvicorn[standard]`, qui comprend certaines dépendances (par ex. `uvloop`) nécessaires pour une haute performance.
+* [`uvicorn`](https://uvicorn.dev) - pour le serveur qui charge et sert votre application. Cela inclut `uvicorn[standard]`, qui comprend certaines dépendances (par ex. `uvloop`) nécessaires pour une haute performance.
 * `fastapi-cli[standard]` - pour fournir la commande `fastapi`.
     * Cela inclut `fastapi-cloud-cli`, qui vous permet de déployer votre application FastAPI sur [FastAPI Cloud](https://fastapicloud.com).
 
 ### Sans les dépendances `standard` { #without-standard-dependencies }
 
-Si vous ne souhaitez pas inclure les dépendances optionnelles `standard`, vous pouvez installer avec `pip install fastapi` au lieu de `pip install "fastapi[standard]"`.
+Si vous ne souhaitez pas inclure les dépendances optionnelles `standard`, vous pouvez installer avec `uv add fastapi` au lieu de `uv add "fastapi[standard]"`.
 
 ### Sans `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
-Si vous souhaitez installer FastAPI avec les dépendances standard mais sans `fastapi-cloud-cli`, vous pouvez installer avec `pip install "fastapi[standard-no-fastapi-cloud-cli]"`.
+Si vous souhaitez installer FastAPI avec les dépendances standard mais sans `fastapi-cloud-cli`, vous pouvez installer avec `uv add "fastapi[standard-no-fastapi-cloud-cli]"`.
 
 ### Dépendances optionnelles supplémentaires { #additional-optional-dependencies }
 
@@ -572,13 +570,13 @@ Il existe des dépendances supplémentaires que vous pourriez vouloir installer.
 
 Dépendances optionnelles supplémentaires pour Pydantic :
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - pour la gestion des paramètres.
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - pour des types supplémentaires à utiliser avec Pydantic.
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - pour la gestion des paramètres.
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - pour des types supplémentaires à utiliser avec Pydantic.
 
 Dépendances optionnelles supplémentaires pour FastAPI :
 
 * [`orjson`](https://github.com/ijl/orjson) - Obligatoire si vous souhaitez utiliser `ORJSONResponse`.
-* [`ujson`](https://github.com/esnme/ultrajson) - Obligatoire si vous souhaitez utiliser `UJSONResponse`.
+* [`ujson`](https://github.com/ultrajson/ultrajson) - Obligatoire si vous souhaitez utiliser `UJSONResponse`.
 
 ## Licence { #license }
 

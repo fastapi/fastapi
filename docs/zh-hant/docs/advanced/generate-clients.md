@@ -12,7 +12,7 @@
 
 針對 **TypeScript 用戶端**，[Hey API](https://heyapi.dev/) 是專門打造的解決方案，為 TypeScript 生態系提供最佳化的體驗。
 
-你可以在 [OpenAPI.Tools](https://openapi.tools/#sdk) 找到更多 SDK 產生器。
+你可以在 [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators) 找到更多 SDK 產生器。
 
 /// tip
 
@@ -24,7 +24,7 @@ FastAPI 會自動產生 **OpenAPI 3.1** 規格，因此你使用的任何工具�
 
 先從一個簡單的 FastAPI 應用開始：
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 注意這些 *路徑操作* 為請求與回應的有效載荷定義了所用的模型，使用了 `Item` 與 `ResponseMessage` 這兩個模型。
 
@@ -82,7 +82,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 例如，你可以有一個 **items** 區塊與另一個 **users** 區塊，並透過標籤區分：
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### 使用標籤產生 TypeScript 用戶端 { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ FastAPI 會為每個 *路徑操作* 使用一個**唯一 ID**，它會被用於*
 
 接著你可以將這個自訂函式以 `generate_unique_id_function` 參數傳給 **FastAPI**：
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### 使用自訂 Operation ID 產生 TypeScript 用戶端 { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ FastAPI 會為每個 *路徑操作* 使用一個**唯一 ID**，它會被用於*
 
 我們可以把 OpenAPI JSON 下載到 `openapi.json` 檔案，然後用像這樣的腳本**移除該標籤前綴**：
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 
@@ -179,9 +179,9 @@ npx @hey-api/openapi-ts -i ./openapi.json -o src/client
 
 使用自動產生的用戶端時，你會得到以下項目的**自動完成**：
 
-* 方法
-* Body 中的請求有效載荷、查詢參數等
-* 回應的有效載荷
+* 方法。
+* Body 中的請求有效載荷、查詢參數等。
+* 回應的有效載荷。
 
 你也會對所有內容獲得**行內錯誤**提示。
 

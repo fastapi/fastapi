@@ -12,7 +12,7 @@ Uma opção versátil é o [OpenAPI Generator](https://openapi-generator.tech/),
 
 Para **clientes TypeScript**, o [Hey API](https://heyapi.dev/) é uma solução feita sob medida, oferecendo uma experiência otimizada para o ecossistema TypeScript.
 
-Você pode descobrir mais geradores de SDK em [OpenAPI.Tools](https://openapi.tools/#sdk).
+Você pode descobrir mais geradores de SDK em [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Dica
 
@@ -24,7 +24,7 @@ O FastAPI gera automaticamente especificações **OpenAPI 3.1**, então qualquer
 
 Vamos começar com uma aplicação FastAPI simples:
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 Observe que as *operações de rota* definem os modelos que usam para o payload da requisição e o payload da resposta, usando os modelos `Item` e `ResponseMessage`.
 
@@ -82,7 +82,7 @@ Em muitos casos, sua aplicação FastAPI será maior, e você provavelmente usar
 
 Por exemplo, você poderia ter uma seção para **items** e outra seção para **users**, e elas poderiam ser separadas por tags:
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### Gere um cliente TypeScript com Tags { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ Por exemplo, aqui está usando a primeira tag (Você provavelmente terá apenas 
 
 Você pode então passar essa função personalizada para o **FastAPI** como o parâmetro `generate_unique_id_function`:
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### Gere um cliente TypeScript com IDs de operação personalizados { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ Mas para o cliente gerado, poderíamos **modificar** os IDs de operação do Ope
 
 Poderíamos baixar o JSON do OpenAPI para um arquivo `openapi.json` e então poderíamos **remover essa tag prefixada** com um script como este:
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

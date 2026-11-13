@@ -4,12 +4,12 @@
 
 ## Встановіть `websockets` { #install-websockets }
 
-Переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md), активували його та встановили `websockets` (бібліотеку Python, що полегшує використання протоколу «WebSocket»):
+Додайте `websockets` (бібліотеку Python, що полегшує використання протоколу «WebSocket») до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -38,13 +38,13 @@ $ pip install websockets
 
 Але це найпростіший спосіб зосередитися на серверній частині WebSockets і мати робочий приклад:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[2,6:38,41:43] *}
 
 ## Створіть `websocket` { #create-a-websocket }
 
 У вашому застосунку **FastAPI** створіть `websocket`:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[1,46:47] *}
 
 /// note | Технічні деталі
 
@@ -58,7 +58,7 @@ $ pip install websockets
 
 У вашому маршруті WebSocket ви можете `await` повідомлення і надсилати повідомлення.
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[48:52] *}
 
 Ви можете отримувати та надсилати бінарні, текстові та JSON-дані.
 
@@ -69,7 +69,7 @@ $ pip install websockets
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -109,9 +109,9 @@ $ fastapi dev
 
 Вони працюють так само, як для інших ендпойнтів FastAPI/*операцій шляху*:
 
-{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002.py hl[68:69,82] *}
 
-/// note
+/// note | Примітка
 
 Оскільки це WebSocket, не має сенсу піднімати `HTTPException`, натомість ми піднімаємо `WebSocketException`.
 
@@ -126,7 +126,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -140,7 +140,7 @@ $ fastapi dev
 * «Item ID», який використовується у шляху.
 * «Token», який використовується як параметр запиту.
 
-/// tip
+/// tip | Порада
 
 Зверніть увагу, що параметр запиту `token` буде оброблено залежністю.
 
@@ -154,7 +154,7 @@ $ fastapi dev
 
 Коли з'єднання WebSocket закривається, `await websocket.receive_text()` підніме виняток `WebSocketDisconnect`, який ви можете перехопити й обробити, як у цьому прикладі.
 
-{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003.py hl[79:81] *}
 
 Щоб спробувати:
 
@@ -168,7 +168,7 @@ $ fastapi dev
 Client #1596980209979 left the chat
 ```
 
-/// tip
+/// tip | Порада
 
 Застосунок вище - це мінімальний і простий приклад, що демонструє, як обробляти та розсилати повідомлення кільком з'єднанням WebSocket.
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 Щоб дізнатися більше про можливості, перегляньте документацію Starlette:
 
-* [Клас `WebSocket`](https://www.starlette.dev/websockets/).
-* [Обробка WebSocket на основі класів](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [Клас `WebSocket`](https://starlette.dev/websockets/).
+* [Обробка WebSocket на основі класів](https://starlette.dev/endpoints/#websocketendpoint).

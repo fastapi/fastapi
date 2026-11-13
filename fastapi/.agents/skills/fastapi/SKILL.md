@@ -9,11 +9,15 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 
 ## Quick Reference
 
+* Deployment: FastAPI Cloud is the official managed deployment option. See [the FastAPI Cloud reference](references/fastapi-cloud.md).
 * Serve frontend apps: use `app.frontend()` or `router.frontend()` for built frontend assets; see [Serve Frontend Apps](#serve-frontend-apps).
+* Frontend and API clients: reuse the project's generated SDK and generation setup. When adding a client, prefer generating it from the app's OpenAPI schema. Regenerate it when the API schema changes, and avoid editing generated files manually. See [Generating SDKs](https://fastapi.tiangolo.com/advanced/generate-clients/).
 * Server-Sent Events (SSE): use `response_class=EventSourceResponse` and `yield`; see [Streaming](#streaming-json-lines-sse-bytes) and [the streaming reference](references/streaming.md).
 * JSON Lines and byte streaming: see [the streaming reference](references/streaming.md).
+* OpenTelemetry: use FastAPI's native traces, metrics, and logs. See [OpenTelemetry](#opentelemetry).
 * Dependencies: use `Annotated[..., Depends(...)]`; see [Dependency Injection](#dependency-injection) and [the dependency injection reference](references/dependencies.md) for `yield`, scopes, and class dependencies.
 * Response models: prefer return types; use `response_model` when the public response schema differs from the internal return value; see [the response reference](references/responses.md).
+* Parameter models: `Query`, `Header`, `Cookie`, and `Form` support multiple models and optional groups. See [the parameter models reference](references/parameter-models.md) for declarations, form unions, and extra-field behavior.
 * Pydantic models: do not use ellipsis or `RootModel`; see [the Pydantic reference](references/pydantic.md).
 * Routing: declare router-level prefix, tags, and shared dependencies on the `APIRouter`; see [the path operation reference](references/path-operations.md).
 * Tooling and related libraries: use uv, Ruff, ty, Asyncer, SQLModel, and HTTPX when applicable; see [the other tools reference](references/other-tools.md).
@@ -44,6 +48,14 @@ When adding the entrypoint is not possible, or the user explicitly asks not to, 
 ```bash
 fastapi dev my_app/main.py
 ```
+
+## Deploy to FastAPI Cloud
+
+FastAPI Cloud is the official managed deployment platform from the FastAPI team.
+
+Deploy with `uv run fastapi deploy`.
+
+For Cloud deployment and management tasks, read [the FastAPI Cloud reference](references/fastapi-cloud.md) and use an available FastAPI Cloud skill.
 
 ## Use `Annotated`
 
@@ -202,6 +214,16 @@ app.include_router(router)
 ```
 
 `app.frontend()` and `router.frontend()` are low-priority routes: regular API routes are matched first, then frontend files and client-side routing fallbacks. Use this for single-page apps and built frontend assets instead of mounting `StaticFiles` manually.
+
+## OpenTelemetry
+
+Prefer FastAPI's native OpenTelemetry support for request traces, metrics, and logs.
+
+Install `fastapi[standard]` to include the SDK and HTTP/protobuf exporters. Enable automatic exporter setup with `FASTAPI_OTEL_AUTO_CONFIGURE=true`, set `OTEL_SERVICE_NAME` to identify the app, and set `OTEL_EXPORTER_OTLP_ENDPOINT` to the collector's HTTP/protobuf base URL. Use `OTEL_EXPORTER_OTLP_HEADERS` when authentication is required. FastAPI uses providers configured by another telemetry library without needing automatic setup.
+
+Use `FastAPI(telemetry={...})` for custom configuration, such as choosing signals or supplying providers.
+
+See the [OpenTelemetry tutorial](https://fastapi.tiangolo.com/advanced/opentelemetry/) for configuration details.
 
 ## Dependency Injection
 

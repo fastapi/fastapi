@@ -2,7 +2,7 @@
 
 **FastAPI <abbr title="command line interface - interface en ligne de commande">CLI</abbr>** est un programme en ligne de commande que vous pouvez utiliser pour servir votre application FastAPI, gérer votre projet FastAPI, et plus encore.
 
-Lorsque vous installez FastAPI (par exemple avec `pip install "fastapi[standard]"`), il est fourni avec un programme en ligne de commande que vous pouvez exécuter dans le terminal.
+Lorsque vous ajoutez FastAPI à votre projet (par exemple avec `uv add "fastapi[standard]"`), il est fourni avec un programme en ligne de commande que vous pouvez exécuter dans le terminal.
 
 Pour exécuter votre application FastAPI en développement, vous pouvez utiliser la commande `fastapi dev` :
 
@@ -52,7 +52,7 @@ Pour la production, utilisez `fastapi run` plutôt que `fastapi dev`. 🚀
 
 ///
 
-En interne, **FastAPI CLI** utilise [Uvicorn](https://www.uvicorn.dev), un serveur ASGI haute performance, prêt pour la production. 😎
+En interne, **FastAPI CLI** utilise [Uvicorn](https://uvicorn.dev), un serveur ASGI haute performance, prêt pour la production. 😎
 
 La CLI `fastapi` tentera de détecter automatiquement l’application FastAPI à exécuter, en supposant qu’il s’agit d’un objet nommé `app` dans un fichier `main.py` (ou quelques autres variantes).
 
@@ -100,13 +100,13 @@ from backend.main import app
 Vous pouvez également passer le chemin du fichier à la commande `fastapi dev`, et elle devinera l’objet d’application FastAPI à utiliser :
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Ou bien, vous pouvez aussi passer l’option `--entrypoint` à la commande `fastapi dev` :
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 Mais vous devez vous rappeler de passer le bon chemin\entrypoint à chaque fois que vous appelez la commande `fastapi`.
@@ -119,9 +119,13 @@ L’exécution de `fastapi dev` lance le mode développement.
 
 Par défaut, l’**auto-reload** est activé et recharge automatiquement le serveur lorsque vous modifiez votre code. Cela consomme des ressources et peut être moins stable que lorsqu’il est désactivé. Vous devez l’utiliser uniquement pour le développement. Il écoute aussi sur l’adresse IP `127.0.0.1`, qui est l’adresse IP permettant à votre machine de communiquer uniquement avec elle‑même (`localhost`).
 
+Avant d’importer votre application, `fastapi dev` définit la variable d’environnement `FASTAPI_ENV` à `development`. Si `FASTAPI_ENV` est déjà définie, sa valeur existante est conservée. Cela permet au code de démarrage de l’application de choisir un comportement adapté au développement tout en vous permettant de fournir un environnement spécifique à l’application, comme `staging`.
+
+Les valeurs conventionnelles de `FASTAPI_ENV` sont `development` et `production`. `fastapi run` laisse actuellement `FASTAPI_ENV` inchangée, donc définissez-la explicitement si votre application doit détecter le mode production.
+
 ## `fastapi run` { #fastapi-run }
 
-Exécuter `fastapi run` démarre FastAPI en mode production par défaut.
+Exécuter `fastapi run` démarre FastAPI en mode production.
 
 Par défaut, l’**auto-reload** est désactivé. Il écoute aussi sur l’adresse IP `0.0.0.0`, ce qui signifie toutes les adresses IP disponibles ; de cette manière, il sera accessible publiquement à toute personne pouvant communiquer avec la machine. C’est ainsi que vous l’exécutez normalement en production, par exemple dans un conteneur.
 

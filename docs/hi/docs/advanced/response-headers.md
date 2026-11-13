@@ -6,7 +6,7 @@
 
 और फिर आप उस *अस्थायी* response object में headers सेट कर सकते हैं।
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 और फिर आप अपनी ज़रूरत का कोई भी object return कर सकते हैं, जैसा कि आप सामान्य रूप से करते हैं (एक `dict`, database model, आदि)।
 
@@ -22,7 +22,7 @@
 
 [सीधे Response Return करें](response-directly.md) में वर्णित तरीके से response बनाएँ और headers को एक अतिरिक्त parameter के रूप में पास करें:
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | तकनीकी विवरण
 
@@ -38,4 +38,4 @@
 
 ध्यान रखें कि custom proprietary headers को [`X-` prefix का उपयोग करके](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) जोड़ा जा सकता है।
 
-लेकिन अगर आपके पास custom headers हैं जिन्हें आप चाहते हैं कि browser में कोई client देख सके, तो आपको उन्हें अपनी CORS configurations में जोड़ना होगा ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) में और पढ़ें), इसके लिए [Starlette के CORS docs](https://www.starlette.dev/middleware/#corsmiddleware) में documented parameter `expose_headers` का उपयोग करें।
+लेकिन अगर आपके पास custom headers हैं जिन्हें आप चाहते हैं कि browser में कोई client देख सके, तो आपको उन्हें अपनी CORS configurations में जोड़ना होगा ([CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md) में और पढ़ें), इसके लिए [Starlette के CORS docs](https://starlette.dev/middleware/#corsmiddleware) में documented parameter `expose_headers` का उपयोग करें।

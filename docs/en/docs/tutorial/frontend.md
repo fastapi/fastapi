@@ -36,7 +36,7 @@ Your project structure could look like this:
 
 Then serve it with `app.frontend()`:
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 With this, a request for `/assets/app.js` can serve `dist/assets/app.js`.
 
@@ -50,7 +50,7 @@ So, if accessing that URL directly (instead of navigating through the app), the 
 
 For that, use `fallback="index.html"`:
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI** uses this fallback only for `GET` and `HEAD` requests that explicitly accept HTML with `Accept: text/html` or `Accept: application/xhtml+xml`, as browser navigation requests normally do. Missing files like JavaScript, CSS, and images still return `404`.
 
@@ -68,7 +68,7 @@ This is what you would want with many frontend apps that use client-side routing
 
 You can also serve a static `404.html` page for missing frontend paths:
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 That response keeps a status code of `404`.
 
@@ -94,25 +94,29 @@ Otherwise, if there is an `index.html` file, missing browser navigation paths se
 
 So, in most cases you can use `app.frontend("/", directory="dist")` without specifying the `fallback` argument.
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## Disable Fallback { #disable-fallback }
 
 If you don't want to serve a fallback file for missing frontend paths, use `fallback=None`:
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 Then missing frontend paths return the normal `404`.
 
 ## Check Directory { #check-directory }
 
-By default, `app.frontend()` checks that the directory exists when the app is created.
+By default, `app.frontend()` uses `check_dir="auto"`.
 
-This helps catch configuration errors early. For example, if the frontend build output directory is missing, **FastAPI** will raise an error on startup.
+When the `FASTAPI_ENV` environment variable is set to `development`, **FastAPI** only shows a warning if the frontend build output directory is missing. The [`fastapi dev` command](https://github.com/fastapi/fastapi-cli#fastapi-dev) sets this environment variable for you if it is not already set. This lets you start the backend before building or starting the frontend during development.
+
+In any other environment, **FastAPI** raises an error when the app is created. This helps catch configuration errors early before deploying an app without its frontend files.
+
+You can also set `check_dir=True` to always check the directory when the app is created.
 
 If your frontend files are created later, for example by a separate build step after the app object is created, set `check_dir=False`:
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 With `check_dir=False`, **FastAPI** will not check the directory when the app is created. If the configured directory is still missing when a request is handled, **FastAPI** will raise an error then.
 
@@ -120,7 +124,7 @@ With `check_dir=False`, **FastAPI** will not check the directory when the app is
 
 You can also add frontend files to an `APIRouter` and include it with a prefix:
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 In this example, frontend paths are served under `/app`.
 
@@ -131,6 +135,8 @@ Any regular *path operations* in the app will still take precedence, including i
 Frontend responses run inside the normal **FastAPI** application, so HTTP middleware applies to them.
 
 Dependencies from the app, from an `APIRouter`, and from `include_router()` also apply to frontend responses. This can be useful for protecting a frontend with cookie authentication or similar.
+
+Dependencies can also modify response headers and add background tasks, as with normal *path operations*.
 
 ## Static Build Output Only { #static-build-output-only }
 

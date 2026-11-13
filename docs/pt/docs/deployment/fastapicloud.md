@@ -5,7 +5,7 @@ Você pode implantar sua aplicação FastAPI no [FastAPI Cloud](https://fastapic
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 

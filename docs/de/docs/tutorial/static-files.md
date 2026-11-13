@@ -15,13 +15,13 @@ Wenn Sie ein Frontend hosten müssen, verwenden Sie stattdessen `app.frontend()`
 * Importieren Sie `StaticFiles`.
 * „Mounten“ Sie eine `StaticFiles()`-Instanz in einem bestimmten Pfad.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | Technische Details
 
 Sie könnten auch `from starlette.staticfiles import StaticFiles` verwenden.
 
-**FastAPI** stellt dasselbe `starlette.staticfiles` auch via `fastapi.staticfiles` bereit, als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
+**FastAPI** stellt dasselbe `starlette.staticfiles` auch als `fastapi.staticfiles` bereit, nur als Annehmlichkeit für Sie, den Entwickler. Es kommt aber tatsächlich direkt von Starlette.
 
 ///
 
@@ -45,4 +45,4 @@ Alle diese Parameter können anders als „`static`“ lauten, passen Sie sie an
 
 ## Weitere Informationen { #more-info }
 
-Weitere Details und Optionen finden Sie in [Starlettes Dokumentation zu statischen Dateien](https://www.starlette.dev/staticfiles/).
+Weitere Details und Optionen finden Sie in [Starlettes Dokumentation zu statischen Dateien](https://starlette.dev/staticfiles/).

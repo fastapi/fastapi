@@ -57,13 +57,13 @@ Impone que todas las requests entrantes deben ser `https` o `wss`.
 
 Cualquier request entrante a `http` o `ws` será redirigida al esquema seguro.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Impone que todas las requests entrantes tengan correctamente configurado el header `Host`, para proteger contra ataques de HTTP Host Header.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 Se soportan los siguientes argumentos:
 
@@ -78,7 +78,7 @@ Maneja responses GZip para cualquier request que incluya `"gzip"` en el header `
 
 El middleware manejará tanto responses estándar como en streaming.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 Se soportan los siguientes argumentos:
 
@@ -91,7 +91,7 @@ Hay muchos otros middlewares ASGI.
 
 Por ejemplo:
 
-* [`ProxyHeadersMiddleware` de Uvicorn](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [`ProxyHeadersMiddleware` de Uvicorn](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-Para ver otros middlewares disponibles, revisa [la documentación de Middleware de Starlette](https://www.starlette.dev/middleware/) y la [Lista ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).
+Para ver otros middlewares disponibles, revisa [la documentación de Middleware de Starlette](https://starlette.dev/middleware/) y la [Lista ASGI Awesome](https://github.com/florimondmanca/awesome-asgi).

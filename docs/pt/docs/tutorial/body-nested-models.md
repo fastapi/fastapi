@@ -6,7 +6,7 @@ Com o **FastAPI**, você pode definir, validar, documentar e usar modelos arbitr
 
 Você pode definir um atributo como um subtipo. Por exemplo, uma `list` do Python:
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 Isso fará com que `tags` seja uma lista, mesmo sem declarar o tipo dos elementos desta lista.
 
@@ -29,7 +29,7 @@ Use a mesma sintaxe padrão para atributos de modelo com tipos internos.
 
 Portanto, em nosso exemplo, podemos fazer com que `tags` sejam especificamente uma "lista de strings":
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## Tipos "set" { #set-types }
 
@@ -39,7 +39,7 @@ E que o Python tem um tipo de dados especial para conjuntos de itens únicos, o 
 
 Então podemos declarar `tags` como um conjunto de strings:
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 Com isso, mesmo que você receba uma requisição contendo dados duplicados, ela será convertida em um conjunto de itens exclusivos.
 
@@ -61,13 +61,13 @@ Tudo isso, aninhado arbitrariamente.
 
 Por exemplo, nós podemos definir um modelo `Image`:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### Use o sub-modelo como um tipo { #use-the-submodel-as-a-type }
 
 E então podemos usá-lo como o tipo de um atributo:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 Isso significa que o **FastAPI** vai esperar um corpo similar a:
 
@@ -96,11 +96,11 @@ Novamente, apenas fazendo essa declaração, com o **FastAPI**, você ganha:
 
 Além dos tipos singulares normais como `str`, `int`, `float`, etc. Você também pode usar tipos singulares mais complexos que herdam de `str`.
 
-Para ver todas as opções possíveis, consulte a [Visão geral dos tipos do Pydantic](https://docs.pydantic.dev/latest/concepts/types/). Você verá alguns exemplos no próximo capítulo.
+Para ver todas as opções possíveis, consulte a [Visão geral dos tipos do Pydantic](https://pydantic.dev/docs/validation/latest/concepts/types/). Você verá alguns exemplos no próximo capítulo.
 
 Por exemplo, no modelo `Image` nós temos um campo `url`, nós podemos declará-lo como um `HttpUrl` do Pydantic em vez de como uma `str`:
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 A string será verificada para ser uma URL válida e documentada no JSON Schema / OpenAPI como tal.
 
@@ -108,7 +108,7 @@ A string será verificada para ser uma URL válida e documentada no JSON Schema 
 
 Você também pode usar modelos Pydantic como subtipos de `list`, `set`, etc:
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 Isso vai esperar (converter, validar, documentar, etc) um corpo JSON tal qual:
 
@@ -146,7 +146,7 @@ Observe como a chave `images` agora tem uma lista de objetos de imagem.
 
 Você pode definir modelos profundamente aninhados de forma arbitrária:
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note | Nota
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 como em:
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## Suporte de editor em todo canto { #editor-support-everywhere }
 
@@ -182,7 +182,7 @@ Mas você também não precisa se preocupar com eles, os dicts de entrada são c
 
 Você também pode declarar um corpo como um `dict` com chaves de algum tipo e valores de outro tipo.
 
-Sem ter que saber de antemão quais são os nomes de campos/atributos válidos (como seria o caso dos modelos Pydantic).
+Dessa forma, você não precisa saber de antemão quais são os nomes de campos/atributos válidos (como seria o caso dos modelos Pydantic).
 
 Isso seria útil se você deseja receber chaves que ainda não conhece.
 
@@ -194,7 +194,7 @@ Outro caso útil é quando você deseja ter chaves de outro tipo (por exemplo, `
 
 Neste caso, você aceitaria qualquer `dict`, desde que tenha chaves `int` com valores `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip | Dica
 

@@ -31,13 +31,13 @@
     - 然後回傳對應*路徑操作*所產生的 `response`。
 - 然後你可以在回傳之前進一步修改 `response`。
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip
 
 請記得，自訂的非標準標頭可以[使用 `X-` 前綴](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)。
 
-但如果你有自訂標頭並希望瀏覽器端的用戶端能看到它們，你需要在 CORS 設定（[CORS（跨來源資源共用）](cors.md)）中使用 [Starlette 的 CORS 文件](https://www.starlette.dev/middleware/#corsmiddleware)所記載的參數 `expose_headers` 將它們加入。
+但如果你有自訂標頭並希望瀏覽器端的用戶端能看到它們，你需要在 CORS 設定（[CORS（跨來源資源共用）](cors.md)）中使用 [Starlette 的 CORS 文件](https://starlette.dev/middleware/#corsmiddleware)所記載的參數 `expose_headers` 將它們加入。
 
 ///
 
@@ -57,7 +57,7 @@
 
 例如，你可以新增一個自訂標頭 `X-Process-Time`，其內容為處理請求並產生回應所花費的秒數：
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip
 

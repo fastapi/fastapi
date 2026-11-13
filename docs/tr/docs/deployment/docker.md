@@ -105,36 +105,32 @@ Bu, örneğin şu durumlarda **çoğu zaman** yapmak isteyeceğiniz şeydir:
 
 ### Paket Gereksinimleri { #package-requirements }
 
-Uygulamanızın **paket gereksinimleri** genelde bir dosyada yer alır.
+Projenizi `uv` ile yönetiyorsanız, doğrudan bağımlılıkları `pyproject.toml` içinde tanımlanır ve çözümlenen kesin versiyonlar `uv.lock` içinde saklanır.
 
-Bu, gereksinimleri **yüklemek** için kullandığınız araca göre değişir.
-
-En yaygın yöntem, paket adları ve versiyonlarının satır satır yazıldığı bir `requirements.txt` dosyasına sahip olmaktır.
-
-Versiyon aralıklarını belirlemek için elbette [FastAPI sürümleri hakkında](versions.md) bölümünde okuduğunuz fikirleri kullanırsınız.
-
-Örneğin `requirements.txt` şöyle görünebilir:
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-Ve bu bağımlılıkları normalde `pip` ile yüklersiniz, örneğin:
+Uygulamanızın ihtiyaç duyduğu paketleri şu şekilde ekleyebilirsiniz:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
 /// note | Not
 
-Paket bağımlılıklarını tanımlamak ve yüklemek için başka formatlar ve araçlar da vardır.
+Aşağıdaki Dockerfile, container içinde `pip` kullanır. uv projenizdeki kilitlenmiş bağımlılıkları, beklediği `requirements.txt` formatına export edebilirsiniz:
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+Oluşturulan `requirements.txt`, container build'i için bir export'tur. Bağımlılıkları `uv add` ile yönetmeye devam edin ve `uv.lock` değiştiğinde bu dosyayı yeniden oluşturun.
 
 ///
 
@@ -372,7 +368,7 @@ Otomatik etkileşimli API dokümantasyonunu görürsünüz ( [Swagger UI](https:
 
 Ayrıca [http://192.168.99.100/redoc](http://192.168.99.100/redoc) veya [http://127.0.0.1/redoc](http://127.0.0.1/redoc) adresine de gidebilirsiniz (ya da Docker host'unuzla eşdeğeri).
 
-Alternatif otomatik dokümantasyonu görürsünüz ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanır):
+Alternatif otomatik dokümantasyonu görürsünüz ([ReDoc](https://github.com/Redocly/redoc) tarafından sağlanır):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

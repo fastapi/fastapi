@@ -24,7 +24,7 @@ Pydantic v1 kullanan eski bir FastAPI uygulamanız varsa, burada onu Pydantic v2
 
 ## Resmi Kılavuz { #official-guide }
 
-Pydantic'in v1'den v2'ye resmi bir [Migration Guide](https://docs.pydantic.dev/latest/migration/)'ı vardır.
+Pydantic'in v1'den v2'ye resmi bir [Geçiş Kılavuzu](https://pydantic.dev/docs/validation/latest/get-started/migration/) vardır.
 
 Ayrıca nelerin değiştiğini, validasyonların artık nasıl daha doğru ve katı olduğunu, olası dikkat edilmesi gereken noktaları (caveat) vb. de içerir.
 
@@ -52,7 +52,7 @@ Pydantic v2, `pydantic.v1` adlı bir alt modül olarak Pydantic v1'in tamamını
 
 Bu da şu anlama gelir: Pydantic v2'nin en güncel sürümünü kurup, bu alt modülden eski Pydantic v1 bileşenlerini import ederek, sanki eski Pydantic v1 kuruluymuş gibi kullanabilirsiniz.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### v2 İçinde Pydantic v1 için FastAPI Desteği { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ FastAPI 0.119.0'dan itibaren, v2'ye geçişi kolaylaştırmak için Pydantic v2�
 
 Dolayısıyla Pydantic'i en güncel 2 sürümüne yükseltip import'ları `pydantic.v1` alt modülünü kullanacak şekilde değiştirebilirsiniz; çoğu durumda bu doğrudan çalışır.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning | Uyarı
 
@@ -122,7 +122,7 @@ graph TB
 
 Bazı durumlarda, FastAPI uygulamanızda aynı **path operation** içinde hem Pydantic v1 hem de v2 modellerini kullanmak bile mümkündür:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 Yukarıdaki örnekte input modeli bir Pydantic v1 modelidir; output modeli ( `response_model=ItemV2` ile tanımlanan) ise bir Pydantic v2 modelidir.
 
@@ -130,7 +130,7 @@ Yukarıdaki örnekte input modeli bir Pydantic v1 modelidir; output modeli ( `re
 
 Pydantic v1 modelleriyle `Body`, `Query`, `Form` vb. parametreler için FastAPI'ye özgü bazı araçları kullanmanız gerekiyorsa, Pydantic v2'ye geçişi tamamlayana kadar bunları `fastapi.temp_pydantic_v1_params` içinden import edebilirsiniz:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### Adım Adım Geçiş { #migrate-in-steps }
 

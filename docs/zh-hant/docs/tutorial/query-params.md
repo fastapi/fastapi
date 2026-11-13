@@ -2,7 +2,7 @@
 
 當你宣告不是路徑參數的其他函式參數時，會自動被視為「查詢（query）」參數。
 
-{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 查詢是出現在 URL 中 `?` 之後的一組鍵值對，以 `&` 字元分隔。
 
@@ -61,7 +61,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 同樣地，你可以將預設值設為 `None` 來宣告選用的查詢參數：
 
-{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial002.py hl[7] *}
 
 在這種情況下，函式參數 `q` 為選用，且預設為 `None`。
 
@@ -75,7 +75,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 你也可以宣告 `bool` 型別，值會被自動轉換：
 
-{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial003.py hl[7] *}
 
 在這種情況下，如果你造訪：
 
@@ -107,7 +107,13 @@ http://127.0.0.1:8000/items/foo?short=on
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-或任何其他大小寫變化（全大寫、首字母大寫等），你的函式會將參數 `short` 視為 `bool` 值 `True`。否則為 `False`。
+或任何其他大小寫變化（全大寫、首字母大寫等），你的函式會將參數 `short` 視為 `bool` 值 `True`。
+
+`0`、`false`、`off` 和 `no` 等值（包括大小寫變化）會被轉換為 `False`。
+
+如果省略 `short`，**FastAPI** 會使用它的預設值，在此例中為 `False`。
+
+空值（`?short=`）或無法辨識的值（例如 `?short=maybe`）會產生 `422` 驗證錯誤。
 
 
 ## 多個路徑與查詢參數 { #multiple-path-and-query-parameters }
@@ -118,7 +124,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 會依名稱辨識：
 
-{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
+{* ../../docs_src/query_params/tutorial004.py hl[6,8] *}
 
 ## 必填查詢參數 { #required-query-parameters }
 
@@ -128,7 +134,7 @@ http://127.0.0.1:8000/items/foo?short=yes
 
 但若你要讓查詢參數成為必填，只要不要宣告任何預設值：
 
-{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 此處查詢參數 `needy` 是必填的 `str`。
 
@@ -173,7 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 當然，你可以同時定義部分參數為必填、部分有預設值、部分為選填：
 
-{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
+{* ../../docs_src/query_params/tutorial006.py hl[8] *}
 
 在此例中，有 3 個查詢參數：
 

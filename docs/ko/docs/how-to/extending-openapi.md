@@ -45,25 +45,25 @@
 
 위 정보를 바탕으로, 동일한 유틸리티 함수를 사용해 OpenAPI 스키마를 생성하고 필요한 각 부분을 덮어쓸 수 있습니다.
 
-예를 들어, [커스텀 로고를 포함하기 위한 ReDoc의 OpenAPI 확장](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo)을 추가해 보겠습니다.
+예를 들어, [커스텀 로고를 포함하기 위한 ReDoc의 OpenAPI 확장](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo)을 추가해 보겠습니다.
 
 ### 일반적인 **FastAPI** { #normal-fastapi }
 
 먼저, 평소처럼 **FastAPI** 애플리케이션을 모두 작성합니다:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### OpenAPI 스키마 생성하기 { #generate-the-openapi-schema }
 
 그다음 `custom_openapi()` 함수 안에서, 동일한 유틸리티 함수를 사용해 OpenAPI 스키마를 생성합니다:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### OpenAPI 스키마 수정하기 { #modify-the-openapi-schema }
 
 이제 OpenAPI 스키마의 `info` "object"에 커스텀 `x-logo`를 추가하여 ReDoc 확장을 더할 수 있습니다:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### OpenAPI 스키마 캐시하기 { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@
 
 스키마는 한 번만 생성되고, 이후 요청에서는 같은 캐시된 스키마가 사용됩니다.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### 메서드 오버라이드하기 { #override-the-method }
 
 이제 `.openapi()` 메서드를 새 함수로 교체할 수 있습니다.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### 확인하기 { #check-it }
 

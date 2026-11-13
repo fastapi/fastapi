@@ -32,11 +32,11 @@ Betrachten wir als einfaches Beispiel eine Dateistruktur ähnlich der in [Größ
 
 Die Datei `main.py` hätte als Inhalt:
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 Die Datei `test_main.py` hätte die Tests für `main.py`, das könnte jetzt so aussehen:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
 ## Es ausführen { #run-it }
 
@@ -45,7 +45,7 @@ Sie können Ihre Tests wie gewohnt ausführen mit:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ---> 100%
 ```
@@ -56,7 +56,7 @@ $ pytest
 
 Der Marker `@pytest.mark.anyio` teilt pytest mit, dass diese Testfunktion asynchron aufgerufen werden soll:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | Tipp
 
@@ -66,12 +66,12 @@ Beachten Sie, dass die Testfunktion jetzt `async def` ist und nicht nur `def` wi
 
 Dann können wir einen `AsyncClient` mit der App erstellen und mit `await` asynchrone Requests an ihn senden.
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 Das ist das Äquivalent zu:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ... welches wir verwendet haben, um unsere Requests mit dem `TestClient` zu machen.
@@ -94,6 +94,6 @@ Da die Testfunktion jetzt asynchron ist, können Sie in Ihren Tests neben dem Se
 
 /// tip | Tipp
 
-Wenn Sie einen `RuntimeError: Task attached to a different loop` erhalten, wenn Sie asynchrone Funktionsaufrufe in Ihre Tests integrieren (z. B. bei Verwendung von [MongoDBs MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), dann denken Sie daran, Objekte zu instanziieren, die einen Event Loop nur innerhalb asynchroner Funktionen benötigen, z. B. einen `@app.on_event("startup")`-Callback.
+Wenn Sie einen `RuntimeError: Task attached to a different loop` erhalten, wenn Sie asynchrone Funktionsaufrufe in Ihre Tests integrieren (z. B. bei Verwendung von [MongoDBs MotorClient](https://stackoverflow.com/questions/41584243/runtimeerror-task-attached-to-a-different-loop)), dann denken Sie daran, Objekte, die einen Event Loop benötigen, nur innerhalb asynchroner Funktionen zu instanziieren, z. B. in einem `@app.on_event("startup")`-Callback.
 
 ///

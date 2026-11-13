@@ -34,12 +34,12 @@ Il s'agit d'un tutoriel très simple et court ; si vous souhaitez apprendre sur 
 
 ## Installer `SQLModel` { #install-sqlmodel }
 
-D'abord, assurez-vous de créer votre [environnement virtuel](../virtual-environments.md), de l'activer, puis d'installer `sqlmodel` :
+Ajoutez `sqlmodel` à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -55,7 +55,7 @@ Ensuite, nous l'améliorerons en augmentant la sécurité et la polyvalence avec
 
 Importez `SQLModel` et créez un modèle de base de données :
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[1:11] hl[7:11] *}
 
 La classe `Hero` est très similaire à un modèle Pydantic (en fait, en dessous, c'est réellement *un modèle Pydantic*).
 
@@ -77,7 +77,7 @@ Un `engine` SQLModel (en dessous c'est en fait un `engine` SQLAlchemy) est ce qu
 
 Vous devez avoir **un seul objet `engine`** pour tout votre code afin de se connecter à la même base.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[14:18] hl[14:15,17:18] *}
 
 L'utilisation de `check_same_thread=False` permet à FastAPI d'utiliser la même base SQLite dans différents threads. C'est nécessaire car **une seule requête** peut utiliser **plus d'un thread** (par exemple dans des dépendances).
 
@@ -87,7 +87,7 @@ Ne vous inquiétez pas, avec la structure du code, nous nous assurerons d'utilis
 
 Nous ajoutons ensuite une fonction qui utilise `SQLModel.metadata.create_all(engine)` pour **créer les tables** pour tous les *modèles de table*.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[21:22] hl[21:22] *}
 
 ### Créer une dépendance de session { #create-a-session-dependency }
 
@@ -97,13 +97,13 @@ Nous allons créer une **dépendance** FastAPI avec `yield` qui fournira une nou
 
 Puis nous créons une dépendance `Annotated` `SessionDep` pour simplifier le reste du code qui utilisera cette dépendance.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[25:30]  hl[25:27,30] *}
 
 ### Créer les tables de base au démarrage { #create-database-tables-on-startup }
 
 Nous allons créer les tables de base de données au démarrage de l'application.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[32:37] hl[35:37] *}
 
 Ici, nous créons les tables lors d'un événement de démarrage de l'application.
 
@@ -123,7 +123,7 @@ Par exemple, si vous déclarez un paramètre de type `Hero`, il sera lu depuis l
 
 De la même manière, vous pouvez le déclarer comme **type de retour** de la fonction, et alors la forme des données apparaîtra dans l'UI automatique des documents de l'API.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[40:45] hl[40:45] *}
 
 Ici, nous utilisons la dépendance `SessionDep` (une `Session`) pour ajouter le nouveau `Hero` à l'instance de `Session`, valider les changements dans la base, rafraîchir les données dans `hero`, puis le retourner.
 
@@ -131,19 +131,19 @@ Ici, nous utilisons la dépendance `SessionDep` (une `Session`) pour ajouter le 
 
 Nous pouvons **lire** des `Hero` depuis la base en utilisant un `select()`. Nous pouvons inclure une `limit` et un `offset` pour paginer les résultats.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[48:55] hl[51:52,54] *}
 
 ### Lire un héros { #read-one-hero }
 
 Nous pouvons **lire** un seul `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[58:63] hl[60] *}
 
 ### Supprimer un héros { #delete-a-hero }
 
 Nous pouvons aussi **supprimer** un `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[66:73] hl[71] *}
 
 ### Exécuter l'application { #run-the-app }
 
@@ -152,7 +152,7 @@ Vous pouvez exécuter l'application :
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -192,7 +192,7 @@ Commençons avec un modèle `HeroBase` qui a tous les **champs partagés** par t
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:9] hl[7:9] *}
 
 #### `Hero` - le *modèle de table* { #hero-the-table-model }
 
@@ -208,7 +208,7 @@ Comme `Hero` hérite de `HeroBase`, il **a aussi** les **champs** déclarés dan
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:14] hl[12:14] *}
 
 #### `HeroPublic` - le *modèle de données* public { #heropublic-the-public-data-model }
 
@@ -234,7 +234,7 @@ Tous les champs de `HeroPublic` sont les mêmes que dans `HeroBase`, avec `id` d
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:18] hl[17:18] *}
 
 #### `HeroCreate` - le *modèle de données* pour créer un héros { #herocreate-the-data-model-to-create-a-hero }
 
@@ -258,7 +258,7 @@ Les champs de `HeroCreate` sont :
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:22] hl[21:22] *}
 
 #### `HeroUpdate` - le *modèle de données* pour mettre à jour un héros { #heroupdate-the-data-model-to-update-a-hero }
 
@@ -276,7 +276,7 @@ Les champs de `HeroUpdate` sont :
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:28] hl[25:28] *}
 
 ### Créer avec `HeroCreate` et retourner un `HeroPublic` { #create-with-herocreate-and-return-a-heropublic }
 
@@ -288,7 +288,7 @@ Ce nouveau *modèle de table* `Hero` aura les champs envoyés par le client, et 
 
 Nous retournons ensuite le même *modèle de table* `Hero` tel quel depuis la fonction. Mais comme nous déclarons le `response_model` avec le *modèle de données* `HeroPublic`, **FastAPI** utilisera `HeroPublic` pour valider et sérialiser les données.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[56:62] hl[56:58] *}
 
 /// tip | Astuce
 
@@ -304,13 +304,13 @@ En le déclarant dans `response_model`, nous disons à **FastAPI** de faire son 
 
 Nous pouvons faire la même chose qu'avant pour **lire** des `Hero`, à nouveau, nous utilisons `response_model=list[HeroPublic]` pour garantir que les données sont correctement validées et sérialisées.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[65:72] hl[65] *}
 
 ### Lire un héros avec `HeroPublic` { #read-one-hero-with-heropublic }
 
 Nous pouvons **lire** un héros unique :
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[75:80] hl[77] *}
 
 ### Mettre à jour un héros avec `HeroUpdate` { #update-a-hero-with-heroupdate }
 
@@ -320,7 +320,7 @@ Et dans le code, nous obtenons un `dict` avec toutes les données envoyées par 
 
 Nous utilisons ensuite `hero_db.sqlmodel_update(hero_data)` pour mettre à jour `hero_db` avec les données de `hero_data`.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[83:93] hl[83:84,88:89] *}
 
 ### Supprimer un héros (bis) { #delete-a-hero-again }
 
@@ -328,7 +328,7 @@ Nous utilisons ensuite `hero_db.sqlmodel_update(hero_data)` pour mettre à jour 
 
 Nous n'allons pas céder à l'envie de tout refactoriser pour celui-ci. 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[96:103] hl[101] *}
 
 ### Exécuter l'application à nouveau { #run-the-app-again }
 
@@ -337,7 +337,7 @@ Vous pouvez exécuter l'application à nouveau :
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -352,6 +352,6 @@ Si vous allez sur l'UI `/docs` de l'API, vous verrez qu'elle est maintenant à j
 
 ## Récapitulatif { #recap }
 
-Vous pouvez utiliser [**SQLModel**](https://sqlmodel.tiangolo.com/) pour interagir avec une base SQL et simplifier le code avec des *modèles de données* et des *modèles de table*.
+Vous pouvez utiliser [**SQLModel**](https://sqlmodel.tiangolo.com/) pour interagir avec une base SQL et simplifier le code avec des *modèles de données*  et des *modèles de table*.
 
 Vous pouvez en apprendre beaucoup plus dans les documents de **SQLModel**, il y a un mini [tutoriel plus long sur l'utilisation de SQLModel avec **FastAPI**](https://sqlmodel.tiangolo.com/tutorial/fastapi/). 🚀

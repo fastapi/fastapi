@@ -4,12 +4,12 @@
 
 ## 安裝 `websockets` { #install-websockets }
 
-請先建立[虛擬環境](../virtual-environments.md)、啟用它，然後安裝 `websockets`（一個讓你更容易使用「WebSocket」通訊協定的 Python 套件）：
+將 `websockets`（一個讓你更容易使用「WebSocket」通訊協定的 Python 套件）加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -38,13 +38,13 @@ $ pip install websockets
 
 但這是能讓我們專注於 WebSocket 伺服端並跑起一個可運作範例的最簡單方式：
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[2,6:38,41:43] *}
 
 ## 建立一個 `websocket` { #create-a-websocket }
 
 在你的 **FastAPI** 應用中，建立一個 `websocket`：
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[1,46:47] *}
 
 /// note | 技術細節
 
@@ -58,18 +58,18 @@ $ pip install websockets
 
 在你的 WebSocket 路由中，你可以 `await` 接收訊息並傳送訊息。
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[48:52] *}
 
 你可以接收與傳送二進位、文字與 JSON 資料。
 
 ## 試試看 { #try-it }
 
-如果你的檔案名為 `main.py`，用以下指令執行應用：
+將你的程式碼放在 `main.py` 檔案中，然後執行你的應用：
 
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -109,7 +109,7 @@ $ fastapi dev
 
 它們的運作方式與其他 FastAPI 端點/*路徑操作* 相同：
 
-{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002.py hl[68:69,82] *}
 
 /// note
 
@@ -126,7 +126,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -154,7 +154,7 @@ $ fastapi dev
 
 當 WebSocket 連線關閉時，`await websocket.receive_text()` 會拋出 `WebSocketDisconnect` 例外，你可以像範例中那樣捕捉並處理。
 
-{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003.py hl[79:81] *}
 
 試用方式：
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 想了解更多選項，請參考 Starlette 的文件：
 
-* [`WebSocket` 類別](https://www.starlette.dev/websockets/)。
-* [以類別為基礎的 WebSocket 處理](https://www.starlette.dev/endpoints/#websocketendpoint)。
+* [`WebSocket` 類別](https://starlette.dev/websockets/)。
+* [以類別為基礎的 WebSocket 處理](https://starlette.dev/endpoints/#websocketendpoint)。

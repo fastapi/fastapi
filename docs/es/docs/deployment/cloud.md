@@ -20,5 +20,4 @@ Algunos otros proveedores de nube ✨ [**son sponsors de FastAPI**](https://gith
 
 También podrías considerarlos para seguir sus guías y probar sus servicios:
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

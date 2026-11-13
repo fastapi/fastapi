@@ -6,9 +6,13 @@
 
 そのため、アプリケーションが読み取る環境変数で提供するのが一般的です。
 
+**環境変数**（**env var** とも呼ばれます）は、Python コードの外側、オペレーティングシステム内に存在する値で、アプリケーションや他のプログラムから読み取ることができます。
+
+コマンドを実行するときに、そのコマンド用の環境変数を作成できます。プラットフォーム固有のコマンドは以下で確認できます。
+
 /// tip | 豆知識
 
-環境変数について理解するには、[環境変数](../environment-variables.md)を参照してください。
+環境変数の仕組みの詳細な説明については、[Environment Variables guide](https://tiangolo.com/guides/environment-variables/)を参照してください。
 
 ///
 
@@ -20,16 +24,16 @@
 
 ## Pydantic の `Settings` { #pydantic-settings }
 
-幸いなことに、Pydantic には環境変数から来る設定を扱うための優れたユーティリティがあり、[Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) で提供されています。
+幸いなことに、Pydantic には環境変数から来る設定を扱うための優れたユーティリティがあり、[Pydantic: Settings management](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) で提供されています。
 
 ### `pydantic-settings` のインストール { #install-pydantic-settings }
 
-まず、[仮想環境](../virtual-environments.md)を作成して有効化し、`pydantic-settings` パッケージをインストールします:
+`pydantic-settings` パッケージをプロジェクトに追加します:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
@@ -40,7 +44,7 @@ $ pip install pydantic-settings
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -54,7 +58,7 @@ Pydantic モデルと同様に、型アノテーションと（必要なら）�
 
 異なるデータ型や `Field()` による追加バリデーションなど、Pydantic モデルで使えるのと同じバリデーション機能とツールをすべて利用できます。
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip | 豆知識
 
@@ -70,25 +74,45 @@ Pydantic モデルと同様に、型アノテーションと（必要なら）�
 
 次に、アプリケーションで新しい `settings` オブジェクトを使用できます:
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### サーバーを実行 { #run-the-server }
 
 次に、設定を環境変数として渡してサーバーを実行します。たとえば、`ADMIN_EMAIL` と `APP_NAME` を次のように設定できます:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | 豆知識
 
-1つのコマンドに複数の環境変数を設定するには、スペースで区切ってコマンドの前に並べます。
+Bash で1つのコマンドに複数の環境変数を設定するには、スペースで区切ってコマンドの前に並べます。
 
 ///
 
@@ -104,11 +128,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 たとえば、`config.py` というファイルに次のように書けます:
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 そして、`main.py` というファイルでそれを使います:
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip | 豆知識
 
@@ -126,7 +150,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 前の例から続けると、`config.py` ファイルは次のようになります:
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 ここでは、デフォルトのインスタンス `settings = Settings()` を作成していないことに注意してください。
 
@@ -134,7 +158,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ここでは、新しい `config.Settings()` を返す依存関係を作成します。
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip | 豆知識
 
@@ -146,13 +170,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 そして、*path operation 関数*から依存関係として要求し、必要な場所でどこでも使えます。
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### 設定とテスト { #settings-and-testing }
 
 次に、`get_settings` の依存関係オーバーライドを作ることで、テスト中に別の設定オブジェクトを提供するのがとても簡単になります:
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 依存関係オーバーライドでは、新しい `Settings` オブジェクトを作る際に `admin_email` に新しい値を設定し、その新しいオブジェクトを返します。
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic は外部ライブラリを使ってこの種のファイルからの読み込みをサポートしています。詳細は [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support) を参照してください。
+Pydantic は外部ライブラリを使ってこの種のファイルからの読み込みをサポートしています。詳細は [Pydantic Settings: Dotenv (.env) support](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support) を参照してください。
 
 /// tip | 豆知識
 
-これを機能させるには、`pip install python-dotenv` が必要です。
+これを機能させるには、`uv add python-dotenv` で `python-dotenv` をプロジェクトに追加します。
 
 ///
 
@@ -193,11 +217,11 @@ APP_NAME="ChimichangApp"
 
 そして、`config.py` を次のように更新します:
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip | 豆知識
 
-`model_config` 属性は Pydantic の設定専用です。詳しくは [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/) を参照してください。
+`model_config` 属性は Pydantic の設定専用です。詳しくは [Pydantic: Concepts: Configuration](https://pydantic.dev/docs/validation/latest/concepts/config/) を参照してください。
 
 ///
 
@@ -226,7 +250,7 @@ def get_settings():
 
 しかし、上に `@lru_cache` デコレータを使っているので、`Settings` オブジェクトは最初に呼び出されたときに一度だけ作成されます。✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 その後のリクエスト用の依存関係で `get_settings()` が呼ばれるたびに、`get_settings()` の内部コードを実行して新しい `Settings` オブジェクトを作るのではなく、最初の呼び出しで返されたのと同じオブジェクトを何度でも返します。
 

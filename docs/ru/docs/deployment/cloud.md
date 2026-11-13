@@ -12,7 +12,7 @@
 
 Он переносит тот же **опыт разработчика** создания приложений с FastAPI на их **развертывание** в облаке. 🎉
 
-FastAPI Cloud — основной спонсор и источник финансирования для open source проектов *FastAPI and friends*. ✨
+FastAPI Cloud — основной спонсор и источник финансирования для проектов с открытым исходным кодом *FastAPI and friends*. ✨
 
 ## Облачные провайдеры — спонсоры { #cloud-providers-sponsors }
 
@@ -20,5 +20,4 @@ FastAPI Cloud — основной спонсор и источник финан
 
 Возможно, вы захотите попробовать их сервисы и воспользоваться их руководствами:
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

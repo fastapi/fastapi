@@ -2,7 +2,7 @@
 
 Dans le chapitre précédent, le système de sécurité (basé sur le système d'injection de dépendances) fournissait à la *fonction de chemin d'accès* un `token` en tant que `str` :
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Mais ce n'est pas encore très utile.
 
@@ -14,7 +14,7 @@ Commençons par créer un modèle d'utilisateur Pydantic.
 
 De la même manière que nous utilisons Pydantic pour déclarer des corps de requête, nous pouvons l'utiliser ailleurs :
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## Créer une dépendance `get_current_user` { #create-a-get-current-user-dependency }
 
@@ -26,19 +26,19 @@ Rappelez-vous que les dépendances peuvent avoir des sous-dépendances ?
 
 Comme nous le faisions auparavant directement dans le *chemin d'accès*, notre nouvelle dépendance `get_current_user` recevra un `token` en tant que `str` de la sous-dépendance `oauth2_scheme` :
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## Récupérer l'utilisateur { #get-the-user }
 
 `get_current_user` utilisera une fonction utilitaire (factice) que nous avons créée, qui prend un token en `str` et retourne notre modèle Pydantic `User` :
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## Injecter l'utilisateur actuel { #inject-the-current-user }
 
 Nous pouvons donc utiliser le même `Depends` avec notre `get_current_user` dans le *chemin d'accès* :
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 Remarquez que nous déclarons le type de `current_user` comme le modèle Pydantic `User`.
 
@@ -92,7 +92,7 @@ Et tous (ou seulement une partie d'entre eux, si vous le souhaitez) peuvent prof
 
 Et tous ces milliers de *chemins d'accès* peuvent tenir en seulement 3 lignes :
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## Récapitulatif { #recap }
 

@@ -37,7 +37,7 @@
 * `datetime.timedelta`:
     * Pythonの`datetime.timedelta`です。
     * リクエストとレスポンスでは合計秒数の`float`で表現されます。
-    * Pydanticでは「ISO 8601 time diff encoding」として表現することも可能です。[詳細はドキュメントを参照してください](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers)。
+    * Pydanticでは「ISO 8601 time diff encoding」として表現することも可能です。[詳細はドキュメントを参照してください](https://pydantic.dev/docs/validation/latest/concepts/serialization/#custom-serializers)。
 * `frozenset`:
     * リクエストとレスポンスでは`set`と同じように扱われます:
         * リクエストでは、リストが読み込まれ、重複を排除して`set`に変換されます。
@@ -50,14 +50,14 @@
 * `Decimal`:
     * Pythonの標準的な`Decimal`です。
     * リクエストとレスポンスでは`float`と同じように扱われます。
-* 有効なPydanticのデータ型はここで確認できます: [Pydantic のデータ型](https://docs.pydantic.dev/latest/usage/types/types/)。
+* 有効なPydanticのデータ型はここで確認できます: [Pydantic のデータ型](https://pydantic.dev/docs/validation/latest/concepts/types/)。
 
 ## 例 { #example }
 
 ここでは、上記の型のいくつかを使用したパラメータを持つ*path operation*の例を示します。
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 関数内のパラメータは自然なデータ型を持っていることに注意してください。そして、例えば、以下のように通常の日付操作を行うことができます:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

@@ -22,7 +22,7 @@
 
 간단한 예제로 시작해봅시다:
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 이 프로그램을 호출하면 다음이 출력됩니다:
 
@@ -36,7 +36,7 @@ John Doe
 * `title()`로 각각의 첫 글자를 대문자로 변환합니다.
 * 가운데에 공백을 두고 <dfn title="서로를 하나로 합칩니다. 하나의 내용 뒤에 다른 것의 내용을 이어 붙입니다.">연결</dfn>합니다.
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### 수정하기 { #edit-it }
 
@@ -80,7 +80,7 @@ John Doe
 
 이것들이 "타입 힌트"입니다:
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 이것은 다음처럼 기본값을 선언하는 것과는 다릅니다:
 
@@ -108,7 +108,7 @@ John Doe
 
 이 함수를 확인해보세요. 이미 타입 힌트가 있습니다:
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 에디터가 변수의 타입을 알고 있기 때문에, 자동완성만 되는 게 아니라 오류 검사도 할 수 있습니다:
 
@@ -116,7 +116,7 @@ John Doe
 
 이제 고쳐야 한다는 것을 알고, `age`를 `str(age)`로 문자열로 바꿉니다:
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## 타입 선언 { #declaring-types }
 
@@ -135,7 +135,7 @@ John Doe
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### `typing` 모듈 { #typing-module }
 
@@ -172,7 +172,7 @@ def some_function(data: Any):
 
 `list`는 내부 타입을 포함하는 타입이므로, 그 타입들을 대괄호 안에 넣습니다:
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | 참고
 
@@ -198,7 +198,7 @@ def some_function(data: Any):
 
 `tuple`과 `set`도 동일하게 선언할 수 있습니다:
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 이는 다음을 의미합니다:
 
@@ -213,7 +213,7 @@ def some_function(data: Any):
 
 두 번째 타입 매개변수는 `dict`의 값을 위한 것입니다:
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 이는 다음을 의미합니다:
 
@@ -230,7 +230,7 @@ def some_function(data: Any):
 이는 두 타입 집합의 합집합(union) 안의 어느 것이든 될 수 있다는 뜻이므로 "유니온"이라고 부릅니다.
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 이는 `item`이 `int` 또는 `str`일 수 있다는 뜻입니다.
@@ -242,7 +242,7 @@ def some_function(data: Any):
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -255,11 +255,11 @@ def some_function(data: Any):
 
 이름을 가진 `Person` 클래스가 있다고 해봅시다:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 그러면 `Person` 타입의 변수를 선언할 수 있습니다:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 그리고 다시, 에디터의 모든 지원을 받을 수 있습니다:
 
@@ -271,7 +271,7 @@ def some_function(data: Any):
 
 ## Pydantic 모델 { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/)은 데이터 검증을 수행하는 파이썬 라이브러리입니다.
+[Pydantic](https://pydantic.dev/docs/)은 데이터 검증을 수행하는 파이썬 라이브러리입니다.
 
 속성을 가진 클래스 형태로 데이터의 "모양(shape)"을 선언합니다.
 
@@ -283,11 +283,11 @@ def some_function(data: Any):
 
 Pydantic 공식 문서의 예시:
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | 참고
 
-더 알아보려면 [Pydantic 문서를 확인하세요](https://docs.pydantic.dev/).
+더 알아보려면 [Pydantic 문서를 확인하세요](https://pydantic.dev/docs/).
 
 ///
 
@@ -301,7 +301,7 @@ Pydantic 공식 문서의 예시:
 
 `Annotated`는 `typing`에서 import할 수 있습니다.
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 파이썬 자체는 이 `Annotated`로 아무것도 하지 않습니다. 그리고 에디터와 다른 도구들에게는 타입이 여전히 `str`입니다.
 

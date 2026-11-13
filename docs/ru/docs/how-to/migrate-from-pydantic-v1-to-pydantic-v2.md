@@ -24,7 +24,7 @@ FastAPI 0.128.0 также убрал поддержку `pydantic.v1`, так �
 
 ## Официальное руководство { #official-guide }
 
-У Pydantic есть официальное [руководство по миграции](https://docs.pydantic.dev/latest/migration/) с v1 на v2.
+У Pydantic есть официальное [руководство по миграции](https://pydantic.dev/docs/validation/latest/get-started/migration/) с v1 на v2.
 
 Там также описано, что изменилось, как валидации стали более корректными и строгими, возможные нюансы и т.д.
 
@@ -52,7 +52,7 @@ Pydantic v2 включает всё из Pydantic v1 как подмодуль `
 
 Это означает, что вы можете установить последнюю версию Pydantic v2 и импортировать и использовать старые компоненты Pydantic v1 из этого подмодуля так, как если бы у вас был установлен старый Pydantic v1.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### Поддержка FastAPI для Pydantic v1 внутри v2 { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ Pydantic v2 включает всё из Pydantic v1 как подмодуль `
 
 Таким образом, вы можете обновить Pydantic до последней версии 2 и сменить импорты на подмодуль `pydantic.v1` — во многих случаях всё просто заработает.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning | Предупреждение
 
@@ -122,7 +122,7 @@ graph TB
 
 В некоторых случаях можно использовать и модели Pydantic v1, и v2 в одной и той же **операции пути** (обработчике пути) вашего приложения FastAPI:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 В примере выше модель входных данных — это модель Pydantic v1, а модель выходных данных (указанная в `response_model=ItemV2`) — это модель Pydantic v2.
 
@@ -130,7 +130,7 @@ graph TB
 
 Если вам нужно использовать некоторые специфичные для FastAPI инструменты для параметров, такие как `Body`, `Query`, `Form` и т.п., с моделями Pydantic v1, вы можете импортировать их из `fastapi.temp_pydantic_v1_params`, пока завершаете миграцию на Pydantic v2:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### Мигрируйте по шагам { #migrate-in-steps }
 

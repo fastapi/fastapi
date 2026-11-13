@@ -12,7 +12,7 @@
 
 Для **TypeScript‑клиентов** [Hey API](https://heyapi.dev/) — специализированное решение, обеспечивающее оптимальный опыт для экосистемы TypeScript.
 
-Больше генераторов SDK можно найти на [OpenAPI.Tools](https://openapi.tools/#sdk).
+Больше генераторов SDK можно найти на [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Совет
 
@@ -24,7 +24,7 @@ FastAPI автоматически генерирует спецификации
 
 Начнём с простого приложения FastAPI:
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 Обратите внимание, что *операции пути (обработчики пути)* определяют модели, которые они используют для полезной нагрузки запроса и полезной нагрузки ответа, с помощью моделей `Item` и `ResponseMessage`.
 
@@ -82,7 +82,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Например, у вас может быть раздел для **items** и другой раздел для **users**, и они могут быть разделены тегами:
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### Генерация TypeScript‑клиента с тегами { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ FastAPI использует **уникальный ID** для каждой *о
 
 Затем вы можете передать эту пользовательскую функцию в **FastAPI** через параметр `generate_unique_id_function`:
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### Генерация TypeScript‑клиента с пользовательскими ID операций { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ FastAPI использует **уникальный ID** для каждой *о
 
 Мы можем скачать OpenAPI JSON в файл `openapi.json`, а затем **убрать этот префикс‑тег** таким скриптом:
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

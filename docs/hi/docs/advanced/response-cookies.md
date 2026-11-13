@@ -6,7 +6,7 @@
 
 और फिर आप उस *temporary* response object में cookies set कर सकते हैं।
 
-{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 और फिर आप अपनी ज़रूरत का कोई भी object return कर सकते हैं, जैसा कि आप सामान्य रूप से करते हैं (एक `dict`, database model, आदि)।
 
@@ -24,7 +24,7 @@
 
 फिर उसमें Cookies set करें, और फिर उसे return करें:
 
-{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | सुझाव
 
@@ -48,4 +48,4 @@
 
 ///
 
-सभी उपलब्ध parameters और options देखने के लिए, [Starlette में documentation](https://www.starlette.dev/responses/#set-cookie) देखें।
+सभी उपलब्ध parameters और options देखने के लिए, [Starlette में documentation](https://starlette.dev/responses/#set-cookie) देखें।

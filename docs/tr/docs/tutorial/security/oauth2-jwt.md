@@ -30,12 +30,12 @@ JWT token'larıyla oynayıp nasıl çalıştıklarını görmek isterseniz [http
 
 Python'da JWT token'larını üretmek ve doğrulamak için `PyJWT` kurmamız gerekiyor.
 
-Bir [sanal ortam](../../virtual-environments.md) oluşturduğunuzdan emin olun, aktif edin ve ardından `pyjwt` kurun:
+Projenize `pyjwt` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ Birçok güvenli hashing algoritmasını ve bunlarla çalışmak için yardımc�
 
 Önerilen algoritma "Argon2"dir.
 
-Bir [sanal ortam](../../virtual-environments.md) oluşturduğunuzdan emin olun, aktif edin ve sonra Argon2 ile birlikte pwdlib'i kurun:
+Projenize Argon2 ile birlikte `pwdlib` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -116,7 +116,7 @@ Sonra, alınan password'ün kayıttaki hash ile eşleşip eşleşmediğini doğr
 
 Bir tane de kullanıcıyı authenticate edip geri döndüren bir yardımcı fonksiyon ekleyelim.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 `authenticate_user`, veritabanında var olmayan bir username ile çağrıldığında, yine de sahte (dummy) bir hash'e karşı `verify_password` çalıştırıyoruz.
 
@@ -156,7 +156,7 @@ Response için token endpoint'inde kullanılacak bir Pydantic Model tanımlayın
 
 Yeni bir access token üretmek için bir yardımcı fonksiyon oluşturun.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Dependency'leri güncelleme { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ Gelen token'ı decode edin, doğrulayın ve mevcut kullanıcıyı döndürün.
 
 Token geçersizse, hemen bir HTTP hatası döndürün.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## `/token` *path operation*'ını güncelleme { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ Token'ın süre sonu için bir `timedelta` oluşturun.
 
 Gerçek bir JWT access token üretip döndürün.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### JWT "subject" `sub` Hakkında Teknik Detaylar { #technical-details-about-the-jwt-subject-sub }
 

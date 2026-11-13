@@ -31,11 +31,11 @@
 
 이 부분은 꽤 일반적이며, 대부분의 코드는 이미 익숙할 것입니다:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | 팁
 
-`callback_url` 쿼리 파라미터는 Pydantic의 [Url](https://docs.pydantic.dev/latest/api/networks/) 타입을 사용합니다.
+`callback_url` 쿼리 파라미터는 Pydantic의 [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) 타입을 사용합니다.
 
 ///
 
@@ -90,7 +90,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 먼저 하나 이상의 콜백을 담을 새 `APIRouter`를 만듭니다.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### 콜백 *경로 처리* 생성하기 { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * 아마도 받아야 할 body 선언이 있을 것입니다(예: `body: InvoiceEvent`).
 * 그리고 반환해야 할 응답 선언도 있을 수 있습니다(예: `response_model=InvoiceEventReceived`).
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 일반적인 *경로 처리*와의 주요 차이점은 2가지입니다:
 
 * 실제 코드를 가질 필요가 없습니다. 여러분의 앱은 이 코드를 절대 호출하지 않기 때문입니다. 이는 *external API*를 문서화하는 데만 사용됩니다. 따라서 함수는 그냥 `pass`만 있어도 됩니다.
-* *path*에는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)(자세한 내용은 아래 참고)이 포함될 수 있으며, 이를 통해 *여러분의 API*로 보내진 원래 요청의 파라미터와 일부 값을 변수로 사용할 수 있습니다.
+* *path*에는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)(자세한 내용은 아래 참고)이 포함될 수 있으며, 이를 통해 *여러분의 API*로 보내진 원래 요청의 파라미터와 일부 값을 변수로 사용할 수 있습니다.
 
 ### 콜백 경로 표현식 { #the-callback-path-expression }
 
-콜백 *path*는 *여러분의 API*로 보내진 원래 요청의 일부를 포함할 수 있는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression)을 가질 수 있습니다.
+콜백 *path*는 *여러분의 API*로 보내진 원래 요청의 일부를 포함할 수 있는 [OpenAPI 3 표현식](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression)을 가질 수 있습니다.
 
 이 경우, 다음 `str`입니다:
 
@@ -169,7 +169,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 이제 *여러분의 API 경로 처리 데코레이터*에서 `callbacks` 파라미터를 사용해, 그 콜백 라우터의 `.routes` 속성을 전달합니다:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | 팁
 

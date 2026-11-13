@@ -77,7 +77,7 @@ Dieses Risiko und dieser Angriff sind vor allem relevant, wenn die App im **loka
 
 Wenn Sie Clients unterstützen müssen, die keinen `Content-Type`-Header senden, können Sie die strikte Prüfung deaktivieren, indem Sie `strict_content_type=False` setzen:
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 Mit dieser Einstellung werden Requests ohne `Content-Type`-Header im Body als JSON geparst. Das entspricht dem Verhalten älterer FastAPI-Versionen.
 

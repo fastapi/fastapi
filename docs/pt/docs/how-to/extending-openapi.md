@@ -6,7 +6,7 @@ Nesta seção, você verá como fazer isso.
 
 ## O processo normal { #the-normal-process }
 
-O processo normal (padrão) é o seguinte:
+O processo normal (padrão) é o seguinte.
 
 Uma aplicação (instância) do `FastAPI` possui um método `.openapi()` que deve retornar o esquema OpenAPI.
 
@@ -45,25 +45,25 @@ O parâmetro `summary` está disponível no OpenAPI 3.1.0 e superior, suportado 
 
 Com as informações acima, você pode usar a mesma função utilitária para gerar o esquema OpenAPI e sobrescrever cada parte que precisar.
 
-Por exemplo, vamos adicionar [Extensão OpenAPI do ReDoc para incluir um logo personalizado](https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md#x-logo).
+Por exemplo, vamos adicionar [Extensão OpenAPI do ReDoc para incluir um logo personalizado](https://github.com/Redocly/redoc/blob/main/docs/redoc-vendor-extensions.md#x-logo).
 
-### **FastAPI** Normal { #normal-fastapi }
+### Normal **FastAPI** { #normal-fastapi }
 
 Primeiro, escreva toda a sua aplicação **FastAPI** normalmente:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### Gerar o esquema OpenAPI { #generate-the-openapi-schema }
 
 Em seguida, use a mesma função utilitária para gerar o esquema OpenAPI, dentro de uma função `custom_openapi()`:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### Modificar o esquema OpenAPI { #modify-the-openapi-schema }
 
 Agora, você pode adicionar a extensão do ReDoc, incluindo um `x-logo` personalizado ao "objeto" `info` no esquema OpenAPI:
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### Armazenar em cache o esquema OpenAPI { #cache-the-openapi-schema }
 
@@ -73,15 +73,15 @@ Dessa forma, sua aplicação não precisará gerar o esquema toda vez que um usu
 
 Ele será gerado apenas uma vez, e o mesmo esquema armazenado em cache será utilizado nas próximas requisições.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### Sobrescrever o método { #override-the-method }
 
 Agora, você pode substituir o método `.openapi()` pela sua nova função.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
-### Verificar { #check-it }
+### Verifique { #check-it }
 
 Uma vez que você acessar [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc), verá que está usando seu logo personalizado (neste exemplo, o logo do **FastAPI**):
 

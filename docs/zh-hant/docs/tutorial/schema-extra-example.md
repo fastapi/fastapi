@@ -8,11 +8,11 @@
 
 你可以為 Pydantic 模型宣告 `examples`，它們會加入到產生出的 JSON Schema 中。
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001.py hl[13:24] *}
 
 這些額外資訊會原封不動加入該模型輸出的 **JSON Schema**，並且會用在 API 文件裡。
 
-你可以使用屬性 `model_config`（接收一個 `dict`），詳見 [Pydantic 文件：Configuration](https://docs.pydantic.dev/latest/api/config/)。
+你可以使用屬性 `model_config`（接收一個 `dict`），詳見 [Pydantic 文件：Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/)。
 
 你可以將 `"json_schema_extra"` 設為一個 `dict`，其中包含你想在產生的 JSON Schema 中出現的任何額外資料，包括 `examples`。
 
@@ -38,7 +38,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援
 
 在 Pydantic 模型中使用 `Field()` 時，你也可以宣告額外的 `examples`：
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002.py hl[2,8:11] *}
 
 ## JSON Schema 的 `examples` - OpenAPI { #examples-in-json-schema-openapi }
 
@@ -58,7 +58,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援
 
 這裡我們傳入 `examples`，其中包含 `Body()` 預期資料的一個範例：
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003.py hl[22:29] *}
 
 ### 文件 UI 中的範例 { #example-in-the-docs-ui }
 
@@ -70,7 +70,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援
 
 當然，你也可以傳入多個 `examples`：
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004.py hl[23:38] *}
 
 這麼做時，這些範例會成為該 body 資料內部 **JSON Schema** 的一部分。
 
@@ -111,7 +111,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）新增了對 `examples` 的支援
 
 你可以這樣使用：
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005.py hl[23:49] *}
 
 ### 文件 UI 中的 OpenAPI 範例 { #openapi-examples-in-the-docs-ui }
 
@@ -197,6 +197,6 @@ JSON Schema 中新的 `examples` 欄位「就是一個 `list`」的範例集合�
 
 ### 總結 { #summary }
 
-我以前常說我不太喜歡歷史……結果現在在這裡講「科技史」。😅
+我以前常說我不太喜歡歷史...結果現在在這裡講「科技史」。😅
 
 簡而言之，**升級到 FastAPI 0.99.0 或以上**，事情會更**簡單、一致又直覺**，而且你不需要了解這些歷史細節。😎

@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Şablonlar { #templates }
 
 **FastAPI** ile istediğiniz herhangi bir template engine'i kullanabilirsiniz.
@@ -8,12 +12,12 @@ Bunu kolayca yapılandırmak için, doğrudan **FastAPI** uygulamanızda kullana
 
 ## Bağımlılıkları Yükleme { #install-dependencies }
 
-Bir [sanal ortam](../virtual-environments.md) oluşturduğunuzdan, etkinleştirdiğinizden ve `jinja2`'yi yüklediğinizden emin olun:
+Projenize `jinja2` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -27,7 +31,7 @@ $ pip install jinja2
 * Template döndürecek *path operation* içinde bir `Request` parametresi tanımlayın.
 * Oluşturduğunuz `templates` nesnesini kullanarak bir `TemplateResponse` render edip döndürün; template'in adını, request nesnesini ve Jinja2 template'i içinde kullanılacak anahtar-değer çiftlerini içeren bir "context" sözlüğünü (dict) iletin.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Not
 
@@ -63,13 +67,9 @@ Ardından örneğin `templates/item.html` konumunda bir template yazabilirsiniz:
 
 Şu HTML içeriğinde:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ...gösterilecek olan `id`, sizin "context" olarak ilettiğiniz `dict` içinden alınır:
 
@@ -89,21 +89,47 @@ Template içinde `url_for()` da kullanabilirsiniz; argüman olarak, *path operat
 
 Dolayısıyla şu bölüm:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ...*path operation function* olan `read_item(id=id)` tarafından handle edilecek URL'nin aynısına bir link üretir.
 
-Örneğin ID değeri `42` ise, şu şekilde render edilir:
+`url_for()`, mevcut request'e göre şema ve host'u da içeren mutlak bir URL döndürür.
+
+Örneğin uygulamanız `https://example.com` adresinde sunuluyorsa ve ID değeri `42` ise, şu şekilde render edilir:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### Template'lerde URL Path'leri { #url-paths-in-templates }
+
+Aynı siteye verilen linklerde yalnızca URL path'ini almak için `.path` niteliğini kullanabilirsiniz. Örneğin, `templates/item_path.html` içinde:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Template'in adını `TemplateResponse`'a iletin:
+
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
+
+Aynı örnekte, öğenin linki şu şekilde render edilir:
 
 ```html
 <a href="/items/42">
 ```
+
+Baştaki `/`, bu path'i mevcut sitenin köküne göre göreli hale getirir.
+
+`.path` niteliği şemayı, host'u, query parametrelerini ve fragment'ı içermez. Başka bir host'a verilen linklerde tam URL'yi kullanın.
+
+/// tip | İpucu
+
+Uygulamanız bir proxy arkasındaysa, [Proxy Arkasında](behind-a-proxy.md) bölümünde açıklandığı gibi forwarded header'ları ve `root_path`'i yapılandırın.
+
+///
 
 ## Template'ler ve statik dosyalar { #templates-and-static-files }
 
@@ -123,4 +149,4 @@ Ve `StaticFiles` kullandığınız için, bu CSS dosyası **FastAPI** uygulaman�
 
 ## Daha fazla detay { #more-details }
 
-Template'leri nasıl test edeceğiniz dahil daha fazla detay için [Starlette'in template dokümantasyonuna](https://www.starlette.dev/templates/) bakın.
+Template'leri nasıl test edeceğiniz dahil daha fazla detay için [Starlette'in template dokümantasyonuna](https://starlette.dev/templates/) bakın.

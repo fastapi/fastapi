@@ -6,41 +6,45 @@
 
 З цієї причини поширено надавати їх у змінних оточення, які зчитуються застосунком.
 
+**Змінна оточення** (також відома як **env var**) - це значення, яке існує поза кодом Python, в операційній системі, і може бути прочитане вашим застосунком та іншими програмами.
+
+Ви можете створити змінну оточення для команди під час її запуску. Нижче ви побачите команди для конкретних платформ.
+
 /// tip | Порада
 
-Щоб зрозуміти змінні оточення, ви можете прочитати [Змінні оточення](../environment-variables.md).
+Прочитайте [посібник зі змінних оточення](https://tiangolo.com/guides/environment-variables/) для докладного пояснення того, як працюють змінні оточення.
 
 ///
 
 ## Типи та перевірка { #types-and-validation }
 
-Ці змінні оточення можуть містити лише текстові строки, оскільки вони зовнішні до Python і мають бути сумісні з іншими програмами та рештою системи (і навіть з різними операційними системами, як-от Linux, Windows, macOS).
+Ці змінні оточення можуть містити лише текстові строки, оскільки вони зовнішні до Python і мають бути сумісні з іншими програмами та рештою системи (і навіть з різними операційними системами, як-от Linux, Windows і macOS).
 
 Це означає, що будь-яке значення, прочитане в Python зі змінної оточення, буде `str`, і будь-яке перетворення в інший тип або будь-яка перевірка мають виконуватися в коді.
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-На щастя, Pydantic надає чудовий інструмент для обробки цих налаштувань із змінних оточення - [Pydantic: Settings management](https://docs.pydantic.dev/latest/concepts/pydantic_settings/).
+На щастя, Pydantic надає чудовий інструмент для обробки цих налаштувань із змінних оточення - [Pydantic: Settings management](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/).
 
 ### Встановіть `pydantic-settings` { #install-pydantic-settings }
 
-Спершу переконайтеся, що ви створили [віртуальне оточення](../virtual-environments.md), активували його, а потім встановили пакет `pydantic-settings`:
+Додайте пакет `pydantic-settings` до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-Він також входить у склад, якщо ви встановлюєте додаткові можливості «all» за допомогою:
+Він також входить у склад, якщо ви встановлюєте додаткові можливості `all` за допомогою:
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -54,7 +58,7 @@ $ pip install "fastapi[all]"
 
 Ви можете використовувати всі ті самі можливості перевірки та інструменти, що й для моделей Pydantic, як-от різні типи даних і додаткові перевірки з `Field()`.
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip | Порада
 
@@ -70,25 +74,45 @@ $ pip install "fastapi[all]"
 
 Потім ви можете використати новий об'єкт `settings` у вашому застосунку:
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### Запустіть сервер { #run-the-server }
 
 Далі ви б запустили сервер, передаючи конфігурації як змінні оточення, наприклад, ви можете встановити `ADMIN_EMAIL` і `APP_NAME` так:
 
+//// tab | Linux, macOS, Windows Bash
+
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip | Порада
 
-Щоб встановити кілька змінних оточення для однієї команди, просто розділіть їх пробілами і розмістіть усі перед командою.
+У Bash, щоб встановити кілька змінних оточення для однієї команди, розділіть їх пробілом і розмістіть усі перед командою.
 
 ///
 
@@ -104,11 +128,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Наприклад, у вас може бути файл `config.py` з:
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 А потім використати його у файлі `main.py`:
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip | Порада
 
@@ -126,7 +150,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Продовжуючи попередній приклад, ваш файл `config.py` може виглядати так:
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 Зверніть увагу, що тепер ми не створюємо екземпляр за замовчуванням `settings = Settings()`.
 
@@ -134,7 +158,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 Тепер ми створюємо залежність, яка повертає новий `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip | Порада
 
@@ -146,13 +170,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 А далі ми можемо вимагати її у *функції операції шляху* як залежність і використовувати будь-де, де це потрібно.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### Налаштування і тестування { #settings-and-testing }
 
 Потім буде дуже просто надати інший об'єкт налаштувань під час тестування, створивши переписування залежності для `get_settings`:
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 У переписуванні залежності ми встановлюємо нове значення `admin_email` під час створення нового об'єкта `Settings`, а потім повертаємо цей новий об'єкт.
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic має підтримку читання з таких типів файлів за допомогою зовнішньої бібліотеки. Ви можете дізнатися більше тут: [Pydantic Settings: Dotenv (.env) support](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support).
+Pydantic має підтримку читання з таких типів файлів за допомогою зовнішньої бібліотеки. Ви можете дізнатися більше тут: [Pydantic Settings: Dotenv (.env) support](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support).
 
 /// tip | Порада
 
-Щоб це працювало, потрібно виконати `pip install python-dotenv`.
+Щоб це працювало, додайте `python-dotenv` до вашого проєкту за допомогою `uv add python-dotenv`.
 
 ///
 
@@ -193,11 +217,11 @@ APP_NAME="ChimichangApp"
 
 Потім оновіть ваш `config.py` так:
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip | Порада
 
-Атрибут `model_config` використовується лише для конфігурації Pydantic. Докладніше: [Pydantic: Concepts: Configuration](https://docs.pydantic.dev/latest/concepts/config/).
+Атрибут `model_config` використовується лише для конфігурації Pydantic. Докладніше: [Pydantic: Concepts: Configuration](https://pydantic.dev/docs/validation/latest/concepts/config/).
 
 ///
 
@@ -226,7 +250,7 @@ def get_settings():
 
 Але оскільки ми використовуємо декоратор `@lru_cache` зверху, об'єкт `Settings` буде створено лише один раз, під час першого виклику. ✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 Потім для будь-якого подальшого виклику `get_settings()` у залежностях для наступних запитів, замість виконання внутрішнього коду `get_settings()` і створення нового об'єкта `Settings`, він повертатиме той самий об'єкт, що був повернутий під час першого виклику, знову і знову.
 

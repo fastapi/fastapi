@@ -6,7 +6,7 @@ Um einen Artikel zu aktualisieren, können Sie die [HTTP `PUT`](https://develope
 
 Sie können den `jsonable_encoder` verwenden, um die empfangenen Daten in etwas zu konvertieren, das als JSON gespeichert werden kann (z. B. in einer NoSQL-Datenbank). Zum Beispiel, um ein `datetime` in einen `str` zu konvertieren.
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[28:33] *}
 
 `PUT` wird verwendet, um Daten zu empfangen, die die existierenden Daten ersetzen sollen.
 
@@ -54,7 +54,7 @@ Das wird ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen 
 
 Sie können das verwenden, um ein `dict` zu erstellen, das nur die (im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>) gesendeten Daten enthält, ohne Defaultwerte:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[32] *}
 
 ### Pydantics `update`-Parameter verwenden { #using-pydantics-update-parameter }
 
@@ -62,7 +62,7 @@ Jetzt können Sie eine Kopie des existierenden Modells mittels `.model_copy()` e
 
 Wie in `stored_item_model.model_copy(update=update_data)`:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[33] *}
 
 ### Rekapitulation zu Teil-Aktualisierungen { #partial-updates-recap }
 
@@ -79,7 +79,7 @@ Zusammengefasst, um Teil-Aktualisierungen vorzunehmen:
 * Speichern Sie die Daten in Ihrer Datenbank.
 * Geben Sie das aktualisierte Modell zurück.
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[28:35] *}
 
 /// tip | Tipp
 

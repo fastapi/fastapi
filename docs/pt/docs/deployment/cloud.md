@@ -1,4 +1,4 @@
-# Implantar FastAPI em provedores de nuvem { #deploy-fastapi-on-cloud-providers }
+# Implante FastAPI em provedores de nuvem { #deploy-fastapi-on-cloud-providers }
 
 Você pode usar praticamente **qualquer provedor de nuvem** para implantar sua aplicação FastAPI.
 
@@ -20,5 +20,4 @@ Alguns outros provedores de nuvem ✨ [**patrocinam o FastAPI**](https://github.
 
 Você também pode considerá-los para seguir seus tutoriais e experimentar seus serviços:
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

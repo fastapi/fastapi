@@ -21,7 +21,7 @@
 * [Strawberry](https://strawberry.rocks/) 🍓
     * З [документацією для FastAPI](https://strawberry.rocks/docs/integrations/fastapi)
 * [Ariadne](https://ariadnegraphql.org/)
-    * З [документацією для FastAPI](https://ariadnegraphql.org/docs/fastapi-integration)
+    * З [документацією для FastAPI](https://ariadnegraphql.org/server/Integrations/fastapi-integration)
 * [Tartiflette](https://tartiflette.io/)
     * З [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) для інтеграції з ASGI
 * [Graphene](https://graphene-python.org/)
@@ -35,7 +35,7 @@
 
 Ось невеликий попередній перегляд того, як ви могли б інтегрувати Strawberry з FastAPI:
 
-{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
+{* ../../docs_src/graphql_/tutorial001.py hl[3,22,25] *}
 
 Більше про Strawberry ви можете дізнатися в [документації Strawberry](https://strawberry.rocks/).
 

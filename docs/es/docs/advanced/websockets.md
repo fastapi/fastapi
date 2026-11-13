@@ -2,14 +2,14 @@
 
 Puedes usar [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) con **FastAPI**.
 
-## Instalar `websockets` { #install-websockets }
+## Instala `websockets` { #install-websockets }
 
-Asegúrate de crear un [entorno virtual](../virtual-environments.md), activarlo e instalar `websockets` (un paquete de Python que facilita usar el protocolo "WebSocket"):
+Añade `websockets` (un paquete de Python que facilita usar el protocolo "WebSocket") a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -38,13 +38,13 @@ En producción tendrías una de las opciones anteriores.
 
 Pero es la forma más sencilla de enfocarse en el lado del servidor de WebSockets y tener un ejemplo funcional:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[2,6:38,41:43] *}
 
-## Crear un `websocket` { #create-a-websocket }
+## Crea un `websocket` { #create-a-websocket }
 
 En tu aplicación de **FastAPI**, crea un `websocket`:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[1,46:47] *}
 
 /// note | Detalles Técnicos
 
@@ -54,11 +54,11 @@ También podrías usar `from starlette.websockets import WebSocket`.
 
 ///
 
-## Esperar mensajes y enviar mensajes { #await-for-messages-and-send-messages }
+## Espera mensajes y envía mensajes { #await-for-messages-and-send-messages }
 
 En tu ruta de WebSocket puedes `await` para recibir mensajes y enviar mensajes.
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[48:52] *}
 
 Puedes recibir y enviar datos binarios, de texto y JSON.
 
@@ -69,7 +69,7 @@ Pon tu código en un archivo `main.py` y luego ejecuta tu aplicación:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -109,7 +109,7 @@ En endpoints de WebSocket puedes importar desde `fastapi` y usar:
 
 Funcionan de la misma manera que para otros endpoints de FastAPI/*path operations*:
 
-{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002.py hl[68:69,82] *}
 
 /// note | Nota
 
@@ -126,7 +126,7 @@ Ejecuta tu aplicación:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -154,7 +154,7 @@ Con eso puedes conectar el WebSocket y luego enviar y recibir mensajes:
 
 Cuando una conexión de WebSocket se cierra, el `await websocket.receive_text()` lanzará una excepción `WebSocketDisconnect`, que puedes capturar y manejar como en este ejemplo.
 
-{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003.py hl[79:81] *}
 
 Para probarlo:
 
@@ -182,5 +182,5 @@ Si necesitas algo fácil de integrar con FastAPI pero que sea más robusto, sopo
 
 Para aprender más sobre las opciones, revisa la documentación de Starlette para:
 
-* [La clase `WebSocket`](https://www.starlette.dev/websockets/).
-* [Manejo de WebSocket basado en clases](https://www.starlette.dev/endpoints/#websocketendpoint).
+* [La clase `WebSocket`](https://starlette.dev/websockets/).
+* [Manejo de WebSocket basado en clases](https://starlette.dev/endpoints/#websocketendpoint).

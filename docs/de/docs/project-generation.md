@@ -4,13 +4,13 @@ Vorlagen, die normalerweise mit einem bestimmten Setup geliefert werden, sind so
 
 Sie können diese Vorlage verwenden, um loszulegen, da sie bereits vieles der anfänglichen Einrichtung, Sicherheit, Datenbank und einige API-Endpunkte für Sie eingerichtet hat.
 
-GitHub-Repository: [Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
+GitHub-Repository: [Full Stack FastAPI Template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ## Full Stack FastAPI Template – Technologiestack und Funktionen { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/de) für die Python-Backend-API.
   - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) für die Interaktion mit der Python-SQL-Datenbank (ORM).
-  - 🔍 [Pydantic](https://docs.pydantic.dev), verwendet von FastAPI, für die Datenvalidierung und das Einstellungsmanagement.
+  - 🔍 [Pydantic](https://pydantic.dev/docs/), verwendet von FastAPI, für die Datenvalidierung und das Einstellungsmanagement.
   - 💾 [PostgreSQL](https://www.postgresql.org) als SQL-Datenbank.
 - 🚀 [React](https://react.dev) für das Frontend.
   - 💃 Verwendung von TypeScript, Hooks, Vite und anderen Teilen eines modernen Frontend-Stacks.

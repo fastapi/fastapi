@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * एक Python `datetime.timedelta`.
     * requests और responses में इसे कुल seconds के `float` के रूप में दर्शाया जाएगा।
-    * Pydantic इसे "ISO 8601 time diff encoding" के रूप में दर्शाने की अनुमति भी देता है, [अधिक जानकारी के लिए docs देखें](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
+    * Pydantic इसे "ISO 8601 time diff encoding" के रूप में दर्शाने की अनुमति भी देता है, [अधिक जानकारी के लिए docs देखें](https://pydantic.dev/docs/validation/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * requests और responses में, इसे `set` जैसा ही माना जाता है:
         * requests में, एक list पढ़ी जाएगी, duplicates हटाए जाएँगे और उसे `set` में convert किया जाएगा।
@@ -49,14 +49,14 @@
 * `Decimal`:
     * Standard Python `Decimal`.
     * requests और responses में, इसे `float` जैसा ही handle किया जाएगा।
-* आप सभी valid Pydantic data types यहाँ देख सकते हैं: [Pydantic data types](https://docs.pydantic.dev/latest/usage/types/types/).
+* आप सभी valid Pydantic data types यहाँ देख सकते हैं: [Pydantic data types](https://pydantic.dev/docs/validation/latest/concepts/types/).
 
 ## उदाहरण { #example }
 
 यहाँ ऊपर दिए गए कुछ types का उपयोग करते हुए parameters वाला एक उदाहरण *path operation* है।
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 ध्यान दें कि function के अंदर parameters के अपने natural data type होते हैं, और उदाहरण के लिए, आप सामान्य date manipulations कर सकते हैं, जैसे:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

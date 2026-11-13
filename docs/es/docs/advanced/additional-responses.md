@@ -26,7 +26,7 @@ Cada uno de esos `dict`s de response puede tener una clave `model`, conteniendo 
 
 Por ejemplo, para declarar otro response con un código de estado `404` y un modelo Pydantic `Message`, puedes escribir:
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | Nota
 
@@ -175,7 +175,7 @@ Puedes usar este mismo parámetro `responses` para agregar diferentes media type
 
 Por ejemplo, puedes agregar un media type adicional de `image/png`, declarando que tu *path operation* puede devolver un objeto JSON (con media type `application/json`) o una imagen PNG:
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | Nota
 
@@ -203,7 +203,7 @@ Por ejemplo, puedes declarar un response con un código de estado `404` que usa 
 
 Y un response con un código de estado `200` que usa tu `response_model`, pero incluye un `example` personalizado:
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 Todo se combinará e incluirá en tu OpenAPI, y se mostrará en la documentación de la API:
 
@@ -237,11 +237,11 @@ Puedes usar esa técnica para reutilizar algunos responses predefinidos en tus *
 
 Por ejemplo:
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## Más información sobre responses OpenAPI { #more-information-about-openapi-responses }
 
 Para ver exactamente qué puedes incluir en los responses, puedes revisar estas secciones en la especificación OpenAPI:
 
-* [Objeto de Responses de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), incluye el `Response Object`.
-* [Objeto de Response de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), puedes incluir cualquier cosa de esto directamente en cada response dentro de tu parámetro `responses`. Incluyendo `description`, `headers`, `content` (dentro de este es que declaras diferentes media types y JSON Schemas), y `links`.
+* [Objeto de Responses de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object), incluye el `Response Object`.
+* [Objeto de Response de OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object), puedes incluir cualquier cosa de esto directamente en cada response dentro de tu parámetro `responses`. Incluyendo `description`, `headers`, `content` (dentro de este es que declaras diferentes media types y JSON Schemas), y `links`.

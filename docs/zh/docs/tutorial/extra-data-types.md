@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * 一个 Python `datetime.timedelta`.
     * 在请求和响应中将表示为 `float` 代表总秒数。
-    * Pydantic 也允许将其表示为 "ISO 8601 时间差异编码", [查看文档了解更多信息](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers)。
+    * Pydantic 也允许将其表示为 "ISO 8601 时间差异编码", [查看文档了解更多信息](https://pydantic.dev/docs/validation/latest/concepts/serialization/#custom-serializers)。
 * `frozenset`:
     * 在请求和响应中，作为 `set` 对待：
         * 在请求中，列表将被读取，消除重复，并将其转换为一个 `set`。
@@ -49,14 +49,14 @@
 * `Decimal`:
     * 标准的 Python `Decimal`。
     * 在请求和响应中被当做 `float` 一样处理。
-* 你可以在这里检查所有有效的 Pydantic 数据类型: [Pydantic data types](https://docs.pydantic.dev/latest/usage/types/types/)。
+* 你可以在这里检查所有有效的 Pydantic 数据类型: [Pydantic 数据类型](https://pydantic.dev/docs/validation/latest/concepts/types/)。
 
 ## 例子 { #example }
 
 下面是一个*路径操作*的示例，其中的参数使用了上面的一些类型。
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 注意，函数内的参数有原生的数据类型，你可以，例如，执行正常的日期操作，如:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

@@ -52,7 +52,7 @@ OAuth2의 경우 문자열일 뿐입니다.
 
 먼저 `OAuth2PasswordRequestForm`을 가져와 `/token`에 대한 *경로 처리*에서 `Depends`의 의존성으로 사용합니다.
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm`은 다음을 사용하여 폼 본문을 선언하는 클래스 의존성입니다:
 
@@ -100,7 +100,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 오류의 경우 `HTTPException` 예외를 사용합니다:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### 패스워드 확인하기 { #check-the-password }
 
@@ -126,7 +126,7 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 따라서 해커는 다른 시스템에서 동일한 암호를 사용하려고 시도할 수 없습니다(많은 사용자가 모든 곳에서 동일한 암호를 사용하므로 이는 위험할 수 있습니다).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### `**user_dict`에 대해 { #about-user-dict }
 
@@ -136,11 +136,11 @@ OAuth2 사양은 실제로 `password`라는 고정 값이 있는 `grant_type` �
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
@@ -168,7 +168,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | 팁
 
@@ -194,7 +194,7 @@ UserInDB(
 
 따라서 엔드포인트에서는 사용자가 존재하고 올바르게 인증되었으며 활성 상태인 경우에만 사용자를 얻습니다:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | 참고
 

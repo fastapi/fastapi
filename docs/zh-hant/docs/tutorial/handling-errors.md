@@ -25,7 +25,7 @@
 
 ### 匯入 `HTTPException` { #import-httpexception }
 
-{* ../../docs_src/handling_errors/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/handling_errors/tutorial001.py hl[1] *}
 
 ### 在程式中 raise 一個 `HTTPException` { #raise-an-httpexception-in-your-code }
 
@@ -39,7 +39,7 @@
 
 在這個範例中，當用戶端以不存在的 ID 請求項目時，raise 一個狀態碼為 `404` 的例外：
 
-{* ../../docs_src/handling_errors/tutorial001_py310.py hl[11] *}
+{* ../../docs_src/handling_errors/tutorial001.py hl[11] *}
 
 ### 回應結果 { #the-resulting-response }
 
@@ -77,11 +77,11 @@
 
 但若你在進階情境中需要，可以這樣加入自訂標頭：
 
-{* ../../docs_src/handling_errors/tutorial002_py310.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial002.py hl[14] *}
 
 ## 安裝自訂例外處理器 { #install-custom-exception-handlers }
 
-你可以使用 [Starlette 的相同例外工具](https://www.starlette.dev/exceptions/) 來加入自訂例外處理器。
+你可以使用 [Starlette 的相同例外工具](https://starlette.dev/exceptions/) 來加入自訂例外處理器。
 
 假設你有一個自訂例外 `UnicornException`，你（或你使用的函式庫）可能會 `raise` 它。
 
@@ -89,7 +89,7 @@
 
 你可以使用 `@app.exception_handler()` 加入自訂例外處理器：
 
-{* ../../docs_src/handling_errors/tutorial003_py310.py hl[5:7,13:18,24] *}
+{* ../../docs_src/handling_errors/tutorial003.py hl[5:7,13:18,24] *}
 
 在這裡，如果你請求 `/unicorns/yolo`，該「路徑操作」會 `raise` 一個 `UnicornException`。
 
@@ -127,7 +127,7 @@
 
 例外處理器會接收一個 `Request` 和該例外。
 
-{* ../../docs_src/handling_errors/tutorial004_py310.py hl[2,14:19] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[2,14:19] *}
 
 現在，如果你前往 `/items/foo`，預設的 JSON 錯誤本應為：
 
@@ -159,7 +159,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 例如，你可能想在這些錯誤時回傳純文字而非 JSON：
 
-{* ../../docs_src/handling_errors/tutorial004_py310.py hl[3:4,9:11,25] *}
+{* ../../docs_src/handling_errors/tutorial004.py hl[3:4,9:11,25] *}
 
 /// note | 技術細節
 
@@ -183,7 +183,7 @@ Field: ('path', 'item_id'), Error: Input should be a valid integer, unable to pa
 
 在開發應用時，你可以用它來記錄 body 並除錯、回傳給使用者等。
 
-{* ../../docs_src/handling_errors/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/handling_errors/tutorial005.py hl[14] *}
 
 現在嘗試送出一個無效的項目，例如：
 
@@ -239,6 +239,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 如果你想在使用例外的同時，沿用 **FastAPI** 的預設例外處理器，你可以從 `fastapi.exception_handlers` 匯入並重用預設的處理器：
 
-{* ../../docs_src/handling_errors/tutorial006_py310.py hl[2:5,15,21] *}
+{* ../../docs_src/handling_errors/tutorial006.py hl[2:5,15,21] *}
 
 在這個範例中，你只是用一段很生動的訊息把錯誤印出來，不過重點是：你可以使用該例外，然後直接重用預設的例外處理器。

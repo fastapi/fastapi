@@ -30,12 +30,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 我们需要安装 `PyJWT`，以便在 Python 中生成和校验 JWT 令牌。
 
-请确保创建并激活一个[虚拟环境](../../virtual-environments.md)，然后安装 `pyjwt`：
+将 `pyjwt` 添加到你的项目：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ pwdlib 是一个用于处理密码哈希的优秀 Python 包。
 
 推荐的算法是 “Argon2”。
 
-请确保创建并激活一个[虚拟环境](../../virtual-environments.md)，然后安装带 Argon2 的 pwdlib：
+将带 Argon2 的 `pwdlib` 添加到你的项目：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -116,7 +116,7 @@ pwdlib 也支持 bcrypt 哈希算法，但不包含遗留算法——如果需�
 
 再创建一个工具函数来进行身份验证并返回用户。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 当使用一个在数据库中不存在的用户名调用 `authenticate_user` 时，我们仍然会针对一个虚拟哈希运行 `verify_password`。
 
@@ -156,7 +156,7 @@ $ openssl rand -hex 32
 
 创建一个生成新访问令牌的工具函数。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## 更新依赖项 { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ $ openssl rand -hex 32
 
 如果令牌无效，立即返回一个 HTTP 错误。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## 更新 `/token` *路径操作* { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ $ openssl rand -hex 32
 
 创建一个真正的 JWT 访问令牌并返回它。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### 关于 JWT “主题” `sub` 的技术细节 { #technical-details-about-the-jwt-subject-sub }
 

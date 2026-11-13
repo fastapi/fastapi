@@ -21,20 +21,20 @@
 
 예제를 파일 `main.py`에 복사하세요:
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## 실행하기 { #run-it }
 
 /// note | 참고
 
-[`python-multipart`](https://github.com/Kludex/python-multipart) 패키지는 `pip install "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
+[`python-multipart`](https://github.com/Kludex/python-multipart) 패키지는 `uv add "fastapi[standard]"` 명령을 실행하면 **FastAPI**와 함께 자동으로 설치됩니다.
 
-하지만 `pip install fastapi` 명령을 사용하면 `python-multipart` 패키지가 기본으로 포함되지 않습니다.
+하지만 `uv add fastapi` 명령을 사용하면 `python-multipart` 패키지가 기본으로 포함되지 않습니다.
 
-수동으로 설치하려면, [가상 환경](../../virtual-environments.md)을 만들고 활성화한 다음, 아래로 설치하세요:
+수동으로 설치하려면, 프로젝트에 아래로 추가하세요:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 이는 **OAuth2**가 `username`과 `password`를 보내기 위해 "form data"를 사용하기 때문입니다.
@@ -46,7 +46,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -133,7 +133,7 @@ OAuth2는 backend 또는 API가 사용자를 인증하는 서버와 독립적일
 
 `OAuth2PasswordBearer` 클래스의 인스턴스를 만들 때 `tokenUrl` 파라미터를 전달합니다. 이 파라미터에는 클라이언트(사용자의 브라우저에서 실행되는 frontend)가 token을 받기 위해 `username`과 `password`를 보낼 URL이 들어 있습니다.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip | 팁
 
@@ -171,7 +171,7 @@ oauth2_scheme(some, parameters)
 
 이제 `Depends`로 `oauth2_scheme`를 의존성에 전달할 수 있습니다.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 이 의존성은 `str`을 제공하고, 그 값은 *경로 처리 함수*의 파라미터 `token`에 할당됩니다.
 

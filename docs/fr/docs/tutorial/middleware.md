@@ -31,13 +31,13 @@ La fonction de middleware reçoit :
     * Puis elle renverra la `response` générée par le *chemin d'accès* correspondant.
 * Vous pouvez ensuite modifier la `response` avant de la renvoyer.
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | Astuce
 
 Gardez à l’esprit que des en-têtes propriétaires personnalisés peuvent être ajoutés [en utilisant le préfixe `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mais si vous avez des en-têtes personnalisés que vous voulez rendre visibles pour un client dans un navigateur, vous devez les ajouter à votre configuration CORS ([CORS (Partage des ressources entre origines)](cors.md)) en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Mais si vous avez des en-têtes personnalisés que vous voulez rendre visibles pour un client dans un navigateur, vous devez les ajouter à votre configuration CORS ([CORS (Partage des ressources entre origines)](cors.md)) en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://starlette.dev/middleware/#corsmiddleware).
 
 ///
 
@@ -57,7 +57,7 @@ Et aussi après que la `response` a été générée, avant de la renvoyer.
 
 Par exemple, vous pourriez ajouter un en-tête personnalisé `X-Process-Time` contenant le temps en secondes nécessaire pour traiter la requête et générer une réponse :
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip | Astuce
 
@@ -67,9 +67,9 @@ Ici, nous utilisons [`time.perf_counter()`](https://docs.python.org/3/library/ti
 
 ## Ordre d’exécution de plusieurs middlewares { #multiple-middleware-execution-order }
 
-Quand vous ajoutez plusieurs middlewares en utilisant soit le décorateur `@app.middleware()`, soit la méthode `app.add_middleware()`, chaque nouveau middleware enveloppe l’application, formant une pile. Le dernier middleware ajouté est le plus externe, et le premier est le plus interne.
+Quand vous ajoutez plusieurs middlewares en utilisant soit le décorateur `@app.middleware()`, soit la méthode `app.add_middleware()`, chaque nouveau middleware enveloppe l’application, formant une pile. Le dernier middleware ajouté est le *plus externe*, et le premier est le *plus interne*.
 
-Sur le chemin de la requête, le plus externe s’exécute en premier.
+Sur le chemin de la requête, le *plus externe* s’exécute en premier.
 
 Sur le chemin de la réponse, il s’exécute en dernier.
 
@@ -90,6 +90,6 @@ Ce comportement d’empilement garantit que les middlewares s’exécutent dans 
 
 ## Autres middlewares { #other-middlewares }
 
-Vous pouvez en lire davantage sur d’autres middlewares dans le [Guide de l’utilisateur avancé : Middleware avancé](../advanced/middleware.md).
+Vous pouvez plus tard en lire davantage sur d’autres middlewares dans le [Guide de l’utilisateur avancé : Middleware avancé](../advanced/middleware.md).
 
 Vous verrez comment gérer <abbr title="Cross-Origin Resource Sharing - Partage des ressources entre origines">CORS</abbr> avec un middleware dans la section suivante.

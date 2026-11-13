@@ -1,13 +1,12 @@
 # Cookies de réponse { #response-cookies }
 
-
 ## Utiliser un paramètre `Response` { #use-a-response-parameter }
 
 Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de chemin d'accès*.
 
 Vous pouvez ensuite définir des cookies dans cet objet de réponse *temporaire*.
 
-{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 Vous pouvez ensuite renvoyer n'importe quel objet dont vous avez besoin, comme d'habitude (un `dict`, un modèle de base de données, etc.).
 
@@ -25,7 +24,7 @@ Pour ce faire, vous pouvez créer une réponse comme décrit dans [Renvoyer une 
 
 Définissez ensuite des cookies dessus, puis renvoyez-la :
 
-{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | Astuce
 
@@ -49,4 +48,4 @@ Et comme `Response` peut être utilisé fréquemment pour définir des en-têtes
 
 ///
 
-Pour voir tous les paramètres et options disponibles, consultez la [documentation de Starlette](https://www.starlette.dev/responses/#set-cookie).
+Pour voir tous les paramètres et options disponibles, consultez la [documentation de Starlette](https://starlette.dev/responses/#set-cookie).

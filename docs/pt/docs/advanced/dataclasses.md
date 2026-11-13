@@ -4,9 +4,9 @@ FastAPI é construído em cima do **Pydantic**, e eu tenho mostrado como usar mo
 
 Mas o FastAPI também suporta o uso de [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) da mesma forma:
 
-{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
+{* ../../docs_src/dataclasses_/tutorial001.py hl[1,6:11,18:19] *}
 
-Isso ainda é suportado graças ao **Pydantic**, pois ele tem [suporte interno para `dataclasses`](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel).
+Isso ainda é suportado graças ao **Pydantic**, pois ele tem [suporte interno para `dataclasses`](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel).
 
 Então, mesmo com o código acima que não usa Pydantic explicitamente, o FastAPI está usando Pydantic para converter essas dataclasses padrão para a própria versão de dataclasses do Pydantic.
 
@@ -32,7 +32,7 @@ Mas se você tem um monte de dataclasses por aí, este é um truque legal para u
 
 Você também pode usar `dataclasses` no parâmetro `response_model`:
 
-{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
+{* ../../docs_src/dataclasses_/tutorial002.py hl[1,6:12,18] *}
 
 A dataclass será automaticamente convertida para uma dataclass Pydantic.
 
@@ -48,7 +48,7 @@ Em alguns casos, você ainda pode ter que usar a versão do Pydantic das `datacl
 
 Nesse caso, você pode simplesmente trocar as `dataclasses` padrão por `pydantic.dataclasses`, que é um substituto direto:
 
-{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
+{* ../../docs_src/dataclasses_/tutorial003.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. Ainda importamos `field` das `dataclasses` padrão.
 
@@ -88,7 +88,7 @@ Confira as dicas de anotação no código acima para ver mais detalhes específi
 
 Você também pode combinar `dataclasses` com outros modelos Pydantic, herdar deles, incluí-los em seus próprios modelos, etc.
 
-Para saber mais, confira a [documentação do Pydantic sobre dataclasses](https://docs.pydantic.dev/latest/concepts/dataclasses/).
+Para saber mais, confira a [documentação do Pydantic sobre dataclasses](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/).
 
 ## Versão { #version }
 

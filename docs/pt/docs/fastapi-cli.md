@@ -2,7 +2,7 @@
 
 **FastAPI <abbr title="command line interface - interface de linha de comando">CLI</abbr>** é um programa de linha de comando que você pode usar para servir sua aplicação FastAPI, gerenciar seu projeto FastAPI e muito mais.
 
-Quando você instala o FastAPI (por exemplo, com `pip install "fastapi[standard]"`), ele vem com um programa de linha de comando que você pode executar no terminal.
+Quando você adiciona o FastAPI ao seu projeto (por exemplo, com `uv add "fastapi[standard]"`), ele vem com um programa de linha de comando que você pode executar no terminal.
 
 Para executar sua aplicação FastAPI durante o desenvolvimento, você pode usar o comando `fastapi dev`:
 
@@ -52,7 +52,7 @@ Em produção, você usaria `fastapi run` em vez de `fastapi dev`. 🚀
 
 ///
 
-Internamente, o **FastAPI CLI** usa o [Uvicorn](https://www.uvicorn.dev), um servidor ASGI de alta performance e pronto para produção. 😎
+Internamente, o **FastAPI CLI** usa o [Uvicorn](https://uvicorn.dev), um servidor ASGI de alta performance e pronto para produção. 😎
 
 O CLI `fastapi` tentará detectar automaticamente a aplicação FastAPI a ser executada, assumindo que seja um objeto chamado `app` em um arquivo `main.py` (ou algumas outras variantes).
 
@@ -100,13 +100,13 @@ from backend.main import app
 Você também pode passar o caminho do arquivo para o comando `fastapi dev`, e ele deduzirá o objeto da aplicação FastAPI a usar:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Ou, você também pode passar a opção `--entrypoint` para o comando `fastapi dev`:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 Mas você teria que lembrar de passar o caminho\entrypoint correto toda vez que chamar o comando `fastapi`.
@@ -119,13 +119,17 @@ Executar `fastapi dev` inicia o modo de desenvolvimento.
 
 Por padrão, o **recarregamento automático** está ativado, recarregando o servidor automaticamente quando você faz mudanças no seu código. Isso consome muitos recursos e pode ser menos estável do que quando está desativado. Você deveria usá-lo apenas no desenvolvimento. Ele também escuta no endereço IP `127.0.0.1`, que é o IP para a sua máquina se comunicar apenas consigo mesma (`localhost`).
 
+Antes de importar sua aplicação, `fastapi dev` define a variável de ambiente `FASTAPI_ENV` como `development`. Se `FASTAPI_ENV` já estiver definida, seu valor existente é preservado. Isso permite que o código de inicialização da aplicação escolha um comportamento adequado para desenvolvimento, ao mesmo tempo que permite fornecer um ambiente específico da aplicação, como `staging`.
+
+Os valores convencionais de `FASTAPI_ENV` são `development` e `production`. Atualmente, `fastapi run` deixa `FASTAPI_ENV` inalterada, então defina-a explicitamente se sua aplicação precisar detectar o modo de produção.
+
 ## `fastapi run` { #fastapi-run }
 
 Executar `fastapi run` inicia o FastAPI em modo de produção.
 
-Por padrão, o **recarregamento automático** está desativado. Ele também escuta no endereço IP `0.0.0.0`, o que significa todos os endereços IP disponíveis; dessa forma, ficará acessível publicamente para qualquer pessoa que consiga se comunicar com a máquina. É assim que você normalmente o executaria em produção, por exemplo, em um contêiner.
+Por padrão, **auto-reload** está desativado. Ele também escuta no endereço IP `0.0.0.0`, o que significa todos os endereços IP disponíveis; dessa forma, ficará acessível publicamente para qualquer pessoa que consiga se comunicar com a máquina. É assim que você normalmente o executaria em produção, por exemplo, em um contêiner.
 
-Na maioria dos casos, você teria (e você deveria ter) um "proxy de terminação" tratando o HTTPS por cima; isso dependerá de como você faz o deploy da sua aplicação, seu provedor pode fazer isso por você ou talvez seja necessário que você configure isso por conta própria.
+Na maioria dos casos, você teria (e deveria ter) um "proxy de terminação" tratando o HTTPS por cima; isso dependerá de como você faz o deploy da sua aplicação, seu provedor pode fazer isso por você ou talvez seja necessário que você configure por conta própria.
 
 /// tip | Dica
 

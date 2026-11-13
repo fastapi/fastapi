@@ -5,13 +5,13 @@
 
 你可以使用此模板开始，它已经为你完成了大量的初始设置、安全性、数据库以及一些 API 端点。
 
-GitHub 仓库：[Full Stack FastAPI Template](https://github.com/tiangolo/full-stack-fastapi-template)
+GitHub 仓库：[Full Stack FastAPI Template](https://github.com/fastapi/full-stack-fastapi-template)
 
 ## FastAPI全栈模板 - 技术栈和特性 { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/zh) 用于 Python 后端 API。
   - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) 用于 Python 与 SQL 数据库的交互（ORM）。
-  - 🔍 [Pydantic](https://docs.pydantic.dev)，FastAPI 使用，用于数据验证与配置管理。
+  - 🔍 [Pydantic](https://pydantic.dev/docs/)，FastAPI 使用，用于数据验证与配置管理。
   - 💾 [PostgreSQL](https://www.postgresql.org) 作为 SQL 数据库。
 - 🚀 [React](https://react.dev) 用于前端。
   - 💃 使用 TypeScript、hooks、Vite 以及现代前端技术栈的其他部分。

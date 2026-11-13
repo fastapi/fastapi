@@ -7,7 +7,7 @@
 
 在你的 FastAPI 應用程式中，直接匯入並執行 `uvicorn`：
 
-{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
 ### 關於 `__name__ == "__main__"` { #about-name-main }
 
@@ -16,7 +16,7 @@
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -36,7 +36,7 @@ from myapp import app
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>

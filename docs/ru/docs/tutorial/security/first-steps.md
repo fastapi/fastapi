@@ -20,20 +20,20 @@
 
 Скопируйте пример в файл `main.py`:
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## Запуск { #run-it }
 
 /// note | Примечание
 
-Пакет [`python-multipart`](https://github.com/Kludex/python-multipart) автоматически устанавливается вместе с **FastAPI**, если вы запускаете команду `pip install "fastapi[standard]"`.
+Пакет [`python-multipart`](https://github.com/Kludex/python-multipart) автоматически устанавливается вместе с **FastAPI**, когда вы запускаете команду `uv add "fastapi[standard]"`.
 
-Однако, если вы используете команду `pip install fastapi`, пакет `python-multipart` по умолчанию не включается.
+Однако, если вы используете команду `uv add fastapi`, пакет `python-multipart` по умолчанию не включается.
 
-Чтобы установить его вручную, убедитесь, что вы создали [виртуальное окружение](../../virtual-environments.md), активировали его и затем установили пакет:
+Чтобы установить его вручную, добавьте его в ваш проект с помощью:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Это связано с тем, что **OAuth2** использует «данные формы» для отправки `username` и `password`.
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -132,7 +132,7 @@ OAuth2 был спроектирован так, чтобы бэкенд или 
 
 При создании экземпляра класса `OAuth2PasswordBearer` мы передаем параметр `tokenUrl`. Этот параметр содержит URL, который клиент (фронтенд, работающий в браузере пользователя) будет использовать для отправки `username` и `password`, чтобы получить токен.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip | Подсказка
 
@@ -170,7 +170,7 @@ oauth2_scheme(some, parameters)
 
 Теперь вы можете передать `oauth2_scheme` как зависимость с `Depends`.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Эта зависимость предоставит `str`, который будет присвоен параметру `token` *функции-обработчика пути*.
 

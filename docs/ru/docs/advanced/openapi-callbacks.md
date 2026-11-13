@@ -31,11 +31,11 @@
 
 Эта часть вполне обычна, большая часть кода вам уже знакома:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | Совет
 
-Query-параметр `callback_url` использует тип Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/).
+Query-параметр `callback_url` использует тип Pydantic [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/).
 
 ///
 
@@ -90,7 +90,7 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 
 Сначала создайте новый `APIRouter`, который будет содержать один или несколько обратных вызовов.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Создайте *операцию пути* для обратного вызова { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ httpx.post(callback_url, json={"description": "Invoice paid", "paid": True})
 * Вероятно, в ней должно быть объявление тела запроса, например `body: InvoiceEvent`.
 * А также может быть объявление HTTP-ответа, который она должна возвращать, например `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 Есть 2 основных отличия от обычной *операции пути*:
 
 * Ей не нужен реальный код, потому что ваше приложение никогда не будет вызывать эту функцию. Она используется только для документирования *внешнего API*. Поэтому в функции может быть просто `pass`.
-* *Путь* может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (подробнее ниже), где можно использовать переменные с параметрами и части исходного HTTP-запроса, отправленного *вашему API*.
+* *Путь* может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (подробнее ниже), где можно использовать переменные с параметрами и части исходного HTTP-запроса, отправленного *вашему API*.
 
 ### Выражение пути для обратного вызова { #the-callback-path-expression }
 
-*Путь* обратного вызова может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression), которое может включать части исходного запроса, отправленного *вашему API*.
+*Путь* обратного вызова может содержать [выражение OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression), которое может включать части исходного запроса, отправленного *вашему API*.
 
 В нашем случае это `str`:
 
@@ -169,7 +169,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 Теперь используйте параметр `callbacks` в *декораторе операции пути вашего API*, чтобы передать атрибут `.routes` из этого роутера обратных вызовов:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | Совет
 

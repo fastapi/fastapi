@@ -12,7 +12,7 @@
 
 Нужно убедиться, что он уникален для каждой операции.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
 ### Использование имени *функции-обработчика пути* как operationId { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@
 
 Эта функция получает каждый `APIRoute` и возвращает `operationId`, который нужно использовать для этой операции пути.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,5:6,9] *}
 
 /// warning | Предупреждение
 
@@ -34,7 +34,7 @@
 
 Чтобы исключить *операцию пути* из генерируемой схемы OpenAPI (а значит, и из автоматических систем документации), используйте параметр `include_in_schema` и установите его в `False`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
 ## Расширенное описание из docstring { #advanced-description-from-docstring }
 
@@ -44,7 +44,7 @@
 
 Это не отобразится в документации, но другие инструменты (например, Sphinx) смогут использовать остальное.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[17:27] *}
 
 ## Дополнительные ответы { #additional-responses }
 
@@ -86,7 +86,7 @@
 
 `openapi_extra` может пригодиться, например, чтобы объявить [Расширения OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions):
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
 Если вы откроете автоматическую документацию API, ваше расширение появится внизу страницы конкретной *операции пути*.
 
@@ -133,7 +133,7 @@
 
 Это можно сделать с помощью `openapi_extra`:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
 
 В этом примере мы не объявляли никакую Pydantic-модель. Фактически тело запроса даже не <dfn title="преобразован из простого формата, например байтов, в объекты Python">распарсено</dfn> как JSON, оно читается напрямую как `bytes`, а функция `magic_data_reader()` будет отвечать за его парсинг каким-то способом.
 
@@ -147,7 +147,7 @@
 
 Например, в этом приложении мы не используем встроенную функциональность FastAPI для извлечения JSON Schema из моделей Pydantic, равно как и автоматическую валидацию JSON. Мы объявляем тип содержимого HTTP-запроса как YAML, а не JSON:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[15:20, 22] *}
 
 Тем не менее, хотя мы не используем встроенную функциональность по умолчанию, мы всё равно используем Pydantic-модель, чтобы вручную сгенерировать JSON Schema для данных, которые мы хотим получить в YAML.
 
@@ -155,7 +155,7 @@
 
 А затем в нашем коде мы напрямую парсим это содержимое YAML и снова используем ту же Pydantic-модель, чтобы валидировать YAML-содержимое:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[24:31] *}
 
 /// tip | Совет
 

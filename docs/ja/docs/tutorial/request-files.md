@@ -7,10 +7,10 @@
 
 アップロードされたファイルを受け取るには、まず [`python-multipart`](https://github.com/Kludex/python-multipart) をインストールします。
 
-[仮想環境](../virtual-environments.md)を作成して有効化し、次のようにインストールしてください:
+プロジェクトに追加してください:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 アップロードされたファイルは「form data」として送信されるためです。
@@ -21,13 +21,13 @@ $ pip install python-multipart
 
 `fastapi` から `File` と `UploadFile` をインポートします:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## `File` パラメータの定義 { #define-file-parameters }
 
 `Body` や `Form` と同様の方法でファイルのパラメータを作成します:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | 備考
 
@@ -55,7 +55,7 @@ $ pip install python-multipart
 
 型を `UploadFile` にしてファイルパラメータを定義します:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 `UploadFile` を使うことには `bytes` に対する次の利点があります:
 
@@ -138,13 +138,13 @@ HTML フォーム（`<form></form>`）がサーバーにデータを送る方法
 
 標準の型アノテーションを使い、デフォルト値を `None` に設定することで、ファイルを任意にできます:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## 追加メタデータつきの `UploadFile` { #uploadfile-with-additional-metadata }
 
 例えば追加のメタデータを設定するために、`UploadFile` と併せて `File()` を使うこともできます:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## 複数ファイルのアップロード { #multiple-file-uploads }
 
@@ -154,7 +154,7 @@ HTML フォーム（`<form></form>`）がサーバーにデータを送る方法
 
 そのためには、`bytes` または `UploadFile` のリストを宣言します:
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 宣言どおり、`bytes` または `UploadFile` の `list` を受け取ります。
 
@@ -170,7 +170,7 @@ HTML フォーム（`<form></form>`）がサーバーにデータを送る方法
 
 先ほどと同様に、`UploadFile` に対しても `File()` を使って追加のパラメータを設定できます:
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## まとめ { #recap }
 

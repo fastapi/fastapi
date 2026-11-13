@@ -4,12 +4,12 @@
 
 ## 安装 `websockets` { #install-websockets }
 
-请确保您创建一个[虚拟环境](../virtual-environments.md)、激活它，并安装 `websockets`（一个让使用“WebSocket”协议更容易的 Python 库）：
+将 `websockets`（一个让使用“WebSocket”协议更容易的 Python 库）添加到你的项目中：
 
 <div class="termy">
 
 ```console
-$ pip install websockets
+$ uv add websockets
 
 ---> 100%
 ```
@@ -38,13 +38,13 @@ $ pip install websockets
 
 但这是一种专注于 WebSockets 的服务器端并提供一个工作示例的最简单方式：
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[2,6:38,41:43] *}
 
 ## 创建 `websocket` { #create-a-websocket }
 
 在您的 **FastAPI** 应用程序中，创建一个 `websocket`：
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[1,46:47] *}
 
 /// note | 技术细节
 
@@ -58,18 +58,18 @@ $ pip install websockets
 
 在您的 WebSocket 路由中，您可以使用 `await` 等待消息并发送消息。
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[48:52] *}
 
 您可以接收和发送二进制、文本和 JSON 数据。
 
 ## 尝试一下 { #try-it }
 
-将代码放在 `main.py`，然后运行你的应用程序：
+将代码放在文件 `main.py` 中，然后运行你的应用程序：
 
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -109,7 +109,7 @@ $ fastapi dev
 
 它们的工作方式与其他 FastAPI 端点/*路径操作* 相同：
 
-{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002.py hl[68:69,82] *}
 
 /// note | 注意
 
@@ -126,7 +126,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -154,7 +154,7 @@ $ fastapi dev
 
 当 WebSocket 连接关闭时，`await websocket.receive_text()` 将引发 `WebSocketDisconnect` 异常，您可以捕获并处理该异常，就像本示例中的示例一样。
 
-{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003.py hl[79:81] *}
 
 尝试以下操作：
 
@@ -182,5 +182,5 @@ Client #1596980209979 left the chat
 
 要了解更多选项，请查看 Starlette 的文档：
 
-* [`WebSocket` 类](https://www.starlette.dev/websockets/)。
-* [基于类的 WebSocket 处理](https://www.starlette.dev/endpoints/#websocketendpoint)。
+* [`WebSocket` 类](https://starlette.dev/websockets/)。
+* [基于类的 WebSocket 处理](https://starlette.dev/endpoints/#websocketendpoint)。

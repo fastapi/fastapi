@@ -26,7 +26,7 @@
 
 例如，要声明另一个状态码为 `404` 且具有 Pydantic 模型 `Message` 的响应，你可以这样写：
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | 注意
 
@@ -175,7 +175,7 @@
 
 例如，你可以添加一个额外的媒体类型 `image/png`，声明你的*路径操作*可以返回 JSON 对象（媒体类型为 `application/json`）或 PNG 图片：
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | 注意
 
@@ -203,7 +203,7 @@
 
 以及一个状态码为 `200` 的响应，它使用你的 `response_model`，但包含自定义的 `example`：
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 所有这些都会被合并并包含到你的 OpenAPI 中，并显示在 API 文档里：
 
@@ -237,11 +237,11 @@ new_dict = {**old_dict, "new key": "new value"}
 
 例如：
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## 关于 OpenAPI 响应的更多信息 { #more-information-about-openapi-responses }
 
 要查看响应中究竟可以包含什么，你可以查看 OpenAPI 规范中的以下部分：
 
-* [OpenAPI Responses 对象](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object)，它包含 `Response Object`。
-* [OpenAPI Response 对象](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object)，你可以把这里的任何内容直接包含到 `responses` 参数中的每个响应里。包括 `description`、`headers`、`content`（在这里声明不同的媒体类型和 JSON Schemas），以及 `links`。
+* [OpenAPI Responses 对象](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object)，它包含 `Response Object`。
+* [OpenAPI Response 对象](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object)，你可以把这里的任何内容直接包含到 `responses` 参数中的每个响应里。包括 `description`、`headers`、`content`（在这里声明不同的媒体类型和 JSON Schemas），以及 `links`。

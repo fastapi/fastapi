@@ -1,7 +1,7 @@
 import warnings
 from collections import deque
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from decimal import Decimal
 from enum import Enum
 from math import isinf, isnan
@@ -145,7 +145,7 @@ def test_encode_custom_json_encoders_model_pydanticv2():
 
         @field_serializer("dt_field")
         def serialize_dt_field(self, dt):
-            return dt.replace(microsecond=0, tzinfo=timezone.utc).isoformat()
+            return dt.replace(microsecond=0, tzinfo=UTC).isoformat()
 
     class ModelWithCustomEncoderSubclass(ModelWithCustomEncoder):
         pass
@@ -176,7 +176,7 @@ def test_encode_model_with_config():
 
 def test_encode_model_with_alias_raises():
     with pytest.raises(ValidationError):
-        ModelWithAlias(foo="Bar")  # ty: ignore[missing-argument, unknown-argument]
+        ModelWithAlias(foo="Bar")  # ty: ignore[missing-argument]
 
 
 def test_encode_model_with_alias():

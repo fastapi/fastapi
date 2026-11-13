@@ -30,9 +30,9 @@ Beginnen wir mit einem Beispiel und sehen es uns dann im Detail an.
 
 Wir erstellen eine asynchrone Funktion `lifespan()` mit `yield` wie folgt:
 
-{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
-Hier simulieren wir den langsamen *Startup*, das Laden des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Startups*.
+Hier simulieren wir den aufwendigen *Startup*-Vorgang des Ladens des Modells, indem wir die (Fake-)Modellfunktion vor dem `yield` in das <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Modellen für maschinelles Lernen einfügen. Dieser Code wird ausgeführt, **bevor** die Anwendung **beginnt, Requests entgegenzunehmen**, während des *Startups*.
 
 Und dann, direkt nach dem `yield`, entladen wir das Modell. Dieser Code wird ausgeführt, **nachdem** die Anwendung **die Bearbeitung von Requests abgeschlossen hat**, direkt vor dem *Shutdown*. Dadurch könnten beispielsweise Ressourcen wie Arbeitsspeicher oder eine GPU freigegeben werden.
 
@@ -48,7 +48,7 @@ Möglicherweise müssen Sie eine neue Version starten, oder Sie haben es einfach
 
 Das Erste, was auffällt, ist, dass wir eine asynchrone Funktion mit `yield` definieren. Das ist sehr ähnlich zu Abhängigkeiten mit `yield`.
 
-{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 Der erste Teil der Funktion, vor dem `yield`, wird ausgeführt **bevor** die Anwendung startet.
 
@@ -60,7 +60,7 @@ Wie Sie sehen, ist die Funktion mit einem `@asynccontextmanager` versehen.
 
 Dadurch wird die Funktion in einen sogenannten „**asynchronen Kontextmanager**“ umgewandelt.
 
-{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 Ein **Kontextmanager** in Python ist etwas, das Sie in einer `with`-Anweisung verwenden können, zum Beispiel kann `open()` als Kontextmanager verwendet werden:
 
@@ -82,7 +82,7 @@ In unserem obigen Codebeispiel verwenden wir ihn nicht direkt, sondern übergebe
 
 Der Parameter `lifespan` der `FastAPI`-App benötigt einen **asynchronen Kontextmanager**, wir können ihm also unseren neuen asynchronen Kontextmanager `lifespan` übergeben.
 
-{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## Alternative Events (<abbr title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</abbr>) { #alternative-events-deprecated }
 
@@ -104,7 +104,7 @@ Diese Funktionen können mit `async def` oder normalem `def` deklariert werden.
 
 Um eine Funktion hinzuzufügen, die vor dem Start der Anwendung ausgeführt werden soll, deklarieren Sie diese mit dem Event `"startup"`:
 
-{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 In diesem Fall initialisiert die Eventhandler-Funktion `startup` die „Datenbank“ der Items (nur ein `dict`) mit einigen Werten.
 
@@ -116,7 +116,7 @@ Und Ihre Anwendung empfängt erst dann Requests, wenn alle `startup`-Eventhandle
 
 Um eine Funktion hinzuzufügen, die beim Shutdown der Anwendung ausgeführt werden soll, deklarieren Sie sie mit dem Event `"shutdown"`:
 
-{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 Hier schreibt die `shutdown`-Eventhandler-Funktion eine Textzeile `"Application shutdown"` in eine Datei `log.txt`.
 
@@ -140,7 +140,7 @@ Daher deklarieren wir die Eventhandler-Funktion mit Standard-`def` statt mit `as
 
 ### `startup` und `shutdown` zusammen { #startup-and-shutdown-together }
 
-Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Startup* und *Shutdown* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource laden und sie dann freigeben usw.
+Es besteht eine hohe Wahrscheinlichkeit, dass die Logik für Ihr *Startup* und *Shutdown* miteinander verknüpft ist. Vielleicht möchten Sie etwas beginnen und es dann beenden, eine Ressource belegen und sie dann freigeben usw.
 
 Bei getrennten Funktionen, die keine gemeinsame Logik oder Variablen haben, ist dies schwieriger, da Sie Werte in globalen Variablen speichern oder ähnliche Tricks verwenden müssen.
 
@@ -154,9 +154,9 @@ In der technischen ASGI-Spezifikation ist dies Teil des [Lifespan-Protokolls](ht
 
 /// note | Hinweis
 
-Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in [Starlettes Lifespan-Dokumentation](https://www.starlette.dev/lifespan/).
+Weitere Informationen zu Starlettes `lifespan`-Handlern finden Sie in [Starlettes Lifespan-Dokumentation](https://starlette.dev/lifespan/).
 
-Einschließlich, wie man Lifespan-Zustand handhabt, der in anderen Bereichen Ihres Codes verwendet werden kann.
+Einschließlich, wie Sie Lifespan-Zustand handhaben, der in anderen Bereichen Ihres Codes verwendet werden kann.
 
 ///
 

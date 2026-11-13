@@ -42,7 +42,7 @@
 
 इस तरह, वही route class gzip compressed या uncompressed requests को संभाल सकती है।
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### Custom `GzipRoute` class बनाएँ { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@
 
 यहाँ हम इसका उपयोग original request से `GzipRequest` बनाने के लिए करते हैं।
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | तकनीकी विवरण
 
@@ -66,7 +66,7 @@
 
 और ये दो चीजें, `scope` और `receive`, नई `Request` instance बनाने के लिए आवश्यक हैं।
 
-`Request` के बारे में अधिक जानने के लिए [Requests के बारे में Starlette के docs](https://www.starlette.dev/requests/) देखें।
+`Request` के बारे में अधिक जानने के लिए [Requests के बारे में Starlette के docs](https://starlette.dev/requests/) देखें।
 
 ///
 
@@ -92,18 +92,18 @@
 
 हमें बस request को `try`/`except` block के अंदर संभालना है:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 अगर कोई exception होता है, तो `Request` instance अभी भी scope में होगी, इसलिए error संभालते समय हम request body को पढ़ सकते हैं और उसका उपयोग कर सकते हैं:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## Router में custom `APIRoute` class { #custom-apiroute-class-in-a-router }
 
 आप `APIRouter` का `route_class` parameter भी set कर सकते हैं:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 इस उदाहरण में, `router` के अंतर्गत *path operations* custom `TimedRoute` class का उपयोग करेंगे, और response में एक अतिरिक्त `X-Response-Time` header होगा जिसमें response generate करने में लगा समय होगा:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

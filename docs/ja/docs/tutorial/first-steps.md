@@ -2,16 +2,22 @@
 
 最もシンプルなFastAPIファイルは以下のようになります:
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 これを`main.py`にコピーします。
+
+/// tip | 豆知識
+
+FastAPIには[VS Code向けの公式拡張機能](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)（およびCursor）があります。path operation explorer、path operation search、テスト内のCodeLensナビゲーション（テストから定義へジャンプ）、FastAPI Cloudへのデプロイとログなど、多くの機能をすべてエディタから利用できます。
+
+///
 
 ライブサーバーを実行します:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 次に、[http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)にアクセスします。
 
-代替の自動生成ドキュメントが表示されます（[ReDoc](https://github.com/Rebilly/ReDoc)によって提供）:
+代替の自動生成ドキュメントが表示されます（[ReDoc](https://github.com/Redocly/redoc)によって提供）:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 `fastapi dev`コマンドにファイルパスを渡すこともでき、使用すべきFastAPIのappオブジェクトを推測します:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 または、`fastapi dev`コマンドに`--entrypoint`オプションを渡すこともできます:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 ただし、その場合は毎回`fastapi`コマンドを呼ぶたびに正しいパスや`entrypoint`を渡すことを覚えておく必要があります。
@@ -205,7 +211,7 @@ $ fastapi dev --entrypoint main:app
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -224,7 +230,7 @@ CLIはFastAPIアプリケーションを自動検出してクラウドにデプ�
 
 ### Step 1: `FastAPI`をインポート { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI`は、APIのすべての機能を提供するPythonクラスです。
 
@@ -232,13 +238,13 @@ CLIはFastAPIアプリケーションを自動検出してクラウドにデプ�
 
 `FastAPI`は`Starlette`を直接継承するクラスです。
 
-`FastAPI`でも[Starlette](https://www.starlette.dev/)のすべての機能を利用可能です。
+`FastAPI`でも[Starlette](https://starlette.dev/)のすべての機能を利用可能です。
 
 ///
 
 ### Step 2: `FastAPI`の「インスタンス」を生成 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 ここで、`app`変数が`FastAPI`クラスの「インスタンス」になります。
 
@@ -307,12 +313,12 @@ APIを構築するときは、通常、これらの特定のHTTPメソッドを�
 
 #### *path operation デコレータ*を定義 { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")`は直下の関数が下記のリクエストの処理を担当することを**FastAPI**に伝えます:
 
 * パス `/`
-* <dfn title="HTTP GET メソッド"><code>get</code> オペレーション</dfn>
+* <dfn title="HTTP GETメソッド"><code>get</code> オペレーション</dfn>を使用する
 
 /// note | `@decorator` 情報
 
@@ -361,7 +367,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 * **オペレーション**: は`get`です。
 * **関数**: 「デコレータ」の直下にある関数 (`@app.get("/")`の直下) です。
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 これは、Pythonの関数です。
 
@@ -373,7 +379,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 
 `async def`の代わりに通常の関数として定義することもできます:
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | 備考
 
@@ -383,7 +389,7 @@ Pythonにおける`@something`シンタックスはデコレータと呼ばれ�
 
 ### Step 5: コンテンツの返信 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 `dict`、`list`、`str`、`int`などの単一の値を返すことができます。
 

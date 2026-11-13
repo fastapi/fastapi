@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 任何传向 `http` 或 `ws` 的请求都会被重定向至安全方案。
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 强制所有传入请求都必须正确设置 `Host` 请求头，以防 HTTP 主机头攻击。
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 支持以下参数：
 
@@ -78,7 +78,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 中间件会处理标准响应与流响应。
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 支持以下参数：
 
@@ -87,11 +87,11 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 ## 其它中间件 { #other-middlewares }
 
-除了上述中间件外，FastAPI 还支持其它 ASGI 中间件。
+还有许多其它 ASGI 中间件。
 
 例如：
 
-* [Uvicorn 的 `ProxyHeadersMiddleware`](https://github.com/encode/uvicorn/blob/master/uvicorn/middleware/proxy_headers.py)
+* [Uvicorn 的 `ProxyHeadersMiddleware`](https://github.com/Kludex/uvicorn/blob/main/uvicorn/middleware/proxy_headers.py)
 * [MessagePack](https://github.com/florimondmanca/msgpack-asgi)
 
-其它可用中间件详见 [Starlette 官档 - 中间件](https://www.starlette.dev/middleware/) 及 [ASGI Awesome 列表](https://github.com/florimondmanca/awesome-asgi)。
+其它可用中间件详见 [Starlette 的中间件文档](https://starlette.dev/middleware/) 及 [ASGI Awesome 列表](https://github.com/florimondmanca/awesome-asgi)。

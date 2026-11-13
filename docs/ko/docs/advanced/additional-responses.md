@@ -26,7 +26,7 @@
 
 예를 들어, 상태 코드 `404`와 Pydantic 모델 `Message`를 사용하는 다른 응답을 선언하려면 다음과 같이 작성할 수 있습니다:
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | 참고
 
@@ -175,7 +175,7 @@
 
 예를 들어, *경로 처리*가 JSON 객체(미디어 타입 `application/json`) 또는 PNG 이미지(미디어 타입 `image/png`)를 반환할 수 있다고 선언하기 위해 `image/png`라는 추가 미디어 타입을 추가할 수 있습니다:
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | 참고
 
@@ -203,7 +203,7 @@
 
 또한 `response_model`을 사용하는 상태 코드 `200` 응답을 선언하되, 커스텀 `example`을 포함할 수도 있습니다:
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 이 모든 내용은 OpenAPI에 결합되어 포함되고, API 문서에 표시됩니다:
 
@@ -237,11 +237,11 @@ new_dict = {**old_dict, "new key": "new value"}
 
 예를 들어:
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## OpenAPI 응답에 대한 추가 정보 { #more-information-about-openapi-responses }
 
 응답에 정확히 무엇을 포함할 수 있는지 보려면, OpenAPI 사양의 다음 섹션을 확인하세요:
 
-* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object): `Response Object`를 포함합니다.
-* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object): `responses` 파라미터 안의 각 응답에 이것의 어떤 항목이든 직접 포함할 수 있습니다. `description`, `headers`, `content`(여기에서 서로 다른 미디어 타입과 JSON Schema를 선언합니다), `links` 등을 포함할 수 있습니다.
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object): `Response Object`를 포함합니다.
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object): `responses` 파라미터 안의 각 응답에 이것의 어떤 항목이든 직접 포함할 수 있습니다. `description`, `headers`, `content`(여기에서 서로 다른 미디어 타입과 JSON Schema를 선언합니다), `links` 등을 포함할 수 있습니다.

@@ -36,7 +36,7 @@ Aqui estão alguns dos tipos de dados adicionais que você pode usar:
 * `datetime.timedelta`:
     * O `datetime.timedelta` do Python.
     * Em requisições e respostas será representado como um `float` de segundos totais.
-    * O Pydantic também permite representá-lo como uma "codificação de diferença de tempo ISO 8601", [veja a documentação para mais informações](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
+    * O Pydantic também permite representá-lo como uma "codificação de diferença de tempo ISO 8601", [veja a documentação para mais informações](https://pydantic.dev/docs/validation/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * Em requisições e respostas, será tratado da mesma forma que um `set`:
         * Nas requisições, uma list será lida, eliminando duplicadas e convertendo-a em um `set`.
@@ -49,14 +49,14 @@ Aqui estão alguns dos tipos de dados adicionais que você pode usar:
 * `Decimal`:
     * O `Decimal` padrão do Python.
     * Em requisições e respostas, tratado da mesma forma que um `float`.
-* Você pode checar todos os tipos de dados válidos do Pydantic aqui: [Tipos de dados do Pydantic](https://docs.pydantic.dev/latest/usage/types/types/).
+* Você pode checar todos os tipos de dados válidos do Pydantic aqui: [Tipos de dados do Pydantic](https://pydantic.dev/docs/validation/latest/concepts/types/).
 
 ## Exemplo { #example }
 
 Aqui está um exemplo de *operação de rota* com parâmetros utilizando-se de alguns dos tipos acima.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Note que os parâmetros dentro da função têm seu tipo de dados natural, e você pode, por exemplo, realizar manipulações normais de data, como:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

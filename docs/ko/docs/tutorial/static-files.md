@@ -15,7 +15,7 @@
 * `StaticFiles`를 임포트합니다.
 * 특정 경로에 `StaticFiles()` 인스턴스를 "마운트"합니다.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | 기술 세부사항
 
@@ -45,4 +45,4 @@
 
 ## 추가 정보 { #more-info }
 
-자세한 내용과 옵션은 [Starlette의 정적 파일 문서](https://www.starlette.dev/staticfiles/)를 확인하세요.
+자세한 내용과 옵션은 [Starlette의 정적 파일 문서](https://starlette.dev/staticfiles/)를 확인하세요.

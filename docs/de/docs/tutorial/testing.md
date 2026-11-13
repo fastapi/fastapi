@@ -1,6 +1,6 @@
 # Testen { #testing }
 
-Dank [Starlette](https://www.starlette.dev/testclient/) ist das Testen von **FastAPI**-Anwendungen einfach und macht Spaß.
+Dank [Starlette](https://starlette.dev/testclient/) ist das Testen von **FastAPI**-Anwendungen einfach und macht Spaß.
 
 Es basiert auf [HTTPX](https://www.python-httpx.org), welches wiederum auf der Grundlage von Requests konzipiert wurde, es ist also sehr vertraut und intuitiv.
 
@@ -12,10 +12,10 @@ Damit können Sie [pytest](https://docs.pytest.org/) direkt mit **FastAPI** verw
 
 Um `TestClient` zu verwenden, installieren Sie zunächst [`httpx`](https://www.python-httpx.org).
 
-Erstellen Sie eine [virtuelle Umgebung](../virtual-environments.md), aktivieren Sie sie und installieren Sie es dann, z. B.:
+Fügen Sie es zu Ihrem Projekt hinzu:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -30,7 +30,7 @@ Verwenden Sie das `TestClient`-Objekt auf die gleiche Weise wie `httpx`.
 
 Schreiben Sie einfache `assert`-Anweisungen mit den Standard-Python-Ausdrücken, die Sie überprüfen müssen (wiederum, Standard-`pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | Tipp
 
@@ -52,7 +52,7 @@ Sie könnten auch `from starlette.testclient import TestClient` verwenden.
 
 /// tip | Tipp
 
-Wenn Sie in Ihren Tests neben dem Senden von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md) im Handbuch für fortgeschrittene Benutzer.
+Wenn Sie in Ihren Tests neben dem Senden von <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Requests</abbr> an Ihre FastAPI-Anwendung auch `async`-Funktionen aufrufen möchten (z. B. asynchrone Datenbankfunktionen), werfen Sie einen Blick auf die [Async-Tests](../advanced/async-tests.md) im Tutorial für fortgeschrittene Benutzer.
 
 ///
 
@@ -76,7 +76,7 @@ Nehmen wir an, Sie haben eine Dateistruktur wie in [Größere Anwendungen](bigge
 In der Datei `main.py` haben Sie Ihre **FastAPI**-Anwendung:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 
 ### Testdatei { #testing-file }
@@ -93,7 +93,7 @@ Dann könnten Sie eine Datei `test_main.py` mit Ihren Tests haben. Sie könnte s
 
 Da sich diese Datei im selben Package befindet, können Sie relative Importe verwenden, um das Objekt `app` aus dem `main`-Modul (`main.py`) zu importieren:
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ... und haben den Code für die Tests wie zuvor.
@@ -122,13 +122,13 @@ Sie verfügt über eine `POST`-Operation, die mehrere Fehler zurückgeben könnt
 
 Beide *Pfadoperationen* erfordern einen `X-Token`-Header.
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### Erweiterte Testdatei { #extended-testing-file }
 
 Anschließend könnten Sie `test_main.py` mit den erweiterten Tests aktualisieren:
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 Immer wenn der Client Informationen im Request übergeben soll und Sie nicht wissen, wie, können Sie danach suchen (googeln), wie es mit `httpx` gemacht wird, oder sogar, wie es mit `requests` gemacht wird, da das Design von HTTPX auf dem Design von Requests basiert.
@@ -153,16 +153,16 @@ Wenn Sie ein Pydantic-Modell in Ihrem Test haben und dessen Daten während des T
 
 ///
 
-## Tests ausführen { #run-it }
+## Ausführen { #run-it }
 
 Danach müssen Sie nur noch `pytest` installieren.
 
-Erstellen Sie eine [virtuelle Umgebung](../virtual-environments.md), aktivieren Sie sie und installieren Sie es dann, z. B.:
+Fügen Sie es zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -176,7 +176,7 @@ Führen Sie die Tests aus, mit:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

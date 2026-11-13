@@ -9,7 +9,7 @@
 
 /// note
 
-這需要先安裝 `a2wsgi`，例如使用 `pip install a2wsgi`。
+這需要將 `a2wsgi` 加入你的專案，例如使用 `uv add a2wsgi`。
 
 ///
 
@@ -19,7 +19,7 @@
 
 接著把它掛載到某個路徑下。
 
-{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001.py hl[1,3,23] *}
 
 /// note
 

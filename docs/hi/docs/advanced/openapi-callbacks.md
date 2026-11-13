@@ -31,11 +31,11 @@ Callback जोड़ने से पहले, पहले देखते �
 
 यह हिस्सा काफ़ी सामान्य है, अधिकतर code शायद आपको पहले से परिचित होगा:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | सुझाव
 
-`callback_url` query parameter एक Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/) type का उपयोग करता है।
+`callback_url` query parameter एक Pydantic [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/) type का उपयोग करता है।
 
 ///
 
@@ -90,7 +90,7 @@ Callback को document करने के लिए code लिखते स�
 
 पहले एक नया `APIRouter` बनाएँ जिसमें एक या अधिक callbacks होंगे।
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Callback *path operation* बनाएँ { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ Callback *path operation* बनाने के लिए वही `APIRouter`
 * इसमें शायद उस body की declaration होनी चाहिए जिसे इसे receive करना है, जैसे `body: InvoiceEvent`।
 * और इसमें उस response की declaration भी हो सकती है जिसे इसे लौटाना चाहिए, जैसे `response_model=InvoiceEventReceived`।
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 सामान्य *path operation* से 2 मुख्य अंतर हैं:
 
 * इसमें कोई वास्तविक code होना required नहीं है, क्योंकि आपकी app इस code को कभी call नहीं करेगी। इसका उपयोग केवल *external API* को document करने के लिए किया जाता है। इसलिए, function में केवल `pass` हो सकता है।
-* *path* में एक [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (नीचे और देखें) हो सकता है, जहाँ यह *आपकी API* को भेजी गई original request के parameters और parts के साथ variables का उपयोग कर सकता है।
+* *path* में एक [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (नीचे और देखें) हो सकता है, जहाँ यह *आपकी API* को भेजी गई original request के parameters और parts के साथ variables का उपयोग कर सकता है।
 
 ### Callback path expression { #the-callback-path-expression }
 
-Callback *path* में एक [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) हो सकता है जो *आपकी API* को भेजी गई original request के parts शामिल कर सकता है।
+Callback *path* में एक [OpenAPI 3 expression](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) हो सकता है जो *आपकी API* को भेजी गई original request के parts शामिल कर सकता है।
 
 इस case में, यह `str` है:
 
@@ -169,7 +169,7 @@ https://www.external.org/events/invoices/2expen51ve
 
 अब *आपकी API के path operation decorator* में parameter `callbacks` का उपयोग करके उस callback router से attribute `.routes` pass करें:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | सुझाव
 

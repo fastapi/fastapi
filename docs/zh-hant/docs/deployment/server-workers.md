@@ -9,19 +9,19 @@
 * 記憶體
 * 啟動前的前置作業
 
-到目前為止，依照文件中的教學，你大多是透過 `fastapi` 指令啟動一個執行 Uvicorn 的伺服器程式，且只跑單一處理序。
+到目前為止，依照文件中的教學，你大多是透過 `fastapi` 指令啟動一個執行 Uvicorn 的**伺服器程式**，且只跑**單一處理序**。
 
-在部署應用時，你通常會希望有一些處理序的複製來善用多核心，並能處理更多請求。
+在部署應用時，你通常會希望有一些**處理序的複製**來善用**多核心**，並能處理更多請求。
 
 如同前一章關於 [部署概念](concepts.md) 所示，你可以採用多種策略。
 
-這裡會示範如何使用 `fastapi` 指令或直接使用 `uvicorn` 指令，搭配 Uvicorn 的工作處理序（worker processes）。
+這裡會示範如何使用 `fastapi` 指令或直接使用 `uvicorn` 指令，搭配 **Uvicorn** 的**工作處理序**（worker processes）。
 
 /// note
 
 如果你使用容器（例如 Docker 或 Kubernetes），我會在下一章說明更多：[容器中的 FastAPI - Docker](docker.md)。
 
-特別是，在 **Kubernetes** 上執行時，你多半會選擇不要使用 workers，而是每個容器只跑一個 **Uvicorn 單一處理序**。我會在該章節中進一步說明。
+特別是，在 **Kubernetes** 上執行時，你多半會**不要**使用 workers，而是每個容器只跑一個 **Uvicorn 單一處理序**。我會在該章節中進一步說明。
 
 ///
 
@@ -86,7 +86,7 @@ $ <font color="#4E9A06">fastapi</font> run --workers 4 <u style="text-decoration
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
+$ uv run uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 <font color="#A6E22E">INFO</font>:     Uvicorn running on <b>http://0.0.0.0:8080</b> (Press CTRL+C to quit)
 <font color="#A6E22E">INFO</font>:     Started parent process [<font color="#A1EFE4"><b>27365</b></font>]
 <font color="#A6E22E">INFO</font>:     Started server process [<font color="#A1EFE4">27368</font>]
@@ -109,7 +109,7 @@ $ uvicorn main:app --host 0.0.0.0 --port 8080 --workers 4
 
 這裡唯一新增的選項是 `--workers`，告訴 Uvicorn 要啟動 4 個工作處理序。
 
-你也會看到它顯示每個處理序的 **PID**，`27365` 是父處理序（這是**處理序管理器**），另外每個工作處理序各有一個：`27368`、`27369`、`27370`、`27367`。
+你也會看到它顯示每個處理序的 **PID**，`27365` 是父處理序（這是**處理序管理器**），另外每個工作處理序各有一個：`27368`、`27369`、`27370` 和 `27367`。
 
 ## 部署概念 { #deployment-concepts }
 

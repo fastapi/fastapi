@@ -6,7 +6,7 @@
 
 Потім ви можете встановити кукі в цьому *тимчасовому* об'єкті відповіді.
 
-{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 Після цього ви можете повернути будь-який потрібний об'єкт, як зазвичай (наприклад, `dict`, модель бази даних тощо).
 
@@ -24,7 +24,7 @@
 
 Потім встановіть у ньому кукі і поверніть його:
 
-{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | Порада
 
@@ -48,4 +48,4 @@
 
 ///
 
-Щоб побачити всі доступні параметри та опції, перегляньте [документацію в Starlette](https://www.starlette.dev/responses/#set-cookie).
+Щоб побачити всі доступні параметри та опції, перегляньте [документацію в Starlette](https://starlette.dev/responses/#set-cookie).

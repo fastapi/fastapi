@@ -8,8 +8,8 @@
 
 * [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) para la creación de APIs, incluyendo declaraciones de <dfn title="también conocido como: endpoints, rutas">path</dfn> <dfn title="también conocido como métodos HTTP, como POST, GET, PUT, DELETE">operations</dfn>, parámetros, request bodies, seguridad, etc.
 * Documentación automática de modelos de datos con [**JSON Schema**](https://json-schema.org/) (ya que OpenAPI en sí mismo está basado en JSON Schema).
-* Diseñado alrededor de estos estándares, tras un estudio meticuloso. En lugar de ser una capa adicional.
-* Esto también permite el uso de **generación de código cliente automática** en muchos idiomas.
+* Diseñado alrededor de estos estándares, tras un estudio meticuloso. En lugar de ser una capa adicional añadida a posteriori.
+* Esto también permite el uso de **generación de código cliente automática** en muchos lenguajes.
 
 ### Documentación automática { #automatic-docs }
 
@@ -19,7 +19,7 @@ Interfaces web de documentación y exploración de APIs interactivas. Como el fr
 
 ![Interacción Swagger UI](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* Documentación alternativa de API con [**ReDoc**](https://github.com/Rebilly/ReDoc).
+* Documentación alternativa de API con [**ReDoc**](https://github.com/Redocly/redoc).
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -36,8 +36,9 @@ from datetime import date
 
 from pydantic import BaseModel
 
+
 # Declara una variable como un str
-# y obtiene soporte del editor dentro de la función
+# y obtén soporte del editor dentro de la función
 def main(user_id: str):
     return user_id
 
@@ -77,7 +78,7 @@ Todo el framework fue diseñado para ser fácil e intuitivo de usar, todas las d
 
 En las encuestas a desarrolladores de Python, es claro [que una de las funcionalidades más usadas es el "autocompletado"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
-Todo el framework **FastAPI** está basado para satisfacer eso. El autocompletado funciona en todas partes.
+Todo el framework **FastAPI** está diseñado para satisfacer eso. El autocompletado funciona en todas partes.
 
 Rara vez necesitarás regresar a la documentación.
 
@@ -153,13 +154,13 @@ Cualquier integración está diseñada para ser tan simple de usar (con dependen
 
 ### Probado { #tested }
 
-* 100% de <dfn title="La cantidad de código que se prueba automáticamente">cobertura de tests</dfn>.
+* <dfn title="La cantidad de código que se prueba automáticamente">cobertura de tests del 100%</dfn>.
 * 100% <dfn title="Anotaciones de tipos en Python, con esto tu editor y herramientas externas pueden ofrecerte mejor soporte">anotada con tipos</dfn> code base.
 * Usado en aplicaciones en producción.
 
 ## Funcionalidades de Starlette { #starlette-features }
 
-**FastAPI** es totalmente compatible con (y está basado en) [**Starlette**](https://www.starlette.dev/). Así que, cualquier código adicional de Starlette que tengas, también funcionará.
+**FastAPI** es totalmente compatible con (y está basado en) [**Starlette**](https://starlette.dev/). Así que, cualquier código adicional de Starlette que tengas, también funcionará.
 
 `FastAPI` es en realidad una subclase de `Starlette`. Así que, si ya conoces o usas Starlette, la mayoría de las funcionalidades funcionarán de la misma manera.
 
@@ -177,7 +178,7 @@ Con **FastAPI** obtienes todas las funcionalidades de **Starlette** (ya que Fast
 
 ## Funcionalidades de Pydantic { #pydantic-features }
 
-**FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://docs.pydantic.dev/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
+**FastAPI** es totalmente compatible con (y está basado en) [**Pydantic**](https://pydantic.dev/docs/). Por lo tanto, cualquier código adicional de Pydantic que tengas, también funcionará.
 
 Incluyendo paquetes externos también basados en Pydantic, como <abbr title="Object-Relational Mapper - Mapeador Objeto-Relacional">ORM</abbr>s y <abbr title="Object-Document Mapper - Mapeador Objeto-Documento">ODM</abbr>s para bases de datos.
 
@@ -190,11 +191,11 @@ Con **FastAPI** obtienes todas las funcionalidades de **Pydantic** (ya que FastA
 * **Sin complicaciones**:
     * Sin micro-lenguaje de definición de esquemas nuevo que aprender.
     * Si conoces los tipos en Python sabes cómo usar Pydantic.
-* Se lleva bien con tu **<abbr title="Integrated Development Environment - Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
+* Se lleva bien con tu **<abbr title="Integrated Development Environment - Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que revisa errores de código">linter</dfn>/cerebro**:
     * Porque las estructuras de datos de pydantic son solo instances de clases que defines; autocompletado, linting, mypy y tu intuición deberían funcionar correctamente con tus datos validados.
 * Valida **estructuras complejas**:
     * Uso de modelos jerárquicos de Pydantic, `List` y `Dict` de `typing` de Python, etc.
-    * Y los validadores permiten definir, verificar y documentar de manera clara y fácil esquemas de datos complejos como JSON Schema.
+    * Y los validadores permiten definir, revisar y documentar de manera clara y fácil esquemas de datos complejos como JSON Schema.
     * Puedes tener objetos JSON profundamente **anidados** y validarlos todos y anotarlos.
 * **Extensible**:
     * Pydantic permite definir tipos de datos personalizados o puedes extender la validación con métodos en un modelo decorados con el decorador validator.

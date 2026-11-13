@@ -17,9 +17,9 @@
 
 * [**Swagger UI**](https://github.com/swagger-api/swagger-ui)。インタラクティブに探索しつつ、ブラウザから直接 API を呼び出してテストできます。
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![Swagger UI の操作](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
-* [**ReDoc**](https://github.com/Rebilly/ReDoc) による代替の API ドキュメント。
+* [**ReDoc**](https://github.com/Redocly/redoc) による代替の API ドキュメント。
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-06-redoc-02.png)
 
@@ -35,6 +35,7 @@
 from datetime import date
 
 from pydantic import BaseModel
+
 
 # 変数を str として宣言
 # 関数内でエディタの支援を受ける
@@ -85,11 +86,11 @@ Python 開発者調査では、[最もよく使われる機能の 1 つが「オ
 
 * [Visual Studio Code](https://code.visualstudio.com/) の場合:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![エディタのサポート](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * [PyCharm](https://www.jetbrains.com/pycharm/) の場合:
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![エディタのサポート](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 以前は不可能だと思っていたコードでも補完が得られます。例えば、リクエストから届く（ネストされている可能性のある）JSON ボディ内の `price` キーなどです。
 
@@ -159,7 +160,7 @@ FastAPI には、非常に使いやすく、かつ非常に強力な <dfn title=
 
 ## Starletteの機能 { #starlette-features }
 
-**FastAPI** は [**Starlette**](https://www.starlette.dev/) と完全に互換性があり（かつそれに基づいています）。そのため、手元の Starlette の追加コードも動作します。
+**FastAPI** は [**Starlette**](https://starlette.dev/) と完全に互換性があり（かつそれに基づいています）。そのため、手元の Starlette の追加コードも動作します。
 
 `FastAPI` は実際には `Starlette` のサブクラスです。すでに Starlette を知っている、あるいは使っているなら、ほとんどの機能は同じように動作します。
 
@@ -177,7 +178,7 @@ FastAPI には、非常に使いやすく、かつ非常に強力な <dfn title=
 
 ## Pydanticの機能 { #pydantic-features }
 
-**FastAPI** は [**Pydantic**](https://docs.pydantic.dev/) と完全に互換性があり（かつそれに基づいています）。そのため、手元の Pydantic の追加コードも動作します。
+**FastAPI** は [**Pydantic**](https://pydantic.dev/docs/) と完全に互換性があり（かつそれに基づいています）。そのため、手元の Pydantic の追加コードも動作します。
 
 Pydantic に基づく外部ライブラリ（データベース用の <abbr title="Object-Relational Mapper - オブジェクト関係マッパー">ORM</abbr>、<abbr title="Object-Document Mapper - オブジェクトドキュメントマッパー">ODM</abbr> など）も含まれます。
 

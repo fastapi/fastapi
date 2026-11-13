@@ -22,7 +22,7 @@ Python підтримує додаткові «підказки типів» (т
 
 Давайте почнемо з простого прикладу:
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 Виклик цієї програми виводить:
 
@@ -36,7 +36,7 @@ John Doe
 * Перетворює першу літеру кожного з них у верхній регістр за допомогою `title()`.
 * <dfn title="Об’єднує їх разом, як одне ціле. З вмістом одного після іншого.">Конкатенує</dfn> їх разом із пробілом по середині.
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### Редагуйте це { #edit-it }
 
@@ -78,7 +78,7 @@ John Doe
 
 Це «підказки типів»:
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 Це не те саме, що оголошення значень за замовчуванням, як це було б з:
 
@@ -106,7 +106,7 @@ John Doe
 
 Перевірте цю функцію, вона вже має підказки типів:
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 Оскільки редактор знає типи змінних, ви не тільки отримаєте автозаповнення, ви також отримаєте перевірку помилок:
 
@@ -114,7 +114,7 @@ John Doe
 
 Тепер ви знаєте, щоб виправити це, вам потрібно перетворити `age` у строку за допомогою `str(age)`:
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## Оголошення типів { #declaring-types }
 
@@ -133,7 +133,7 @@ John Doe
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### Модуль `typing` { #typing-module }
 
@@ -170,7 +170,7 @@ def some_function(data: Any):
 
 Оскільки список є типом, який містить деякі внутрішні типи, ви поміщаєте їх у квадратні дужки:
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | Примітка
 
@@ -196,7 +196,7 @@ def some_function(data: Any):
 
 Ви повинні зробити те ж саме, щоб оголосити `tuple` і `set`:
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 Це означає:
 
@@ -211,7 +211,7 @@ def some_function(data: Any):
 
 Другий параметр типу для значень у `dict`:
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 Це означає:
 
@@ -228,7 +228,7 @@ def some_function(data: Any):
 Це називається «об’єднанням», тому що змінна може бути чимось із об’єднання цих двох множин типів.
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 Це означає, що `item` може бути `int` або `str`.
@@ -240,7 +240,7 @@ def some_function(data: Any):
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -253,11 +253,11 @@ def some_function(data: Any):
 
 Скажімо, у вас є клас `Person` з імʼям:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 Потім ви можете оголосити змінну типу `Person`:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 І знову ж таки, ви отримуєте всю підтримку редактора:
 
@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Моделі Pydantic { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) — це бібліотека Python для валідації даних.
+[Pydantic](https://pydantic.dev/docs/) - це бібліотека Python для валідації даних.
 
 Ви оголошуєте «форму» даних як класи з атрибутами.
 
@@ -281,11 +281,11 @@ def some_function(data: Any):
 
 Приклад з офіційної документації Pydantic:
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | Примітка
 
-Щоб дізнатись більше про [Pydantic, перегляньте його документацію](https://docs.pydantic.dev/).
+Щоб дізнатись більше про [Pydantic, перегляньте його документацію](https://pydantic.dev/docs/).
 
 ///
 
@@ -299,7 +299,7 @@ def some_function(data: Any):
 
 Ви можете імпортувати `Annotated` з `typing`.
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Сам Python нічого не робить із цим `Annotated`. А для редакторів та інших інструментів тип усе ще є `str`.
 

@@ -8,11 +8,11 @@ Bunu yapmanın birkaç yolu var.
 
 Oluşturulan JSON Schema’ya eklenecek şekilde bir Pydantic model için `examples` tanımlayabilirsiniz.
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001.py hl[13:24] *}
 
 Bu ek bilgi, o modelin çıktı **JSON Schema**’sına olduğu gibi eklenir ve API dokümanlarında kullanılır.
 
-[Pydantic dokümanları: Configuration](https://docs.pydantic.dev/latest/api/config/) bölümünde anlatıldığı gibi, bir `dict` alan `model_config` niteliğini kullanabilirsiniz.
+[Pydantic dokümanları: Configuration](https://pydantic.dev/docs/validation/latest/api/pydantic/config/) bölümünde anlatıldığı gibi, bir `dict` alan `model_config` niteliğini kullanabilirsiniz.
 
 Üretilen JSON Schema’da görünmesini istediğiniz (ör. `examples` dahil) her türlü ek veriyi içeren bir `dict` ile `"json_schema_extra"` ayarlayabilirsiniz.
 
@@ -38,7 +38,7 @@ Daha fazlasını sayfanın sonunda okuyabilirsiniz.
 
 Pydantic modelleriyle `Field()` kullanırken ek `examples` de tanımlayabilirsiniz:
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002.py hl[2,8:11] *}
 
 ## JSON Schema - OpenAPI içinde `examples` { #examples-in-json-schema-openapi }
 
@@ -58,7 +58,7 @@ OpenAPI içindeki **JSON Schema**’larına eklenecek ek bilgilerle birlikte bir
 
 Burada `Body()` içinde beklenen veri için tek bir örnek içeren `examples` geçiriyoruz:
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003.py hl[22:29] *}
 
 ### Doküman arayüzünde örnek { #example-in-the-docs-ui }
 
@@ -70,7 +70,7 @@ Yukarıdaki yöntemlerden herhangi biriyle `/docs` içinde şöyle görünür:
 
 Elbette birden fazla `examples` da geçebilirsiniz:
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004.py hl[23:38] *}
 
 Bunu yaptığınızda, örnekler bu body verisi için dahili **JSON Schema**’nın bir parçası olur.
 
@@ -111,7 +111,7 @@ FastAPI’de OpenAPI’ye özel `examples`’ı, şu araçlar için `openapi_exa
 
 Şöyle kullanabilirsiniz:
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005.py hl[23:49] *}
 
 ### Doküman Arayüzünde OpenAPI Örnekleri { #openapi-examples-in-the-docs-ui }
 

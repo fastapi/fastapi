@@ -36,7 +36,7 @@
 * `datetime.timedelta`:
     * Пайтонівський `datetime.timedelta`.
     * У запитах та відповідях буде представлений як `float` загальної кількості секунд.
-    * Pydantic також дозволяє представляти це як «ISO 8601 time diff encoding», [дивіться документацію для отримання додаткової інформації](https://docs.pydantic.dev/latest/concepts/serialization/#custom-serializers).
+    * Pydantic також дозволяє представляти це як «ISO 8601 time diff encoding», [дивіться документацію для отримання додаткової інформації](https://pydantic.dev/docs/validation/latest/concepts/serialization/#custom-serializers).
 * `frozenset`:
     * У запитах і відповідях це буде оброблено так само, як і `set`:
         * У запитах список буде зчитано, дублікати буде видалено, і його буде перетворено на `set`.
@@ -49,14 +49,14 @@
 * `Decimal`:
     * Стандартний Пайтонівський `Decimal`.
     * У запитах і відповідях це буде оброблено так само, як і `float`.
-* Ви можете перевірити всі дійсні типи даних Pydantic тут: [типи даних Pydantic](https://docs.pydantic.dev/latest/usage/types/types/).
+* Ви можете перевірити всі дійсні типи даних Pydantic тут: [типи даних Pydantic](https://pydantic.dev/docs/validation/latest/concepts/types/).
 
 ## Приклад { #example }
 
 Ось приклад *операції шляху* з параметрами, використовуючи деякі з вищезазначених типів.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Зверніть увагу, що параметри всередині функції мають свій звичайний тип даних, і ви можете, наприклад, виконувати звичайні маніпуляції з датами, такі як:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

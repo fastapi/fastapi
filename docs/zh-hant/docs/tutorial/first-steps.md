@@ -2,16 +2,22 @@
 
 最簡單的 FastAPI 檔案可能看起來像這樣：
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 將其複製到一個名為 `main.py` 的文件中。
+
+/// tip
+
+FastAPI 有一個[官方 VS Code 擴充套件](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode)（也支援 Cursor），提供許多功能，包括路徑操作瀏覽器、路徑操作搜尋、測試中的 CodeLens 導航（從測試跳到定義），以及 FastAPI Cloud 部署與日誌，全部都能從你的編輯器中使用。
+
+///
 
 執行即時重新載入伺服器（live server）：
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 現在，前往 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你將看到另一種自動文件（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你將看到另一種自動文件（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 你也可以把檔案路徑傳給 `fastapi dev` 指令，它會自動猜測要使用的 FastAPI app 物件：
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 或者，你也可以把 `--entrypoint` 選項傳給 `fastapi dev` 指令：
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 但這樣每次執行 `fastapi` 指令時都要記得傳入正確的路徑\entrypoint。
@@ -205,7 +211,7 @@ $ fastapi dev --entrypoint main:app
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -224,7 +230,7 @@ CLI 會自動偵測你的 FastAPI 應用並將它部署到雲端。若你尚未�
 
 ### 第一步：引入 `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` 是一個 Python 類別，提供你的 API 所需的所有功能。
 
@@ -232,13 +238,13 @@ CLI 會自動偵測你的 FastAPI 應用並將它部署到雲端。若你尚未�
 
 `FastAPI` 是一個直接繼承自 `Starlette` 的類別。
 
-你同樣可以透過 `FastAPI` 來使用 [Starlette](https://www.starlette.dev/) 所有的功能。
+你同樣可以透過 `FastAPI` 來使用 [Starlette](https://starlette.dev/) 所有的功能。
 
 ///
 
 ### 第二步：建立一個 `FastAPI`「實例」 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 這裡的 `app` 變數將會是 `FastAPI` 類別的「實例」。
 
@@ -307,7 +313,7 @@ https://example.com/items/foo
 
 #### 定義一個*路徑操作裝飾器* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")` 告訴 **FastAPI** 正下方的函式負責處理前往以下位置的請求：
 
@@ -361,7 +367,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 * **operation**：是 `get`。
 * **function**：是裝飾器下面的函式（在 `@app.get("/")` 下面）。
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 這就是一個 Python 函式。
 
@@ -373,7 +379,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 你也可以將它定義為一般函式，而不是 `async def`：
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note
 
@@ -383,7 +389,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 ### 第五步：回傳內容 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 你可以返回一個 `dict`、`list`、單個值作為 `str`、`int` 等。
 

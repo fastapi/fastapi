@@ -6,23 +6,23 @@
 
 要接收上傳的檔案與/或表單資料，請先安裝 [`python-multipart`](https://github.com/Kludex/python-multipart)。
 
-請先建立並啟用一個 [虛擬環境](../virtual-environments.md)，然後再安裝，例如：
+將它加入你的專案：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
 
 ## 匯入 `File` 與 `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[3] *}
 
 ## 定義 `File` 與 `Form` 參數 { #define-file-and-form-parameters }
 
 以與 `Body` 或 `Query` 相同的方式建立檔案與表單參數：
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[10:12] *}
 
 檔案與表單欄位會作為表單資料上傳，而你將能接收到這些檔案與欄位。
 

@@ -5,9 +5,9 @@ FastAPI, **Pydantic** üzerine inşa edilmiştir ve request/response tanımlamak
 
 Ancak FastAPI, [`dataclasses`](https://docs.python.org/3/library/dataclasses.html) kullanmayı da aynı şekilde destekler:
 
-{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
+{* ../../docs_src/dataclasses_/tutorial001.py hl[1,6:11,18:19] *}
 
-Bu destek hâlâ **Pydantic** sayesinde vardır; çünkü Pydantic, [`dataclasses` için dahili destek](https://docs.pydantic.dev/latest/concepts/dataclasses/#use-of-stdlib-dataclasses-with-basemodel) sunar.
+Bu destek hâlâ **Pydantic** sayesinde vardır; çünkü Pydantic, [`dataclasses` için dahili destek](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel) sunar.
 
 Yani yukarıdaki kod Pydantic'i doğrudan kullanmasa bile, FastAPI bu standart dataclass'ları Pydantic'in kendi dataclass biçimine dönüştürmek için Pydantic'i kullanmaktadır.
 
@@ -33,7 +33,7 @@ Ancak elinizde zaten bir sürü dataclass varsa, bunları FastAPI ile bir web AP
 
 `response_model` parametresinde `dataclasses` da kullanabilirsiniz:
 
-{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
+{* ../../docs_src/dataclasses_/tutorial002.py hl[1,6:12,18] *}
 
 Dataclass otomatik olarak bir Pydantic dataclass'ına dönüştürülür.
 
@@ -49,7 +49,7 @@ Bazı durumlarda yine de Pydantic'in `dataclasses` sürümünü kullanmanız ger
 
 Bu durumda standart `dataclasses` yerine, drop-in replacement olan `pydantic.dataclasses` kullanabilirsiniz:
 
-{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
+{* ../../docs_src/dataclasses_/tutorial003.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. `field` hâlâ standart `dataclasses` içinden import edilir.
 
@@ -89,7 +89,7 @@ Daha spesifik ayrıntılar için yukarıdaki kod içi annotation ipuçlarına ba
 
 `dataclasses`'ı diğer Pydantic model'leriyle de birleştirebilir, onlardan kalıtım alabilir, kendi model'lerinize dahil edebilirsiniz, vb.
 
-Daha fazlası için [Pydantic'in dataclasses dokümantasyonuna](https://docs.pydantic.dev/latest/concepts/dataclasses/) bakın.
+Daha fazlası için [Pydantic'in dataclasses dokümantasyonuna](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/) bakın.
 
 ## Sürüm { #version }
 

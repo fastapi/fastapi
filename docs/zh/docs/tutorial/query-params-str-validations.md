@@ -5,7 +5,7 @@
 
 让我们以下面的应用为例：
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 查询参数 `q` 的类型为 `str | None`，这意味着它是 `str` 类型，但也可以是 `None`。其默认值确实为 `None`，所以 FastAPI 会知道它不是必填的。
 
@@ -28,7 +28,7 @@ FastAPI 会因为默认值 `= None` 而知道 `q` 的值不是必填的。
 - 从 `fastapi` 导入 `Query`
 - 从 `typing` 导入 `Annotated`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | 注意
 
@@ -66,7 +66,7 @@ q: Annotated[str | None] = None
 
 有了 `Annotated` 之后，我们就可以放入更多信息（本例中是额外的校验）。在 `Annotated` 中添加 `Query`，并把参数 `max_length` 设为 `50`：
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 注意默认值依然是 `None`，所以该参数仍是可选的。
 
@@ -96,7 +96,7 @@ FastAPI 现在会：
 
 像这样把 `Query()` 作为函数参数的默认值，并把参数 `max_length` 设为 50：
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 由于这种情况下（不使用 `Annotated`）我们必须把函数中的默认值 `None` 替换为 `Query()`，因此需要通过参数 `Query(default=None)` 来设置默认值，它起到同样的作用（至少对 FastAPI 来说）。
 
@@ -164,13 +164,13 @@ q: str = Query(default="rick")
 
 你还可以添加 `min_length` 参数：
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## 添加正则表达式 { #add-regular-expressions }
 
 你可以定义一个参数必须匹配的 <dfn title="正则表达式（regex 或 regexp）是用于定义字符串搜索模式的字符序列。">正则表达式</dfn> `pattern`：
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 这个特定的正则表达式通过以下规则检查接收到的参数值：
 
@@ -188,7 +188,7 @@ q: str = Query(default="rick")
 
 假设你想要声明查询参数 `q` 的 `min_length` 为 `3`，并且默认值为 `"fixedquery"`：
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | 注意
 
@@ -218,15 +218,23 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 因此，在使用 `Query` 的同时需要把某个值声明为必填时，只需不声明默认值：
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
-### 必填，但可以为 `None` { #required-can-be-none }
+### 必填参数与 `None` { #required-parameters-and-none }
 
-你可以声明一个参数可以接收 `None`，但它仍然是必填的。这将强制客户端必须发送一个值，即使该值是 `None`。
+类型 `str | None` 允许使用 Python 值 `None`，但不会让查询参数变为可选。没有默认值时，该参数仍然是必填的：
 
-为此，你可以声明 `None` 是有效类型，但不声明默认值：
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+查询参数值以字符串形式传入，没有内置的 `None` 表示方式。发送 `?q=None` 或 `?q=null` 分别传入的是字符串 `"None"` 和 `"null"`。发送 `?q=` 传入的是空字符串，在此示例中无法通过 `min_length=3` 校验。
+
+要允许客户端省略 `q` 并使用 `None` 作为其值，请将其默认值设为 `None`：
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+与查询参数不同，JSON 请求体可以包含显式的 `null` 值。
 
 ## 查询参数列表 / 多个值 { #query-parameter-list-multiple-values }
 
@@ -234,7 +242,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 例如，要声明一个可在 URL 中出现多次的查询参数 `q`，你可以这样写：
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 然后，访问如下 URL：
 
@@ -269,7 +277,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 你还可以定义在没有给定值时的默认 `list`：
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 如果你访问：
 
@@ -292,7 +300,7 @@ http://localhost:8000/items/
 
 你也可以直接使用 `list`，而不是 `list[str]`：
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | 注意
 
@@ -318,11 +326,11 @@ http://localhost:8000/items/
 
 你可以添加 `title`：
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 以及 `description`：
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## 别名参数 { #alias-parameters }
 
@@ -342,7 +350,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 这时可以用 `alias` 参数声明一个别名，FastAPI 会用该别名在 URL 中查找参数值：
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## 弃用参数 { #deprecating-parameters }
 
@@ -352,7 +360,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 那么将参数 `deprecated=True` 传给 `Query`：
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 文档将会像下面这样展示它：
 
@@ -362,7 +370,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 要把某个查询参数从生成的 OpenAPI 模式中排除（从而也不会出现在自动文档系统中），将 `Query` 的参数 `include_in_schema` 设为 `False`：
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## 自定义校验 { #custom-validation }
 
@@ -370,17 +378,17 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 在这些情况下，你可以使用**自定义校验函数**，该函数会在正常校验之后应用（例如，在先校验值是 `str` 之后）。
 
-你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) 来实现。
+你可以在 `Annotated` 中使用 [Pydantic 的 `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) 来实现。
 
 /// tip | 提示
 
-Pydantic 还有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) 等。🤓
+Pydantic 还有 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) 等。🤓
 
 ///
 
 例如，这个自定义校验器会检查条目 ID 是否以 `isbn-`（用于 <abbr title="International Standard Book Number - 国际标准书号">ISBN</abbr> 书号）或 `imdb-`（用于 <abbr title="Internet Movie Database - 互联网电影数据库: 一个包含电影信息的网站">IMDB</abbr> 电影 URL 的 ID）开头：
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | 注意
 
@@ -408,7 +416,7 @@ Pydantic 还有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 注意到了吗？字符串的 `value.startswith()` 可以接收一个元组，它会检查元组中的每个值：
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### 一个随机条目 { #a-random-item }
 
@@ -424,7 +432,7 @@ Pydantic 还有 [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/va
 
 ...而我们把这些都放在**一行简单的代码**里完成。🤯 你不爱 Python 吗？🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## 总结 { #recap }
 

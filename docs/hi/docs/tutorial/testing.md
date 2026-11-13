@@ -1,6 +1,6 @@
 # Testing { #testing }
 
-[Starlette](https://www.starlette.dev/testclient/) की बदौलत, **FastAPI** applications की testing आसान और आनंददायक है।
+[Starlette](https://starlette.dev/testclient/) की बदौलत, **FastAPI** applications की testing आसान और आनंददायक है।
 
 यह [HTTPX](https://www.python-httpx.org) पर आधारित है, जो बदले में Requests के आधार पर design किया गया है, इसलिए यह बहुत परिचित और intuitive है।
 
@@ -12,10 +12,10 @@
 
 `TestClient` का उपयोग करने के लिए, पहले [`httpx`](https://www.python-httpx.org) install करें।
 
-सुनिश्चित करें कि आप एक [virtual environment](../virtual-environments.md) बनाते हैं, उसे activate करते हैं, और फिर इसे install करते हैं, उदाहरण के लिए:
+इसे अपने project में जोड़ें:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -30,7 +30,7 @@ $ pip install httpx
 
 जिन चीज़ों की आपको जाँच करनी है उनके लिए standard Python expressions के साथ सरल `assert` statements लिखें (फिर से, standard `pytest`)।
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | टिप
 
@@ -76,7 +76,7 @@ $ pip install httpx
 `main.py` file में आपकी **FastAPI** app है:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### Testing file { #testing-file }
 
@@ -92,7 +92,7 @@ $ pip install httpx
 
 क्योंकि यह file उसी package में है, आप `main` module (`main.py`) से object `app` को import करने के लिए relative imports का उपयोग कर सकते हैं:
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...और tests के लिए code पहले जैसा ही रख सकते हैं।
@@ -121,13 +121,13 @@ $ pip install httpx
 
 दोनों *path operations* को `X-Token` header required है।
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### विस्तारित testing file { #extended-testing-file }
 
 फिर आप विस्तारित tests के साथ `test_main.py` को update कर सकते हैं:
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 जब भी आपको client से request में जानकारी pass करवानी हो और आपको पता न हो कि कैसे, तो आप खोज (Google) सकते हैं कि इसे `httpx` में कैसे करें, या यहाँ तक कि `requests` के साथ कैसे करें, क्योंकि HTTPX का design Requests के design पर आधारित है।
@@ -156,12 +156,12 @@ backend को data कैसे pass करें (`httpx` या `TestClient` 
 
 उसके बाद, आपको बस `pytest` install करना है।
 
-सुनिश्चित करें कि आप एक [virtual environment](../virtual-environments.md) बनाते हैं, उसे activate करते हैं, और फिर इसे install करते हैं, उदाहरण के लिए:
+इसे अपने project में जोड़ें:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ Tests चलाएँ:
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

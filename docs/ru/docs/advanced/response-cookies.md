@@ -1,13 +1,12 @@
 # Cookies в ответе { #response-cookies }
 
-
 ## Использование параметра `Response` { #use-a-response-parameter }
 
 Вы можете объявить параметр типа `Response` в вашей функции-обработчике пути.
 
 Затем установить cookies в этом временном объекте ответа.
 
-{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 После этого можно вернуть любой объект, как и раньше (например, `dict`, объект модели базы данных и так далее).
 
@@ -19,13 +18,13 @@
 
 ## Возвращение `Response` напрямую { #return-a-response-directly }
 
-Вы также можете установить Cookies, если возвращаете `Response` напрямую в вашем коде.
+Вы также можете создать cookies, если возвращаете `Response` напрямую в вашем коде.
 
 Для этого создайте объект `Response`, как описано в разделе [Возвращение ответа напрямую](response-directly.md).
 
 Затем установите cookies и верните этот объект:
 
-{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | Совет
 
@@ -49,4 +48,4 @@
 
 ///
 
-Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с [документацией Starlette](https://www.starlette.dev/responses/#set-cookie).
+Чтобы увидеть все доступные параметры и настройки, ознакомьтесь с [документацией Starlette](https://starlette.dev/responses/#set-cookie).

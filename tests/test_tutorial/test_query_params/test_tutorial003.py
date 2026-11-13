@@ -10,7 +10,7 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial003_py310", marks=needs_py310),
+        pytest.param("tutorial003", marks=needs_py310),
     ],
 )
 def get_client(request: pytest.FixtureRequest):
@@ -48,6 +48,32 @@ def test_read_user_item(client: TestClient, path, expected_json):
     response = client.get(path)
     assert response.status_code == 200
     assert response.json() == expected_json
+
+
+@pytest.mark.parametrize("short", ["0", "false", "off", "no", "FaLsE"])
+def test_boolean_query_false(client: TestClient, short: str):
+    response = client.get("/items/foo", params={"short": short})
+    assert response.status_code == 200
+    assert response.json() == {
+        "item_id": "foo",
+        "description": "This is an amazing item that has a long description",
+    }
+
+
+@pytest.mark.parametrize("short", ["", "maybe"])
+def test_invalid_boolean_query(client: TestClient, short: str):
+    response = client.get("/items/foo", params={"short": short})
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "bool_parsing",
+                "loc": ["query", "short"],
+                "msg": "Input should be a valid boolean, unable to interpret input",
+                "input": short,
+            }
+        ]
+    }
 
 
 def test_openapi_schema(client: TestClient):

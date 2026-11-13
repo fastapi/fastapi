@@ -13,12 +13,12 @@ from typing import Union
 
 
 def say_hi(name: Union[str, None]):
-        print(f"Hi {name}!")
+    print(f"Hi {name}!")
 ```
 
 `typing` también tiene un atajo para declarar que algo podría ser `None`, con `Optional`.
 
-Aquí va un Consejo desde mi punto de vista muy subjetivo:
+Aquí va un Consejo desde mi punto de vista muy **subjetivo**:
 
 * 🚨 Evita usar `Optional[SomeType]`
 * En su lugar ✨ **usa `Union[SomeType, None]`** ✨.

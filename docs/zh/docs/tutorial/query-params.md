@@ -3,7 +3,7 @@
 
 声明的参数不是路径参数时，路径操作函数会把该参数自动解释为“查询”参数。
 
-{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 查询字符串是键值对的集合，这些键值对位于 URL 的 `?` 之后，以 `&` 分隔。
 
@@ -31,7 +31,7 @@ http://127.0.0.1:8000/items/?skip=0&limit=10
 
 ## 默认值 { #defaults }
 
-查询参数不是路径的固定内容，它是可选的，还支持默认值。
+查询参数不是路径的固定内容，它可以是可选的，还支持默认值。
 
 上例用 `skip=0` 和 `limit=10` 设定默认值。
 
@@ -62,7 +62,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 同理，把默认值设为 `None` 即可声明可选的查询参数：
 
-{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial002.py hl[7] *}
 
 本例中，查询参数 `q` 是可选的，默认值为 `None`。
 
@@ -76,7 +76,7 @@ http://127.0.0.1:8000/items/?skip=20
 
 参数还可以声明为 `bool` 类型，FastAPI 会自动转换参数类型：
 
-{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial003.py hl[7] *}
 
 本例中，访问：
 
@@ -108,18 +108,24 @@ http://127.0.0.1:8000/items/foo?short=on
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-或其它任意大小写形式（大写、首字母大写等），函数接收的 `short` 参数都是布尔值 `True`。否则为 `False`。
+或其它任意大小写形式（大写、首字母大写等），函数接收的 `short` 参数都是布尔值 `True`。
+
+`0`、`false`、`off` 和 `no` 等值（包括大小写变体）会转换为 `False`。
+
+如果省略 `short`，**FastAPI** 会使用它的默认值，本例中为 `False`。
+
+空值（`?short=`）或无法识别的值（例如 `?short=maybe`）会导致 `422` 校验错误。
 
 
 ## 多个路径和查询参数 { #multiple-path-and-query-parameters }
 
 **FastAPI** 可以识别同时声明的多个路径参数和查询参数。
 
-而且声明查询参数的顺序并不重要。
+而且声明这些参数的顺序并不重要。
 
 FastAPI 通过参数名进行检测：
 
-{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
+{* ../../docs_src/query_params/tutorial004.py hl[6,8] *}
 
 ## 必选查询参数 { #required-query-parameters }
 
@@ -129,7 +135,7 @@ FastAPI 通过参数名进行检测：
 
 如果要把查询参数设置为必选，就不要声明默认值：
 
-{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 这里的查询参数 `needy` 是类型为 `str` 的必选查询参数。
 
@@ -139,7 +145,7 @@ FastAPI 通过参数名进行检测：
 http://127.0.0.1:8000/items/foo-item
 ```
 
-...因为路径中没有必选参数 `needy`，返回的响应中会显示如下错误信息：
+...因为没有添加必选参数 `needy`，返回的响应中会显示如下错误信息：
 
 ```JSON
 {
@@ -174,7 +180,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 当然，把一些参数定义为必选，为另一些参数设置默认值，再把其它参数定义为可选，这些操作都是可以的：
 
-{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
+{* ../../docs_src/query_params/tutorial006.py hl[8] *}
 
 本例中有 3 个查询参数：
 

@@ -17,7 +17,7 @@
 
 如果记不住数字码的含义，也可以用 `status` 的快捷常量：
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 该状态码会用于响应中，并会被添加到 OpenAPI 概图。
 
@@ -33,7 +33,7 @@
 
 可以通过传入由 `str` 组成的 `list`（通常只有一个 `str`）的参数 `tags`，为*路径操作*添加标签：
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
@@ -47,13 +47,13 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 **FastAPI** 对此的支持与使用普通字符串相同：
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## 摘要和描述 { #summary-and-description }
 
 可以添加 `summary` 和 `description`：
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## 从 docstring 获取描述 { #description-from-docstring }
 
@@ -61,7 +61,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 文档字符串支持 [Markdown](https://en.wikipedia.org/wiki/Markdown)，能正确解析和显示 Markdown 的内容，但要注意文档字符串的缩进。
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 它会在交互式文档中使用：
 
@@ -71,7 +71,7 @@ OpenAPI 概图会自动添加标签，供 API 文档接口使用：
 
 `response_description` 参数用于定义响应的描述说明：
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | 注意
 
@@ -93,7 +93,7 @@ OpenAPI 规定每个*路径操作*都要有响应描述。
 
 如果需要把*路径操作*标记为<dfn title="过时，建议不要使用">弃用</dfn>，但不删除它，可以传入 `deprecated` 参数：
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 API 文档会把该路径操作标记为弃用：
 

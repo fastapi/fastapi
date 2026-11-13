@@ -76,11 +76,11 @@ sequenceDiagram
 
 FastAPI で JSON Lines をストリームするには、*path operation 関数*で `return` を使う代わりに、`yield` を使って各アイテムを順に生成します。
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 送り返す各 JSON アイテムが `Item`（Pydantic モデル）型で、関数が async の場合、戻り値の型を `AsyncIterable[Item]` と宣言できます:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 戻り値の型を宣言すると、FastAPI はそれを使ってデータを**検証**し、OpenAPI に**ドキュメント化**し、**フィルター**し、Pydantic で**シリアライズ**します。
 
@@ -98,13 +98,13 @@ FastAPI が適切に実行されるように処理するため、イベントル
 
 この場合は関数が async ではないので、適切な戻り値の型は `Iterable[Item]` です:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### 戻り値の型なし { #no-return-type }
 
 戻り値の型を省略することもできます。FastAPI はその場合、データを JSON にシリアライズ可能な形に変換するために [`jsonable_encoder`](./encoder.md) を使い、JSON Lines として送信します。
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## Server-Sent Events (SSE) { #server-sent-events-sse }
 

@@ -29,15 +29,15 @@ FastAPI ऐसी dependencies को support करता है जो <dfn ti
 
 `yield` statement से पहले और उसे शामिल करते हुए केवल वही code response बनाने से पहले execute होता है:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 yield किया गया value वही होता है जिसे *path operations* और अन्य dependencies में inject किया जाता है:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 `yield` statement के बाद वाला code response के बाद execute होता है:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
 /// tip | सुझाव
 
@@ -57,7 +57,7 @@ yield किया गया value वही होता है जिसे *p
 
 इसी तरह, आप `finally` का उपयोग यह सुनिश्चित करने के लिए कर सकते हैं कि exit steps execute हों, चाहे exception आई हो या नहीं।
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## `yield` वाली Sub-dependencies { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ yield किया गया value वही होता है जिसे *p
 
 उदाहरण के लिए, `dependency_c` की dependency `dependency_b` पर हो सकती है, और `dependency_b` की `dependency_a` पर:
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[6,14,22] *}
 
 और वे सभी `yield` का उपयोग कर सकती हैं।
 
@@ -75,7 +75,7 @@ yield किया गया value वही होता है जिसे *p
 
 और, बदले में, `dependency_b` को अपने exit code के लिए `dependency_a` से मिला value (यहाँ `dep_a` नाम दिया गया है) उपलब्ध चाहिए।
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[18:19,26:27] *}
 
 इसी तरह, आपके पास कुछ dependencies `yield` वाली और कुछ अन्य dependencies `return` वाली हो सकती हैं, और उनमें से कुछ बाकी कुछ पर depend कर सकती हैं।
 
@@ -109,7 +109,7 @@ yield किया गया value वही होता है जिसे *p
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b.py hl[18:22,31] *}
 
 अगर आप exceptions को catch करके उसके आधार पर custom response बनाना चाहते हैं, तो [Custom Exception Handler](../handling-errors.md#install-custom-exception-handlers) बनाएँ।
 
@@ -117,7 +117,7 @@ yield किया गया value वही होता है जिसे *p
 
 अगर आप `yield` वाली dependency में `except` का उपयोग करके exception catch करते हैं और उसे फिर से raise नहीं करते (या कोई नई exception raise नहीं करते), तो FastAPI यह notice नहीं कर पाएगा कि कोई exception हुई थी, ठीक वैसे ही जैसे regular Python में होता:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c.py hl[15:16] *}
 
 इस case में, client को *HTTP 500 Internal Server Error* response दिखेगा, जैसा कि होना चाहिए, क्योंकि हम `HTTPException` या उसके जैसी कोई चीज़ raise नहीं कर रहे हैं, लेकिन server के पास **कोई logs नहीं होंगे** या error क्या था इसका कोई अन्य संकेत नहीं होगा। 😱
 
@@ -127,7 +127,7 @@ yield किया गया value वही होता है जिसे *p
 
 आप `raise` का उपयोग करके उसी exception को फिर से raise कर सकते हैं:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d.py hl[17] *}
 
 अब client को वही *HTTP 500 Internal Server Error* response मिलेगा, लेकिन server के logs में हमारा custom `InternalError` होगा। 😎
 
@@ -190,7 +190,7 @@ Client को केवल **एक response** भेजा जाएगा। �
 
 लेकिन अगर आपको पता है कि *path operation function* से return करने के बाद आपको dependency का उपयोग करने की ज़रूरत नहीं होगी, तो आप `Depends(scope="function")` का उपयोग करके FastAPI को बता सकते हैं कि उसे dependency को *path operation function* के return करने के बाद, लेकिन **response भेजे जाने से पहले** close करना चाहिए।
 
-{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e.py hl[12,16] *}
 
 `Depends()` एक `scope` parameter receive करता है जो यह हो सकता है:
 
@@ -269,7 +269,7 @@ Python में, आप [दो methods वाली class बनाकर: `__
 
 आप dependency function के अंदर `with` या `async with` statements का उपयोग करके इन्हें `yield` वाली **FastAPI** dependencies के अंदर भी उपयोग कर सकते हैं:
 
-{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
 /// tip | सुझाव
 

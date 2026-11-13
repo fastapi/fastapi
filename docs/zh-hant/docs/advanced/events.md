@@ -31,7 +31,7 @@
 
 我們建立一個帶有 `yield` 的非同步函式 `lifespan()`，如下：
 
-{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 這裡我們透過在 `yield` 之前把（假的）模型函式放進機器學習模型的字典中，來模擬昂貴的 *startup* 載入模型操作。這段程式會在應用**開始接收請求之前**執行，也就是 *startup* 階段。
 
@@ -49,7 +49,7 @@
 
 首先要注意的是，我們定義了一個帶有 `yield` 的 async 函式。這和帶有 `yield` 的依賴（Dependencies）非常相似。
 
-{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 函式在 `yield` 之前的部分，會在應用啟動前先執行。
 
@@ -61,7 +61,7 @@
 
 它會把函式轉換成所謂的「**非同步內容管理器（async context manager）**」。
 
-{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 Python 中的**內容管理器（context manager）**可以用在 `with` 陳述式中，例如 `open()` 可以作為內容管理器使用：
 
@@ -83,7 +83,7 @@ async with lifespan(app):
 
 `FastAPI` 應用的 `lifespan` 參數需要一個**非同步內容管理器**，所以我們可以把剛寫好的 `lifespan` 非同步內容管理器傳給它。
 
-{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## 替代事件（已棄用） { #alternative-events-deprecated }
 
@@ -105,7 +105,7 @@ async with lifespan(app):
 
 要加入一個在應用啟動前執行的函式，使用事件 `"startup"` 來宣告：
 
-{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 在這個例子中，`startup` 事件處理器函式會用一些值來初始化 items 的「資料庫」（其實就是個 `dict`）。
 
@@ -117,7 +117,7 @@ async with lifespan(app):
 
 要加入一個在應用關閉時執行的函式，使用事件 `"shutdown"` 來宣告：
 
-{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 在這裡，`shutdown` 事件處理器函式會把一行文字 `"Application shutdown"` 寫入檔案 `log.txt`。
 
@@ -155,7 +155,7 @@ async with lifespan(app):
 
 /// note
 
-你可以在 [Starlette 的 Lifespan 文件](https://www.starlette.dev/lifespan/) 讀到更多關於 Starlette `lifespan` 處理器的資訊。
+你可以在 [Starlette 的 Lifespan 文件](https://starlette.dev/lifespan/) 讀到更多關於 Starlette `lifespan` 處理器的資訊。
 
 也包含如何處理可在程式其他區域使用的 lifespan 狀態。
 

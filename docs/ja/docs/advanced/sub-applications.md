@@ -10,7 +10,7 @@
 
 まず、メインのトップレベル **FastAPI** アプリケーションと、その path operation を作成します:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### サブアプリケーション { #sub-application }
 
@@ -18,7 +18,7 @@
 
 このサブアプリケーションは通常の FastAPI アプリケーションですが、これを「マウント」します:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### サブアプリケーションをマウント { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@
 
 この例では、パス `/subapi` にマウントされます:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### 自動 API ドキュメントの確認 { #check-the-automatic-api-docs }
 
@@ -35,7 +35,7 @@
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

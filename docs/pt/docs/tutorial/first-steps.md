@@ -2,16 +2,22 @@
 
 O arquivo FastAPI mais simples pode se parecer com:
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Copie o conteúdo para um arquivo `main.py`.
+
+/// tip | Dica
+
+FastAPI tem uma [extensão oficial para VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (e Cursor), que fornece muitas funcionalidades, incluindo um explorador de operações de rota, busca de operações de rota, navegação CodeLens em testes (ir para a definição a partir dos testes), e deploy e logs da FastAPI Cloud, tudo a partir do seu editor.
+
+///
 
 Execute o servidor ao vivo:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ Você verá a documentação interativa automática da API (fornecida por [Swagg
 
 E agora, vá para [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Você verá a documentação alternativa automática (fornecida por [ReDoc](https://github.com/Rebilly/ReDoc)):
+Você verá a documentação alternativa automática (fornecida por [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 Você também pode passar o path do arquivo para o comando `fastapi dev`, e ele vai deduzir o objeto de aplicação FastAPI a ser usado:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Ou você também pode passar a opção `--entrypoint` para o comando `fastapi dev`:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 Mas você teria que lembrar de passar o path\entrypoint correto toda vez que chamar o comando `fastapi`.
@@ -205,7 +211,7 @@ Você pode, opcionalmente, fazer o deploy da sua aplicação FastAPI na [FastAPI
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -224,7 +230,7 @@ A CLI detectará automaticamente sua aplicação FastAPI e a fará o deploy na n
 
 ### Passo 1: importe `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` é uma classe Python que fornece todas as funcionalidades para sua API.
 
@@ -232,13 +238,13 @@ A CLI detectará automaticamente sua aplicação FastAPI e a fará o deploy na n
 
 `FastAPI` é uma classe que herda diretamente de `Starlette`.
 
-Você pode usar todas as funcionalidades do [Starlette](https://www.starlette.dev/) com `FastAPI` também.
+Você pode usar todas as funcionalidades do [Starlette](https://starlette.dev/) com `FastAPI` também.
 
 ///
 
 ### Passo 2: crie uma "instância" de `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 Aqui, a variável `app` será uma "instância" da classe `FastAPI`.
 
@@ -307,7 +313,7 @@ Vamos chamá-los de "**operações**" também.
 
 #### Defina um *decorador de operação de rota* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 O `@app.get("/")` diz ao **FastAPI** que a função logo abaixo é responsável por tratar as requisições que vão para:
 
@@ -361,7 +367,7 @@ Esta é a nossa "**função de operação de rota**":
 * **operação**: é `get`.
 * **função**: é a função abaixo do "decorador" (abaixo do `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 Esta é uma função Python.
 
@@ -373,7 +379,7 @@ Neste caso, é uma função `async`.
 
 Você também pode defini-la como uma função normal em vez de `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | Nota
 
@@ -383,7 +389,7 @@ Se você não sabe a diferença, verifique o [Async: *"Com pressa?"*](../async.m
 
 ### Passo 5: retorne o conteúdo { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 Você pode retornar um `dict`, `list` e valores singulares como `str`, `int`, etc.
 

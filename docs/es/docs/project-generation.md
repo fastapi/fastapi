@@ -4,13 +4,13 @@ Las plantillas, aunque normalmente vienen con una configuración específica, es
 
 Puedes usar esta plantilla para comenzar, ya que incluye gran parte de la configuración inicial, seguridad, base de datos y algunos endpoints de API ya hechos para ti.
 
-Repositorio de GitHub: [Plantilla Full Stack FastAPI](https://github.com/tiangolo/full-stack-fastapi-template)
+Repositorio de GitHub: [Plantilla Full Stack FastAPI](https://github.com/fastapi/full-stack-fastapi-template)
 
 ## Plantilla Full Stack FastAPI - Stack de tecnología y funcionalidades { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/es) para la API del backend en Python.
   - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) para las interacciones con bases de datos SQL en Python (ORM).
-  - 🔍 [Pydantic](https://docs.pydantic.dev), utilizado por FastAPI, para la validación de datos y gestión de configuraciones.
+  - 🔍 [Pydantic](https://pydantic.dev/docs/), utilizado por FastAPI, para la validación de datos y gestión de configuraciones.
   - 💾 [PostgreSQL](https://www.postgresql.org) como base de datos SQL.
 - 🚀 [React](https://react.dev) para el frontend.
   - 💃 Usando TypeScript, hooks, Vite, y otras partes de una stack moderna de frontend.

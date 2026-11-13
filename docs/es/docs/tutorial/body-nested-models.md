@@ -6,7 +6,7 @@ Con **FastAPI**, puedes definir, validar, documentar y usar modelos profundament
 
 Puedes definir un atributo como un subtipo. Por ejemplo, una `list` en Python:
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 Esto hará que `tags` sea una lista, aunque no declare el tipo de los elementos de la lista.
 
@@ -29,7 +29,7 @@ Usa esa misma sintaxis estándar para atributos de modelos con tipos internos.
 
 Así, en nuestro ejemplo, podemos hacer que `tags` sea específicamente una "lista de strings":
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## Tipos de conjunto { #set-types }
 
@@ -39,7 +39,7 @@ Y Python tiene un tipo de datos especial para conjuntos de elementos únicos, el
 
 Entonces podemos declarar `tags` como un conjunto de strings:
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 Con esto, incluso si recibes un request con datos duplicados, se convertirá en un conjunto de elementos únicos.
 
@@ -61,13 +61,13 @@ Todo eso, de manera arbitraria.
 
 Por ejemplo, podemos definir un modelo `Image`:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### Usar el submodelo como tipo { #use-the-submodel-as-a-type }
 
 Y luego podemos usarlo como el tipo de un atributo:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 Esto significaría que **FastAPI** esperaría un cuerpo similar a:
 
@@ -96,11 +96,11 @@ Nuevamente, haciendo solo esa declaración, con **FastAPI** obtienes:
 
 Además de tipos singulares normales como `str`, `int`, `float`, etc., puedes usar tipos singulares más complejos que heredan de `str`.
 
-Para ver todas las opciones que tienes, Revisa [Resumen de tipos de Pydantic](https://docs.pydantic.dev/latest/concepts/types/). Verás algunos ejemplos en el siguiente capítulo.
+Para ver todas las opciones que tienes, Revisa [Resumen de tipos de Pydantic](https://pydantic.dev/docs/validation/latest/concepts/types/). Verás algunos ejemplos en el siguiente capítulo.
 
 Por ejemplo, como en el modelo `Image` tenemos un campo `url`, podemos declararlo como una instance de `HttpUrl` de Pydantic en lugar de un `str`:
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 El string será verificado para ser una URL válida, y documentado en JSON Schema / OpenAPI como tal.
 
@@ -108,7 +108,7 @@ El string será verificado para ser una URL válida, y documentado en JSON Schem
 
 También puedes usar modelos Pydantic como subtipos de `list`, `set`, etc.:
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 Esto esperará (convertirá, validará, documentará, etc.) un cuerpo JSON como:
 
@@ -146,7 +146,7 @@ Nota cómo la clave `images` ahora tiene una lista de objetos de imagen.
 
 Puedes definir modelos anidados tan profundamente como desees:
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note | Nota
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 como en:
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## Soporte de editor en todas partes { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Eso es lo que vamos a ver aquí.
 
 En este caso, aceptarías cualquier `dict` siempre que tenga claves `int` con valores `float`:
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip | Consejo
 

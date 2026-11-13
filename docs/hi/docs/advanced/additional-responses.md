@@ -26,7 +26,7 @@
 
 उदाहरण के लिए, status code `404` और Pydantic model `Message` के साथ एक और response घोषित करने के लिए, आप लिख सकते हैं:
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | नोट
 
@@ -175,7 +175,7 @@ Schemas को OpenAPI schema के अंदर किसी दूसरी �
 
 उदाहरण के लिए, आप `image/png` का एक अतिरिक्त media type जोड़ सकते हैं, यह घोषित करते हुए कि आपका *path operation* एक JSON object (media type `application/json` के साथ) या एक PNG image return कर सकता है:
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | नोट
 
@@ -203,7 +203,7 @@ Schemas को OpenAPI schema के अंदर किसी दूसरी �
 
 और status code `200` वाला एक response, जो आपके `response_model` का उपयोग करता है, लेकिन जिसमें custom `example` शामिल है:
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 यह सब मिलाकर आपके OpenAPI में शामिल किया जाएगा, और API docs में दिखाया जाएगा:
 
@@ -237,11 +237,11 @@ new_dict = {**old_dict, "new key": "new value"}
 
 उदाहरण के लिए:
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## OpenAPI responses के बारे में अधिक जानकारी { #more-information-about-openapi-responses }
 
 Responses में आप ठीक-ठीक क्या शामिल कर सकते हैं, यह देखने के लिए आप OpenAPI specification में ये sections देख सकते हैं:
 
-* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#responses-object), इसमें `Response Object` शामिल है।
-* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#response-object), आप इसमें से कुछ भी सीधे अपने `responses` parameter के अंदर प्रत्येक response में शामिल कर सकते हैं। जिसमें `description`, `headers`, `content` (इसी के अंदर आप अलग-अलग media types और JSON Schemas घोषित करते हैं), और `links` शामिल हैं।
+* [OpenAPI Responses Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#responses-object), इसमें `Response Object` शामिल है।
+* [OpenAPI Response Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#response-object), आप इसमें से कुछ भी सीधे अपने `responses` parameter के अंदर प्रत्येक response में शामिल कर सकते हैं। जिसमें `description`, `headers`, `content` (इसी के अंदर आप अलग-अलग media types और JSON Schemas घोषित करते हैं), और `links` शामिल हैं।

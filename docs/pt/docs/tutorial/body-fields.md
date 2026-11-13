@@ -6,7 +6,8 @@ Da mesma forma que você pode declarar validações adicionais e metadados nos p
 
 Primeiro, você tem que importá-lo:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
+
 
 /// warning | Atenção
 
@@ -18,7 +19,7 @@ Note que `Field` é importado diretamente do `pydantic`, não do `fastapi` como 
 
 Você pode então utilizar `Field` com atributos do modelo:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field` funciona da mesma forma que `Query`, `Path` e `Body`, ele possui todos os mesmos parâmetros, etc.
 
@@ -42,13 +43,13 @@ Note como cada atributo do modelo com um tipo, valor padrão e `Field` possuem a
 
 ## Adicione informações extras { #add-extra-information }
 
-Você pode declarar informação extra em `Field`, `Query`, `Body`, etc. E isso será incluído no JSON Schema gerado.
+Você pode declarar informação extra com `json_schema_extra` em `Field`, `Query`, `Body`, etc. E isso será incluído no JSON Schema gerado.
 
 Você irá aprender mais sobre adicionar informações extras posteriormente nessa documentação, quando estiver aprendendo a declarar exemplos.
 
 /// warning | Atenção
 
-Chaves extras passadas para `Field` também estarão presentes no schema OpenAPI resultante da sua aplicação.
+Chaves extras passadas em `json_schema_extra` também estarão presentes no schema OpenAPI resultante da sua aplicação.
 Como essas chaves podem não fazer necessariamente parte da especificação OpenAPI, algumas ferramentas de OpenAPI, por exemplo [o validador do OpenAPI](https://validator.swagger.io/), podem não funcionar com o schema gerado.
 
 ///
@@ -57,4 +58,4 @@ Como essas chaves podem não fazer necessariamente parte da especificação Open
 
 Você pode usar `Field` do Pydantic para declarar validações extras e metadados para atributos do modelo.
 
-Você também pode usar os argumentos de palavras-chave extras para passar metadados do JSON Schema adicionais.
+Você também pode usar `json_schema_extra` para passar metadados do JSON Schema adicionais.

@@ -24,7 +24,7 @@ Python の最新機能を使いたい場合は、Pydantic v2 を使用してい�
 
 ## 公式ガイド { #official-guide }
 
-Pydantic には v1 から v2 への公式の [移行ガイド](https://docs.pydantic.dev/latest/migration/) があります。
+Pydantic には v1 から v2 への公式の [移行ガイド](https://pydantic.dev/docs/validation/latest/get-started/migration/) があります。
 
 変更点、検証がより正確で厳密になった点、注意事項などが含まれます。
 
@@ -52,7 +52,7 @@ Pydantic v2 には、Pydantic v1 がサブモジュール `pydantic.v1` とし�
 
 つまり、Pydantic v2 の最新バージョンをインストールし、このサブモジュールから旧 Pydantic v1 のコンポーネントをインポートして、あたかも v1 をインストールしているかのように使用できます。
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### v2 内の Pydantic v1 に対する FastAPI のサポート { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ FastAPI 0.119.0 以降では、移行を容易にするため、Pydantic v2 内�
 
 そのため、Pydantic を v2 の最新に上げ、インポートを `pydantic.v1` サブモジュールに切り替えるだけで、多くの場合そのまま動作します。
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning | 注意
 
@@ -122,7 +122,7 @@ graph TB
 
 場合によっては、同じ FastAPI の path operation 内で、Pydantic v1 と v2 の両方のモデルを扱うことも可能です:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 上の例では、入力モデルは Pydantic v1、出力モデル（`response_model=ItemV2` で定義）は Pydantic v2 です。
 
@@ -130,7 +130,7 @@ graph TB
 
 Pydantic v1 のモデルで `Body`、`Query`、`Form` などの FastAPI 固有のパラメータユーティリティを使う必要がある場合、v2 への移行が完了するまでの間は `fastapi.temp_pydantic_v1_params` からインポートできます:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### 段階的に移行 { #migrate-in-steps }
 

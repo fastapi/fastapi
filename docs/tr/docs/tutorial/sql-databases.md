@@ -34,12 +34,12 @@ Bu çok basit ve kısa bir eğitimdir. Veritabanları genelinde, SQL hakkında v
 
 ## `SQLModel` Kurulumu { #install-sqlmodel }
 
-Önce [virtual environment](../virtual-environments.md) oluşturduğunuzdan emin olun, aktive edin ve ardından `sqlmodel`’i yükleyin:
+Projenize `sqlmodel` ekleyin:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -55,7 +55,7 @@ Aşağıda, **birden fazla model** kullanarak güvenliği ve esnekliği artırı
 
 `SQLModel`’i import edin ve bir veritabanı modeli oluşturun:
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[1:11] hl[7:11] *}
 
 `Hero` sınıfı, bir Pydantic modeline çok benzer (hatta altta aslında *bir Pydantic modelidir*).
 
@@ -77,7 +77,7 @@ Bir SQLModel `engine`’i (altta aslında bir SQLAlchemy `engine`’idir) verita
 
 Tüm kodunuzun aynı veritabanına bağlanması için **tek bir `engine` nesnesi** kullanırsınız.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[14:18] hl[14:15,17:18] *}
 
 `check_same_thread=False` kullanmak, FastAPI’nin aynı SQLite veritabanını farklı thread’lerde kullanmasına izin verir. Bu gereklidir; çünkü **tek bir request** **birden fazla thread** kullanabilir (örneğin dependency’lerde).
 
@@ -87,7 +87,7 @@ Merak etmeyin; kodun yapısı gereği, ileride **her request için tek bir SQLMo
 
 Sonra `SQLModel.metadata.create_all(engine)` kullanan bir fonksiyon ekleyerek tüm *table model*’ler için **table’ları oluştururuz**.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[21:22] hl[21:22] *}
 
 ### Session Dependency’si Oluşturma { #create-a-session-dependency }
 
@@ -97,13 +97,13 @@ Bir **`Session`**, **nesneleri memory’de** tutar ve verideki gerekli değişik
 
 Ardından bu dependency’yi kullanacak kodun geri kalanını sadeleştirmek için `Annotated` ile `SessionDep` dependency’sini oluştururuz.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[25:30]  hl[25:27,30] *}
 
 ### Startup’ta Veritabanı Table’larını Oluşturma { #create-database-tables-on-startup }
 
 Uygulama başlarken veritabanı table’larını oluşturacağız.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[32:37] hl[35:37] *}
 
 Burada bir uygulama startup event’inde table’ları oluşturuyoruz.
 
@@ -123,7 +123,7 @@ Her SQLModel modeli aynı zamanda bir Pydantic modeli olduğu için, Pydantic mo
 
 Aynı şekilde, bunu fonksiyonun **return type**’ı olarak da tanımlayabilirsiniz; böylece verinin şekli otomatik API docs arayüzünde görünür.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[40:45] hl[40:45] *}
 
 Burada `SessionDep` dependency’sini (bir `Session`) kullanarak yeni `Hero`’yu `Session` instance’ına ekliyoruz, değişiklikleri veritabanına commit ediyoruz, `hero` içindeki veriyi refresh ediyoruz ve sonra geri döndürüyoruz.
 
@@ -131,19 +131,19 @@ Burada `SessionDep` dependency’sini (bir `Session`) kullanarak yeni `Hero`’y
 
 `select()` kullanarak veritabanından `Hero`’ları **okuyabiliriz**. Sonuçları sayfalama (pagination) yapmak için `limit` ve `offset` ekleyebiliriz.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[48:55] hl[51:52,54] *}
 
 ### Tek Bir Hero Okuma { #read-one-hero }
 
 Tek bir `Hero` **okuyabiliriz**.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[58:63] hl[60] *}
 
 ### Hero Silme { #delete-a-hero }
 
 Bir `Hero`’yu **silebiliriz**.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[66:73] hl[71] *}
 
 ### Uygulamayı Çalıştırma { #run-the-app }
 
@@ -152,7 +152,7 @@ Uygulamayı çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -192,7 +192,7 @@ SQLModel ile **inheritance** kullanarak her durumda tüm alanları tekrar tekrar
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:9] hl[7:9] *}
 
 #### `Hero` - *table model* { #hero-the-table-model }
 
@@ -208,7 +208,7 @@ Sonra gerçek *table model* olan `Hero`’yu, diğer modellerde her zaman bulunm
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:14] hl[12:14] *}
 
 #### `HeroPublic` - public *data model* { #heropublic-the-public-data-model }
 
@@ -234,7 +234,7 @@ Ayrıca **otomatik üretilen client**’ların arayüzleri de daha basit olur; b
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:18] hl[17:18] *}
 
 #### `HeroCreate` - hero oluşturmak için *data model* { #herocreate-the-data-model-to-create-a-hero }
 
@@ -258,7 +258,7 @@ Ayrıca password değerlerini saklamadan önce **hash** etmelisiniz; **asla plai
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:22] hl[21:22] *}
 
 #### `HeroUpdate` - hero güncellemek için *data model* { #heroupdate-the-data-model-to-update-a-hero }
 
@@ -276,7 +276,7 @@ Aslında `HeroBase`’ten miras almamız gerekmiyor; çünkü tüm alanları yen
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:28] hl[25:28] *}
 
 ### `HeroCreate` ile Oluşturma ve `HeroPublic` Döndürme { #create-with-herocreate-and-return-a-heropublic }
 
@@ -288,7 +288,7 @@ Bu yeni *table model* `Hero`, client’ın gönderdiği alanlara sahip olur ve a
 
 Sonra fonksiyondan bu *table model* `Hero`’yu olduğu gibi döndürürüz. Ancak `response_model`’i `HeroPublic` *data model* olarak belirlediğimiz için **FastAPI**, veriyi validate ve serialize etmek için `HeroPublic` kullanır.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[56:62] hl[56:58] *}
 
 /// tip | İpucu
 
@@ -304,13 +304,13 @@ Bunu `response_model` içinde belirterek **FastAPI**’ye işini yapmasını sö
 
 Daha öncekiyle aynı şekilde `Hero`’ları **okuyabiliriz**; yine `response_model=list[HeroPublic]` kullanarak verinin doğru biçimde validate ve serialize edilmesini garanti ederiz.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[65:72] hl[65] *}
 
 ### `HeroPublic` ile Tek Bir Hero Okuma { #read-one-hero-with-heropublic }
 
 Tek bir hero’yu **okuyabiliriz**:
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[75:80] hl[77] *}
 
 ### `HeroUpdate` ile Hero Güncelleme { #update-a-hero-with-heroupdate }
 
@@ -320,7 +320,7 @@ Kodda, client’ın gönderdiği tüm verilerle bir `dict` alırız; **yalnızca
 
 Sonra `hero_db.sqlmodel_update(hero_data)` ile `hero_db`’yi `hero_data` içindeki verilerle güncelleriz.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[83:93] hl[83:84,88:89] *}
 
 ### Hero’yu Tekrar Silme { #delete-a-hero-again }
 
@@ -328,7 +328,7 @@ Bir hero’yu **silmek** büyük ölçüde aynı kalıyor.
 
 Bu örnekte her şeyi refactor etme isteğimizi bastıracağız. 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[96:103] hl[101] *}
 
 ### Uygulamayı Tekrar Çalıştırma { #run-the-app-again }
 
@@ -337,7 +337,7 @@ Uygulamayı tekrar çalıştırabilirsiniz:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

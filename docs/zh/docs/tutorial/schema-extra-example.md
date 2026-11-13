@@ -8,11 +8,11 @@
 
 你可以为一个 Pydantic 模型声明 `examples`，它们会被添加到生成的 JSON Schema 中。
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001.py hl[13:24] *}
 
 这些额外信息会原样添加到该模型输出的 **JSON Schema** 中，并会在 API 文档中使用。
 
-你可以使用属性 `model_config`，它接收一个 `dict`，详见 [Pydantic 文档：配置](https://docs.pydantic.dev/latest/api/config/)。
+你可以使用属性 `model_config`，它接收一个 `dict`，详见 [Pydantic 文档：配置](https://pydantic.dev/docs/validation/latest/api/pydantic/config/)。
 
 你可以设置 `"json_schema_extra"`，其值为一个 `dict`，包含你希望出现在生成 JSON Schema 中的任意附加数据，包括 `examples`。
 
@@ -38,7 +38,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）增加了对 `examples` 的支持
 
 在 Pydantic 模型中使用 `Field()` 时，你也可以声明额外的 `examples`：
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002.py hl[2,8:11] *}
 
 ## JSON Schema 中的 `examples` - OpenAPI { #examples-in-json-schema-openapi }
 
@@ -58,7 +58,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）增加了对 `examples` 的支持
 
 这里我们向 `Body()` 传入 `examples`，其中包含一个期望的数据示例：
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003.py hl[22:29] *}
 
 ### 文档 UI 中的示例 { #example-in-the-docs-ui }
 
@@ -70,7 +70,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）增加了对 `examples` 的支持
 
 当然，你也可以传入多个 `examples`：
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004.py hl[23:38] *}
 
 这样做时，这些示例会成为该请求体数据内部 **JSON Schema** 的一部分。
 
@@ -111,7 +111,7 @@ OpenAPI 3.1.0（自 FastAPI 0.99.0 起使用）增加了对 `examples` 的支持
 
 你可以这样使用：
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005.py hl[23:49] *}
 
 ### 文档 UI 中的 OpenAPI 示例 { #openapi-examples-in-the-docs-ui }
 

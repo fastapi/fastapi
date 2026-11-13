@@ -52,7 +52,7 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 
 先匯入 `OAuth2PasswordRequestForm`，並在 `/token` 的路徑操作中，搭配 `Depends` 當作依賴使用：
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` 是一個類別型依賴，它宣告了一個表單本文，包含：
 
@@ -100,7 +100,7 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 
 我們用 `HTTPException` 這個例外來回傳錯誤：
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### 檢查密碼 { #check-the-password }
 
@@ -126,7 +126,7 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 
 因此攻擊者無法嘗試把那些密碼用在其他系統上（因為很多使用者在各處都用同一組密碼，這會很危險）。
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### 關於 `**user_dict` { #about-user-dict }
 
@@ -136,11 +136,11 @@ OAuth2 規範中，當使用「password flow」（我們現在使用的）時，
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
@@ -168,7 +168,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip
 
@@ -194,7 +194,7 @@ UserInDB(
 
 因此，在端點中，只有在使用者存在、已正確驗證且為啟用狀態時，我們才會取得使用者：
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note
 
@@ -224,9 +224,9 @@ UserInDB(
 
 使用下列帳密：
 
-User: `johndoe`
+使用者：`johndoe`
 
-Password: `secret`
+密碼：`secret`
 
 <img src="/img/tutorial/security/image04.png">
 
@@ -264,9 +264,9 @@ Password: `secret`
 
 現在改用一個未啟用的使用者，使用以下帳密驗證：
 
-User: `alice`
+使用者：`alice`
 
-Password: `secret2`
+密碼：`secret2`
 
 然後再呼叫 `GET` 方法的 `/users/me`。
 

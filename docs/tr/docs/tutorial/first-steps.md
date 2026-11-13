@@ -3,16 +3,22 @@
 
 En sade FastAPI dosyası şu şekilde görünür:
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Yukarıdakini `main.py` adlı bir dosyaya kopyalayın.
+
+/// tip | İpucu
+
+FastAPI'nin [VS Code için resmi bir eklentisi](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (ve Cursor için) vardır; path operation explorer, path operation search, testlerde CodeLens navigasyonu (testlerden tanıma atlama), FastAPI Cloud deployment ve log'lar dahil olmak üzere birçok özelliği doğrudan editörünüzden sağlar.
+
+///
 
 Canlı sunucuyu çalıştırın:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -79,7 +85,7 @@ Otomatik etkileşimli API dokümantasyonunu ([Swagger UI](https://github.com/swa
 
 Ve şimdi [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) adresine gidin.
 
-Alternatif otomatik dokümantasyonu ([ReDoc](https://github.com/Rebilly/ReDoc) tarafından sağlanan) göreceksiniz:
+Alternatif otomatik dokümantasyonu ([ReDoc](https://github.com/Redocly/redoc) tarafından sağlanan) göreceksiniz:
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -186,16 +192,16 @@ from backend.main import app
 Dosya path'ini `fastapi dev` komutuna da verebilirsiniz; hangi FastAPI app objesini kullanacağını tahmin eder:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Veya `fastapi dev` komutuna `--entrypoint` seçeneğini de geçebilirsiniz:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
-Ancak `fastapi` komutunu her çağırdığınızda doğru path'i veya entrypoint'i geçmeyi hatırlamanız gerekir.
+Ancak `fastapi` komutunu her çağırdığınızda doğru path'i/entrypoint'i geçmeyi hatırlamanız gerekir.
 
 Ayrıca, [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://fastapicloud.com) gibi başka araçlar da onu bulamayabilir; bu yüzden `pyproject.toml` içindeki `entrypoint`'i kullanmanız önerilir.
 
@@ -206,7 +212,7 @@ Ayrıca, [VS Code Eklentisi](../editor-support.md) veya [FastAPI Cloud](https://
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -225,7 +231,7 @@ Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 ### Adım 1: `FastAPI` import edin { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI`, API'nız için tüm işlevselliği sağlayan bir Python class'ıdır.
 
@@ -233,13 +239,13 @@ Bu kadar! Artık uygulamanıza o URL üzerinden erişebilirsiniz. ✨
 
 `FastAPI`, doğrudan `Starlette`'ten miras alan bir class'tır.
 
-[Starlette](https://www.starlette.dev/)'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
+[Starlette](https://starlette.dev/)'in tüm işlevselliğini `FastAPI` ile de kullanabilirsiniz.
 
 ///
 
 ### Adım 2: bir `FastAPI` "instance"ı oluşturun { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 Burada `app` değişkeni `FastAPI` class'ının bir "instance"ı olacaktır.
 
@@ -308,7 +314,7 @@ Biz de bunlara "**operation**" diyeceğiz.
 
 #### Bir *path operation decorator* tanımlayın { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")`, **FastAPI**'a hemen altındaki fonksiyonun şuraya giden request'leri ele almakla sorumlu olduğunu söyler:
 
@@ -362,7 +368,7 @@ Bu bizim "**path operation function**"ımız:
 * **operation**: `get`.
 * **function**: "decorator"ün altındaki fonksiyondur (`@app.get("/")`'in altındaki).
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 Bu bir Python fonksiyonudur.
 
@@ -374,7 +380,7 @@ Bu durumda, bu bir `async` fonksiyondur.
 
 Bunu `async def` yerine normal bir fonksiyon olarak da tanımlayabilirsiniz:
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | Not
 
@@ -384,7 +390,7 @@ Eğer farkı bilmiyorsanız, [Async: *"Aceleniz mi var?"*](../async.md#in-a-hurr
 
 ### Adım 5: içeriği döndürün { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 Bir `dict`, `list`, `str`, `int` vb. tekil değerler döndürebilirsiniz.
 

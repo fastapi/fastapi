@@ -22,3 +22,7 @@
 - **Stream Application Logs** - 從部署於 FastAPI Cloud 的應用程式即時串流日誌，並支援層級篩選與文字搜尋。
 
 若你想熟悉此擴充套件的功能，可開啟命令面板（<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>；macOS：<kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>），選擇 "Welcome: Open walkthrough..."，然後挑選 "Get started with FastAPI" walkthrough。
+
+## AI 程式開發代理 { #ai-coding-agents }
+
+請參閱[使用 AI 開發](ai-development.md)，以安裝並使用官方的 FastAPI skill。

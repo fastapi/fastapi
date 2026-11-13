@@ -6,9 +6,13 @@
 
 因此，通常會透過環境變數提供這些設定，讓應用程式去讀取。
 
+**環境變數**（也稱為 **env var**）是存在於 Python 程式碼之外、作業系統中的值，並可由你的應用程式與其他程式讀取。
+
+你可以在執行指令時為該指令建立環境變數。你會在下方看到各平台專用的指令。
+
 /// tip
 
-若想了解環境變數，你可以閱讀[環境變數](../environment-variables.md)。
+請閱讀[環境變數指南](https://tiangolo.com/guides/environment-variables/)以詳細了解環境變數的運作方式。
 
 ///
 
@@ -20,27 +24,27 @@
 
 ## Pydantic `Settings` { #pydantic-settings }
 
-幸好，Pydantic 提供了很好的工具，可用來處理由環境變數而來的設定：[Pydantic：設定管理](https://docs.pydantic.dev/latest/concepts/pydantic_settings/)。
+幸好，Pydantic 提供了很好的工具，可用來處理由環境變數而來的設定：[Pydantic：設定管理](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/)。
 
 ### 安裝 `pydantic-settings` { #install-pydantic-settings }
 
-首先，請先建立你的[虛擬環境](../virtual-environments.md)，啟用它，然後安裝 `pydantic-settings` 套件：
+將 `pydantic-settings` 套件加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install pydantic-settings
+$ uv add pydantic-settings
 ---> 100%
 ```
 
 </div>
 
-當你用 `all` extras 安裝時，它也會一併包含在內：
+當你用以下方式安裝 `all` extras 時，它也會一併包含在內：
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[all]"
+$ uv add "fastapi[all]"
 ---> 100%
 ```
 
@@ -54,7 +58,7 @@ $ pip install "fastapi[all]"
 
 你可以使用與 Pydantic model 相同的所有驗證功能與工具，例如不同的資料型別與透過 `Field()` 進行額外驗證。
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip
 
@@ -70,25 +74,45 @@ $ pip install "fastapi[all]"
 
 接著你可以在應用程式中使用新的 `settings` 物件：
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### 執行伺服器 { #run-the-server }
 
-接下來，你可以在啟動伺服器時，將設定以環境變數傳入。舉例來說，你可以設定 `ADMIN_EMAIL` 與 `APP_NAME`：
+接下來，你可以在啟動伺服器時，將設定以環境變數傳入。例如，你可以用以下方式設定 `ADMIN_EMAIL` 與 `APP_NAME`：
+
+//// tab | Linux, macOS, Windows Bash
 
 <div class="termy">
 
 ```console
-$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.py
+$ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" uv run fastapi run main.py
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
 </div>
 
+////
+
+//// tab | Windows PowerShell
+
+<div class="termy">
+
+```console
+$ $Env:ADMIN_EMAIL = "deadpool@example.com"
+$ $Env:APP_NAME = "ChimichangApp"
+$ uv run fastapi run main.py
+
+<span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+```
+
+</div>
+
+////
+
 /// tip
 
-要為單一指令設定多個環境變數，只要用空白分隔它們，並全部放在指令前面即可。
+在 Bash 中，要為單一指令設定多個環境變數，只要用空白分隔它們，並全部放在指令前面即可。
 
 ///
 
@@ -104,11 +128,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 例如，你可以有一個 `config.py` 檔案如下：
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 然後在 `main.py` 檔案中使用它：
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip
 
@@ -126,7 +150,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 延續前一個範例，你的 `config.py` 可以像這樣：
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 注意現在我們不再建立預設實例 `settings = Settings()`。
 
@@ -134,7 +158,7 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 現在我們建立一個相依，回傳新的 `config.Settings()`。
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip
 
@@ -146,13 +170,13 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 接著我們可以在*路徑操作函式 (path operation function)* 中將它宣告為相依，並在需要的地方使用它。
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### 設定與測試 { #settings-and-testing }
 
 接著，在測試時要提供不同的設定物件會非常容易，只要為 `get_settings` 建立相依覆寫（dependency override）即可：
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 在相依覆寫中，我們在建立新的 `Settings` 物件時設定 `admin_email` 的新值，然後回傳該新物件。
 
@@ -172,11 +196,11 @@ $ ADMIN_EMAIL="deadpool@example.com" APP_NAME="ChimichangApp" fastapi run main.p
 
 ///
 
-Pydantic 透過外部函式庫支援讀取這類型的檔案。你可以閱讀更多：[Pydantic Settings：Dotenv (.env) 支援](https://docs.pydantic.dev/latest/concepts/pydantic_settings/#dotenv-env-support)。
+Pydantic 透過外部函式庫支援讀取這類型的檔案。你可以閱讀更多：[Pydantic Settings：Dotenv (.env) 支援](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/#dotenv-env-support)。
 
 /// tip
 
-要讓這個功能運作，你需要 `pip install python-dotenv`。
+要讓這個功能運作，請用 `uv add python-dotenv` 將 `python-dotenv` 加入你的專案。
 
 ///
 
@@ -193,11 +217,11 @@ APP_NAME="ChimichangApp"
 
 然後更新你的 `config.py`：
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip
 
-`model_config` 屬性僅用於 Pydantic 的設定。你可以閱讀更多：[Pydantic：概念：設定](https://docs.pydantic.dev/latest/concepts/config/)。
+`model_config` 屬性僅用於 Pydantic 的設定。你可以閱讀更多：[Pydantic：概念：設定](https://pydantic.dev/docs/validation/latest/concepts/config/)。
 
 ///
 
@@ -226,7 +250,7 @@ def get_settings():
 
 但由於我們在上方使用了 `@lru_cache` 裝飾器，`Settings` 物件只會在第一次呼叫時建立一次。✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 之後在下一批請求的相依中任何對 `get_settings()` 的呼叫，都不會再執行 `get_settings()` 的內部程式碼與建立新的 `Settings` 物件，而是會一再回傳第一次呼叫時回傳的同一個物件。
 

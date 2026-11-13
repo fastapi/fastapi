@@ -1,4 +1,4 @@
-# Extra Models { #extra-models }
+# अतिरिक्त Models { #extra-models }
 
 पिछले उदाहरण को आगे बढ़ाते हुए, एक से अधिक संबंधित model होना आम बात होगी।
 
@@ -20,7 +20,7 @@ user के plaintext passwords कभी store न करें। हमेश
 
 यह एक सामान्य idea है कि models अपने password fields और जहाँ वे इस्तेमाल होते हैं, वहाँ कैसे दिख सकते हैं:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### `**user_in.model_dump()` के बारे में { #about-user-in-model-dump }
 
@@ -54,10 +54,10 @@ print(user_dict)
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ UserInDB(
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -154,7 +154,7 @@ Code duplication कम करना **FastAPI** के core ideas में स
 
 इस तरह, हम केवल models के बीच के अंतर declare कर सकते हैं (plaintext `password` के साथ, `hashed_password` के साथ और password के बिना):
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` या `anyOf` { #union-or-anyof }
 
@@ -166,11 +166,11 @@ Code duplication कम करना **FastAPI** के core ideas में स
 
 /// note | नोट
 
-[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions) define करते समय, सबसे specific type को पहले include करें, उसके बाद कम specific type को। नीचे दिए गए उदाहरण में, अधिक specific `PlaneItem`, `Union[PlaneItem, CarItem]` में `CarItem` से पहले आता है।
+[`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/) define करते समय, सबसे specific type को पहले include करें, उसके बाद कम specific type को। नीचे दिए गए उदाहरण में, अधिक specific `PlaneItem`, `Union[PlaneItem, CarItem]` में `CarItem` से पहले आता है।
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### Python 3.10 में `Union` { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ some_variable: PlaneItem | CarItem
 
 इसके लिए, standard Python `list` इस्तेमाल करें:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## Arbitrary `dict` के साथ response { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ some_variable: PlaneItem | CarItem
 
 इस मामले में, आप `dict` इस्तेमाल कर सकते हैं:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## Recap { #recap }
 

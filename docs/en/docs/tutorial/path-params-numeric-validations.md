@@ -6,7 +6,7 @@ In the same way that you can declare more validations and metadata for query par
 
 First, import `Path` from `fastapi`, and import `Annotated`:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[1,3] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[1,3] *}
 
 /// note
 
@@ -24,11 +24,11 @@ You can declare all the same parameters as for `Query`.
 
 For example, to declare a `title` metadata value for the path parameter `item_id` you can type:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial001_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial001.py hl[10] *}
 
 /// note
 
-A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.
+A path parameter is always required because it has to be part of the URL path. Adding `None` to its type does not make it optional. A parameter declared with `Path` cannot have a default value.
 
 ///
 
@@ -54,11 +54,11 @@ It doesn't matter for **FastAPI**. It will detect the parameters by their names,
 
 So, you can declare your function as:
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002_non_an.py hl[7] *}
 
 But keep in mind that if you use `Annotated`, you won't have this problem, it won't matter as you're not using the function parameter default values for `Query()` or `Path()`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial002_an_py310.py *}
+{* ../../docs_src/path_params_numeric_validations/tutorial002.py *}
 
 ## Order the parameters as you need, tricks { #order-the-parameters-as-you-need-tricks }
 
@@ -83,13 +83,13 @@ Pass `*`, as the first parameter of the function.
 
 Python won't do anything with that `*`, but it will know that all the following parameters should be called as keyword arguments (key-value pairs), also known as <abbr title="From: K-ey W-ord Arg-uments"><code>kwargs</code></abbr>. Even if they don't have a default value.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003_non_an.py hl[7] *}
 
 ### Better with `Annotated` { #better-with-annotated }
 
 Keep in mind that if you use `Annotated`, as you are not using function parameter default values, you won't have this problem, and you probably won't need to use `*`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial003.py hl[10] *}
 
 ## Number validations: greater than or equal { #number-validations-greater-than-or-equal }
 
@@ -97,7 +97,7 @@ With `Query` and `Path` (and others you'll see later) you can declare number con
 
 Here, with `ge=1`, `item_id` will need to be an integer number "`g`reater than or `e`qual" to `1`.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial004_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial004.py hl[10] *}
 
 ## Number validations: greater than and less than or equal { #number-validations-greater-than-and-less-than-or-equal }
 
@@ -106,7 +106,7 @@ The same applies for:
 * `gt`: `g`reater `t`han
 * `le`: `l`ess than or `e`qual
 
-{* ../../docs_src/path_params_numeric_validations/tutorial005_an_py310.py hl[10] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial005.py hl[10] *}
 
 ## Number validations: floats, greater than and less than { #number-validations-floats-greater-than-and-less-than }
 
@@ -118,7 +118,7 @@ So, `0.5` would be a valid value. But `0.0` or `0` would not.
 
 And the same for <abbr title="less than"><code>lt</code></abbr>.
 
-{* ../../docs_src/path_params_numeric_validations/tutorial006_an_py310.py hl[13] *}
+{* ../../docs_src/path_params_numeric_validations/tutorial006.py hl[13] *}
 
 ## Recap { #recap }
 

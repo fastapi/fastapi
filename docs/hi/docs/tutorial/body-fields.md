@@ -6,7 +6,7 @@
 
 सबसे पहले, आपको इसे import करना होगा:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[4] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[4] *}
 
 
 /// warning | चेतावनी
@@ -19,7 +19,7 @@
 
 फिर आप model attributes के साथ `Field` का उपयोग कर सकते हैं:
 
-{* ../../docs_src/body_fields/tutorial001_an_py310.py hl[11:14] *}
+{* ../../docs_src/body_fields/tutorial001.py hl[11:14] *}
 
 `Field` उसी तरह काम करता है जैसे `Query`, `Path` और `Body`, इसमें वही सभी parameters आदि होते हैं।
 
@@ -43,13 +43,13 @@
 
 ## अतिरिक्त जानकारी जोड़ें { #add-extra-information }
 
-आप `Field`, `Query`, `Body` आदि में अतिरिक्त जानकारी घोषित कर सकते हैं। और यह जनरेट किए गए JSON Schema में शामिल होगी।
+आप `Field`, `Query`, `Body` आदि में `json_schema_extra` के साथ अतिरिक्त जानकारी घोषित कर सकते हैं। और यह जनरेट किए गए JSON Schema में शामिल होगी।
 
 आप docs में आगे examples घोषित करना सीखते समय अतिरिक्त जानकारी जोड़ने के बारे में और जानेंगे।
 
 /// warning | चेतावनी
 
-`Field` को दिए गए अतिरिक्त keys आपके application के परिणामी OpenAPI schema में भी मौजूद होंगे।
+`json_schema_extra` में दिए गए अतिरिक्त keys आपके application के परिणामी OpenAPI schema में भी मौजूद होंगे।
 क्योंकि ये keys जरूरी नहीं कि OpenAPI specification का हिस्सा हों, इसलिए कुछ OpenAPI tools, उदाहरण के लिए [OpenAPI validator](https://validator.swagger.io/), आपके जनरेट किए गए schema के साथ काम नहीं कर सकते।
 
 ///
@@ -58,4 +58,4 @@
 
 आप model attributes के लिए अतिरिक्त validations और metadata घोषित करने के लिए Pydantic के `Field` का उपयोग कर सकते हैं।
 
-आप अतिरिक्त JSON Schema metadata पास करने के लिए extra keyword arguments का भी उपयोग कर सकते हैं।
+आप अतिरिक्त JSON Schema metadata पास करने के लिए `json_schema_extra` का भी उपयोग कर सकते हैं।

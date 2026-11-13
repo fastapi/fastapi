@@ -8,11 +8,11 @@
 
 Вы можете объявить `examples` для модели Pydantic, которые будут добавлены в сгенерированную JSON Schema.
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001.py hl[13:24] *}
 
 Эта дополнительная информация будет добавлена как есть в выходную **JSON Schema** этой модели и будет использоваться в документации API.
 
-Вы можете использовать атрибут `model_config`, который принимает `dict`, как описано в [документации Pydantic: Конфигурация](https://docs.pydantic.dev/latest/api/config/).
+Вы можете использовать атрибут `model_config`, который принимает `dict`, как описано в [документации Pydantic: Конфигурация](https://pydantic.dev/docs/validation/latest/api/pydantic/config/).
 
 Вы можете задать `"json_schema_extra"` с `dict`, содержащим любые дополнительные данные, которые вы хотите видеть в сгенерированной JSON Schema, включая `examples`.
 
@@ -38,7 +38,7 @@ OpenAPI 3.1.0 (используется начиная с FastAPI 0.99.0) доб
 
 При использовании `Field()` с моделями Pydantic вы также можете объявлять дополнительные `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002.py hl[2,8:11] *}
 
 ## `examples` в JSON Schema — OpenAPI { #examples-in-json-schema-openapi }
 
@@ -58,7 +58,7 @@ OpenAPI 3.1.0 (используется начиная с FastAPI 0.99.0) доб
 
 Здесь мы передаём `examples`, содержащий один пример данных, ожидаемых в `Body()`:
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003.py hl[22:29] *}
 
 ### Пример в UI документации { #example-in-the-docs-ui }
 
@@ -70,7 +70,7 @@ OpenAPI 3.1.0 (используется начиная с FastAPI 0.99.0) доб
 
 Конечно, вы можете передать и несколько `examples`:
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004.py hl[23:38] *}
 
 Когда вы делаете это, примеры становятся частью внутренней **JSON Schema** для данных тела запроса.
 
@@ -111,7 +111,7 @@ OpenAPI 3.1.0 (используется начиная с FastAPI 0.99.0) доб
 
 Использовать это можно так:
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005.py hl[23:49] *}
 
 ### OpenAPI-примеры в UI документации { #openapi-examples-in-the-docs-ui }
 

@@ -1,13 +1,12 @@
 # Cabeçalhos de resposta { #response-headers }
 
-
 ## Use um parâmetro `Response` { #use-a-response-parameter }
 
 Você pode declarar um parâmetro do tipo `Response` na sua *função de operação de rota* (assim como você pode fazer para cookies).
 
 Então você pode definir os cabeçalhos nesse objeto de resposta *temporário*.
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 Em seguida você pode retornar qualquer objeto que precisar, da maneira que faria normalmente (um `dict`, um modelo de banco de dados, etc.).
 
@@ -23,7 +22,7 @@ Você também pode adicionar cabeçalhos quando retornar uma `Response` diretame
 
 Crie uma resposta conforme descrito em [Retornar uma resposta diretamente](response-directly.md) e passe os cabeçalhos como um parâmetro adicional:
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | Detalhes Técnicos
 
@@ -39,4 +38,4 @@ E como a `Response` pode ser usada frequentemente para definir cabeçalhos e coo
 
 Tenha em mente que cabeçalhos personalizados proprietários podem ser adicionados [usando o prefixo `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Porém, se você tiver cabeçalhos personalizados que deseja que um cliente no navegador possa ver, você precisa adicioná-los às suas configurações de CORS (saiba mais em [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), usando o parâmetro `expose_headers` descrito na [documentação de CORS do Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Porém, se você tiver cabeçalhos personalizados que deseja que um cliente no navegador possa ver, você precisa adicioná-los às suas configurações de CORS (saiba mais em [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), usando o parâmetro `expose_headers` descrito na [documentação de CORS do Starlette](https://starlette.dev/middleware/#corsmiddleware).

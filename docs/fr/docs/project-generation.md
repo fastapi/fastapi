@@ -5,13 +5,13 @@ Les modèles, bien qu'ils soient généralement livrés avec une configuration s
 
 Vous pouvez utiliser ce modèle pour démarrer, car il inclut une grande partie de la configuration initiale, la sécurité, la base de données et quelques endpoints d'API déjà prêts pour vous.
 
-Dépôt GitHub : [Modèle Full Stack FastAPI](https://github.com/tiangolo/full-stack-fastapi-template)
+Dépôt GitHub : [Modèle Full Stack FastAPI](https://github.com/fastapi/full-stack-fastapi-template)
 
 ## Modèle Full Stack FastAPI - Pile technologique et fonctionnalités { #full-stack-fastapi-template-technology-stack-and-features }
 
 - ⚡ [**FastAPI**](https://fastapi.tiangolo.com/fr) pour l'API backend Python.
   - 🧰 [SQLModel](https://sqlmodel.tiangolo.com) pour les interactions avec la base de données SQL en Python (ORM).
-  - 🔍 [Pydantic](https://docs.pydantic.dev), utilisé par FastAPI, pour la validation des données et la gestion des paramètres.
+  - 🔍 [Pydantic](https://pydantic.dev/docs/), utilisé par FastAPI, pour la validation des données et la gestion des paramètres.
   - 💾 [PostgreSQL](https://www.postgresql.org) comme base de données SQL.
 - 🚀 [React](https://react.dev) pour le frontend.
   - 💃 Utilisation de TypeScript, des hooks, de Vite et d'autres éléments d'un stack frontend moderne.

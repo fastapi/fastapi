@@ -20,20 +20,20 @@
 
 उदाहरण को एक file `main.py` में copy करें:
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## इसे चलाएँ { #run-it }
 
 /// note | नोट
 
-[`python-multipart`](https://github.com/Kludex/python-multipart) package **FastAPI** के साथ अपने-आप install हो जाता है जब आप `pip install "fastapi[standard]"` command चलाते हैं।
+[`python-multipart`](https://github.com/Kludex/python-multipart) package **FastAPI** के साथ अपने-आप install हो जाता है जब आप `uv add "fastapi[standard]"` command चलाते हैं।
 
-हालाँकि, अगर आप `pip install fastapi` command का उपयोग करते हैं, तो `python-multipart` package default रूप से शामिल नहीं होता।
+हालाँकि, अगर आप `uv add fastapi` command का उपयोग करते हैं, तो `python-multipart` package default रूप से शामिल नहीं होता।
 
-इसे manually install करने के लिए, सुनिश्चित करें कि आप एक [virtual environment](../../virtual-environments.md) बनाएँ, उसे activate करें, और फिर इसे इस तरह install करें:
+इसे manually install करने के लिए, इसे अपने project में इस तरह जोड़ें:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ऐसा इसलिए है क्योंकि **OAuth2**, `username` और `password` भेजने के लिए "form data" का उपयोग करता है।
@@ -45,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -132,7 +132,7 @@ OAuth2 को इस तरह design किया गया था कि backe
 
 जब हम `OAuth2PasswordBearer` class का instance बनाते हैं तो हम `tokenUrl` parameter pass करते हैं। इस parameter में वह URL होता है जिसका उपयोग client (user के browser में चल रहा frontend) token पाने के लिए `username` और `password` भेजने में करेगा।
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip | सुझाव
 
@@ -170,7 +170,7 @@ oauth2_scheme(some, parameters)
 
 अब आप उस `oauth2_scheme` को `Depends` के साथ dependency में pass कर सकते हैं।
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 यह dependency एक `str` प्रदान करेगी जिसे *path operation function* के parameter `token` को assign किया जाता है।
 

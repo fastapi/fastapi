@@ -6,7 +6,7 @@
 
 Спочатку імпортуйте `Header`:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## Оголошення параметрів `Header` { #declare-header-parameters }
 
@@ -14,7 +14,7 @@
 
 Ви можете визначити значення за замовчуванням, а також усі додаткові параметри валідації або анотації:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | Технічні деталі
 
@@ -46,7 +46,7 @@
 
 Якщо з якоїсь причини вам потрібно вимкнути автоматичне перетворення підкреслень на дефіси, встановіть параметр `convert_underscores` у `Header` в `False`:
 
-{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning | Попередження
 
@@ -64,7 +64,7 @@
 
 Наприклад, щоб оголосити заголовок `X-Token`, який може з’являтися більше ніж один раз, ви можете написати:
 
-{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 Якщо ви взаємодієте з цією *операцією шляху*, надсилаючи два HTTP-заголовки, наприклад:
 

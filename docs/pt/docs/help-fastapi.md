@@ -45,20 +45,6 @@ Você pode seguir [a mim (Sebastián Ramírez / `tiangolo`)](https://tiangolo.co
 * [@tiangolo.com no **Bluesky**](https://bsky.app/profile/tiangolo.com)
 * [@tiangolo no **LinkedIn**](https://www.linkedin.com/in/tiangolo/).
 
-## Ajude outras pessoas com perguntas no GitHub { #help-others-with-questions-in-github }
-
-Você pode tentar ajudar outras pessoas com suas perguntas no [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered).
-
-Em muitos casos você já pode saber a resposta para aquelas perguntas. 🤓
-
-Se você estiver ajudando muitas pessoas com suas perguntas, você se tornará um(a) [Especialista em FastAPI](fastapi-people.md#fastapi-experts) oficial. 🎉
-
-Apenas lembre-se, o ponto mais importante é: tente ser gentil. 🤗
-
-### Como ajudar { #how-to-help }
-
-Siga o [guia sobre como ajudar](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github) aqui.
-
 ## Faça perguntas { #ask-questions }
 
 Você pode [criar uma nova pergunta](https://github.com/fastapi/fastapi/discussions/new?category=questions) no repositório do GitHub, por exemplo para:
@@ -68,7 +54,7 @@ Você pode [criar uma nova pergunta](https://github.com/fastapi/fastapi/discussi
 
 ## Entre no chat { #join-the-chat }
 
-Entre no 👥 [servidor de chat do Discord](https://discord.gg/VQjSZaeJmf) 👥 e converse com outras pessoas da comunidade FastAPI.
+Entre no 👥 [servidor de chat do Discord](https://discord.com/invite/VQjSZaeJmf) 👥 e converse com outras pessoas da comunidade FastAPI.
 
 /// tip | Dica
 
@@ -85,3 +71,9 @@ Tenha em mente que, como os chats permitem uma “conversa mais livre”, é fá
 No GitHub, o template vai orientar você a escrever a pergunta certa para que você consiga obter uma boa resposta com mais facilidade, ou até resolver o problema sozinho antes de perguntar.
 
 As conversas nos sistemas de chat também não são tão fáceis de pesquisar quanto no GitHub; elas se perdem.
+
+## Experimente o FastAPI Cloud { #try-fastapi-cloud }
+
+O financiamento principal do FastAPI e amigos vem do [**FastAPI Cloud**](https://fastapicloud.com), uma plataforma para fazer deploy de aplicações FastAPI de forma simples e rápida, com um único comando, `fastapi deploy`.
+
+O FastAPI Cloud é criado pela mesma equipe por trás do FastAPI. Você pode experimentá-lo e considerá-lo para seus projetos.

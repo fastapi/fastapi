@@ -15,6 +15,7 @@ from collections.abc import (
 from contextlib import AsyncExitStack, contextmanager
 from copy import copy, deepcopy
 from dataclasses import dataclass
+from functools import partial
 from typing import (
     Annotated,
     Any,
@@ -26,6 +27,7 @@ from typing import (
     get_origin,
 )
 
+from anyio import CancelScope
 from fastapi import params
 from fastapi._compat import (
     ModelField,
@@ -51,6 +53,7 @@ from fastapi._compat import (
 )
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
+    _asynccontextmanager_with_shielded_exit,
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
@@ -67,10 +70,21 @@ from fastapi.dependencies.models import (
 from fastapi.exceptions import DependencyScopeError
 from fastapi.logger import logger
 from fastapi.security.oauth2 import SecurityScopes
-from fastapi.types import DependencyCacheKey
+from fastapi.types import DependencyCacheKey, UnionType
 from fastapi.utils import create_model_field, get_path_param_names
-from pydantic import BaseModel, Json
+from pydantic import (
+    AliasChoices,
+    AliasPath,
+    BaseModel,
+    BeforeValidator,
+    ConfigDict,
+    GetJsonSchemaHandler,
+    GetPydanticSchema,
+    Json,
+    Tag,
+)
 from pydantic.fields import FieldInfo
+from pydantic_core import CoreSchema
 from starlette.background import BackgroundTasks as StarletteBackgroundTasks
 from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import (
@@ -154,16 +168,33 @@ def _get_flat_body_params(dependant: Dependant) -> list[ModelField]:
     return body_params
 
 
-def _get_flat_fields_from_params(fields: list[ModelField]) -> list[ModelField]:
-    if not fields:
-        return fields
-    first_field = fields[0]
-    if len(fields) == 1 and lenient_issubclass(
-        first_field.field_info.annotation, BaseModel
-    ):
-        fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
-        return fields_to_extract
-    return fields
+def _get_model_type(annotation: Any) -> type[BaseModel] | None:
+    if get_origin(annotation) in (Union, UnionType):
+        args = get_args(annotation)
+        if len(args) == 2 and type(None) in args:
+            annotation = next(arg for arg in args if arg is not type(None))
+    if lenient_issubclass(annotation, BaseModel):
+        return annotation
+    return None
+
+
+def _get_param_model(field: ModelField) -> type[BaseModel] | None:
+    annotation = field.field_info.annotation
+    if isinstance(field.field_info, (params.Query, params.Header, params.Cookie)):
+        annotation = _get_model_type(annotation)
+    if lenient_issubclass(annotation, BaseModel) and not _is_json_field(field):
+        return annotation
+    return None
+
+
+def _get_flat_fields_from_params(fields: Sequence[ModelField]) -> list[ModelField]:
+    flat_fields: list[ModelField] = []
+    for field in fields:
+        if (model := _get_param_model(field)) is not None:
+            flat_fields.extend(get_cached_model_fields(model))
+        else:
+            flat_fields.append(field)
+    return flat_fields
 
 
 def get_flat_params(dependant: Dependant) -> list[ModelField]:
@@ -292,12 +323,11 @@ def get_dependant(
     endpoint_signature = get_typed_signature(call)
     signature_params = endpoint_signature.parameters
     for param_name, param in signature_params.items():
-        is_path_param = param_name in path_param_names
         param_details = analyze_param(
             param_name=param_name,
             annotation=param.annotation,
             value=param.default,
-            is_path_param=is_path_param,
+            path_param_names=path_param_names,
         )
         if param_details.depends is not None:
             assert param_details.depends.dependency
@@ -383,8 +413,9 @@ def analyze_param(
     param_name: str,
     annotation: Any,
     value: Any,
-    is_path_param: bool,
+    path_param_names: set[str],
 ) -> ParamDetails:
+    is_path_param = param_name in path_param_names
     field_info = None
     depends = None
     type_annotation: Any = Any
@@ -503,6 +534,17 @@ def analyze_param(
             field_info = params.Body(annotation=use_annotation, default=default_value)
         else:
             field_info = params.Query(annotation=use_annotation, default=default_value)
+        if get_origin(use_annotation) is Annotated:
+            inferred_default = field_info.default
+            field_info = copy_field_info(
+                field_info=field_info,
+                annotation=use_annotation,
+            )
+            field_info.default = inferred_default
+            if is_path_param:
+                # A default factory can apply when this endpoint is used without the
+                # path parameter, but path parameters must always be required.
+                field_info.default_factory = None
 
     field = None
     # It's a field_info, not a dependency
@@ -521,6 +563,23 @@ def analyze_param(
         use_annotation_from_field_info = use_annotation
         if isinstance(field_info, params.Form):
             ensure_multipart_is_installed()
+            if _get_form_union_models(field_info.annotation):
+                field_info.annotation = _add_form_union_validators(
+                    field_info.annotation
+                )
+        validation_alias = field_info.validation_alias
+        if (
+            isinstance(field_info, params.Path)
+            and isinstance(validation_alias, AliasChoices)
+            and all(isinstance(choice, str) for choice in validation_alias.choices)
+        ):
+            for choice in cast(list[str], validation_alias.choices):
+                if choice in path_param_names:
+                    # Resolve the route name for both validation and OpenAPI without
+                    # changing metadata shared with other routes.
+                    field_info = copy(field_info)
+                    field_info.validation_alias = choice
+                    break
         if not field_info.alias and getattr(field_info, "convert_underscores", None):
             alias = param_name.replace("_", "-")
         else:
@@ -541,7 +600,7 @@ def analyze_param(
             assert (
                 is_scalar_field(field)
                 or field_annotation_is_scalar_sequence(field.field_info.annotation)
-                or lenient_issubclass(field.field_info.annotation, BaseModel)
+                or _get_model_type(field.field_info.annotation) is not None
             ), f"Query parameter {param_name!r} must be one of the supported types"
 
     return ParamDetails(type_annotation=type_annotation, depends=depends, field=field)
@@ -564,11 +623,27 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
 
 
 async def _solve_generator(
-    *, dependant: Dependant, stack: AsyncExitStack, sub_values: dict[str, Any]
+    *,
+    dependant: Dependant,
+    stack: AsyncExitStack,
+    sub_values: dict[str, Any],
+    request: Request | WebSocket,
 ) -> Any:
     assert dependant.call
     if _is_async_gen_callable(dependant.call):
         cm = asynccontextmanager(dependant.call)(**sub_values)
+        cleanup_scopes: dict[AsyncExitStack, CancelScope] = request.scope.setdefault(
+            "fastapi_async_cleanup_scopes", {}
+        )
+        request_stack = cast(AsyncExitStack, request.scope["fastapi_inner_astack"])
+        cleanup_scope = cleanup_scopes.get(request_stack)
+        if cleanup_scope is None:
+            # The request stack outlives both dependency scopes. Enter this
+            # before the first async generator so it encloses their own scopes.
+            cleanup_scope = request_stack.enter_context(CancelScope())
+            cleanup_scopes[request_stack] = cleanup_scope
+            request_stack.callback(cleanup_scopes.pop, request_stack)
+        cm = _asynccontextmanager_with_shielded_exit(cm, cleanup_scope)
     elif _is_gen_callable(dependant.call):
         cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
     return await stack.enter_async_context(cm)
@@ -587,7 +662,7 @@ async def solve_dependencies(
     *,
     request: Request | WebSocket,
     dependant: Dependant,
-    body: dict[str, Any] | FormData | bytes | None = None,
+    body: Any = Undefined,
     background_tasks: StarletteBackgroundTasks | None = None,
     response: Response | None = None,
     dependency_overrides_provider: Any | None = None,
@@ -666,6 +741,7 @@ async def solve_dependencies(
             if sub_dependant.scope == "function":
                 use_astack = function_astack
             solved = await _solve_generator(
+                request=request,
                 dependant=use_sub_dependant,
                 stack=use_astack,
                 sub_values=solved_result.values,
@@ -682,13 +758,16 @@ async def solve_dependencies(
         dependant.path_params, request.path_params
     )
     query_values, query_errors = request_params_to_args(
-        dependant.query_params, request.query_params
+        dependant.query_params,
+        request.query_params,
     )
     header_values, header_errors = request_params_to_args(
-        dependant.header_params, request.headers
+        dependant.header_params,
+        request.headers,
     )
     cookie_values, cookie_errors = request_params_to_args(
-        dependant.cookie_params, request.cookies
+        dependant.cookie_params,
+        request.cookies,
     )
     values.update(path_values)
     values.update(query_values)
@@ -734,11 +813,12 @@ async def solve_dependencies(
 def _validate_value_with_model_field(
     *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
 ) -> tuple[Any, list[Any]]:
-    if value is None:
+    if value is Undefined:
         if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
-        else:
-            return deepcopy(field.default), []
+        value = deepcopy(field.default)
+        if not field.field_info.validate_default:
+            return value, []
     return field.validate(value, values, loc=loc)
 
 
@@ -746,87 +826,86 @@ def _is_json_field(field: ModelField) -> bool:
     return any(type(item) is Json for item in field.field_info.metadata)
 
 
+def _is_empty_file_input(value: Any) -> bool:
+    # Browsers send an empty filename and content when no file is selected.
+    return isinstance(value, UploadFile) and value.filename == "" and value.size == 0
+
+
 def _get_multidict_value(
-    field: ModelField, values: Mapping[str, Any], alias: str | None = None
+    field: ModelField, values: Mapping[str, Any], alias: str
 ) -> Any:
-    alias = alias or get_validation_alias(field)
     if (
         (not _is_json_field(field))
         and field_annotation_is_sequence(field.field_info.annotation)
         and isinstance(values, (ImmutableMultiDict, Headers))
     ):
         value = values.getlist(alias)
+        if isinstance(values, FormData):
+            value = [item for item in value if not _is_empty_file_input(item)]
     else:
         value = values.get(alias, None)
     if (
         value is None
         or (
-            isinstance(field.field_info, params.Form)
-            and isinstance(value, str)  # For type checks
-            and value == ""
+            isinstance(values, FormData)
+            and (
+                (isinstance(value, str) and value == "") or _is_empty_file_input(value)
+            )
         )
         or (
             field_annotation_is_sequence(field.field_info.annotation)
             and len(value) == 0
         )
     ):
-        if field.field_info.is_required():
-            return
-        else:
-            return deepcopy(field.default)
+        # Apply defaults during validation, not while extracting request data.
+        return Undefined
     return value
 
 
-def request_params_to_args(
-    fields: Sequence[ModelField],
-    received_params: Mapping[str, Any] | QueryParams | Headers,
-) -> tuple[dict[str, Any], list[Any]]:
-    values: dict[str, Any] = {}
-    errors: list[dict[str, Any]] = []
-
-    if not fields:
-        return values, errors
-
-    first_field = fields[0]
-    fields_to_extract = fields
-    single_not_embedded_field = False
-    default_convert_underscores = True
-    if len(fields) == 1 and lenient_issubclass(
-        first_field.field_info.annotation, BaseModel
-    ):
-        fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
-        single_not_embedded_field = True
-        # If headers are in a Pydantic model, the way to disable convert_underscores
-        # would be with Header(convert_underscores=False) at the Pydantic model level
-        default_convert_underscores = getattr(
-            first_field.field_info, "convert_underscores", True
-        )
-
+def _request_param_model_to_args(
+    model_field: ModelField,
+    model: type[BaseModel],
+    received_params: Mapping[str, Any],
+) -> tuple[Any, list[Any]]:
+    fields_to_extract = get_cached_model_fields(model)
+    default_convert_underscores = getattr(
+        model_field.field_info, "convert_underscores", True
+    )
     params_to_process: dict[str, Any] = {}
+    header_aliases: dict[str, str] = {}
 
     processed_keys = set()
+    own_names: set[str] = set()
 
     for field in fields_to_extract:
-        alias = None
+        convert_underscores = isinstance(received_params, Headers) and getattr(
+            field.field_info, "convert_underscores", default_convert_underscores
+        )
+        aliases = _get_param_aliases(field, convert_underscores=convert_underscores)
+        own_names.update(
+            name.lower() if isinstance(received_params, Headers) else name
+            for _, name in aliases
+        )
+        alias, request_alias = next(
+            (pair for pair in aliases if pair[1] in received_params), aliases[0]
+        )
+        # Only reshape the selected alias. Unused choices can be extra fields
+        # or aliases used by other fields with different types.
+        value = _get_multidict_value(field, received_params, alias=request_alias)
+        if value is not Undefined:
+            params_to_process[alias] = value
         if isinstance(received_params, Headers):
-            # Handle fields extracted from a Pydantic Model for a header, each field
-            # doesn't have a FieldInfo of type Header with the default convert_underscores=True
-            convert_underscores = getattr(
-                field.field_info, "convert_underscores", default_convert_underscores
-            )
-            if convert_underscores:
-                alias = get_validation_alias(field)
-                if alias == field.name:
-                    alias = alias.replace("_", "-")
-        value = _get_multidict_value(field, received_params, alias=alias)
-        if value is not None:
-            params_to_process[get_validation_alias(field)] = value
-        processed_keys.add(alias or get_validation_alias(field))
-        # For headers with convert_underscores=True, mark both the converted
-        # header name and the original field alias as processed to avoid
-        # accepting the original alias as an extra header.
-        processed_keys.add(get_validation_alias(field))
+            processed_keys.add(request_alias.lower())
+            for validation_alias, header_alias in aliases:
+                if validation_alias != header_alias:
+                    # Do not accept an unconverted field name as an extra header.
+                    processed_keys.add(validation_alias.lower())
+            if alias != request_alias:
+                header_aliases[field.name] = request_alias
+        else:
+            processed_keys.add(request_alias)
 
+    # Let each model apply its extra policy to all remaining inputs.
     for key in received_params.keys():
         if key not in processed_keys:
             if isinstance(received_params, (ImmutableMultiDict, Headers)):
@@ -838,27 +917,56 @@ def request_params_to_args(
             else:
                 params_to_process[key] = received_params.get(key)
 
-    if single_not_embedded_field:
-        field_info = first_field.field_info
-        assert isinstance(field_info, params.Param), (
-            "Params must be subclasses of Param"
-        )
-        loc: tuple[str, ...] = (field_info.in_.value,)
-        v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=params_to_process, values=values, loc=loc
-        )
-        return {first_field.name: v_}, errors_
+    field_info = model_field.field_info
+    assert isinstance(field_info, params.Param), "Params must be subclasses of Param"
+    loc: tuple[str, ...] = (field_info.in_.value,)
+    value = params_to_process
+    if field_info.annotation is not model and not (
+        own_names.intersection(received_params)
+        or (model.model_config.get("extra") in ("allow", "forbid") and value)
+    ):
+        value = Undefined
+    v_, errors_ = _validate_value_with_model_field(
+        field=model_field, value=value, values={}, loc=loc
+    )
+    if header_aliases and model.model_config.get("loc_by_alias", True):
+        # Report the header names without changing model aliases or schema.
+        for error in errors_:
+            error_loc = error["loc"]
+            if len(error_loc) > 1 and error_loc[1] in header_aliases:
+                error["loc"] = (
+                    error_loc[0],
+                    header_aliases[error_loc[1]],
+                    *error_loc[2:],
+                )
+    return v_, errors_
 
+
+def request_params_to_args(
+    fields: Sequence[ModelField],
+    received_params: Mapping[str, Any] | QueryParams | Headers,
+) -> tuple[dict[str, Any], list[Any]]:
+    values: dict[str, Any] = {}
+    errors: list[Any] = []
+    if not fields:
+        return values, errors
     for field in fields:
-        value = _get_multidict_value(field, received_params)
-        field_info = field.field_info
-        assert isinstance(field_info, params.Param), (
-            "Params must be subclasses of Param"
-        )
-        loc = (field_info.in_.value, get_validation_alias(field))
-        v_, errors_ = _validate_value_with_model_field(
-            field=field, value=value, values=values, loc=loc
-        )
+        if (model := _get_param_model(field)) is not None:
+            v_, errors_ = _request_param_model_to_args(field, model, received_params)
+        else:
+            aliases = _get_param_aliases(field)
+            _, alias = next(
+                (pair for pair in aliases if pair[1] in received_params), aliases[0]
+            )
+            value = _get_multidict_value(field, received_params, alias=alias)
+            field_info = field.field_info
+            assert isinstance(field_info, params.Param), (
+                "Params must be subclasses of Param"
+            )
+            loc = (field_info.in_.value, alias)
+            v_, errors_ = _validate_value_with_model_field(
+                field=field, value=value, values=values, loc=loc
+            )
         if errors_:
             errors.extend(errors_)
         else:
@@ -866,23 +974,82 @@ def request_params_to_args(
     return values, errors
 
 
-def is_union_of_base_models(field_type: Any) -> bool:
-    """Check if field type is a Union where all members are BaseModel subclasses."""
-    from fastapi.types import UnionType
-
-    origin = get_origin(field_type)
-
-    # Check if it's a Union type (covers both typing.Union and types.UnionType in Python 3.10+)
-    if origin is not Union and origin is not UnionType:
-        return False
-
-    union_args = get_args(field_type)
-
-    for arg in union_args:
+def _get_form_union_models(annotation: Any) -> list[type[BaseModel]]:
+    if get_origin(annotation) not in (Union, UnionType):
+        return []
+    models = []
+    for arg in get_args(annotation):
+        if arg is type(None):
+            continue
+        if get_origin(arg) is Annotated:
+            arg = get_args(arg)[0]
         if not lenient_issubclass(arg, BaseModel):
-            return False
+            return []
+        models.append(arg)
+    # A nullable single model uses the regular form model extraction.
+    return models if len(models) > 1 else []
 
-    return True
+
+def _add_form_union_validators(annotation: Any) -> Any:
+    choices: list[Any] = []
+    for choice in get_args(annotation):
+        if choice is type(None):
+            choices.append(choice)
+            continue
+        model = choice
+        metadata: Sequence[Any] = ()
+        if get_origin(choice) is Annotated:
+            model, *metadata = get_args(choice)
+        validator = BeforeValidator(partial(_normalize_form_model, model=model))
+        # Keep existing discriminator tags or model names in union errors.
+        tag = next(
+            (item for item in reversed(metadata) if isinstance(item, Tag)),
+            Tag(model.__name__),
+        )
+        choices.append(Annotated[choice, validator, tag])
+    return Union[tuple(choices)]  # noqa: UP007
+
+
+def _normalize_form_model(value: Any, *, model: type[BaseModel]) -> Any:
+    if isinstance(value, dict):
+        # Repeated form values must be interpreted separately by each union branch.
+        form_data = FormData(
+            [
+                (key, item)
+                for key, items in value.items()
+                for item in (items if isinstance(items, list) else [items])
+            ]
+        )
+        normalized = {
+            alias: item
+            for alias, item, _ in _extract_form_items(
+                get_cached_model_fields(model), form_data
+            )
+        }
+        # These cannot come from browser form entries, but a validator can supply them.
+        for key, item in value.items():
+            if item is None or (isinstance(item, list) and not item):
+                normalized[key] = item
+        return normalized
+    return value
+
+
+def _get_form_models(field: ModelField) -> list[type[BaseModel]]:
+    if (
+        not isinstance(field.field_info, params.Form)
+        or field.field_info.embed
+        or _is_json_field(field)
+    ):
+        return []
+    model = _get_model_type(field.field_info.annotation)
+    if model is not None:
+        return [model]
+    return _get_form_union_models(field.field_info.annotation)
+
+
+def _get_form_model(field: ModelField) -> type[BaseModel] | None:
+    models = _get_form_models(field)
+    return models[0] if len(models) == 1 else None
 
 
 def _should_embed_body_fields(fields: list[ModelField]) -> bool:
@@ -895,6 +1062,13 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     if len(body_param_names_set) > 1:
         return True
     first_field = fields[0]
+    # Dependencies can use the same parameter name for different form models.
+    if _get_form_models(first_field) and any(
+        not _get_form_models(field)
+        or field.field_info.annotation is not first_field.field_info.annotation
+        for field in fields[1:]
+    ):
+        return True
     # If it explicitly specifies it is embedded, it has to be embedded
     if getattr(first_field.field_info, "embed", None):
         return True
@@ -903,88 +1077,163 @@ def _should_embed_body_fields(fields: list[ModelField]) -> bool:
     if (
         isinstance(first_field.field_info, params.Form)
         and not lenient_issubclass(first_field.field_info.annotation, BaseModel)
-        and not is_union_of_base_models(first_field.field_info.annotation)
+        and not _get_form_models(first_field)
     ):
         return True
     return False
 
 
-async def _extract_form_body(
+def _extract_form_items(
     body_fields: list[ModelField],
     received_body: FormData,
-) -> dict[str, Any]:
-    values = {}
+) -> Iterator[tuple[str, Any, ModelField | None]]:
+    field_aliases: set[str] = set()
 
     for field in body_fields:
-        value = _get_multidict_value(field, received_body)
-        field_info = field.field_info
-        if (
-            isinstance(field_info, params.File)
-            and is_bytes_or_nonable_bytes_annotation(field.field_info.annotation)
-            and isinstance(value, UploadFile)
-        ):
-            value = await value.read()
-        elif (
-            is_bytes_sequence_annotation(field.field_info.annotation)
-            and isinstance(field_info, params.File)
-            and value_is_sequence(value)
-        ):
-            # For types
-            assert isinstance(value, sequence_types)
-            results: list[bytes | str] = []
-            for sub_value in value:
-                results.append(await sub_value.read())
-            value = serialize_sequence_value(field=field, value=results)
-        if value is not None:
-            values[get_validation_alias(field)] = value
-    field_aliases = {get_validation_alias(field) for field in body_fields}
+        for alias, _ in _get_param_aliases(field):
+            field_aliases.add(alias)
+            value = _get_multidict_value(field, received_body, alias=alias)
+            if value is not Undefined:
+                yield alias, value, field
+                # Leave later aliases unchanged for other fields or extra validation.
+                break
     for key in received_body.keys():
         if key not in field_aliases:
             param_values = received_body.getlist(key)
             if len(param_values) == 1:
-                values[key] = param_values[0]
+                yield key, param_values[0], None
             else:
-                values[key] = param_values
-    return values
+                yield key, param_values, None
+
+
+async def _read_file_bytes(file: UploadFile) -> bytes:
+    # Automatic conversion must not consume a file shared with other parameters.
+    position = file.file.tell()
+    try:
+        return await file.read()
+    finally:
+        await file.seek(position)
+
+
+async def _extract_form_body(
+    body_fields: list[ModelField],
+    received_body: FormData,
+) -> AsyncIterator[tuple[str, Any, ModelField | None]]:
+    for alias, value, field in _extract_form_items(body_fields, received_body):
+        if field is not None and isinstance(field.field_info, params.File):
+            if is_bytes_or_nonable_bytes_annotation(
+                field.field_info.annotation
+            ) and isinstance(value, UploadFile):
+                value = await _read_file_bytes(value)
+            elif is_bytes_sequence_annotation(
+                field.field_info.annotation
+            ) and value_is_sequence(value):
+                assert isinstance(value, sequence_types)
+                results: list[bytes | str] = []
+                for sub_value in value:
+                    if isinstance(sub_value, UploadFile):
+                        results.append(await _read_file_bytes(sub_value))
+                    else:
+                        results.append(sub_value)
+                value = serialize_sequence_value(field=field, value=results)
+        yield alias, value, field
+
+
+def _is_form_model_supplied(
+    model: type[BaseModel],
+    received_body: FormData,
+) -> bool:
+    # Check raw keys before empty fields are removed.
+    own_names = {
+        alias
+        for item in get_cached_model_fields(model)
+        for alias, _ in _get_param_aliases(item)
+    }
+    return bool(
+        own_names.intersection(received_body)
+        or (model.model_config.get("extra") in ("allow", "forbid") and received_body)
+    )
+
+
+async def _extract_form_model(
+    field: ModelField,
+    models: list[type[BaseModel]],
+    received_body: FormData,
+) -> Any:
+    if type(None) in get_args(field.field_info.annotation) and not any(
+        _is_form_model_supplied(model, received_body) for model in models
+    ):
+        return Undefined
+    # Union validators normalize each branch from the original form values.
+    model_fields = get_cached_model_fields(models[0]) if len(models) == 1 else []
+    return {
+        alias: item
+        async for alias, item, _ in _extract_form_body(model_fields, received_body)
+    }
 
 
 async def request_body_to_args(
     body_fields: list[ModelField],
-    received_body: dict[str, Any] | FormData | bytes | None,
+    received_body: Any,
     embed_body_fields: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
     errors: list[dict[str, Any]] = []
     assert body_fields, "request_body_to_args() should be called with fields"
-    single_not_embedded_field = len(body_fields) == 1 and not embed_body_fields
+    single_not_embedded_field = (
+        len(body_fields) == 1
+        and not embed_body_fields
+        and not _should_embed_body_fields(body_fields)
+        and not _get_form_models(body_fields[0])
+    )
     first_field = body_fields[0]
     body_to_process = received_body
-
-    fields_to_extract: list[ModelField] = body_fields
-
-    if (
-        single_not_embedded_field
-        and lenient_issubclass(first_field.field_info.annotation, BaseModel)
-        and isinstance(received_body, FormData)
-    ):
-        fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
+    form_values: dict[str, tuple[str, Any]] = {}
 
     if isinstance(received_body, FormData):
-        body_to_process = await _extract_form_body(fields_to_extract, received_body)
+        fields_to_extract = [
+            field for field in body_fields if not _get_form_models(field)
+        ]
+        body_to_process = {}
+        async for alias, value, field in _extract_form_body(
+            fields_to_extract,
+            received_body,
+        ):
+            body_to_process[alias] = value
+            if field is not None:
+                # Keep each parameter's selected alias and scalar/list shape.
+                form_values[field.name] = (alias, value)
 
     if single_not_embedded_field:
         loc: tuple[str, ...] = ("body",)
         v_, errors_ = _validate_value_with_model_field(
-            field=first_field, value=body_to_process, values=values, loc=loc
+            field=first_field,
+            value=body_to_process,
+            values=values,
+            loc=loc,
         )
         return {first_field.name: v_}, errors_
     for field in body_fields:
-        loc = ("body", get_validation_alias(field))
-        value: Any | None = None
-        if body_to_process is not None and not isinstance(body_to_process, bytes):
+        aliases = [alias for alias, _ in _get_param_aliases(field)]
+        loc = ("body", aliases[0])
+        value = Undefined
+        if isinstance(received_body, FormData) and (models := _get_form_models(field)):
+            # Extract each model independently from the original form values.
+            value = await _extract_form_model(field, models, received_body)
+            loc = ("body",)
+        elif isinstance(received_body, FormData):
+            alias, value = form_values.get(field.name, (aliases[0], Undefined))
+            loc = ("body", alias)
+        elif body_to_process is not Undefined and not isinstance(
+            body_to_process, bytes
+        ):
             try:
-                value = body_to_process.get(get_validation_alias(field))
-            # If the received body is a list, not a dict
+                for alias in aliases:
+                    value = body_to_process.get(alias, Undefined)
+                    if value is not Undefined:
+                        loc = ("body", alias)
+                        break
+            # Embedded fields require an object, not a list, scalar, or null.
             except AttributeError:
                 errors.append(get_missing_field_error(loc))
                 continue
@@ -996,6 +1245,110 @@ async def request_body_to_args(
         else:
             values[field.name] = v_
     return values, errors
+
+
+def _get_form_model_schema(
+    model: type[BaseModel], core_schema: CoreSchema, handler: GetJsonSchemaHandler
+) -> dict[str, Any]:
+    schema = handler(core_schema)
+    model_schema = handler.resolve_ref_schema(schema)
+    properties = model_schema.get("properties", {})
+    required = model_schema.get("required", [])
+    aliases = {}
+    for field in get_cached_model_fields(model):
+        validation_alias = field.field_info.validation_alias
+        schema_name = (
+            validation_alias.choices[0]
+            if isinstance(validation_alias, AliasChoices)
+            else get_validation_alias(field)
+        )
+        names = [alias for alias, _ in _get_param_aliases(field)]
+        if (
+            isinstance(schema_name, str)
+            and schema_name in properties
+            and (
+                names[0] != schema_name or (len(names) > 1 and schema_name in required)
+            )
+        ):
+            aliases[schema_name] = names
+    if not aliases:
+        return schema
+    # Adjust only this form's aliases, leaving shared model schemas intact.
+    model_schema = deepcopy(model_schema)
+    model_schema["properties"] = {
+        aliases.get(name, [name])[0]: value
+        for name, value in model_schema["properties"].items()
+    }
+    model_schema["required"] = []
+    for name in required:
+        names = aliases.get(name, [name])
+        if len(names) == 1:
+            model_schema["required"].append(names[0])
+        else:
+            model_schema.setdefault("allOf", []).append(
+                {"anyOf": [{"required": [name]} for name in names]}
+            )
+    return model_schema
+
+
+def _apply_form_body_schema(
+    body_params: list[ModelField], schema: dict[str, Any]
+) -> None:
+    parameter_schemas = schema.pop("properties")
+    schema.pop("required", None)
+    properties: dict[str, Any] = {}
+    required: list[str] = []
+    conditions: list[dict[str, Any]] = []
+    for index, param in enumerate(body_params):
+        field_schema = parameter_schemas[f"field_{index}"]
+        models = _get_form_models(param)
+        if not models:
+            alias = _get_param_aliases(param)[0][0]
+            if alias in properties:
+                conditions.append({"properties": {alias: field_schema}})
+            else:
+                properties[alias] = field_schema
+            if param.field_info.is_required() and alias not in required:
+                required.append(alias)
+            continue
+
+        field_schema.pop("default", None)
+        if type(None) in get_args(param.field_info.annotation):
+            # A flat form group is omitted through absent fields, not a null body.
+            field_schema["anyOf"] = [
+                choice
+                for choice in field_schema["anyOf"]
+                if choice.get("type") != "null"
+            ]
+            if any(
+                model.model_config.get("extra") in ("allow", "forbid")
+                for model in models
+            ):
+                absent: dict[str, Any] = {"maxProperties": 0}
+            else:
+                names = sorted(
+                    {
+                        alias
+                        for model in models
+                        for item in get_cached_model_fields(model)
+                        for alias, _ in _get_param_aliases(item)
+                    }
+                )
+                absent = (
+                    {"not": {"anyOf": [{"required": [name]} for name in names]}}
+                    if names
+                    else {}
+                )
+            if param.field_info.is_required():
+                conditions.append({"not": absent})
+            else:
+                field_schema = {"anyOf": [absent, field_schema]}
+        conditions.append(field_schema)
+    if properties:
+        schema["properties"] = properties
+    if required:
+        schema["required"] = required
+    schema["allOf"] = conditions
 
 
 def _get_body_field(
@@ -1014,10 +1367,46 @@ def _get_body_field(
     if not body_params:
         return None
     first_param = body_params[0]
-    if not embed_body_fields:
+    has_nullable_form_model = any(
+        _get_form_models(field) and type(None) in get_args(field.field_info.annotation)
+        for field in body_params
+    )
+    if not embed_body_fields and not has_nullable_form_model:
         return first_param
     model_name = "Body_" + name
-    BodyModel = create_body_model(fields=body_params, model_name=model_name)
+    fields = body_params
+    config: ConfigDict | None = None
+    if any(_get_form_models(field) for field in body_params):
+        fields = []
+        for index, field in enumerate(body_params):
+            field_info = copy(field.field_info)
+            if (model := _get_form_model(field)) is not None:
+                model_annotation: Any = model
+                model_annotation = Annotated[
+                    model_annotation,
+                    GetPydanticSchema(
+                        get_pydantic_json_schema=partial(_get_form_model_schema, model)
+                    ),
+                ]
+                field_info.annotation = cast(
+                    Any,
+                    model_annotation
+                    if field_info.annotation is model
+                    else model_annotation | None,
+                )
+            field_info.alias = field_info.validation_alias = f"field_{index}"
+            field_info.serialization_alias = f"field_{index}"
+            field_info.title = field_info.title or field.name.replace("_", " ").title()
+            fields.append(ModelField(name=f"field_{index}", field_info=field_info))
+        config = {"json_schema_extra": partial(_apply_form_body_schema, body_params)}
+    BodyModel = create_body_model(fields=fields, model_name=model_name, config=config)
+    if not embed_body_fields:
+        field_info = copy(first_param.field_info)
+        field_info.annotation = BodyModel
+        # The original form field already carries the validation metadata.
+        field_info.metadata = []
+        field_info.discriminator = None
+        return ModelField(name=first_param.name, field_info=field_info)
     required = any(True for f in body_params if f.field_info.is_required())
     BodyFieldInfo_kwargs: dict[str, Any] = {
         "annotation": BodyModel,
@@ -1032,12 +1421,18 @@ def _get_body_field(
     else:
         BodyFieldInfo = params.Body
 
+    if BodyFieldInfo is not params.File:
         body_param_media_types = [
             f.field_info.media_type
             for f in body_params
-            if isinstance(f.field_info, params.Body)
+            if isinstance(f.field_info, BodyFieldInfo)
         ]
-        if len(set(body_param_media_types)) == 1:
+        if (
+            BodyFieldInfo is params.Form
+            and "multipart/form-data" in body_param_media_types
+        ):
+            BodyFieldInfo_kwargs["media_type"] = "multipart/form-data"
+        elif len(set(body_param_media_types)) == 1:
             BodyFieldInfo_kwargs["media_type"] = body_param_media_types[0]
     final_field = create_model_field(
         name="body",
@@ -1051,3 +1446,38 @@ def _get_body_field(
 def get_validation_alias(field: ModelField) -> str:
     va = getattr(field, "validation_alias", None)
     return va or field.alias
+
+
+def _get_param_aliases(
+    field: ModelField, *, convert_underscores: bool = False
+) -> list[tuple[str, str]]:
+    """Return (validation alias, request key) pairs in preference order."""
+    alias = get_validation_alias(field)
+    request_alias = alias
+    if convert_underscores and alias == field.name:
+        request_alias = alias.replace("_", "-")
+    validation_alias = field.field_info.validation_alias
+    if isinstance(field.field_info, params.Path) or isinstance(
+        validation_alias, AliasPath
+    ):
+        return [(alias, request_alias)]
+    aliases = [(alias, request_alias)]
+    if isinstance(validation_alias, AliasChoices):
+        if any(isinstance(choice, AliasPath) for choice in validation_alias.choices):
+            return aliases
+        # Explicit choices are literal names, including underscores in headers.
+        aliases = [
+            (choice, choice) for choice in cast(list[str], validation_alias.choices)
+        ]
+    config = field.config or {}
+    if config.get("validate_by_alias") is False or config.get(
+        "validate_by_name", config.get("populate_by_name", False)
+    ):
+        request_name = field.name
+        if convert_underscores:
+            request_name = request_name.replace("_", "-")
+        if config.get("validate_by_alias") is False:
+            return [(field.name, request_name)]
+        if field.name not in [alias for alias, _ in aliases]:
+            aliases.append((field.name, request_name))
+    return aliases

@@ -15,7 +15,7 @@ Bir frontend host etmeniz gerekiyorsa, bunun yerine `app.frontend()` kullanın; 
 * `StaticFiles`'ı import edin.
 * Belirli bir path'te bir `StaticFiles()` örneğini "mount" edin.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | Teknik Detaylar
 
@@ -45,4 +45,4 @@ Bu parametrelerin hepsi "`static`" ile aynı olmak zorunda değildir; kendi uygu
 
 ## Daha Fazla Bilgi { #more-info }
 
-Daha fazla detay ve seçenek için [Starlette'in Statik Dosyalar hakkındaki dokümanlarını](https://www.starlette.dev/staticfiles/) inceleyin.
+Daha fazla detay ve seçenek için [Starlette'in Statik Dosyalar hakkındaki dokümanlarını](https://starlette.dev/staticfiles/) inceleyin.

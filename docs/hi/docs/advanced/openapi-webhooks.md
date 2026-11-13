@@ -32,7 +32,7 @@ Webhooks OpenAPI 3.1.0 और उससे ऊपर में उपलब्�
 
 जब आप एक **FastAPI** application बनाते हैं, तो एक `webhooks` attribute होता है जिसका उपयोग आप *webhooks* define करने के लिए कर सकते हैं, उसी तरह जैसे आप *path operations* define करते हैं, उदाहरण के लिए `@app.webhooks.post()` के साथ।
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
+{* ../../docs_src/openapi_webhooks/tutorial001.py hl[9:12,15:20] *}
 
 आप जिन webhooks को define करते हैं वे **OpenAPI** schema और automatic **docs UI** में आ जाएँगे।
 

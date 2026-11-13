@@ -54,11 +54,11 @@
 
 ## 需求 { #requirements }
 
-在測試多種替代方案後，我決定採用 [**Pydantic**](https://docs.pydantic.dev/)，因為它的優勢。
+在測試多種替代方案後，我決定採用 [**Pydantic**](https://pydantic.dev/docs/)，因為它的優勢。
 
 隨後我也對它做出貢獻，使其完全符合 JSON Schema、支援以不同方式定義約束，並依據在多款編輯器中的測試結果改進編輯器支援（型別檢查、自動補全）。
 
-在開發過程中，我也對 [**Starlette**](https://www.starlette.dev/)（另一個關鍵依賴）做出貢獻。
+在開發過程中，我也對 [**Starlette**](https://starlette.dev/)（另一個關鍵依賴）做出貢獻。
 
 ## 開發 { #development }
 

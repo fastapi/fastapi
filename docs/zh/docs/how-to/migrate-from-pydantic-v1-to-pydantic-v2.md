@@ -24,7 +24,7 @@ FastAPI 0.128.0 也移除了对 `pydantic.v1` 的支持，因此最新版本的 
 
 ## 官方指南 { #official-guide }
 
-Pydantic 有一份从 v1 迁移到 v2 的官方[迁移指南](https://docs.pydantic.dev/latest/migration/)。
+Pydantic 有一份从 v1 迁移到 v2 的官方[迁移指南](https://pydantic.dev/docs/validation/latest/get-started/migration/)。
 
 其中包含变更内容、校验如何更准确更严格、可能的注意事项等。
 
@@ -52,7 +52,7 @@ Pydantic v2 以子模块 `pydantic.v1` 的形式包含了 Pydantic v1 的全部�
 
 这意味着你可以安装最新的 Pydantic v2，并从该子模块导入并使用旧的 Pydantic v1 组件，就像安装了旧版 Pydantic v1 一样。
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### FastAPI 对 v2 中 Pydantic v1 的支持 { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ Pydantic v2 以子模块 `pydantic.v1` 的形式包含了 Pydantic v1 的全部�
 
 因此，你可以将 Pydantic 升级到最新的 v2，并将导入改为使用 `pydantic.v1` 子模块，在很多情况下就能直接工作。
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning | 警告
 
@@ -80,7 +80,7 @@ Pydantic v2 以子模块 `pydantic.v1` 的形式包含了 Pydantic v1 的全部�
 
 ### 同一应用中同时使用 Pydantic v1 与 v2 { #pydantic-v1-and-v2-on-the-same-app }
 
-Pydantic 不支持在一个 Pydantic v2 模型的字段中定义 Pydantic v1 模型，反之亦然。
+Pydantic **不支持**在一个 Pydantic v2 模型的字段中定义 Pydantic v1 模型，反之亦然。
 
 ```mermaid
 graph TB
@@ -120,9 +120,9 @@ graph TB
     style V2Field fill:#f9fff3
 ```
 
-在某些情况下，甚至可以在 FastAPI 应用的同一个路径操作中同时使用 Pydantic v1 和 v2 模型：
+在某些情况下，甚至可以在 FastAPI 应用的同一个 **路径操作** 中同时使用 Pydantic v1 和 v2 模型：
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 在上面的示例中，输入模型是 Pydantic v1 模型，输出模型（在 `response_model=ItemV2` 中定义）是 Pydantic v2 模型。
 
@@ -130,7 +130,7 @@ graph TB
 
 如果你需要在 Pydantic v1 模型中使用 FastAPI 特有的参数工具，如 `Body`、`Query`、`Form` 等，在完成向 Pydantic v2 的迁移前，可以从 `fastapi.temp_pydantic_v1_params` 导入它们：
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### 分步迁移 { #migrate-in-steps }
 

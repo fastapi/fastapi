@@ -9,7 +9,7 @@ Para eso, puedes usar el `WSGIMiddleware` y usarlo para envolver tu aplicación 
 
 /// note | Nota
 
-Esto requiere instalar `a2wsgi`, por ejemplo con `pip install a2wsgi`.
+Esto requiere agregar `a2wsgi` a tu proyecto, por ejemplo con `uv add a2wsgi`.
 
 ///
 
@@ -19,7 +19,7 @@ Luego envuelve la aplicación WSGI (p. ej., Flask) con el middleware.
 
 Y luego móntala bajo un path.
 
-{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001.py hl[1,3,23] *}
 
 /// note | Nota
 

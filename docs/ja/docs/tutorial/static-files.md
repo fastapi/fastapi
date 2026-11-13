@@ -15,7 +15,7 @@
 * `StaticFiles` をインポート。
 * `StaticFiles()` インスタンスを特定のパスに「マウント」。
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | 技術詳細
 
@@ -45,4 +45,4 @@
 
 ## より詳しい情報 { #more-info }
 
-詳細とオプションについては、[Starletteの静的ファイルに関するドキュメント](https://www.starlette.dev/staticfiles/)を確認してください。
+詳細とオプションについては、[Starletteの静的ファイルに関するドキュメント](https://starlette.dev/staticfiles/)を確認してください。

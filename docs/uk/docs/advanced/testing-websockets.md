@@ -4,10 +4,10 @@
 
 Для цього використайте `TestClient` в інструкції `with`, підключаючись до WebSocket:
 
-{* ../../docs_src/app_testing/tutorial002_py310.py hl[27:31] *}
+{* ../../docs_src/app_testing/tutorial002.py hl[27:31] *}
 
 /// note | Примітка
 
-Докладніше дивіться документацію Starlette щодо [тестування WebSocket](https://www.starlette.dev/testclient/#testing-websocket-sessions).
+Докладніше дивіться документацію Starlette щодо [тестування WebSocket](https://starlette.dev/testclient/#testing-websocket-sessions).
 
 ///

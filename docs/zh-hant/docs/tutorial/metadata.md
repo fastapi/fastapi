@@ -18,7 +18,7 @@
 
 你可以這樣設定它們：
 
-{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001.py hl[3:16, 19:32] *}
 
 /// tip | 提示
 
@@ -36,7 +36,7 @@
 
 例如：
 
-{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
 
 ## 標籤的中繼資料 { #metadata-for-tags }
 
@@ -58,7 +58,7 @@
 
 先為你的標籤建立中繼資料，然後將它傳給 `openapi_tags` 參數：
 
-{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004.py hl[3:16,18] *}
 
 注意你可以在描述中使用 Markdown，例如「login」會以粗體（**login**）顯示，而「fancy」會以斜體（_fancy_）顯示。
 
@@ -72,7 +72,7 @@
 
 在你的*路徑操作*（以及 `APIRouter`s）上使用 `tags` 參數，將它們歸類到不同標籤下：
 
-{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
 
 /// note | 注意
 
@@ -100,7 +100,7 @@
 
 例如，將它設定為提供在 `/api/v1/openapi.json`：
 
-{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002.py hl[3] *}
 
 如果你想完全停用 OpenAPI 綱要，可以設定 `openapi_url=None`，同時也會停用依賴它的文件使用者介面。
 
@@ -117,4 +117,4 @@
 
 例如，將 Swagger UI 提供於 `/documentation`，並停用 ReDoc：
 
-{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003.py hl[3] *}

@@ -6,13 +6,13 @@ Dies vereinfacht es, aktuelle **Dokumentation** und Client-Bibliotheken (<abbr t
 
 In diesem Leitfaden erfahren Sie, wie Sie ein **TypeScript-SDK** für Ihr FastAPI-Backend generieren.
 
-## Open Source SDK-Generatoren { #open-source-sdk-generators }
+## Open-Source-SDK-Generatoren { #open-source-sdk-generators }
 
 Eine vielseitige Möglichkeit ist der [OpenAPI Generator](https://openapi-generator.tech/), der **viele Programmiersprachen** unterstützt und SDKs aus Ihrer OpenAPI-Spezifikation generieren kann.
 
 Für **TypeScript-Clients** ist [Hey API](https://heyapi.dev/) eine speziell entwickelte Lösung, die ein optimiertes Erlebnis für das TypeScript-Ökosystem bietet.
 
-Weitere SDK-Generatoren finden Sie auf [OpenAPI.Tools](https://openapi.tools/#sdk).
+Weitere SDK-Generatoren finden Sie auf [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Tipp
 
@@ -24,7 +24,7 @@ FastAPI generiert automatisch **OpenAPI 3.1**-Spezifikationen, daher muss jedes 
 
 Beginnen wir mit einer einfachen FastAPI-Anwendung:
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 Beachten Sie, dass die *Pfadoperationen* die Modelle definieren, die sie für die <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>- und <abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>-<abbr title="Die eigentlichen Nutzdaten, abzüglich der Metadaten">Payload</abbr> verwenden, indem sie die Modelle `Item` und `ResponseMessage` verwenden.
 
@@ -50,7 +50,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Dies generiert ein TypeScript-SDK in `./src/client`.
 
-Sie können lernen, wie man [`@hey-api/openapi-ts` installiert](https://heyapi.dev/openapi-ts/get-started) und über die [erzeugte Ausgabe](https://heyapi.dev/openapi-ts/output) auf deren Website lesen.
+Sie können lernen, wie Sie [`@hey-api/openapi-ts` installieren](https://heyapi.dev/openapi-ts/get-started) und über die [erzeugte Ausgabe](https://heyapi.dev/openapi-ts/output) auf deren Website lesen.
 
 ### Das SDK verwenden { #using-the-sdk }
 
@@ -82,7 +82,7 @@ In vielen Fällen wird Ihre FastAPI-App größer sein und Sie werden wahrscheinl
 
 Zum Beispiel könnten Sie einen Abschnitt für **Items** und einen weiteren Abschnitt für **Users** haben, und diese könnten durch Tags getrennt sein:
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### Einen TypeScript-Client mit Tags generieren { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ Hier verwendet sie beispielsweise den ersten Tag (Sie werden wahrscheinlich nur 
 
 Anschließend können Sie diese benutzerdefinierte Funktion als `generate_unique_id_function`-Parameter an **FastAPI** übergeben:
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### Einen TypeScript-Client mit benutzerdefinierten Operation-IDs generieren { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ Aber für den generierten Client könnten wir die OpenAPI-Operation-IDs direkt v
 
 Wir könnten das OpenAPI-JSON in eine Datei `openapi.json` herunterladen und dann mit einem Skript wie dem folgenden **den präfixierten Tag entfernen**:
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

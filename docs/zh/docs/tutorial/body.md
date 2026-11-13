@@ -6,7 +6,7 @@
 
 你的 API 几乎总是需要发送**响应体**。但客户端不一定总是要发送**请求体**，有时它们只请求某个路径，可能带一些查询参数，但不会发送请求体。
 
-使用 [Pydantic](https://docs.pydantic.dev/) 模型来声明**请求体**，能充分利用它的功能和优点。
+使用 [Pydantic](https://pydantic.dev/docs/) 模型来声明**请求体**，能充分利用它的功能和优点。
 
 /// note | 注意
 
@@ -22,7 +22,7 @@
 
 首先，你需要从 `pydantic` 中导入 `BaseModel`：
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## 创建数据模型 { #create-your-data-model }
 
@@ -30,7 +30,7 @@
 
 使用 Python 标准类型声明所有属性：
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 与声明查询参数一样，包含默认值的模型属性是可选的，否则就是必选的。把默认值设为 `None` 可使其变为可选。
@@ -59,7 +59,7 @@
 
 使用与声明路径和查询参数相同的方式，把它添加至*路径操作*：
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...并把其类型声明为你创建的模型 `Item`。
 
@@ -126,7 +126,7 @@
 
 在函数内部直接访问模型对象的所有属性：
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## 请求体 + 路径参数 { #request-body-path-parameters }
 
@@ -134,7 +134,7 @@
 
 **FastAPI** 能识别与**路径参数**匹配的函数参数应该**从路径中获取**，而声明为 Pydantic 模型的函数参数应该**从请求体中获取**。
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## 请求体 + 路径 + 查询参数 { #request-body-path-query-parameters }
@@ -143,7 +143,7 @@
 
 **FastAPI** 会分别识别它们，并从正确的位置获取数据。
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 函数参数按如下规则进行识别：
 

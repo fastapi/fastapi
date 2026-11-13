@@ -22,7 +22,7 @@ Python にはオプションの「型ヒント」（「型アノテーション�
 
 簡単な例から始めてみましょう:
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 このプログラムを呼び出すと、以下が出力されます:
 
@@ -36,7 +36,7 @@ John Doe
 * `title()` を用いて、それぞれの最初の文字を大文字に変換します。
 * 真ん中にスペースを入れて<dfn title="1つにまとめます。片方の内容をもう片方の後ろに続けます。">連結</dfn>します。
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### 編集 { #edit-it }
 
@@ -78,7 +78,7 @@ John Doe
 
 それが「型ヒント」です:
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 これは、以下のようにデフォルト値を宣言するのと同じではありません:
 
@@ -106,7 +106,7 @@ John Doe
 
 この関数を見てください。すでに型ヒントを持っています:
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 エディタは変数の型を知っているので、補完だけでなく、エラーチェックをすることもできます:
 
@@ -114,7 +114,7 @@ John Doe
 
 これで `age` を `str(age)` で文字列に変換して修正する必要があることがわかります:
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## 型の宣言 { #declaring-types }
 
@@ -133,7 +133,7 @@ John Doe
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### `typing` モジュール { #typing-module }
 
@@ -170,7 +170,7 @@ def some_function(data: Any):
 
 リストはいくつかの内部の型を含む型なので、それらを角括弧で囲みます:
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | 備考
 
@@ -196,7 +196,7 @@ def some_function(data: Any):
 
 `tuple` と `set` の宣言も同様です:
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 つまり:
 
@@ -211,7 +211,7 @@ def some_function(data: Any):
 
 2 番目の型パラメータは `dict` の値です:
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 つまり:
 
@@ -228,7 +228,7 @@ def some_function(data: Any):
 これは「ユニオン（union）」と呼ばれます。変数がそれら 2 つの型の集合の和集合のいずれかになり得るからです。
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 これは `item` が `int` または `str` になり得ることを意味します。
@@ -240,7 +240,7 @@ def some_function(data: Any):
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -253,11 +253,11 @@ def some_function(data: Any):
 
 名前を持つ `Person` クラスがあるとしましょう:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 変数を `Person` 型として宣言できます:
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 そして、再び、すべてのエディタのサポートを得ることができます:
 
@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic のモデル { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) はデータ検証を行うための Python ライブラリです。
+[Pydantic](https://pydantic.dev/docs/) はデータ検証を行うための Python ライブラリです。
 
 データの「形」を属性付きのクラスとして宣言します。
 
@@ -281,11 +281,11 @@ def some_function(data: Any):
 
 Pydantic の公式ドキュメントからの例:
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | 備考
 
-[Pydantic の詳細はドキュメントを参照してください](https://docs.pydantic.dev/)。
+[Pydantic の詳細はドキュメントを参照してください](https://pydantic.dev/docs/)。
 
 ///
 
@@ -299,7 +299,7 @@ Python には、`Annotated` を使って型ヒントに **追加の <dfn title="
 
 `Annotated` は `typing` からインポートできます。
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Python 自体は、この `Annotated` で何かをするわけではありません。また、エディタや他のツールにとっても、型は依然として `str` です。
 

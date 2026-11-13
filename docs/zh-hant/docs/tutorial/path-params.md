@@ -2,7 +2,7 @@
 
 你可以用與 Python 格式化字串相同的語法來宣告路徑「參數」或「變數」：
 
-{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 路徑參數 `item_id` 的值會作為引數 `item_id` 傳入你的函式。
 
@@ -16,7 +16,7 @@
 
 你可以在函式中使用標準的 Python 型別註記為路徑參數宣告型別：
 
-{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 在這個例子裡，`item_id` 被宣告為 `int`。
 
@@ -92,7 +92,7 @@
 
 ## 基於標準的優勢與替代文件 { #standards-based-benefits-alternative-documentation }
 
-而且因為產生的 schema 來自 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md) 標準，有很多相容的工具可用。
+而且因為產生的 schema 來自 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 標準，有很多相容的工具可用。
 
 因此，**FastAPI** 本身也提供另一種 API 文件（使用 ReDoc），你可以在 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 存取：
 
@@ -102,7 +102,7 @@
 
 ## Pydantic { #pydantic }
 
-所有資料驗證都由 [Pydantic](https://docs.pydantic.dev/) 在底層處理，因此你能直接受惠。而且你可以放心使用。
+所有資料驗證都由 [Pydantic](https://pydantic.dev/docs/) 在底層處理，因此你能直接受惠。而且你可以放心使用。
 
 你可以用相同的型別宣告搭配 `str`、`float`、`bool` 與許多更複雜的資料型別。
 
@@ -118,13 +118,13 @@
 
 因為「路徑操作」會依宣告順序來比對，你必須確保 `/users/me` 的路徑在 `/users/{user_id}` 之前宣告：
 
-{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 否則，`/users/{user_id}` 的路徑也會匹配 `/users/me`，並「認為」它收到一個值為 `"me"` 的 `user_id` 參數。
 
 同樣地，你不能重新定義同一路徑操作：
 
-{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 因為第一個會被優先使用（路徑先匹配到）。
 
@@ -140,7 +140,7 @@
 
 然後建立具有固定值的類別屬性，這些就是可用的有效值：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// tip
 
@@ -152,7 +152,7 @@
 
 接著使用你建立的列舉類別（`ModelName`）作為型別註記，建立一個「路徑參數」：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### 查看文件 { #check-the-docs }
 
@@ -168,13 +168,13 @@
 
 你可以把它與你建立的列舉 `ModelName` 中的「列舉成員」比較：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### 取得「列舉值」 { #get-the-enumeration-value }
 
 你可以用 `model_name.value` 取得實際的值（在這個例子中是 `str`），一般而言就是 `your_enum_member.value`：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip
 
@@ -188,7 +188,7 @@
 
 在回傳給用戶端之前，它們會被轉成對應的值（此例為字串）：
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 你的用戶端會收到像這樣的 JSON 回應：
 
@@ -227,7 +227,7 @@ OpenAPI 並不支援直接宣告一個「路徑參數」內再包含一個「路
 
 所以你可以這樣使用它：
 
-{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip
 
@@ -248,4 +248,4 @@ OpenAPI 並不支援直接宣告一個「路徑參數」內再包含一個「路
 
 而且你只要宣告一次就好。
 
-這大概是 **FastAPI** 相較於其他框架最明顯的優勢之一（除了原始效能之外）。
+這大概是 **FastAPI** 相較於其他框架最明顯的優勢（除了原始效能之外）。

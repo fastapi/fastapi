@@ -30,12 +30,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 Python में JWT tokens generate और verify करने के लिए हमें `PyJWT` install करना होगा।
 
-सुनिश्चित करें कि आप एक [virtual environment](../../virtual-environments.md) बनाएँ, उसे activate करें, और फिर `pyjwt` install करें:
+अपने project में `pyjwt` जोड़ें:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ pwdlib password hashes संभालने के लिए एक शान�
 
 Recommended algorithm "Argon2" है।
 
-सुनिश्चित करें कि आप एक [virtual environment](../../virtual-environments.md) बनाएँ, उसे activate करें, और फिर Argon2 के साथ pwdlib install करें:
+अपने project में Argon2 के साथ `pwdlib` जोड़ें:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -116,7 +116,7 @@ User से आने वाले password को hash करने के ल�
 
 और एक और utility बनाएँ जो authenticate करे और user return करे।
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 जब `authenticate_user` को ऐसे username के साथ call किया जाता है जो database में मौजूद नहीं है, तब भी हम dummy hash के against `verify_password` चलाते हैं।
 
@@ -156,7 +156,7 @@ Token की expiration के लिए एक variable बनाएँ।
 
 नया access token generate करने के लिए एक utility function बनाएँ।
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Dependencies update करें { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ Received token को decode करें, verify करें, और current u
 
 अगर token invalid है, तो तुरंत HTTP error return करें।
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## `/token` *path operation* update करें { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ Token की expiration time के साथ एक `timedelta` बनाएँ
 
 एक वास्तविक JWT access token बनाएँ और उसे return करें।
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### JWT "subject" `sub` के बारे में technical details { #technical-details-about-the-jwt-subject-sub }
 

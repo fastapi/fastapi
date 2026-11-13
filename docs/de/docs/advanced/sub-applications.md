@@ -4,13 +4,13 @@ Wenn Sie zwei unabhängige FastAPI-Anwendungen mit deren eigenen unabhängigen O
 
 ## Eine **FastAPI**-Anwendung mounten { #mounting-a-fastapi-application }
 
-„Mounten“ („Einhängen“) bedeutet das Hinzufügen einer völlig „unabhängigen“ Anwendung an einem bestimmten Pfad, die sich dann um die Handhabung aller unter diesem Pfad liegenden _Pfadoperationen_ kümmert, welche in dieser Unteranwendung deklariert sind.
+„Mounten“ bedeutet das Hinzufügen einer völlig „unabhängigen“ Anwendung an einem bestimmten Pfad, die sich dann um die Handhabung aller unter diesem Pfad liegenden _Pfadoperationen_ kümmert, welche in dieser Unteranwendung deklariert sind.
 
-### Hauptanwendung { #top-level-application }
+### Top-Level-Anwendung { #top-level-application }
 
-Erstellen Sie zunächst die Hauptanwendung **FastAPI** und deren *Pfadoperationen*:
+Erstellen Sie zunächst die Haupt-, Top-Level-**FastAPI**-Anwendung und deren *Pfadoperationen*:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### Unteranwendung { #sub-application }
 
@@ -18,7 +18,7 @@ Erstellen Sie dann Ihre Unteranwendung und deren *Pfadoperationen*.
 
 Diese Unteranwendung ist nur eine weitere Standard-FastAPI-Anwendung, aber diese wird „gemountet“:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### Die Unteranwendung mounten { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@ Mounten Sie in Ihrer Top-Level-Anwendung `app` die Unteranwendung `subapi`.
 
 In diesem Fall wird sie im Pfad `/subapi` gemountet:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### Die automatische API-Dokumentation testen { #check-the-automatic-api-docs }
 
@@ -35,7 +35,7 @@ Führen Sie nun den Befehl `fastapi` aus:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

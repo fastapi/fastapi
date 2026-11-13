@@ -34,12 +34,12 @@
 
 ## Установка `SQLModel` { #install-sqlmodel }
 
-Сначала убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его и затем установили `sqlmodel`:
+Добавьте `sqlmodel` в свой проект:
 
 <div class="termy">
 
 ```console
-$ pip install sqlmodel
+$ uv add sqlmodel
 ---> 100%
 ```
 
@@ -55,7 +55,7 @@ $ pip install sqlmodel
 
 Импортируйте `SQLModel` и создайте модель базы данных:
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[1:11] hl[7:11] *}
 
 Класс `Hero` очень похож на модель Pydantic (фактически, под капотом, это и есть модель Pydantic).
 
@@ -77,7 +77,7 @@ $ pip install sqlmodel
 
 У вас должен быть **один объект `engine`** для всей кодовой базы, чтобы подключаться к одной и той же базе данных.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[14:18] hl[14:15,17:18] *}
 
 Параметр `check_same_thread=False` позволяет FastAPI использовать одну и ту же базу данных SQLite в разных потоках. Это необходимо, так как **один запрос** может использовать **больше одного потока** (например, в зависимостях).
 
@@ -87,7 +87,7 @@ $ pip install sqlmodel
 
 Далее мы добавим функцию, которая использует `SQLModel.metadata.create_all(engine)`, чтобы **создать таблицы** для всех *моделей-таблиц*.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[21:22] hl[21:22] *}
 
 ### Создание зависимости Session { #create-a-session-dependency }
 
@@ -97,13 +97,13 @@ $ pip install sqlmodel
 
 Затем мы создадим объявленную (`Annotated`) зависимость `SessionDep`, чтобы упростить остальной код, который будет использовать эту зависимость.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[25:30]  hl[25:27,30] *}
 
 ### Создание таблиц базы данных при старте { #create-database-tables-on-startup }
 
 Мы создадим таблицы базы данных при запуске приложения.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[32:37] hl[35:37] *}
 
 Здесь мы создаём таблицы в обработчике события запуска приложения.
 
@@ -123,7 +123,7 @@ $ pip install sqlmodel
 
 Аналогично вы можете объявить её как **тип возвращаемого значения** функции, и тогда форма данных отобразится в автоматически сгенерированном UI документации API.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[40:45] hl[40:45] *}
 
 Здесь мы используем зависимость `SessionDep` (это `Session`), чтобы добавить нового `Hero` в экземпляр `Session`, зафиксировать изменения в базе данных, обновить данные в `hero` и затем вернуть его.
 
@@ -131,19 +131,19 @@ $ pip install sqlmodel
 
 Мы можем **читать** записи `Hero` из базы данных с помощью `select()`. Можно добавить `limit` и `offset` для постраничного вывода результатов.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[48:55] hl[51:52,54] *}
 
 ### Чтение одного героя { #read-one-hero }
 
 Мы можем **прочитать** одного `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[58:63] hl[60] *}
 
 ### Удаление героя { #delete-a-hero }
 
 Мы также можем **удалить** `Hero`.
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[66:73] hl[71] *}
 
 ### Запуск приложения { #run-the-app }
 
@@ -152,7 +152,7 @@ $ pip install sqlmodel
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -192,7 +192,7 @@ $ fastapi dev
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:9] hl[7:9] *}
 
 #### `Hero` — *модель-таблица* { #hero-the-table-model }
 
@@ -208,7 +208,7 @@ $ fastapi dev
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:14] hl[12:14] *}
 
 #### `HeroPublic` — публичная *модель данных* { #heropublic-the-public-data-model }
 
@@ -234,7 +234,7 @@ $ fastapi dev
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:18] hl[17:18] *}
 
 #### `HeroCreate` — *модель данных* для создания героя { #herocreate-the-data-model-to-create-a-hero }
 
@@ -258,7 +258,7 @@ $ fastapi dev
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:22] hl[21:22] *}
 
 #### `HeroUpdate` — *модель данных* для обновления героя { #heroupdate-the-data-model-to-update-a-hero }
 
@@ -276,7 +276,7 @@ $ fastapi dev
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:28] hl[25:28] *}
 
 ### Создание с `HeroCreate` и возврат `HeroPublic` { #create-with-herocreate-and-return-a-heropublic }
 
@@ -288,7 +288,7 @@ $ fastapi dev
 
 Затем возвращаем из функции ту же *модель-таблицу* `Hero` как есть. Но так как мы объявили `response_model` с *моделью данных* `HeroPublic`, **FastAPI** использует `HeroPublic` для валидации и сериализации данных.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[56:62] hl[56:58] *}
 
 /// tip | Подсказка
 
@@ -304,13 +304,13 @@ $ fastapi dev
 
 Аналогично мы можем **читать** `Hero` — снова используем `response_model=list[HeroPublic]`, чтобы данные валидировались и сериализовались корректно.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[65:72] hl[65] *}
 
 ### Чтение одного героя с `HeroPublic` { #read-one-hero-with-heropublic }
 
 Мы можем **прочитать** одного героя:
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[75:80] hl[77] *}
 
 ### Обновление героя с `HeroUpdate` { #update-a-hero-with-heroupdate }
 
@@ -320,7 +320,7 @@ $ fastapi dev
 
 Затем мы используем `hero_db.sqlmodel_update(hero_data)`, чтобы обновить `hero_db` данными из `hero_data`.
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[83:93] hl[83:84,88:89] *}
 
 ### Снова удаление героя { #delete-a-hero-again }
 
@@ -328,7 +328,7 @@ $ fastapi dev
 
 Желание *«отрефакторить всё»* на этот раз останется неудовлетворённым. 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[96:103] hl[101] *}
 
 ### Снова запустим приложение { #run-the-app-again }
 
@@ -337,7 +337,7 @@ $ fastapi dev
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

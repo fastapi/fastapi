@@ -2,16 +2,22 @@
 
 Найпростіший файл FastAPI може виглядати так:
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Скопіюйте це до файлу `main.py`.
+
+/// tip | Порада
+
+FastAPI має [офіційне розширення для VS Code](https://marketplace.visualstudio.com/items?itemName=FastAPILabs.fastapi-vscode) (і Cursor), яке надає багато функцій, включно з оглядачем операцій шляху, пошуком операцій шляху, навігацією CodeLens у тестах (перехід до визначення з тестів), а також розгортанням і логами FastAPI Cloud - усе з вашого редактора.
+
+///
 
 Запустіть live-сервер:
 
 <div class="termy">
 
 ```console
-$ <font color="#4E9A06">fastapi</font> dev
+$ <font color="#4E9A06">uv run fastapi</font> dev
 
   <span style="background-color:#009485"><font color="#D3D7CF"> FastAPI </font></span>  Starting development server 🚀
 
@@ -78,7 +84,7 @@ INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 
 А тепер перейдіть сюди [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc).
 
-Ви побачите альтернативну автоматичну документацію (надається [ReDoc](https://github.com/Rebilly/ReDoc)):
+Ви побачите альтернативну автоматичну документацію (надається [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -185,13 +191,13 @@ from backend.main import app
 Ви також можете передати шлях до файлу в команду `fastapi dev`, і вона вгадає обʼєкт FastAPI app, який слід використовувати:
 
 ```console
-$ fastapi dev main.py
+$ uv run fastapi dev main.py
 ```
 
 Або ви також можете передати параметр `--entrypoint` команді `fastapi dev`:
 
 ```console
-$ fastapi dev --entrypoint main:app
+$ uv run fastapi dev --entrypoint main:app
 ```
 
 Але вам доведеться щоразу памʼятати передавати правильний шлях\entrypoint під час виклику команди `fastapi`.
@@ -205,7 +211,7 @@ $ fastapi dev --entrypoint main:app
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -224,7 +230,7 @@ CLI автоматично визначить ваш застосунок FastAP
 
 ### Крок 1: імпортуємо `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` - це клас у Python, який надає всю функціональність для вашого API.
 
@@ -232,13 +238,13 @@ CLI автоматично визначить ваш застосунок FastAP
 
 `FastAPI` - це клас, який успадковується безпосередньо від `Starlette`.
 
-Ви також можете використовувати всю функціональність [Starlette](https://www.starlette.dev/) у `FastAPI`.
+Ви також можете використовувати всю функціональність [Starlette](https://starlette.dev/) у `FastAPI`.
 
 ///
 
 ### Крок 2: створюємо «екземпляр» `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 Тут змінна `app` буде «екземпляром» класу `FastAPI`.
 
@@ -307,7 +313,7 @@ https://example.com/items/foo
 
 #### Визначте *декоратор операції шляху* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 Декоратор `@app.get("/")` повідомляє **FastAPI**, що функція одразу нижче відповідає за обробку запитів, які надходять до:
 
@@ -361,7 +367,7 @@ https://example.com/items/foo
 * **операція**: це `get`.
 * **функція**: це функція нижче «декоратора» (нижче `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 Це функція Python.
 
@@ -373,7 +379,7 @@ https://example.com/items/foo
 
 Ви також можете визначити її як звичайну функцію замість `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | Примітка
 
@@ -383,7 +389,7 @@ https://example.com/items/foo
 
 ### Крок 5: поверніть вміст { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 Ви можете повернути `dict`, `list`, а також окремі значення `str`, `int` тощо.
 

@@ -4,7 +4,7 @@
 
 これはユーザーモデルの場合は特にそうです。なぜなら:
 
-* **入力モデル** にはパスワードが必要です。
+* **入力モデル** にはパスワードを持たせられる必要があります。
 * **出力モデル**はパスワードをもつべきではありません。
 * **データベースモデル**はおそらくハッシュ化されたパスワードが必要になるでしょう。
 
@@ -20,7 +20,7 @@
 
 ここでは、パスワードフィールドをもつモデルがどのように見えるのか、また、どこで使われるのか、大まかなイメージを紹介します:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### `**user_in.model_dump()` について { #about-user-in-model-dump }
 
@@ -54,10 +54,10 @@ print(user_dict)
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ UserInDB(
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -108,7 +108,7 @@ UserInDB(**user_dict)
 UserInDB(**user_in.model_dump())
 ```
 
-...なぜなら`user_in.model_dump()`は`dict`であり、`**`を付与して`UserInDB`を渡してPythonに「展開」させているからです。
+...なぜなら`user_in.model_dump()`は`dict`であり、`**`を付与して`UserInDB`に渡してPythonに「展開」させているからです。
 
 そこで、別のPydanticモデルのデータからPydanticモデルを取得します。
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -144,7 +144,7 @@ UserInDB(
 
 コードの重複が増えると、バグやセキュリティの問題、コードの非同期化問題（ある場所では更新しても他の場所では更新されない場合）などが発生する可能性が高くなります。
 
-そして、これらのモデルは全てのデータを共有し、属性名や型を重複させています。
+そして、これらのモデルは全て多くのデータを共有し、属性名や型を重複させています。
 
 もっと良い方法があります。
 
@@ -154,7 +154,7 @@ UserInDB(
 
 このようにして、モデル間の違いだけを宣言することができます（平文の`password`、`hashed_password`、パスワードなし）:
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` または `anyOf` { #union-or-anyof }
 
@@ -166,11 +166,11 @@ OpenAPIでは`anyOf`で定義されます。
 
 /// note | 備考
 
-[`Union`](https://docs.pydantic.dev/latest/concepts/types/#unions)を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
+[`Union`](https://pydantic.dev/docs/validation/latest/concepts/unions/)を定義する場合は、最も具体的な型を先に、その後により具体性の低い型を含めてください。以下の例では、より具体的な`PlaneItem`が`Union[PlaneItem, CarItem]`内で`CarItem`より前に来ています。
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### Python 3.10の`Union` { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ some_variable: PlaneItem | CarItem
 
 そのためには、標準のPythonの`list`を使用します:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## 任意の`dict`によるレスポンス { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ some_variable: PlaneItem | CarItem
 
 この場合、`dict`を使用できます:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## まとめ { #recap }
 

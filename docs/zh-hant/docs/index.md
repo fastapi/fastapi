@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python 並基於標準的 Python 型別提示來構建 API。
 
+<!-- agent-banner -->
+
 主要特點包含：
 
 * **快速**：非常高的效能，可與 **NodeJS** 和 **Go** 相當（歸功於 Starlette 和 Pydantic）。[最快的 Python 框架之一](#performance)。
@@ -109,8 +111,8 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
     <div class="fastapi-opinions__attr">— Kabir Khan，<strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
-    <blockquote class="fastapi-opinions__quote">「我們採用了 <strong>FastAPI</strong> 函式庫來啟動一個可供查詢以取得 <strong>預測</strong> 的 <strong>REST</strong> 伺服器。」 <em>[for Ludwig]</em></blockquote>
-    <div class="fastapi-opinions__attr">— Piero Molino、Yaroslav Dudin、Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/">(ref)</a></div>
+    <blockquote class="fastapi-opinions__quote">「我們採用了 <strong>FastAPI</strong> 函式庫來啟動一個可供查詢以取得 <strong>預測</strong> 的 <strong>REST</strong> 伺服器。」 <em>[用於 Ludwig]</em></blockquote>
+    <div class="fastapi-opinions__attr">— Piero Molino、Yaroslav Dudin、Sai Sumanth Miryala，<strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-netflix" role="tabpanel" aria-labelledby="fo-tab-netflix" tabindex="0" hidden>
     <blockquote class="fastapi-opinions__quote">「<strong>Netflix</strong> 很高興宣布我們的 <strong>危機管理</strong> 協調框架 <strong>Dispatch</strong> 開源！」 <em>[使用 FastAPI 建構]</em></blockquote>
@@ -131,9 +133,9 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 ---
 
-"_我們採用了 **FastAPI** 函式庫來啟動一個 **REST** 伺服器，供查詢以取得**預測**。[for Ludwig]_"
+"_我們採用了 **FastAPI** 函式庫來啟動一個 **REST** 伺服器，供查詢以取得**預測**。[用於 Ludwig]_"
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://eng.uber.com/ludwig-v0-2/"><small>(ref)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(ref)</small></a></div>
 
 ---
 
@@ -150,12 +152,6 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 ---
 
 </div>
-
-## FastAPI 大會 { #fastapi-conf }
-
-[**FastAPI Conf '26**](https://fastapiconf.com) 將於 **2026 年 10 月 28 日** 在 **荷蘭阿姆斯特丹** 舉行。全部關於 FastAPI，來自第一手來源。🎤
-
-<a class="fastapi-feature-banner" href="https://fastapiconf.com"><img src="https://fastapi.tiangolo.com/img/fastapi-conf.jpeg" alt="FastAPI Conf '26 - October 28, 2026 - Amsterdam, NL"></a>
 
 ## FastAPI 迷你紀錄片 { #fastapi-mini-documentary }
 
@@ -175,17 +171,17 @@ FastAPI 是一個現代、快速（高效能）的 Web 框架，用於以 Python
 
 FastAPI 是站在以下巨人的肩膀上：
 
-* [Starlette](https://www.starlette.dev/) 負責 Web 部分。
-* [Pydantic](https://docs.pydantic.dev/) 負責資料部分。
+* [Starlette](https://starlette.dev/) 負責 Web 部分。
+* [Pydantic](https://pydantic.dev/docs/) 負責資料部分。
 
 ## 安裝 { #installation }
 
-建立並啟用一個[虛擬環境](https://fastapi.tiangolo.com/zh-hant/virtual-environments/)，然後安裝 FastAPI：
+首先，[安裝 `uv`](https://docs.astral.sh/uv/getting-started/installation/)，然後將 FastAPI 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install "fastapi[standard]"
+$ uv add "fastapi[standard]"
 
 ---> 100%
 ```
@@ -193,6 +189,8 @@ $ pip install "fastapi[standard]"
 </div>
 
 **注意**：請務必將 `"fastapi[standard]"` 用引號包起來，以確保在所有終端機中都能正常運作。
+
+如果你偏好使用 `pip`，請在虛擬環境中安裝 `fastapi[standard]`。請參閱[安裝指南](tutorial/#install-fastapi)了解替代步驟。
 
 ## 範例 { #example }
 
@@ -239,7 +237,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **注意**：
 
-如果你不確定，請查看文件中 _"In a hurry?"_ 章節的[關於文件中的 `async` 與 `await`](https://fastapi.tiangolo.com/zh-hant/async/#in-a-hurry)。
+如果你不確定，請查看[文件中關於 `async` 與 `await`](https://fastapi.tiangolo.com/zh-hant/async/#in-a-hurry)的 _「趕時間嗎？」_ 章節。
 
 </details>
 
@@ -250,7 +248,7 @@ async def read_item(item_id: int, q: str | None = None):
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
  ╭────────── FastAPI CLI - Development mode ───────────╮
  │                                                     │
@@ -277,7 +275,7 @@ INFO:     Application startup complete.
 <details markdown="1">
 <summary>關於指令 <code>fastapi dev</code>...</summary>
 
-指令 `fastapi dev` 會自動讀取你的 `main.py`，偵測其中的 **FastAPI** 應用，並使用 [Uvicorn](https://www.uvicorn.dev) 啟動伺服器。
+指令 `fastapi dev` 會自動讀取你的 `main.py`，偵測其中的 **FastAPI** 應用，並使用 [Uvicorn](https://uvicorn.dev) 啟動伺服器。
 
 預設情況下，`fastapi dev` 會在本機開發時啟用自動重新載入。
 
@@ -314,7 +312,7 @@ INFO:     Application startup complete.
 
 現在前往 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)。
 
-你會看到另一種自動文件（由 [ReDoc](https://github.com/Rebilly/ReDoc) 提供）：
+你會看到另一種自動文件（由 [ReDoc](https://github.com/Redocly/redoc) 提供）：
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 
@@ -400,7 +398,7 @@ item_id: int
 item: Item
 ```
 
-…透過一次宣告，你將獲得：
+...透過一次宣告，你將獲得：
 
 * 編輯器支援，包括：
     * 自動補全。
@@ -457,19 +455,19 @@ item: Item
     return {"item_name": item.name, "item_id": item_id}
 ```
 
-…從：
+...從：
 
 ```Python
         ... "item_name": item.name ...
 ```
 
-…改為：
+...改為：
 
 ```Python
         ... "item_price": item.price ...
 ```
 
-…然後看看你的編輯器如何自動補全屬性並知道它們的型別：
+...然後看看你的編輯器如何自動補全屬性並知道它們的型別：
 
 ![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
@@ -477,7 +475,7 @@ item: Item
 
 **劇透警告**：教學 - 使用者指南包含：
 
-* 來自不同來源的**參數**宣告：例如 **headers**、**cookies**、**form fields** 和 **files**。
+* 來自不同來源的**參數**宣告：例如 **標頭**、**cookies**、**表單欄位** 和 **檔案**。
 * 如何設定**驗證限制**，如 `maximum_length` 或 `regex`。
 * 一個非常強大且易用的 **<dfn title="也稱為：元件、資源、提供者、服務、可注入物">依賴注入</dfn>** 系統。
 * 安全與驗證，包含支援 **OAuth2** 搭配 **JWT tokens** 與 **HTTP Basic** 驗證。
@@ -497,7 +495,7 @@ item: Item
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 
@@ -540,7 +538,7 @@ FastAPI 依賴 Pydantic 與 Starlette。
 
 ### `standard` 依賴套件 { #standard-dependencies }
 
-當你以 `pip install "fastapi[standard]"` 安裝 FastAPI 時，會包含 `standard` 這組可選依賴套件：
+當你以 `uv add "fastapi[standard]"` 安裝 FastAPI 時，會包含 `standard` 這組可選依賴套件：
 
 Pydantic 會使用：
 
@@ -548,23 +546,23 @@ Pydantic 會使用：
 
 Starlette 會使用：
 
-* [`httpx`](https://www.python-httpx.org) - 若要使用 `TestClient` 必須安裝。
+* [`httpx2`](https://pydantic.dev/docs/httpx2/)（或 `httpx`）- 供 `TestClient` 使用。
 * [`jinja2`](https://jinja.palletsprojects.com) - 若要使用預設的模板設定必須安裝。
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - 若要支援表單 <dfn title="將來自 HTTP 請求的字串轉換為 Python 資料">"解析"</dfn>，搭配 `request.form()`。
 
 FastAPI 會使用：
 
-* [`uvicorn`](https://www.uvicorn.dev) - 用於載入並服務你的應用的伺服器。這包含 `uvicorn[standard]`，其中含有一些高效能服務所需的依賴（例如 `uvloop`）。
+* [`uvicorn`](https://uvicorn.dev) - 用於載入並服務你的應用的伺服器。這包含 `uvicorn[standard]`，其中含有一些高效能服務所需的依賴（例如 `uvloop`）。
 * `fastapi-cli[standard]` - 提供 `fastapi` 指令。
     * 其中包含 `fastapi-cloud-cli`，可讓你將 FastAPI 應用部署到 [FastAPI Cloud](https://fastapicloud.com)。
 
 ### 不含 `standard` 依賴套件 { #without-standard-dependencies }
 
-如果你不想包含 `standard` 可選依賴，可以改用 `pip install fastapi`（而不是 `pip install "fastapi[standard]"`）。
+如果你不想包含 `standard` 可選依賴，可以改用 `uv add fastapi`（而不是 `uv add "fastapi[standard]"`）。
 
 ### 不含 `fastapi-cloud-cli` { #without-fastapi-cloud-cli }
 
-如果你想安裝帶有 standard 依賴、但不包含 `fastapi-cloud-cli`，可以使用 `pip install "fastapi[standard-no-fastapi-cloud-cli]"`。
+如果你想安裝帶有 standard 依賴、但不包含 `fastapi-cloud-cli`，可以使用 `uv add "fastapi[standard-no-fastapi-cloud-cli]"`。
 
 ### 額外可選依賴套件 { #additional-optional-dependencies }
 
@@ -572,13 +570,13 @@ FastAPI 會使用：
 
 Pydantic 的額外可選依賴：
 
-* [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) - 設定管理。
-* [`pydantic-extra-types`](https://docs.pydantic.dev/latest/usage/types/extra_types/extra_types/) - 與 Pydantic 一起使用的額外型別。
+* [`pydantic-settings`](https://pydantic.dev/docs/validation/latest/concepts/pydantic_settings/) - 設定管理。
+* [`pydantic-extra-types`](https://github.com/pydantic/pydantic-extra-types) - 與 Pydantic 一起使用的額外型別。
 
 FastAPI 的額外可選依賴：
 
 * [`orjson`](https://github.com/ijl/orjson) - 若要使用 `ORJSONResponse` 必須安裝。
-* [`ujson`](https://github.com/esnme/ultrajson) - 若要使用 `UJSONResponse` 必須安裝。
+* [`ujson`](https://github.com/ultrajson/ultrajson) - 若要使用 `UJSONResponse` 必須安裝。
 
 ## 授權 { #license }
 

@@ -22,7 +22,7 @@ You could also stream **video** or **audio** this way, it could even be generate
 
 If you declare a `response_class=StreamingResponse` in your *path operation function*, you can use `yield` to send each chunk of data in turn.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI will give each chunk of data to the `StreamingResponse` as is, it won't try to convert it to JSON or anything similar.
 
@@ -30,7 +30,7 @@ FastAPI will give each chunk of data to the `StreamingResponse` as is, it won't 
 
 You can also use regular `def` functions (without `async`), and use `yield` the same way.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### No Annotation { #no-annotation }
 
@@ -38,7 +38,7 @@ You don't really need to declare the return type annotation for streaming binary
 
 As FastAPI will not try to convert the data to JSON with Pydantic or serialize it in any way, in this case, the type annotation is only for your editor and tools to use, it won't be used by FastAPI.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 This also means that with `StreamingResponse` you have the **freedom** and **responsibility** to produce and encode the data bytes exactly as you need them to be sent, independent of the type annotations. 🤓
 
@@ -46,7 +46,7 @@ This also means that with `StreamingResponse` you have the **freedom** and **res
 
 One of the main use cases would be to stream `bytes` instead of strings, you can of course do it.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## A Custom `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ You can create a custom sub-class of `StreamingResponse` that sets the `Content-
 
 For example, you can create a `PNGStreamingResponse` that sets the `Content-Type` header to `image/png` using the `media_type` attribute:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 Then you can use this new class in `response_class=PNGStreamingResponse` in your *path operation function*:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### Simulate a File { #simulate-a-file }
 
@@ -68,7 +68,7 @@ In this example, we are simulating a file with `io.BytesIO`, which is a file-lik
 
 For example, we can iterate over it to consume its contents, as we could with a file.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | Technical Details
 
@@ -100,7 +100,7 @@ But in many cases reading a file or a file-like object would block.
 
 To avoid blocking the event loop, you can simply declare the *path operation function* with regular `def` instead of `async def`, that way FastAPI will run it on a threadpool worker, to avoid blocking the main loop.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip
 
@@ -114,4 +114,4 @@ When you are iterating over something, like a file-like object, and then you are
 
 This is not particular to FastAPI, it's just Python, but it's a nice trick to know. 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

@@ -22,7 +22,7 @@ Python 支持可选的“类型提示”（也叫“类型注解”）。
 
 让我们从一个简单的例子开始：
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 运行这个程序会输出：
 
@@ -36,7 +36,7 @@ John Doe
 * 通过 `title()` 将每个参数的第一个字母转换为大写。
 * 用一个空格将它们<dfn title="把它们合在一起成为一个，内容一个接在另一个后面。">拼接</dfn>起来。
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### 修改它 { #edit-it }
 
@@ -78,7 +78,7 @@ John Doe
 
 这些就是“类型提示”：
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 这和声明默认值不同，比如：
 
@@ -106,7 +106,7 @@ John Doe
 
 看这个已经带有类型提示的函数：
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 因为编辑器知道变量的类型，你不仅能得到补全，还能获得错误检查：
 
@@ -114,7 +114,7 @@ John Doe
 
 现在你知道需要修复它，用 `str(age)` 把 `age` 转成字符串：
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## 声明类型 { #declaring-types }
 
@@ -133,7 +133,7 @@ John Doe
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### `typing` 模块 { #typing-module }
 
@@ -170,7 +170,7 @@ def some_function(data: Any):
 
 因为 list 是一种包含内部类型的类型，把内部类型写在方括号里：
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | 注意
 
@@ -196,7 +196,7 @@ def some_function(data: Any):
 
 声明 `tuple` 和 `set` 的方式类似：
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 这表示：
 
@@ -211,7 +211,7 @@ def some_function(data: Any):
 
 第二个类型参数用于字典的值：
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 这表示：
 
@@ -228,7 +228,7 @@ def some_function(data: Any):
 这称为“联合类型”（union），因为变量可以是这两类类型集合的并集中的任意一个。
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 这表示 `item` 可以是 `int` 或 `str`。
@@ -240,7 +240,7 @@ def some_function(data: Any):
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -253,11 +253,11 @@ def some_function(data: Any):
 
 假设你有一个名为 `Person` 的类，带有 name：
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 然后你可以声明一个变量是 `Person` 类型：
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 接着，你会再次获得所有的编辑器支持：
 
@@ -269,7 +269,7 @@ def some_function(data: Any):
 
 ## Pydantic 模型 { #pydantic-models }
 
-[Pydantic](https://docs.pydantic.dev/) 是一个用于执行数据校验的 Python 库。
+[Pydantic](https://pydantic.dev/docs/) 是一个用于执行数据校验的 Python 库。
 
 你将数据的“结构”声明为带有属性的类。
 
@@ -281,11 +281,11 @@ def some_function(data: Any):
 
 下面是来自 Pydantic 官方文档的一个示例：
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | 注意
 
-要了解更多关于 [Pydantic 的信息，请查看其文档](https://docs.pydantic.dev/)。
+要了解更多关于 [Pydantic 的信息，请查看其文档](https://pydantic.dev/docs/)。
 
 ///
 
@@ -299,7 +299,7 @@ Python 还提供了一个特性，可以使用 `Annotated` 在这些类型提示
 
 你可以从 `typing` 导入 `Annotated`。
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Python 本身不会对这个 `Annotated` 做任何处理。对于编辑器和其他工具，类型仍然是 `str`。
 

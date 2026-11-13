@@ -20,7 +20,7 @@ If you don't know, you will learn what a "password hash" is in the [security cha
 
 Here's a general idea of what the models could look like with their password fields and the places where they are used:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### About `**user_in.model_dump()` { #about-user-in-model-dump }
 
@@ -54,10 +54,10 @@ we would get a Python `dict` with:
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ Or more exactly, using `user_dict` directly, with whatever contents it might hav
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -154,7 +154,7 @@ All the data conversion, validation, documentation, etc. will still work as norm
 
 That way, we can declare just the differences between the models (with plaintext `password`, with `hashed_password` and without password):
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` or `anyOf` { #union-or-anyof }
 
@@ -170,7 +170,7 @@ When defining a [`Union`](https://pydantic.dev/docs/validation/latest/concepts/u
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### `Union` in Python 3.10 { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ The same way, you can declare responses of lists of objects.
 
 For that, use the standard Python `list`:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## Response with arbitrary `dict` { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ This is useful if you don't know the valid field/attribute names (that would be 
 
 In this case, you can use `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## Recap { #recap }
 

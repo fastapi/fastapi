@@ -4,7 +4,7 @@
 
 इस application को example के रूप में लेते हैं:
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 query parameter `q` का type `str | None` है, इसका मतलब है कि यह type `str` का है लेकिन `None` भी हो सकता है, और वास्तव में, default value `None` है, इसलिए FastAPI जान जाएगा कि यह required नहीं है।
 
@@ -27,7 +27,7 @@ FastAPI जान जाएगा कि `q` की value required नहीं 
 * `fastapi` से `Query`
 * `typing` से `Annotated`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | नोट
 
@@ -65,7 +65,7 @@ q: Annotated[str | None] = None
 
 अब जब हमारे पास यह `Annotated` है जहाँ हम अधिक जानकारी रख सकते हैं (इस case में कुछ अतिरिक्त validation), `Annotated` के अंदर `Query` जोड़ें, और parameter `max_length` को `50` पर set करें:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 ध्यान दें कि default value अभी भी `None` है, इसलिए parameter अभी भी optional है।
 
@@ -95,7 +95,7 @@ FastAPI के पिछले versions (<dfn title="2023-03 से पहले
 
 इस तरह आप अपने function parameter की default value के रूप में `Query()` use करेंगे, parameter `max_length` को 50 पर set करते हुए:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 चूँकि इस case में (`Annotated` use किए बिना) हमें function में default value `None` को `Query()` से replace करना होता है, अब हमें parameter `Query(default=None)` के साथ default value set करनी होगी, यह उस default value को define करने का वही उद्देश्य पूरा करता है (कम से कम FastAPI के लिए)।
 
@@ -164,13 +164,13 @@ function parameters में default value के बजाय **`Annotated` us
 
 आप parameter `min_length` भी जोड़ सकते हैं:
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## regular expressions जोड़ें { #add-regular-expressions }
 
 आप एक <dfn title="एक regular expression, regex या regexp characters का ऐसा sequence है जो strings के लिए search pattern define करता है।">regular expression</dfn> `pattern` define कर सकते हैं जिससे parameter match करना चाहिए:
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 यह specific regular expression pattern check करता है कि received parameter value:
 
@@ -188,7 +188,7 @@ function parameters में default value के बजाय **`Annotated` us
 
 मान लीजिए कि आप `q` query parameter को `3` की `min_length` और `"fixedquery"` की default value के साथ declare करना चाहते हैं:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | नोट
 
@@ -218,15 +218,23 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 तो, जब आपको `Query` use करते हुए किसी value को required के रूप में declare करना हो, तो आप बस default value declare न करें:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
-### Required, `None` हो सकता है { #required-can-be-none }
+### Required parameters और `None` { #required-parameters-and-none }
 
-आप declare कर सकते हैं कि parameter `None` accept कर सकता है, लेकिन फिर भी यह required है। यह clients को value भेजने के लिए मजबूर करेगा, भले ही value `None` हो।
+type `str | None` Python value के रूप में `None` की अनुमति देता है, लेकिन यह query parameter को optional नहीं बनाता। default value के बिना, parameter अभी भी required है:
 
-ऐसा करने के लिए, आप declare कर सकते हैं कि `None` एक valid type है लेकिन बस default value declare न करें:
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+query parameter की values strings के रूप में आती हैं और उनमें `None` के लिए कोई built-in representation नहीं होता। `?q=None` या `?q=null` भेजने पर क्रमशः strings `"None"` और `"null"` भेजी जाती हैं। `?q=` भेजने पर एक खाली string भेजी जाती है, जो इस example में `min_length=3` validation में fail होती है।
+
+clients को `q` न भेजने और उसकी value के रूप में `None` use करने की अनुमति देने के लिए, उसकी default value `None` रखें:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+query parameters के विपरीत, JSON request bodies में स्पष्ट रूप से `null` value हो सकती है।
 
 ## Query parameter list / multiple values { #query-parameter-list-multiple-values }
 
@@ -234,7 +242,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 उदाहरण के लिए, query parameter `q` declare करने के लिए जो URL में कई बार आ सकता है, आप लिख सकते हैं:
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 फिर, ऐसे URL के साथ:
 
@@ -269,7 +277,7 @@ interactive API docs accordingly update होंगे, ताकि multiple v
 
 अगर कोई values provide नहीं की गई हैं, तो आप values की default `list` भी define कर सकते हैं:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 अगर आप यहाँ जाते हैं:
 
@@ -292,7 +300,7 @@ http://localhost:8000/items/
 
 आप `list[str]` के बजाय सीधे `list` भी use कर सकते हैं:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | नोट
 
@@ -318,11 +326,11 @@ http://localhost:8000/items/
 
 आप एक `title` जोड़ सकते हैं:
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 और एक `description`:
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## Alias parameters { #alias-parameters }
 
@@ -342,17 +350,17 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 तब आप एक `alias` declare कर सकते हैं, और वही alias parameter value खोजने के लिए use किया जाएगा:
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## Parameters को deprecate करना { #deprecating-parameters }
 
 अब मान लीजिए कि आपको यह parameter अब पसंद नहीं है।
 
-आपको इसे कुछ समय के लिए वहीं छोड़ना होगा क्योंकि clients इसे use कर रहे हैं, लेकिन आप चाहते हैं कि docs इसे स्पष्ट रूप से <dfn title="obsolete, इसका उपयोग न करने की recommendation है">deprecated</dfn> के रूप में दिखाएँ।
+आपको इसे कुछ समय के लिए वहीं छोड़ना होगा क्योंकि clients इसे use कर रहे हैं, लेकिन आप चाहते हैं कि docs इसे स्पष्ट रूप से <dfn title="अप्रचलित, इसका उपयोग न करने की recommendation है">deprecated</dfn> के रूप में दिखाएँ।
 
 फिर parameter `deprecated=True` को `Query` में pass करें:
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 docs इसे इस तरह दिखाएँगे:
 
@@ -362,7 +370,7 @@ docs इसे इस तरह दिखाएँगे:
 
 generated OpenAPI schema से query parameter exclude करने के लिए (और इस प्रकार, automatic documentation systems से), `Query` के parameter `include_in_schema` को `False` पर set करें:
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## Custom Validation { #custom-validation }
 
@@ -370,17 +378,17 @@ generated OpenAPI schema से query parameter exclude करने के ल�
 
 ऐसे cases में, आप एक **custom validator function** use कर सकते हैं जो normal validation के बाद apply होता है (जैसे value के `str` होने की validation के बाद)।
 
-आप इसे `Annotated` के अंदर [Pydantic के `AfterValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-after-validator) का उपयोग करके हासिल कर सकते हैं।
+आप इसे `Annotated` के अंदर [Pydantic के `AfterValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-after-validator) का उपयोग करके हासिल कर सकते हैं।
 
 /// tip | टिप
 
-Pydantic में [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts/validators/#field-before-validator) और अन्य भी हैं। 🤓
+Pydantic में [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/concepts/validators/#field-before-validator) और अन्य भी हैं। 🤓
 
 ///
 
-उदाहरण के लिए, यह custom validator check करता है कि item ID किसी <abbr title="International Standard Book Number - अंतर्राष्ट्रीय मानक पुस्तक संख्या">ISBN</abbr> book number के लिए `isbn-` से शुरू होती है या किसी <abbr title="Internet Movie Database - इंटरनेट मूवी डेटाबेस: फिल्मों के बारे में जानकारी वाली एक वेबसाइट">IMDB</abbr> movie URL ID के लिए `imdb-` से:
+उदाहरण के लिए, यह custom validator check करता है कि item ID किसी <abbr title="International Standard Book Number - अंतर्राष्ट्रीय standard पुस्तक संख्या">ISBN</abbr> book number के लिए `isbn-` से शुरू होती है या किसी <abbr title="Internet Movie Database - इंटरनेट मूवी डेटाबेस: फिल्मों के बारे में जानकारी वाली एक वेबसाइट">IMDB</abbr> movie URL ID के लिए `imdb-` से:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | नोट
 
@@ -408,7 +416,7 @@ Pydantic में [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts
 
 क्या आपने ध्यान दिया? `value.startswith()` use करने वाली string tuple ले सकती है, और यह tuple की हर value check करेगी:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### एक Random Item { #a-random-item }
 
@@ -424,7 +432,7 @@ Pydantic में [`BeforeValidator`](https://docs.pydantic.dev/latest/concepts
 
 ...हम यह सब **एक single simple line** में करते हैं। 🤯 क्या आपको Python पसंद नहीं है? 🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## Recap { #recap }
 

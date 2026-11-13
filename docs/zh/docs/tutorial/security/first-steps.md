@@ -1,6 +1,5 @@
 # 安全 - 第一步 { #security-first-steps }
 
-
 假设你的**后端** API 位于某个域名下。
 
 而**前端**在另一个域名，或同一域名的不同路径（或在移动应用中）。
@@ -21,20 +20,20 @@
 
 把下面的示例代码复制到 `main.py`：
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## 运行 { #run-it }
 
 /// note | 注意
 
-当你使用命令 `pip install "fastapi[standard]"` 安装 **FastAPI** 时，[`python-multipart`](https://github.com/Kludex/python-multipart) 包会自动安装。
+当你运行 `uv add "fastapi[standard]"` 命令时，[`python-multipart`](https://github.com/Kludex/python-multipart) 包会随 **FastAPI** 自动安装。
 
-但是，如果你使用 `pip install fastapi`，默认不会包含 `python-multipart` 包。
+但是，如果你使用 `uv add fastapi` 命令，默认不会包含 `python-multipart` 包。
 
-如需手动安装，请先创建[虚拟环境](../../virtual-environments.md)、激活它，然后执行：
+如需手动安装，请把它添加到你的项目中：
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 这是因为 **OAuth2** 使用“表单数据”来发送 `username` 和 `password`。
@@ -46,7 +45,7 @@ $ pip install python-multipart
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -133,7 +132,7 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 创建 `OAuth2PasswordBearer` 类实例时，需要传入 `tokenUrl` 参数。该参数包含客户端（运行在用户浏览器中的前端）用来发送 `username` 和 `password` 以获取令牌的 URL。
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip | 提示
 
@@ -145,7 +144,7 @@ OAuth2 的设计目标是让后端或 API 与负责用户认证的服务器解�
 
 ///
 
-这个参数不会创建该端点/*路径操作*，而是声明客户端应使用 `/token` 这个 URL 来获取令牌。这些信息会用于 OpenAPI，进而用于交互式 API 文档系统。
+这个参数不会创建该端点 / *路径操作*，而是声明客户端应使用 `/token` 这个 URL 来获取令牌。这些信息会用于 OpenAPI，进而用于交互式 API 文档系统。
 
 我们很快也会创建对应的实际路径操作。
 
@@ -171,7 +170,7 @@ oauth2_scheme(some, parameters)
 
 现在你可以通过 `Depends` 将 `oauth2_scheme` 作为依赖传入。
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 该依赖会提供一个 `str`，赋值给*路径操作函数*的参数 `token`。
 

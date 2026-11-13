@@ -36,7 +36,7 @@ npm run build
 
 然後使用 `app.frontend()` 來提供它：
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 如此一來，對 `/assets/app.js` 的請求就可以提供 `dist/assets/app.js`。
 
@@ -50,9 +50,9 @@ npm run build
 
 為此，請使用 `fallback="index.html"`：
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
-**FastAPI** 只會對看起來像瀏覽器導覽的 `GET` 和 `HEAD` 請求使用這個 fallback。遺失的檔案，例如 JavaScript、CSS 和圖片，仍會回傳 `404`。
+**FastAPI** 只會對明確使用 `Accept: text/html` 或 `Accept: application/xhtml+xml` 接受 HTML 的 `GET` 和 `HEAD` 請求使用這個 fallback，就像瀏覽器導覽請求通常會做的那樣。遺失的檔案，例如 JavaScript、CSS 和圖片，仍會回傳 `404`。
 
 對於只符合前端 fallback 的路徑，使用其他方法的請求，例如 `POST` 或 `PUT`，也會回傳 `404`。一般的 **FastAPI** *路徑操作*仍然比前端路由有更高優先順序。
 
@@ -68,7 +68,7 @@ npm run build
 
 你也可以為遺失的前端路徑提供靜態 `404.html` 頁面：
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 該回應會保留 `404` 狀態碼。
 
@@ -94,25 +94,29 @@ npm run build
 
 因此，在大多數情況下，你可以使用 `app.frontend("/", directory="dist")`，而不需要指定 `fallback` 引數。
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## 停用 Fallback { #disable-fallback }
 
 如果你不想為遺失的前端路徑提供 fallback 檔案，請使用 `fallback=None`：
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 接著，遺失的前端路徑會回傳一般的 `404`。
 
 ## 檢查目錄 { #check-directory }
 
-預設情況下，`app.frontend()` 會在建立應用程式時檢查目錄是否存在。
+預設情況下，`app.frontend()` 會使用 `check_dir="auto"`。
 
-這有助於及早發現設定錯誤。例如，如果缺少前端建置輸出目錄，**FastAPI** 會在啟動時引發錯誤。
+當 `FASTAPI_ENV` 環境變數設定為 `development` 時，如果前端建置輸出目錄遺失，**FastAPI** 只會顯示警告。如果尚未設定此環境變數，[`fastapi dev` 指令](https://github.com/fastapi/fastapi-cli#fastapi-dev)會為你設定。這讓你可以在開發期間，在建置或啟動前端之前先啟動後端。
+
+在任何其他環境中，**FastAPI** 會在建立應用程式時引發錯誤。這有助於在部署沒有前端檔案的應用程式之前，及早發現設定錯誤。
+
+你也可以設定 `check_dir=True`，以便在建立應用程式時一律檢查目錄。
 
 如果你的前端檔案稍後才會建立，例如在建立 app 物件之後由另一個建置步驟產生，請設定 `check_dir=False`：
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 使用 `check_dir=False` 時，**FastAPI** 不會在建立應用程式時檢查目錄。如果在處理請求時，設定的目錄仍然不存在，**FastAPI** 會在那時引發錯誤。
 
@@ -120,7 +124,7 @@ npm run build
 
 你也可以將前端檔案加入 `APIRouter`，並使用前綴包含它：
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 在這個範例中，前端路徑會在 `/app` 底下提供。
 
@@ -131,6 +135,8 @@ npm run build
 前端回應會在一般的 **FastAPI** 應用程式內執行，因此 HTTP middleware 會套用到它們。
 
 來自 app、`APIRouter` 和 `include_router()` 的 dependencies 也會套用到前端回應。這對使用 cookie authentication 或類似方式保護前端很有用。
+
+Dependencies 也可以像一般*路徑操作*一樣修改回應 headers 並加入 background tasks。
 
 ## 僅限靜態建置輸出 { #static-build-output-only }
 

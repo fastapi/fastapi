@@ -1,6 +1,6 @@
 # Tester { #testing }
 
-Grâce à [Starlette](https://www.starlette.dev/testclient/), tester des applications **FastAPI** est simple et agréable.
+Grâce à [Starlette](https://starlette.dev/testclient/), tester des applications **FastAPI** est simple et agréable.
 
 C’est basé sur [HTTPX](https://www.python-httpx.org), dont la conception s’inspire de Requests, ce qui le rend très familier et intuitif.
 
@@ -12,10 +12,10 @@ Avec cela, vous pouvez utiliser [pytest](https://docs.pytest.org/) directement a
 
 Pour utiliser `TestClient`, installez d’abord [`httpx`](https://www.python-httpx.org).
 
-Vous devez vous assurer de créer un [environnement virtuel](../virtual-environments.md), de l’activer, puis d’y installer le paquet, par exemple :
+Ajoutez-le à votre projet :
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -30,7 +30,7 @@ Utilisez l’objet `TestClient` de la même manière que vous utilisez `httpx`.
 
 Écrivez de simples instructions `assert` avec les expressions Python standard que vous devez vérifier (là encore, standard `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | Astuce
 
@@ -76,7 +76,7 @@ Supposons que vous ayez une structure de fichiers comme décrit dans [Applicatio
 Dans le fichier `main.py`, vous avez votre application **FastAPI** :
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### Fichier de test { #testing-file }
 
@@ -92,10 +92,10 @@ Vous pourriez alors avoir un fichier `test_main.py` avec vos tests. Il pourrait 
 
 Comme ce fichier se trouve dans le même package, vous pouvez utiliser des imports relatifs pour importer l’objet `app` depuis le module `main` (`main.py`) :
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
-… et avoir le code des tests comme précédemment.
+... et avoir le code des tests comme précédemment.
 
 ## Tester : exemple étendu { #testing-extended-example }
 
@@ -119,15 +119,15 @@ Il a une opération `GET` qui pourrait renvoyer une erreur.
 
 Il a une opération `POST` qui pourrait renvoyer plusieurs erreurs.
 
-Les deux chemins d’accès requièrent un en-tête `X-Token`.
+Les deux *chemins d’accès* requièrent un en-tête `X-Token`.
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### Fichier de test étendu { #extended-testing-file }
 
 Vous pourriez ensuite mettre à jour `test_main.py` avec les tests étendus :
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 Chaque fois que vous avez besoin que le client transmette des informations dans la requête et que vous ne savez pas comment faire, vous pouvez chercher (Google) comment le faire avec `httpx`, ou même comment le faire avec `requests`, puisque la conception de HTTPX est basée sur celle de Requests.
@@ -156,12 +156,12 @@ Si vous avez un modèle Pydantic dans votre test et que vous souhaitez envoyer s
 
 Après cela, vous avez simplement besoin d’installer `pytest`.
 
-Vous devez vous assurer de créer un [environnement virtuel](../virtual-environments.md), de l’activer, puis d’y installer le paquet, par exemple :
+Ajoutez-le à votre projet :
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ Exécutez les tests avec :
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

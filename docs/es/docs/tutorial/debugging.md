@@ -7,7 +7,7 @@ Puedes conectar el depurador en tu editor, por ejemplo con Visual Studio Code o 
 
 En tu aplicación de FastAPI, importa y ejecuta `uvicorn` directamente:
 
-{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
 ### Acerca de `__name__ == "__main__"` { #about-name-main }
 
@@ -16,7 +16,7 @@ El objetivo principal de `__name__ == "__main__"` es tener algo de código que s
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>
@@ -36,7 +36,7 @@ Si lo ejecutas con:
 <div class="termy">
 
 ```console
-$ python myapp.py
+$ uv run python myapp.py
 ```
 
 </div>

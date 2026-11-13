@@ -45,20 +45,6 @@
 * [@tiangolo.com в **Bluesky**](https://bsky.app/profile/tiangolo.com)
 * [@tiangolo в **LinkedIn**](https://www.linkedin.com/in/tiangolo/).
 
-## Помогать другим с вопросами на GitHub { #help-others-with-questions-in-github }
-
-Вы можете попробовать помогать другим с их вопросами в [GitHub Discussions](https://github.com/fastapi/fastapi/discussions/categories/questions?discussions_q=category%3AQuestions+is%3Aunanswered).
-
-Во многих случаях вы уже можете знать ответы на эти вопросы. 🤓
-
-Если вы помогаете многим людям с их вопросами, вы станете официальным [Экспертом FastAPI](fastapi-people.md#fastapi-experts). 🎉
-
-Только помните, самое важное — старайтесь быть добрыми. 🤗
-
-### Как помогать { #how-to-help }
-
-Следуйте [руководству по тому, как помогать](https://tiangolo.com/open-source/help/#help-others-with-questions-in-github) здесь.
-
 ## Задать вопросы { #ask-questions }
 
 Вы можете [создать новый вопрос](https://github.com/fastapi/fastapi/discussions/new?category=questions) в репозитории GitHub, например, чтобы:
@@ -68,7 +54,7 @@
 
 ## Присоединиться к чату { #join-the-chat }
 
-Присоединяйтесь к 👥 [чат-серверу в Discord](https://discord.gg/VQjSZaeJmf) 👥 и общайтесь с другими участниками сообщества FastAPI.
+Присоединяйтесь к 👥 [чат-серверу в Discord](https://discord.com/invite/VQjSZaeJmf) 👥 и общайтесь с другими участниками сообщества FastAPI.
 
 /// tip | Совет
 
@@ -85,3 +71,9 @@
 На GitHub шаблон подскажет, как сформулировать правильный вопрос, чтобы вам было проще получить хороший ответ или даже решить проблему самостоятельно ещё до того, как спросить.
 
 Кроме того, переписки в чатах хуже ищутся, чем на GitHub, и быстро теряются.
+
+## Попробовать FastAPI Cloud { #try-fastapi-cloud }
+
+Основное финансирование FastAPI и друзей поступает от [**FastAPI Cloud**](https://fastapicloud.com), платформы для простого и быстрого развертывания приложений FastAPI с помощью одной команды, `fastapi deploy`.
+
+FastAPI Cloud создаётся той же командой, которая стоит за FastAPI. Вы можете попробовать его и рассмотреть для своих проектов.

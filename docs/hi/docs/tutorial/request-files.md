@@ -6,10 +6,10 @@
 
 अपलोड की गई files प्राप्त करने के लिए, पहले [`python-multipart`](https://github.com/Kludex/python-multipart) install करें।
 
-सुनिश्चित करें कि आप एक [virtual environment](../virtual-environments.md) बनाते हैं, उसे activate करते हैं, और फिर इसे install करते हैं, उदाहरण के लिए:
+इसे अपने project में जोड़ें:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ऐसा इसलिए है क्योंकि अपलोड की गई files "form data" के रूप में भेजी जाती हैं।
@@ -20,13 +20,13 @@ $ pip install python-multipart
 
 `fastapi` से `File` और `UploadFile` import करें:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## `File` Parameters परिभाषित करें { #define-file-parameters }
 
 file parameters उसी तरह बनाएं जैसे आप `Body` या `Form` के लिए बनाते हैं:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | नोट
 
@@ -54,7 +54,7 @@ files "form data" के रूप में अपलोड की जाएं
 
 `UploadFile` type के साथ file parameter परिभाषित करें:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 `bytes` की तुलना में `UploadFile` का उपयोग करने के कई फायदे हैं:
 
@@ -137,13 +137,13 @@ forms से data सामान्यतः "media type" `application/x-www-fo
 
 आप standard type annotations का उपयोग करके और default value `None` set करके file को optional बना सकते हैं:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## अतिरिक्त Metadata के साथ `UploadFile` { #uploadfile-with-additional-metadata }
 
 आप `UploadFile` के साथ `File()` का भी उपयोग कर सकते हैं, उदाहरण के लिए, अतिरिक्त metadata set करने के लिए:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## Multiple File Uploads { #multiple-file-uploads }
 
@@ -153,7 +153,7 @@ forms से data सामान्यतः "media type" `application/x-www-fo
 
 इसका उपयोग करने के लिए, `bytes` या `UploadFile` की list घोषित करें:
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
 आपको, जैसा घोषित किया गया है, `bytes` या `UploadFile`s की एक `list` प्राप्त होगी।
 
@@ -169,7 +169,7 @@ forms से data सामान्यतः "media type" `application/x-www-fo
 
 और पहले की तरह ही, आप अतिरिक्त parameters set करने के लिए `File()` का उपयोग कर सकते हैं, यहां तक कि `UploadFile` के लिए भी:
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## Recap { #recap }
 

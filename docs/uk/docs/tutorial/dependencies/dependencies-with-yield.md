@@ -29,15 +29,15 @@ FastAPI підтримує залежності, які виконують де�
 
 Перед створенням відповіді виконується лише код до і включно з оператором `yield`:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 Значення, передане `yield`, впроваджується в *операції шляху* та інші залежності:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 Код після оператора `yield` виконується після відповіді:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
 /// tip | Порада
 
@@ -57,7 +57,7 @@ FastAPI підтримує залежності, які виконують де�
 
 Так само ви можете використовувати `finally`, щоб гарантувати виконання завершальних кроків незалежно від того, був виняток чи ні.
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## Підзалежності з `yield` { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ FastAPI підтримує залежності, які виконують де�
 
 Наприклад, `dependency_c` може залежати від `dependency_b`, а `dependency_b` - від `dependency_a`:
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[6,14,22] *}
 
 І всі вони можуть використовувати `yield`.
 
@@ -75,7 +75,7 @@ FastAPI підтримує залежності, які виконують де�
 
 І, у свою чергу, `dependency_b` потребує, щоб значення з `dependency_a` (тут `dep_a`) було доступним для свого завершального коду.
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[18:19,26:27] *}
 
 Так само ви можете мати деякі залежності з `yield`, а інші - з `return`, і частина з них може залежати від інших.
 
@@ -109,7 +109,7 @@ FastAPI підтримує залежності, які виконують де�
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b.py hl[18:22,31] *}
 
 Якщо ви хочете перехоплювати винятки та створювати на їх основі користувацьку відповідь, створіть [Користувацький обробник винятків](../handling-errors.md#install-custom-exception-handlers).
 
@@ -117,7 +117,7 @@ FastAPI підтримує залежності, які виконують де�
 
 Якщо ви перехоплюєте виняток за допомогою `except` у залежності з `yield` і не піднімаєте його знову (або не піднімаєте новий виняток), FastAPI не зможе помітити, що стався виняток, так само як це було б у звичайному Python:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c.py hl[15:16] *}
 
 У цьому випадку клієнт побачить відповідь *HTTP 500 Internal Server Error*, як і має бути, з огляду на те, що ми не піднімаємо `HTTPException` або подібний виняток, але на сервері **не буде жодних логів** чи інших ознак того, що це була за помилка. 😱
 
@@ -127,7 +127,7 @@ FastAPI підтримує залежності, які виконують де�
 
 Ви можете повторно підняти той самий виняток, використовуючи `raise`:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d.py hl[17] *}
 
 Тепер клієнт отримає ту саму відповідь *HTTP 500 Internal Server Error*, але сервер матиме наш користувацький `InternalError` у логах. 😎
 
@@ -190,7 +190,7 @@ participant tasks as Background tasks
 
 Але якщо ви знаєте, що вам не потрібно використовувати залежність після повернення з *функції операції шляху*, ви можете використати `Depends(scope="function")`, щоб сказати FastAPI, що слід закрити залежність після повернення з *функції операції шляху*, але **до** надсилання **відповіді**.
 
-{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e.py hl[12,16] *}
 
 `Depends()` приймає параметр `scope`, який може бути:
 
@@ -270,7 +270,7 @@ with open("./somefile.txt") as f:
 Ви також можете використовувати їх усередині залежностей **FastAPI** з `yield`, використовуючи
 `with` або `async with` у середині функції залежності:
 
-{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
 /// tip | Порада
 

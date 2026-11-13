@@ -6,7 +6,7 @@
 
 А затем вы можете устанавливать HTTP-заголовки в этом *временном* объекте ответа.
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 После этого вы можете вернуть любой нужный объект, как обычно (например, `dict`, модель из базы данных и т.д.).
 
@@ -22,7 +22,7 @@
 
 Создайте ответ, как описано в [Вернуть Response напрямую](response-directly.md), и передайте HTTP-заголовки как дополнительный параметр:
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | Технические детали
 
@@ -38,4 +38,4 @@
 
 Помните, что собственные проприетарные HTTP-заголовки можно добавлять, [используя префикс `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Но если у вас есть пользовательские HTTP-заголовки, которые вы хотите показывать клиенту в браузере, вам нужно добавить их в настройки CORS (подробнее см. в [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), используя параметр `expose_headers`, описанный в [документации Starlette по CORS](https://www.starlette.dev/middleware/#corsmiddleware).
+Но если у вас есть пользовательские HTTP-заголовки, которые вы хотите показывать клиенту в браузере, вам нужно добавить их в настройки CORS (подробнее см. в [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), используя параметр `expose_headers`, описанный в [документации Starlette по CORS](https://starlette.dev/middleware/#corsmiddleware).

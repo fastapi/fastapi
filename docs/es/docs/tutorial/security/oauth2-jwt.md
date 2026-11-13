@@ -1,6 +1,5 @@
 # OAuth2 con Password (y hashing), Bearer con tokens JWT { #oauth2-with-password-and-hashing-bearer-with-jwt-tokens }
 
-
 Ahora que tenemos todo el flujo de seguridad, hagamos que la aplicación sea realmente segura, usando tokens <abbr title="JSON Web Tokens">JWT</abbr> y hashing de contraseñas seguras.
 
 Este código es algo que puedes usar realmente en tu aplicación, guardar los hashes de las contraseñas en tu base de datos, etc.
@@ -31,12 +30,12 @@ Si quieres jugar con tokens JWT y ver cómo funcionan, revisa [https://jwt.io](h
 
 Necesitamos instalar `PyJWT` para generar y verificar los tokens JWT en Python.
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo y luego instalar `pyjwt`:
+Añade `pyjwt` a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -73,12 +72,12 @@ Soporta muchos algoritmos de hashing seguros y utilidades para trabajar con ello
 
 El algoritmo recomendado es "Argon2".
 
-Asegúrate de crear un [entorno virtual](../../virtual-environments.md), activarlo y luego instalar pwdlib con Argon2:
+Añade `pwdlib` con Argon2 a tu proyecto:
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -117,7 +116,7 @@ Y otra utilidad para verificar si una contraseña recibida coincide con el hash 
 
 Y otra más para autenticar y devolver un usuario.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 Cuando `authenticate_user` se llama con un nombre de usuario que no existe en la base de datos, aun así ejecutamos `verify_password` contra un hash ficticio.
 
@@ -157,7 +156,7 @@ Define un Modelo de Pydantic que se usará en el endpoint de token para el respo
 
 Crea una función de utilidad para generar un nuevo token de acceso.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Actualizar las dependencias { #update-the-dependencies }
 
@@ -167,7 +166,7 @@ Decodifica el token recibido, verifícalo y devuelve el usuario actual.
 
 Si el token es inválido, devuelve un error HTTP de inmediato.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## Actualizar la *path operation* `/token` { #update-the-token-path-operation }
 
@@ -175,7 +174,7 @@ Crea un `timedelta` con el tiempo de expiración del token.
 
 Crea un verdadero token de acceso JWT y devuélvelo.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### Detalles técnicos sobre el "sujeto" `sub` de JWT { #technical-details-about-the-jwt-subject-sub }
 

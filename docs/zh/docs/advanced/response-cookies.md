@@ -6,7 +6,7 @@
 
 然后你可以在这个*临时*响应对象中设置 Cookie。
 
-{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 然后你可以像平常一样返回所需的任何对象（`dict`、数据库模型等）。
 
@@ -24,7 +24,7 @@
 
 然后在其中设置 Cookie，并返回它：
 
-{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | 提示
 
@@ -48,4 +48,4 @@
 
 ///
 
-要查看所有可用参数和选项，请查看 [Starlette 文档](https://www.starlette.dev/responses/#set-cookie)。
+要查看所有可用参数和选项，请查看 [Starlette 文档](https://starlette.dev/responses/#set-cookie)。

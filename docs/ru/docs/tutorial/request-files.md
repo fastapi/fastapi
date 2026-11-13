@@ -6,10 +6,10 @@
 
 Чтобы получать загруженные файлы, сначала установите [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Убедитесь, что вы создали [виртуальное окружение](../virtual-environments.md), активировали его, а затем установили пакет, например:
+Добавьте его в свой проект:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Это связано с тем, что загружаемые файлы передаются как "данные формы".
@@ -20,13 +20,13 @@ $ pip install python-multipart
 
 Импортируйте `File` и `UploadFile` из модуля `fastapi`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_files/tutorial001.py hl[3] *}
 
 ## Определите параметры `File` { #define-file-parameters }
 
 Создайте параметры `File` так же, как вы это делаете для `Body` или `Form`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_files/tutorial001.py hl[9] *}
 
 /// note | Примечание
 
@@ -42,7 +42,7 @@ $ pip install python-multipart
 
 ///
 
-Файлы будут загружены как данные формы.
+Файлы будут загружены как "данные формы".
 
 Если вы объявите тип параметра у *функции-обработчика пути* как `bytes`, то **FastAPI** прочитает файл за вас, и вы получите его содержимое в виде `bytes`.
 
@@ -54,7 +54,7 @@ $ pip install python-multipart
 
 Определите параметр файла с типом `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial001_an_py310.py hl[14] *}
+{* ../../docs_src/request_files/tutorial001.py hl[14] *}
 
 Использование `UploadFile` имеет ряд преимуществ перед `bytes`:
 
@@ -137,25 +137,25 @@ contents = myfile.file.read()
 
 Вы можете сделать загрузку файла необязательной, используя стандартные аннотации типов и установив значение по умолчанию `None`:
 
-{* ../../docs_src/request_files/tutorial001_02_an_py310.py hl[9,17] *}
+{* ../../docs_src/request_files/tutorial001_02.py hl[9,17] *}
 
 ## `UploadFile` с дополнительными метаданными { #uploadfile-with-additional-metadata }
 
 Вы также можете использовать `File()` вместе с `UploadFile`, например, для установки дополнительных метаданных:
 
-{* ../../docs_src/request_files/tutorial001_03_an_py310.py hl[9,15] *}
+{* ../../docs_src/request_files/tutorial001_03.py hl[9,15] *}
 
 ## Загрузка нескольких файлов { #multiple-file-uploads }
 
 Можно одновременно загружать несколько файлов.
 
-Они будут связаны с одним и тем же "полем формы", отправляемым с помощью данных формы.
+Они будут связаны с одним и тем же "полем формы", отправляемым с помощью "данных формы".
 
 Для этого необходимо объявить список `bytes` или `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial002_an_py310.py hl[10,15] *}
+{* ../../docs_src/request_files/tutorial002.py hl[10,15] *}
 
-Вы получите, как и было объявлено, список `list` из `bytes` или `UploadFile`.
+Вы получите, как и было объявлено, список `list` из `bytes` или объектов `UploadFile`.
 
 /// note | Технические детали
 
@@ -169,7 +169,7 @@ contents = myfile.file.read()
 
 Так же, как и раньше, вы можете использовать `File()` для задания дополнительных параметров, даже для `UploadFile`:
 
-{* ../../docs_src/request_files/tutorial003_an_py310.py hl[11,18:20] *}
+{* ../../docs_src/request_files/tutorial003.py hl[11,18:20] *}
 
 ## Резюме { #recap }
 

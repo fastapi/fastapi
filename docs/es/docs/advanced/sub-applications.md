@@ -1,6 +1,6 @@
 # Sub Aplicaciones - Mounts { #sub-applications-mounts }
 
-Si necesitas tener dos aplicaciones de **FastAPI** independientes, cada una con su propio OpenAPI independiente y su propia interfaz de docs, puedes tener una aplicación principal y "montar" una (o más) sub-aplicación(es).
+Si necesitas tener dos aplicaciones de **FastAPI** independientes, cada una con su propio OpenAPI independiente y su propia interfaz de documentación, puedes tener una aplicación principal y "montar" una (o más) sub-aplicación(es).
 
 ## Montar una aplicación **FastAPI** { #mounting-a-fastapi-application }
 
@@ -10,7 +10,7 @@ Si necesitas tener dos aplicaciones de **FastAPI** independientes, cada una con 
 
 Primero, crea la aplicación principal de nivel superior de **FastAPI**, y sus *path operations*:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### Sub-aplicación { #sub-application }
 
@@ -18,7 +18,7 @@ Luego, crea tu sub-aplicación, y sus *path operations*.
 
 Esta sub-aplicación es solo otra aplicación estándar de FastAPI, pero es la que se "montará":
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### Montar la sub-aplicación { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@ En tu aplicación de nivel superior, `app`, monta la sub-aplicación, `subapi`.
 
 En este caso, se montará en el path `/subapi`:
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### Revisa la documentación automática de la API { #check-the-automatic-api-docs }
 
@@ -35,7 +35,7 @@ Ahora, ejecuta el comando `fastapi`:
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

@@ -20,20 +20,20 @@ Güvenliği yönetmek için **FastAPI**’nin sunduğu araçları kullanalım.
 
 Örneği `main.py` adlı bir dosyaya kopyalayın:
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## Çalıştırın { #run-it }
 
 /// note | Not
 
-[`python-multipart`](https://github.com/Kludex/python-multipart) paketi, `pip install "fastapi[standard]"` komutunu çalıştırdığınızda **FastAPI** ile birlikte otomatik olarak kurulur.
+[`python-multipart`](https://github.com/Kludex/python-multipart) paketi, `uv add "fastapi[standard]"` komutunu çalıştırdığınızda **FastAPI** ile birlikte otomatik olarak kurulur.
 
-Ancak `pip install fastapi` komutunu kullanırsanız, `python-multipart` paketi varsayılan olarak dahil edilmez.
+Ancak `uv add fastapi` komutunu kullanırsanız, `python-multipart` paketi varsayılan olarak dahil edilmez.
 
-Elle kurmak için bir [Sanal ortam](../../virtual-environments.md) oluşturduğunuzdan, onu aktive ettiğinizden emin olun ve ardından şununla kurun:
+Elle kurmak için projenize şununla ekleyin:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 Bunun nedeni, **OAuth2**’nin `username` ve `password` göndermek için "form data" kullanmasıdır.
@@ -45,7 +45,7 @@ Bunun nedeni, **OAuth2**’nin `username` ve `password` göndermek için "form d
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
@@ -132,7 +132,7 @@ Bu durumda bile **FastAPI**, onu oluşturabilmeniz için gereken araçları suna
 
 `OAuth2PasswordBearer` sınıfının bir instance’ını oluştururken `tokenUrl` parametresini veririz. Bu parametre, client’ın (kullanıcının browser’ında çalışan frontend’in) token almak için `username` ve `password` göndereceği URL’yi içerir.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip | İpucu
 
@@ -170,7 +170,7 @@ Dolayısıyla `Depends` ile kullanılabilir.
 
 Artık `Depends` ile bir dependency olarak `oauth2_scheme`’i geçebilirsiniz.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Bu dependency, *path operation function* içindeki `token` parametresine atanacak bir `str` sağlar.
 

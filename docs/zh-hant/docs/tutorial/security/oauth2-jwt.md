@@ -30,12 +30,12 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4
 
 我們需要安裝 `PyJWT` 才能在 Python 中產生與驗證 JWT 權杖。
 
-請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，然後安裝 `pyjwt`：
+將 `pyjwt` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install pyjwt
+$ uv add pyjwt
 
 ---> 100%
 ```
@@ -72,12 +72,12 @@ pwdlib 是一個很棒的 Python 套件，用來處理密碼雜湊。
 
 建議使用的演算法是「Argon2」。
 
-請先建立並啟用一個[虛擬環境](../../virtual-environments.md)，然後以 Argon2 支援安裝 pwdlib：
+將帶有 Argon2 的 `pwdlib` 加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install "pwdlib[argon2]"
+$ uv add "pwdlib[argon2]"
 
 ---> 100%
 ```
@@ -116,7 +116,7 @@ pwdlib 也支援 bcrypt 雜湊演算法，但不包含傳統（legacy）演算�
 
 以及另一個用於驗證並回傳使用者的工具。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 當以不存在於資料庫的使用者名稱呼叫 `authenticate_user` 時，我們仍然會拿一個假的雜湊去跑一次 `verify_password`。
 
@@ -156,7 +156,7 @@ $ openssl rand -hex 32
 
 建立一個工具函式來產生新的 access token。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## 更新相依項目 { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ $ openssl rand -hex 32
 
 如果權杖無效，立即回傳一個 HTTP 錯誤。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## 更新 `/token` *路徑操作* { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ $ openssl rand -hex 32
 
 建立真正的 JWT access token 並回傳它。
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### 關於 JWT「主體」`sub` 的技術細節 { #technical-details-about-the-jwt-subject-sub }
 

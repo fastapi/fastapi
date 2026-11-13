@@ -15,7 +15,7 @@ Se você precisar hospedar um frontend, use `app.frontend()` em vez disso, leia 
 * Importe `StaticFiles`.
 * "Monte" uma instância de `StaticFiles()` em um path específico.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | Detalhes Técnicos
 
@@ -45,4 +45,4 @@ Todos esses parâmetros podem ser diferentes de "`static`", ajuste-os de acordo 
 
 ## Mais informações { #more-info }
 
-Para mais detalhes e opções, consulte [a documentação da Starlette sobre Arquivos Estáticos](https://www.starlette.dev/staticfiles/).
+Para mais detalhes e opções, consulte [a documentação da Starlette sobre Arquivos Estáticos](https://starlette.dev/staticfiles/).

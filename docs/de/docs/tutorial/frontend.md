@@ -36,7 +36,7 @@ Ihre Projektstruktur könnte so aussehen:
 
 Stellen Sie es dann mit `app.frontend()` bereit:
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 Damit kann ein Request für `/assets/app.js` `dist/assets/app.js` ausliefern.
 
@@ -50,9 +50,9 @@ Wenn also direkt auf diese URL zugegriffen wird (statt durch die App zu navigier
 
 Verwenden Sie dafür `fallback="index.html"`:
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
-**FastAPI** verwendet diesen Fallback nur für `GET`- und `HEAD`-Requests, die wie Browser-Navigation aussehen. Fehlende Dateien wie JavaScript, CSS und Bilder geben weiterhin `404` zurück.
+**FastAPI** verwendet diesen Fallback nur für `GET`- und `HEAD`-Requests, die explizit HTML mit `Accept: text/html` oder `Accept: application/xhtml+xml` akzeptieren, wie Browser-Navigationsrequests es normalerweise tun. Fehlende Dateien wie JavaScript, CSS und Bilder geben weiterhin `404` zurück.
 
 Requests mit anderen Methoden, wie `POST` oder `PUT`, an Pfade, die nur zum Frontend-Fallback passen, geben ebenfalls `404` zurück. Reguläre **FastAPI**-*Pfadoperationen* haben weiterhin eine höhere Priorität als Frontend-Routen.
 
@@ -68,7 +68,7 @@ Das ist das, was Sie bei vielen Frontend-Apps möchten, die clientseitiges Routi
 
 Sie können auch eine statische `404.html`-Seite für fehlende Frontend-Pfade ausliefern:
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 Diese Response behält einen Statuscode von `404`.
 
@@ -94,25 +94,29 @@ Andernfalls, wenn es eine `index.html`-Datei gibt, liefern fehlende Browser-Navi
 
 In den meisten Fällen können Sie also `app.frontend("/", directory="dist")` verwenden, ohne das `fallback`-Argument anzugeben.
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## Fallback deaktivieren { #disable-fallback }
 
 Wenn Sie keine Fallback-Datei für fehlende Frontend-Pfade ausliefern möchten, verwenden Sie `fallback=None`:
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 Dann geben fehlende Frontend-Pfade das normale `404` zurück.
 
 ## Verzeichnis prüfen { #check-directory }
 
-Standardmäßig prüft `app.frontend()`, dass das Verzeichnis existiert, wenn die App erstellt wird.
+Standardmäßig verwendet `app.frontend()` `check_dir="auto"`.
 
-Das hilft, Konfigurationsfehler früh zu erkennen. Wenn zum Beispiel das Output-Verzeichnis des Frontend-Builds fehlt, löst **FastAPI** beim Startup einen Fehler aus.
+Wenn die `FASTAPI_ENV`-Umgebungsvariable auf `development` gesetzt ist, zeigt **FastAPI** nur eine Warnung an, wenn das Output-Verzeichnis des Frontend-Builds fehlt. Der [`fastapi dev`-Befehl](https://github.com/fastapi/fastapi-cli#fastapi-dev) setzt diese Umgebungsvariable für Sie, wenn sie nicht bereits gesetzt ist. Dadurch können Sie während der Entwicklung das Backend starten, bevor Sie das Frontend bauen oder starten.
+
+In jeder anderen Umgebung löst **FastAPI** einen Fehler aus, wenn die App erstellt wird. Das hilft, Konfigurationsfehler früh zu erkennen, bevor eine App ohne ihre Frontend-Dateien deployt wird.
+
+Sie können auch `check_dir=True` setzen, um das Verzeichnis immer zu prüfen, wenn die App erstellt wird.
 
 Wenn Ihre Frontend-Dateien später erstellt werden, zum Beispiel durch einen separaten Build-Schritt, nachdem das App-Objekt erstellt wurde, setzen Sie `check_dir=False`:
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 Mit `check_dir=False` prüft **FastAPI** das Verzeichnis nicht, wenn die App erstellt wird. Wenn das konfigurierte Verzeichnis beim Verarbeiten eines Requests immer noch fehlt, löst **FastAPI** dann einen Fehler aus.
 
@@ -120,7 +124,7 @@ Mit `check_dir=False` prüft **FastAPI** das Verzeichnis nicht, wenn die App ers
 
 Sie können Frontend-Dateien auch zu einem `APIRouter` hinzufügen und ihn mit einem Präfix einbinden:
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 In diesem Beispiel werden Frontend-Pfade unter `/app` bereitgestellt.
 
@@ -131,6 +135,8 @@ Alle regulären *Pfadoperationen* in der App haben weiterhin Vorrang, auch in an
 Frontend-Responses laufen innerhalb der normalen **FastAPI**-Anwendung, daher gilt HTTP-Middleware für sie.
 
 Abhängigkeiten aus der App, aus einem `APIRouter` und aus `include_router()` gelten ebenfalls für Frontend-Responses. Das kann nützlich sein, um ein Frontend mit Cookie-Authentifizierung oder Ähnlichem zu schützen.
+
+Abhängigkeiten können auch Response-Header ändern und Hintergrundtasks hinzufügen, wie bei normalen *Pfadoperationen*.
 
 ## Nur statischer Build-Output { #static-build-output-only }
 

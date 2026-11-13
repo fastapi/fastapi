@@ -125,7 +125,7 @@ def read_url():
 또한 표준 기반의 사용자 인터페이스 도구를 통합하기:
 
 * [Swagger UI](https://github.com/swagger-api/swagger-ui)
-* [ReDoc](https://github.com/Rebilly/ReDoc)
+* [ReDoc](https://github.com/Redocly/redoc)
 
 이 두 가지는 꽤 대중적이고 안정적이기 때문에 선택되었습니다. 하지만 간단히 검색해보면 OpenAPI를 위한 대안 UI가 수십 가지나 있다는 것을 알 수 있습니다(**FastAPI**와 함께 사용할 수 있습니다).
 
@@ -237,7 +237,7 @@ serialization과 validation을 정의하는 동일한 코드로부터 OpenAPI sc
 
 ///
 
-### [NestJS](https://nestjs.com/) (그리고 [Angular](https://angular.io/)) { #nestjs-and-angular }
+### [NestJS](https://nestjs.com/) (그리고 [Angular](https://angular.dev/)) { #nestjs-and-angular }
 
 이건 Python도 아닙니다. NestJS는 Angular에서 영감을 받은 JavaScript(TypeScript) NodeJS framework입니다.
 
@@ -337,7 +337,7 @@ OpenAPI나 JSON Schema 같은 표준을 기반으로 하지 않았기 때문에 
 
 /// note | 참고
 
-Hug는 Timothy Crosley가 만들었습니다. Python 파일에서 import를 자동으로 정렬하는 훌륭한 도구인 [`isort`](https://github.com/timothycrosley/isort)의 제작자이기도 합니다.
+Hug는 Timothy Crosley가 만들었습니다. Python 파일에서 import를 자동으로 정렬하는 훌륭한 도구인 [`isort`](https://github.com/PyCQA/isort)의 제작자이기도 합니다.
 
 ///
 
@@ -401,7 +401,7 @@ APIStar는 Tom Christie가 만들었습니다. 다음을 만든 사람과 동일
 
 ## **FastAPI**가 사용하는 것 { #used-by-fastapi }
 
-### [Pydantic](https://docs.pydantic.dev/) { #pydantic }
+### [Pydantic](https://pydantic.dev/docs/) { #pydantic }
 
 Pydantic은 Python type hints를 기반으로 데이터 검증, serialization, 문서화(JSON Schema 사용)를 정의하는 라이브러리입니다.
 
@@ -417,7 +417,7 @@ Marshmallow와 비교할 수 있습니다. 다만 benchmark에서 Marshmallow보
 
 ///
 
-### [Starlette](https://www.starlette.dev/) { #starlette }
+### [Starlette](https://starlette.dev/) { #starlette }
 
 Starlette는 경량 <dfn title="비동기 Python 웹 애플리케이션을 구축하기 위한 새로운 표준">ASGI</dfn> framework/toolkit으로, 고성능 asyncio 서비스를 만들기에 이상적입니다.
 
@@ -462,7 +462,7 @@ ASGI는 Django 코어 팀 멤버들이 개발 중인 새로운 "표준"입니다
 
 ///
 
-### [Uvicorn](https://www.uvicorn.dev/) { #uvicorn }
+### [Uvicorn](https://uvicorn.dev) { #uvicorn }
 
 Uvicorn은 uvloop과 httptools로 구축된 초고속 ASGI 서버입니다.
 

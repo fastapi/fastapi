@@ -52,7 +52,7 @@ FastAPI 採用建立 Python 網頁框架與伺服器的標準 <abbr title="Async
 
 有數個替代方案，包括：
 
-* [Uvicorn](https://www.uvicorn.dev/)：高效能 ASGI 伺服器。
+* [Uvicorn](https://uvicorn.dev)：高效能 ASGI 伺服器。
 * [Hypercorn](https://hypercorn.readthedocs.io/)：支援 HTTP/2 與 Trio 等功能的 ASGI 伺服器。
 * [Daphne](https://github.com/django/daphne)：為 Django Channels 打造的 ASGI 伺服器。
 * [Granian](https://github.com/emmett-framework/granian)：針對 Python 應用的 Rust HTTP 伺服器。
@@ -73,14 +73,14 @@ FastAPI 採用建立 Python 網頁框架與伺服器的標準 <abbr title="Async
 
 但你也可以手動安裝 ASGI 伺服器。
 
-請先建立並啟用一個 [虛擬環境](../virtual-environments.md)，接著再安裝伺服器程式。
+將伺服器應用程式加入你的專案。
 
 例如，安裝 Uvicorn：
 
 <div class="termy">
 
 ```console
-$ pip install "uvicorn[standard]"
+$ uv add "uvicorn[standard]"
 
 ---> 100%
 ```
@@ -95,7 +95,7 @@ $ pip install "uvicorn[standard]"
 
 其中包含 `uvloop`，它是 `asyncio` 的高效能替代實作，可大幅提升並行效能。
 
-當你用 `pip install "fastapi[standard]"` 安裝 FastAPI 時，也會一併取得 `uvicorn[standard]`。
+當你用像 `uv add "fastapi[standard]"` 這樣加入 FastAPI 時，也會一併取得 `uvicorn[standard]`。
 
 ///
 
@@ -106,7 +106,7 @@ $ pip install "uvicorn[standard]"
 <div class="termy">
 
 ```console
-$ uvicorn main:app --host 0.0.0.0 --port 80
+$ uv run uvicorn main:app --host 0.0.0.0 --port 80
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://0.0.0.0:80 (Press CTRL+C to quit)
 ```

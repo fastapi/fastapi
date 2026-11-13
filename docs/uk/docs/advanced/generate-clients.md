@@ -12,7 +12,7 @@
 
 Для **клієнтів TypeScript** [Hey API](https://heyapi.dev/) - спеціалізоване рішення, що надає оптимізований досвід для екосистеми TypeScript.
 
-Більше генераторів SDK ви можете знайти на [OpenAPI.Tools](https://openapi.tools/#sdk).
+Більше генераторів SDK ви можете знайти на [OpenAPI.Tools](https://openapi.tools/categories/sdk-generators).
 
 /// tip | Порада
 
@@ -24,7 +24,7 @@ FastAPI автоматично генерує специфікації **OpenAPI
 
 Почнімо з простого застосунку FastAPI:
 
-{* ../../docs_src/generate_clients/tutorial001_py310.py hl[7:9,12:13,16:17,21] *}
+{* ../../docs_src/generate_clients/tutorial001.py hl[7:9,12:13,16:17,21] *}
 
 Зверніть увагу, що *операції шляху* визначають моделі, які вони використовують для корисного навантаження запиту та корисного навантаження відповіді, використовуючи моделі `Item` і `ResponseMessage`.
 
@@ -82,7 +82,7 @@ npx @hey-api/openapi-ts -i http://localhost:8000/openapi.json -o src/client
 
 Наприклад, у вас може бути секція для **items** і окрема секція для **users**, і їх можна розділити мітками:
 
-{* ../../docs_src/generate_clients/tutorial002_py310.py hl[21,26,34] *}
+{* ../../docs_src/generate_clients/tutorial002.py hl[21,26,34] *}
 
 ### Згенерувати TypeScript-клієнт із мітками { #generate-a-typescript-client-with-tags }
 
@@ -129,7 +129,7 @@ FastAPI використовує **унікальний ID** для кожної
 
 Потім ви можете передати цю користувацьку функцію до **FastAPI** як параметр `generate_unique_id_function`:
 
-{* ../../docs_src/generate_clients/tutorial003_py310.py hl[6:7,10] *}
+{* ../../docs_src/generate_clients/tutorial003.py hl[6:7,10] *}
 
 ### Згенерувати TypeScript-клієнт з користувацькими operation ID { #generate-a-typescript-client-with-custom-operation-ids }
 
@@ -151,7 +151,7 @@ FastAPI використовує **унікальний ID** для кожної
 
 Ми можемо завантажити JSON OpenAPI у файл `openapi.json`, а потім **прибрати цей префікс із міткою** за допомогою такого скрипту:
 
-{* ../../docs_src/generate_clients/tutorial004_py310.py *}
+{* ../../docs_src/generate_clients/tutorial004.py *}
 
 //// tab | Node.js
 

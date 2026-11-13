@@ -40,7 +40,7 @@ Sie können beispielsweise kein Pydantic-Modell in eine `JSONResponse` einfügen
 
 In diesen Fällen können Sie den `jsonable_encoder` verwenden, um Ihre Daten zu konvertieren, bevor Sie sie an eine Response übergeben:
 
-{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
+{* ../../docs_src/response_directly/tutorial001.py hl[5:6,20:21] *}
 
 /// note | Technische Details
 
@@ -60,13 +60,13 @@ Nehmen wir an, Sie möchten eine [XML](https://en.wikipedia.org/wiki/XML)-Respon
 
 Sie könnten Ihren XML-Inhalt als String in eine `Response` einfügen und sie zurückgeben:
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## Funktionsweise eines Responsemodells { #how-a-response-model-works }
 
 Wenn Sie in einer Pfadoperation ein [Responsemodell - Rückgabetyp](../tutorial/response-model.md) deklarieren, wird **FastAPI** es verwenden, um die Daten mithilfe von Pydantic nach JSON zu serialisieren.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 Da dies auf der Rust-Seite geschieht, ist die Leistung deutlich besser, als wenn es mit normalem Python und der Klasse `JSONResponse` erfolgen würde.
 

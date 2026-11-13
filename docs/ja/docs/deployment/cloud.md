@@ -1,6 +1,6 @@
 # クラウドプロバイダへの FastAPI デプロイ { #deploy-fastapi-on-cloud-providers }
 
-FastAPI アプリケーションは、実質的にどのようなクラウドプロバイダでもデプロイできます。
+FastAPI アプリケーションは、実質的に**どのようなクラウドプロバイダでも**デプロイできます。
 
 多くの場合、主要なクラウドプロバイダは FastAPI をデプロイするためのガイドを提供しています。
 
@@ -20,5 +20,4 @@ FastAPI Cloud は、*FastAPI and friends* オープンソースプロジェク�
 
 それらのガイドを参考にし、サービスを試してみるのもよいでしょう:
 
-* [Render](https://docs.render.com/deploy-fastapi?utm_source=deploydoc&utm_medium=referral&utm_campaign=fastapi)
 * [Railway](https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi)

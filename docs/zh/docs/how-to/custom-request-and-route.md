@@ -42,7 +42,7 @@
 
 这样，同一个路由类即可同时处理 gzip 压缩和未压缩的请求。
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### 创建自定义 `GzipRoute` 类 { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@
 
 这里我们用它把原始请求包装为 `GzipRequest`。
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | 技术细节
 
@@ -66,7 +66,7 @@
 
 创建一个新的 `Request` 实例需要这两样：`scope` 和 `receive`。
 
-想了解更多关于 `Request` 的信息，请查看 [Starlette 的 Request 文档](https://www.starlette.dev/requests/)。
+想了解更多关于 `Request` 的信息，请查看 [Starlette 的 Request 文档](https://starlette.dev/requests/)。
 
 ///
 
@@ -92,18 +92,18 @@
 
 所需仅是在 `try`/`except` 块中处理请求：
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 如果发生异常，`Request` 实例仍在作用域内，因此我们可以在处理错误时读取并使用请求体：
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## 在路由器中自定义 `APIRoute` 类 { #custom-apiroute-class-in-a-router }
 
 你也可以设置 `APIRouter` 的 `route_class` 参数：
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 在此示例中，`router` 下的*路径操作*将使用自定义的 `TimedRoute` 类，响应中会多一个 `X-Response-Time` 头，包含生成响应所用的时间：
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

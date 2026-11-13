@@ -39,13 +39,13 @@ Para hacer streaming de SSE con FastAPI, usa `yield` en tu path operation functi
 
 import `EventSourceResponse` de `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 Cada ítem producido con `yield` se codifica como JSON y se envía en el campo `data:` de un evento SSE.
 
 Si declaras el tipo de retorno como `AsyncIterable[Item]`, FastAPI lo usará para **validar**, **documentar** y **serializar** los datos usando Pydantic.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip | Consejo
 
@@ -61,13 +61,13 @@ FastAPI se asegurará de ejecutarlo correctamente para que no bloquee el event l
 
 Como en este caso la función no es async, el tipo de retorno correcto sería `Iterable[Item]`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### Sin tipo de retorno { #no-return-type }
 
 También puedes omitir el tipo de retorno. FastAPI usará el [`jsonable_encoder`](./encoder.md) para convertir los datos y enviarlos.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ Si necesitas configurar campos SSE como `event`, `id`, `retry` o `comment`, pued
 
 import `ServerSentEvent` de `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 El campo `data` siempre se codifica como JSON. Puedes pasar cualquier valor que pueda serializarse como JSON, incluidos modelos de Pydantic.
 
@@ -85,7 +85,7 @@ Si necesitas enviar datos **sin** codificarlos a JSON, usa `raw_data` en lugar d
 
 Esto es útil para enviar texto preformateado, líneas de log, o valores especiales de <dfn title="Un valor usado para indicar una condición o estado especial">"centinela"</dfn> como `[DONE]`.
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note | Nota
 
@@ -99,7 +99,7 @@ Cuando un navegador se reconecta después de una caída de la conexión, envía 
 
 Puedes leerlo como un parámetro de header y usarlo para reanudar el stream desde donde el cliente se quedó:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## SSE con `POST` { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE funciona con **cualquier método HTTP**, no solo con `GET`.
 
 Esto es útil para protocolos como [MCP](https://modelcontextprotocol.io) que hacen streaming de SSE sobre `POST`:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## Detalles técnicos { #technical-details }
 

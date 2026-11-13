@@ -1,13 +1,12 @@
 # レスポンスの Cookie { #response-cookies }
 
-
 ## `Response` パラメータを使う { #use-a-response-parameter }
 
 *path operation 関数*で `Response` 型のパラメータを宣言できます。
 
 そして、その*一時的*なレスポンスオブジェクトに Cookie を設定できます。
 
-{* ../../docs_src/response_cookies/tutorial002_py310.py hl[1, 8:9] *}
+{* ../../docs_src/response_cookies/tutorial002.py hl[1, 8:9] *}
 
 その後は通常どおり、必要な任意のオブジェクト（`dict`、データベースモデルなど）を返せます。
 
@@ -25,7 +24,7 @@
 
 そのレスポンスに Cookie を設定してから返します:
 
-{* ../../docs_src/response_cookies/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_cookies/tutorial001.py hl[10:12] *}
 
 /// tip | 豆知識
 
@@ -49,4 +48,4 @@
 
 ///
 
-利用可能なすべてのパラメータやオプションについては、[Starlette のドキュメント](https://www.starlette.dev/responses/#set-cookie)を参照してください。
+利用可能なすべてのパラメータやオプションについては、[Starlette のドキュメント](https://starlette.dev/responses/#set-cookie)を参照してください。

@@ -6,7 +6,7 @@ Avec **FastAPI**, vous pouvez définir, valider, documenter et utiliser des mod�
 
 Vous pouvez définir un attribut comme étant un sous-type. Par exemple, une `list` Python :
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 Cela fera de `tags` une liste, bien que le type des éléments de la liste ne soit pas déclaré.
 
@@ -29,7 +29,7 @@ Utilisez cette même syntaxe standard pour les attributs de modèles avec des ty
 
 Ainsi, dans notre exemple, nous pouvons faire de `tags` spécifiquement une « liste de chaînes » :
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## Types set { #set-types }
 
@@ -39,7 +39,7 @@ Et Python dispose d'un type de données spécial pour les ensembles d'éléments
 
 Nous pouvons alors déclarer `tags` comme un set de chaînes :
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 Avec cela, même si vous recevez une requête contenant des doublons, elle sera convertie en un set d'éléments uniques.
 
@@ -61,13 +61,13 @@ Tout cela, de manière arbitrairement imbriquée.
 
 Par exemple, nous pouvons définir un modèle `Image` :
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### Utiliser le sous-modèle comme type { #use-the-submodel-as-a-type }
 
 Nous pouvons ensuite l'utiliser comme type d'un attribut :
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 Cela signifie que **FastAPI** attendrait un corps similaire à :
 
@@ -96,11 +96,11 @@ Là encore, avec cette simple déclaration, avec **FastAPI** vous obtenez :
 
 Outre les types singuliers normaux comme `str`, `int`, `float`, etc. vous pouvez utiliser des types singuliers plus complexes qui héritent de `str`.
 
-Pour voir toutes les options dont vous disposez, consultez [l’aperçu des types de Pydantic](https://docs.pydantic.dev/latest/concepts/types/). Vous verrez quelques exemples au chapitre suivant.
+Pour voir toutes les options dont vous disposez, consultez [l’aperçu des types de Pydantic](https://pydantic.dev/docs/validation/latest/concepts/types/). Vous verrez quelques exemples au chapitre suivant.
 
 Par exemple, comme dans le modèle `Image` nous avons un champ `url`, nous pouvons le déclarer comme instance de `HttpUrl` de Pydantic au lieu de `str` :
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 La chaîne sera vérifiée comme URL valide et documentée comme telle dans JSON Schema / OpenAPI.
 
@@ -108,7 +108,7 @@ La chaîne sera vérifiée comme URL valide et documentée comme telle dans JSON
 
 Vous pouvez également utiliser des modèles Pydantic comme sous-types de `list`, `set`, etc. :
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 Cela attendra (convertira, validera, documentera, etc.) un corps JSON comme :
 
@@ -145,7 +145,7 @@ Remarquez que la clé `images` contient maintenant une liste d'objets image.
 
 Vous pouvez définir des modèles imbriqués à une profondeur arbitraire :
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note | Remarque
 
@@ -163,7 +163,7 @@ images: list[Image]
 
 comme :
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## Bénéficier de la prise en charge de l'éditeur partout { #editor-support-everywhere }
 
@@ -193,7 +193,7 @@ C'est ce que nous allons voir ici.
 
 Dans ce cas, vous accepteriez n'importe quel `dict` tant qu'il a des clés `int` avec des valeurs `float` :
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip | Astuce
 

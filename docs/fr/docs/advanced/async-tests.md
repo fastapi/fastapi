@@ -32,20 +32,20 @@ Pour un exemple simple, considérons une structure de fichiers similaire à cell
 
 Le fichier `main.py` contiendrait :
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 Le fichier `test_main.py` contiendrait les tests pour `main.py`, il pourrait maintenant ressembler à ceci :
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
-## Exécuter { #run-it }
+## Exécutez-le { #run-it }
 
 Vous pouvez lancer vos tests comme d'habitude via :
 
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ---> 100%
 ```
@@ -56,7 +56,7 @@ $ pytest
 
 Le marqueur `@pytest.mark.anyio` indique à pytest que cette fonction de test doit être appelée de manière asynchrone :
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | Astuce
 
@@ -66,12 +66,12 @@ Notez que la fonction de test est maintenant `async def` au lieu de simplement `
 
 Nous pouvons ensuite créer un `AsyncClient` avec l'application et lui envoyer des requêtes asynchrones en utilisant `await`.
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 C'est l'équivalent de :
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ... que nous utilisions pour faire nos requêtes avec le `TestClient`.

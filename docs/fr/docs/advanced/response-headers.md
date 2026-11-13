@@ -6,7 +6,7 @@ Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de c
 
 Vous pouvez ensuite définir des en-têtes dans cet objet de réponse *temporaire*.
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 Ensuite, vous pouvez renvoyer n'importe quel objet dont vous avez besoin, comme d'habitude (un `dict`, un modèle de base de données, etc.).
 
@@ -22,7 +22,7 @@ Vous pouvez également ajouter des en-têtes lorsque vous renvoyez une `Response
 
 Créez une réponse comme décrit dans [Renvoyer une Response directement](response-directly.md) et passez les en-têtes comme paramètre supplémentaire :
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | Détails techniques
 
@@ -38,4 +38,4 @@ Et comme `Response` peut être utilisée fréquemment pour définir des en-tête
 
 Gardez à l'esprit que des en-têtes propriétaires personnalisés peuvent être ajoutés [en utilisant le préfixe `X-`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers).
 
-Mais si vous avez des en-têtes personnalisés que vous voulez qu'un client dans un navigateur puisse voir, vous devez les ajouter à vos configurations CORS (en savoir plus dans [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://www.starlette.dev/middleware/#corsmiddleware).
+Mais si vous avez des en-têtes personnalisés que vous voulez qu'un client dans un navigateur puisse voir, vous devez les ajouter à vos configurations CORS (en savoir plus dans [CORS (Cross-Origin Resource Sharing)](../tutorial/cors.md)), en utilisant le paramètre `expose_headers` documenté dans [la documentation CORS de Starlette](https://starlette.dev/middleware/#corsmiddleware).

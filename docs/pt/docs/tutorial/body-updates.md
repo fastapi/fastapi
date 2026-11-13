@@ -6,7 +6,7 @@ Para atualizar um item, você pode usar a operação [HTTP `PUT`](https://develo
 
 Você pode usar `jsonable_encoder` para converter os dados de entrada em dados que podem ser armazenados como JSON (por exemplo, com um banco de dados NoSQL). Por exemplo, convertendo `datetime` em `str`.
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[28:33] *}
 
 `PUT` é usado para receber dados que devem substituir os dados existentes.
 
@@ -54,7 +54,7 @@ Isso geraria um `dict` com apenas os dados que foram definidos ao criar o modelo
 
 Então, você pode usar isso para gerar um `dict` com apenas os dados definidos (enviados na solicitação), omitindo valores padrão:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[32] *}
 
 ### Usando o parâmetro `update` do Pydantic { #using-pydantics-update-parameter }
 
@@ -62,7 +62,7 @@ Agora, você pode criar uma cópia do modelo existente usando `.model_copy()`, e
 
 Como `stored_item_model.model_copy(update=update_data)`:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[33] *}
 
 ### Recapitulando as atualizações parciais { #partial-updates-recap }
 
@@ -79,7 +79,7 @@ Resumindo, para aplicar atualizações parciais você deveria:
 * Salvar os dados no seu BD.
 * Retornar o modelo atualizado.
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[28:35] *}
 
 /// tip | Dica
 

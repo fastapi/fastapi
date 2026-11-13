@@ -31,11 +31,11 @@ Ela terá uma *operação de rota* que receberá um corpo `Invoice`, e um parâm
 
 Essa parte é bastante normal, a maior parte do código provavelmente já é familiar para você:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | Dica
 
-O parâmetro de consulta `callback_url` usa um tipo Pydantic [Url](https://docs.pydantic.dev/latest/api/networks/).
+O parâmetro de consulta `callback_url` usa um tipo Pydantic [Url](https://pydantic.dev/docs/validation/latest/api/pydantic/networks/).
 
 ///
 
@@ -90,7 +90,7 @@ Adotar temporariamente esse ponto de vista (do *desenvolvedor externo*) pode aju
 
 Primeiro crie um novo `APIRouter` que conterá um ou mais callbacks.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Crie a *operação de rota* do callback { #create-the-callback-path-operation }
 
@@ -101,16 +101,16 @@ Ela deve parecer exatamente como uma *operação de rota* normal do FastAPI:
 * Ela provavelmente deveria ter uma declaração do corpo que deveria receber, por exemplo, `body: InvoiceEvent`.
 * E também poderia ter uma declaração da resposta que deveria retornar, por exemplo, `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 Há 2 diferenças principais de uma *operação de rota* normal:
 
 * Ela não necessita ter nenhum código real, porque sua aplicação nunca chamará esse código. Ele é usado apenas para documentar a *API externa*. Então, a função poderia ter apenas `pass`.
-* O *path* pode conter uma [expressão OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) (veja mais abaixo) em que pode usar variáveis com parâmetros e partes do request original enviado para *sua API*.
+* O *path* pode conter uma [expressão OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) (veja mais abaixo) em que pode usar variáveis com parâmetros e partes do request original enviado para *sua API*.
 
 ### A expressão do path do callback { #the-callback-path-expression }
 
-O *path* do callback pode ter uma [expressão OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.1.0.md#key-expression) que pode conter partes do request original enviado para *sua API*.
+O *path* do callback pode ter uma [expressão OpenAPI 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md#key-expression) que pode conter partes do request original enviado para *sua API*.
 
 Nesse caso, é a `str`:
 
@@ -169,7 +169,7 @@ Nesse ponto você tem a(s) *operação(ões) de rota de callback* necessária(s)
 
 Agora use o parâmetro `callbacks` no decorador da *operação de rota da sua API* para passar o atributo `.routes` desse router de callback:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | Dica
 

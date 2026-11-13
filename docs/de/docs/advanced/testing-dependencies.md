@@ -28,7 +28,7 @@ Um eine Abhängigkeit für das Testen zu überschreiben, geben Sie als Schlüsse
 
 Und dann ruft **FastAPI** diese Überschreibung anstelle der ursprünglichen Abhängigkeit auf.
 
-{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
 /// tip | Tipp
 

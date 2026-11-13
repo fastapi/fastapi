@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Templates { #templates }
 
 Sie können jede gewünschte Template-Engine mit **FastAPI** verwenden.
@@ -8,12 +12,12 @@ Es gibt Werkzeuge zur einfachen Konfiguration, die Sie direkt in Ihrer **FastAPI
 
 ## Abhängigkeiten installieren { #install-dependencies }
 
-Stellen Sie sicher, dass Sie eine [virtuelle Umgebung](../virtual-environments.md) erstellen, sie aktivieren und `jinja2` installieren:
+Fügen Sie `jinja2` Ihrem Projekt hinzu:
 
 <div class="termy">
 
 ```console
-$ pip install jinja2
+$ uv add jinja2
 
 ---> 100%
 ```
@@ -27,7 +31,7 @@ $ pip install jinja2
 * Deklarieren Sie einen `<abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>`-Parameter in der *Pfadoperation*, welcher ein Template zurückgibt.
 * Verwenden Sie die von Ihnen erstellten `templates`, um eine `TemplateResponse` zu rendern und zurückzugeben, übergeben Sie den Namen des Templates, das Requestobjekt und ein „Kontext“-<abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">Dictionary</abbr> mit Schlüssel-Wert-Paaren, die innerhalb des Jinja2-Templates verwendet werden sollen.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note | Hinweis
 
@@ -53,7 +57,7 @@ Sie können auch `from starlette.templating import Jinja2Templates` verwenden.
 
 ## Templates erstellen { #writing-templates }
 
-Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B. folgendem Inhalt:
+Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B.:
 
 ```jinja hl_lines="7"
 {!../../docs_src/templates/templates/item.html!}
@@ -63,13 +67,9 @@ Dann können Sie unter `templates/item.html` ein Template erstellen, mit z. B. f
 
 Im HTML, welches enthält:
 
-{% raw %}
-
 ```jinja
 Item ID: {{ id }}
 ```
-
-{% endraw %}
 
 ... wird die `id` angezeigt, welche dem „Kontext“-`dict` entnommen wird, welches Sie übergeben haben:
 
@@ -89,21 +89,47 @@ Sie können `url_for()` auch innerhalb des Templates verwenden, es nimmt als Arg
 
 Der Abschnitt mit:
 
-{% raw %}
-
 ```jinja
 <a href="{{ url_for('read_item', id=id) }}">
 ```
 
-{% endraw %}
-
 ... generiert also einen Link zu derselben URL, welche von der *Pfadoperation-Funktion* `read_item(id=id)` gehandhabt werden würde.
 
-Mit beispielsweise der ID `42` würde dies Folgendes ergeben:
+`url_for()` gibt eine absolute URL zurück, einschließlich Schema und Host, basierend auf dem aktuellen Request.
+
+Wenn Ihre Anwendung beispielsweise unter `https://example.com` bereitgestellt wird, würde dies mit der ID `42` Folgendes ergeben:
+
+```html
+<a href="https://example.com/items/42">
+```
+
+### URL-Pfade in Templates { #url-paths-in-templates }
+
+Für Links zur selben Website können Sie das Attribut `.path` verwenden, um nur den URL-Pfad zu erhalten, beispielsweise in `templates/item_path.html`:
+
+```jinja hl_lines="4 7"
+{!../../docs_src/templates/templates/item_path.html!}
+```
+
+Übergeben Sie den Namen des Templates an `TemplateResponse`:
+
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
+
+Im selben Beispiel würde der Link zum Item wie folgt gerendert werden:
 
 ```html
 <a href="/items/42">
 ```
+
+Der führende `/` macht diesen Pfad relativ zum Stammverzeichnis der aktuellen Website.
+
+Das Attribut `.path` schließt Schema, Host, Query-Parameter und Fragment aus. Verwenden Sie für Links zu einem anderen Host die vollständige URL.
+
+/// tip | Tipp
+
+Wenn sich Ihre Anwendung hinter einem Proxy befindet, konfigurieren Sie Forwarded-Header und `root_path` wie unter [Hinter einem Proxy](behind-a-proxy.md) beschrieben.
+
+///
 
 ## Templates und statische Dateien { #templates-and-static-files }
 
@@ -123,4 +149,4 @@ Und da Sie `StaticFiles` verwenden, wird diese CSS-Datei automatisch von Ihrer *
 
 ## Mehr Details { #more-details }
 
-Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in [Starlettes Dokumentation zu Templates](https://www.starlette.dev/templates/).
+Weitere Informationen, einschließlich, wie man Templates testet, finden Sie in [Starlettes Dokumentation zu Templates](https://starlette.dev/templates/).

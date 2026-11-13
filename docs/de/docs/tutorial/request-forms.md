@@ -7,10 +7,10 @@ Wenn Sie Felder aus Formularen statt JSON empfangen müssen, können Sie `Form` 
 
 Um Formulare zu verwenden, installieren Sie zuerst [`python-multipart`](https://github.com/Kludex/python-multipart).
 
-Erstellen Sie unbedingt eine [virtuelle Umgebung](../virtual-environments.md), aktivieren Sie diese und installieren Sie dann das Paket, zum Beispiel:
+Fügen Sie es Ihrem Projekt hinzu:
 
 ```console
-$ pip install python-multipart
+$ uv add python-multipart
 ```
 
 ///
@@ -19,13 +19,13 @@ $ pip install python-multipart
 
 Importieren Sie `Form` von `fastapi`:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## `Form`-Parameter definieren { #define-form-parameters }
 
 Erstellen Sie Formular-Parameter, so wie Sie es auch mit `Body` oder `Query` machen würden:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Zum Beispiel stellt eine der Möglichkeiten, die OAuth2-Spezifikation zu verwenden (genannt „password flow“), die Bedingung, einen `username` und ein `password` als Formularfelder zu senden.
 
@@ -45,6 +45,14 @@ Um Formularbodys zu deklarieren, verwenden Sie explizit `Form`, da diese Paramet
 
 ///
 
+## Boolesche Formularfelder { #boolean-form-fields }
+
+Browser lassen nicht angekreuzte Checkboxen beim Absenden von HTML-Formularen weg. Deklarieren Sie einen booleschen Formular-Parameter mit dem Defaultwert `False`, um `False` zu erhalten, wenn die Checkbox nicht angekreuzt ist:
+
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
+
+Eine angekreuzte Checkbox sendet ihren Wert, der standardmäßig `"on"` ist. **FastAPI** akzeptiert `"on"` als `True`.
+
 ## Über „Formularfelder“ { #about-form-fields }
 
 HTML-Formulare (`<form></form>`) senden die Daten in einer „speziellen“ Kodierung zum Server, die sich von JSON unterscheidet.
@@ -56,6 +64,8 @@ HTML-Formulare (`<form></form>`) senden die Daten in einer „speziellen“ Kodi
 Daten aus Formularen werden normalerweise mit dem <abbr title="Medientyp">„media type“</abbr> `application/x-www-form-urlencoded` kodiert.
 
 Wenn das Formular stattdessen Dateien enthält, werden diese mit `multipart/form-data` kodiert. Im nächsten Kapitel erfahren Sie mehr über die Handhabung von Dateien.
+
+Sie können `Form(media_type="multipart/form-data")` verwenden, um ein Multipart-Formular in OpenAPI zu beschreiben. Beim Kombinieren von Formular-Parametern oder Modellen reicht es aus, dies bei einem Parameter festzulegen.
 
 Wenn Sie mehr über Formularfelder und ihre Kodierungen lesen möchten, besuchen Sie die [<abbr title="Mozilla Developer Network - Mozilla-Entwicklernetzwerk">MDN</abbr>-Webdokumentation für `POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST).
 

@@ -1,6 +1,6 @@
 # 測試 { #testing }
 
-多虧了 [Starlette](https://www.starlette.dev/testclient/)，測試 **FastAPI** 應用既簡單又好用。
+多虧了 [Starlette](https://starlette.dev/testclient/)，測試 **FastAPI** 應用既簡單又好用。
 
 它是基於 [HTTPX](https://www.python-httpx.org) 打造，而 HTTPX 的設計又參考了 Requests，所以用起來非常熟悉、直覺。
 
@@ -12,10 +12,10 @@
 
 要使用 `TestClient`，請先安裝 [`httpx`](https://www.python-httpx.org)。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後安裝，例如：
+把它加入你的專案：
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -30,7 +30,7 @@ $ pip install httpx
 
 用簡單的 `assert` 敘述搭配標準的 Python 運算式來檢查（同樣是 `pytest` 的標準用法）。
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip
 
@@ -76,7 +76,7 @@ $ pip install httpx
 在 `main.py` 檔案中有你的 **FastAPI** 應用：
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### 測試檔案 { #testing-file }
 
@@ -92,7 +92,7 @@ $ pip install httpx
 
 因為這個檔案在同一個套件中，你可以使用相對匯入，從 `main` 模組（`main.py`）匯入 `app` 這個物件：
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...然後測試的程式碼就和先前一樣。
@@ -121,13 +121,13 @@ $ pip install httpx
 
 兩個 *路徑操作* 都需要一個 `X-Token` 標頭（header）。
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### 擴充的測試檔案 { #extended-testing-file }
 
 接著你可以把 `test_main.py` 更新為擴充後的測試：
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 每當你需要在請求中讓 client 帶一些資料，但不確定該怎麼做時，你可以搜尋（Google）在 `httpx` 要如何傳遞，甚至用 Requests 怎麼做，因為 HTTPX 的設計是基於 Requests。
@@ -156,12 +156,12 @@ $ pip install httpx
 
 接下來，你只需要安裝 `pytest`。
 
-請先建立並啟用一個[虛擬環境](../virtual-environments.md)，然後安裝，例如：
+把它加入你的專案：
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ $ pip install pytest
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

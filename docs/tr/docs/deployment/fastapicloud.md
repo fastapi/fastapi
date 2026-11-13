@@ -5,7 +5,7 @@ FastAPI uygulamanızı [FastAPI Cloud](https://fastapicloud.com)'a yalnızca **t
 <div class="termy">
 
 ```console
-$ fastapi deploy
+$ uv run fastapi deploy
 
 Deploying to FastAPI Cloud...
 

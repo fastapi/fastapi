@@ -30,7 +30,7 @@ Commençons par un exemple, puis voyons-le en détail.
 
 Nous créons une fonction async `lifespan()` avec `yield` comme ceci :
 
-{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 Ici, nous simulons l'opération de *démarrage* coûteuse de chargement du modèle en plaçant la fonction (factice) du modèle dans le dictionnaire avec les modèles d'apprentissage automatique avant le `yield`. Ce code sera exécuté **avant** que l'application ne **commence à recevoir des requêtes**, pendant le *démarrage*.
 
@@ -48,7 +48,7 @@ Peut-être devez-vous démarrer une nouvelle version, ou vous en avez simplement
 
 La première chose à remarquer est que nous définissons une fonction async avec `yield`. C'est très similaire aux Dépendances avec `yield`.
 
-{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 La première partie de la fonction, avant le `yield`, sera exécutée **avant** le démarrage de l'application.
 
@@ -60,7 +60,7 @@ Si vous regardez, la fonction est décorée avec `@asynccontextmanager`.
 
 Cela convertit la fonction en quelque chose appelé un « **gestionnaire de contexte asynchrone** ».
 
-{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 Un **gestionnaire de contexte** en Python est quelque chose que vous pouvez utiliser dans une instruction `with`. Par exemple, `open()` peut être utilisé comme gestionnaire de contexte :
 
@@ -82,7 +82,7 @@ Dans notre exemple de code ci-dessus, nous ne l'utilisons pas directement, mais 
 
 Le paramètre `lifespan` de l'application `FastAPI` accepte un **gestionnaire de contexte asynchrone**, nous pouvons donc lui passer notre nouveau gestionnaire de contexte asynchrone `lifespan`.
 
-{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## Événements alternatifs (déprécié) { #alternative-events-deprecated }
 
@@ -104,7 +104,7 @@ Ces fonctions peuvent être déclarées avec `async def` ou un `def` normal.
 
 Pour ajouter une fonction qui doit être exécutée avant le démarrage de l'application, déclarez-la avec l'événement `"startup"` :
 
-{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 Dans ce cas, la fonction gestionnaire de l'événement `startup` initialisera la « base de données » des items (juste un `dict`) avec quelques valeurs.
 
@@ -116,7 +116,7 @@ Et votre application ne commencera pas à recevoir des requêtes avant que tous 
 
 Pour ajouter une fonction qui doit être exécutée lorsque l'application s'arrête, déclarez-la avec l'événement `"shutdown"` :
 
-{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 Ici, la fonction gestionnaire de l'événement `shutdown` écrira une ligne de texte `"Application shutdown"` dans un fichier `log.txt`.
 
@@ -154,7 +154,7 @@ Sous le capot, dans la spécification technique ASGI, cela fait partie du [proto
 
 /// note | Remarque
 
-Vous pouvez en lire plus sur les gestionnaires `lifespan` de Starlette dans la [documentation « Lifespan » de Starlette](https://www.starlette.dev/lifespan/).
+Vous pouvez en lire plus sur les gestionnaires `lifespan` de Starlette dans les [documents « Lifespan » de Starlette](https://starlette.dev/lifespan/).
 
 Y compris comment gérer l'état de cycle de vie qui peut être utilisé dans d'autres parties de votre code.
 

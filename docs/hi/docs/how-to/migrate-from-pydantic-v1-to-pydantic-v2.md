@@ -24,7 +24,7 @@ Pydantic team ने **Python 3.14** से शुरू करते हुए,
 
 ## आधिकारिक गाइड { #official-guide }
 
-Pydantic के पास v1 से v2 के लिए एक आधिकारिक [Migration Guide](https://docs.pydantic.dev/latest/migration/) है।
+Pydantic के पास v1 से v2 के लिए एक आधिकारिक [Migration Guide](https://pydantic.dev/docs/validation/latest/get-started/migration/) है।
 
 इसमें यह भी शामिल है कि क्या बदला है, validations अब कैसे अधिक सही और strict हैं, संभावित caveats आदि।
 
@@ -52,7 +52,7 @@ Pydantic v2 में Pydantic v1 की सभी चीज़ें `pydantic.
 
 इसका मतलब है कि आप Pydantic v2 का नवीनतम version install कर सकते हैं और इस submodule से पुराने Pydantic v1 components को import और उपयोग कर सकते हैं, जैसे कि आपके पास पुराना Pydantic v1 install हो।
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### v2 में Pydantic v1 के लिए FastAPI support { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ FastAPI 0.119.0 से, Pydantic v2 के अंदर से Pydantic v1 क�
 
 इसलिए, आप Pydantic को नवीनतम version 2 में upgrade कर सकते थे, और imports को `pydantic.v1` submodule का उपयोग करने के लिए बदल सकते थे, और कई मामलों में यह बस काम कर जाता।
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning | चेतावनी
 
@@ -122,7 +122,7 @@ graph TB
 
 कुछ मामलों में, आपके FastAPI app में एक ही **path operation** में Pydantic v1 और v2 दोनों models होना भी संभव है:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 ऊपर दिए गए इस उदाहरण में, input model एक Pydantic v1 model है, और output model (`response_model=ItemV2` में defined) एक Pydantic v2 model है।
 
@@ -130,7 +130,7 @@ graph TB
 
 अगर आपको Pydantic v1 models के साथ parameters के लिए FastAPI-specific tools जैसे `Body`, `Query`, `Form` आदि का उपयोग करना है, तो Pydantic v2 में migration पूरा करते समय आप उन्हें `fastapi.temp_pydantic_v1_params` से import कर सकते हैं:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### चरणों में माइग्रेट करें { #migrate-in-steps }
 

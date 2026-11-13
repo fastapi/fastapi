@@ -105,36 +105,32 @@ Isso é o que você quer fazer na **maioria dos casos**, por exemplo:
 
 ### Requisitos de Pacotes { #package-requirements }
 
-Você normalmente teria os **requisitos de pacotes** da sua aplicação em algum arquivo.
+Quando você gerencia seu projeto com `uv`, suas dependências diretas são declaradas em `pyproject.toml` e as versões resolvidas exatas são armazenadas em `uv.lock`.
 
-Isso pode depender principalmente da ferramenta que você usa para **instalar** esses requisitos.
-
-A forma mais comum de fazer isso é ter um arquivo `requirements.txt` com os nomes dos pacotes e suas versões, um por linha.
-
-Você, naturalmente, usaria as mesmas ideias que você leu em [Sobre versões do FastAPI](versions.md) para definir os intervalos de versões.
-
-Por exemplo, seu `requirements.txt` poderia parecer com:
-
-```
-fastapi[standard]>=0.113.0,<0.114.0
-pydantic>=2.7.0,<3.0.0
-```
-
-E você normalmente instalaria essas dependências de pacote com `pip`, por exemplo:
+Você pode adicionar os pacotes de que sua aplicação precisa com:
 
 <div class="termy">
 
 ```console
-$ pip install -r requirements.txt
+$ uv add "fastapi[standard]" pydantic
 ---> 100%
-Successfully installed fastapi pydantic
 ```
 
 </div>
 
 /// note | Nota
 
-Há outros formatos e ferramentas para definir e instalar dependências de pacotes.
+O Dockerfile abaixo usa `pip` dentro do contêiner. Você pode exportar as dependências bloqueadas do seu projeto uv para o formato `requirements.txt` esperado por ele:
+
+<div class="termy">
+
+```console
+$ uv export --format requirements-txt --no-dev --no-emit-project --output-file requirements.txt
+```
+
+</div>
+
+O `requirements.txt` gerado é uma exportação para a construção do contêiner. Continue gerenciando dependências com `uv add` e gere-o novamente quando `uv.lock` mudar.
 
 ///
 
@@ -372,7 +368,7 @@ Você verá a documentação interativa automática da API (fornecida pelo [Swag
 
 E você também pode ir para [http://192.168.99.100/redoc](http://192.168.99.100/redoc) ou [http://127.0.0.1/redoc](http://127.0.0.1/redoc) (ou equivalente, usando seu host Docker).
 
-Você verá a documentação alternativa automática (fornecida pelo [ReDoc](https://github.com/Rebilly/ReDoc)):
+Você verá a documentação alternativa automática (fornecida pelo [ReDoc](https://github.com/Redocly/redoc)):
 
 ![ReDoc](https://fastapi.tiangolo.com/img/index/index-02-redoc-simple.png)
 

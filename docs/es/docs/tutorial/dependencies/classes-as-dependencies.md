@@ -6,7 +6,7 @@ Antes de profundizar en el sistema de **Inyección de Dependencias**, vamos a me
 
 En el ejemplo anterior, estábamos devolviendo un `dict` de nuestra dependencia ("dependable"):
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 Pero luego obtenemos un `dict` en el parámetro `commons` de la *path operation function*.
 
@@ -69,15 +69,15 @@ Eso también se aplica a los callables sin parámetros. Igual que sería para *p
 
 Entonces, podemos cambiar la dependencia "dependable" `common_parameters` de arriba a la clase `CommonQueryParams`:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 Presta atención al método `__init__` usado para crear la instance de la clase:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ...tiene los mismos parámetros que nuestros `common_parameters` anteriores:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 Esos parámetros son los que **FastAPI** usará para "resolver" la dependencia.
 
@@ -93,7 +93,7 @@ En ambos casos, los datos serán convertidos, validados, documentados en el esqu
 
 Ahora puedes declarar tu dependencia usando esta clase.
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** llama a la clase `CommonQueryParams`. Esto crea una "instance" de esa clase y la instance será pasada como el parámetro `commons` a tu función.
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ...como en:
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 Pero declarar el tipo es recomendable, ya que de esa manera tu editor sabrá lo que se pasará como el parámetro `commons`, y entonces podrá ayudarte con el autocompletado, chequeo de tipos, etc:
 
@@ -275,7 +275,7 @@ Declaras la dependencia como el tipo del parámetro, y usas `Depends()` sin ning
 
 El mismo ejemplo se vería entonces así:
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ...y **FastAPI** sabrá qué hacer.
 

@@ -22,7 +22,7 @@ Hier sind einige der **GraphQL**-Bibliotheken, die **ASGI**-Unterstützung haben
 * [Strawberry](https://strawberry.rocks/) 🍓
     * Mit [Dokumentation für FastAPI](https://strawberry.rocks/docs/integrations/fastapi)
 * [Ariadne](https://ariadnegraphql.org/)
-    * Mit [Dokumentation für FastAPI](https://ariadnegraphql.org/docs/fastapi-integration)
+    * Mit [Dokumentation für FastAPI](https://ariadnegraphql.org/server/Integrations/fastapi-integration)
 * [Tartiflette](https://tartiflette.io/)
     * Mit [Tartiflette ASGI](https://tartiflette.github.io/tartiflette-asgi/) für ASGI-Integration
 * [Graphene](https://graphene-python.org/)
@@ -36,7 +36,7 @@ Abhängig von Ihrem Anwendungsfall könnten Sie eine andere Bibliothek vorziehen
 
 Hier ist eine kleine Vorschau, wie Sie Strawberry mit FastAPI integrieren können:
 
-{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
+{* ../../docs_src/graphql_/tutorial001.py hl[3,22,25] *}
 
 Weitere Informationen zu Strawberry finden Sie in der [Strawberry-Dokumentation](https://strawberry.rocks/).
 

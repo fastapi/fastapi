@@ -1,6 +1,6 @@
 # 子应用 - 挂载 { #sub-applications-mounts }
 
-如果需要两个独立的 FastAPI 应用，拥有各自独立的 OpenAPI 与文档，则需设置一个主应用，并**挂载**一个（或多个）子应用。
+如果需要两个独立的 FastAPI 应用，拥有各自独立的 OpenAPI 与文档 UI，则需设置一个主应用，并**挂载**一个（或多个）子应用。
 
 ## 挂载 **FastAPI** 应用 { #mounting-a-fastapi-application }
 
@@ -10,7 +10,7 @@
 
 首先，创建主（顶层）**FastAPI** 应用及其*路径操作*：
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### 子应用 { #sub-application }
 
@@ -18,7 +18,7 @@
 
 子应用只是另一个标准 FastAPI 应用，但这个应用是被**挂载**的应用：
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### 挂载子应用 { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@
 
 本例的子应用挂载在 `/subapi` 路径下：
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### 查看自动 API 文档 { #check-the-automatic-api-docs }
 
@@ -35,7 +35,7 @@
 <div class="termy">
 
 ```console
-$ fastapi dev
+$ uv run fastapi dev
 
 <span style="color: green;">INFO</span>:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```

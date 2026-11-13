@@ -1,6 +1,6 @@
 # Тестування { #testing }
 
-Завдяки [Starlette](https://www.starlette.dev/testclient/), тестувати застосунки **FastAPI** просто й приємно.
+Завдяки [Starlette](https://starlette.dev/testclient/), тестувати застосунки **FastAPI** просто й приємно.
 
 Воно базується на [HTTPX](https://www.python-httpx.org), який, своєю чергою, спроєктований на основі Requests, тож він дуже знайомий та інтуїтивно зрозумілий.
 
@@ -12,10 +12,10 @@
 
 Щоб використовувати `TestClient`, спочатку встановіть [`httpx`](https://www.python-httpx.org).
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його, а потім встановили `httpx`, наприклад:
+Додайте його до вашого проєкту:
 
 ```console
-$ pip install httpx
+$ uv add httpx
 ```
 
 ///
@@ -30,7 +30,7 @@ $ pip install httpx
 
 Записуйте прості `assert`-вирази зі стандартними виразами Python, які потрібно перевірити (це також стандарт для `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | Порада
 
@@ -76,7 +76,7 @@ $ pip install httpx
 У файлі `main.py` знаходиться ваш застосунок **FastAPI**:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### Файл тестування { #testing-file }
 
@@ -92,7 +92,7 @@ $ pip install httpx
 
 Оскільки цей файл знаходиться в тому ж пакеті, ви можете використовувати відносний імпорт, щоб імпортувати об'єкт `app` із модуля `main` (`main.py`):
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...і написати код для тестів так само як і раніше.
@@ -121,16 +121,16 @@ $ pip install httpx
 
 Обидві *операції шляху* вимагають заголовок `X-Token`.
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### Розширений тестовий файл { #extended-testing-file }
 
 Потім ви можете оновити `test_main.py`, додавши розширені тести:
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
-Коли вам потрібно, щоб клієнт передав інформацію в запиті, але ви не знаєте, як це зробити, ви можете пошукати (Google), як це зробити в `httpx`, або навіть як це зробити з `requests`, оскільки дизайн HTTPX базується на дизайні Requests.
+Коли вам потрібно, щоб клієнт передав інформацію в запиті, але ви не знаєте, як це зробити, ви можете пошукати (Google), як це зробити в `httpx`, або навіть як це зробити з `requests`, оскільки дизайн HTTPX базується на дизайі Requests.
 
 Далі ви просто повторюєте ці ж дії у ваших тестах.
 
@@ -156,12 +156,12 @@ $ pip install httpx
 
 Після цього вам потрібно встановити `pytest`.
 
-Переконайтеся, що ви створили [віртуальне середовище](../virtual-environments.md), активували його і встановили необхідні пакети, наприклад:
+Додайте його до вашого проєкту:
 
 <div class="termy">
 
 ```console
-$ pip install pytest
+$ uv add pytest
 
 ---> 100%
 ```
@@ -175,7 +175,7 @@ $ pip install pytest
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ================ test session starts ================
 platform linux -- Python 3.6.9, pytest-5.3.5, py-1.8.1, pluggy-0.13.1

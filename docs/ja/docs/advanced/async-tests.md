@@ -12,7 +12,7 @@
 
 ## HTTPX { #httpx }
 
-**FastAPI** アプリケーションが通常の `def` 関数を使っていても、その内側は依然として `async` アプリケーションです。
+**FastAPI** アプリケーションが `async def` の代わりに通常の `def` 関数を使っていても、その内側は依然として `async` アプリケーションです。
 
 `TestClient` は、標準の pytest を使って通常の `def` のテスト関数から非同期の FastAPI アプリを呼び出すための「おまじない」を内部で行います。しかし、その「おまじない」はテスト関数自体が非同期の場合には機能しません。テストを非同期で実行すると、テスト関数内で `TestClient` は使えなくなります。
 
@@ -32,11 +32,11 @@
 
 `main.py` は次のようになります:
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
-`test_main.py` は `main.py` のテストを持ち、次のようになります:
+`test_main.py` は `main.py` のテストを持ち、今は次のようになります:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
 ## 実行 { #run-it }
 
@@ -45,7 +45,7 @@
 <div class="termy">
 
 ```console
-$ pytest
+$ uv run pytest
 
 ---> 100%
 ```
@@ -56,22 +56,22 @@ $ pytest
 
 マーカー `@pytest.mark.anyio` は、このテスト関数を非同期で呼び出すべきであることを pytest に伝えます:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | 豆知識
 
-`TestClient` を使っていたときと異なり、テスト関数は `async def` ではなく `def` になっている点に注意してください。
+`TestClient` を使っていたときのように単なる `def` ではなく、テスト関数は `async def` になっている点に注意してください。
 
 ///
 
 次に、アプリを渡して `AsyncClient` を作成し、`await` を使って非同期リクエストを送信できます。
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 これは次と同等です:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...これまでは `TestClient` でリクエストを送っていました。
