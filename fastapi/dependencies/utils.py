@@ -112,12 +112,30 @@ multipart_incorrect_install_error = (
 )
 
 
+def _version_str_to_tuple(version: str) -> tuple[int, ...]:
+    version_tuple = []
+    for part in version.split("."):
+        numeric_prefix = ""
+        for char in part:
+            if not char.isdigit():
+                break
+            numeric_prefix += char
+        if not numeric_prefix:
+            break
+        version_tuple.append(int(numeric_prefix))
+    # Trailing zeros don't change the version, so "0.0.12.0" is the same as
+    # "0.0.12" and must not be considered newer than it.
+    while version_tuple and version_tuple[-1] == 0:
+        version_tuple.pop()
+    return tuple(version_tuple)
+
+
 def ensure_multipart_is_installed() -> None:
     try:
         from python_multipart import __version__
 
         # Import an attribute that can be mocked/deleted in testing
-        assert __version__ > "0.0.12"
+        assert _version_str_to_tuple(__version__) > (0, 0, 12)
     except (ImportError, AssertionError):
         try:
             # __version__ is available in both multiparts, and can be mocked
