@@ -130,6 +130,7 @@ jobs:
         with:
           version: "latest-known"
           enable-cache: true
+          cache-suffix: tests-${{ matrix.uv-resolution }}
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
@@ -192,6 +193,7 @@ jobs:
         with:
           version: "latest-known"
           enable-cache: true
+          cache-suffix: tests-highest
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
@@ -260,6 +262,13 @@ jobs:
         with:
           version: "latest-known"
           enable-cache: true
+          cache-suffix: tests-highest
+          # This job checks out into `base/`, so the glob must point there.
+          cache-dependency-glob: |
+            base/pyproject.toml
+            base/uv.lock
+          # Only ever runs on pull requests, so anything it saved would be PR-scoped and useless.
+          save-cache: false
       - name: Run the changed tests against the base code
         if: steps.changed-tests.outputs.found == 'true'
         working-directory: base
@@ -299,6 +308,7 @@ jobs:
         with:
           version: "latest-known"
           enable-cache: true
+          cache-suffix: tests-highest
           cache-dependency-glob: |
             pyproject.toml
             uv.lock

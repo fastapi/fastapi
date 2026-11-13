@@ -1,0 +1,47 @@
+name: Warm Cache
+
+# Populates the `dev-all` uv cache at default-branch scope so that it could be used by
+# `pre-commit.yml` (it has `pull_request` trigger and can't write cache available across PRs)
+# and some others that use subset of dev dependencies.
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - pyproject.toml
+      - uv.lock
+      - .python-version
+      - .github/workflows/warm-cache.yml
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  warm-cache:
+    if: github.repository_owner == 'fastapi'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version-file: ".python-version"
+      - name: Setup uv
+        id: setup-uv
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: "latest-known"
+          enable-cache: true
+          cache-suffix: dev-all
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+      - name: Populate the cache
+        if: steps.setup-uv.outputs.cache-hit != 'true'
+        run: uv sync --locked --group dev --extra all

@@ -6,6 +6,7 @@ permissions: {}
 
 env:
   CAN_PUSH: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' }}
+  UV_NO_SYNC: true
 
 jobs:
   pre-commit:
@@ -46,6 +47,7 @@ jobs:
         uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
         with:
           version: "latest-known"
+          cache-suffix: dev-all
           cache-dependency-glob: |
             pyproject.toml
             uv.lock
