@@ -27,6 +27,7 @@ from typing import (
     get_origin,
 )
 
+from anyio import CancelScope
 from fastapi import params
 from fastapi._compat import (
     ModelField,
@@ -52,6 +53,7 @@ from fastapi._compat import (
 )
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
+    _asynccontextmanager_with_shielded_exit,
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
@@ -621,11 +623,27 @@ def add_param_to_fields(*, field: ModelField, dependant: Dependant) -> None:
 
 
 async def _solve_generator(
-    *, dependant: Dependant, stack: AsyncExitStack, sub_values: dict[str, Any]
+    *,
+    dependant: Dependant,
+    stack: AsyncExitStack,
+    sub_values: dict[str, Any],
+    request: Request | WebSocket,
 ) -> Any:
     assert dependant.call
     if _is_async_gen_callable(dependant.call):
         cm = asynccontextmanager(dependant.call)(**sub_values)
+        cleanup_scopes: dict[AsyncExitStack, CancelScope] = request.scope.setdefault(
+            "fastapi_async_cleanup_scopes", {}
+        )
+        request_stack = cast(AsyncExitStack, request.scope["fastapi_inner_astack"])
+        cleanup_scope = cleanup_scopes.get(request_stack)
+        if cleanup_scope is None:
+            # The request stack outlives both dependency scopes. Enter this
+            # before the first async generator so it encloses their own scopes.
+            cleanup_scope = request_stack.enter_context(CancelScope())
+            cleanup_scopes[request_stack] = cleanup_scope
+            request_stack.callback(cleanup_scopes.pop, request_stack)
+        cm = _asynccontextmanager_with_shielded_exit(cm, cleanup_scope)
     elif _is_gen_callable(dependant.call):
         cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
     return await stack.enter_async_context(cm)
@@ -723,6 +741,7 @@ async def solve_dependencies(
             if sub_dependant.scope == "function":
                 use_astack = function_astack
             solved = await _solve_generator(
+                request=request,
                 dependant=use_sub_dependant,
                 stack=use_astack,
                 sub_values=solved_result.values,
