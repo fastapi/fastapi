@@ -1,10 +1,11 @@
 from collections.abc import AsyncGenerator
-from contextlib import AbstractContextManager
+from contextlib import AbstractAsyncContextManager, AbstractContextManager
 from contextlib import asynccontextmanager as asynccontextmanager
 from typing import TypeVar
 
 import anyio.to_thread
 from anyio import CancelScope, CapacityLimiter
+from anyio.lowlevel import checkpoint_if_cancelled
 from starlette.concurrency import iterate_in_threadpool as iterate_in_threadpool  # noqa
 from starlette.concurrency import run_in_threadpool as run_in_threadpool  # noqa
 from starlette.concurrency import (  # noqa
@@ -44,3 +45,22 @@ async def contextmanager_in_threadpool(
             await anyio.to_thread.run_sync(
                 cm.__exit__, None, None, None, limiter=exit_limiter
             )
+
+
+@asynccontextmanager
+async def _asynccontextmanager_with_shielded_exit(
+    cm: AbstractAsyncContextManager[_T], cleanup_scope: CancelScope
+) -> AsyncGenerator[_T, None]:
+    # The shared scope was entered before the dependency, so exiting a scope
+    # opened by the dependency still follows LIFO order.
+    was_shielded = cleanup_scope.shield
+    try:
+        async with cm as value:
+            try:
+                yield value
+            finally:
+                cleanup_scope.shield = True
+    finally:
+        cleanup_scope.shield = was_shielded
+    # A task group can suppress cancellation while its parent is shielded.
+    await checkpoint_if_cancelled()
