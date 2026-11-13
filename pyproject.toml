@@ -9,7 +9,7 @@ description = "FastAPI framework, high performance, easy to learn, fast to code,
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [
     { name = "Sebastián Ramírez", email = "tiangolo@gmail.com" },
 ]
@@ -33,7 +33,6 @@ classifiers = [
     "Framework :: Pydantic :: 2",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -332,6 +331,9 @@ ignore = [
 "docs_src/stream_data/tutorial001.py" = ["UP028"]
 "docs_src/stream_data/tutorial002.py" = ["UP028"]
 "docs_src/server_sent_events/tutorial001.py" = ["UP028"]
+# These regression tests intentionally use str/Enum.
+"tests/test_no_schema_split.py" = ["UP042"]
+"tests/test_schema_compat_pydantic_v2.py" = ["UP042"]
 
 [tool.ruff.lint.isort]
 known-third-party = ["fastapi", "pydantic", "starlette"]
