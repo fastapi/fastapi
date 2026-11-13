@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/add-to-project@5afcf98fcd03f1c2f92c3c83f58ae24323cc57fd # v2.0.0
+      - uses: actions/add-to-project@v2.0.0
         with:
           project-url: https://github.com/orgs/fastapi/projects/2
           github-token: ${{ secrets.PROJECTS_TOKEN }} # zizmor: ignore[secrets-outside-env]

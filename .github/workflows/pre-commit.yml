@@ -19,7 +19,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@v7.0.1
         name: Checkout PR for own repo
         if: env.CAN_PUSH == 'true'
         with:
@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       # pre-commit lite ci needs the default checkout configs to work
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@v7.0.1
         name: Checkout PR for fork
         if: env.CAN_PUSH == 'false'
         with:
@@ -39,11 +39,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Set up Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        uses: actions/setup-python@v7.1.0
         with:
           python-version-file: ".python-version"
       - name: Setup uv
-        uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        uses: astral-sh/setup-uv@v10.3.2
         with:
           version: "latest-known"
           cache-dependency-glob: |
@@ -66,7 +66,7 @@ jobs:
       - name: Get PR Push token
         id: pr-push
         if: env.CAN_PUSH == 'true' && steps.changes.outputs.changed == 'true'
-        uses: tiangolo/pr-push@f336b3817f32ea9b8273a8c15f8ecb739ac38167 # 0.0.4
+        uses: tiangolo/pr-push@0.0.4
       - name: Commit and push changes
         if: env.CAN_PUSH == 'true' && steps.changes.outputs.changed == 'true'
         env:
@@ -82,7 +82,7 @@ jobs:
             git commit -m "🎨 Auto format"
             git push
           fi
-      - uses: pre-commit-ci/lite-action@062bca0919bc9d6e66755cc05074b70c77e111fc # v1.2.0
+      - uses: pre-commit-ci/lite-action@v1.2.0
         if: env.CAN_PUSH == 'false'
         with:
           msg: 🎨 Auto format
@@ -103,6 +103,6 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Decide whether the needed jobs succeeded or failed
-        uses: re-actors/alls-green@b5b5b37504aa4183270bd3d855c52a67f212be35 # v1.3.0
+        uses: re-actors/alls-green@v1.3.0
         with:
           jobs: ${{ toJSON(needs) }}
