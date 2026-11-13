@@ -96,7 +96,7 @@ Creating or updating this file is called [**locking** the project dependencies](
 
 /// details | FastAPI installation options
 
-When you install with `uv add "fastapi[standard]"` it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to [FastAPI Cloud](https://fastapicloud.com).
+When you install with `uv add "fastapi[standard]"`, it comes with some default optional standard dependencies, including `fastapi-cloud-cli`, which allows you to deploy to [FastAPI Cloud](https://fastapicloud.com).
 
 If you don't want to have those optional dependencies, you can instead install `uv add fastapi`.
 
