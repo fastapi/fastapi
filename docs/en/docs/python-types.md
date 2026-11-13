@@ -237,7 +237,7 @@ This means that `item` could be an `int` or a `str`.
 
 You can declare that a value could have a type, like `str`, but that it could also be `None`.
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}

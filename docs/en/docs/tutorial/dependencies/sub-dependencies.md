@@ -62,7 +62,7 @@ And it will save the returned value in a <dfn title="A utility/system to store c
 
 In an advanced scenario where you know you need the dependency to be called at every step (possibly multiple times) in the same request instead of using the "cached" value, you can set the parameter `use_cache=False` when using `Depends`:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python non-Annotated
 
 /// tip
 
