@@ -19,6 +19,8 @@ from fastapi.routing import (
 from fastapi.security import HTTPBearer
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
+from starlette.middleware import Middleware
+from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.routing import (
     BaseRoute,
     Host,
@@ -1160,3 +1162,76 @@ async def test_apirouter_handle_fallback_without_include_context():
     assert messages[0]["type"] == "http.response.start"
     assert messages[0]["status"] == 200
     assert messages[1]["body"] == b"items"
+
+
+def test_included_router_preserves_starlette_route_middleware():
+    class CustomHeaderMiddleware(BaseHTTPMiddleware):
+        async def dispatch(self, request, call_next):
+            response = await call_next(request)
+            response.headers["X-Custom-Header"] = "MiddlewareRan"
+            return response
+
+    def endpoint(request):
+        return PlainTextResponse("OK")
+
+    starlette_route = Route(
+        "/test",
+        endpoint=endpoint,
+        middleware=[Middleware(CustomHeaderMiddleware)],
+    )
+
+    router = APIRouter(routes=[starlette_route])
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+
+    client = TestClient(app)
+    res = client.get("/api/test")
+    assert res.status_code == 200
+    assert res.headers.get("x-custom-header") == "MiddlewareRan"
+
+
+def test_included_router_preserves_nested_starlette_route_middleware():
+    class CustomHeaderMiddleware(BaseHTTPMiddleware):
+        async def dispatch(self, request, call_next):
+            response = await call_next(request)
+            response.headers["X-Nested-Header"] = "NestedRan"
+            return response
+
+    def endpoint(request):
+        return PlainTextResponse("OK")
+
+    starlette_route = Route(
+        "/nested",
+        endpoint=endpoint,
+        middleware=[Middleware(CustomHeaderMiddleware)],
+    )
+
+    child_router = APIRouter(routes=[starlette_route])
+    parent_router = APIRouter()
+    parent_router.include_router(child_router, prefix="/child")
+
+    app = FastAPI()
+    app.include_router(parent_router, prefix="/parent")
+
+    client = TestClient(app)
+    res = client.get("/parent/child/nested")
+    assert res.status_code == 200
+    assert res.headers.get("x-nested-header") == "NestedRan"
+
+
+def test_included_router_preserves_starlette_websocket_route():
+    async def ws_endpoint(websocket):
+        await websocket.accept()
+        await websocket.send_text("hello-from-ws")
+        await websocket.close()
+
+    ws_route = WebSocketRoute("/ws", endpoint=ws_endpoint)
+
+    router = APIRouter(routes=[ws_route])
+    app = FastAPI()
+    app.include_router(router, prefix="/api")
+
+    client = TestClient(app)
+    with client.websocket_connect("/api/ws") as ws:
+        msg = ws.receive_text()
+        assert msg == "hello-from-ws"

@@ -1723,19 +1723,19 @@ class _IncludedRouter(BaseRoute):
                 include_context=self.include_context,
             )
         if isinstance(route, routing.Route):
-            starlette_route: BaseRoute = routing.Route(
-                self.include_context.path_for(route),
-                endpoint=route.endpoint,
-                methods=list(route.methods or []),
-                name=route.name,
-                include_in_schema=route.include_in_schema,
-            )
+            new_route = copy.copy(route)
+            new_route.path = self.include_context.path_for(route)
+            (
+                new_route.path_regex,
+                new_route.path_format,
+                new_route.param_convertors,
+            ) = compile_path(new_route.path)
             return _EffectiveRouteContext(
                 original_route=route,
-                starlette_route=starlette_route,
+                starlette_route=new_route,
             )
         if isinstance(route, APIWebSocketRoute):
-            starlette_route = APIWebSocketRoute(
+            starlette_route: BaseRoute = APIWebSocketRoute(
                 self.include_context.path_for(route),
                 endpoint=route.endpoint,
                 name=route.name,
@@ -1749,12 +1749,16 @@ class _IncludedRouter(BaseRoute):
                 starlette_route=starlette_route,
             )
         if isinstance(route, routing.WebSocketRoute):
-            starlette_route = routing.WebSocketRoute(
-                self.include_context.path_for(route), route.endpoint, name=route.name
-            )
+            new_ws_route = copy.copy(route)
+            new_ws_route.path = self.include_context.path_for(route)
+            (
+                new_ws_route.path_regex,
+                new_ws_route.path_format,
+                new_ws_route.param_convertors,
+            ) = compile_path(new_ws_route.path)
             return _EffectiveRouteContext(
                 original_route=route,
-                starlette_route=starlette_route,
+                starlette_route=new_ws_route,
             )
         if isinstance(route, routing.Mount):
             starlette_route = copy.copy(route)
