@@ -6,6 +6,7 @@ from functools import lru_cache, partial
 from typing import Any, Literal
 
 from fastapi._compat import ModelField
+from fastapi.concurrency import _DependencyConcurrency
 from fastapi.security.base import SecurityBase
 from fastapi.types import DependencyCacheKey
 
@@ -52,6 +53,7 @@ class Dependant:
     use_cache: bool = True
     path: str | None = None
     scope: Literal["function", "request"] | None = None
+    concurrency: _DependencyConcurrency | None = None
 
 
 _UsesScopesCache = dict[int, tuple[Dependant, bool]]

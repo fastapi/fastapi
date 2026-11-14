@@ -54,6 +54,8 @@ from fastapi._compat import (
 from fastapi.background import BackgroundTasks
 from fastapi.concurrency import (
     _asynccontextmanager_with_shielded_exit,
+    _contextmanager_with_concurrency_limit,
+    _DependencyConcurrency,
     asynccontextmanager,
     contextmanager_in_threadpool,
 )
@@ -154,6 +156,7 @@ def get_parameterless_sub_dependant(*, depends: params.Depends, path: str) -> De
         path=path,
         call=depends.dependency,
         scope=depends.scope,
+        concurrency=depends._concurrency,
         own_oauth_scopes=own_oauth_scopes,
     )
 
@@ -308,6 +311,7 @@ def get_dependant(
     parent_oauth_scopes: list[str] | None = None,
     use_cache: bool = True,
     scope: Literal["function", "request"] | None = None,
+    concurrency: _DependencyConcurrency | None = None,
 ) -> Dependant:
     dependant = Dependant(
         call=call,
@@ -315,6 +319,7 @@ def get_dependant(
         path=path,
         use_cache=use_cache,
         scope=scope,
+        concurrency=concurrency,
         own_oauth_scopes=own_oauth_scopes,
         parent_oauth_scopes=parent_oauth_scopes,
     )
@@ -357,6 +362,7 @@ def get_dependant(
                 parent_oauth_scopes=current_scopes,
                 use_cache=param_details.depends.use_cache,
                 scope=param_details.depends.scope,
+                concurrency=param_details.depends._concurrency,
             )
             dependant.dependencies.append(sub_dependant)
             continue
@@ -646,6 +652,10 @@ async def _solve_generator(
         cm = _asynccontextmanager_with_shielded_exit(cm, cleanup_scope)
     elif _is_gen_callable(dependant.call):
         cm = contextmanager_in_threadpool(contextmanager(dependant.call)(**sub_values))
+    if dependant.concurrency is not None:
+        cm = _contextmanager_with_concurrency_limit(
+            cm, dependant.concurrency.get_semaphore()
+        )
     return await stack.enter_async_context(cm)
 
 
@@ -710,6 +720,7 @@ async def solve_dependencies(
                 name=sub_dependant.name,
                 parent_oauth_scopes=_get_oauth_scopes(dependant=sub_dependant),
                 scope=sub_dependant.scope,
+                concurrency=sub_dependant.concurrency,
             )
 
         solved_result = await solve_dependencies(
@@ -747,9 +758,17 @@ async def solve_dependencies(
                 sub_values=solved_result.values,
             )
         elif _is_coroutine_callable(use_sub_dependant.call):
-            solved = await call(**solved_result.values)
+            if use_sub_dependant.concurrency is None:
+                solved = await call(**solved_result.values)
+            else:
+                async with use_sub_dependant.concurrency.get_semaphore():
+                    solved = await call(**solved_result.values)
         else:
-            solved = await run_in_threadpool(call, **solved_result.values)
+            if use_sub_dependant.concurrency is None:
+                solved = await run_in_threadpool(call, **solved_result.values)
+            else:
+                async with use_sub_dependant.concurrency.get_semaphore():
+                    solved = await run_in_threadpool(call, **solved_result.values)
         if sub_dependant.name is not None:
             values[sub_dependant.name] = solved
         if sub_dependant_cache_key not in dependency_cache:

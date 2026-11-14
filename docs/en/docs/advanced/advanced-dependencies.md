@@ -64,6 +64,93 @@ If you understood all this, you already know how those utility tools for securit
 
 ///
 
+## Limit dependency concurrency { #limit-dependency-concurrency }
+
+In some cases, you might want to limit how many requests can use a dependency at the same time.
+
+For example, your database might have a limited number of connections available. You could make new requests wait before creating a session, until another request finishes using its session.
+
+You can do this with `max_concurrency` in `Depends()`.
+
+Let's update the `SessionDep` alias from the [SQL databases tutorial](../tutorial/sql-databases.md):
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+Now, up to **five requests** can have a database session open through this dependency at the same time.
+
+If another request needs a session, it waits until one of those sessions is closed.
+
+While waiting, it **doesn't occupy a worker thread**, so those threads are available to run other code.
+
+The value must be a positive integer. The default is `None`, which means that FastAPI doesn't limit how many times the dependency can run at the same time.
+
+### Share the limit between routes { #share-the-limit-between-routes }
+
+All the routes in that example use the same `SessionDep` alias, so they share the limit of five sessions.
+
+To share a limit, reuse the **same `Depends()` object**, for example in an `Annotated` alias like this one.
+
+If you write a new `Depends(get_session, max_concurrency=5)` for each route, each one will have its own limit of five. This is true even though they all use the same `get_session` function.
+
+Reusing the same `SessionDep` in another application also shares the limit, as long as both applications run in the same event loop. This includes mounted applications.
+
+For example, if two applications use this `SessionDep` for the same database pool, together they can have up to five sessions open through this dependency.
+
+If the applications use separate pools and need independent limits, create a separate `Depends()` object for each application.
+
+### Close the session before allowing another one { #close-the-session-before-allowing-another-one }
+
+In this example, `get_session` uses `yield`. The session counts toward the limit until the exit code finishes closing it.
+
+The dependency's `scope` determines when that exit code runs:
+
+* With `scope="request"`, the default, it runs after the response is sent.
+* With `scope="function"`, it runs after the *path operation function* finishes, before sending the response.
+
+You can read more about [early exit and scope](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
+
+For a dependency without `yield`, the call counts toward the limit only until the function finishes.
+
+If you use a dependency with `yield` in a WebSocket handler, it counts toward the limit until the handler exits and the dependency's exit code finishes.
+
+/// note
+
+Reusing a [cached dependency value](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times) doesn't count again toward the limit. If different declarations share that value, only the declaration that calls the dependency counts toward its limit.
+
+///
+
+### Choose a limit for your application { #choose-a-limit-for-your-application }
+
+Choose a limit that fits the number of database connections available to these sessions.
+
+If other parts of your application also use those connections, leave room for them too. FastAPI doesn't know the size of your database connection pool.
+
+Each worker process has its own limit. For example, two worker processes with this dependency could have up to ten sessions open between them.
+
+/// note | Technical Details
+
+The limits are also separate for each event loop. Applications running in different event loops don't share a limit, even if they reuse the same `Depends()` object.
+
+///
+
+### Dependencies that need more than one resource { #dependencies-that-need-more-than-one-resource }
+
+FastAPI runs a dependency's sub-dependencies before applying that dependency's limit.
+
+So, to limit database sessions, put `max_concurrency` on `Depends(get_session, ...)`, where the session is created.
+
+A request can get stuck if it needs another session while still holding one that will only be closed at the end of the request.
+
+For example, imagine a shared `Depends(get_session, max_concurrency=1, use_cache=False)` used twice in the same request.
+
+The first call creates a session. The second call waits for it to close. But the first session can't close until the request finishes, and the request is waiting for the second call.
+
+Two requests can also get stuck if one holds a session while waiting for another resource, and the other holds that resource while waiting for a session.
+
+If your requests need several resources, acquire them in the same order. FastAPI applies each limit separately, it doesn't reserve all the resources a request will need in advance.
+
 ## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 /// warning

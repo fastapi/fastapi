@@ -1,10 +1,11 @@
 import re
 import warnings
 from collections.abc import Callable, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 from typing import Annotated, Any, Literal
 
+from fastapi.concurrency import _DependencyConcurrency
 from fastapi.exceptions import FastAPIDeprecationWarning
 from fastapi.openapi.models import Example
 from pydantic import AliasChoices, AliasPath, Discriminator
@@ -792,6 +793,28 @@ class Depends:
     dependency: Callable[..., Any] | None = None
     use_cache: bool = True
     scope: Literal["function", "request"] | None = None
+    max_concurrency: int | None = field(default=None, kw_only=True)
+    # Identity prevents typing.Annotated from merging independent declarations.
+    # Keep this init field so dataclasses.replace preserves it when inferring
+    # the dependency callable from an annotation.
+    _concurrency: _DependencyConcurrency | None = field(
+        default=None, repr=False, kw_only=True
+    )
+
+    def __post_init__(self) -> None:
+        if self.max_concurrency is None:
+            object.__setattr__(self, "_concurrency", None)
+            return
+        if type(self.max_concurrency) is not int or self.max_concurrency < 1:
+            raise ValueError("max_concurrency must be a positive integer or None")
+        # A replacement with a different limit needs separate accounting.
+        if (
+            self._concurrency is None
+            or self._concurrency.max_concurrency != self.max_concurrency
+        ):
+            object.__setattr__(
+                self, "_concurrency", _DependencyConcurrency(self.max_concurrency)
+            )
 
 
 @dataclass(frozen=True)
