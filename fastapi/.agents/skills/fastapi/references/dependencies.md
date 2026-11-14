@@ -35,7 +35,7 @@ DBDep = Annotated[DBSession, Depends(get_db)]
 
 
 @app.get("/items/")
-async def read_items(db: DBDep):
+def read_items(db: DBDep):
     return db.query(Item).all()
 ```
 
@@ -63,6 +63,26 @@ UserNameDep = Annotated[str, Depends(get_username, scope="function")]
 def get_user_me(username: UserNameDep):
     return username
 ```
+
+## Limit dependency concurrency
+
+Use `max_concurrency` when concurrent dependency calls could exhaust a shared resource, such as a database connection pool.
+
+* Put the limit on the dependency that manages the resource. Its sub-dependencies run before its limit is applied.
+* Choose a positive integer from the resource's configured capacity, allowing for other code that uses it. FastAPI doesn't detect the pool size. The default `None` adds no limit.
+* Declare one `Annotated` alias and reuse it in the routes that should share the limit. A new `Depends()` object creates a separate limit, even for the same dependency function.
+
+For the `get_db()` dependency above, if the pool has capacity available for five sessions:
+
+```python
+DBDep = Annotated[DBSession, Depends(get_db, max_concurrency=5)]
+```
+
+Extra calls wait without occupying worker threads. For a dependency with `yield`, FastAPI holds the slot until cleanup finishes, at the time determined by `scope`. Without `yield`, the slot is released when the dependency function finishes.
+
+Each worker process applies its own limit. Account for this when several workers share an external resource.
+
+Before limiting repeated or nested resource dependencies, check whether a request could hold a slot while waiting for another. See [dependencies that need more than one resource](https://fastapi.tiangolo.com/advanced/advanced-dependencies/#dependencies-that-need-more-than-one-resource) for these cases.
 
 ## Class Dependencies
 

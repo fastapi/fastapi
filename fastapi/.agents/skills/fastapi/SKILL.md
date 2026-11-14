@@ -15,7 +15,7 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 * Server-Sent Events (SSE): use `response_class=EventSourceResponse` and `yield`; see [Streaming](#streaming-json-lines-sse-bytes) and [the streaming reference](references/streaming.md).
 * JSON Lines and byte streaming: see [the streaming reference](references/streaming.md).
 * OpenTelemetry: use FastAPI's native traces, metrics, and logs. See [OpenTelemetry](#opentelemetry).
-* Dependencies: use `Annotated[..., Depends(...)]`; see [Dependency Injection](#dependency-injection) and [the dependency injection reference](references/dependencies.md) for `yield`, scopes, and class dependencies.
+* Dependencies: use `Annotated[..., Depends(...)]`; see [Dependency Injection](#dependency-injection) and [the dependency injection reference](references/dependencies.md) for `yield`, scopes, concurrency limits, and class dependencies.
 * Response models: prefer return types; use `response_model` when the public response schema differs from the internal return value; see [the response reference](references/responses.md).
 * Parameter models: `Query`, `Header`, `Cookie`, and `Form` support multiple models and optional groups. See [the parameter models reference](references/parameter-models.md) for declarations, form unions, and extra-field behavior.
 * Pydantic models: do not use ellipsis or `RootModel`; see [the Pydantic reference](references/pydantic.md).
@@ -231,7 +231,9 @@ Use dependencies when the logic can't be declared in Pydantic validation, depend
 
 Apply shared dependencies at the router level via `dependencies=[Depends(...)]`.
 
-See [the dependency injection reference](references/dependencies.md) for detailed patterns including `yield` with `scope`, and class dependencies.
+When concurrent dependency calls could exhaust a shared resource, use `Depends(max_concurrency=...)`. Read [dependency concurrency](references/dependencies.md#limit-dependency-concurrency) to choose the limit and share it across routes.
+
+See [the dependency injection reference](references/dependencies.md) for `yield` with `scope`, concurrency limits, and class dependencies.
 
 ## Async vs Sync *path operations*
 
