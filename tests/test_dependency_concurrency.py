@@ -94,7 +94,7 @@ async def test_shared_declaration_limits_both_routes_before_worker_entry(
             anyio.from_thread.run_sync(exit)
 
     async def original():
-        raise AssertionError("The override should run")
+        raise AssertionError("The override should run")  # pragma: no cover
 
     dependency = {
         "async": asynchronous,
@@ -343,7 +343,7 @@ async def test_override_installed_by_earlier_dependency_applies_immediately():
     app = FastAPI()
 
     async def original():
-        return "original"
+        return "original"  # pragma: no cover
 
     async def replacement():
         return "replacement"
@@ -445,7 +445,7 @@ async def test_cancelled_waiter_does_not_leak_capacity(after_release):
             assert events in ([], ["entered", "closed"])
             assert (await client.get("/")).json() == "ok"
     finally:
-        if held:
+        if held:  # pragma: no cover
             semaphore.release()
     assert semaphore.value == 1
 
@@ -507,7 +507,7 @@ async def test_cancelled_admission_cleans_up_earlier_dependency(scope):
             events.append("closed")
 
     async def dependency():
-        raise AssertionError("Capacity was never available")
+        raise AssertionError("Capacity was never available")  # pragma: no cover
         yield
 
     declaration = Depends(dependency, max_concurrency=1)
@@ -519,7 +519,7 @@ async def test_cancelled_admission_cleans_up_earlier_dependency(scope):
         before: Annotated[None, Depends(preparation, scope=scope)],
         value: Annotated[None, declaration],
     ):
-        return value
+        return value  # pragma: no cover
 
     await semaphore.acquire()
     try:
@@ -680,7 +680,7 @@ async def test_cancellation_waiting_for_entry_worker_releases_ownership():
     events = []
     app = FastAPI()
 
-    def dependency():
+    def dependency():  # pragma: no cover
         events.append("enter")
         try:
             yield
@@ -691,7 +691,7 @@ async def test_cancellation_waiting_for_entry_worker_releases_ownership():
 
     @app.get("/")
     async def endpoint(_: Annotated[None, declaration]):
-        return "ok"
+        return "ok"  # pragma: no cover
 
     try:
         async with client_for(app) as client:
