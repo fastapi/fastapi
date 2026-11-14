@@ -1,15 +1,21 @@
+from typing import Annotated
+
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
+from pydantic import (
+    BaseModel,
+    GetPydanticSchema,
+    computed_field,
+    model_validator,
+)
 
 
 @pytest.fixture(name="client")
 def get_client(request):
     separate_input_output_schemas = request.param
     app = FastAPI(separate_input_output_schemas=separate_input_output_schemas)
-
-    from pydantic import BaseModel, computed_field
 
     class Rectangle(BaseModel):
         width: int
@@ -106,3 +112,137 @@ def test_openapi_schema(client: TestClient):
             },
         }
     )
+
+
+class ComputedItem(BaseModel):
+    name: str
+
+    @computed_field
+    @property
+    def label(self) -> str:
+        return f"Item: {self.name}"
+
+
+class ValidatedComputedItem(ComputedItem):
+    @model_validator(mode="after")
+    def validate_name(self) -> "ValidatedComputedItem":
+        if not self.name:
+            raise ValueError("Name must not be empty")
+        return self
+
+
+def test_nested_computed_field_schemas():
+    class Envelope(BaseModel):
+        children: list["Envelope"] = []
+        item: ComputedItem
+
+    app = FastAPI(separate_input_output_schemas=False)
+
+    @app.post("/")
+    def create_item(item: Envelope) -> Envelope:
+        return item
+
+    schema = app.openapi()
+    operation = schema["paths"]["/"]["post"]
+    assert operation["requestBody"]["content"]["application/json"]["schema"] == {
+        "$ref": "#/components/schemas/Envelope-Input"
+    }
+    assert operation["responses"]["200"]["content"]["application/json"]["schema"] == {
+        "$ref": "#/components/schemas/Envelope-Output"
+    }
+    schemas = schema["components"]["schemas"]
+    properties = schemas["Envelope-Output"]["properties"]
+    assert properties["children"]["items"] == {
+        "$ref": "#/components/schemas/Envelope-Output"
+    }
+    assert properties["item"] == {"$ref": "#/components/schemas/ComputedItem-Output"}
+    assert "label" not in schemas["ComputedItem-Input"]["properties"]
+    assert schemas["ComputedItem-Output"]["properties"]["label"]["readOnly"] is True
+
+
+def test_computed_field_with_after_model_validator():
+    app = FastAPI(separate_input_output_schemas=False)
+
+    @app.post("/")
+    def create_item(item: ValidatedComputedItem) -> list[ValidatedComputedItem]:
+        return [item]
+
+    schema = app.openapi()
+    operation = schema["paths"]["/"]["post"]
+    assert operation["requestBody"]["content"]["application/json"]["schema"] == {
+        "$ref": "#/components/schemas/ValidatedComputedItem-Input"
+    }
+    response_schema = operation["responses"]["200"]["content"]["application/json"][
+        "schema"
+    ]
+    assert response_schema["items"] == {
+        "$ref": "#/components/schemas/ValidatedComputedItem-Output"
+    }
+    schemas = schema["components"]["schemas"]
+    assert "label" not in schemas["ValidatedComputedItem-Input"]["properties"]
+    assert (
+        schemas["ValidatedComputedItem-Output"]["properties"]["label"]["readOnly"]
+        is True
+    )
+
+
+def test_recursive_computed_field_schemas():
+    class RecursiveItem(ComputedItem):
+        children: list["RecursiveItem"] = []
+
+    app = FastAPI(separate_input_output_schemas=False)
+
+    @app.post("/")
+    def create_item(item: RecursiveItem) -> RecursiveItem:
+        return item
+
+    schema = app.openapi()
+    operation = schema["paths"]["/"]["post"]
+    assert operation["requestBody"]["content"]["application/json"]["schema"] == {
+        "$ref": "#/components/schemas/RecursiveItem-Input"
+    }
+    output_ref = {"$ref": "#/components/schemas/RecursiveItem-Output"}
+    assert (
+        operation["responses"]["200"]["content"]["application/json"]["schema"]
+        == output_ref
+    )
+    schemas = schema["components"]["schemas"]
+    assert "label" not in schemas["RecursiveItem-Input"]["properties"]
+    properties = schemas["RecursiveItem-Output"]["properties"]
+    assert properties["children"]["items"] == output_ref
+    assert properties["label"]["readOnly"] is True
+
+
+def test_shared_models_do_not_rebuild_field_schemas_per_route():
+    schema_builds = 0
+
+    def count_schema_builds(source_type, handler):
+        nonlocal schema_builds
+        schema_builds += 1
+        return handler(source_type)
+
+    class Item(BaseModel):
+        value: Annotated[int, GetPydanticSchema(count_schema_builds)]
+        child: "Item | None" = None
+
+    class Envelope(BaseModel):
+        first: Item
+        second: Item
+
+    def read_item() -> Envelope:
+        return Envelope(first=Item(value=1), second=Item(value=2))
+
+    build_counts = []
+    schemas = []
+    for route_count in (1, 10):
+        app = FastAPI(separate_input_output_schemas=False)
+        for index in range(route_count):
+            app.get(f"/items/{index}")(read_item)
+        schema_builds = 0
+        schemas.append(app.openapi()["components"]["schemas"])
+        build_counts.append(schema_builds)
+
+    assert build_counts[0] > 0
+    assert build_counts[0] == build_counts[1]
+    assert schemas[0] == schemas[1]
+    assert set(schemas[0]) == {"Item", "Envelope"}
