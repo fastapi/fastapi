@@ -147,7 +147,7 @@ class ServerSentEvent(BaseModel):
 
     @model_validator(mode="after")
     def _check_data_exclusive(self) -> "ServerSentEvent":
-        if self.data is not None and self.raw_data is not None:
+        if "data" in self.model_fields_set and self.raw_data is not None:
             raise ValueError(
                 "Cannot set both 'data' and 'raw_data' on the same "
                 "ServerSentEvent. Use 'data' for JSON-serialized payloads "
