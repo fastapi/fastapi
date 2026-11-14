@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框架，使用 Python 并基于标准的 Python 类型提示。
 
+<!-- agent-banner -->
+
 关键特性：
 
 * **快速**：极高性能，可与 **NodeJS** 和 **Go** 并肩（归功于 Starlette 和 Pydantic）。[最快的 Python 框架之一](#performance)。
@@ -105,7 +107,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
   </div>
 
   <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
-    <blockquote class="fastapi-opinions__quote">“我最近大量使用 <strong>FastAPI</strong>。我实际上计划把它用于我团队在 <strong>微软的机器学习（ML）服务</strong>。其中一些正在集成进核心 <strong>Windows</strong> 产品以及一些 <strong>Office</strong> 产品。”</blockquote>
+    <blockquote class="fastapi-opinions__quote">“我最近大量使用 <strong>FastAPI</strong>。我实际上计划把它用于我团队在 <strong>微软的所有机器学习（ML）服务</strong>。其中一些正在集成进核心 <strong>Windows</strong> 产品以及一些 <strong>Office</strong> 产品。”</blockquote>
     <div class="fastapi-opinions__attr">— Kabir Khan，<strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(参考)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
@@ -125,7 +127,7 @@ FastAPI 是一个用于构建 API 的现代、快速（高性能）的 Web 框�
 
 <div class="only-github" markdown="1">
 
-「_[...] 我最近大量使用 **FastAPI**。[...] 我实际上计划把它用于我团队在 **微软的机器学习（ML）服务**。其中一些正在集成进核心 **Windows** 产品以及一些 **Office** 产品。_」
+「_[...] 我最近大量使用 **FastAPI**。[...] 我实际上计划把它用于我团队在 **微软的所有机器学习（ML）服务**。其中一些正在集成进核心 **Windows** 产品以及一些 **Office** 产品。_」
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(参考)</small></a></div>
 
@@ -235,7 +237,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 **注意**:
 
-如果你不确定，请查看文档中 _"In a hurry?"_ 章节的 [`async` 和 `await`](https://fastapi.tiangolo.com/zh/async/#in-a-hurry) 部分。
+如果你不确定，请查看文档中关于 [`async` 和 `await`](https://fastapi.tiangolo.com/zh/async/#in-a-hurry) 的 _"急用？"_ 章节。
 
 </details>
 
@@ -409,9 +411,9 @@ item: Item
     * 路径参数。
     * 查询参数。
     * Cookies。
-    * Headers。
-    * Forms。
-    * Files。
+    * 请求头。
+    * 表单。
+    * 文件。
 * <dfn title="也被称为：序列化、解析、编组">转换</dfn>输出数据：从 Python 数据和类型转换为网络数据（JSON）：
     * 转换 Python 类型（`str`、`int`、`float`、`bool`、`list` 等）。
     * `datetime` 对象。
@@ -473,10 +475,10 @@ item: Item
 
 **剧透警告**：教程 - 用户指南包括：
 
-* 来自不同位置的**参数**声明：**headers**、**cookies**、**form 字段**和**文件**。
+* 来自不同位置的**参数**声明：**请求头**、**cookies**、**表单字段**和**文件**。
 * 如何设置**校验约束**，如 `maximum_length` 或 `regex`。
 * 功能强大且易用的 **<dfn title="也被称为：组件、资源、提供者、服务、可注入项">依赖注入</dfn>** 系统。
-* 安全与认证，包括对 **OAuth2**、**JWT tokens** 和 **HTTP Basic** 认证的支持。
+* 安全与认证，包括对结合 **JWT tokens** 的 **OAuth2** 和 **HTTP Basic** 认证的支持。
 * 更高级（但同样简单）的 **多层嵌套 JSON 模型** 声明技巧（得益于 Pydantic）。
 * 通过 [Strawberry](https://strawberry.rocks) 等库进行 **GraphQL** 集成。
 * 许多额外特性（归功于 Starlette），例如：
@@ -544,7 +546,7 @@ Pydantic 使用：
 
 Starlette 使用：
 
-* [`httpx`](https://www.python-httpx.org) - 使用 `TestClient` 时需要。
+* [`httpx2`](https://pydantic.dev/docs/httpx2/)（或 `httpx`）- 供 `TestClient` 使用。
 * [`jinja2`](https://jinja.palletsprojects.com) - 使用默认模板配置时需要。
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - 使用 `request.form()` 支持表单<dfn title="将 HTTP 请求中的字符串转换为 Python 数据">「解析」</dfn>时需要。
 

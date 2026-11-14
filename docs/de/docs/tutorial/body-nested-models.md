@@ -6,7 +6,7 @@ Mit **FastAPI** können Sie (dank Pydantic) beliebig tief verschachtelte Modelle
 
 Sie können ein Attribut als Kindtyp definieren. Zum Beispiel eine Python-`list`:
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 Das bewirkt, dass `tags` eine Liste ist, wenngleich es nichts über den Typ der Elemente der Liste aussagt.
 
@@ -29,7 +29,7 @@ Verwenden Sie dieselbe Standardsyntax für Modellattribute mit inneren Typen.
 
 In unserem Beispiel können wir also bewirken, dass `tags` spezifisch eine „Liste von Strings“ ist:
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## Set-Typen { #set-types }
 
@@ -39,7 +39,7 @@ Und Python hat einen speziellen Datentyp für Mengen eindeutiger Elemente, das <
 
 Dann können wir `tags` als Set von Strings deklarieren:
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 Damit wird, selbst wenn Sie einen <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> mit duplizierten Daten erhalten, dieser zu einem Set eindeutiger Elemente konvertiert.
 
@@ -61,13 +61,13 @@ Alles das beliebig tief verschachtelt.
 
 Zum Beispiel können wir ein `Image`-Modell definieren:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### Das Kindmodell als Typ verwenden { #use-the-submodel-as-a-type }
 
 Und dann können wir es als Typ eines Attributes verwenden:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 Das würde bedeuten, dass **FastAPI** einen Body ähnlich dem folgenden erwartet:
 
@@ -100,7 +100,7 @@ Um alle Optionen kennenzulernen, die Sie haben, schauen Sie sich [Pydantics Typ�
 
 Zum Beispiel, da wir im `Image`-Modell ein Feld `url` haben, können wir deklarieren, dass das eine Instanz von Pydantics `HttpUrl` sein soll, anstelle eines `str`:
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 Es wird getestet, ob der String eine gültige URL ist, und als solche wird er in JSON Schema / OpenAPI dokumentiert.
 
@@ -108,7 +108,7 @@ Es wird getestet, ob der String eine gültige URL ist, und als solche wird er in
 
 Sie können Pydantic-Modelle auch als Kindtypen von `list`, `set`, usw. verwenden:
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 Das wird einen JSON-Body erwarten (konvertieren, validieren, dokumentieren, usw.) wie:
 
@@ -146,7 +146,7 @@ Beachten Sie, dass der `images`-Schlüssel jetzt eine Liste von Bild-Objekten ha
 
 Sie können beliebig tief verschachtelte Modelle definieren:
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note | Hinweis
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 so wie in:
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## Editor-Unterstützung überall { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Das schauen wir uns hier an.
 
 In diesem Fall akzeptieren Sie irgendein `dict`, solange es `int`-Schlüssel mit `float`-Werten hat:
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip | Tipp
 

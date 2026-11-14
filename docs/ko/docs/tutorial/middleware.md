@@ -31,7 +31,7 @@
     * 그런 다음 해당 *경로 처리*가 생성한 `response`를 반환합니다.
 * 그런 다음 반환하기 전에 `response`를 추가로 수정할 수 있습니다.
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | 팁
 
@@ -57,7 +57,7 @@
 
 예를 들어, 요청을 처리하고 응답을 생성하는 데 걸린 시간을 초 단위로 담는 사용자 정의 헤더 `X-Process-Time`을 추가할 수 있습니다:
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip | 팁
 

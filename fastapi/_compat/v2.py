@@ -161,7 +161,7 @@ class ModelField:
                 Field(**field_dict["attributes"]),
             )
             self._type_adapter: TypeAdapter[Any] = TypeAdapter(
-                Annotated[annotated_args],  # ty: ignore[invalid-type-form]
+                cast(Any, Annotated[annotated_args]),  # ty: ignore[invalid-type-form]
                 config=self.config,
             )
 
@@ -416,10 +416,12 @@ def get_missing_field_error(loc: tuple[int | str, ...]) -> dict[str, Any]:
 
 
 def create_body_model(
-    *, fields: Sequence[ModelField], model_name: str
+    *, fields: Sequence[ModelField], model_name: str, config: ConfigDict | None = None
 ) -> type[BaseModel]:
     field_params = {f.name: (f.field_info.annotation, f.field_info) for f in fields}
-    BodyModel: type[BaseModel] = create_model(model_name, **field_params)  # type: ignore[call-overload]  # ty: ignore[no-matching-overload]
+    BodyModel: type[BaseModel] = create_model(
+        model_name, __config__=config, **field_params
+    )  # type: ignore[call-overload]  # ty: ignore[no-matching-overload]
     return BodyModel
 
 

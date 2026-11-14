@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 Будь-який вхідний запит до `http` або `ws` буде перенаправлено на захищену схему.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Примушує, щоб усі вхідні запити мали коректно встановлений заголовок `Host`, щоб захиститися від атак через заголовок HTTP Host.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 Підтримуються такі аргументи:
 
@@ -78,7 +78,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 Проміжне програмне забезпечення обробляє як стандартні, так і потокові відповіді.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 Підтримуються такі аргументи:
 

@@ -47,7 +47,7 @@ The key features are:
 <!-- sponsors -->
 ### Keystone Sponsor
 
-<a href="https://fastapicloud.com" target="_blank" title="FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud."><img src="https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png"></a>
+<a href="https://fastapicloud.com" target="_blank" title="FastAPI Cloud is now generally available. By the same team behind FastAPI. You code. We cloud."><img src="https://fastapi.tiangolo.com/img/sponsors/fastapicloud.png"></a>
 
 ### Gold Sponsors
 
@@ -58,6 +58,7 @@ The key features are:
 <a href="https://docs.railway.com/guides/fastapi?utm_medium=integration&utm_source=docs&utm_campaign=fastapi" target="_blank" title="Deploy enterprise applications at startup speed"><img src="https://fastapi.tiangolo.com/img/sponsors/railway.png"></a>
 <a href="https://serpapi.com/?utm_source=fastapi_website" target="_blank" title="SerpApi: Web Search API"><img src="https://fastapi.tiangolo.com/img/sponsors/serpapi.png"></a>
 <a href="https://www.greptile.com/?utm_source=fastapi&utm_medium=sponsorship&utm_campaign=fastapi_sponsor_page" target="_blank" title="Greptile: The AI Code Reviewer"><img src="https://fastapi.tiangolo.com/img/sponsors/greptile.png"></a>
+<a href="https://microauth.com/fastapi?utm_source=fastapi" target="_blank" title="MicroAuth - Launch an API business in minutes: branded developer portals, rate limiting, and billing for your API"><img src="https://fastapi.tiangolo.com/img/sponsors/microauth.png"></a>
 
 ### Silver Sponsors
 
@@ -66,6 +67,7 @@ The key features are:
 <a href="https://dribia.com/en/" target="_blank" title="Dribia - Data Science within your reach"><img src="https://fastapi.tiangolo.com/img/sponsors/dribia.png"></a>
 <a href="https://www.bairesdev.com/" target="_blank" title="BairesDev | Nearshore Software Development & Staff Augmentation Company"><img src="https://fastapi.tiangolo.com/img/sponsors/bairesdev.svg"></a>
 <a href="https://tutorcruncher.com/?utm_source=fastapi" target="_blank" title="TutorCruncher"><img src="https://fastapi.tiangolo.com/img/sponsors/tutorcruncher.png"></a>
+<a href="https://encore.dev/py?utm_source=fastapi&utm_medium=sponsor&utm_campaign=fastapi-sponsorship" target="_blank" title="Encore: Build and deploy FastAPI apps to your own AWS or GCP account, with the infrastructure handled for you"><img src="https://fastapi.tiangolo.com/img/sponsors/encore.png"></a>
 
 <!-- /sponsors -->
 

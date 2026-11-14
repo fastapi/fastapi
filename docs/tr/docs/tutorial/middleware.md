@@ -31,7 +31,7 @@ Middleware fonksiyonu şunları alır:
     * Ardından ilgili *path operation* tarafından üretilen `response`'u döndürür.
 * Sonrasında `response`'u döndürmeden önce ayrıca değiştirebilirsiniz.
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | İpucu
 
@@ -57,7 +57,7 @@ Ayrıca `response` üretildikten sonra, geri döndürmeden önce de kod çalış
 
 Örneğin, request'i işleyip response üretmenin kaç saniye sürdüğünü içeren `X-Process-Time` adlı özel bir header ekleyebilirsiniz:
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip | İpucu
 

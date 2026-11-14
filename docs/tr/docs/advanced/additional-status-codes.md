@@ -15,7 +15,7 @@ Ancak yeni item'ları da kabul etmesini istiyorsunuz. Ve item daha önce yoksa, 
 
 Bunu yapmak için `JSONResponse` import edin ve içeriğinizi doğrudan onunla döndürün; istediğiniz `status_code`'u da ayarlayın:
 
-{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
+{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
 
 /// warning | Uyarı
 

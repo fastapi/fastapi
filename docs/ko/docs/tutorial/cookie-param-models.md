@@ -20,7 +20,7 @@
 
 **Pydantic 모델**에 필요한 **쿠키** 매개변수를 선언한 다음, 해당 매개변수를 `Cookie`로 선언합니다:
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI**는 요청에서 받은 **쿠키**에서 **각 필드**에 대한 데이터를 **추출**하고 정의한 Pydantic 모델을 줍니다.
 
@@ -50,7 +50,7 @@
 
 Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forbid`)할 수 있습니다:
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 클라이언트가 **추가 쿠키**를 보내려고 시도하면, **오류** 응답을 받게 됩니다.
 
@@ -70,6 +70,22 @@ Pydantic의 모델 구성을 사용하여 추가(`extra`) 필드를 금지(`forb
     ]
 }
 ```
+
+## 매개변수 모델 조합하기 { #combine-parameter-models }
+
+여러 쿠키 매개변수 모델을 개별 쿠키 매개변수 및 의존성과 함께 사용할 수 있습니다. [쿼리 매개변수 모델](query-param-models.md#combine-parameter-models)에서 설명한 것처럼 각 모델은 독립적으로 추출되고 검증됩니다.
+
+각 모델의 `extra` 설정은 다른 모델이나 의존성에 선언된 쿠키를 포함하여 모든 쿠키 매개변수에 적용됩니다. `extra="forbid"`이면 해당 모델에 없는 쿠키는 모두 거부됩니다. `extra="allow"`이면 이러한 쿠키는 모델의 추가 필드로 포함됩니다.
+
+## 선택적 쿠키 매개변수 모델 { #optional-cookie-parameter-models }
+
+쿠키 매개변수 그룹을 선택적으로 만들려면, 모델에 `| None`을 사용하고 기본값을 `None`으로 선언하세요.
+
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
+
+`theme`과 `locale`이 모두 전송되지 않으면 `preferences`는 `None`입니다. 둘 중 하나라도 전송되면 FastAPI는 모델을 검증하며 두 필드를 모두 요구합니다.
+
+기본값, 추가 필드, OpenAPI에 대해서는 [선택적 쿼리 매개변수 모델](query-param-models.md#optional-query-parameter-models)과 같은 규칙이 적용됩니다.
 
 ## 요약 { #summary }
 

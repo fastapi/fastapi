@@ -12,7 +12,7 @@
 
 आपको यह सुनिश्चित करना होगा कि यह प्रत्येक operation के लिए unique हो।
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
 ### *path operation function* के नाम को operationId के रूप में उपयोग करना { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@
 
 यह function प्रत्येक `APIRoute` प्राप्त करता है और उस path operation के लिए उपयोग करने वाला `operationId` return करता है।
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,5:6,9] *}
 
 /// warning | चेतावनी
 
@@ -34,7 +34,7 @@
 
 किसी *path operation* को generated OpenAPI schema से बाहर रखने के लिए (और इस प्रकार, automatic documentation systems से भी), parameter `include_in_schema` का उपयोग करें और इसे `False` पर सेट करें:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
 ## Docstring से उन्नत description { #advanced-description-from-docstring }
 
@@ -44,7 +44,7 @@
 
 यह documentation में नहीं दिखेगा, लेकिन अन्य tools (जैसे Sphinx) बाकी हिस्से का उपयोग कर सकेंगे।
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[17:27] *}
 
 ## अतिरिक्त Responses { #additional-responses }
 
@@ -86,7 +86,7 @@ OpenAPI specification में इसे [Operation Object](https://github.com/
 
 यह `openapi_extra` उपयोगी हो सकता है, उदाहरण के लिए, [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) declare करने के लिए:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
 अगर आप automatic API docs खोलते हैं, तो आपका extension specific *path operation* के नीचे दिखाई देगा।
 
@@ -133,7 +133,7 @@ OpenAPI specification में इसे [Operation Object](https://github.com/
 
 आप यह `openapi_extra` के साथ कर सकते हैं:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
 
 इस उदाहरण में, हमने कोई Pydantic model declare नहीं किया। वास्तव में, request body को JSON के रूप में <dfn title="किसी plain format, जैसे bytes, से Python objects में बदला गया">parsed</dfn> भी नहीं किया गया है, इसे सीधे `bytes` के रूप में read किया गया है, और function `magic_data_reader()` किसी तरीके से इसे parse करने का ज़िम्मेदार होगा।
 
@@ -147,7 +147,7 @@ OpenAPI specification में इसे [Operation Object](https://github.com/
 
 उदाहरण के लिए, इस application में हम Pydantic models से JSON Schema निकालने के लिए FastAPI की integrated functionality या JSON के लिए automatic validation का उपयोग नहीं करते हैं। वास्तव में, हम request content type को JSON नहीं, बल्कि YAML के रूप में declare कर रहे हैं:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[15:20, 22] *}
 
 फिर भी, हालांकि हम default integrated functionality का उपयोग नहीं कर रहे हैं, हम अभी भी उस data के लिए JSON Schema manually generate करने के लिए Pydantic model का उपयोग कर रहे हैं जिसे हम YAML में receive करना चाहते हैं।
 
@@ -155,7 +155,7 @@ OpenAPI specification में इसे [Operation Object](https://github.com/
 
 और फिर अपने code में, हम उस YAML content को सीधे parse करते हैं, और फिर हम YAML content को validate करने के लिए फिर से उसी Pydantic model का उपयोग कर रहे हैं:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[24:31] *}
 
 /// tip | सुझाव
 

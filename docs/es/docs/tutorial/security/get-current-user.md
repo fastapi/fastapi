@@ -2,7 +2,7 @@
 
 En el capítulo anterior, el sistema de seguridad (que se basa en el sistema de inyección de dependencias) le estaba dando a la *path operation function* un `token` como un `str`:
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Pero eso aún no es tan útil.
 
@@ -14,7 +14,7 @@ Primero, vamos a crear un modelo de usuario con Pydantic.
 
 De la misma manera que usamos Pydantic para declarar cuerpos, podemos usarlo en cualquier otra parte:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## Crear una dependencia `get_current_user` { #create-a-get-current-user-dependency }
 
@@ -26,19 +26,19 @@ Vamos a crear una dependencia `get_current_user`.
 
 De la misma manera que estábamos haciendo antes en la *path operation* directamente, nuestra nueva dependencia `get_current_user` recibirá un `token` como un `str` de la sub-dependencia `oauth2_scheme`:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## Obtener el usuario { #get-the-user }
 
 `get_current_user` usará una función de utilidad (falsa) que creamos, que toma un token como un `str` y devuelve nuestro modelo de Pydantic `User`:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## Inyectar al usuario actual { #inject-the-current-user }
 
 Entonces ahora podemos usar el mismo `Depends` con nuestro `get_current_user` en la *path operation*:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 Ten en cuenta que declaramos el tipo de `current_user` como el modelo de Pydantic `User`.
 
@@ -92,7 +92,7 @@ Y todos ellos (o cualquier porción de ellos que quieras) pueden aprovechar la r
 
 Y todas estas miles de *path operations* pueden ser tan pequeñas como 3 líneas:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## Resumen { #recap }
 

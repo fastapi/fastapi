@@ -6,7 +6,7 @@
 
 У попередньому прикладі ми повертали `dict` із нашого «залежного»:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 Але тоді ми отримуємо `dict` у параметрі `commons` функції операції шляху.
 
@@ -69,15 +69,15 @@ fluffy = Cat(name="Mr Fluffy")
 
 Тоді ми можемо змінити залежність `common_parameters` вище на клас `CommonQueryParams`:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 Зверніть увагу на метод `__init__`, який використовують для створення екземпляра класу:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 …він має ті самі параметри, що й наш попередній `common_parameters`:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 Саме ці параметри **FastAPI** використає, щоб «розв’язати» залежність.
 
@@ -93,7 +93,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 Тепер ви можете оголосити залежність, використовуючи цей клас.
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** викликає клас `CommonQueryParams`. Це створює «екземпляр» цього класу, і цей екземпляр буде передано як параметр `commons` у вашу функцію.
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 …як у:
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 Але оголошувати тип рекомендується - так ваш редактор знатиме, що буде передано в параметр `commons`, і зможе допомагати з автодоповненням, перевірками типів тощо:
 
@@ -275,7 +275,7 @@ commons: CommonQueryParams = Depends()
 
 Той самий приклад виглядатиме так:
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 …і **FastAPI** знатиме, що робити.
 

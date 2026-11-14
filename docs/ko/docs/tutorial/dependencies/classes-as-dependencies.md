@@ -6,7 +6,7 @@
 
 이전 예제에서는 의존성("dependable")에서 `dict`를 반환하고 있었습니다:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 하지만 그러면 *경로 처리 함수*의 매개변수 `commons`에서 `dict`를 받게 됩니다.
 
@@ -69,15 +69,15 @@ FastAPI가 실제로 확인하는 것은 그것이 "호출 가능(callable)"(함
 
 그러면 위의 의존성("dependable") `common_parameters`를 클래스 `CommonQueryParams`로 바꿀 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 클래스의 인스턴스를 만들 때 사용하는 `__init__` 메서드에 주목하세요:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ...이전의 `common_parameters`와 동일한 매개변수를 가지고 있습니다:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 이 매개변수들이 **FastAPI**가 의존성을 "해결"하는 데 사용할 것들입니다.
 
@@ -93,7 +93,7 @@ FastAPI가 실제로 확인하는 것은 그것이 "호출 가능(callable)"(함
 
 이제 이 클래스를 사용해 의존성을 선언할 수 있습니다.
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI**는 `CommonQueryParams` 클래스를 호출합니다. 그러면 해당 클래스의 "인스턴스"가 생성되고, 그 인스턴스가 함수의 매개변수 `commons`로 전달됩니다.
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ...다음과 같이요:
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 하지만 타입을 선언하는 것을 권장합니다. 그러면 에디터가 매개변수 `commons`에 무엇이 전달되는지 알 수 있고, 코드 완성, 타입 체크 등에서 도움을 받을 수 있습니다:
 
@@ -275,7 +275,7 @@ commons: CommonQueryParams = Depends()
 
 그러면 같은 예제는 다음처럼 보일 겁니다:
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ...그리고 **FastAPI**는 무엇을 해야 하는지 알게 됩니다.
 

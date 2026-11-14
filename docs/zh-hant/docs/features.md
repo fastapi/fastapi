@@ -17,7 +17,7 @@
 
 * [**Swagger UI**](https://github.com/swagger-api/swagger-ui) 提供互動式探索，讓你可以直接從瀏覽器呼叫並測試你的 API 。
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![Swagger UI 互動](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
 * 使用 [**ReDoc**](https://github.com/Redocly/redoc) 的替代 API 文件。
 
@@ -36,13 +36,14 @@ from datetime import date
 
 from pydantic import BaseModel
 
+
 # 將變數宣告為 str
-# 並在函式內取得 editor support
+# 並在函式內取得編輯器支援
 def main(user_id: str):
     return user_id
 
 
-# 一個 Pydantic model
+# 一個 Pydantic 模型
 class User(BaseModel):
     id: int
     name: str
@@ -75,7 +76,7 @@ my_second_user: User = User(**second_user_data)
 
 整個框架的設計是為了讓使用變得簡單且直觀，在開始開發之前，所有決策都在多個編輯器上進行了測試，以確保提供最佳的開發體驗。
 
-在 Python 開發者調查中，我們能清楚看到[最常用的功能之一是「autocompletion」](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features)。
+在 Python 開發者調查中，我們能清楚看到[最常用的功能之一是「自動補齊」](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features)。
 
 整個 **FastAPI** 框架就是基於這一點，任何地方都可以進行自動補齊。
 
@@ -85,11 +86,11 @@ my_second_user: User = User(**second_user_data)
 
 * 在 [Visual Studio Code](https://code.visualstudio.com/) 中：
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![編輯器支援](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * 在 [PyCharm](https://www.jetbrains.com/pycharm/) 中：
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![編輯器支援](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 你將能進行程式碼補齊，這是在之前你可能曾認為不可能的事。例如，來自請求的 JSON body（可能是巢狀的）中的鍵 `price`。
 
@@ -106,7 +107,7 @@ my_second_user: User = User(**second_user_data)
 * 驗證大部分（甚至所有？）的 Python **資料型別**，包括：
     * JSON 物件 (`dict`)。
     * JSON 陣列 (`list`) 定義項目型別。
-    * 字串 (`str`) 欄位，定義最小或最大長度。
+    * 字串 (`str`) 欄位，定義最小和最大長度。
     * 數字 (`int`, `float`) 與其最大值和最小值等。
 
 * 驗證較特殊的型別，比如：
@@ -124,7 +125,7 @@ FastAPI 已經整合了安全性和身份驗證的功能。不需在資料庫或
 OpenAPI 中定義的所有安全模式，包括：
 
 * HTTP 基本認證。
-* **OAuth2**（也使用 **JWT tokens**）。在 [OAuth2 with JWT](tutorial/security/oauth2-jwt.md) 查看教學。
+* **OAuth2**（也使用 **JWT tokens**）。在 [OAuth2 搭配 JWT](tutorial/security/oauth2-jwt.md) 查看教學。
 * API 密鑰，在：
     * 標頭。
     * 查詢參數。
@@ -136,7 +137,7 @@ OpenAPI 中定義的所有安全模式，包括：
 
 ### 依賴注入（Dependency Injection） { #dependency-injection }
 
-FastAPI 有一個使用簡單，但是非常強大的 <dfn title='也稱為「components」、「resources」、「services」、「providers」'><strong>依賴注入</strong></dfn> 系統。
+FastAPI 有一個使用簡單，但是非常強大的 <dfn title='也稱為「元件」、「資源」、「服務」、「提供者」'><strong>依賴注入</strong></dfn> 系統。
 
 * 依賴項甚至可以有自己的依賴，從而形成一個層級或**依賴項的「圖」**結構。
 * 所有**自動化處理**都由框架完成。
@@ -155,7 +156,7 @@ FastAPI 有一個使用簡單，但是非常強大的 <dfn title='也稱為「co
 
 * 100% <dfn title="自動化測試所涵蓋的程式碼量">測試覆蓋率</dfn>。
 * 100% <dfn title="Python 型別註解；有了它你的編輯器和外部工具可以提供更好的支援">型別註解</dfn>的程式碼庫。
-* 已能夠在生產環境應用程式中使用。
+* 已用於生產環境應用程式。
 
 ## Starlette 特性 { #starlette-features }
 
@@ -188,9 +189,9 @@ FastAPI 有一個使用簡單，但是非常強大的 <dfn title='也稱為「co
 通過 **FastAPI** 你可以獲得所有 **Pydantic** 的特性（FastAPI 基於 Pydantic 做了所有的資料處理）：
 
 * **不傷腦筋**：
-    * 不需要學習新的 schema 定義 micro-language。
+    * 不需要學習新的 schema 定義微型語言。
     * 如果你知道 Python 型別，你就知道如何使用 Pydantic。
-* 和你的 **<abbr title="Integrated Development Environment - 整合開發環境：類似於程式碼編輯器">IDE</abbr>/<dfn title="檢查程式碼錯誤的程式">linter</dfn>/brain** 都能好好配合：
+* 和你的 **<abbr title="Integrated Development Environment - 整合開發環境：類似於程式碼編輯器">IDE</abbr>/<dfn title="檢查程式碼錯誤的程式">linter</dfn>/大腦** 都能好好配合：
     * 因為 pydantic 的資料結構其實就是你自己定義的類別實例，所以自動補齊、linting、mypy 以及你的直覺都能很好地在經過驗證的資料上發揮作用。
 * 驗證**複雜結構**：
     * 使用階層式 Pydantic 模型、Python `typing` 的 `List` 和 `Dict` 等。

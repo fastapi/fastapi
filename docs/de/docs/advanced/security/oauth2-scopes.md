@@ -62,7 +62,7 @@ Für OAuth2 sind es einfach nur Strings.
 
 Sehen wir uns zunächst kurz die Teile an, die sich gegenüber den Beispielen im Haupt-**Tutorial – Benutzerhandbuch** für [OAuth2 mit Password (und Hashing), Bearer mit JWT-Tokens](../../tutorial/security/oauth2-jwt.md) ändern. Diesmal verwenden wir OAuth2-Scopes:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Sehen wir uns diese Änderungen nun Schritt für Schritt an.
 
@@ -72,7 +72,7 @@ Die erste Änderung ist, dass wir jetzt das OAuth2-Sicherheitsschema mit zwei ve
 
 Der `scopes`-Parameter erhält ein <abbr title="Dictionary – Zuordnungstabelle: In anderen Sprachen auch Hash, Map, Objekt, Assoziatives Array genannt">`dict`</abbr> mit jedem Scope als Schlüssel und dessen Beschreibung als Wert:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 Da wir diese Scopes jetzt deklarieren, werden sie in der API-Dokumentation angezeigt, wenn Sie sich einloggen/autorisieren.
 
@@ -98,7 +98,7 @@ Aus Sicherheitsgründen sollten Sie jedoch sicherstellen, dass Sie in Ihrer Anwe
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## Scopes in *Pfadoperationen* und Abhängigkeiten deklarieren { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ Wir tun dies hier, um zu demonstrieren, wie **FastAPI** auf verschiedenen Ebenen
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | Technische Details
 
@@ -150,7 +150,7 @@ Wir deklarieren auch einen speziellen Parameter vom Typ `SecurityScopes`, der au
 
 Diese `SecurityScopes`-Klasse ähnelt `Request` (`Request` wurde verwendet, um das Request-Objekt direkt zu erhalten).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## Die `scopes` verwenden { #use-the-scopes }
 
@@ -164,7 +164,7 @@ Wir erstellen eine `HTTPException`, die wir später an mehreren Stellen wiederve
 
 In diese Exception fügen wir (falls vorhanden) die erforderlichen Scopes als durch Leerzeichen getrennten String ein (unter Verwendung von `scope_str`). Wir fügen diesen String mit den Scopes in den Header `WWW-Authenticate` ein (das ist Teil der Spezifikation).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## Den `username` und das Format der Daten überprüfen { #verify-the-username-and-data-shape }
 
@@ -180,7 +180,7 @@ Anstelle beispielsweise eines `dict`s oder etwas anderem, was später in der Anw
 
 Wir verifizieren auch, dass wir einen Benutzer mit diesem Benutzernamen haben, und wenn nicht, lösen wir dieselbe Exception aus, die wir zuvor erstellt haben.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## Die `scopes` verifizieren { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ Wir überprüfen nun, ob das empfangene Token alle Scopes enthält, die von dies
 
 Hierzu verwenden wir `security_scopes.scopes`, das eine `list`e mit allen diesen Scopes als `str` enthält.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## Abhängigkeitsbaum und Scopes { #dependency-tree-and-scopes }
 

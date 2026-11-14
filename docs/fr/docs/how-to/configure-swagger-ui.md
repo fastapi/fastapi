@@ -18,7 +18,7 @@ Sans modifier les paramètres, la coloration syntaxique est activée par défaut
 
 Mais vous pouvez la désactiver en définissant `syntaxHighlight` à `False` :
 
-{* ../../docs_src/configure_swagger_ui/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial001.py hl[3] *}
 
 ... et ensuite Swagger UI n'affichera plus la coloration syntaxique :
 
@@ -28,7 +28,7 @@ Mais vous pouvez la désactiver en définissant `syntaxHighlight` à `False` :
 
 De la même manière, vous pouvez définir le thème de la coloration syntaxique avec la clé « syntaxHighlight.theme » (remarquez le point au milieu) :
 
-{* ../../docs_src/configure_swagger_ui/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial002.py hl[3] *}
 
 Cette configuration modifierait le thème de couleurs de la coloration syntaxique :
 
@@ -46,7 +46,7 @@ Vous pouvez remplacer n'importe lequel d'entre eux en définissant une valeur di
 
 Par exemple, pour désactiver `deepLinking`, vous pourriez passer ces paramètres à `swagger_ui_parameters` :
 
-{* ../../docs_src/configure_swagger_ui/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/configure_swagger_ui/tutorial003.py hl[3] *}
 
 ## Autres paramètres de Swagger UI { #other-swagger-ui-parameters }
 

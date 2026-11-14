@@ -29,7 +29,7 @@ Imaginemos que quieres obtener la dirección IP/host del cliente dentro de tu *p
 
 Para eso necesitas acceder al request directamente.
 
-{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 Al declarar un parámetro de *path operation function* con el tipo siendo `Request`, **FastAPI** sabrá pasar el `Request` en ese parámetro.
 

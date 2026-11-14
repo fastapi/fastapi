@@ -116,7 +116,7 @@ Und eine weitere, um zu überprüfen, ob ein empfangenes Passwort mit dem gespei
 
 Und noch eine, um einen Benutzer zu authentifizieren und zurückzugeben.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 Wenn `authenticate_user` mit einem Benutzernamen aufgerufen wird, der in der Datenbank nicht existiert, führen wir dennoch `verify_password` gegen einen Dummy-Hash aus.
 
@@ -156,7 +156,7 @@ Definieren Sie ein Pydantic-Modell, das im Token-Endpunkt für die <abbr title="
 
 Erstellen Sie eine Hilfsfunktion, um einen neuen Zugriffstoken zu generieren.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Die Abhängigkeiten aktualisieren { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ Dekodieren Sie den empfangenen Token, validieren Sie ihn und geben Sie den aktue
 
 Wenn der Token ungültig ist, geben Sie sofort einen HTTP-Fehler zurück.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## Die `/token`-*Pfadoperation* aktualisieren { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ Erstellen Sie ein <abbr title="Zeitdifferenz">`timedelta`</abbr> mit der Ablaufz
 
 Erstellen Sie einen echten JWT-Zugriffstoken und geben Sie ihn zurück.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### Technische Details zum JWT-„Subjekt“ `sub` { #technical-details-about-the-jwt-subject-sub }
 

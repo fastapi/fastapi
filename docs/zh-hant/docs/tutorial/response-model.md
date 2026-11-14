@@ -4,7 +4,7 @@
 
 你可以像在函式「參數」的輸入資料那樣使用型別註解，你可以使用 Pydantic 模型、list、dictionary、整數、布林等純量值。
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 FastAPI 會使用這個回傳型別來：
 
@@ -38,7 +38,7 @@ FastAPI 會使用這個回傳型別來：
 * `@app.delete()`
 * 等等。
 
-{* ../../docs_src/response_model/tutorial001_py310.py hl[17,22,24:27] *}
+{* ../../docs_src/response_model/tutorial001.py hl[17,22,24:27] *}
 
 /// note | 注意
 
@@ -70,7 +70,7 @@ FastAPI 會使用這個 `response_model` 來做所有的資料文件、驗證等
 
 這裡我們宣告一個 `UserIn` 模型，其中會包含明文密碼：
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
+{* ../../docs_src/response_model/tutorial002.py hl[7,9] *}
 
 /// note | 注意
 
@@ -92,7 +92,7 @@ $ uv add "pydantic[email]"
 
 而我們使用這個模型同時宣告輸入與輸出：
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[16] *}
+{* ../../docs_src/response_model/tutorial002.py hl[16] *}
 
 現在，當瀏覽器建立一個帶有密碼的使用者時，API 會在回應中回傳相同的密碼。
 
@@ -110,15 +110,15 @@ $ uv add "pydantic[email]"
 
 我們可以改為建立一個包含明文密碼的輸入模型，以及一個不含密碼的輸出模型：
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[9,11,16] *}
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 在這裡，雖然「路徑操作函式」回傳的是同一個包含密碼的輸入使用者：
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...我們把 `response_model` 宣告為不包含密碼的 `UserOut` 模型：
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 因此，FastAPI 會負責（透過 Pydantic）過濾掉輸出模型中未宣告的所有資料。
 
@@ -142,7 +142,7 @@ $ uv add "pydantic[email]"
 
 在這些情況下，我們可以利用類別與繼承，搭配函式的型別註解，取得更好的編輯器與工具支援，同時仍能讓 FastAPI 做資料過濾。
 
-{* ../../docs_src/response_model/tutorial003_01_py310.py hl[7:10,13:14,18] *}
+{* ../../docs_src/response_model/tutorial003_01.py hl[7:10,13:14,18] *}
 
 這樣我們能得到工具支援，對於編輯器與 mypy 來說，這段程式碼在型別上是正確的，同時我們也能得到 FastAPI 的資料過濾。
 
@@ -184,7 +184,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 最常見的情況是[直接回傳 Response（在進階文件中稍後會解釋）](../advanced/response-directly.md)。
 
-{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
 
 這個簡單情境會由 FastAPI 自動處理，因為回傳型別註解是 `Response` 類別（或其子類別）。
 
@@ -194,7 +194,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 你也可以在型別註解中使用 `Response` 的子類別：
 
-{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
 
 這同樣可行，因為 `RedirectResponse` 是 `Response` 的子類別，而 FastAPI 會自動處理這種簡單情況。
 
@@ -204,7 +204,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 如果你有像是多種型別的<dfn title="在多種型別之間的聯集表示「其中任一種型別」">聯集</dfn>，其中一個或多個不是有效的 Pydantic 型別，也會發生相同的事情，例如這個就會失敗 💥：
 
-{* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
+{* ../../docs_src/response_model/tutorial003_04.py hl[8] *}
 
 ...這會失敗，因為該型別註解不是 Pydantic 型別，且它也不只是一個單一的 `Response` 類別或其子類別，而是 `Response` 與 `dict` 的聯集（兩者任一）。
 
@@ -216,7 +216,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 這種情況下，你可以設定 `response_model=None` 來停用回應模型的產生：
 
-{* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
+{* ../../docs_src/response_model/tutorial003_05.py hl[7] *}
 
 這會讓 FastAPI 略過回應模型的產生，如此你就能使用任何你需要的回傳型別註解，而不會影響你的 FastAPI 應用程式。🤓
 
@@ -224,7 +224,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 你的回應模型可能有預設值，例如：
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[9,11:12] *}
+{* ../../docs_src/response_model/tutorial004.py hl[9,11:12] *}
 
 * `description: Union[str, None] = None`（或在 Python 3.10 中的 `str | None = None`）預設為 `None`。
 * `tax: float = 10.5` 預設為 `10.5`。
@@ -238,7 +238,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 你可以在「路徑操作裝飾器」上設定 `response_model_exclude_unset=True`：
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial004.py hl[22] *}
 
 如此這些預設值就不會被包含在回應中，只有實際被設定的值才會包含。
 
@@ -266,6 +266,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 但如果你的資料在模型中對於有預設值的欄位也有實際值，例如 ID 為 `bar` 的項目：
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 它們會被包含在回應中。
 
@@ -281,6 +283,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
 
 如果資料的值與預設值相同，例如 ID 為 `baz` 的項目：
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ FastAPI 在內部會搭配 Pydantic 做一些事情，來確保不會把類別�
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI 足夠聰明（其實是 Pydantic 足夠聰明）去判斷，儘管 `description`、`tax` 與 `tags` 的值與預設值相同，但它們是被明確設定的（而不是取自預設值）。
 
@@ -321,7 +325,7 @@ FastAPI 足夠聰明（其實是 Pydantic 足夠聰明）去判斷，儘管 `des
 
 ///
 
-{* ../../docs_src/response_model/tutorial005_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial005.py hl[29,35] *}
 
 /// tip | 提示
 
@@ -335,7 +339,7 @@ FastAPI 足夠聰明（其實是 Pydantic 足夠聰明）去判斷，儘管 `des
 
 如果你忘了使用 `set` 而用了 `list` 或 `tuple`，FastAPI 仍會把它轉換成 `set`，並能正確運作：
 
-{* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial006.py hl[29,35] *}
 
 ## 重點回顧 { #recap }
 

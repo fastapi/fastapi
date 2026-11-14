@@ -6,7 +6,7 @@ Vous pouvez définir des paramètres `Header` de la même manière que vous déf
 
 Commencez par importer `Header` :
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## Déclarer des paramètres `Header` { #declare-header-parameters }
 
@@ -14,7 +14,7 @@ Déclarez ensuite les paramètres d'en-tête en utilisant la même structure qu'
 
 Vous pouvez définir la valeur par défaut ainsi que tous les paramètres supplémentaires de validation ou d'annotation :
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | Détails techniques
 
@@ -46,7 +46,7 @@ Vous pouvez donc utiliser `user_agent` comme vous le feriez normalement dans du 
 
 Si, pour une raison quelconque, vous devez désactiver la conversion automatique des traits bas en traits d'union, définissez le paramètre `convert_underscores` de `Header` sur `False` :
 
-{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning | Alertes
 
@@ -64,7 +64,7 @@ Vous recevrez toutes les valeurs de l'en-tête dupliqué sous forme de `list` Py
 
 Par exemple, pour déclarer un en-tête `X-Token` qui peut apparaître plusieurs fois, vous pouvez écrire :
 
-{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 Si vous communiquez avec ce *chemin d'accès* en envoyant deux en-têtes HTTP comme :
 

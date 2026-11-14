@@ -8,7 +8,7 @@ Hier sind mehrere Möglichkeiten, das zu tun.
 
 Sie können `examples` („Beispiele“) für ein Pydantic-Modell deklarieren, welche dem generierten JSON-Schema hinzugefügt werden.
 
-{* ../../docs_src/schema_extra_example/tutorial001_py310.py hl[13:24] *}
+{* ../../docs_src/schema_extra_example/tutorial001.py hl[13:24] *}
 
 Diese zusätzlichen Informationen werden unverändert zum für dieses Modell ausgegebenen **JSON-Schema** hinzugefügt und in der API-Dokumentation verwendet.
 
@@ -38,7 +38,7 @@ Mehr erfahren Sie am Ende dieser Seite.
 
 Wenn Sie `Field()` mit Pydantic-Modellen verwenden, können Sie ebenfalls zusätzliche `examples` deklarieren:
 
-{* ../../docs_src/schema_extra_example/tutorial002_py310.py hl[2,8:11] *}
+{* ../../docs_src/schema_extra_example/tutorial002.py hl[2,8:11] *}
 
 ## `examples` im JSON-Schema – OpenAPI { #examples-in-json-schema-openapi }
 
@@ -58,7 +58,7 @@ können Sie auch eine Gruppe von `examples` mit zusätzlichen Informationen dekl
 
 Hier übergeben wir `examples`, welches ein einzelnes Beispiel für die in `Body()` erwarteten Daten enthält:
 
-{* ../../docs_src/schema_extra_example/tutorial003_an_py310.py hl[22:29] *}
+{* ../../docs_src/schema_extra_example/tutorial003.py hl[22:29] *}
 
 ### Beispiel in der Dokumentations-Benutzeroberfläche { #example-in-the-docs-ui }
 
@@ -70,7 +70,7 @@ Mit jeder der oben genannten Methoden würde es in `/docs` so aussehen:
 
 Sie können natürlich auch mehrere `examples` übergeben:
 
-{* ../../docs_src/schema_extra_example/tutorial004_an_py310.py hl[23:38] *}
+{* ../../docs_src/schema_extra_example/tutorial004.py hl[23:38] *}
 
 Wenn Sie das tun, werden die Beispiele Teil des internen **JSON-Schemas** für diese Body-Daten.
 
@@ -111,7 +111,7 @@ Jedes spezifische Beispiel-`dict` in den `examples` kann Folgendes enthalten:
 
 Sie können es so verwenden:
 
-{* ../../docs_src/schema_extra_example/tutorial005_an_py310.py hl[23:49] *}
+{* ../../docs_src/schema_extra_example/tutorial005.py hl[23:49] *}
 
 ### OpenAPI-Beispiele in der Dokumentations-Benutzeroberfläche { #openapi-examples-in-the-docs-ui }
 

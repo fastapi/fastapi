@@ -22,7 +22,7 @@ Data भेजने के लिए, आपको इनमें से क�
 
 सबसे पहले, आपको `pydantic` से `BaseModel` import करना होगा:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## अपना data model बनाएँ { #create-your-data-model }
 
@@ -30,7 +30,7 @@ Data भेजने के लिए, आपको इनमें से क�
 
 सभी attributes के लिए standard Python types का उपयोग करें:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 Query parameters घोषित करते समय की तरह, जब किसी model attribute का default value होता है, तो वह required नहीं होता। अन्यथा, वह required होता है। उसे केवल optional बनाने के लिए `None` का उपयोग करें।
@@ -59,7 +59,7 @@ Query parameters घोषित करते समय की तरह, जब
 
 इसे अपनी *path operation* में जोड़ने के लिए, इसे उसी तरह घोषित करें जैसे आपने path और query parameters घोषित किए थे:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...और इसके type को आपके बनाए हुए model, `Item`, के रूप में घोषित करें।
 
@@ -126,7 +126,7 @@ Query parameters घोषित करते समय की तरह, जब
 
 Function के अंदर, आप model object के सभी attributes को सीधे access कर सकते हैं:
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## Request body + path parameters { #request-body-path-parameters }
 
@@ -134,7 +134,7 @@ Function के अंदर, आप model object के सभी attributes �
 
 **FastAPI** पहचानेगा कि वे function parameters जो path parameters से match करते हैं, उन्हें **path से लिया जाना चाहिए**, और वे function parameters जो Pydantic models के रूप में घोषित हैं, उन्हें **request body से लिया जाना चाहिए**।
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## Request body + path + query parameters { #request-body-path-query-parameters }
@@ -143,7 +143,7 @@ Function के अंदर, आप model object के सभी attributes �
 
 **FastAPI** उनमें से प्रत्येक को पहचानेगा और data को सही जगह से लेगा।
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 Function parameters को इस प्रकार पहचाना जाएगा:
 

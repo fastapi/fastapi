@@ -62,7 +62,7 @@ OAuth2 со scopes — это механизм, который использу�
 
 Сначала быстро посмотрим, что изменилось по сравнению с примерами из основного раздела **Учебник - Руководство пользователя** — [OAuth2 с паролем (и хешированием), Bearer с JWT-токенами](../../tutorial/security/oauth2-jwt.md). Теперь — с использованием OAuth2 scopes:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Теперь рассмотрим эти изменения шаг за шагом.
 
@@ -72,7 +72,7 @@ OAuth2 со scopes — это механизм, который использу�
 
 Параметр `scopes` получает `dict`, где каждый scope — это ключ, а описание — значение:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 Так как теперь мы объявляем эти scopes, они появятся в документации API при входе/авторизации.
 
@@ -98,7 +98,7 @@ OAuth2 со scopes — это механизм, который использу�
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## Объявление scopes в *операциях пути* и зависимостях { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ OAuth2 со scopes — это механизм, который использу�
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | Технические детали
 
@@ -150,7 +150,7 @@ OAuth2 со scopes — это механизм, который использу�
 
 Класс `SecurityScopes` похож на `Request` (через `Request` мы получали сам объект запроса).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## Использование `scopes` { #use-the-scopes }
 
@@ -164,7 +164,7 @@ OAuth2 со scopes — это механизм, который использу�
 
 В этом исключении мы включаем требуемые scopes (если есть) в виде строки, разделённой пробелами (используя `scope_str`). Эту строку со scopes мы помещаем в HTTP‑заголовок `WWW-Authenticate` (это часть спецификации).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## Проверка `username` и формата данных { #verify-the-username-and-data-shape }
 
@@ -180,7 +180,7 @@ OAuth2 со scopes — это механизм, который использу�
 
 Мы также проверяем, что существует пользователь с таким именем, и если нет — вызываем то же исключение, созданное ранее.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## Проверка `scopes` { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ OAuth2 со scopes — это механизм, который использу�
 
 Для этого используем `security_scopes.scopes`, содержащий `list` со всеми этими scopes как `str`.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## Дерево зависимостей и scopes { #dependency-tree-and-scopes }
 

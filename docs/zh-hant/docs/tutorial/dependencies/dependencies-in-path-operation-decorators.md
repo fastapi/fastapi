@@ -14,7 +14,7 @@
 
 它應該是由 `Depends()` 組成的 `list`：
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[19] *}
 
 這些依賴會以與一般依賴相同的方式被執行／解析。但它們的值（如果有回傳）不會傳遞給你的路徑操作函式。
 
@@ -44,13 +44,13 @@
 
 它們可以宣告請求需求（例如標頭（headers））或其他子依賴：
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[8,13] *}
 
 ### 拋出例外 { #raise-exceptions }
 
 這些依賴可以 `raise` 例外，與一般依賴相同：
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[10,15] *}
 
 ### 回傳值 { #return-values }
 
@@ -58,7 +58,7 @@
 
 因此，你可以重複使用在其他地方已使用過的一般依賴（會回傳值），即使回傳值不會被使用，該依賴仍會被執行：
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[11,16] *}
 
 ## 一組路徑操作的依賴 { #dependencies-for-a-group-of-path-operations }
 

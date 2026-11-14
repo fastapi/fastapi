@@ -52,7 +52,7 @@ Pydantic v2 includes everything from Pydantic v1 as a submodule `pydantic.v1`. B
 
 This means that you can install the latest version of Pydantic v2 and import and use the old Pydantic v1 components from this submodule, as if you had the old Pydantic v1 installed.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial001_an_py310.py hl[1,4] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial001.py hl[1,4] *}
 
 ### FastAPI support for Pydantic v1 in v2 { #fastapi-support-for-pydantic-v1-in-v2 }
 
@@ -70,7 +70,7 @@ Since FastAPI 0.119.0, there's also partial support for Pydantic v1 from inside 
 
 So, you could upgrade Pydantic to the latest version 2, and change the imports to use the `pydantic.v1` submodule, and in many cases it would just work.
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial002_an_py310.py hl[2,5,15] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial002.py hl[2,5,15] *}
 
 /// warning
 
@@ -122,7 +122,7 @@ graph TB
 
 In some cases, it's even possible to have both Pydantic v1 and v2 models in the same **path operation** in your FastAPI app:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial003_an_py310.py hl[2:3,6,12,21:22] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial003.py hl[2:3,6,12,21:22] *}
 
 In this example above, the input model is a Pydantic v1 model, and the output model (defined in `response_model=ItemV2`) is a Pydantic v2 model.
 
@@ -130,7 +130,7 @@ In this example above, the input model is a Pydantic v1 model, and the output mo
 
 If you need to use some of the FastAPI-specific tools for parameters like `Body`, `Query`, `Form`, etc. with Pydantic v1 models, you can import them from `fastapi.temp_pydantic_v1_params` while you finish the migration to Pydantic v2:
 
-{* ../../docs_src/pydantic_v1_in_v2/tutorial004_an_py310.py hl[4,18] *}
+{* ../../docs_src/pydantic_v1_in_v2/tutorial004.py hl[4,18] *}
 
 ### Migrate in steps { #migrate-in-steps }
 

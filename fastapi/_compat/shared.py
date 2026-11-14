@@ -55,13 +55,13 @@ def lenient_issubclass(
         raise  # pragma: no cover
 
 
-def _annotation_is_sequence(annotation: type[Any] | None) -> bool:
+def _annotation_is_sequence(annotation: object) -> bool:
     if lenient_issubclass(annotation, (str, bytes)):
         return False
     return lenient_issubclass(annotation, sequence_types)
 
 
-def field_annotation_is_sequence(annotation: type[Any] | None) -> bool:
+def field_annotation_is_sequence(annotation: object) -> bool:
     origin = get_origin(annotation)
 
     if origin is Annotated:
@@ -81,7 +81,7 @@ def value_is_sequence(value: Any) -> bool:
     return isinstance(value, sequence_types) and not isinstance(value, (str, bytes))
 
 
-def _annotation_is_complex(annotation: type[Any] | None) -> bool:
+def _annotation_is_complex(annotation: object) -> bool:
     return (
         lenient_issubclass(annotation, (BaseModel, Mapping, UploadFile))
         or _annotation_is_sequence(annotation)
@@ -89,7 +89,7 @@ def _annotation_is_complex(annotation: type[Any] | None) -> bool:
     )
 
 
-def field_annotation_is_complex(annotation: type[Any] | None) -> bool:
+def field_annotation_is_complex(annotation: object) -> bool:
     origin = get_origin(annotation)
     if origin is Union or origin is UnionType:
         return any(field_annotation_is_complex(arg) for arg in get_args(annotation))
@@ -110,7 +110,7 @@ def field_annotation_is_scalar(annotation: Any) -> bool:
     return annotation is Ellipsis or not field_annotation_is_complex(annotation)
 
 
-def field_annotation_is_scalar_sequence(annotation: type[Any] | None) -> bool:
+def field_annotation_is_scalar_sequence(annotation: object) -> bool:
     origin = get_origin(annotation)
 
     if origin is Annotated:

@@ -2,7 +2,7 @@
 
 在前一章，基於依賴注入系統的安全機制會把一個 `token`（作為 `str`）提供給*路徑操作函式*：
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 但這還不太有用。
 
@@ -14,7 +14,7 @@
 
 就像用 Pydantic 宣告請求體一樣，我們也可以在其他地方使用它：
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## 建立 `get_current_user` 依賴 { #create-a-get-current-user-dependency }
 
@@ -26,19 +26,19 @@
 
 如同先前在*路徑操作*中直接做的一樣，新的依賴 `get_current_user` 會從子依賴 `oauth2_scheme` 接收一個作為 `str` 的 `token`：
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## 取得使用者 { #get-the-user }
 
 `get_current_user` 會使用我們建立的（假的）工具函式，它接收一個作為 `str` 的 token，並回傳我們的 Pydantic `User` 模型：
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## 注入目前使用者 { #inject-the-current-user }
 
 現在我們可以在*路徑操作*中用相同的 `Depends` 來使用 `get_current_user`：
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 注意我們把 `current_user` 的型別宣告為 Pydantic 的 `User` 模型。
 
@@ -92,7 +92,7 @@
 
 而所有這些上千個*路徑操作*都可以小到只要 3 行：
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## 回顧 { #recap }
 

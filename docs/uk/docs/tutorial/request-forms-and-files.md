@@ -16,13 +16,13 @@ $ uv add python-multipart
 
 ## Імпорт `File` та `Form` { #import-file-and-form }
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[3] *}
 
 ## Оголошення параметрів `File` та `Form` { #define-file-and-form-parameters }
 
 Створіть параметри файлів та форми так само як і для `Body` або `Query`:
 
-{* ../../docs_src/request_forms_and_files/tutorial001_an_py310.py hl[10:12] *}
+{* ../../docs_src/request_forms_and_files/tutorial001.py hl[10:12] *}
 
 Файли та поля форми будуть завантажені як формові дані, і ви отримаєте файли та поля форми.
 

@@ -1,6 +1,6 @@
 # Form Verisi { #form-data }
 
-When you need to receive form fields instead of JSON, you can use `Form`.
+JSON yerine form alanlarını almanız gerektiğinde `Form` kullanabilirsiniz.
 
 /// note | Not
 
@@ -18,13 +18,13 @@ $ uv add python-multipart
 
 `Form`'u `fastapi`'den import edin:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[3] *}
 
 ## `Form` Parametrelerini Tanımlayın { #define-form-parameters }
 
 Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 
-{* ../../docs_src/request_forms/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/request_forms/tutorial001.py hl[9] *}
 
 Örneğin OAuth2 spesifikasyonunun kullanılabileceği ("password flow" olarak adlandırılan) yollardan birinde, form alanları olarak bir `username` ve `password` göndermek zorunludur.
 
@@ -40,9 +40,17 @@ Form parametrelerini `Body` veya `Query` için yaptığınız gibi oluşturun:
 
 /// tip | İpucu
 
-Form gövdelerini tanımlamak için `Form`'u açıkça kullanmanız gerekir; çünkü bunu yapmazsanız parametreler query parametreleri veya body (JSON) parametreleri olarak yorumlanır.
+Form body'lerini tanımlamak için `Form`'u açıkça kullanmanız gerekir; çünkü bunu yapmazsanız parametreler query parametreleri veya body (JSON) parametreleri olarak yorumlanır.
 
 ///
+
+## Boolean Form Alanları { #boolean-form-fields }
+
+Tarayıcılar, HTML formlarını gönderirken işaretlenmemiş onay kutularını göndermez. Onay kutusu işaretlenmediğinde `False` almak için varsayılan değeri `False` olan bir boolean form parametresi tanımlayın:
+
+{* ../../docs_src/request_forms/tutorial002.py hl[9] *}
+
+İşaretli bir onay kutusu, varsayılan olarak `"on"` olan değerini gönderir. **FastAPI**, `"on"` değerini `True` olarak kabul eder.
 
 ## "Form Alanları" Hakkında { #about-form-fields }
 
@@ -55,6 +63,8 @@ HTML formlarının (`<form></form>`) verileri sunucuya gönderme şekli normalde
 Formlardan gelen veri normalde "media type" `application/x-www-form-urlencoded` kullanılarak encode edilir.
 
 Ancak form dosyalar içerdiğinde `multipart/form-data` olarak encode edilir. Dosyaları ele almayı bir sonraki bölümde okuyacaksınız.
+
+OpenAPI'da bir multipart formunu tanımlamak için `Form(media_type="multipart/form-data")` kullanabilirsiniz. Form parametrelerini veya modellerini birleştirirken bunu tek bir parametrede ayarlamanız yeterlidir.
 
 Bu encoding'ler ve form alanları hakkında daha fazla okumak isterseniz, [<abbr title="Mozilla Developer Network - Mozilla Geliştirici Ağı">MDN</abbr> `POST` için web dokümanları](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) sayfasına gidin.
 

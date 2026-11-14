@@ -9,7 +9,7 @@
 * `@app.delete()`
 * 等等
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 /// note | 注意
 
@@ -75,7 +75,7 @@ FastAPI 知道這點，並會產生聲明「無回應本文」的 OpenAPI 文件
 
 再看一次前面的範例：
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` 是「已建立（Created）」的狀態碼。
 
@@ -83,7 +83,7 @@ FastAPI 知道這點，並會產生聲明「無回應本文」的 OpenAPI 文件
 
 你可以使用 `fastapi.status` 提供的便利變數。
 
-{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 它們只是方便用的常數，值與數字相同，但這樣你可以用編輯器的自動完成來找到它們：
 

@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `http` या `ws` पर आने वाली कोई भी incoming request इसके बजाय secure scheme पर redirect कर दी जाएगी।
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 यह enforce करता है कि सभी incoming requests में `Host` header सही तरीके से set हो, ताकि HTTP Host Header attacks से बचाव हो सके।
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 निम्नलिखित arguments supported हैं:
 
@@ -78,7 +78,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 middleware standard और streaming दोनों responses को handle करेगा।
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 निम्नलिखित arguments supported हैं:
 

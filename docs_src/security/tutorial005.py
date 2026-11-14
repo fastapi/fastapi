@@ -1,4 +1,5 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
+from typing import Annotated
 
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, Security, status
@@ -96,16 +97,16 @@ def authenticate_user(fake_db, username: str, password: str):
 def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
     if expires_delta:
-        expire = datetime.now(timezone.utc) + expires_delta
+        expire = datetime.now(UTC) + expires_delta
     else:
-        expire = datetime.now(timezone.utc) + timedelta(minutes=15)
+        expire = datetime.now(UTC) + timedelta(minutes=15)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 
 async def get_current_user(
-    security_scopes: SecurityScopes, token: str = Depends(oauth2_scheme)
+    security_scopes: SecurityScopes, token: Annotated[str, Depends(oauth2_scheme)]
 ):
     if security_scopes.scopes:
         authenticate_value = f'Bearer scope="{security_scopes.scope_str}"'
@@ -118,7 +119,7 @@ async def get_current_user(
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
+        username = payload.get("sub")
         if username is None:
             raise credentials_exception
         scope: str = payload.get("scope", "")
@@ -140,7 +141,7 @@ async def get_current_user(
 
 
 async def get_current_active_user(
-    current_user: User = Security(get_current_user, scopes=["me"]),
+    current_user: Annotated[User, Security(get_current_user, scopes=["me"])],
 ):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
@@ -149,7 +150,7 @@ async def get_current_active_user(
 
 @app.post("/token")
 async def login_for_access_token(
-    form_data: OAuth2PasswordRequestForm = Depends(),
+    form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
 ) -> Token:
     user = authenticate_user(fake_users_db, form_data.username, form_data.password)
     if not user:
@@ -163,17 +164,19 @@ async def login_for_access_token(
 
 
 @app.get("/users/me/")
-async def read_users_me(current_user: User = Depends(get_current_active_user)) -> User:
+async def read_users_me(
+    current_user: Annotated[User, Depends(get_current_active_user)],
+) -> User:
     return current_user
 
 
 @app.get("/users/me/items/")
 async def read_own_items(
-    current_user: User = Security(get_current_active_user, scopes=["items"]),
+    current_user: Annotated[User, Security(get_current_active_user, scopes=["items"])],
 ):
     return [{"item_id": "Foo", "owner": current_user.username}]
 
 
 @app.get("/status/")
-async def read_system_status(current_user: User = Depends(get_current_user)):
+async def read_system_status(current_user: Annotated[User, Depends(get_current_user)]):
     return {"status": "ok"}

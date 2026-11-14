@@ -2444,6 +2444,38 @@ def Depends(  # noqa: N802
             """
         ),
     ] = None,
+    max_concurrency: Annotated[
+        int | None,
+        Doc(
+            """
+            The maximum number of calls to this dependency that can run at the
+            same time.
+
+            For example, with `max_concurrency=5`, a sixth call waits until one of
+            the first five finishes. Waiting doesn't use a worker thread.
+
+            If the dependency uses `yield`, it counts toward the limit until the
+            code after `yield` finishes. The `scope` parameter controls when that
+            code runs.
+
+            To share the limit across routes and applications, reuse the same
+            `Depends()` object, for example in an `Annotated` alias.
+
+            Each new `Depends()` object has its own limit, even if it uses the
+            same dependency function. Each event loop and worker process also
+            has its own limit.
+
+            When FastAPI reuses a dependency value in the same request, it
+            doesn't count as another call.
+
+            The value must be a positive integer. The default is `None`, which
+            means there is no limit.
+
+            Read more about it in the
+            [FastAPI docs about dependency concurrency](https://fastapi.tiangolo.com/advanced/advanced-dependencies/#limit-dependency-concurrency)
+            """
+        ),
+    ] = None,
 ) -> Any:
     """
     Declare a FastAPI dependency.
@@ -2474,7 +2506,12 @@ def Depends(  # noqa: N802
         return commons
     ```
     """
-    return params.Depends(dependency=dependency, use_cache=use_cache, scope=scope)
+    return params.Depends(
+        dependency=dependency,
+        use_cache=use_cache,
+        scope=scope,
+        max_concurrency=max_concurrency,
+    )
 
 
 def Security(  # noqa: N802

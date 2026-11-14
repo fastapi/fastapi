@@ -28,7 +28,7 @@ Testing के लिए किसी dependency को override करने �
 
 और फिर **FastAPI** original dependency की बजाय उस override को call करेगा।
 
-{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
 /// tip | सुझाव
 

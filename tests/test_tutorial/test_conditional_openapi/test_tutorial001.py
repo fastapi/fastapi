@@ -5,11 +5,11 @@ from inline_snapshot import snapshot
 
 
 def get_client() -> TestClient:
-    from docs_src.conditional_openapi import tutorial001_py310
+    from docs_src.conditional_openapi import tutorial001
 
-    importlib.reload(tutorial001_py310)
+    importlib.reload(tutorial001)
 
-    client = TestClient(tutorial001_py310.app)
+    client = TestClient(tutorial001.app)
     return client
 
 

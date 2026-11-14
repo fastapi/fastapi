@@ -76,11 +76,11 @@ sequenceDiagram
 
 Чтобы стримить JSON Lines с FastAPI, вместо использования `return` в вашей *функции-обработчике пути* используйте `yield`, чтобы по очереди выдавать каждый элемент.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 Если каждый JSON-элемент, который вы хотите отправить обратно, имеет тип `Item` (Pydantic-модель), и это асинхронная функция, вы можете объявить тип возвращаемого значения как `AsyncIterable[Item]`:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 Если вы объявите тип возвращаемого значения, FastAPI будет использовать его, чтобы **валидировать** данные, **документировать** их в OpenAPI, **фильтровать** и **сериализовать** с помощью Pydantic.
 
@@ -98,13 +98,13 @@ FastAPI обеспечит корректное выполнение так, ч�
 
 Поскольку в этом случае функция не асинхронная, подходящим типом возвращаемого значения будет `Iterable[Item]`:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### Без возвращаемого типа { #no-return-type }
 
 Вы также можете опустить тип возвращаемого значения. Тогда FastAPI использует [`jsonable_encoder`](./encoder.md), чтобы преобразовать данные к виду, который можно сериализовать в JSON, и затем отправит их как JSON Lines.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## События, отправляемые сервером (SSE) { #server-sent-events-sse }
 

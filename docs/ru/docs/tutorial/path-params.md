@@ -2,7 +2,7 @@
 
 Вы можете определить "параметры" или "переменные" пути, используя синтаксис форматированных строк Python:
 
-{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 Значение path-параметра `item_id` будет передано в функцию в качестве аргумента `item_id`.
 
@@ -16,7 +16,7 @@
 
 Вы можете объявить тип path-параметра в функции, используя стандартные аннотации типов Python:
 
-{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 Здесь, `item_id` объявлен типом `int`.
 
@@ -118,13 +118,13 @@
 
 Поскольку *операции пути* выполняются в порядке их объявления, необходимо, чтобы путь для `/users/me` был объявлен раньше, чем путь для `/users/{user_id}`:
 
-{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 Иначе путь для `/users/{user_id}` также будет соответствовать `/users/me`, "подразумевая", что он получает параметр `user_id` со значением `"me"`.
 
 Аналогично, вы не можете переопределить операцию пути:
 
-{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 Первый будет выполняться всегда, так как путь совпадает первым.
 
@@ -140,7 +140,7 @@
 
 Затем создайте атрибуты класса с фиксированными допустимыми значениями:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// tip | Подсказка
 
@@ -152,7 +152,7 @@
 
 Определите *path-параметр*, используя в аннотации типа класс перечисления (`ModelName`), созданный ранее:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Проверьте документацию { #check-the-docs }
 
@@ -168,13 +168,13 @@
 
 Вы можете сравнить это значение с *элементом перечисления* класса `ModelName`:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### Получение *значения перечисления* { #get-the-enumeration-value }
 
 Можно получить фактическое значение (в данном случае - `str`) с помощью `model_name.value` или в общем случае `your_enum_member.value`:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | Подсказка
 
@@ -188,7 +188,7 @@
 
 Они будут преобразованы в соответствующие значения (в данном случае - строки) перед их возвратом клиенту:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 На стороне клиента вы получите такой JSON-ответ:
 
@@ -227,7 +227,7 @@ OpenAPI не поддерживает способа объявления *path-
 
 Можете использовать так:
 
-{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip | Подсказка
 

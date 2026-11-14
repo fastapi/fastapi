@@ -16,7 +16,7 @@ Base64'ü sadece gerçekten JSON içine ikili veri koymanız gerekiyorsa ve bunu
 
 `bytes` alanları olan bir Pydantic model tanımlayabilir, ardından model config'inde `val_json_bytes` kullanarak giriş JSON verisini base64 ile doğrulamasını (validate) söyleyebilirsiniz; bu doğrulamanın bir parçası olarak base64 string'i bytes'a decode eder.
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:9,29:35] hl[9] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:9,29:35] hl[9] *}
 
 `/docs`'a bakarsanız, `data` alanının base64 ile encode edilmiş bytes beklediğini görürsünüz:
 
@@ -54,10 +54,10 @@ Sonrasında Pydantic base64 string'ini decode eder ve modelin `data` alanında s
 
 Çıkış verisi için de model config'inde `ser_json_bytes` ile `bytes` alanları kullanabilirsiniz; Pydantic JSON response üretirken bytes'ı base64 olarak serialize eder.
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:2,12:16,29,38:41] hl[16] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:2,12:16,29,38:41] hl[16] *}
 
 ## Giriş ve Çıkış Verisi için Pydantic `bytes` { #pydantic-bytes-for-input-and-output-data }
 
 Elbette, aynı modeli base64 kullanacak şekilde yapılandırıp hem girişte (*validate*) `val_json_bytes` ile hem de çıkışta (*serialize*) `ser_json_bytes` ile JSON veri alıp gönderirken kullanabilirsiniz.
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:2,19:26,29,44:46] hl[23:26] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:2,19:26,29,44:46] hl[23:26] *}

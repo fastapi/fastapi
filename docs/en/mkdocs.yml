@@ -2,7 +2,7 @@ site_name: FastAPI
 site_description: FastAPI framework, high performance, easy to learn, fast to code, ready for production
 site_url: https://fastapi.tiangolo.com/
 theme:
-  variant: classic
+  variant: modern
   name: material
   custom_dir: overrides
   palette:
@@ -46,7 +46,7 @@ theme:
   - toc.follow
   icon:
     repo: octicons/mark-github-24
-  logo: img/icon-white.svg
+  logo: img/favicon.png
   favicon: img/favicon.png
   language: en
 repo_name: fastapi/fastapi
@@ -174,6 +174,7 @@ nav:
     - advanced/strict-content-type.md
   - fastapi-cli.md
   - editor-support.md
+  - ai-development.md
   - "":
     - deployment/index.md
     - deployment/versions.md

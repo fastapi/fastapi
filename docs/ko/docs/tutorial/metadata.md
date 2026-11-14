@@ -18,7 +18,7 @@ OpenAPI 명세 및 자동화된 API 문서 UI에 사용되는 다음 필드를 �
 
 다음과 같이 설정할 수 있습니다:
 
-{* ../../docs_src/metadata/tutorial001_py310.py hl[3:16, 19:32] *}
+{* ../../docs_src/metadata/tutorial001.py hl[3:16, 19:32] *}
 
 /// tip | 팁
 
@@ -36,7 +36,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `url` 대신 `identifie
 
 예:
 
-{* ../../docs_src/metadata/tutorial001_1_py310.py hl[31] *}
+{* ../../docs_src/metadata/tutorial001_1.py hl[31] *}
 
 ## 태그에 대한 메타데이터 { #metadata-for-tags }
 
@@ -58,7 +58,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `url` 대신 `identifie
 
 태그에 대한 메타데이터를 생성하고 이를 `openapi_tags` 매개변수로 전달하세요:
 
-{* ../../docs_src/metadata/tutorial004_py310.py hl[3:16,18] *}
+{* ../../docs_src/metadata/tutorial004.py hl[3:16,18] *}
 
 설명 안에 마크다운을 사용할 수 있다는 점에 유의하세요. 예를 들어 "login"은 굵게(**login**) 표시되고, "fancy"는 기울임꼴(_fancy_)로 표시됩니다.
 
@@ -72,7 +72,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `url` 대신 `identifie
 
 `tags` 매개변수를 *경로 처리* (및 `APIRouter`)와 함께 사용하여 이를 서로 다른 태그에 할당하세요:
 
-{* ../../docs_src/metadata/tutorial004_py310.py hl[21,26] *}
+{* ../../docs_src/metadata/tutorial004.py hl[21,26] *}
 
 /// note | 참고
 
@@ -100,7 +100,7 @@ OpenAPI 3.1.0 및 FastAPI 0.99.0부터 `license_info`에 `url` 대신 `identifie
 
 예를 들어, 이를 `/api/v1/openapi.json`에서 제공하도록 설정하려면:
 
-{* ../../docs_src/metadata/tutorial002_py310.py hl[3] *}
+{* ../../docs_src/metadata/tutorial002.py hl[3] *}
 
 OpenAPI 스키마를 완전히 비활성화하려면 `openapi_url=None`으로 설정할 수 있으며, 이를 사용하여 문서화 사용자 인터페이스도 비활성화됩니다.
 
@@ -117,4 +117,4 @@ OpenAPI 스키마를 완전히 비활성화하려면 `openapi_url=None`으로 �
 
 예를 들어, Swagger UI를 `/documentation`에서 제공하고 ReDoc을 비활성화하려면:
 
-{* ../../docs_src/metadata/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/metadata/tutorial003.py hl[3] *}

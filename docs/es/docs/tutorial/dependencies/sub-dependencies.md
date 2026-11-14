@@ -10,7 +10,7 @@ Pueden ser tan **profundas** como necesites.
 
 Podrías crear una primera dependencia ("dependable") así:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 Declara un parámetro de query opcional `q` como un `str`, y luego simplemente lo devuelve.
 
@@ -20,7 +20,7 @@ Esto es bastante simple (no muy útil), pero nos ayudará a centrarnos en cómo 
 
 Luego puedes crear otra función de dependencia (un "dependable") que al mismo tiempo declare una dependencia propia (por lo que también es un "dependant"):
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 Centrémonos en los parámetros declarados:
 
@@ -33,7 +33,7 @@ Centrémonos en los parámetros declarados:
 
 Entonces podemos usar la dependencia con:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | Nota
 
@@ -64,8 +64,10 @@ En un escenario avanzado donde sabes que necesitas que la dependencia se llame e
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+```Python hl_lines="2"
+async def needy_dependency(
+    fresh_value: Annotated[str, Depends(get_value, use_cache=False)],
+):
     return {"fresh_value": fresh_value}
 ```
 

@@ -6,7 +6,7 @@
 
 그런 다음, 여러분은 해당 *임시* 응답 객체에서 헤더를 설정할 수 있습니다.
 
-{* ../../docs_src/response_headers/tutorial002_py310.py hl[1, 7:8] *}
+{* ../../docs_src/response_headers/tutorial002.py hl[1, 7:8] *}
 
 그 후, 일반적으로 사용하듯이 필요한 객체(`dict`, 데이터베이스 모델 등)를 반환할 수 있습니다.
 
@@ -22,7 +22,7 @@
 
 [응답을 직접 반환하기](response-directly.md)에 설명한 대로 응답을 생성하고, 헤더를 추가 매개변수로 전달하세요:
 
-{* ../../docs_src/response_headers/tutorial001_py310.py hl[10:12] *}
+{* ../../docs_src/response_headers/tutorial001.py hl[10:12] *}
 
 /// note | 기술 세부사항
 

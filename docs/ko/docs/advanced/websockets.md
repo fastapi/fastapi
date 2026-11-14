@@ -38,13 +38,13 @@ $ uv add websockets
 
 그러나 이는 WebSockets의 서버 측에 집중하고 동작하는 예제를 제공하는 가장 간단한 방법입니다:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[2,6:38,41:43] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[2,6:38,41:43] *}
 
 ## `websocket` 생성하기 { #create-a-websocket }
 
 **FastAPI** 애플리케이션에서 `websocket`을 생성합니다:
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[1,46:47] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[1,46:47] *}
 
 /// note | 기술 세부사항
 
@@ -58,7 +58,7 @@ $ uv add websockets
 
 WebSocket 경로에서 메시지를 대기(`await`)하고 전송할 수 있습니다.
 
-{* ../../docs_src/websockets_/tutorial001_py310.py hl[48:52] *}
+{* ../../docs_src/websockets_/tutorial001.py hl[48:52] *}
 
 여러분은 이진 데이터, 텍스트, JSON 데이터를 받을 수 있고 전송할 수 있습니다.
 
@@ -109,7 +109,7 @@ WebSocket 엔드포인트에서 `fastapi`에서 다음을 가져와 사용할 �
 
 이들은 다른 FastAPI 엔드포인트/*경로 처리*와 동일하게 동작합니다:
 
-{* ../../docs_src/websockets_/tutorial002_an_py310.py hl[68:69,82] *}
+{* ../../docs_src/websockets_/tutorial002.py hl[68:69,82] *}
 
 /// note | 참고
 
@@ -154,7 +154,7 @@ $ uv run fastapi dev
 
 WebSocket 연결이 닫히면, `await websocket.receive_text()`가 `WebSocketDisconnect` 예외를 발생시킵니다. 그러면 이 예제처럼 이를 잡아 처리할 수 있습니다.
 
-{* ../../docs_src/websockets_/tutorial003_py310.py hl[79:81] *}
+{* ../../docs_src/websockets_/tutorial003.py hl[79:81] *}
 
 테스트해보기:
 

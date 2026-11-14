@@ -15,7 +15,7 @@
 
 먼저 `BackgroundTasks`를 임포트하고, `BackgroundTasks` 타입 선언으로 *경로 처리 함수*에 매개변수를 정의합니다:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI**가 `BackgroundTasks` 타입의 객체를 생성하고 해당 매개변수로 전달합니다.
 
@@ -31,13 +31,13 @@
 
 그리고 쓰기 작업은 `async`와 `await`를 사용하지 않으므로, 일반 `def`로 함수를 정의합니다:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## 백그라운드 작업 추가 { #add-the-background-task }
 
 *경로 처리 함수* 내부에서 `.add_task()` 메서드로 작업 함수를 *백그라운드 작업* 객체에 전달합니다:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()`는 다음 인자를 받습니다:
 
@@ -52,7 +52,7 @@
 **FastAPI**는 각 경우에 무엇을 해야 하는지와 동일한 객체를 어떻게 재사용해야 하는지를 알고 있으므로, 모든 백그라운드 작업이 함께 병합되어 이후 백그라운드에서 실행됩니다:
 
 
-{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 
 이 예제에서는 응답이 전송된 *후에* 메시지가 `log.txt` 파일에 작성됩니다.

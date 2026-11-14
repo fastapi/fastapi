@@ -77,7 +77,7 @@ This risk and attack is mainly relevant when the app runs on the **local network
 
 If you need to support clients that don't send a `Content-Type` header, you can disable strict checking by setting `strict_content_type=False`:
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 With this setting, requests without a `Content-Type` header will have their body parsed as JSON, which is the same behavior as older versions of FastAPI.
 

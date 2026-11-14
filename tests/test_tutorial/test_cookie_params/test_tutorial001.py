@@ -11,8 +11,8 @@ from ...utils import needs_py310
 @pytest.fixture(
     name="mod",
     params=[
-        pytest.param("tutorial001_py310", marks=needs_py310),
-        pytest.param("tutorial001_an_py310", marks=needs_py310),
+        pytest.param("tutorial001_non_an", marks=needs_py310),
+        pytest.param("tutorial001", marks=needs_py310),
     ],
 )
 def get_mod(request: pytest.FixtureRequest):

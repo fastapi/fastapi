@@ -4,12 +4,12 @@
 
 함수 **매개변수**에서 입력 데이터를 위해 사용하는 것과 동일하게 **타입 어노테이션**을 사용할 수 있으며, Pydantic 모델, 리스트, 딕셔너리, 정수/불리언 같은 스칼라 값 등을 사용할 수 있습니다.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 FastAPI는 이 반환 타입을 사용하여:
 
 * 반환된 데이터를 **검증**합니다.
-    * 데이터가 유효하지 않다면(예: 필드가 누락된 경우), 이는 *여러분의* 앱 코드가 깨져서 의도한 값을 반환하지 못한다는 의미이며, 잘못된 데이터를 반환하는 대신 서버 오류를 반환합니다. 이렇게 하면 여러분과 클라이언트는 기대한 데이터와 데이터 형태를 받는다는 것을 확실히 할 수 있습니다.
+    * 데이터가 유효하지 않다면(예: 필드가 누락된 경우), 이는 *여러분의* 애플리케이션 코드가 깨져서 의도한 값을 반환하지 못한다는 의미이며, 잘못된 데이터를 반환하는 대신 서버 오류를 반환합니다. 이렇게 하면 여러분과 클라이언트는 기대한 데이터와 데이터 형태를 받는다는 것을 확실히 할 수 있습니다.
 * OpenAPI *경로 처리*의 응답에 **JSON Schema**를 추가합니다.
     * 이는 **자동 문서**에서 사용됩니다.
     * 또한 자동 클라이언트 코드 생성 도구에서도 사용됩니다.
@@ -38,7 +38,7 @@ FastAPI는 이 반환 타입을 사용하여:
 * `@app.delete()`
 * 등.
 
-{* ../../docs_src/response_model/tutorial001_py310.py hl[17,22,24:27] *}
+{* ../../docs_src/response_model/tutorial001.py hl[17,22,24:27] *}
 
 /// note | 참고
 
@@ -70,7 +70,7 @@ FastAPI는 이 `response_model`을 사용해 데이터 문서화, 검증 등을 
 
 여기서는 평문 비밀번호를 포함하는 `UserIn` 모델을 선언합니다:
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[7,9] *}
+{* ../../docs_src/response_model/tutorial002.py hl[7,9] *}
 
 /// note | 참고
 
@@ -92,7 +92,7 @@ $ uv add "pydantic[email]"
 
 그리고 이 모델을 사용하여 입력을 선언하고 같은 모델로 출력을 선언합니다:
 
-{* ../../docs_src/response_model/tutorial002_py310.py hl[16] *}
+{* ../../docs_src/response_model/tutorial002.py hl[16] *}
 
 이제 브라우저가 비밀번호로 사용자를 만들 때마다 API는 응답으로 동일한 비밀번호를 반환합니다.
 
@@ -110,15 +110,15 @@ $ uv add "pydantic[email]"
 
 대신 평문 비밀번호를 포함하는 입력 모델과, 비밀번호가 없는 출력 모델을 만들 수 있습니다:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[9,11,16] *}
+{* ../../docs_src/response_model/tutorial003.py hl[9,11,16] *}
 
 여기서 *경로 처리 함수*가 비밀번호를 포함하는 동일한 입력 사용자를 반환하더라도:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[24] *}
+{* ../../docs_src/response_model/tutorial003.py hl[24] *}
 
 ...비밀번호를 포함하지 않는 `UserOut` 모델로 `response_model`을 선언했습니다:
 
-{* ../../docs_src/response_model/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial003.py hl[22] *}
 
 따라서 **FastAPI**는 출력 모델에 선언되지 않은 모든 데이터를 (Pydantic을 사용하여) 필터링합니다.
 
@@ -142,7 +142,7 @@ FastAPI가 응답 모델을 사용해 데이터를 계속 **필터링**하길 �
 
 그리고 그런 경우에는 클래스와 상속을 사용하여 함수 **타입 어노테이션**을 활용해 에디터/도구에서 더 나은 지원을 받으면서도 FastAPI의 **데이터 필터링**을 유지할 수 있습니다.
 
-{* ../../docs_src/response_model/tutorial003_01_py310.py hl[7:10,13:14,18] *}
+{* ../../docs_src/response_model/tutorial003_01.py hl[7:10,13:14,18] *}
 
 이를 통해 이 코드는 타입 관점에서 올바르므로 에디터와 mypy 등의 도구 지원을 받을 수 있고, 동시에 FastAPI의 데이터 필터링도 받을 수 있습니다.
 
@@ -184,7 +184,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 가장 흔한 경우는 [고급 문서에서 나중에 설명하는 대로 Response를 직접 반환하는 것](../advanced/response-directly.md)입니다.
 
-{* ../../docs_src/response_model/tutorial003_02_py310.py hl[8,10:11] *}
+{* ../../docs_src/response_model/tutorial003_02.py hl[8,10:11] *}
 
 이 간단한 경우는 반환 타입 어노테이션이 `Response` 클래스(또는 그 서브클래스)이기 때문에 FastAPI에서 자동으로 처리됩니다.
 
@@ -194,7 +194,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 타입 어노테이션에 `Response`의 서브클래스를 사용할 수도 있습니다:
 
-{* ../../docs_src/response_model/tutorial003_03_py310.py hl[8:9] *}
+{* ../../docs_src/response_model/tutorial003_03.py hl[8:9] *}
 
 이는 `RedirectResponse`가 `Response`의 서브클래스이기 때문에 동작하며, FastAPI가 이 간단한 경우를 자동으로 처리합니다.
 
@@ -204,7 +204,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 또한, 유효한 Pydantic 타입이 아닌 타입이 하나 이상 포함된 여러 타입 간의 <dfn title="여러 타입 간의 유니온은 '이 타입들 중 아무거나'를 의미합니다.">유니온</dfn>이 있는 경우에도 동일합니다. 예를 들어, 아래는 실패합니다 💥:
 
-{* ../../docs_src/response_model/tutorial003_04_py310.py hl[8] *}
+{* ../../docs_src/response_model/tutorial003_04.py hl[8] *}
 
 ...이는 타입 어노테이션이 Pydantic 타입이 아니고, 단일 `Response` 클래스/서브클래스도 아니며, `Response`와 `dict` 간 유니온(둘 중 아무거나)이기 때문에 실패합니다.
 
@@ -216,7 +216,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 이 경우 `response_model=None`으로 설정하여 응답 모델 생성을 비활성화할 수 있습니다:
 
-{* ../../docs_src/response_model/tutorial003_05_py310.py hl[7] *}
+{* ../../docs_src/response_model/tutorial003_05.py hl[7] *}
 
 그러면 FastAPI는 응답 모델 생성을 건너뛰며, FastAPI 애플리케이션에 영향을 주지 않고 필요한 반환 타입 어노테이션을 어떤 것이든 사용할 수 있습니다. 🤓
 
@@ -224,7 +224,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 응답 모델은 아래와 같이 기본값을 가질 수 있습니다:
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[9,11:12] *}
+{* ../../docs_src/response_model/tutorial004.py hl[9,11:12] *}
 
 * `description: Union[str, None] = None` (또는 Python 3.10에서 `str | None = None`)은 기본값으로 `None`을 갖습니다.
 * `tax: float = 10.5`는 기본값으로 `10.5`를 갖습니다.
@@ -238,7 +238,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 *경로 처리 데코레이터* 매개변수 `response_model_exclude_unset=True`로 설정할 수 있습니다:
 
-{* ../../docs_src/response_model/tutorial004_py310.py hl[22] *}
+{* ../../docs_src/response_model/tutorial004.py hl[22] *}
 
 그러면 이러한 기본값은 응답에 포함되지 않고, 실제로 설정된 값만 포함됩니다.
 
@@ -266,6 +266,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 하지만 ID가 `bar`인 항목처럼, 기본값이 있는 모델의 필드에 값이 있다면:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5"
 {
     "name": "Bar",
@@ -274,6 +275,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
     "tax": 20.2
 }
 ```
+<!-- fmt:on -->
 
 응답에 포함됩니다.
 
@@ -281,6 +283,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
 
 데이터가 ID가 `baz`인 항목처럼 기본값과 동일한 값을 갖는다면:
 
+<!-- fmt:off -->
 ```Python hl_lines="3  5-6"
 {
     "name": "Baz",
@@ -290,6 +293,7 @@ FastAPI는 Pydantic을 내부적으로 여러 방식으로 사용하여, 클래�
     "tags": []
 }
 ```
+<!-- fmt:on -->
 
 FastAPI는 충분히 똑똑해서(사실, Pydantic이 충분히 똑똑합니다) `description`, `tax`, `tags`가 기본값과 동일하더라도, 기본값에서 가져온 것이 아니라 명시적으로 설정되었다는 것을 알아냅니다.
 
@@ -315,13 +319,13 @@ Pydantic 모델이 하나만 있고 출력에서 일부 데이터를 제거하�
 
 하지만 이러한 매개변수 대신, 위에서 설명한 것처럼 여러 클래스를 사용하는 것을 여전히 권장합니다.
 
-이는 일부 어트리뷰트를 생략하기 위해 `response_model_include` 또는 `response_model_exclude`를 사용하더라도, 앱의 OpenAPI(및 문서)에 생성되는 JSON Schema가 여전히 전체 모델에 대한 스키마이기 때문입니다.
+이는 일부 어트리뷰트를 생략하기 위해 `response_model_include` 또는 `response_model_exclude`를 사용하더라도, 애플리케이션의 OpenAPI(및 문서)에 생성되는 JSON Schema가 여전히 전체 모델에 대한 스키마이기 때문입니다.
 
 비슷하게 동작하는 `response_model_by_alias`에도 동일하게 적용됩니다.
 
 ///
 
-{* ../../docs_src/response_model/tutorial005_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial005.py hl[29,35] *}
 
 /// tip | 팁
 
@@ -335,7 +339,7 @@ Pydantic 모델이 하나만 있고 출력에서 일부 데이터를 제거하�
 
 `set`을 쓰는 것을 잊고 `list`나 `tuple`을 대신 사용하더라도, FastAPI는 이를 `set`으로 변환하므로 올바르게 동작합니다:
 
-{* ../../docs_src/response_model/tutorial006_py310.py hl[29,35] *}
+{* ../../docs_src/response_model/tutorial006.py hl[29,35] *}
 
 ## 요약 { #recap }
 

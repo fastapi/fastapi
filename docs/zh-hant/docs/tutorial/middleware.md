@@ -31,7 +31,7 @@
     - 然後回傳對應*路徑操作*所產生的 `response`。
 - 然後你可以在回傳之前進一步修改 `response`。
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip
 
@@ -57,7 +57,7 @@
 
 例如，你可以新增一個自訂標頭 `X-Process-Time`，其內容為處理請求並產生回應所花費的秒數：
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip
 

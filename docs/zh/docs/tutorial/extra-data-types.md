@@ -55,8 +55,8 @@
 
 下面是一个*路径操作*的示例，其中的参数使用了上面的一些类型。
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 注意，函数内的参数有原生的数据类型，你可以，例如，执行正常的日期操作，如:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

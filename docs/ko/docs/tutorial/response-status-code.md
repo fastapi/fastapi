@@ -9,7 +9,7 @@
 * `@app.delete()`
 * 등
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 /// note | 참고
 
@@ -75,7 +75,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 이전 예시를 다시 확인해보겠습니다:
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` 은 "생성됨"을 위한 상태 코드입니다.
 
@@ -83,7 +83,7 @@ HTTP에서는 응답의 일부로 3자리 숫자 상태 코드를 보냅니다.
 
 `fastapi.status` 의 편의 변수를 사용할 수 있습니다.
 
-{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 이것들은 단지 편의를 위한 것으로, 동일한 숫자를 갖고 있지만, 이를 통해 편집기의 자동완성 기능으로 찾을 수 있습니다:
 

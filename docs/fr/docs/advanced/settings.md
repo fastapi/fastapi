@@ -58,7 +58,7 @@ De la même manière qu'avec les modèles Pydantic, vous déclarez des attributs
 
 Vous pouvez utiliser toutes les mêmes fonctionnalités et outils de validation que pour les modèles Pydantic, comme différents types de données et des validations supplémentaires avec `Field()`.
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[2,5:8,11] *}
+{* ../../docs_src/settings/tutorial001.py hl[2,5:8,11] *}
 
 /// tip | Astuce
 
@@ -74,7 +74,7 @@ Il convertira ensuite et validera les données. Ainsi, lorsque vous utilisez cet
 
 Vous pouvez ensuite utiliser le nouvel objet `settings` dans votre application :
 
-{* ../../docs_src/settings/tutorial001_py310.py hl[18:20] *}
+{* ../../docs_src/settings/tutorial001.py hl[18:20] *}
 
 ### Exécuter le serveur { #run-the-server }
 
@@ -128,11 +128,11 @@ Vous pouvez placer ces paramètres dans un autre fichier de module comme vous l'
 
 Par exemple, vous pourriez avoir un fichier `config.py` avec :
 
-{* ../../docs_src/settings/app01_py310/config.py *}
+{* ../../docs_src/settings/app01/config.py *}
 
 Puis l'utiliser dans un fichier `main.py` :
 
-{* ../../docs_src/settings/app01_py310/main.py hl[3,11:13] *}
+{* ../../docs_src/settings/app01/main.py hl[3,11:13] *}
 
 /// tip | Astuce
 
@@ -150,7 +150,7 @@ Cela peut être particulièrement utile pendant les tests, car il est très faci
 
 En repartant de l'exemple précédent, votre fichier `config.py` pourrait ressembler à :
 
-{* ../../docs_src/settings/app02_an_py310/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py hl[10] *}
 
 Notez que maintenant, nous ne créons pas d'instance par défaut `settings = Settings()`.
 
@@ -158,7 +158,7 @@ Notez que maintenant, nous ne créons pas d'instance par défaut `settings = Set
 
 Nous créons maintenant une dépendance qui renvoie un nouveau `config.Settings()`.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[6,12:13] *}
+{* ../../docs_src/settings/app02/main.py hl[6,12:13] *}
 
 /// tip | Astuce
 
@@ -170,13 +170,13 @@ Pour l'instant, vous pouvez supposer que `get_settings()` est une fonction norma
 
 Nous pouvons ensuite l'exiger depuis la *fonction de chemin d'accès* comme dépendance et l'utiliser où nous en avons besoin.
 
-{* ../../docs_src/settings/app02_an_py310/main.py hl[17,19:21] *}
+{* ../../docs_src/settings/app02/main.py hl[17,19:21] *}
 
 ### Paramètres et tests { #settings-and-testing }
 
 Il devient alors très simple de fournir un autre objet de paramètres pendant les tests en créant une surcharge de dépendance pour `get_settings` :
 
-{* ../../docs_src/settings/app02_an_py310/test_main.py hl[9:10,13,21] *}
+{* ../../docs_src/settings/app02/test_main.py hl[9:10,13,21] *}
 
 Dans la surcharge de dépendance, nous définissons une nouvelle valeur pour `admin_email` lors de la création du nouvel objet `Settings`, puis nous renvoyons ce nouvel objet.
 
@@ -217,7 +217,7 @@ APP_NAME="ChimichangApp"
 
 Puis mettre à jour votre `config.py` avec :
 
-{* ../../docs_src/settings/app03_an_py310/config.py hl[9] *}
+{* ../../docs_src/settings/app03/config.py hl[9] *}
 
 /// tip | Astuce
 
@@ -250,7 +250,7 @@ nous créerions cet objet pour chaque requête, et nous lirions le fichier `.env
 
 Mais comme nous utilisons le décorateur `@lru_cache` au-dessus, l'objet `Settings` sera créé une seule fois, la première fois qu'il est appelé. ✔️
 
-{* ../../docs_src/settings/app03_an_py310/main.py hl[1,11] *}
+{* ../../docs_src/settings/app03/main.py hl[1,11] *}
 
 Ensuite, pour tout appel ultérieur de `get_settings()` dans les dépendances pour les requêtes suivantes, au lieu d'exécuter le code interne de `get_settings()` et de créer un nouvel objet `Settings`, il renverra le même objet que celui retourné au premier appel, encore et encore.
 

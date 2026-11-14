@@ -11,13 +11,13 @@
 
 假设你有一个带有默认值的 Pydantic 模型，例如：
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### 输入用的模型 { #model-for-input }
 
 如果你像下面这样把该模型用作输入：
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ...那么 `description` 字段将**不是必填项**，因为它的默认值是 `None`。
 
@@ -33,7 +33,7 @@
 
 但如果你把同一个模型用作输出，例如：
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ...那么因为 `description` 有默认值，即使你**不返回该字段**，它仍然会有这个**默认值**。
 
@@ -92,7 +92,7 @@
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### 文档中输入/输出使用同一 Schema 的模型 { #same-schema-for-input-and-output-models-in-docs }
 

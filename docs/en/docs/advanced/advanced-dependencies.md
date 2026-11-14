@@ -18,7 +18,7 @@ Not the class itself (which is already a callable), but an instance of that clas
 
 To do that, we declare a method `__call__`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 In this case, this `__call__` is what **FastAPI** will use to check for additional parameters and sub-dependencies, and this is what will be called to pass a value to the parameter in your *path operation function* later.
 
@@ -26,7 +26,7 @@ In this case, this `__call__` is what **FastAPI** will use to check for addition
 
 And now, we can use `__init__` to declare the parameters of the instance that we can use to "parameterize" the dependency:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 In this case, **FastAPI** won't ever touch or care about `__init__`, we will use it directly in our code.
 
@@ -34,7 +34,7 @@ In this case, **FastAPI** won't ever touch or care about `__init__`, we will use
 
 We could create an instance of this class with:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 And that way we are able to "parameterize" our dependency, that now has `"bar"` inside of it, as the attribute `checker.fixed_content`.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...and pass whatever that returns as the value of the dependency in our *path operation function* as the parameter `fixed_content_included`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip
 
@@ -63,6 +63,93 @@ In the chapters about security, there are utility functions that are implemented
 If you understood all this, you already know how those utility tools for security work underneath.
 
 ///
+
+## Limit dependency concurrency { #limit-dependency-concurrency }
+
+In some cases, you might want to limit how many requests can use a dependency at the same time.
+
+For example, your database might have a limited number of connections available. You could make new requests wait before creating a session, until another request finishes using its session.
+
+You can do this with `max_concurrency` in `Depends()`.
+
+Let's update the `SessionDep` alias from the [SQL databases tutorial](../tutorial/sql-databases.md):
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+Now, up to **five requests** can have a database session open through this dependency at the same time.
+
+If another request needs a session, it waits until one of those sessions is closed.
+
+While waiting, it **doesn't occupy a worker thread**, so those threads are available to run other code.
+
+The value must be a positive integer. The default is `None`, which means that FastAPI doesn't limit how many times the dependency can run at the same time.
+
+### Share the limit between routes { #share-the-limit-between-routes }
+
+All the routes in that example use the same `SessionDep` alias, so they share the limit of five sessions.
+
+To share a limit, reuse the **same `Depends()` object**, for example in an `Annotated` alias like this one.
+
+If you write a new `Depends(get_session, max_concurrency=5)` for each route, each one will have its own limit of five. This is true even though they all use the same `get_session` function.
+
+Reusing the same `SessionDep` in another application also shares the limit, as long as both applications run in the same event loop. This includes mounted applications.
+
+For example, if two applications use this `SessionDep` for the same database pool, together they can have up to five sessions open through this dependency.
+
+If the applications use separate pools and need independent limits, create a separate `Depends()` object for each application.
+
+### Close the session before allowing another one { #close-the-session-before-allowing-another-one }
+
+In this example, `get_session` uses `yield`. The session counts toward the limit until the exit code finishes closing it.
+
+The dependency's `scope` determines when that exit code runs:
+
+* With `scope="request"`, the default, it runs after the response is sent.
+* With `scope="function"`, it runs after the *path operation function* finishes, before sending the response.
+
+You can read more about [early exit and scope](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
+
+For a dependency without `yield`, the call counts toward the limit only until the function finishes.
+
+If you use a dependency with `yield` in a WebSocket handler, it counts toward the limit until the handler exits and the dependency's exit code finishes.
+
+/// note
+
+Reusing a [cached dependency value](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times) doesn't count again toward the limit. If different declarations share that value, only the declaration that calls the dependency counts toward its limit.
+
+///
+
+### Choose a limit for your application { #choose-a-limit-for-your-application }
+
+Choose a limit that fits the number of database connections available to these sessions.
+
+If other parts of your application also use those connections, leave room for them too. FastAPI doesn't know the size of your database connection pool.
+
+Each worker process has its own limit. For example, two worker processes with this dependency could have up to ten sessions open between them.
+
+/// note | Technical Details
+
+The limits are also separate for each event loop. Applications running in different event loops don't share a limit, even if they reuse the same `Depends()` object.
+
+///
+
+### Dependencies that need more than one resource { #dependencies-that-need-more-than-one-resource }
+
+FastAPI runs a dependency's sub-dependencies before applying that dependency's limit.
+
+So, to limit database sessions, put `max_concurrency` on `Depends(get_session, ...)`, where the session is created.
+
+A request can get stuck if it needs another session while still holding one that will only be closed at the end of the request.
+
+For example, imagine a shared `Depends(get_session, max_concurrency=1, use_cache=False)` used twice in the same request.
+
+The first call creates a session. The second call waits for it to close. But the first session can't close until the request finishes, and the request is waiting for the second call.
+
+Two requests can also get stuck if one holds a session while waiting for another resource, and the other holds that resource while waiting for a session.
+
+If your requests need several resources, acquire them in the same order. FastAPI applies each limit separately, it doesn't reserve all the resources a request will need in advance.
 
 ## Dependencies with `yield`, `HTTPException`, `except` and Background Tasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
@@ -114,21 +201,21 @@ In this case, the database session would be held until the response is finished 
 
 Here's how it could look:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 The exit code, the automatic closing of the `Session` in:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 ...would be run after the response finishes sending the slow data:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 But as `generate_stream()` doesn't use the database session, it is not really necessary to keep the session open while sending the response.
 
 If you have this specific use case using SQLModel (or SQLAlchemy), you could explicitly close the session after you don't need it anymore:
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 That way the session would release the database connection, so other requests could use it.
 

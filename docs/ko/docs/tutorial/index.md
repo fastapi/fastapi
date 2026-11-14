@@ -130,6 +130,8 @@ uvx library-skills
 
 이 skill은 Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI, Pi, OpenCode 및 대부분의 다른 coding agent와 호환됩니다. Claude Code의 경우 skill을 설치할 위치를 묻는 메시지가 표시되면 `.claude/skills`를 선택하세요.
 
+자세한 내용은 [AI로 개발하기](../ai-development.md)를 참고하세요.
+
 ## 고급 사용자 안내서 { #advanced-user-guide }
 
 이 **자습서 - 사용자 안내서**를 읽은 뒤에 나중에 읽을 수 있는 **고급 사용자 안내서**도 있습니다.

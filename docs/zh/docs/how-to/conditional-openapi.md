@@ -29,7 +29,7 @@
 
 例如：
 
-{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001.py hl[6,11] *}
 
 这里我们声明了设置项 `openapi_url`，其默认值同样是 `"/openapi.json"`。
 

@@ -6,7 +6,7 @@ Avant d'aller plus loin dans le système d'**Injection de dépendances**, metton
 
 Dans l'exemple précédent, nous renvoyions un `dict` depuis notre dépendance (« dependable ») :
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 Mais nous recevons alors un `dict` dans le paramètre `commons` de la fonction de chemin d'accès.
 
@@ -69,15 +69,15 @@ Cela s'applique également aux callables sans aucun paramètre. Comme ce serait 
 
 Nous pouvons alors remplacer la dépendance « dependable » `common_parameters` ci‑dessus par la classe `CommonQueryParams` :
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 Faites attention à la méthode `__init__` utilisée pour créer l'instance de la classe :
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ... il a les mêmes paramètres que notre précédent `common_parameters` :
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 Ce sont ces paramètres que **FastAPI** utilisera pour « résoudre » la dépendance.
 
@@ -93,7 +93,7 @@ Dans les deux cas, les données seront converties, validées, documentées dans 
 
 Vous pouvez maintenant déclarer votre dépendance en utilisant cette classe.
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** appelle la classe `CommonQueryParams`. Cela crée une « instance » de cette classe et l'instance sera passée comme paramètre `commons` à votre fonction.
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ... comme dans :
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 Mais il est recommandé de déclarer le type ; ainsi, votre éditeur saura ce qui sera passé comme paramètre `commons`, et pourra vous aider avec l'autocomplétion, les vérifications de type, etc. :
 
@@ -275,7 +275,7 @@ Vous déclarez la dépendance comme type du paramètre et vous utilisez `Depends
 
 Le même exemple ressemblerait alors à ceci :
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ... et **FastAPI** saura quoi faire.
 

@@ -7,7 +7,7 @@ from inline_snapshot import snapshot
 @pytest.fixture(name="client", scope="module")
 def get_client() -> TestClient:
     with pytest.warns(FastAPIDeprecationWarning, match="fastapi run --root-path"):
-        from docs_src.behind_a_proxy.tutorial002_py310 import app
+        from docs_src.behind_a_proxy.tutorial002 import app
     return TestClient(app)
 
 

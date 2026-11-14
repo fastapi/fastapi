@@ -18,7 +18,7 @@ Class'ın kendisini değil (zaten callable'dır), o class'ın bir instance'ını
 
 Bunu yapmak için `__call__` adında bir method tanımlarız:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 Bu durumda, ek parametreleri ve alt-dependency'leri kontrol etmek için **FastAPI**'nin kullanacağı şey bu `__call__` olacaktır; ayrıca daha sonra *path operation function* içindeki parametreye bir değer geçmek için çağrılacak olan da budur.
 
@@ -26,7 +26,7 @@ Bu durumda, ek parametreleri ve alt-dependency'leri kontrol etmek için **FastAP
 
 Ve şimdi, dependency'yi "parametreleştirmek" için kullanacağımız instance parametrelerini tanımlamak üzere `__init__` kullanabiliriz:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 Bu durumda **FastAPI**, `__init__` ile asla uğraşmaz veya onu önemsemez; onu doğrudan kendi kodumuzda kullanırız.
 
@@ -34,7 +34,7 @@ Bu durumda **FastAPI**, `__init__` ile asla uğraşmaz veya onu önemsemez; onu 
 
 Bu class'tan bir instance'ı şöyle oluşturabiliriz:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 Böylece dependency'mizi "parametreleştirmiş" oluruz; artık içinde `"bar"` vardır ve bu değer `checker.fixed_content` attribute'u olarak durur.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 ...ve bunun döndürdüğü her şeyi, *path operation function* içinde `fixed_content_included` parametresine dependency değeri olarak geçirir:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip | İpucu
 
@@ -114,21 +114,21 @@ Bu durumda veritabanı session'ı, response tamamen gönderilene kadar elde tutu
 
 Şöyle görünebilir:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 `Session`'ın otomatik kapatılması olan çıkış kodu şurada:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 ...yavaş veri gönderen response'un gönderimi bittikten sonra çalıştırılır:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 Ama `generate_stream()` veritabanı session'ını kullanmadığı için, response gönderilirken session'ı açık tutmak aslında gerekli değildir.
 
 SQLModel (veya SQLAlchemy) kullanarak bu spesifik senaryoya sahipseniz, session'a artık ihtiyacınız kalmadıktan sonra session'ı açıkça kapatabilirsiniz:
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 Böylece session veritabanı bağlantısını serbest bırakır ve diğer request'ler bunu kullanabilir.
 

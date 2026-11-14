@@ -30,7 +30,7 @@ Utilisez l’objet `TestClient` de la même manière que vous utilisez `httpx`.
 
 Écrivez de simples instructions `assert` avec les expressions Python standard que vous devez vérifier (là encore, standard `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | Astuce
 
@@ -76,7 +76,7 @@ Supposons que vous ayez une structure de fichiers comme décrit dans [Applicatio
 Dans le fichier `main.py`, vous avez votre application **FastAPI** :
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### Fichier de test { #testing-file }
 
@@ -92,7 +92,7 @@ Vous pourriez alors avoir un fichier `test_main.py` avec vos tests. Il pourrait 
 
 Comme ce fichier se trouve dans le même package, vous pouvez utiliser des imports relatifs pour importer l’objet `app` depuis le module `main` (`main.py`) :
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ... et avoir le code des tests comme précédemment.
@@ -121,13 +121,13 @@ Il a une opération `POST` qui pourrait renvoyer plusieurs erreurs.
 
 Les deux *chemins d’accès* requièrent un en-tête `X-Token`.
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### Fichier de test étendu { #extended-testing-file }
 
 Vous pourriez ensuite mettre à jour `test_main.py` avec les tests étendus :
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 Chaque fois que vous avez besoin que le client transmette des informations dans la requête et que vous ne savez pas comment faire, vous pouvez chercher (Google) comment le faire avec `httpx`, ou même comment le faire avec `requests`, puisque la conception de HTTPX est basée sur celle de Requests.

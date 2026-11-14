@@ -14,7 +14,7 @@ But you also want it to accept new items. And when the items didn't exist before
 
 To achieve that, import `JSONResponse`, and return your content there directly, setting the `status_code` that you want:
 
-{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
+{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
 
 /// warning
 

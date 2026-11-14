@@ -2,7 +2,7 @@
 
 El archivo FastAPI más simple podría verse así:
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 Copia eso en un archivo `main.py`.
 
@@ -230,7 +230,7 @@ La CLI detectará automáticamente tu aplicación de FastAPI y la desplegará en
 
 ### Paso 1: importa `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` es una clase de Python que proporciona toda la funcionalidad para tu API.
 
@@ -244,7 +244,7 @@ Puedes usar toda la funcionalidad de [Starlette](https://starlette.dev/) con `Fa
 
 ### Paso 2: crea una "instance" de `FastAPI` { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 Aquí la variable `app` será una "instance" de la clase `FastAPI`.
 
@@ -313,7 +313,7 @@ Vamos a llamarlas "**operaciones**" también.
 
 #### Define un *path operation decorator* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 El `@app.get("/")` le dice a **FastAPI** que la función justo debajo se encarga de manejar requests que vayan a:
 
@@ -367,7 +367,7 @@ Esta es nuestra "**path operation function**":
 * **operation**: es `get`.
 * **function**: es la función debajo del "decorador" (debajo de `@app.get("/")`).
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 Esta es una función de Python.
 
@@ -379,7 +379,7 @@ En este caso, es una función `async`.
 
 También podrías definirla como una función normal en lugar de `async def`:
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | Nota
 
@@ -389,7 +389,7 @@ Si no sabes la diferencia, Revisa la sección [Async: *"¿Tienes prisa?"*](../as
 
 ### Paso 5: retorna el contenido { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 Puedes retornar un `dict`, `list`, valores singulares como `str`, `int`, etc.
 

@@ -12,7 +12,7 @@ def test_console_provider_example(monkeypatch):
         out=output, formatter=lambda span: span.to_json(indent=None) + "\n"
     )
     monkeypatch.setattr(export, "ConsoleSpanExporter", lambda: exporter)
-    from docs_src.opentelemetry.tutorial002_py310 import app, tracer_provider
+    from docs_src.opentelemetry.tutorial002 import app, tracer_provider
 
     try:
         with TestClient(app) as client:

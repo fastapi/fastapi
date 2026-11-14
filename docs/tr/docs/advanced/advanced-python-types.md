@@ -13,17 +13,17 @@ from typing import Union
 
 
 def say_hi(name: Union[str, None]):
-        print(f"Hi {name}!")
+    print(f"Hi {name}!")
 ```
 
 `typing`, bir şeyin `None` olabileceğini belirtmek için `Optional` ile bir kısayol da sunar.
 
-Benim oldukça öznel bakış açıma göre küçük bir ipucu:
+Benim oldukça **öznel** bakış açıma göre küçük bir ipucu:
 
 - 🚨 `Optional[SomeType]` kullanmaktan kaçının
 - Bunun yerine ✨ **`Union[SomeType, None]` kullanın** ✨.
 
-İkisi de eşdeğer ve temelde aynıdır; ancak "**optional**" kelimesi değerin isteğe bağlı olduğunu ima eder. Oysa aslında " `None` olabilir" demektir; değer isteğe bağlı olmasa ve hâlâ zorunlu olsa bile.
+İkisi de eşdeğer ve temelde aynıdır; ancak `Optional` yerine `Union` kullanmanızı öneririm, çünkü "**optional**" kelimesi değerin isteğe bağlı olduğunu ima eder. Oysa aslında "`None` olabilir" demektir; değer isteğe bağlı olmasa ve hâlâ zorunlu olsa bile.
 
 Bence `Union[SomeType, None]` ne demek istediğini daha açık anlatır.
 
@@ -39,13 +39,13 @@ def say_hi(name: Optional[str]):
     print(f"Hey {name}!")
 ```
 
-`name` parametresi `Optional[str]` olarak tanımlıdır; ancak isteğe bağlı değildir, parametre olmadan fonksiyonu çağıramazsınız:
+`name` parametresi `Optional[str]` olarak tanımlıdır; ancak **isteğe bağlı değildir**, parametre olmadan fonksiyonu çağıramazsınız:
 
 ```Python
 say_hi()  # Ah hayır, bu hata fırlatır! 😱
 ```
 
-`name` parametresi varsayılan bir değeri olmadığı için hâlâ zorunludur (yani *optional* değildir). Yine de `name`, değer olarak `None` kabul eder:
+`name` parametresi varsayılan bir değeri olmadığı için **hâlâ zorunludur** (yani *optional* değildir). Yine de `name`, değer olarak `None` kabul eder:
 
 ```Python
 say_hi(name=None)  # Bu çalışır, None geçerlidir 🎉

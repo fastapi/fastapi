@@ -10,7 +10,7 @@ Si vous avez besoin de deux applications FastAPI indépendantes, avec leur propr
 
 Créez d'abord l'application **FastAPI** principale (de premier niveau) et ses *chemins d'accès* :
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[3, 6:8] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[3, 6:8] *}
 
 ### Sous-application { #sub-application }
 
@@ -18,7 +18,7 @@ Ensuite, créez votre sous‑application et ses *chemins d'accès*.
 
 Cette sous‑application est simplement une autre application FastAPI standard, mais c'est celle qui sera « montée » :
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 14:16] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 14:16] *}
 
 ### Monter la sous-application { #mount-the-sub-application }
 
@@ -26,7 +26,7 @@ Dans votre application de premier niveau, `app`, montez la sous‑application, `
 
 Dans ce cas, elle sera montée au chemin `/subapi` :
 
-{* ../../docs_src/sub_applications/tutorial001_py310.py hl[11, 19] *}
+{* ../../docs_src/sub_applications/tutorial001.py hl[11, 19] *}
 
 ### Vérifier la documentation API automatique { #check-the-automatic-api-docs }
 

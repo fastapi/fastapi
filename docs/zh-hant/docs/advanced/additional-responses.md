@@ -26,7 +26,7 @@
 
 例如，要宣告一個狀態碼為 `404` 的額外回應，並使用 Pydantic 模型 `Message`，你可以這樣寫：
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | 注意
 
@@ -175,7 +175,7 @@
 
 例如，你可以新增 `image/png` 這種媒體型別，宣告你的「路徑操作」可以回傳 JSON 物件（媒體型別為 `application/json`）或一張 PNG 圖片：
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | 注意
 
@@ -203,7 +203,7 @@
 
 以及一個狀態碼為 `200` 的回應，使用你的 `response_model`，但包含自訂的 `example`：
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 以上都會被結合並包含在你的 OpenAPI 中，並顯示在 API 文件：
 
@@ -237,7 +237,7 @@ new_dict = {**old_dict, "new key": "new value"}
 
 例如：
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## 關於 OpenAPI 回應的更多資訊 { #more-information-about-openapi-responses }
 

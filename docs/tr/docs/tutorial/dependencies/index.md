@@ -31,7 +31,7 @@ Ama bu sayede **Dependency Injection** sisteminin nasıl çalıştığına odakl
 
 Bu, bir *path operation function*'ın alabileceği parametrelerin aynısını alabilen basit bir fonksiyondur:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8:9] *}
 
 Bu kadar.
 
@@ -63,13 +63,13 @@ Daha eski bir sürüm kullanıyorsanız `Annotated` kullanmaya çalıştığın�
 
 ### `Depends`'i Import Edin { #import-depends }
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### "Dependant" İçinde Dependency'yi Tanımlayın { #declare-the-dependency-in-the-dependant }
 
 *Path operation function* parametrelerinizde `Body`, `Query` vb. kullandığınız gibi, yeni bir parametreyle `Depends` kullanın:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 Fonksiyon parametrelerinde `Depends`'i `Body`, `Query` vb. ile aynı şekilde kullansanız da `Depends` biraz farklı çalışır.
 
@@ -126,7 +126,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Ancak `Annotated` kullandığımız için bu `Annotated` değerini bir değişkende saklayıp birden fazla yerde kullanabiliriz:
 
-{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
+{* ../../docs_src/dependencies/tutorial001_02.py hl[12,16,21] *}
 
 /// tip | İpucu
 

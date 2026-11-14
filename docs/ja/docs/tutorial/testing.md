@@ -30,7 +30,7 @@ $ uv add httpx
 
 チェックしたい Python の標準的な式と共に、シンプルに `assert` 文を記述します (これも `pytest` の標準です)。
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | 豆知識
 
@@ -76,7 +76,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 ファイル `main.py` に **FastAPI** アプリがあります:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### テストファイル { #testing-file }
 
@@ -92,7 +92,7 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 このファイルは同じパッケージ内にあるため、相対インポートを使って `main` モジュール (`main.py`) からオブジェクト `app` をインポートできます:
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...そして、これまでと同じようにテストコードを書けます。
@@ -121,13 +121,13 @@ FastAPIアプリケーションへのリクエストの送信とは別に、テ�
 
 両方の *path operation* には `X-Token` ヘッダーが必要です。
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### 拡張版テストファイル { #extended-testing-file }
 
 次に、拡張版のテストで `test_main.py` を更新できます:
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 リクエストに情報を渡せるクライアントが必要で、その方法がわからない場合はいつでも、`httpx` での実現方法、あるいは HTTPX の設計が Requests の設計をベースにしているため `requests` での実現方法を検索 (Google) できます。

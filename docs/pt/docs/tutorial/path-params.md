@@ -2,7 +2,7 @@
 
 Você pode declarar "parâmetros" ou "variáveis" de path com a mesma sintaxe usada por strings de formatação do Python:
 
-{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 O valor do parâmetro de path `item_id` será passado para a sua função como o argumento `item_id`.
 
@@ -16,7 +16,7 @@ Então, se você executar este exemplo e acessar [http://127.0.0.1:8000/items/fo
 
 Você pode declarar o tipo de um parâmetro de path na função, usando as anotações de tipo padrão do Python:
 
-{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 Neste caso, `item_id` é declarado como um `int`.
 
@@ -118,13 +118,13 @@ E então você também pode ter um path `/users/{user_id}` para obter dados sobr
 
 Como as *operações de rota* são avaliadas em ordem, você precisa garantir que o path para `/users/me` seja declarado antes do de `/users/{user_id}`:
 
-{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 Caso contrário, o path para `/users/{user_id}` também corresponderia a `/users/me`, "achando" que está recebendo um parâmetro `user_id` com o valor `"me"`.
 
 Da mesma forma, você não pode redefinir uma operação de rota:
 
-{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 A primeira sempre será usada, já que o path corresponde primeiro.
 
@@ -140,7 +140,7 @@ Ao herdar de `str`, a documentação da API saberá que os valores devem ser do 
 
 Em seguida, crie atributos de classe com valores fixos, que serão os valores válidos disponíveis:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// tip | Dica
 
@@ -152,7 +152,7 @@ Se você está se perguntando, "AlexNet", "ResNet" e "LeNet" são apenas nomes d
 
 Em seguida, crie um *parâmetro de path* com anotação de tipo usando a classe enum que você criou (`ModelName`):
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Verifique a documentação { #check-the-docs }
 
@@ -168,13 +168,13 @@ O valor do *parâmetro de path* será um *membro de enumeração*.
 
 Você pode compará-lo com o *membro de enumeração* no seu enum `ModelName` criado:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### Obtenha o valor da enumeração { #get-the-enumeration-value }
 
 Você pode obter o valor real (um `str` neste caso) usando `model_name.value`, ou, em geral, `your_enum_member.value`:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | Dica
 
@@ -188,7 +188,7 @@ Você pode retornar *membros de enum* da sua *operação de rota*, até mesmo an
 
 Eles serão convertidos para seus valores correspondentes (strings neste caso) antes de serem retornados ao cliente:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 No seu cliente, você receberá uma resposta JSON como:
 
@@ -227,7 +227,7 @@ Nesse caso, o nome do parâmetro é `file_path`, e a última parte, `:path`, diz
 
 Então, você pode usá-lo com:
 
-{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip | Dica
 

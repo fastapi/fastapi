@@ -35,7 +35,7 @@
 
 下面是一个将 Strawberry 与 FastAPI 集成的小预览：
 
-{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
+{* ../../docs_src/graphql_/tutorial001.py hl[3,22,25] *}
 
 你可以在 [Strawberry 文档](https://strawberry.rocks/) 中了解更多信息。
 

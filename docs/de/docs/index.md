@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI ist ein modernes, schnelles (hoch performantes) Webframework zur Erstellung von APIs mit Python auf Basis von Standard-Python-Typhinweisen.
 
+<!-- agent-banner -->
+
 Seine Schlüssel-Merkmale sind:
 
 * **Schnell**: Sehr hohe Performanz, auf Augenhöhe mit **NodeJS** und **Go** (dank Starlette und Pydantic). [Eines der schnellsten verfügbaren Python-Frameworks](#performance).
@@ -89,7 +91,7 @@ Seine Schlüssel-Merkmale sind:
 
 <!-- only-mkdocs -->
 <div class="fastapi-opinions" data-fastapi-opinions>
-  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Unternehmen, die FastAPI verwenden">
     <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
       <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
     </button>
@@ -151,11 +153,11 @@ Seine Schlüssel-Merkmale sind:
 
 </div>
 
-## FastAPI Mini-Dokumentarfilm { #fastapi-mini-documentary }
+## FastAPI-Mini-Dokumentarfilm { #fastapi-mini-documentary }
 
 Es gibt einen [FastAPI-Mini-Dokumentarfilm](https://www.youtube.com/watch?v=mpR8ngthqiE), veröffentlicht Ende 2025, Sie können ihn online ansehen:
 
-<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini-Dokumentarfilm"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI-Mini-Dokumentarfilm"></a>
 
 ## **Typer**, das FastAPI der CLIs { #typer-the-fastapi-of-clis }
 
@@ -174,7 +176,7 @@ FastAPI steht auf den Schultern von Giganten:
 
 ## Installation { #installation }
 
-Installieren Sie zuerst [`uv`](https://docs.astral.sh/uv/getting-started/installation/) und fügen Sie dann FastAPI zu Ihrem Projekt hinzu:
+[Installieren Sie zuerst `uv`](https://docs.astral.sh/uv/getting-started/installation/) und fügen Sie dann FastAPI zu Ihrem Projekt hinzu:
 
 <div class="termy">
 
@@ -277,7 +279,7 @@ Der Befehl `fastapi dev` liest Ihre `main.py`-Datei automatisch, erkennt die **F
 
 Standardmäßig wird `fastapi dev` mit aktiviertem Auto-Reload für die lokale Entwicklung gestartet.
 
-Sie können mehr darüber in der [FastAPI CLI Dokumentation](https://fastapi.tiangolo.com/de/fastapi-cli/) lesen.
+Sie können mehr darüber in der [FastAPI-CLI-Dokumentation](https://fastapi.tiangolo.com/de/fastapi-cli/) lesen.
 
 </details>
 
@@ -467,7 +469,7 @@ Versuchen Sie, diese Zeile zu ändern:
 
 ... und sehen Sie, wie Ihr Editor die Attribute automatisch vervollständigt und ihre Typen kennt:
 
-![Editor Unterstützung](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![Editor-Unterstützung](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 Für ein vollständigeres Beispiel, mit weiteren Funktionen, siehe das <a href="https://fastapi.tiangolo.com/de/tutorial/">Tutorial – Benutzerhandbuch</a>.
 
@@ -522,7 +524,7 @@ FastAPI Cloud ist der Hauptsponsor und Finanzierer der *FastAPI and friends* Ope
 
 FastAPI ist Open Source und basiert auf Standards. Sie können FastAPI-Apps bei jedem Cloudanbieter Ihrer Wahl deployen.
 
-Folgen Sie den Anleitungen Ihres Cloudanbieters, um FastAPI-Apps dort bereitzustellen. 🤓
+Folgen Sie den Anleitungen Ihres Cloudanbieters, um FastAPI-Apps dort zu deployen. 🤓
 
 ## Performanz { #performance }
 
@@ -544,7 +546,7 @@ Verwendet von Pydantic:
 
 Verwendet von Starlette:
 
-* [`httpx`](https://www.python-httpx.org) – erforderlich, wenn Sie den `TestClient` verwenden möchten.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (oder `httpx`) – wird vom `TestClient` verwendet.
 * [`jinja2`](https://jinja.palletsprojects.com) – erforderlich, wenn Sie die Default-Template-Konfiguration verwenden möchten.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) – erforderlich, wenn Sie Formulare mittels `request.form()` <dfn title="Konvertieren des Strings, der aus einem HTTP-Request stammt, nach Python-Daten">„parsen“</dfn> möchten.
 
@@ -552,7 +554,7 @@ Verwendet von FastAPI:
 
 * [`uvicorn`](https://uvicorn.dev) – für den Server, der Ihre Anwendung lädt und bereitstellt. Dies umfasst `uvicorn[standard]`, das einige Abhängigkeiten (z. B. `uvloop`) beinhaltet, die für eine Bereitstellung mit hoher Performanz benötigt werden.
 * `fastapi-cli[standard]` – um den `fastapi`-Befehl bereitzustellen.
-    * Dies beinhaltet `fastapi-cloud-cli`, das es Ihnen ermöglicht, Ihre FastAPI-Anwendung auf [FastAPI Cloud](https://fastapicloud.com) bereitzustellen.
+    * Dies beinhaltet `fastapi-cloud-cli`, das es Ihnen ermöglicht, Ihre FastAPI-Anwendung auf [FastAPI Cloud](https://fastapicloud.com) zu deployen.
 
 ### Ohne `standard`-Abhängigkeiten { #without-standard-dependencies }
 

@@ -8,7 +8,7 @@ from inline_snapshot import snapshot
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial003_py310"),
+        pytest.param("tutorial003"),
     ],
 )
 def get_client(request: pytest.FixtureRequest):

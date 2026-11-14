@@ -6,7 +6,7 @@
 
 Спочатку імпортуйте `Cookie`:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## Визначення параметрів `Cookie` { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@
 
 Ви можете визначити значення за замовчуванням, а також усі додаткові параметри валідації чи анотації:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | Технічні деталі
 

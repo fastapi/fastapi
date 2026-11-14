@@ -20,7 +20,7 @@ Commençons par utiliser le code et voir comment cela fonctionne, puis nous revi
 
 Copiez l'exemple dans un fichier `main.py` :
 
-{* ../../docs_src/security/tutorial001_an_py310.py *}
+{* ../../docs_src/security/tutorial001.py *}
 
 ## Exécuter { #run-it }
 
@@ -132,7 +132,7 @@ Dans ce cas, **FastAPI** vous fournit aussi les outils pour la construire.
 
 Lorsque nous créons une instance de la classe `OAuth2PasswordBearer`, nous passons le paramètre `tokenUrl`. Ce paramètre contient l'URL que le client (le frontend s'exécutant dans le navigateur de l'utilisateur) utilisera pour envoyer le `username` et le `password` afin d'obtenir un token.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/security/tutorial001.py hl[8] *}
 
 /// tip | Astuce
 
@@ -170,7 +170,7 @@ Ainsi, elle peut être utilisée avec `Depends`.
 
 Vous pouvez maintenant passer ce `oauth2_scheme` en dépendance avec `Depends`.
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Cette dépendance fournira une `str` qui est affectée au paramètre `token` de la *fonction de chemin d'accès*.
 

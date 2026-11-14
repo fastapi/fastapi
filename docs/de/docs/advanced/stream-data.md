@@ -22,7 +22,7 @@ Sie könnten auf diese Weise auch **Video** oder **Audio** streamen, es könnte 
 
 Wenn Sie in Ihrer *Pfadoperation-Funktion* ein `response_class=StreamingResponse` deklarieren, können Sie `yield` verwenden, um nacheinander jeden Datenchunk zu senden.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI übergibt jeden Datenchunk unverändert an die `StreamingResponse`, es wird nicht versucht, ihn in JSON oder etwas Ähnliches zu konvertieren.
 
@@ -30,7 +30,7 @@ FastAPI übergibt jeden Datenchunk unverändert an die `StreamingResponse`, es w
 
 Sie können auch reguläre `def`-Funktionen (ohne `async`) verwenden und `yield` auf die gleiche Weise einsetzen.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### Keine Annotation { #no-annotation }
 
@@ -38,7 +38,7 @@ Sie müssen den Rückgabetyp für das Streamen von Binärdaten nicht wirklich an
 
 Da FastAPI die Daten nicht mit Pydantic in JSON umzuwandeln oder sie anderweitig zu serialisieren versucht, ist die Typannotation hier nur für Ihren Editor und Tools relevant, sie wird von FastAPI nicht verwendet.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 Das bedeutet auch, dass Sie mit `StreamingResponse` die **Freiheit** und **Verantwortung** haben, die Datenbytes genau so zu erzeugen und zu encodieren, wie sie gesendet werden sollen, unabhängig von den Typannotationen. 🤓
 
@@ -46,7 +46,7 @@ Das bedeutet auch, dass Sie mit `StreamingResponse` die **Freiheit** und **Veran
 
 Einer der Hauptanwendungsfälle wäre, `bytes` statt Strings zu streamen, das können Sie selbstverständlich tun.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## Eine benutzerdefinierte `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ Sie können eine benutzerdefinierte Unterklasse von `StreamingResponse` erstelle
 
 Zum Beispiel können Sie eine `PNGStreamingResponse` erstellen, die den `Content-Type`-Header mit dem Attribut `media_type` auf `image/png` setzt:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 Dann können Sie diese neue Klasse mit `response_class=PNGStreamingResponse` in Ihrer *Pfadoperation-Funktion* verwenden:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### Eine Datei simulieren { #simulate-a-file }
 
@@ -68,7 +68,7 @@ In diesem Beispiel simulieren wir eine Datei mit `io.BytesIO`, einem dateiähnli
 
 Wir können z. B. darüber iterieren, um seinen Inhalt zu konsumieren, so wie bei einer Datei.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | Technische Details
 
@@ -100,7 +100,7 @@ Aber in vielen Fällen würde das Lesen einer Datei oder eines dateiähnlichen O
 
 Um die Event-Loop nicht zu blockieren, können Sie die *Pfadoperation-Funktion* einfach mit normalem `def` statt `async def` deklarieren, dadurch führt FastAPI sie in einem Threadpool-Worker aus, um die Haupt-Event-Loop nicht zu blockieren.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip | Tipp
 
@@ -114,4 +114,4 @@ Wenn Sie über etwas iterieren, z. B. ein dateiähnliches Objekt, und dann für 
 
 Das ist nichts Spezifisches an FastAPI, das ist einfach Python, aber ein netter Trick. 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

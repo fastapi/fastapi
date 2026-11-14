@@ -10,7 +10,7 @@ pytest.importorskip("orjson")
 @pytest.fixture(
     name="client",
     params=[
-        pytest.param("tutorial001_py310"),
+        pytest.param("tutorial001"),
     ],
 )
 def get_client(request: pytest.FixtureRequest):

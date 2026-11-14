@@ -40,7 +40,7 @@ Bu aynı zamanda size ciddi bir sorumluluk yükler. Döndürdüğünüz verinin 
 
 Bu gibi durumlarda, response'a vermeden önce verinizi dönüştürmek için `jsonable_encoder` kullanabilirsiniz:
 
-{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
+{* ../../docs_src/response_directly/tutorial001.py hl[5:6,20:21] *}
 
 /// note | Teknik Detaylar
 
@@ -60,13 +60,13 @@ Diyelim ki [XML](https://en.wikipedia.org/wiki/XML) response döndürmek istiyor
 
 XML içeriğinizi bir string içine koyabilir, onu bir `Response` içine yerleştirip döndürebilirsiniz:
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## Bir Response Model Nasıl Çalışır { #how-a-response-model-works }
 
 Bir path operation içinde [Response Model - Dönüş Tipi](../tutorial/response-model.md) deklare ettiğinizde, **FastAPI** veriyi Pydantic kullanarak JSON'a serialize etmek için bunu kullanır.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 Bu işlem Rust tarafında gerçekleştiği için, sıradan Python ve `JSONResponse` sınıfıyla yapılmasına kıyasla performans çok daha iyi olacaktır.
 

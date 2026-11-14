@@ -15,7 +15,7 @@ results = await some_library()
 Dann deklarieren Sie Ihre *Pfadoperation-Funktionen* mit `async def`, wie in:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ Sie können `await` nur innerhalb von Funktionen verwenden, die mit `async def` 
 Wenn Sie eine Bibliothek eines Dritten verwenden, die mit etwas kommuniziert (einer Datenbank, einer API, dem Dateisystem, usw.) und welche die Verwendung von `await` nicht unterstützt (dies ist derzeit bei den meisten Datenbankbibliotheken der Fall), dann deklarieren Sie Ihre *Pfadoperation-Funktionen* ganz normal nur mit `def`, wie in:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -82,7 +82,7 @@ Das „Warten auf etwas anderes“ bezieht sich normalerweise auf <abbr title="I
 * der Inhalt, den Ihr Programm dem System übergeben hat, auf die Festplatte geschrieben wurde
 * eine Remote-API-Operation beendet wurde
 * Eine Datenbankoperation abgeschlossen wurde
-* eine Datenbankabfrage die Ergebnisse zurückgegeben hat
+* eine Datenbankquery die Ergebnisse zurückgegeben hat
 * usw.
 
 Da die Ausführungszeit hier hauptsächlich durch das Warten auf <abbr title="Input and Output - Eingabe und Ausgabe">I/O</abbr>-Operationen verbraucht wird, nennt man dies auch „I/O-lastige“ („I/O bound“) Operationen.
@@ -155,7 +155,7 @@ Wenn Sie dann an der Reihe sind, erledigen Sie tatsächliche „produktive“ Ar
 
 Aber dann, auch wenn Sie Ihre Burger noch nicht haben, ist Ihre Interaktion mit dem Kassierer erst mal „auf Pause“ ⏸, weil Sie warten müssen 🕙, bis Ihre Burger fertig sind.
 
-Aber wenn Sie sich von der Theke entfernt haben und mit der Nummer für die Bestellung an einem Tisch sitzen, können Sie Ihre Aufmerksamkeit auf Ihren Schwarm lenken und an dieser Aufgabe „arbeiten“ ⏯ 🤓. Sie machen wieder etwas sehr „Produktives“ und flirten mit Ihrem Schwarm 😍.
+Aber wenn Sie sich von der Theke entfernt haben und mit der Nummer für die Bestellung an einem Tisch sitzen, können Sie Ihre Aufmerksamkeit auf Ihren Schwarm lenken 🔀 und an dieser Aufgabe „arbeiten“ ⏯ 🤓. Sie machen wieder etwas sehr „Produktives“ und flirten mit Ihrem Schwarm 😍.
 
 Dann sagt der Kassierer 💁 „Ich bin mit dem Burger fertig“, indem er Ihre Nummer auf dem Display über der Theke anzeigt, aber Sie springen nicht sofort wie verrückt auf, wenn das Display auf Ihre Nummer springt. Sie wissen, dass niemand Ihnen Ihre Burger wegnimmt, denn Sie haben die Nummer Ihrer Bestellung, und andere Leute haben andere Nummern.
 
@@ -213,7 +213,7 @@ Die wunderschönen Illustrationen stammen von [Ketrina Thompson](https://www.ins
 
 ---
 
-In diesem Szenario der parallelen Hamburger sind Sie ein Computersystem / Programm 🤖 mit zwei Prozessoren (Sie und Ihr Schwarm), die beide warten 🕙 und ihre Aufmerksamkeit darauf verwenden, „lange Zeit vor der Theke zu warten“ 🕙.
+In diesem Szenario der parallelen Hamburger sind Sie ein Computersystem / Programm 🤖 mit zwei Prozessoren (Sie und Ihr Schwarm), die beide warten 🕙 und ihre Aufmerksamkeit ⏯ darauf verwenden, „lange Zeit vor der Theke zu warten“ 🕙.
 
 Der Fast-Food-Laden verfügt über 8 Prozessoren (Kassierer/Köche). Während der nebenläufige Burger-Laden nur zwei hatte (einen Kassierer und einen Koch).
 
@@ -316,7 +316,7 @@ Damit `await` funktioniert, muss es sich in einer Funktion befinden, die diese A
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
-    # Mache hier etwas Asynchrones, um die Burger zu erstellen
+    # Machen Sie hier etwas Asynchrones, um die Burger zu erstellen
     return burgers
 ```
 
@@ -325,7 +325,7 @@ async def get_burgers(number: int):
 ```Python hl_lines="2"
 # Dies ist nicht asynchron
 def get_sequential_burgers(number: int):
-    # Mache hier etwas Sequentielles, um die Burger zu erstellen
+    # Machen Sie hier etwas Sequentielles, um die Burger zu erstellen
     return burgers
 ```
 
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 Wenn Sie also eine Bibliothek verwenden, die Ihnen sagt, dass Sie sie mit `await` aufrufen können, müssen Sie die *Pfadoperation-Funktionen*, die diese Bibliothek verwenden, mittels `async def` erstellen, wie in:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers

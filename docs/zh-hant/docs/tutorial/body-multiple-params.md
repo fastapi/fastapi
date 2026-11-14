@@ -8,7 +8,7 @@
 
 你也可以將 Body 參數宣告為可選，方法是將預設值設為 `None`：
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | 注意
 
@@ -31,7 +31,7 @@
 
 但你也可以宣告多個 Body 參數，例如 `item` 與 `user`：
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 在此情況下，**FastAPI** 會注意到函式中有多個 Body 參數（有兩個參數是 Pydantic 模型）。
 
@@ -72,7 +72,7 @@
 
 但你可以使用 `Body` 指示 **FastAPI** 將其視為另一個 Body 鍵：
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 在此情況下，**FastAPI** 會期望如下的主體：
 
@@ -106,7 +106,7 @@ q: str | None = None
 
 例如：
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 /// note | 注意
 
@@ -128,7 +128,7 @@ item: Annotated[Item, Body(embed=True)]
 
 如下：
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 在此情況下 **FastAPI** 會期望如下的主體：
 

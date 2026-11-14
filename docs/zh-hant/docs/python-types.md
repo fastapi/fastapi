@@ -22,7 +22,7 @@ Python 支援可選用的「型別提示」（也稱為「型別註記」）。
 
 先從一個簡單的例子開始：
 
-{* ../../docs_src/python_types/tutorial001_py310.py *}
+{* ../../docs_src/python_types/tutorial001.py *}
 
 執行這個程式會輸出：
 
@@ -36,7 +36,7 @@ John Doe
 * 用 `title()` 把每個字的第一個字母轉成大寫。
 * 用一個空白把它們<dfn title="把它們合在一起，成為一個。將其中一個的內容接在另一個後面。">串接</dfn>起來。
 
-{* ../../docs_src/python_types/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
 ### 編輯它 { #edit-it }
 
@@ -78,7 +78,7 @@ John Doe
 
 那些就是「型別提示」：
 
-{* ../../docs_src/python_types/tutorial002_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial002.py hl[1] *}
 
 這和宣告預設值不同，例如：
 
@@ -106,7 +106,7 @@ John Doe
 
 看這個函式，它已經有型別提示了：
 
-{* ../../docs_src/python_types/tutorial003_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial003.py hl[1] *}
 
 因為編輯器知道變數的型別，你不只會得到自動完成，還會得到錯誤檢查：
 
@@ -114,7 +114,7 @@ John Doe
 
 現在你知道要修正它，把 `age` 用 `str(age)` 轉成字串：
 
-{* ../../docs_src/python_types/tutorial004_py310.py hl[2] *}
+{* ../../docs_src/python_types/tutorial004.py hl[2] *}
 
 ## 宣告型別 { #declaring-types }
 
@@ -133,7 +133,7 @@ John Doe
 * `bool`
 * `bytes`
 
-{* ../../docs_src/python_types/tutorial005_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial005.py hl[1] *}
 
 ### `typing` 模組 { #typing-module }
 
@@ -170,7 +170,7 @@ def some_function(data: Any):
 
 由於 list 是一種包含內部型別的型別，你要把內部型別放在方括號中：
 
-{* ../../docs_src/python_types/tutorial006_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial006.py hl[1] *}
 
 /// note | 注意
 
@@ -196,7 +196,7 @@ def some_function(data: Any):
 
 你也可以用相同方式來宣告 `tuple` 與 `set`：
 
-{* ../../docs_src/python_types/tutorial007_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial007.py hl[1] *}
 
 這代表：
 
@@ -211,7 +211,7 @@ def some_function(data: Any):
 
 第二個型別參數是 `dict` 的值（value）：
 
-{* ../../docs_src/python_types/tutorial008_py310.py hl[1] *}
+{* ../../docs_src/python_types/tutorial008.py hl[1] *}
 
 這代表：
 
@@ -228,7 +228,7 @@ def some_function(data: Any):
 這稱為「union」，因為變數可以是這兩種型別集合的聯集中的任一種。
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial008b_py310.py!}
+{!> ../../docs_src/python_types/tutorial008b.py!}
 ```
 
 這表示 `item` 可以是 `int` 或 `str`。
@@ -240,7 +240,7 @@ def some_function(data: Any):
 //// tab | Python 3.10+
 
 ```Python hl_lines="1"
-{!> ../../docs_src/python_types/tutorial009_py310.py!}
+{!> ../../docs_src/python_types/tutorial009.py!}
 ```
 
 ////
@@ -253,11 +253,11 @@ def some_function(data: Any):
 
 假設你有一個 `Person` 類別，帶有名稱：
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[1:3] *}
+{* ../../docs_src/python_types/tutorial010.py hl[1:3] *}
 
 接著你可以宣告一個變數為 `Person` 型別：
 
-{* ../../docs_src/python_types/tutorial010_py310.py hl[6] *}
+{* ../../docs_src/python_types/tutorial010.py hl[6] *}
 
 然後，你一樣會得到完整的編輯器支援：
 
@@ -281,7 +281,7 @@ def some_function(data: Any):
 
 以下是來自 Pydantic 官方文件的例子：
 
-{* ../../docs_src/python_types/tutorial011_py310.py *}
+{* ../../docs_src/python_types/tutorial011.py *}
 
 /// note | 注意
 
@@ -299,7 +299,7 @@ Python 也有一個功能，允許使用 `Annotated` 在這些型別提示中放
 
 你可以從 `typing` 匯入 `Annotated`。
 
-{* ../../docs_src/python_types/tutorial013_py310.py hl[1,4] *}
+{* ../../docs_src/python_types/tutorial013.py hl[1,4] *}
 
 Python 本身不會對這個 `Annotated` 做任何事。對編輯器與其他工具而言，該型別仍然是 `str`。
 

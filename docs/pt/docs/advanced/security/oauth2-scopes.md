@@ -62,7 +62,7 @@ Para o OAuth2, eles são apenas strings.
 
 Primeiro, vamos olhar rapidamente as partes que mudam dos exemplos no **Tutorial - Guia de Usuário** principal para [OAuth2 com Senha (e hash), Bearer com tokens JWT](../../tutorial/security/oauth2-jwt.md). Agora utilizando escopos OAuth2:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Agora vamos revisar essas mudanças passo a passo.
 
@@ -72,7 +72,7 @@ A primeira mudança é que agora nós estamos declarando o esquema de segurança
 
 O parâmetro `scopes` recebe um `dict` contendo cada escopo como chave e a descrição como valor:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 Pelo motivo de estarmos declarando estes escopos, eles aparecerão na documentação da API quando você se autenticar/autorizar.
 
@@ -98,7 +98,7 @@ Porém em sua aplicação, por segurança, você deveria garantir que você apen
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## Declare escopos em *operações de rota* e dependências { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ Nós estamos fazendo isso aqui para demonstrar como o **FastAPI** lida com escop
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | Detalhes Técnicos
 
@@ -150,7 +150,7 @@ Nós também declaramos um parâmetro especial do tipo `SecurityScopes`, importa
 
 A classe `SecurityScopes` é semelhante à classe `Request` (`Request` foi utilizada para obter o objeto da requisição diretamente).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## Utilize os `scopes` { #use-the-scopes }
 
@@ -164,7 +164,7 @@ Nós criamos uma `HTTPException` que nós podemos reutilizar (`raise`) mais tard
 
 Nesta exceção, nós incluímos os escopos necessários (se houver algum) como uma string separada por espaços (utilizando `scope_str`). Nós colocamos esta string contendo os escopos no cabeçalho `WWW-Authenticate` (isso é parte da especificação).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## Verifique o `username` e o formato dos dados { #verify-the-username-and-data-shape }
 
@@ -180,7 +180,7 @@ No lugar de, por exemplo, um `dict`, ou alguma outra coisa, que poderia quebrar 
 
 Nós também verificamos que nós temos um usuário com o "*username*", e caso contrário, nós levantamos a mesma exceção que criamos anteriormente.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## Verifique os `scopes` { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ Nós verificamos agora que todos os escopos necessários, por essa dependência 
 
 Para isso, nós utilizamos `security_scopes.scopes`, que contém uma `list` com todos esses escopos como uma `str`.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## Árvore de dependência e escopos { #dependency-tree-and-scopes }
 

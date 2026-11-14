@@ -15,7 +15,7 @@ Bir frontend host etmeniz gerekiyorsa, bunun yerine `app.frontend()` kullanın; 
 * `StaticFiles`'ı import edin.
 * Belirli bir path'te bir `StaticFiles()` örneğini "mount" edin.
 
-{* ../../docs_src/static_files/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/static_files/tutorial001.py hl[2,6] *}
 
 /// note | Teknik Detaylar
 

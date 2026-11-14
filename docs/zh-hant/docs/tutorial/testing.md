@@ -30,7 +30,7 @@ $ uv add httpx
 
 用簡單的 `assert` 敘述搭配標準的 Python 運算式來檢查（同樣是 `pytest` 的標準用法）。
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip
 
@@ -76,7 +76,7 @@ $ uv add httpx
 在 `main.py` 檔案中有你的 **FastAPI** 應用：
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### 測試檔案 { #testing-file }
 
@@ -92,7 +92,7 @@ $ uv add httpx
 
 因為這個檔案在同一個套件中，你可以使用相對匯入，從 `main` 模組（`main.py`）匯入 `app` 這個物件：
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...然後測試的程式碼就和先前一樣。
@@ -121,13 +121,13 @@ $ uv add httpx
 
 兩個 *路徑操作* 都需要一個 `X-Token` 標頭（header）。
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### 擴充的測試檔案 { #extended-testing-file }
 
 接著你可以把 `test_main.py` 更新為擴充後的測試：
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 每當你需要在請求中讓 client 帶一些資料，但不確定該怎麼做時，你可以搜尋（Google）在 `httpx` 要如何傳遞，甚至用 Requests 怎麼做，因為 HTTPX 的設計是基於 Requests。

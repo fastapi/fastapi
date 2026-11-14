@@ -32,11 +32,11 @@
 
 檔案 `main.py` 會是：
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 檔案 `test_main.py` 會包含針對 `main.py` 的測試，現在可能像這樣：
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
 ## 執行 { #run-it }
 
@@ -56,7 +56,7 @@ $ uv run pytest
 
 標記 `@pytest.mark.anyio` 告訴 pytest 這個測試函式應以非同步方式執行：
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip
 
@@ -66,12 +66,12 @@ $ uv run pytest
 
 接著，我們可以用該應用建立 `AsyncClient`，並以 `await` 發送非同步請求。
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 這等同於：
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...也就是我們先前用 `TestClient` 發送請求時所用的寫法。

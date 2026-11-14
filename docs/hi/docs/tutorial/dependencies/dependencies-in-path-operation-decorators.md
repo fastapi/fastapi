@@ -14,7 +14,7 @@
 
 यह `Depends()` की एक `list` होनी चाहिए:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[19] *}
 
 ये dependencies normal dependencies की तरह ही execute/solve होंगी। लेकिन उनकी value (यदि वे कोई return करती हैं) आपकी *path operation function* को pass नहीं की जाएगी।
 
@@ -44,13 +44,13 @@
 
 वे request requirements (जैसे headers) या अन्य sub-dependencies declare कर सकती हैं:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[8,13] *}
 
 ### Exceptions raise करें { #raise-exceptions }
 
 ये dependencies normal dependencies की तरह ही exceptions `raise` कर सकती हैं:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[10,15] *}
 
 ### Return values { #return-values }
 
@@ -58,7 +58,7 @@
 
 इसलिए, आप एक normal dependency (जो value return करती है) को फिर से उपयोग कर सकते हैं जिसे आप पहले से कहीं और उपयोग करते हैं, और भले ही value का उपयोग न हो, dependency execute होगी:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[11,16] *}
 
 ## *path operations* के समूह के लिए Dependencies { #dependencies-for-a-group-of-path-operations }
 

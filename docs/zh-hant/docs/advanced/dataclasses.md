@@ -4,7 +4,7 @@ FastAPI 建立在 **Pydantic** 之上，我之前示範過如何使用 Pydantic 
 
 但 FastAPI 也同樣支援以相同方式使用 [`dataclasses`](https://docs.python.org/3/library/dataclasses.html)：
 
-{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
+{* ../../docs_src/dataclasses_/tutorial001.py hl[1,6:11,18:19] *}
 
 這之所以可行，要感謝 **Pydantic**，因為它 [內建支援 `dataclasses`](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel)。
 
@@ -32,7 +32,7 @@ FastAPI 建立在 **Pydantic** 之上，我之前示範過如何使用 Pydantic 
 
 你也可以在 `response_model` 參數中使用 `dataclasses`：
 
-{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
+{* ../../docs_src/dataclasses_/tutorial002.py hl[1,6:12,18] *}
 
 該 dataclass 會自動轉換為 Pydantic 的 dataclass。
 
@@ -48,7 +48,7 @@ FastAPI 建立在 **Pydantic** 之上，我之前示範過如何使用 Pydantic 
 
 這種情況下，你可以把標準的 `dataclasses` 直接換成 `pydantic.dataclasses`，它是可直接替換（drop-in replacement）的：
 
-{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
+{* ../../docs_src/dataclasses_/tutorial003.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. 我們仍然從標準的 `dataclasses` 匯入 `field`。
 

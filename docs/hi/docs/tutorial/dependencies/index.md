@@ -31,7 +31,7 @@
 
 यह बस एक function है जो वे सभी समान parameters ले सकता है जो एक *path operation function* ले सकता है:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8:9] *}
 
 बस इतना ही।
 
@@ -63,13 +63,13 @@ FastAPI ने version 0.95.0 में `Annotated` के लिए support ज
 
 ### `Depends` import करें { #import-depends }
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### "dependant" में dependency declare करें { #declare-the-dependency-in-the-dependant }
 
 जिस तरह आप अपने *path operation function* parameters के साथ `Body`, `Query`, आदि का उपयोग करते हैं, उसी तरह एक नए parameter के साथ `Depends` का उपयोग करें:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 हालाँकि आप अपने function के parameters में `Depends` का उपयोग उसी तरह करते हैं जैसे आप `Body`, `Query`, आदि का उपयोग करते हैं, `Depends` थोड़ा अलग तरीके से काम करता है।
 
@@ -126,7 +126,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 लेकिन क्योंकि हम `Annotated` का उपयोग कर रहे हैं, हम उस `Annotated` value को एक variable में store कर सकते हैं और कई जगहों पर उपयोग कर सकते हैं:
 
-{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
+{* ../../docs_src/dependencies/tutorial001_02.py hl[12,16,21] *}
 
 /// tip | सुझाव
 

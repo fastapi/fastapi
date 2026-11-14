@@ -1,9 +1,9 @@
-from enum import Enum
+from enum import StrEnum
 
 from fastapi import FastAPI
 
 
-class ModelName(str, Enum):
+class ModelName(StrEnum):
     alexnet = "alexnet"
     resnet = "resnet"
     lenet = "lenet"

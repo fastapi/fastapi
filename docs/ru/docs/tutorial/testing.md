@@ -30,7 +30,7 @@ $ uv add httpx
 
 Напишите простое утверждение с `assert` дабы проверить истинность Python-выражения (это тоже стандарт `pytest`).
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | Подсказка
 
@@ -76,7 +76,7 @@ $ uv add httpx
 В файле `main.py` находится Ваше приложение **FastAPI**:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### Файл тестов { #testing-file }
 
@@ -92,7 +92,7 @@ $ uv add httpx
 
 Так как этот файл находится в том же пакете, для импорта объекта `app` из модуля `main` (`main.py`) Вы можете использовать относительный импорт:
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...и писать дальше тесты, как и раньше.
@@ -121,13 +121,13 @@ $ uv add httpx
 
 Обе *операции пути* требуют наличия в запросе HTTP-заголовка `X-Token`.
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### Расширенный файл тестов { #extended-testing-file }
 
 Теперь можно обновить файл `test_main.py`, добавив в него расширенные тесты:
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 Если Вы не знаете, как передать информацию в запросе, можете воспользоваться поиском (Google) и задать вопрос: "Как передать информацию в запросе с помощью `httpx`", можно даже спросить: "Как передать информацию в запросе с помощью `requests`", поскольку дизайн HTTPX основан на дизайне Requests.

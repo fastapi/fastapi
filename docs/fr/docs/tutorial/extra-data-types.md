@@ -55,8 +55,8 @@ Voici quelques types de données supplémentaires que vous pouvez utiliser :
 
 Voici un exemple de *chemin d'accès* avec des paramètres utilisant certains des types ci-dessus.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Notez que les paramètres à l'intérieur de la fonction ont leur type de données naturel et que vous pouvez, par exemple, effectuer des manipulations de dates normales, comme :
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

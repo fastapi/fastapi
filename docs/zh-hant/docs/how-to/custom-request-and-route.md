@@ -42,7 +42,7 @@
 
 如此一來，相同的路由類別即可同時處理經 gzip 壓縮與未壓縮的請求。
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### 建立自訂的 `GzipRoute` 類別 { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@
 
 在這裡，我們用它將原始的請求包裝成 `GzipRequest`。
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | 技術細節
 
@@ -92,18 +92,18 @@
 
 我們只需要在 `try`/`except` 區塊中處理請求即可：
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 若發生例外，`Request` 實例依然在作用域內，因此在處理錯誤時我們仍可讀取並使用請求本文：
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## 在路由器中自訂 `APIRoute` 類別 { #custom-apiroute-class-in-a-router }
 
 你也可以在 `APIRouter` 上設定 `route_class` 參數：
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 在此範例中，`router` 底下的 *路徑操作* 會使用自訂的 `TimedRoute` 類別，並在回應中多加上一個 `X-Response-Time` 標頭，標示產生該回應所花費的時間：
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

@@ -32,7 +32,7 @@ Webhook 功能自 OpenAPI 3.1.0 起提供，FastAPI `0.99.0` 以上版本支援�
 
 建立 FastAPI 應用時，會有一個 `webhooks` 屬性可用來定義 webhook，方式與定義路徑操作相同，例如使用 `@app.webhooks.post()`。
 
-{* ../../docs_src/openapi_webhooks/tutorial001_py310.py hl[9:12,15:20] *}
+{* ../../docs_src/openapi_webhooks/tutorial001.py hl[9:12,15:20] *}
 
 你定義的 webhook 會出現在 OpenAPI 結構描述與自動產生的文件 UI 中。
 

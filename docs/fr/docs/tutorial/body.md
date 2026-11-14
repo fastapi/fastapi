@@ -22,7 +22,7 @@ Ceci étant découragé, la documentation interactive avec Swagger UI ne montrer
 
 Commencez par importer la classe `BaseModel` du module `pydantic` :
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## Créer votre modèle de données { #create-your-data-model }
 
@@ -30,7 +30,7 @@ Déclarez ensuite votre modèle de données en tant que classe qui hérite de `B
 
 Utilisez les types Python standard pour tous les attributs :
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 Tout comme pour la déclaration de paramètres de requête, quand un attribut de modèle a une valeur par défaut, il n'est pas nécessaire. Sinon, il est requis. Utilisez `None` pour le rendre simplement optionnel.
@@ -59,7 +59,7 @@ Par exemple, le modèle ci-dessus déclare un JSON « `object` » (ou `dict` Pyt
 
 Pour l'ajouter à votre *chemin d'accès*, déclarez-le comme vous déclareriez des paramètres de chemin ou de requête :
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ... et déclarez que son type est le modèle que vous avez créé : `Item`.
 
@@ -126,7 +126,7 @@ Ce qui améliore le support pour les modèles Pydantic avec :
 
 Dans la fonction, vous pouvez accéder à tous les attributs de l'objet du modèle directement :
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## Corps de la requête + paramètres de chemin { #request-body-path-parameters }
 
@@ -134,7 +134,7 @@ Vous pouvez déclarer des paramètres de chemin et le corps de la requête en m�
 
 **FastAPI** est capable de reconnaître que les paramètres de la fonction qui correspondent aux paramètres de chemin doivent être **récupérés depuis le chemin**, et que les paramètres de la fonction déclarés comme modèles Pydantic devraient être **récupérés depuis le corps de la requête**.
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## Corps de la requête + paramètres de chemin et de requête { #request-body-path-query-parameters }
@@ -143,7 +143,7 @@ Vous pouvez aussi déclarer un **corps**, et des paramètres de **chemin** et de
 
 **FastAPI** saura reconnaître chacun d'entre eux et récupérer la bonne donnée au bon endroit.
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 Les paramètres de la fonction seront reconnus comme tel :
 

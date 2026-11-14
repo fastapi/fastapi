@@ -131,6 +131,8 @@ uvx library-skills
 
 La skill est compatible avec Codex, Claude Code, Cursor, GitHub Copilot, Gemini CLI, Pi, OpenCode, et la plupart des autres agents de codage. Pour Claude Code, sélectionnez `.claude/skills` lorsqu'il vous est demandé où installer la skill.
 
+Consultez [Développer avec l'IA](../ai-development.md) pour plus de détails.
+
 ## Guide d'utilisation avancé { #advanced-user-guide }
 
 Il existe également un **Guide d'utilisation avancé** que vous pouvez lire plus tard après ce **Tutoriel - Guide d'utilisation**.

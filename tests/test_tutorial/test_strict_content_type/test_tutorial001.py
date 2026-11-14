@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 @pytest.fixture(
     name="client",
     params=[
-        "tutorial001_py310",
+        "tutorial001",
     ],
 )
 def get_client(request: pytest.FixtureRequest):

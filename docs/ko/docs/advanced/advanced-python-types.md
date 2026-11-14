@@ -13,17 +13,17 @@ from typing import Union
 
 
 def say_hi(name: Union[str, None]):
-        print(f"Hi {name}!")
+    print(f"Hi {name}!")
 ```
 
 `typing`에는 `None`이 될 수 있음을 선언하는 축약형으로 `Optional`도 있습니다.
 
-아주 개인적인 관점에서의 팁입니다:
+아주 **개인적인** 관점에서의 팁입니다:
 
 - 🚨 `Optional[SomeType]` 사용은 피하세요
 - 대신 ✨ **`Union[SomeType, None]`를 사용하세요** ✨.
 
-둘은 동등하며 내부적으로도 같습니다. 하지만 단어 "optional"은 값이 선택 사항이라는 인상을 주는 반면, 실제 의미는 "값이 `None`이 될 수 있다"는 뜻입니다. 값이 선택 사항이 아니라 여전히 필수인 경우에도 그렇습니다.
+둘은 동등하며 내부적으로도 같습니다. 하지만 `Optional` 대신 `Union`을 권장합니다. 단어 "**optional**"은 값이 선택 사항이라는 인상을 주는 반면, 실제 의미는 "값이 `None`이 될 수 있다"는 뜻이기 때문입니다. 값이 선택 사항이 아니라 여전히 필수인 경우에도 그렇습니다.
 
 `Union[SomeType, None]`가 의미를 더 명확하게 드러낸다고 생각합니다.
 
@@ -39,13 +39,13 @@ def say_hi(name: Optional[str]):
     print(f"Hey {name}!")
 ```
 
-매개변수 `name`은 `Optional[str]`로 정의되어 있지만, 사실 선택적이지 않습니다. 이 매개변수 없이 함수를 호출할 수 없습니다:
+매개변수 `name`은 `Optional[str]`로 정의되어 있지만, 사실 **선택적이지 않습니다**. 이 매개변수 없이 함수를 호출할 수 없습니다:
 
 ```Python
 say_hi()  # 이런, 에러가 발생합니다! 😱
 ```
 
-`name` 매개변수는 기본값이 없기 때문에 여전히 필수입니다(선택적이 아님). 대신, `name`에는 `None`을 전달할 수 있습니다:
+`name` 매개변수는 기본값이 없기 때문에 **여전히 필수**입니다(*선택적*이 아님). 대신, `name`에는 `None`을 전달할 수 있습니다:
 
 ```Python
 say_hi(name=None)  # 작동합니다. None은 유효합니다 🎉

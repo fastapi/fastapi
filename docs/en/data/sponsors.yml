@@ -1,6 +1,6 @@
 keystone:
   - url: https://fastapicloud.com
-    title: FastAPI Cloud. By the same team behind FastAPI. You code. We Cloud.
+    title: FastAPI Cloud is now generally available. By the same team behind FastAPI. You code. We cloud.
     img: /img/sponsors/fastapicloud.png
 gold:
   - url: https://blockbee.io?ref=fastapi
@@ -34,6 +34,10 @@ gold:
     title: "Greptile: The AI Code Reviewer"
     img: /img/sponsors/greptile.png
     banner_img: /img/sponsors/greptile-banner.png
+  - url: https://microauth.com/fastapi?utm_source=fastapi
+    title: "MicroAuth - Launch an API business in minutes: branded developer portals, rate limiting, and billing for your API"
+    img: /img/sponsors/microauth.png
+    banner_img: /img/sponsors/microauth-banner.png
 silver:
   - url: https://databento.com/?utm_source=fastapi&utm_medium=sponsor&utm_content=display
     title: Pay as you go for market data
@@ -50,6 +54,9 @@ silver:
   - url: https://tutorcruncher.com/?utm_source=fastapi
     title: TutorCruncher
     img: /img/sponsors/tutorcruncher.png
+  - url: https://encore.dev/py?utm_source=fastapi&utm_medium=sponsor&utm_campaign=fastapi-sponsorship
+    title: "Encore: Build and deploy FastAPI apps to your own AWS or GCP account, with the infrastructure handled for you"
+    img: /img/sponsors/encore.png
 bronze:
   # - url: https://testdriven.io/courses/tdd-fastapi/
   #   title: Learn to build high-quality web apps with best practices

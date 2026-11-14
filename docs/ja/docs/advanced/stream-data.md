@@ -22,7 +22,7 @@ FastAPI 0.134.0 で追加されました。
 
 *path operation 関数*で `response_class=StreamingResponse` を宣言すると、`yield` を使ってデータをチャンクごとに順次送信できます。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI は各データチャンクをそのまま `StreamingResponse` に渡し、JSON などに変換しようとはしません。
 
@@ -30,7 +30,7 @@ FastAPI は各データチャンクをそのまま `StreamingResponse` に渡し
 
 `async` なしの通常の `def` 関数でも同様に `yield` を使えます。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### アノテーションなし { #no-annotation }
 
@@ -38,7 +38,7 @@ FastAPI は各データチャンクをそのまま `StreamingResponse` に渡し
 
 この場合、FastAPI はデータを Pydantic で JSON 化したり、何らかの方法でシリアライズしようとしないため、型アノテーションはエディタやツール向けの補助にすぎず、FastAPI 自体では使用されません。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 つまり、`StreamingResponse` では型アノテーションに依存せず、送信したい形式に合わせてバイト列を生成・エンコードする**自由**と**責任**があなたにあります。 🤓
 
@@ -46,7 +46,7 @@ FastAPI は各データチャンクをそのまま `StreamingResponse` に渡し
 
 主なユースケースの一つは、文字列ではなく `bytes` をストリームすることです。もちろん可能です。
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## カスタム `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ FastAPI は各データチャンクをそのまま `StreamingResponse` に渡し
 
 例えば、`media_type` 属性で `Content-Type` を `image/png` に設定する `PNGStreamingResponse` を作成できます:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 その後、*path operation 関数*で `response_class=PNGStreamingResponse` としてこの新しいクラスを使用できます:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### ファイルを模擬する { #simulate-a-file }
 
@@ -68,7 +68,7 @@ FastAPI は各データチャンクをそのまま `StreamingResponse` に渡し
 
 例えば、ファイルと同様にイテレートして内容を読み出せます。
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | 技術詳細
 
@@ -100,7 +100,7 @@ FastAPI は各データチャンクをそのまま `StreamingResponse` に渡し
 
 イベントループのブロッキングを避けるには、*path operation 関数*を `async def` ではなく通常の `def` で宣言してください。そうすると FastAPI はその関数をスレッドプールワーカー上で実行し、メインループのブロッキングを避けます。
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip | 豆知識
 
@@ -114,4 +114,4 @@ async 関数内からブロッキングなコードを呼び出す必要があ�
 
 これは FastAPI 固有ではなく単なる Python の機能ですが、知っておくと便利な小ワザです。 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

@@ -8,7 +8,7 @@
 
 例如，你可以创建一个 `HTTPBearer` 的子类，使其返回 `403 Forbidden` 错误，而不是默认的 `401 Unauthorized` 错误：
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001.py hl[9:13] *}
 
 /// tip | 提示
 

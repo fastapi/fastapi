@@ -15,7 +15,7 @@
 
 首先，匯入 `BackgroundTasks`，並在你的*路徑操作函式*中定義一個型別宣告為 `BackgroundTasks` 的參數：
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** 會為你建立 `BackgroundTasks` 型別的物件，並以該參數傳入。
 
@@ -31,13 +31,13 @@
 
 由於寫入操作未使用 `async` 與 `await`，因此以一般的 `def` 定義該函式：
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## 新增背景任務 { #add-the-background-task }
 
 在你的*路徑操作函式*內，使用 `.add_task()` 將任務函式傳給*背景任務*物件：
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` 的引數包括：
 
@@ -52,7 +52,7 @@
 **FastAPI** 會在各種情況下正確處理並重用同一個物件，將所有背景任務合併，並在之後於背景執行：
 
 
-{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 
 在此範例中，訊息會在回應送出*之後*寫入 `log.txt` 檔案。

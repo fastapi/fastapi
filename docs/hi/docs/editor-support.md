@@ -21,3 +21,7 @@ Default रूप से, extension आपके workspace में `FastAPI()`
 - **Stream Application Logs** - level filtering और text search के साथ आपके FastAPI Cloud-deployed application से real-time log streaming।
 
 यदि आप extension के features से परिचित होना चाहते हैं, तो Command Palette (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> या macOS पर: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>) खोलकर और "Welcome: Open walkthrough..." चुनकर, फिर "Get started with FastAPI" walkthrough चुनकर extension walkthrough देख सकते हैं।
+
+## AI coding agents { #ai-coding-agents }
+
+आधिकारिक FastAPI skill को install करने और उपयोग करने के लिए [AI के साथ development करें](ai-development.md) देखें।

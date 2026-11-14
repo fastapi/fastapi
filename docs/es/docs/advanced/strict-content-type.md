@@ -77,7 +77,7 @@ Este riesgo y ataque es relevante principalmente cuando la app corre en la **red
 
 Si necesitas soportar clientes que no envían un header `Content-Type`, puedes desactivar el chequeo estricto configurando `strict_content_type=False`:
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 Con esta configuración, las requests sin un header `Content-Type` tendrán su body parseado como JSON, que es el mismo comportamiento de versiones anteriores de FastAPI.
 

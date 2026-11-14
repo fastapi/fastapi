@@ -4,7 +4,7 @@
 
 Розглянемо цей додаток як приклад:
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 Параметр запиту `q` має тип `str | None`, що означає, що він має тип `str`, але також може бути `None`, і справді, значення за замовчуванням - `None`, тож FastAPI знатиме, що він не є обов'язковим.
 
@@ -27,7 +27,7 @@ FastAPI знатиме, що значення `q` не є обов’язков�
 * `Query` з `fastapi`
 * `Annotated` з `typing`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | Примітка
 
@@ -65,7 +65,7 @@ q: Annotated[str | None] = None
 
 Тепер, коли у нас є `Annotated`, де ми можемо додавати додаткову інформацію (у цьому випадку - додаткову валідацію), додамо `Query` всередину `Annotated` і встановимо параметр `max_length` у `50`:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 Зверніть увагу, що значення за замовчуванням усе ще `None`, тому параметр залишається необов'язковим.
 
@@ -95,7 +95,7 @@ q: Annotated[str | None] = None
 
 Раніше ми писали `Query()` як значення за замовчуванням для параметра функції, встановлюючи параметр `max_length` у 50:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 Оскільки в цьому випадку (без `Annotated`) нам потрібно замінити значення за замовчуванням `None` у функції на `Query()`, тепер ми повинні встановити значення за замовчуванням через параметр `Query(default=None)`. Це виконує ту саму роль визначення значення за замовчуванням (принаймні для FastAPI).
 
@@ -164,13 +164,13 @@ q: str = Query(default="rick")
 
 Ви також можете додати параметр `min_length`:
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## Додавання регулярних виразів { #add-regular-expressions }
 
 Ви можете визначити <dfn title="Регулярний вираз, regex або regexp - це послідовність символів, яка визначає шаблон для пошуку в строках.">регулярний вираз</dfn> `pattern`, якому має відповідати параметр:
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 Цей конкретний шаблон регулярного виразу перевіряє, що отримане значення параметра:
 
@@ -188,7 +188,7 @@ q: str = Query(default="rick")
 
 Припустімо, що ви хочете оголосити параметр запиту `q` з `min_length` `3` і значенням за замовчуванням `"fixedquery"`:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | Примітка
 
@@ -218,15 +218,23 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 Тому, якщо вам потрібно оголосити значення як обов’язкове під час використання `Query`, просто не вказуйте значення за замовчуванням:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
-### Обов’язковий, може бути `None` { #required-can-be-none }
+### Обов’язкові параметри та `None` { #required-parameters-and-none }
 
-Ви можете вказати, що параметр може приймати `None`, але при цьому залишається обов’язковим. Це змусить клієнтів надіслати значення, навіть якщо значення дорівнює `None`.
+Тип `str | None` допускає `None` як значення Python, але не робить параметр запиту необов’язковим. Без значення за замовчуванням параметр залишається обов’язковим:
 
-Щоб зробити це, оголосіть, що `None` є допустимим типом, але просто не вкажіть значення за замовчуванням:
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+Значення параметрів запиту надходять як строки й не мають вбудованого представлення `None`. Надсилання `?q=None` або `?q=null` передає строки `"None"` та `"null"` відповідно. Надсилання `?q=` передає порожню строку, яка не проходить валідацію `min_length=3` у цьому прикладі.
+
+Щоб дозволити клієнтам не передавати `q` і використовувати `None` як його значення, задайте йому значення за замовчуванням `None`:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+Тіла запитів у форматі JSON, на відміну від параметрів запиту, можуть містити явне значення `null`.
 
 ## Список параметрів запиту / кілька значень { #query-parameter-list-multiple-values }
 
@@ -234,7 +242,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 Наприклад, щоб оголосити параметр запиту `q`, який може з’являтися в URL кілька разів, можна написати:
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 Тоді, у випадку URL:
 
@@ -269,7 +277,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 Ви також можете визначити значення за замовчуванням `list`, якщо жодне значення не було передане:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 Якщо ви перейдете за посиланням:
 
@@ -292,7 +300,7 @@ http://localhost:8000/items/
 
 Ви також можете використовувати `list` напряму замість `list[str]`:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | Примітка
 
@@ -318,11 +326,11 @@ http://localhost:8000/items/
 
 Ви можете додати `title`:
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 А також `description`:
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## Аліаси параметрів { #alias-parameters }
 
@@ -342,7 +350,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 У такому випадку можна оголосити `alias`, і саме він буде використовуватися для отримання значення параметра:
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## Позначення параметрів як застарілих { #deprecating-parameters }
 
@@ -352,7 +360,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Тоді передайте параметр `deprecated=True` до `Query`:
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 Документація буде показувати це таким чином:
 
@@ -362,7 +370,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 Щоб виключити параметр запиту зі згенерованої схеми OpenAPI (і, таким чином, з автоматичних систем документації), встановіть параметр `include_in_schema` для `Query` в `False`:
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## Кастомна валідація { #custom-validation }
 
@@ -380,7 +388,7 @@ Pydantic також має [`BeforeValidator`](https://pydantic.dev/docs/validat
 
 Наприклад, цей кастомний валідатор перевіряє, чи починається ID предмета з `isbn-` для номера книги <abbr title="International Standard Book Number - Міжнародний стандартний номер книги">ISBN</abbr> або з `imdb-` для ID URL фільму на <abbr title="Internet Movie Database - Інтернетна база даних фільмів: вебсайт з інформацією про фільми">IMDB</abbr>:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | Примітка
 
@@ -408,7 +416,7 @@ Pydantic також має [`BeforeValidator`](https://pydantic.dev/docs/validat
 
 Звернули увагу? Строка з `value.startswith()` може приймати кортеж, і тоді він перевірятиме кожне значення в кортежі:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### Випадковий предмет { #a-random-item }
 
@@ -424,7 +432,7 @@ Pydantic також має [`BeforeValidator`](https://pydantic.dev/docs/validat
 
 ...ми робимо все це в **одному простому рядку**. 🤯 Хіба ви не любите Python? 🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## Підсумок { #recap }
 

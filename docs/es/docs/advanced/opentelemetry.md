@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 Crea un archivo `main.py`:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 No necesitas escribir ningún código personalizado para recopilar telemetría.
 
@@ -92,7 +92,7 @@ Si otro paquete ya configura la exportación al mismo destino, deja `FASTAPI_OTE
 
 También puedes pasar un proveedor directamente en el diccionario `telemetry`. Por ejemplo, este proveedor usa el exportador de consola de OpenTelemetry para imprimir los spans de las requests en tu terminal:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 El **exportador** envía los spans a su destino. `BatchSpanProcessor` agrupa los spans y los envía en segundo plano. Reemplaza el exportador de consola por uno proporcionado por tu paquete de monitorización para usar su destino. Consulta la [guía de instrumentación de Python de OpenTelemetry](https://opentelemetry.io/docs/languages/python/instrumentation/) para ver más opciones de configuración.
 
@@ -112,7 +112,7 @@ Los spans de las tareas en segundo plano siguen formando parte de la traza de la
 
 Para registrar solo el span de la request HTTP, establece `operation_spans` en `False`:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### Traza las conexiones WebSocket { #trace-websocket-connections }

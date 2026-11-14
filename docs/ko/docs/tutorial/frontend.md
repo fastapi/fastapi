@@ -36,7 +36,7 @@ npm run build
 
 그런 다음 `app.frontend()`로 제공합니다:
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 이렇게 하면 `/assets/app.js`에 대한 요청이 `dist/assets/app.js`를 제공할 수 있습니다.
 
@@ -50,7 +50,7 @@ npm run build
 
 이를 위해 `fallback="index.html"`을 사용합니다:
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI**는 브라우저 탐색 요청이 보통 그러하듯 `Accept: text/html` 또는 `Accept: application/xhtml+xml`로 HTML을 명시적으로 허용하는 `GET` 및 `HEAD` 요청에만 이 fallback을 사용합니다. JavaScript, CSS, 이미지처럼 누락된 파일은 여전히 `404`를 반환합니다.
 
@@ -68,7 +68,7 @@ npm run build
 
 누락된 프론트엔드 경로에 대해 정적 `404.html` 페이지를 제공할 수도 있습니다:
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 이 응답은 `404` 상태 코드를 유지합니다.
 
@@ -94,13 +94,13 @@ npm run build
 
 따라서 대부분의 경우 `fallback` 인자를 지정하지 않고 `app.frontend("/", directory="dist")`를 사용할 수 있습니다.
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## Fallback 비활성화 { #disable-fallback }
 
 누락된 프론트엔드 경로에 대해 fallback 파일을 제공하고 싶지 않다면 `fallback=None`을 사용합니다:
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 그러면 누락된 프론트엔드 경로는 일반 `404`를 반환합니다.
 
@@ -116,7 +116,7 @@ npm run build
 
 프론트엔드 파일이 나중에 생성된다면, 예를 들어 애플리케이션 객체가 생성된 후 별도의 빌드 단계에서 생성된다면, `check_dir=False`를 설정합니다:
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 `check_dir=False`를 사용하면 **FastAPI**는 애플리케이션이 생성될 때 디렉터리를 확인하지 않습니다. 요청이 처리될 때 설정된 디렉터리가 여전히 없다면, 그때 **FastAPI**가 오류를 발생시킵니다.
 
@@ -124,7 +124,7 @@ npm run build
 
 프론트엔드 파일을 `APIRouter`에 추가하고 prefix와 함께 포함할 수도 있습니다:
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 이 예제에서는 프론트엔드 경로가 `/app` 아래에서 제공됩니다.
 

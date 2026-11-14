@@ -31,7 +31,7 @@ Let's first focus on the dependency.
 
 It is just a function that can take all the same parameters that a *path operation function* can take:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8:9] *}
 
 That's it.
 
@@ -63,13 +63,13 @@ Make sure you [Upgrade the FastAPI version](../../deployment/versions.md#upgradi
 
 ### Import `Depends` { #import-depends }
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### Declare the dependency, in the "dependant" { #declare-the-dependency-in-the-dependant }
 
 The same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 Although you use `Depends` in the parameters of your function the same way you use `Body`, `Query`, etc, `Depends` works a bit differently.
 
@@ -126,7 +126,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 But because we are using `Annotated`, we can store that `Annotated` value in a variable and use it in multiple places:
 
-{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
+{* ../../docs_src/dependencies/tutorial001_02.py hl[12,16,21] *}
 
 /// tip
 

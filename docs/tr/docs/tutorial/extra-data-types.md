@@ -55,8 +55,8 @@ Kullanabileceğiniz ek veri tiplerinden bazıları şunlardır:
 
 Yukarıdaki tiplerden bazılarını kullanan parametrelere sahip bir örnek *path operation*.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Fonksiyonun içindeki parametrelerin doğal veri tiplerinde olduğunu unutmayın; örneğin normal tarih işlemleri yapabilirsiniz:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

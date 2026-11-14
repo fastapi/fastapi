@@ -22,7 +22,7 @@ As it is discouraged, the interactive docs with Swagger UI won't show the docume
 
 First, you need to import `BaseModel` from `pydantic`:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## Create your data model { #create-your-data-model }
 
@@ -30,7 +30,7 @@ Then you declare your data model as a class that inherits from `BaseModel`.
 
 Use standard Python types for all the attributes:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 The same as when declaring query parameters, when a model attribute has a default value, it is not required. Otherwise, it is required. Use `None` to make it just optional.
@@ -59,7 +59,7 @@ For example, this model above declares a JSON "`object`" (or Python `dict`) like
 
 To add it to your *path operation*, declare it the same way you declared path and query parameters:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ...and declare its type as the model you created, `Item`.
 
@@ -126,7 +126,7 @@ It improves editor support for Pydantic models, with:
 
 Inside of the function, you can access all the attributes of the model object directly:
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## Request body + path parameters { #request-body-path-parameters }
 
@@ -134,7 +134,7 @@ You can declare path parameters and request body at the same time.
 
 **FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## Request body + path + query parameters { #request-body-path-query-parameters }
@@ -143,7 +143,7 @@ You can also declare **body**, **path** and **query** parameters, all at the sam
 
 **FastAPI** will recognize each of them and take the data from the correct place.
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 The function parameters will be recognized as follows:
 

@@ -20,7 +20,7 @@
 
 在 **Pydantic** 模型中声明所需的 **cookie** 参数，然后将参数声明为 `Cookie` ：
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI** 将从请求中接收到的 **cookie** 中**提取**出**每个字段**的数据，并提供你定义的 Pydantic 模型。
 
@@ -50,7 +50,7 @@
 
 你可以使用 Pydantic 的模型配置来禁止（ `forbid` ）任何额外（ `extra` ）字段：
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 如果客户端尝试发送一些**额外的 cookie**，他们将收到**错误**响应。
 
@@ -70,6 +70,22 @@
     ]
 }
 ```
+
+## 组合参数模型 { #combine-parameter-models }
+
+你可以将多个 cookie 参数模型与单独的 cookie 参数及依赖项组合使用。每个模型都会独立提取和验证，具体说明请参阅[查询参数模型](query-param-models.md#combine-parameter-models)。
+
+每个模型的 `extra` 配置适用于所有 cookie 参数，包括在其他模型或依赖项中声明的参数。使用 `extra="forbid"` 时，该模型之外的任何 cookie 都会被拒绝。使用 `extra="allow"` 时，这些 cookie 会作为模型的额外字段包含在内。
+
+## 可选 Cookie 参数模型 { #optional-cookie-parameter-models }
+
+使用 `| None` 并将默认值设为 `None` 来声明 cookie 参数模型，即可将这组参数设为可选。
+
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
+
+如果既未发送 `theme` 也未发送 `locale`，则 `preferences` 为 `None`。如果发送了其中任意一个，FastAPI 就会验证模型，并要求两个字段都存在。
+
+默认值、额外字段和 OpenAPI 的规则与[可选查询参数模型](query-param-models.md#optional-query-parameter-models)相同。
 
 ## 总结 { #summary }
 

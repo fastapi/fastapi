@@ -43,7 +43,7 @@ Header'da `gzip` yoksa body'yi açmayı denemez.
 
 Böylece aynı route sınıfı, gzip ile sıkıştırılmış veya sıkıştırılmamış request'leri handle edebilir.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### Özel bir `GzipRoute` sınıfı oluşturun { #create-a-custom-gziproute-class }
 
@@ -55,7 +55,7 @@ Bu metot bir fonksiyon döndürür. Bu fonksiyon da request'i alır ve response 
 
 Burada bu fonksiyonu, orijinal request'ten bir `GzipRequest` oluşturmak için kullanıyoruz.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | Teknik Detaylar
 
@@ -93,18 +93,18 @@ Aynı yaklaşımı bir exception handler içinde request body'ye erişmek için 
 
 Tek yapmamız gereken, request'i bir `try`/`except` bloğu içinde handle etmek:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 Bir exception oluşursa, `Request` instance'ı hâlâ scope içinde olacağı için, hatayı handle ederken request body'yi okuyup kullanabiliriz:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## Bir router içinde özel `APIRoute` sınıfı { #custom-apiroute-class-in-a-router }
 
 Bir `APIRouter` için `route_class` parametresini de ayarlayabilirsiniz:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 Bu örnekte, `router` altındaki *path operations*'lar özel `TimedRoute` sınıfını kullanır ve response'u üretmek için geçen süreyi içeren ekstra bir `X-Response-Time` header'ı response'ta bulunur:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

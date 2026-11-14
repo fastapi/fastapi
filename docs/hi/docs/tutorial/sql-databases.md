@@ -55,7 +55,7 @@ $ uv add sqlmodel
 
 `SQLModel` import करें और एक डेटाबेस model बनाएँ:
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[1:11] hl[7:11] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[1:11] hl[7:11] *}
 
 `Hero` class एक Pydantic model से बहुत मिलती-जुलती है (वास्तव में, अंदर से, यह सच में *एक Pydantic model ही है*)।
 
@@ -77,7 +77,7 @@ SQLModel `engine` (अंदर से यह वास्तव में SQLAl
 
 आपके सभी code के लिए उसी डेटाबेस से connect करने हेतु **एक single `engine` object** होगा।
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[14:18] hl[14:15,17:18] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[14:18] hl[14:15,17:18] *}
 
 `check_same_thread=False` का उपयोग FastAPI को अलग-अलग threads में वही SQLite डेटाबेस इस्तेमाल करने देता है। यह necessary है क्योंकि **एक single request** **एक से अधिक thread** का उपयोग कर सकती है (उदाहरण के लिए dependencies में)।
 
@@ -87,7 +87,7 @@ SQLModel `engine` (अंदर से यह वास्तव में SQLAl
 
 फिर हम एक function जोड़ते हैं जो सभी *table models* के लिए **tables बनाने** हेतु `SQLModel.metadata.create_all(engine)` का उपयोग करता है।
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[21:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[21:22] hl[21:22] *}
 
 ### Session Dependency बनाएँ { #create-a-session-dependency }
 
@@ -97,13 +97,13 @@ SQLModel `engine` (अंदर से यह वास्तव में SQLAl
 
 फिर हम इस dependency का उपयोग करने वाले बाकी code को आसान बनाने के लिए एक `Annotated` dependency `SessionDep` बनाते हैं।
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[25:30]  hl[25:27,30] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[25:30]  hl[25:27,30] *}
 
 ### Startup पर Database Tables बनाएँ { #create-database-tables-on-startup }
 
 हम application शुरू होने पर database tables बनाएँगे।
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[32:37] hl[35:37] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[32:37] hl[35:37] *}
 
 यहाँ हम application startup event पर tables बनाते हैं।
 
@@ -123,7 +123,7 @@ SQLModel में Alembic को wrap करने वाली migration utili
 
 उसी तरह, आप इसे function के **return type** के रूप में declare कर सकते हैं, और फिर data का shape automatic API docs UI में दिखाई देगा।
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[40:45] hl[40:45] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[40:45] hl[40:45] *}
 
 यहाँ हम `SessionDep` dependency (एक `Session`) का उपयोग करके नए `Hero` को `Session` instance में add करते हैं, changes को डेटाबेस में commit करते हैं, `hero` में data refresh करते हैं, और फिर उसे return करते हैं।
 
@@ -131,19 +131,19 @@ SQLModel में Alembic को wrap करने वाली migration utili
 
 हम `select()` का उपयोग करके डेटाबेस से `Hero`s **read** कर सकते हैं। results को paginate करने के लिए हम `limit` और `offset` include कर सकते हैं।
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[48:55] hl[51:52,54] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[48:55] hl[51:52,54] *}
 
 ### एक Hero पढ़ें { #read-one-hero }
 
 हम एक single `Hero` **read** कर सकते हैं।
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[58:63] hl[60] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[58:63] hl[60] *}
 
 ### Hero Delete करें { #delete-a-hero }
 
 हम एक `Hero` को **delete** भी कर सकते हैं।
 
-{* ../../docs_src/sql_databases/tutorial001_an_py310.py ln[66:73] hl[71] *}
+{* ../../docs_src/sql_databases/tutorial001.py ln[66:73] hl[71] *}
 
 ### App Run करें { #run-the-app }
 
@@ -192,7 +192,7 @@ SQLModel के साथ, हम सभी मामलों में सभ�
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:9] hl[7:9] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:9] hl[7:9] *}
 
 #### `Hero` - *table model* { #hero-the-table-model }
 
@@ -208,7 +208,7 @@ SQLModel के साथ, हम सभी मामलों में सभ�
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:14] hl[12:14] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:14] hl[12:14] *}
 
 #### `HeroPublic` - public *data model* { #heropublic-the-public-data-model }
 
@@ -234,7 +234,7 @@ return model से यह सुनिश्चित करवाना कि
 * `name`
 * `age`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:18] hl[17:18] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:18] hl[17:18] *}
 
 #### `HeroCreate` - hero बनाने के लिए *data model* { #herocreate-the-data-model-to-create-a-hero }
 
@@ -258,7 +258,7 @@ return model से यह सुनिश्चित करवाना कि
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:22] hl[21:22] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:22] hl[21:22] *}
 
 #### `HeroUpdate` - hero update करने के लिए *data model* { #heroupdate-the-data-model-to-update-a-hero }
 
@@ -276,7 +276,7 @@ app के previous version में हमारे पास **hero update �
 * `age`
 * `secret_name`
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[7:28] hl[25:28] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[7:28] hl[25:28] *}
 
 ### `HeroCreate` के साथ create करें और `HeroPublic` return करें { #create-with-herocreate-and-return-a-heropublic }
 
@@ -288,7 +288,7 @@ app के previous version में हमारे पास **hero update �
 
 फिर हम उसी *table model* `Hero` को function से जैसा है वैसा ही return करते हैं। लेकिन क्योंकि हम `response_model` को `HeroPublic` *data model* के साथ declare करते हैं, **FastAPI** data को validate और serialize करने के लिए `HeroPublic` का उपयोग करेगा।
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[56:62] hl[56:58] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[56:62] hl[56:58] *}
 
 /// tip | टिप
 
@@ -304,13 +304,13 @@ app के previous version में हमारे पास **hero update �
 
 हम `Hero`s को **read** करने के लिए पहले जैसा ही कर सकते हैं, फिर से, हम यह सुनिश्चित करने के लिए `response_model=list[HeroPublic]` का उपयोग करते हैं कि data सही तरीके से validate और serialize हो।
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[65:72] hl[65] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[65:72] hl[65] *}
 
 ### `HeroPublic` के साथ एक Hero पढ़ें { #read-one-hero-with-heropublic }
 
 हम एक single hero **read** कर सकते हैं:
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[75:80] hl[77] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[75:80] hl[77] *}
 
 ### `HeroUpdate` के साथ Hero Update करें { #update-a-hero-with-heroupdate }
 
@@ -320,7 +320,7 @@ app के previous version में हमारे पास **hero update �
 
 फिर हम `hero_data` के data के साथ `hero_db` को update करने के लिए `hero_db.sqlmodel_update(hero_data)` इस्तेमाल करते हैं।
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[83:93] hl[83:84,88:89] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[83:93] hl[83:84,88:89] *}
 
 ### फिर से Hero Delete करें { #delete-a-hero-again }
 
@@ -328,7 +328,7 @@ hero को **delete करना** लगभग पहले जैसा ह�
 
 हम इसमें सब कुछ refactor करने की इच्छा पूरी नहीं करेंगे। 😅
 
-{* ../../docs_src/sql_databases/tutorial002_an_py310.py ln[96:103] hl[101] *}
+{* ../../docs_src/sql_databases/tutorial002.py ln[96:103] hl[101] *}
 
 ### App फिर से Run करें { #run-the-app-again }
 

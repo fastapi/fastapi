@@ -6,7 +6,7 @@ With **FastAPI**, you can define, validate, document, and use arbitrarily deeply
 
 You can define an attribute to be a subtype. For example, a Python `list`:
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 This will make `tags` be a list, although it doesn't declare the type of the elements of the list.
 
@@ -29,7 +29,7 @@ Use that same standard syntax for model attributes with internal types.
 
 So, in our example, we can make `tags` be specifically a "list of strings":
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## Set types { #set-types }
 
@@ -39,7 +39,7 @@ And Python has a special data type for sets of unique items, the `set`.
 
 Then we can declare `tags` as a set of strings:
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 With this, even if you receive a request with duplicate data, it will be converted to a set of unique items.
 
@@ -61,13 +61,13 @@ All that, arbitrarily nested.
 
 For example, we can define an `Image` model:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### Use the submodel as a type { #use-the-submodel-as-a-type }
 
 And then we can use it as the type of an attribute:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 This would mean that **FastAPI** would expect a body similar to:
 
@@ -100,7 +100,7 @@ To see all the options you have, check out [Pydantic's Type Overview](https://py
 
 For example, as in the `Image` model we have a `url` field, we can declare it to be an instance of Pydantic's `HttpUrl` instead of a `str`:
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 The string will be checked to be a valid URL, and documented in JSON Schema / OpenAPI as such.
 
@@ -108,7 +108,7 @@ The string will be checked to be a valid URL, and documented in JSON Schema / Op
 
 You can also use Pydantic models as subtypes of `list`, `set`, etc.:
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 This will expect (convert, validate, document, etc.) a JSON body like:
 
@@ -146,7 +146,7 @@ Notice how the `images` key now has a list of image objects.
 
 You can define arbitrarily deeply nested models:
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 as in:
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## Editor support everywhere { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ That's what we are going to see here.
 
 In this case, you would accept any `dict` as long as it has `int` keys with `float` values:
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip
 

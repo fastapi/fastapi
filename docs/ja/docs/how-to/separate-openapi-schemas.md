@@ -10,13 +10,13 @@
 
 次のようにデフォルト値を持つ Pydantic モデルがあるとします。
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### 入力用モデル { #model-for-input }
 
 このモデルを次のように入力として使うと:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ...`description` フィールドは **必須ではありません**。デフォルト値が `None` だからです。
 
@@ -32,7 +32,7 @@
 
 しかし同じモデルを次のように出力として使う場合:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ...`description` にデフォルト値があるため、そのフィールドに何も返さなくても、その **デフォルト値** が入ります。
 
@@ -91,7 +91,7 @@
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### ドキュメントで入力・出力に同一スキーマを使用 { #same-schema-for-input-and-output-models-in-docs }
 

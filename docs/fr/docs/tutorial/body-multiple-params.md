@@ -8,7 +8,7 @@ Tout d'abord, sachez que vous pouvez mélanger librement les déclarations des p
 
 Et vous pouvez également déclarer des paramètres du corps de la requête comme étant optionnels, en leur assignant une valeur par défaut à `None` :
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | Remarque
 
@@ -31,7 +31,7 @@ Dans l'exemple précédent, les chemins d'accès attendraient un corps de la req
 
 Mais vous pouvez également déclarer plusieurs paramètres provenant du corps de la requête, par exemple `item` et `user` :
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 Dans ce cas, **FastAPI** détectera qu'il y a plus d'un paramètre du corps de la requête dans la fonction (il y a deux paramètres qui sont des modèles Pydantic).
 
@@ -72,7 +72,7 @@ Si vous le déclarez tel quel, comme c'est une valeur singulière, **FastAPI** s
 
 Mais vous pouvez indiquer à **FastAPI** de la traiter comme une autre clé du corps de la requête en utilisant `Body` :
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 Dans ce cas, **FastAPI** s'attendra à un corps de la requête semblable à :
 
@@ -106,7 +106,7 @@ q: str | None = None
 
 Par exemple :
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 /// note | Remarque
 
@@ -128,7 +128,7 @@ item: Annotated[Item, Body(embed=True)]
 
 comme dans :
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 Dans ce cas **FastAPI** s'attendra à un corps de la requête semblable à :
 

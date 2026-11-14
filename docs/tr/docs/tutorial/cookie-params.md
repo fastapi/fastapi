@@ -6,7 +6,7 @@
 
 Öncelikle, `Cookie`'yi import edin:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## `Cookie` Parametrelerini Tanımlayın { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@ Ardından, `Path` ve `Query` ile aynı yapıyı kullanarak Cookie parametrelerin
 
 Varsayılan değeri ve tüm ekstra doğrulama veya annotation parametrelerini tanımlayabilirsiniz:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | Teknik Detaylar
 

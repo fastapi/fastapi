@@ -42,7 +42,7 @@ gzip のリクエストを解凍するために、カスタムの `Request` サ�
 
 この方法により、同じルートクラスで gzip 圧縮済み／未圧縮のリクエストの両方を扱えます。
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### カスタム `GzipRoute` クラスの作成 { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@ gzip のリクエストを解凍するために、カスタムの `Request` サ�
 
 ここでは、元のリクエストから `GzipRequest` を作成するために利用します。
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | 技術詳細
 
@@ -92,18 +92,18 @@ gzip のリクエストを解凍するために、カスタムの `Request` サ�
 
 やることは、`try`/`except` ブロックの中でリクエストを処理するだけです：
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 例外が発生しても、`Request` インスタンスはスコープ内に残るため、エラー処理時にリクエストボディを読み取り、活用できます：
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## ルーターでのカスタム `APIRoute` クラス { #custom-apiroute-class-in-a-router }
 
 `APIRouter` の `route_class` パラメータを設定することもできます：
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 この例では、`router` 配下の *path operations* はカスタムの `TimedRoute` クラスを使用し、レスポンスの生成にかかった時間を示す追加の `X-Response-Time` ヘッダーがレスポンスに含まれます：
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

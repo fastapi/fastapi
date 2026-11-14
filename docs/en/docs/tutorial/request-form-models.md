@@ -24,11 +24,11 @@ This is supported since FastAPI version `0.113.0`. 🤓
 
 You just need to declare a **Pydantic model** with the fields you want to receive as **form fields**, and then declare the parameter as `Form`:
 
-{* ../../docs_src/request_form_models/tutorial001_an_py310.py hl[9:11,15] *}
+{* ../../docs_src/request_form_models/tutorial001.py hl[9:11,15] *}
 
 **FastAPI** will **extract** the data for **each field** from the **form data** in the request and give you the Pydantic model you defined.
 
-Boolean fields follow the same [omission rules](request-forms.md#boolean-form-fields) as individual form parameters.
+For [HTML checkboxes](request-forms.md#boolean-form-fields), declare boolean fields with a default of `False`.
 
 ## Check the Docs { #check-the-docs }
 
@@ -50,7 +50,7 @@ This is supported since FastAPI version `0.114.0`. 🤓
 
 You can use Pydantic's model configuration to `forbid` any `extra` fields:
 
-{* ../../docs_src/request_form_models/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/request_form_models/tutorial002.py hl[12] *}
 
 If a client tries to send some extra data, they will receive an **error** response.
 
@@ -74,6 +74,58 @@ They will receive an error response telling them that the field `extra` is not a
     ]
 }
 ```
+
+## Combine Form Models { #combine-form-models }
+
+You can combine multiple form models with individual `Form` parameters.
+
+{* ../../docs_src/request_form_models/tutorial003.py hl[9:14,19:21] *}
+
+The client sends `name`, `tags`, and `token` as form fields. Each model validates the form fields independently.
+
+Each model's `extra` configuration applies to all form fields, including fields and files declared in other parameters or dependencies. With `extra="forbid"`, any field outside that model is rejected. With `extra="allow"`, those fields are included as model extras.
+
+If multiple declarations use the same form field name, each validates that field's value. Use compatible types and constraints for shared fields so the OpenAPI schema can describe them consistently.
+
+## Optional Form Models { #optional-form-models }
+
+Declare a form model with `| None` and a default of `None` to make the group optional.
+
+{* ../../docs_src/request_form_models/tutorial005.py hl[17] *}
+
+If neither `name` nor `age` is sent, `profile` is `None`. If either is sent, FastAPI validates the model and requires both fields. An empty submitted value also counts as supplying a field.
+
+Using `| None` without a default still makes the parameter required.
+
+Extra fields follow the model's `extra` configuration. Ignored extras do not make the model present.
+
+An optional model containing only unchecked checkboxes is omitted. Send a value such as `enabled=false` to supply it explicitly.
+
+## Optional Unions of Form Models { #optional-unions-of-form-models }
+
+You can also use an optional union of models.
+
+{* ../../docs_src/request_form_models/tutorial006.py hl[9:16,21] *}
+
+If no form fields are sent, `contact` is `None`. Send `kind=person` with `name`, or `kind=company` with `company_name`. The discriminator selects which model to validate.
+
+## Combine Unions of Form Models { #combine-unions-of-form-models }
+
+You can combine unions with other form models, individual `Form` parameters, and `File` parameters. Each union is validated independently.
+
+{* ../../docs_src/request_form_models/tutorial007.py hl[31:35] *}
+
+Send all fields in the same form. For example, send `contact_type=person`, `name=Rick`, `notification_type=email`, `email=rick@example.com`, and `token=secret`.
+
+Omit the notification fields to leave `notification` as `None`.
+
+## Form Models and Files { #form-models-and-files }
+
+You can also combine a form model with [file parameters](request-files.md).
+
+{* ../../docs_src/request_form_models/tutorial004.py hl[14] *}
+
+Here the client sends the `name` field and the `avatar` file using `multipart/form-data`.
 
 ## Summary { #summary }
 

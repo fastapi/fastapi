@@ -5,7 +5,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 
 但 FastAPI 也支持以相同方式使用 [`dataclasses`](https://docs.python.org/3/library/dataclasses.html)：
 
-{* ../../docs_src/dataclasses_/tutorial001_py310.py hl[1,6:11,18:19] *}
+{* ../../docs_src/dataclasses_/tutorial001.py hl[1,6:11,18:19] *}
 
 这仍然得益于 **Pydantic**，因为它对 [`dataclasses` 的内置支持](https://pydantic.dev/docs/validation/latest/concepts/dataclasses/#usage-of-stdlib-dataclasses-with-basemodel)。
 
@@ -33,7 +33,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 
 你也可以在 `response_model` 参数中使用 `dataclasses`：
 
-{* ../../docs_src/dataclasses_/tutorial002_py310.py hl[1,6:12,18] *}
+{* ../../docs_src/dataclasses_/tutorial002.py hl[1,6:12,18] *}
 
 该数据类会被自动转换为 Pydantic 的数据类。
 
@@ -49,7 +49,7 @@ FastAPI 基于 **Pydantic** 构建，我已经向你展示过如何使用 Pydant
 
 在这种情况下，你可以直接把标准的 `dataclasses` 替换为 `pydantic.dataclasses`，它是一个可直接替换的实现：
 
-{* ../../docs_src/dataclasses_/tutorial003_py310.py hl[1,4,7:10,13:16,22:24,27] *}
+{* ../../docs_src/dataclasses_/tutorial003.py hl[1,4,7:10,13:16,22:24,27] *}
 
 1. 我们仍然从标准库的 `dataclasses` 导入 `field`。
 2. `pydantic.dataclasses` 是 `dataclasses` 的可直接替换版本。

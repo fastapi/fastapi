@@ -29,15 +29,15 @@ Par exemple, vous pouvez l'utiliser pour créer une session de base de données 
 
 Seul le code précédant et incluant l'instruction `yield` est exécuté avant la création de la réponse :
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 La valeur transmise par `yield` est celle qui est injectée dans les *chemins d'accès* et autres dépendances :
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 Le code suivant l'instruction `yield` est exécuté après la réponse :
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
 /// tip | Astuce
 
@@ -57,7 +57,7 @@ Vous pouvez donc rechercher cette exception spécifique dans la dépendance avec
 
 De la même manière, vous pouvez utiliser `finally` pour vous assurer que les étapes de sortie sont exécutées, qu'il y ait eu une exception ou non.
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## Utiliser des sous-dépendances avec `yield` { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ Vous pouvez avoir des sous-dépendances et des « arbres » de sous-dépendances
 
 Par exemple, `dependency_c` peut dépendre de `dependency_b`, et `dependency_b` de `dependency_a` :
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[6,14,22] *}
 
 Et elles peuvent toutes utiliser `yield`.
 
@@ -75,7 +75,7 @@ Dans ce cas, `dependency_c`, pour exécuter son code de sortie, a besoin que la 
 
 Et, à son tour, `dependency_b` a besoin que la valeur de `dependency_a` (appelée ici `dep_a`) soit disponible pour son code de sortie.
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[18:19,26:27] *}
 
 De la même manière, vous pouvez avoir certaines dépendances avec `yield` et d'autres avec `return`, et faire en sorte que certaines dépendent des autres.
 
@@ -109,7 +109,7 @@ Mais elle est à votre disposition si vous en avez besoin. 🤓
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b.py hl[18:22,31] *}
 
 Si vous souhaitez intercepter des exceptions et créer une réponse personnalisée en fonction de cela, créez un [Gestionnaire d'exceptions personnalisé](../handling-errors.md#install-custom-exception-handlers).
 
@@ -117,7 +117,7 @@ Si vous souhaitez intercepter des exceptions et créer une réponse personnalis�
 
 Si vous interceptez une exception avec `except` dans une dépendance avec `yield` et que vous ne la relancez pas (ou que vous ne levez pas une nouvelle exception), FastAPI ne pourra pas remarquer qu'il y a eu une exception, de la même manière que cela se produirait avec Python classique :
 
-{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c.py hl[15:16] *}
 
 Dans ce cas, le client verra une réponse *HTTP 500 Internal Server Error* comme il se doit, étant donné que nous ne levons pas de `HTTPException` ou similaire, mais le serveur **n'aura aucun logs** ni aucune autre indication de l'erreur. 😱
 
@@ -127,7 +127,7 @@ Si vous interceptez une exception dans une dépendance avec `yield`, à moins de
 
 Vous pouvez relancer la même exception avec `raise` :
 
-{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d.py hl[17] *}
 
 À présent, le client recevra la même réponse *HTTP 500 Internal Server Error*, mais le serveur aura notre `InternalError` personnalisé dans les logs. 😎
 
@@ -190,7 +190,7 @@ Normalement, le code de sortie des dépendances avec `yield` est exécuté **apr
 
 Mais si vous savez que vous n'aurez pas besoin d'utiliser la dépendance après être revenu de la *fonction de chemin d'accès*, vous pouvez utiliser `Depends(scope="function")` pour indiquer à FastAPI qu'il doit fermer la dépendance après le retour de la *fonction de chemin d'accès*, mais **avant** que la **réponse ne soit envoyée**.
 
-{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e.py hl[12,16] *}
 
 `Depends()` reçoit un paramètre `scope` qui peut être :
 
@@ -270,7 +270,7 @@ En Python, vous pouvez créer des gestionnaires de contexte en [créant une clas
 Vous pouvez également les utiliser dans des dépendances **FastAPI** avec `yield` en utilisant
 des instructions `with` ou `async with` à l'intérieur de la fonction de dépendance :
 
-{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
 /// tip | Astuce
 

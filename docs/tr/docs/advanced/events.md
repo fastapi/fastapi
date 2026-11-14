@@ -30,7 +30,7 @@ Bu *startup* ve *shutdown* mantığını, `FastAPI` uygulamasının `lifespan` p
 
 Aşağıdaki gibi `yield` kullanan async bir `lifespan()` fonksiyonu oluşturuyoruz:
 
-{* ../../docs_src/events/tutorial003_py310.py hl[16,19] *}
+{* ../../docs_src/events/tutorial003.py hl[16,19] *}
 
 Burada, `yield` öncesinde (sahte) model fonksiyonunu machine learning modellerini içeren dictionary’e koyarak, modeli yükleme gibi maliyetli bir *startup* işlemini simüle ediyoruz. Bu kod, *startup* sırasında, uygulama **request almaya başlamadan önce** çalıştırılır.
 
@@ -48,7 +48,7 @@ Belki yeni bir sürüm başlatmanız gerekiyordur, ya da çalıştırmaktan sık
 
 Dikkat edilmesi gereken ilk şey, `yield` içeren async bir fonksiyon tanımlıyor olmamız. Bu, `yield` kullanan Dependencies’e oldukça benzer.
 
-{* ../../docs_src/events/tutorial003_py310.py hl[14:19] *}
+{* ../../docs_src/events/tutorial003.py hl[14:19] *}
 
 Fonksiyonun `yield`’den önceki kısmı, uygulama başlamadan **önce** çalışır.
 
@@ -60,7 +60,7 @@ Bakarsanız, fonksiyon `@asynccontextmanager` ile dekore edilmiş.
 
 Bu da fonksiyonu "**async context manager**" denen şeye dönüştürür.
 
-{* ../../docs_src/events/tutorial003_py310.py hl[1,13] *}
+{* ../../docs_src/events/tutorial003.py hl[1,13] *}
 
 Python’da **context manager**, `with` ifadesi içinde kullanabildiğiniz bir yapıdır. Örneğin `open()` bir context manager olarak kullanılabilir:
 
@@ -82,7 +82,7 @@ Yukarıdaki kod örneğimizde bunu doğrudan kullanmıyoruz; bunun yerine FastAP
 
 `FastAPI` uygulamasının `lifespan` parametresi bir **async context manager** alır; dolayısıyla oluşturduğumuz yeni `lifespan` async context manager’ını buraya geçebiliriz.
 
-{* ../../docs_src/events/tutorial003_py310.py hl[22] *}
+{* ../../docs_src/events/tutorial003.py hl[22] *}
 
 ## Alternatif Events (kullanımdan kaldırıldı) { #alternative-events-deprecated }
 
@@ -104,7 +104,7 @@ Bu fonksiyonlar `async def` ile veya normal `def` ile tanımlanabilir.
 
 Uygulama başlamadan önce çalıştırılacak bir fonksiyon eklemek için, `"startup"` event’i ile tanımlayın:
 
-{* ../../docs_src/events/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/events/tutorial001.py hl[8] *}
 
 Bu durumda `startup` event handler fonksiyonu, "database" öğesini (sadece bir `dict`) bazı değerlerle başlatır.
 
@@ -116,7 +116,7 @@ Ve tüm `startup` event handler’ları tamamlanmadan uygulamanız request almay
 
 Uygulama kapanırken çalıştırılacak bir fonksiyon eklemek için, `"shutdown"` event’i ile tanımlayın:
 
-{* ../../docs_src/events/tutorial002_py310.py hl[6] *}
+{* ../../docs_src/events/tutorial002.py hl[6] *}
 
 Burada `shutdown` event handler fonksiyonu, `log.txt` dosyasına `"Application shutdown"` satırını yazar.
 

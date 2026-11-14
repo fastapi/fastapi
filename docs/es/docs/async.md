@@ -15,7 +15,7 @@ results = await some_library()
 Entonces, declara tus *path operation functions* con `async def` así:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ Solo puedes usar `await` dentro de funciones creadas con `async def`.
 Si estás usando un paquete de terceros que se comunica con algo (una base de datos, una API, el sistema de archivos, etc.) y no tiene soporte para usar `await` (este es actualmente el caso para la mayoría de los paquetes de base de datos), entonces declara tus *path operation functions* como normalmente, usando simplemente `def`, así:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -302,7 +302,7 @@ Para ver cómo lograr este paralelismo en producción, consulta la sección sobr
 
 ## `async` y `await` { #async-and-await }
 
-Las versiones modernas de Python tienen una forma muy intuitiva de definir código asíncrono. Esto hace que se vea igual que el código "secuencial" normal y hace el "wait" por ti en los momentos adecuados.
+Las versiones modernas de Python tienen una forma muy intuitiva de definir código asíncrono. Esto hace que se vea igual que el código "secuencial" normal y hace la "espera" por ti en los momentos adecuados.
 
 Cuando hay una operación que requerirá esperar antes de dar los resultados y tiene soporte para estas nuevas funcionalidades de Python, puedes programarlo así:
 
@@ -316,7 +316,7 @@ Para que `await` funcione, tiene que estar dentro de una función que soporte es
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
-    # Hacer algunas cosas asíncronas para crear las hamburguesas
+    # Haz algunas cosas asíncronas para crear las hamburguesas
     return burgers
 ```
 
@@ -325,7 +325,7 @@ async def get_burgers(number: int):
 ```Python hl_lines="2"
 # Esto no es asíncrono
 def get_sequential_burgers(number: int):
-    # Hacer algunas cosas secuenciales para crear las hamburguesas
+    # Haz algunas cosas secuenciales para crear las hamburguesas
     return burgers
 ```
 
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 Así que, si estás usando un paquete que te dice que puedes llamarlo con `await`, necesitas crear las *path operation functions* que lo usen con `async def`, como en:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
@@ -435,7 +435,7 @@ Cualquier otra función de utilidad que llames directamente puede ser creada con
 
 Esto contrasta con las funciones que FastAPI llama por ti: *path operation functions* y dependencias.
 
-Si tu función de utilidad es una función normal con `def`, será llamada directamente (como la escribas en tu código), no en un threadpool; si la función es creada con `async def` entonces deberías "await" por esa función cuando la llames en tu código.
+Si tu función de utilidad es una función normal con `def`, será llamada directamente (como la escribas en tu código), no en un threadpool; si la función es creada con `async def` entonces deberías usar `await` con esa función cuando la llames en tu código.
 
 ---
 

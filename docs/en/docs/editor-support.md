@@ -21,3 +21,7 @@ By default, the extension will automatically discover FastAPI applications in yo
 - **Stream Application Logs** - Real-time log streaming from your FastAPI Cloud-deployed application with level filtering and text search.
 
 If you'd like to familiarize yourself with the extension's features, you can check out the extension walkthrough by opening the Command Palette (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> or on macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>) and selecting "Welcome: Open walkthrough..." and then choosing the "Get started with FastAPI" walkthrough.
+
+## AI coding agents { #ai-coding-agents }
+
+See [Develop with AI](ai-development.md) to install and use the official FastAPI skill.

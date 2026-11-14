@@ -62,7 +62,7 @@ OAuth2 के लिए वे बस strings हैं।
 
 पहले, आइए जल्दी से देखें कि मुख्य **Tutorial - User Guide** में [Password के साथ OAuth2 (और hashing), JWT tokens के साथ Bearer](../../tutorial/security/oauth2-jwt.md) के examples से कौन से parts बदलते हैं। अब OAuth2 scopes का उपयोग करते हुए:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 अब आइए उन बदलावों को step by step review करें।
 
@@ -72,7 +72,7 @@ OAuth2 के लिए वे बस strings हैं।
 
 `scopes` parameter एक `dict` receive करता है जिसमें प्रत्येक scope key के रूप में और description value के रूप में होती है:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 क्योंकि अब हम उन scopes को declare कर रहे हैं, वे API docs में तब दिखाई देंगे जब आप log-in/authorize करेंगे।
 
@@ -98,7 +98,7 @@ OAuth2 के लिए वे बस strings हैं।
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## *path operations* और dependencies में scopes declare करें { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ OAuth2 के लिए वे बस strings हैं।
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | तकनीकी विवरण
 
@@ -150,7 +150,7 @@ OAuth2 के लिए वे बस strings हैं।
 
 यह `SecurityScopes` class `Request` के समान है (`Request` का उपयोग request object को सीधे प्राप्त करने के लिए किया गया था)।
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## `scopes` का उपयोग करें { #use-the-scopes }
 
@@ -164,7 +164,7 @@ Parameter `security_scopes` का type `SecurityScopes` होगा।
 
 इस exception में, हम required scopes (यदि कोई हों) को spaces से अलग की गई string के रूप में शामिल करते हैं (`scope_str` का उपयोग करके)। हम scopes वाली उस string को `WWW-Authenticate` header में रखते हैं (यह spec का part है)।
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## `username` और data shape verify करें { #verify-the-username-and-data-shape }
 
@@ -180,7 +180,7 @@ Pydantic के साथ data validate करके हम यह सुनि�
 
 हम यह भी verify करते हैं कि हमारे पास उस username वाला user है, और यदि नहीं, तो हम वही exception raise करते हैं जो हमने पहले बनाया था।
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## `scopes` verify करें { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ Pydantic के साथ data validate करके हम यह सुनि�
 
 इसके लिए, हम `security_scopes.scopes` का उपयोग करते हैं, जिसमें इन सभी scopes की `list` `str` के रूप में होती है।
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## Dependency tree और scopes { #dependency-tree-and-scopes }
 

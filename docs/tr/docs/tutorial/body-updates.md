@@ -6,7 +6,7 @@ Bir öğeyi güncellemek için [HTTP `PUT`](https://developer.mozilla.org/en-US/
 
 Girdi verisini JSON olarak saklanabilecek bir formata (ör. bir NoSQL veritabanı ile) dönüştürmek için `jsonable_encoder` kullanabilirsiniz. Örneğin, `datetime` değerlerini `str`'ye çevirmek gibi.
 
-{* ../../docs_src/body_updates/tutorial001_py310.py hl[28:33] *}
+{* ../../docs_src/body_updates/tutorial001.py hl[28:33] *}
 
 `PUT`, mevcut verinin yerine geçmesi gereken veriyi almak için kullanılır.
 
@@ -54,7 +54,7 @@ Bu, `item` modeli oluşturulurken set edilmiş verileri içeren; varsayılan de�
 
 Sonrasında bunu, yalnızca set edilmiş (request'te gönderilmiş) veriyi içeren; varsayılan değerleri atlayan bir `dict` üretmek için kullanabilirsiniz:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[32] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[32] *}
 
 ### Pydantic'in `update` parametresini kullanma { #using-pydantics-update-parameter }
 
@@ -62,7 +62,7 @@ Artık `.model_copy()` ile mevcut modelin bir kopyasını oluşturup, güncellen
 
 Örneğin: `stored_item_model.model_copy(update=update_data)`:
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[33] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[33] *}
 
 ### Kısmi güncellemeler özeti { #partial-updates-recap }
 
@@ -79,7 +79,7 @@ Artık `.model_copy()` ile mevcut modelin bir kopyasını oluşturup, güncellen
 * Veriyi DB'nize kaydedin.
 * Güncellenmiş modeli döndürün.
 
-{* ../../docs_src/body_updates/tutorial002_py310.py hl[28:35] *}
+{* ../../docs_src/body_updates/tutorial002.py hl[28:35] *}
 
 /// tip | İpucu
 

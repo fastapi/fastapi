@@ -12,7 +12,7 @@ OpenAPIの「エキスパート」でなければ、これはおそらく必要�
 
 各オペレーションで一意になるようにする必要があります。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
 ### *path operation関数* の名前をoperationIdとして使用する { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ API の関数名を `operationId` として使いたい場合は、`FastAPI` に
 
 この関数は各 `APIRoute` を受け取り、その *path operation* で使う `operationId` を返します。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,5:6,9] *}
 
 /// warning | 注意
 
@@ -34,7 +34,7 @@ API の関数名を `operationId` として使いたい場合は、`FastAPI` に
 
 生成されるOpenAPIスキーマ（つまり、自動ドキュメント生成の仕組み）から *path operation* を除外するには、`include_in_schema` パラメータを使用して `False` に設定します。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
 ## docstringによる説明の高度な設定 { #advanced-description-from-docstring }
 
@@ -44,7 +44,7 @@ API の関数名を `operationId` として使いたい場合は、`FastAPI` に
 
 ドキュメントには表示されませんが、他のツール（Sphinxなど）は残りの部分を利用できます。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[17:27] *}
 
 ## 追加レスポンス { #additional-responses }
 
@@ -86,7 +86,7 @@ OpenAPI仕様では [Operation Object](https://github.com/OAI/OpenAPI-Specificat
 
 この `openapi_extra` は、例えば [OpenAPI Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) を宣言するのに役立ちます。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
 自動APIドキュメントを開くと、その拡張は特定の *path operation* の下部に表示されます。
 
@@ -133,7 +133,7 @@ OpenAPI仕様では [Operation Object](https://github.com/OAI/OpenAPI-Specificat
 
 それは `openapi_extra` で行えます。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
 
 この例では、Pydanticモデルを一切宣言していません。実際、リクエストボディはJSONとして <dfn title="bytes などのプレーンな形式から Python オブジェクトに変換される">パース</dfn> されず、直接 `bytes` として読み取られます。そして `magic_data_reader()` 関数が、何らかの方法でそれをパースする責務を担います。
 
@@ -147,7 +147,7 @@ OpenAPI仕様では [Operation Object](https://github.com/OAI/OpenAPI-Specificat
 
 例えばこのアプリケーションでは、PydanticモデルからJSON Schemaを抽出するFastAPIの統合機能や、JSONの自動バリデーションを使っていません。実際、リクエストのcontent typeをJSONではなくYAMLとして宣言しています。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[15:20, 22] *}
 
 それでも、デフォルトの統合機能を使っていないにもかかわらず、YAMLで受け取りたいデータのために、Pydanticモデルを使って手動でJSON Schemaを生成しています。
 
@@ -155,7 +155,7 @@ OpenAPI仕様では [Operation Object](https://github.com/OAI/OpenAPI-Specificat
 
 その後、コード内でそのYAMLコンテンツを直接パースし、さらに同じPydanticモデルを使ってYAMLコンテンツを検証しています。
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[24:31] *}
 
 /// tip | 豆知識
 

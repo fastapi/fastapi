@@ -6,7 +6,7 @@
 
 그런 경우에, 애플리케이션의 모든 *경로 처리*에 적용될 것입니다:
 
-{* ../../docs_src/dependencies/tutorial012_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial012.py hl[17] *}
 
 그리고 [*경로 처리 데코레이터*에 `dependencies` 추가하기](dependencies-in-path-operation-decorators.md) 섹션의 모든 아이디어는 여전히 적용되지만, 이 경우에는 애플리케이션의 모든 *경로 처리*에 적용됩니다.
 

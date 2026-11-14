@@ -14,7 +14,7 @@
 
 이를 위해서는 `JSONResponse`를 가져와서 원하는 `status_code`를 설정하여 콘텐츠를 직접 반환합니다:
 
-{* ../../docs_src/additional_status_codes/tutorial001_an_py310.py hl[4,25] *}
+{* ../../docs_src/additional_status_codes/tutorial001.py hl[4,25] *}
 
 /// warning
 

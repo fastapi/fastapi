@@ -2,7 +2,7 @@
 
 Im vorherigen Kapitel hat das Sicherheitssystem (das auf dem Dependency Injection System basiert) der *Pfadoperation-Funktion* einen `token` vom Typ `str` überreicht:
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 Aber das ist immer noch nicht so nützlich.
 
@@ -14,7 +14,7 @@ Erstellen wir zunächst ein Pydantic-Benutzermodell.
 
 So wie wir Pydantic zum Deklarieren von Bodys verwenden, können wir es auch überall sonst verwenden:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## Eine `get_current_user`-Abhängigkeit erstellen { #create-a-get-current-user-dependency }
 
@@ -26,19 +26,19 @@ Erinnern Sie sich, dass Abhängigkeiten Unterabhängigkeiten haben können?
 
 So wie wir es zuvor in der *Pfadoperation* direkt gemacht haben, erhält unsere neue Abhängigkeit `get_current_user` von der Unterabhängigkeit `oauth2_scheme` einen `token` vom Typ `str`:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## Den Benutzer abrufen { #get-the-user }
 
 `get_current_user` wird eine von uns erstellte (gefakte) Hilfsfunktion verwenden, welche einen Token vom Typ `str` entgegennimmt und unser Pydantic-`User`-Modell zurückgibt:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## Den aktuellen Benutzer einfügen { #inject-the-current-user }
 
 Und jetzt können wir wiederum `Depends` mit unserem `get_current_user` in der *Pfadoperation* verwenden:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 Beachten Sie, dass wir als Typ von `current_user` das Pydantic-Modell `User` deklarieren.
 
@@ -92,7 +92,7 @@ Und alle (oder beliebige Teile davon) können Vorteil ziehen aus der Wiederverwe
 
 Und alle diese Tausenden von *Pfadoperationen* können nur drei Zeilen lang sein:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## Zusammenfassung { #recap }
 

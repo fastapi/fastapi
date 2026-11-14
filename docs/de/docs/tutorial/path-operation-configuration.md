@@ -16,7 +16,7 @@ Sie können direkt den `int`-Code übergeben, etwa `404`.
 
 Aber falls Sie sich nicht mehr erinnern, wofür jeder Nummerncode steht, können Sie die Abkürzungs-Konstanten in `status` verwenden:
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 Dieser Statuscode wird in der Response verwendet und zum OpenAPI-Schema hinzugefügt.
 
@@ -32,7 +32,7 @@ Sie können auch `from starlette import status` verwenden.
 
 Sie können Ihrer *Pfadoperation* Tags hinzufügen, indem Sie dem Parameter `tags` eine `list`e von `str`s übergeben (in der Regel nur ein `str`):
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 Diese werden zum OpenAPI-Schema hinzugefügt und von den automatischen Dokumentations-Benutzeroberflächen verwendet:
 
@@ -46,13 +46,13 @@ In diesen Fällen kann es sinnvoll sein, die Tags in einem `Enum` zu speichern.
 
 **FastAPI** unterstützt das auf die gleiche Weise wie einfache Strings:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## Zusammenfassung und Beschreibung { #summary-and-description }
 
 Sie können eine <abbr title="Zusammenfassung">`summary`</abbr> und eine <abbr title="Beschreibung">`description`</abbr> hinzufügen:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## Beschreibung mittels Docstring { #description-from-docstring }
 
@@ -60,7 +60,7 @@ Da Beschreibungen oft mehrere Zeilen lang sind, können Sie die Beschreibung der
 
 Sie können [Markdown](https://en.wikipedia.org/wiki/Markdown) im Docstring schreiben, es wird korrekt interpretiert und angezeigt (unter Berücksichtigung der Einrückung des Docstring).
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 Es wird in der interaktiven Dokumentation verwendet:
 
@@ -70,7 +70,7 @@ Es wird in der interaktiven Dokumentation verwendet:
 
 Sie können die Response mit dem Parameter `response_description` beschreiben:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | Hinweis
 
@@ -92,7 +92,7 @@ Daher, wenn Sie keine vergeben, wird **FastAPI** automatisch eine für „Erfolg
 
 Wenn Sie eine *Pfadoperation* als <dfn title="veraltet, obsolet: Es soll nicht mehr verwendet werden">deprecatet</dfn> kennzeichnen möchten, ohne sie zu entfernen, fügen Sie den Parameter `deprecated` hinzu:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 Sie wird in der interaktiven Dokumentation gut sichtbar als deprecatet markiert werden:
 

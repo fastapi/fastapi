@@ -16,7 +16,7 @@ Usa base64 solo si definitivamente necesitas incluir datos binarios en JSON y no
 
 Puedes declarar un modelo de Pydantic con campos `bytes`, y luego usar `val_json_bytes` en la configuración del modelo para indicarle que use base64 para *validar* datos JSON de entrada; como parte de esa validación decodificará el string base64 en bytes.
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:9,29:35] hl[9] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:9,29:35] hl[9] *}
 
 Si revisas `/docs`, verás que el campo `data` espera bytes codificados en base64:
 
@@ -54,10 +54,10 @@ Recibirás una response como:
 
 También puedes usar campos `bytes` con `ser_json_bytes` en la configuración del modelo para datos de salida, y Pydantic *serializará* los bytes como base64 al generar la response JSON.
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:2,12:16,29,38:41] hl[16] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:2,12:16,29,38:41] hl[16] *}
 
 ## Pydantic `bytes` para datos de entrada y salida { #pydantic-bytes-for-input-and-output-data }
 
 Y por supuesto, puedes usar el mismo modelo configurado para usar base64 para manejar tanto la entrada (*validar*) con `val_json_bytes` como la salida (*serializar*) con `ser_json_bytes` al recibir y enviar datos JSON.
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:2,19:26,29,44:46] hl[23:26] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:2,19:26,29,44:46] hl[23:26] *}

@@ -26,7 +26,7 @@ Bu response `dict`'lerinin her birinde, `response_model`'e benzer şekilde bir P
 
 Örneğin, `404` status code'u ve `Message` Pydantic model'i ile başka bir response tanımlamak için şunu yazabilirsiniz:
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | Not
 
@@ -175,7 +175,7 @@ Aynı `responses` parametresini, aynı ana response için farklı media type'lar
 
 Örneğin, `image/png` için ek bir media type ekleyerek, *path operation*'ınızın bir JSON nesnesi (media type `application/json`) ya da bir PNG görseli döndürebildiğini belirtebilirsiniz:
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | Not
 
@@ -203,7 +203,7 @@ Varsayılan `200` status code'unu (ya da gerekiyorsa özel bir tane) kullanarak 
 
 Ayrıca `response_model`'inizi kullanan, ancak özel bir `example` içeren `200` status code'lu bir response da tanımlayabilirsiniz:
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 Bunların hepsi OpenAPI'nize birleştirilerek dahil edilir ve API dokümanlarında gösterilir:
 
@@ -237,7 +237,7 @@ Bu tekniği, *path operation*'larınızda bazı ön tanımlı response'ları yen
 
 Örneğin:
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## OpenAPI Response'ları Hakkında Daha Fazla Bilgi { #more-information-about-openapi-responses }
 

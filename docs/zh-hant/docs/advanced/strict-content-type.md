@@ -77,7 +77,7 @@ http://localhost:8000/v1/agents/multivac
 
 若你需要支援未送出 `Content-Type` 標頭的客戶端，可以將 `strict_content_type=False` 以停用嚴格檢查：
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 啟用此設定後，缺少 `Content-Type` 標頭的請求會將其主體解析為 JSON，這與舊版 FastAPI 的行為相同。
 

@@ -22,7 +22,7 @@ FastAPI 0.134.0에 추가되었습니다.
 
 *경로 처리 함수*에서 `response_class=StreamingResponse`를 선언하면 `yield`를 사용해 데이터 청크를 순차적으로 보낼 수 있습니다.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI는 각 데이터 청크를 있는 그대로 `StreamingResponse`에 전달하며, JSON 등으로 변환하려고 하지 않습니다.
 
@@ -30,7 +30,7 @@ FastAPI는 각 데이터 청크를 있는 그대로 `StreamingResponse`에 전�
 
 `async`가 없는 일반 `def` 함수에서도 동일하게 `yield`를 사용할 수 있습니다.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### 타입 애너테이션 생략하기 { #no-annotation }
 
@@ -38,7 +38,7 @@ FastAPI는 각 데이터 청크를 있는 그대로 `StreamingResponse`에 전�
 
 FastAPI는 데이터를 Pydantic으로 JSON으로 변환하거나 어떤 방식으로든 직렬화하지 않으므로, 이 경우 타입 애너테이션은 편집기나 도구를 위한 용도일 뿐이며 FastAPI에서는 사용되지 않습니다.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 이는 곧 `StreamingResponse`를 사용할 때 타입 애너테이션과 무관하게, 전송 기준에 맞춰 바이트 데이터를 생성하고 인코딩할 **자유**와 **책임**이 여러분에게 있음을 의미합니다. 🤓
 
@@ -46,7 +46,7 @@ FastAPI는 데이터를 Pydantic으로 JSON으로 변환하거나 어떤 방식�
 
 주요 사용 사례 중 하나는 문자열 대신 `bytes`를 스트리밍하는 것입니다. 물론 그렇게 할 수 있습니다.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## 사용자 정의 `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ FastAPI는 데이터를 Pydantic으로 JSON으로 변환하거나 어떤 방식�
 
 예를 들어 `media_type` 속성을 사용해 `Content-Type` 헤더를 `image/png`로 설정하는 `PNGStreamingResponse`를 만들 수 있습니다:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 그런 다음 *경로 처리 함수*에서 `response_class=PNGStreamingResponse`로 이 새 클래스를 사용할 수 있습니다:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### 파일 시뮬레이션 { #simulate-a-file }
 
@@ -68,7 +68,7 @@ FastAPI는 데이터를 Pydantic으로 JSON으로 변환하거나 어떤 방식�
 
 예를 들어 실제 파일처럼 내용을 소비하기 위해 순회(iterate)할 수 있습니다.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | 기술 세부사항
 
@@ -100,7 +100,7 @@ FastAPI는 데이터를 Pydantic으로 JSON으로 변환하거나 어떤 방식�
 
 이벤트 루프가 블로킹되는 것을 피하려면 *경로 처리 함수*를 `async def` 대신 일반 `def`로 선언하세요. 그러면 FastAPI가 스레드풀 워커에서 실행하여 메인 루프가 막히지 않도록 합니다.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip | 팁
 
@@ -114,4 +114,4 @@ FastAPI는 데이터를 Pydantic으로 JSON으로 변환하거나 어떤 방식�
 
 이는 FastAPI에 특화된 기능이 아니라 순수한 파이썬 기능이지만, 알아두면 유용한 트릭입니다. 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

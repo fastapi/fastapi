@@ -20,7 +20,7 @@ Vous pouvez déclarer un paramètre de type `Response` dans votre *fonction de c
 
 Vous pouvez ensuite définir le `status_code` dans cet objet de réponse *temporaire*.
 
-{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
 Vous pouvez ensuite renvoyer n'importe quel objet nécessaire, comme d'habitude (un `dict`, un modèle de base de données, etc.).
 

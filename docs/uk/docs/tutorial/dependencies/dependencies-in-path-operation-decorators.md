@@ -14,7 +14,7 @@
 
 Це має бути `list` з `Depends()`:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[19] *}
 
 Ці залежності будуть виконані/оброблені так само, як звичайні залежності. Але їхні значення (якщо щось повертають) не передаватимуться у вашу *функцію операції шляху*.
 
@@ -44,13 +44,13 @@
 
 Вони можуть оголошувати вимоги до запиту (наприклад, заголовки) або інші підзалежності:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[8,13] *}
 
 ### Підіймати винятки { #raise-exceptions }
 
 Ці залежності можуть `raise` винятки, так само як і звичайні залежності:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[10,15] *}
 
 ### Значення, що повертаються { #return-values }
 
@@ -58,7 +58,7 @@
 
 Отже, ви можете перевикористати звичайну залежність (яка повертає значення), яку вже застосовуєте деінде, і навіть якщо значення не буде використано, залежність буде виконана:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[11,16] *}
 
 ## Залежності для групи операцій шляху { #dependencies-for-a-group-of-path-operations }
 

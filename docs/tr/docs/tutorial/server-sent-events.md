@@ -39,13 +39,13 @@ FastAPI ile SSE akışı yapmak için, *path operation function* içinde `yield`
 
 `EventSourceResponse`'u `fastapi.sse` içinden içe aktarın:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 Yield edilen her öğe JSON olarak kodlanır ve bir SSE olayının `data:` alanında gönderilir.
 
 Dönüş tipini `AsyncIterable[Item]` olarak bildirirseniz, FastAPI bunu Pydantic ile veriyi **doğrulamak**, **belgelemek** ve **serileştirmek** için kullanır.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip | İpucu
 
@@ -61,13 +61,13 @@ FastAPI, event loop'u bloke etmeyecek şekilde doğru biçimde çalışmasını 
 
 Bu örnekte fonksiyon async olmadığı için doğru dönüş tipi `Iterable[Item]` olur:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### Dönüş Tipi Olmadan { #no-return-type }
 
 Dönüş tipini belirtmeyebilirsiniz. FastAPI, veriyi dönüştürmek ve göndermek için [`jsonable_encoder`](./encoder.md) kullanır.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ Dönüş tipini belirtmeyebilirsiniz. FastAPI, veriyi dönüştürmek ve gönder
 
 `ServerSentEvent`'i `fastapi.sse` içinden içe aktarın:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 `data` alanı her zaman JSON olarak kodlanır. Pydantic modelleri dâhil, JSON olarak serileştirilebilen herhangi bir değeri geçebilirsiniz.
 
@@ -85,7 +85,7 @@ Veriyi JSON kodlaması olmadan göndermeniz gerekiyorsa, `data` yerine `raw_data
 
 Bu, önceden biçimlendirilmiş metin, log satırları veya `[DONE]` gibi özel <dfn title="Özel bir koşulu veya durumu belirtmek için kullanılan değer">"işaretçi"</dfn> değerleri göndermek için kullanışlıdır.
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note | Not
 
@@ -99,7 +99,7 @@ Bir tarayıcı bağlantı koptuktan sonra yeniden bağlandığında, son aldığ
 
 Bunu bir header parametresi olarak okuyup, istemcinin kaldığı yerden akışı sürdürmek için kullanabilirsiniz:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## POST ile SSE { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE, sadece `GET` değil, **tüm HTTP metodlarıyla** çalışır.
 
 Bu, SSE'yi `POST` üzerinden akıtan [MCP](https://modelcontextprotocol.io) gibi protokoller için kullanışlıdır:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## Teknik Detaylar { #technical-details }
 

@@ -17,7 +17,7 @@
 
 * [**Swagger UI**](https://github.com/swagger-api/swagger-ui)。インタラクティブに探索しつつ、ブラウザから直接 API を呼び出してテストできます。
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![Swagger UI の操作](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
 * [**ReDoc**](https://github.com/Redocly/redoc) による代替の API ドキュメント。
 
@@ -35,6 +35,7 @@
 from datetime import date
 
 from pydantic import BaseModel
+
 
 # 変数を str として宣言
 # 関数内でエディタの支援を受ける
@@ -85,11 +86,11 @@ Python 開発者調査では、[最もよく使われる機能の 1 つが「オ
 
 * [Visual Studio Code](https://code.visualstudio.com/) の場合:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![エディタのサポート](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * [PyCharm](https://www.jetbrains.com/pycharm/) の場合:
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![エディタのサポート](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 以前は不可能だと思っていたコードでも補完が得られます。例えば、リクエストから届く（ネストされている可能性のある）JSON ボディ内の `price` キーなどです。
 

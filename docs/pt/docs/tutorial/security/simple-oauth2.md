@@ -52,7 +52,7 @@ Agora vamos usar os utilitários fornecidos pelo **FastAPI** para lidar com isso
 
 Primeiro, importe `OAuth2PasswordRequestForm` e use-o como uma dependência com `Depends` na *operação de rota* para `/token`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[4,78] *}
+{* ../../docs_src/security/tutorial003.py hl[4,78] *}
 
 `OAuth2PasswordRequestForm` é uma dependência de classe que declara um corpo de formulário com:
 
@@ -96,11 +96,11 @@ Não estamos usando `scopes` neste exemplo, mas a funcionalidade está disponív
 
 Agora, obtenha os dados do usuário do banco de dados (falso), usando o `username` do campo do formulário.
 
-Se não existir tal usuário, retornaremos um erro dizendo "Incorrect username or password".
+Se não existir tal usuário, retornaremos um erro dizendo "Nome de usuário ou senha incorretos".
 
 Para o erro, usamos a exceção `HTTPException`:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[3,79:81] *}
+{* ../../docs_src/security/tutorial003.py hl[3,79:81] *}
 
 ### Confira a senha { #check-the-password }
 
@@ -126,7 +126,7 @@ Se o seu banco de dados for roubado, o ladrão não terá as senhas em texto sim
 
 Assim, o ladrão não poderá tentar usar essas mesmas senhas em outro sistema (como muitos usuários usam a mesma senha em todos os lugares, isso seria perigoso).
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[82:85] *}
+{* ../../docs_src/security/tutorial003.py hl[82:85] *}
 
 #### Sobre `**user_dict` { #about-user-dict }
 
@@ -136,17 +136,17 @@ Assim, o ladrão não poderá tentar usar essas mesmas senhas em outro sistema (
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    disabled = user_dict["disabled"],
-    hashed_password = user_dict["hashed_password"],
+    username=user_dict["username"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    disabled=user_dict["disabled"],
+    hashed_password=user_dict["hashed_password"],
 )
 ```
 
 /// note | Nota
 
-Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Extra Models**](../extra-models.md#about-user-in-model-dump).
+Para uma explicação mais completa de `**user_dict`, verifique [a documentação para **Modelos Extras**](../extra-models.md#about-user-in-model-dump).
 
 ///
 
@@ -158,17 +158,17 @@ Deve ter um `token_type`. No nosso caso, como estamos usando tokens "Bearer", o 
 
 E deve ter um `access_token`, com uma string contendo nosso token de acesso.
 
-Para este exemplo simples, seremos completamente inseguros e retornaremos o mesmo `username` do token.
+Para este exemplo simples, seremos completamente inseguros e retornaremos o mesmo `username` como token.
 
 /// tip | Dica
 
-No próximo capítulo, você verá uma implementação realmente segura, com hash de senha e tokens <abbr title="JSON Web Tokens">JWT</abbr>.
+No próximo capítulo, você verá uma implementação realmente segura, com hash de senha e tokens <abbr title="JSON Web Tokens - Tokens Web JSON">JWT</abbr>.
 
 Mas, por enquanto, vamos nos concentrar nos detalhes específicos de que precisamos.
 
 ///
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[87] *}
+{* ../../docs_src/security/tutorial003.py hl[87] *}
 
 /// tip | Dica
 
@@ -194,7 +194,7 @@ Ambas as dependências retornarão apenas um erro HTTP se o usuário não existi
 
 Portanto, em nosso endpoint, só obteremos um usuário se o usuário existir, tiver sido autenticado corretamente e estiver ativo:
 
-{* ../../docs_src/security/tutorial003_an_py310.py hl[58:66,69:74,94] *}
+{* ../../docs_src/security/tutorial003.py hl[58:66,69:74,94] *}
 
 /// note | Nota
 
@@ -224,9 +224,9 @@ Clique no botão "Authorize".
 
 Use as credenciais:
 
-User: `johndoe`
+Usuário: `johndoe`
 
-Password: `secret`
+Senha: `secret`
 
 <img src="/img/tutorial/security/image04.png">
 
@@ -264,9 +264,9 @@ Se você clicar no ícone de cadeado, sair e tentar a mesma operação novamente
 
 Agora tente com um usuário inativo, autentique-se com:
 
-User: `alice`
+Usuário: `alice`
 
-Password: `secret2`
+Senha: `secret2`
 
 E tente usar a operação `GET` com o caminho `/users/me`.
 
@@ -286,4 +286,4 @@ Usando essas ferramentas, você pode tornar o sistema de segurança compatível 
 
 O único detalhe que falta é que ainda não é realmente "seguro".
 
-No próximo capítulo você verá como usar uma biblioteca de hashing de senha segura e tokens <abbr title="JSON Web Tokens">JWT</abbr>.
+No próximo capítulo você verá como usar uma biblioteca de hashing de senha segura e tokens <abbr title="JSON Web Tokens - Tokens Web JSON">JWT</abbr>.

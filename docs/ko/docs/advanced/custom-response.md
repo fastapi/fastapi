@@ -30,7 +30,7 @@
 
 요약하면, 최대 성능이 필요하다면 [응답 모델](../tutorial/response-model.md)을 사용하고, *경로 처리 데코레이터*에 `response_class`를 선언하지 마세요.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
+{* ../../docs_src/response_model/tutorial001_01.py ln[15:17] hl[16] *}
 
 ## HTML 응답 { #html-response }
 
@@ -39,7 +39,7 @@
 * `HTMLResponse`를 임포트합니다.
 * *경로 처리 데코레이터*의 `response_class` 매개변수로 `HTMLResponse`를 전달합니다.
 
-{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// note | 참고
 
@@ -57,7 +57,7 @@
 
 위의 예제와 동일하게 `HTMLResponse`를 반환하는 코드는 다음과 같을 수 있습니다:
 
-{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning | 경고
 
@@ -81,7 +81,7 @@
 
 예를 들어, 다음과 같이 작성할 수 있습니다:
 
-{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 이 예제에서 `generate_html_response()` 함수는 HTML을 `str`로 반환하는 대신 이미 `Response`를 생성하고 반환합니다.
 
@@ -120,7 +120,7 @@
 
 FastAPI(정확히는 Starlette)가 자동으로 Content-Length 헤더를 포함시킵니다. 또한 `media_type`에 기반하여 Content-Type 헤더를 포함하며, 텍스트 타입의 경우 문자 집합을 추가합니다.
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -130,7 +130,7 @@ FastAPI(정확히는 Starlette)가 자동으로 Content-Length 헤더를 포함�
 
 텍스트 또는 바이트를 받아 일반 텍스트 응답을 반환합니다.
 
-{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -152,14 +152,14 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 `RedirectResponse`를 직접 반환할 수 있습니다:
 
-{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 또는 `response_class` 매개변수에서 사용할 수도 있습니다:
 
 
-{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 이 경우, *경로 처리* 함수에서 URL을 직접 반환할 수 있습니다.
 
@@ -169,13 +169,13 @@ HTTP 리디렉션 응답을 반환합니다. 기본적으로 상태 코드는 30
 
 `status_code` 매개변수를 `response_class` 매개변수와 함께 사용할 수도 있습니다:
 
-{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 비동기 제너레이터 또는 일반 제너레이터/이터레이터(`yield`가 있는 함수)를 받아 응답 본문을 스트리밍합니다.
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+{* ../../docs_src/custom_response/tutorial007.py hl[3,16] *}
 
 /// note | 기술 세부사항
 
@@ -208,11 +208,11 @@ JSON Lines를 스트리밍한다면, [JSON Lines 스트리밍](../tutorial/strea
 
 파일 응답에는 적절한 `Content-Length`, `Last-Modified`, 및 `ETag` 헤더가 포함됩니다.
 
-{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 또한 `response_class` 매개변수를 사용할 수도 있습니다:
 
-{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 이 경우, 경로 처리 함수에서 파일 경로를 직접 반환할 수 있습니다.
 
@@ -226,7 +226,7 @@ JSON Lines를 스트리밍한다면, [JSON Lines 스트리밍](../tutorial/strea
 
 `CustomORJSONResponse`를 생성할 수 있습니다. 여기서 핵심은 `Response.render(content)` 메서드를 생성하여 내용을 `bytes`로 반환하는 것입니다:
 
-{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 이제 다음 대신:
 
@@ -260,7 +260,7 @@ JSON Lines를 스트리밍한다면, [JSON Lines 스트리밍](../tutorial/strea
 
 아래 예제에서 **FastAPI**는 모든 *경로 처리*에서 JSON 대신 기본적으로 `HTMLResponse`를 사용합니다.
 
-{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip | 팁
 

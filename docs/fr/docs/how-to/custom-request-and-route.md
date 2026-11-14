@@ -42,7 +42,7 @@ S'il n'y a pas `gzip` dans l'en-tête, elle n'essaiera pas de décompresser le c
 
 De cette manière, la même classe de route peut gérer des requêtes gzip compressées ou non compressées.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### Créer une classe `GzipRoute` personnalisée { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@ Cette méthode renvoie une fonction. Et c'est cette fonction qui recevra une req
 
 Ici, nous l'utilisons pour créer une `GzipRequest` à partir de la requête originale.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | Détails techniques
 
@@ -92,18 +92,18 @@ Nous pouvons également utiliser cette même approche pour accéder au corps de 
 
 Il suffit de traiter la requête dans un bloc `try`/`except` :
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 Si une exception se produit, l'instance de `Request` sera toujours dans la portée, ce qui nous permet de lire et d'utiliser le corps de la requête lors du traitement de l'erreur :
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## Utiliser une classe `APIRoute` personnalisée dans un routeur { #custom-apiroute-class-in-a-router }
 
 Vous pouvez également définir le paramètre `route_class` d'un `APIRouter` :
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 Dans cet exemple, les *chemins d'accès* sous le `router` utiliseront la classe personnalisée `TimedRoute`, et auront un en-tête supplémentaire `X-Response-Time` dans la réponse avec le temps nécessaire pour générer la réponse :
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

@@ -15,7 +15,7 @@ results = await some_library()
 Тоді оголошуйте ваші *функції операції шляху* з `async def`, наприклад:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ async def read_results():
 Якщо ви використовуєте сторонню бібліотеку, яка взаємодіє з чимось (база даних, API, файлова система тощо) і не підтримує використання `await` (наразі це стосується більшості бібліотек баз даних), тоді оголошуйте ваші *функції операції шляху* як зазвичай, просто з `def`, наприклад:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 Отже, якщо ви використовуєте бібліотеку, яку можна викликати з `await`, вам потрібно створити *функцію операції шляху*, що її використовує, з `async def`, як тут:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers

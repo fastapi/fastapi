@@ -8,7 +8,7 @@
 
 また、デフォルトを`None`に設定することで、ボディパラメータをオプションとして宣言することもできます:
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | 備考
 
@@ -31,7 +31,7 @@
 
 しかし、`item`と`user`のように複数のボディパラメータを宣言することもできます:
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 
 この場合、**FastAPI**は関数内に複数のボディパラメータがあることに気付きます（Pydanticモデルである2つのパラメータがあります）。
@@ -73,7 +73,7 @@
 
 しかし、`Body`を使用して、**FastAPI** に別のボディキーとして扱うように指示することができます:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 
 この場合、**FastAPI** は以下のようなボディを期待します:
@@ -108,7 +108,7 @@ q: str | None = None
 
 例えば:
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 /// note | 備考
 
@@ -130,7 +130,7 @@ item: Annotated[Item, Body(embed=True)]
 
 以下において:
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 
 この場合、**FastAPI** は以下のようなボディを期待します:

@@ -8,7 +8,7 @@
 
 例如，你可以建立 `HTTPBearer` 的子類別，讓它回傳 `403 Forbidden` 錯誤，而不是預設的 `401 Unauthorized` 錯誤：
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001.py hl[9:13] *}
 
 /// tip
 注意這個函式回傳的是例外物件本身，而不是直接拋出它。拋出的動作會在其餘的內部程式碼中處理。

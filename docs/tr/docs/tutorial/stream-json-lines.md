@@ -76,11 +76,11 @@ Bunu bir **AI LLM** servisinden, **loglar**dan veya **telemetri**den ya da **JSO
 
 FastAPI ile JSON Lines akışı yapmak için, *path operation function* içinde `return` kullanmak yerine, her öğeyi sırayla üretmek için `yield` kullanabilirsiniz.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 Göndermek istediğiniz her JSON öğesi `Item` tipindeyse (bir Pydantic modeli) ve fonksiyon async ise, dönüş tipini `AsyncIterable[Item]` olarak belirtebilirsiniz:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 Dönüş tipini belirtirseniz, FastAPI bu tipi kullanarak veriyi **doğrular**, OpenAPI’de **dokümante** eder, **filtreler** ve Pydantic ile **serileştirir**.
 
@@ -98,13 +98,13 @@ FastAPI, event loop’u bloklamayacak şekilde doğru çalışmasını garanti e
 
 Bu durumda fonksiyon async olmadığı için doğru dönüş tipi `Iterable[Item]` olur:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### Dönüş Tipi Olmadan { #no-return-type }
 
 Dönüş tipini belirtmeyebilirsiniz de. Bu durumda FastAPI, veriyi JSON’a serileştirilebilir bir yapıya dönüştürmek için [`jsonable_encoder`](./encoder.md)’ı kullanır ve ardından JSON Lines olarak gönderir.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## Server-Sent Events (SSE) { #server-sent-events-sse }
 

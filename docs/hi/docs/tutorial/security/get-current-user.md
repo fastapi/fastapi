@@ -2,7 +2,7 @@
 
 पिछले अध्याय में security system (जो dependency injection system पर आधारित है) *path operation function* को `str` के रूप में एक `token` दे रहा था:
 
-{* ../../docs_src/security/tutorial001_an_py310.py hl[12] *}
+{* ../../docs_src/security/tutorial001.py hl[12] *}
 
 लेकिन वह अभी भी इतना उपयोगी नहीं है।
 
@@ -14,7 +14,7 @@
 
 जिस तरह हम bodies declare करने के लिए Pydantic का उपयोग करते हैं, उसी तरह हम इसे कहीं और भी उपयोग कर सकते हैं:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[5,12:16] *}
+{* ../../docs_src/security/tutorial002.py hl[5,12:16] *}
 
 ## एक `get_current_user` dependency बनाएँ { #create-a-get-current-user-dependency }
 
@@ -26,19 +26,19 @@
 
 ठीक वैसे ही जैसे हम पहले सीधे *path operation* में कर रहे थे, हमारी नई dependency `get_current_user` sub-dependency `oauth2_scheme` से `str` के रूप में एक `token` प्राप्त करेगी:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[25] *}
+{* ../../docs_src/security/tutorial002.py hl[25] *}
 
 ## user प्राप्त करें { #get-the-user }
 
 `get_current_user` हमारे द्वारा बनाई गई एक (fake) utility function का उपयोग करेगी, जो token को `str` के रूप में लेती है और हमारा Pydantic `User` model लौटाती है:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[19:22,26:27] *}
+{* ../../docs_src/security/tutorial002.py hl[19:22,26:27] *}
 
 ## current user inject करें { #inject-the-current-user }
 
 तो अब हम *path operation* में अपने `get_current_user` के साथ वही `Depends` उपयोग कर सकते हैं:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[31] *}
+{* ../../docs_src/security/tutorial002.py hl[31] *}
 
 ध्यान दें कि हम `current_user` का type Pydantic model `User` के रूप में declare करते हैं।
 
@@ -92,7 +92,7 @@ security और dependency injection से जुड़ी चीज़ें �
 
 और ये सभी हजारों *path operations* सिर्फ 3 lines जितने छोटे हो सकते हैं:
 
-{* ../../docs_src/security/tutorial002_an_py310.py hl[30:32] *}
+{* ../../docs_src/security/tutorial002.py hl[30:32] *}
 
 ## Recap { #recap }
 

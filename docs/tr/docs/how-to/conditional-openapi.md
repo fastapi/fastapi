@@ -29,7 +29,7 @@ Yine de, bazı ortamlarda (örn. production) veya environment variable'lardan ge
 
 Örneğin:
 
-{* ../../docs_src/conditional_openapi/tutorial001_py310.py hl[6,11] *}
+{* ../../docs_src/conditional_openapi/tutorial001.py hl[6,11] *}
 
 Burada `openapi_url` ayarını, varsayılanı `"/openapi.json"` olacak şekilde tanımlıyoruz.
 

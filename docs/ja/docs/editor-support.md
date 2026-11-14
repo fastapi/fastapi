@@ -21,3 +21,7 @@
 - **アプリケーションログのストリーミング** - FastAPI Cloud にデプロイしたアプリから、レベルフィルタやテキスト検索付きでリアルタイムにログをストリーミングできます。
 
 拡張機能の機能に慣れるには、コマンドパレット（<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>、macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>）を開き、「Welcome: Open walkthrough...」を選択してから、「Get started with FastAPI」のウォークスルーを選んでください。
+
+## AI コーディングエージェント { #ai-coding-agents }
+
+公式の FastAPI スキルのインストールと使用については、[AI を使った開発](ai-development.md)を参照してください。

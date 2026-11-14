@@ -6,7 +6,7 @@
 
 先匯入 `Cookie`：
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## 宣告 `Cookie` 參數 { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@
 
 你可以設定預設值，以及所有額外的驗證或註解參數：
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | 技術細節
 

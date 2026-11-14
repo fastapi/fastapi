@@ -2,7 +2,7 @@
 
 सबसे सरल FastAPI file ऐसी दिख सकती है:
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 इसे `main.py` नाम की file में copy करें।
 
@@ -230,7 +230,7 @@ CLI आपकी FastAPI application को अपने आप detect करे
 
 ### चरण 1: `FastAPI` import करें { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` एक Python class है जो आपकी API के लिए सारी functionality प्रदान करती है।
 
@@ -244,7 +244,7 @@ CLI आपकी FastAPI application को अपने आप detect करे
 
 ### चरण 2: एक `FastAPI` "instance" बनाएँ { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 यहाँ `app` variable class `FastAPI` का एक "instance" होगा।
 
@@ -313,7 +313,7 @@ APIs बनाते समय, आप आमतौर पर कोई specific
 
 #### एक *path operation decorator* define करें { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")` **FastAPI** को बताता है कि ठीक नीचे वाला function उन requests को handle करने का प्रभारी है जो यहाँ जाती हैं:
 
@@ -367,7 +367,7 @@ Python में उस `@something` syntax को "decorator" कहा जा�
 * **operation**: `get` है।
 * **function**: "decorator" के नीचे वाला function है (`@app.get("/")` के नीचे)।
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 यह एक Python function है।
 
@@ -379,7 +379,7 @@ Python में उस `@something` syntax को "decorator" कहा जा�
 
 आप इसे `async def` के बजाय normal function के रूप में भी define कर सकते हैं:
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note | नोट
 
@@ -389,7 +389,7 @@ Python में उस `@something` syntax को "decorator" कहा जा�
 
 ### चरण 5: content return करें { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 आप `dict`, `list`, `str`, `int` आदि जैसे singular values return कर सकते हैं।
 

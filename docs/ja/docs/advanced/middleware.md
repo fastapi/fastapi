@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 `http` または `ws` への受信リクエストは、安全なスキームにリダイレクトされます。
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 HTTP Host Header 攻撃を防ぐため、すべての受信リクエストに正しく設定された `Host` ヘッダーを強制します。
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 サポートされる引数は次のとおりです:
 
@@ -78,7 +78,7 @@ HTTP Host Header 攻撃を防ぐため、すべての受信リクエストに正
 
 このミドルウェアは、通常のレスポンスとストリーミングレスポンスの両方を処理します。
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 サポートされる引数は次のとおりです:
 

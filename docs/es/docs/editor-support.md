@@ -17,7 +17,11 @@ Por defecto, la extensión descubrirá automáticamente aplicaciones FastAPI en 
 - **Explorador de Path Operations** - Una vista en árbol en la barra lateral de todas las <dfn title="rutas, endpoints">*path operations*</dfn> de tu aplicación. Haz clic para saltar a cualquier definición de ruta o de router.
 - **Búsqueda de rutas** - Busca por path, método o nombre con <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> (en macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>).
 - **Navegación con CodeLens** - Enlaces clicables encima de llamadas del cliente de tests (p. ej. `client.get('/items')`) que saltan a la *path operation* correspondiente para navegar rápidamente entre tests e implementación.
-- **Desplegar en FastAPI Cloud** - Deployment con un clic de tu app a [FastAPI Cloud](https://fastapicloud.com/).
-- **Streaming de logs de la aplicación** - Streaming en tiempo real de logs desde tu aplicación desplegada en FastAPI Cloud, con filtrado por nivel y búsqueda de texto.
+- **Despliega en FastAPI Cloud** - Deployment con un clic de tu app a [FastAPI Cloud](https://fastapicloud.com/).
+- **Transmite logs de la aplicación** - Streaming en tiempo real de logs desde tu aplicación desplegada en FastAPI Cloud, con filtrado por nivel y búsqueda de texto.
 
 Si quieres familiarizarte con las funcionalidades de la extensión, puedes revisar el recorrido guiado de la extensión abriendo la Paleta de Comandos (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> o en macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>) y seleccionando "Welcome: Open walkthrough..." y luego eligiendo el recorrido "Get started with FastAPI".
+
+## Agentes de programación con IA { #ai-coding-agents }
+
+Consulta [Desarrolla con IA](ai-development.md) para instalar y usar la skill oficial de FastAPI.

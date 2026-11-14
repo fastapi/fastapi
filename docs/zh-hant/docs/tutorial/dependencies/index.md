@@ -29,7 +29,7 @@
 
 它就是一個函式，可以接受與「路徑操作函式」相同的各種參數：
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8:9] *}
 
 就這樣。
 
@@ -61,13 +61,13 @@ FastAPI 在 0.95.0 版新增了對 `Annotated` 的支援（並開始建議使用
 
 ### 匯入 `Depends` { #import-depends }
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### 在「被依賴者」（dependant）中宣告依賴 { #declare-the-dependency-in-the-dependant }
 
 和你在「路徑操作函式」參數上使用 `Body`、`Query` 等方式一樣，針對新參數使用 `Depends`：
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 雖然你在函式參數上使用 `Depends` 的方式和 `Body`、`Query` 等相同，但 `Depends` 的運作方式有點不同。
 
@@ -124,7 +124,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 但因為我們在使用 `Annotated`，我們可以把這個 `Annotated` 的值存到一個變數中，並在多個地方重複使用：
 
-{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
+{* ../../docs_src/dependencies/tutorial001_02.py hl[12,16,21] *}
 
 /// tip | 提示
 

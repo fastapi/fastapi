@@ -17,7 +17,11 @@ Por padrão, a extensão descobre automaticamente aplicações FastAPI no seu wo
 - **Explorador de Operações de Rota** - Uma visualização em árvore na barra lateral de todas as <dfn title="rotas, endpoints">*operações de rota*</dfn> da sua aplicação. Clique para ir diretamente a qualquer definição de rota ou de router.
 - **Pesquisa de Rotas** - Pesquise por path, método ou nome com <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd> (no macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>E</kbd>).
 - **Navegação com CodeLens** - Links clicáveis acima das chamadas do cliente de testes (por exemplo, `client.get('/items')`) que levam à *operação de rota* correspondente, facilitando a navegação entre testes e implementação.
-- **Implantar no FastAPI Cloud** - Implantação com um clique da sua aplicação no [FastAPI Cloud](https://fastapicloud.com/).
-- **Transmitir logs da aplicação** - Transmissão em tempo real dos logs da aplicação implantada no FastAPI Cloud, com filtragem por nível e busca de texto.
+- **Implante no FastAPI Cloud** - Implantação com um clique da sua aplicação no [FastAPI Cloud](https://fastapicloud.com/).
+- **Transmita logs da aplicação** - Transmissão em tempo real dos logs da aplicação implantada no FastAPI Cloud, com filtragem por nível e busca de texto.
 
 Se quiser se familiarizar com as funcionalidades da extensão, você pode abrir o walkthrough da extensão acessando a Paleta de Comandos (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> ou no macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>), selecionando "Welcome: Open walkthrough..." e, em seguida, escolhendo o walkthrough "Get started with FastAPI".
+
+## Agentes de programação com IA { #ai-coding-agents }
+
+Consulte [Desenvolva com IA](ai-development.md) para instalar e usar a skill oficial do FastAPI.

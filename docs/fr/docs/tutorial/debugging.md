@@ -6,7 +6,7 @@ Vous pouvez connecter le <abbr title="En anglais: debugger">débogueur</abbr> da
 
 Dans votre application FastAPI, importez et exécutez directement `uvicorn` :
 
-{* ../../docs_src/debugging/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/debugging/tutorial001.py hl[1,15] *}
 
 ### À propos de `__name__ == "__main__"` { #about-name-main }
 

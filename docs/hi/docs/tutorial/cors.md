@@ -46,7 +46,7 @@
 * Specific HTTP methods (`POST`, `PUT`) या wildcard `"*"` के साथ सभी methods।
 * Specific HTTP headers या wildcard `"*"` के साथ सभी headers।
 
-{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 
 `CORSMiddleware` implementation द्वारा उपयोग किए जाने वाले default parameters default रूप से restrictive होते हैं, इसलिए browsers को Cross-Domain context में उनका उपयोग करने की permission देने के लिए आपको particular origins, methods, या headers को स्पष्ट रूप से enable करना होगा।

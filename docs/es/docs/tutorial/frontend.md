@@ -36,7 +36,7 @@ La estructura de tu proyecto podría verse así:
 
 Luego sírvelo con `app.frontend()`:
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 Con esto, un request a `/assets/app.js` puede servir `dist/assets/app.js`.
 
@@ -50,7 +50,7 @@ Entonces, si se accede a esa URL directamente (en lugar de navegar por la app), 
 
 Para eso, usa `fallback="index.html"`:
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI** usa este fallback solo para requests `GET` y `HEAD` que aceptan HTML explícitamente con `Accept: text/html` o `Accept: application/xhtml+xml`, como normalmente hacen los requests de navegación del navegador. Los archivos faltantes como JavaScript, CSS e imágenes siguen devolviendo `404`.
 
@@ -68,7 +68,7 @@ Esto es lo que querrías con muchas apps frontend que usan routing del lado del 
 
 También puedes servir una página estática `404.html` para paths frontend faltantes:
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 Esa response mantiene un código de estado `404`.
 
@@ -94,13 +94,13 @@ De lo contrario, si hay un archivo `index.html`, los paths faltantes de navegaci
 
 Así que, en la mayoría de los casos, puedes usar `app.frontend("/", directory="dist")` sin especificar el argumento `fallback`.
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## Desactiva el fallback { #disable-fallback }
 
 Si no quieres servir un archivo fallback para paths frontend faltantes, usa `fallback=None`:
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 Entonces los paths frontend faltantes devuelven el `404` normal.
 
@@ -116,7 +116,7 @@ También puedes configurar `check_dir=True` para revisar siempre el directorio c
 
 Si tus archivos frontend se crean más tarde, por ejemplo mediante un paso de build separado después de crear el objeto app, configura `check_dir=False`:
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 Con `check_dir=False`, **FastAPI** no revisará el directorio cuando se cree la app. Si el directorio configurado todavía falta cuando se maneja un request, **FastAPI** lanzará un error en ese momento.
 
@@ -124,7 +124,7 @@ Con `check_dir=False`, **FastAPI** no revisará el directorio cuando se cree la 
 
 También puedes agregar archivos frontend a un `APIRouter` e incluirlo con un prefijo:
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 En este ejemplo, los paths frontend se sirven bajo `/app`.
 

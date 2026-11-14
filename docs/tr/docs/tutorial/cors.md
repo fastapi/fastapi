@@ -46,7 +46,7 @@ Ayrıca backend’in şunlara izin verip vermediğini de belirtebilirsiniz:
 * Belirli HTTP method’ları (`POST`, `PUT`) veya wildcard `"*"` ile hepsini.
 * Belirli HTTP header’ları veya wildcard `"*"` ile hepsini.
 
-{* ../../docs_src/cors/tutorial001_py310.py hl[2,6:11,13:19] *}
+{* ../../docs_src/cors/tutorial001.py hl[2,6:11,13:19] *}
 
 
 `CORSMiddleware` implementasyonu tarafından kullanılan varsayılan parametreler kısıtlayıcıdır; bu nedenle tarayıcıların Cross-Domain bağlamında kullanmasına izin vermek için belirli origin’leri, method’ları veya header’ları açıkça etkinleştirmeniz gerekir.

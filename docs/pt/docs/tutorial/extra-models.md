@@ -20,7 +20,7 @@ Se não souber, você aprenderá o que é uma "senha hash" nos [capítulos de se
 
 Aqui está uma ideia geral de como os modelos poderiam parecer com seus campos de senha e os lugares onde são usados:
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### Sobre `**user_in.model_dump()` { #about-user-in-model-dump }
 
@@ -54,10 +54,10 @@ teríamos um `dict` Python com:
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ Ou mais exatamente, usando `user_dict` diretamente, com qualquer conteúdo que e
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -138,7 +138,7 @@ As funções adicionais de suporte `fake_password_hasher` e `fake_save_user` ser
 
 ///
 
-## Reduzir duplicação { #reduce-duplication }
+## Reduza a duplicação { #reduce-duplication }
 
 Reduzir a duplicação de código é uma das ideias principais no **FastAPI**.
 
@@ -154,7 +154,7 @@ Toda conversão de dados, validação, documentação, etc. ainda funcionará no
 
 Dessa forma, podemos declarar apenas as diferenças entre os modelos (com `password` em texto claro, com `hashed_password` e sem senha):
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` ou `anyOf` { #union-or-anyof }
 
@@ -170,7 +170,7 @@ Ao definir um [`Union`](https://pydantic.dev/docs/validation/latest/concepts/uni
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### `Union` no Python 3.10 { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ Da mesma forma, você pode declarar respostas de listas de objetos.
 
 Para isso, use o padrão Python `list`:
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## Resposta com `dict` arbitrário { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ Isso é útil se você não souber os nomes de campo / atributo válidos (que se
 
 Neste caso, você pode usar `dict`:
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## Recapitulação { #recap }
 

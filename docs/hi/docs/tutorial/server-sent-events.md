@@ -39,13 +39,13 @@ FastAPI के साथ SSE stream करने के लिए, अपनी 
 
 `EventSourceResponse` को `fastapi.sse` से import करें:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 हर yielded item को JSON के रूप में encode किया जाता है और SSE event के `data:` field में भेजा जाता है।
 
 अगर आप return type को `AsyncIterable[Item]` के रूप में declare करते हैं, तो FastAPI इसका उपयोग Pydantic के साथ data को **validate**, **document**, और **serialize** करने के लिए करेगा।
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip | सुझाव
 
@@ -61,13 +61,13 @@ FastAPI सुनिश्चित करेगा कि यह सही त�
 
 क्योंकि इस मामले में function async नहीं है, सही return type `Iterable[Item]` होगा:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### कोई Return Type नहीं { #no-return-type }
 
 आप return type को छोड़ भी सकते हैं। FastAPI data को convert करने और भेजने के लिए [`jsonable_encoder`](./encoder.md) का उपयोग करेगा।
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ FastAPI सुनिश्चित करेगा कि यह सही त�
 
 `ServerSentEvent` को `fastapi.sse` से import करें:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 `data` field हमेशा JSON के रूप में encode किया जाता है। आप कोई भी value pass कर सकते हैं जिसे JSON के रूप में serialize किया जा सकता हो, जिसमें Pydantic models भी शामिल हैं।
 
@@ -85,7 +85,7 @@ FastAPI सुनिश्चित करेगा कि यह सही त�
 
 यह pre-formatted text, log lines, या `[DONE]` जैसे विशेष <dfn title="किसी विशेष condition या state को इंगित करने के लिए उपयोग किया गया value">"sentinel"</dfn> values भेजने के लिए उपयोगी है।
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note | नोट
 
@@ -99,7 +99,7 @@ FastAPI सुनिश्चित करेगा कि यह सही त�
 
 आप इसे header parameter के रूप में read कर सकते हैं और stream को वहाँ से resume करने के लिए उपयोग कर सकते हैं जहाँ client ने छोड़ा था:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## POST के साथ SSE { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE **किसी भी HTTP method** के साथ काम करता 
 
 यह [MCP](https://modelcontextprotocol.io) जैसे protocols के लिए उपयोगी है, जो `POST` पर SSE stream करते हैं:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## तकनीकी विवरण { #technical-details }
 

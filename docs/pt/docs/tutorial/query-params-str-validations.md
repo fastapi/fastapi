@@ -4,7 +4,7 @@ O **FastAPI** permite declarar informações adicionais e validações para os s
 
 Vamos usar esta aplicação como exemplo:
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 O parâmetro de consulta `q` é do tipo `str | None`, isso significa que é do tipo `str`, mas também pode ser `None`, e de fato, o valor padrão é `None`, então o FastAPI saberá que não é obrigatório.
 
@@ -27,7 +27,7 @@ Para isso, primeiro importe:
 * `Query` de `fastapi`
 * `Annotated` de `typing`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | Nota
 
@@ -65,7 +65,7 @@ Agora vamos pular para a parte divertida. 🎉
 
 Agora que temos esse `Annotated` onde podemos colocar mais informações (neste caso, uma validação adicional), adicione `Query` dentro de `Annotated` e defina o parâmetro `max_length` como `50`:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 Perceba que o valor padrão continua sendo `None`, então o parâmetro ainda é opcional.
 
@@ -95,7 +95,7 @@ Para código novo e sempre que possível, use `Annotated` como explicado acima. 
 
 É assim que você usaria `Query()` como valor padrão do parâmetro da sua função, definindo o parâmetro `max_length` como 50:
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 Como neste caso (sem usar `Annotated`) temos que substituir o valor padrão `None` na função por `Query()`, agora precisamos definir o valor padrão com o parâmetro `Query(default=None)`, ele serve ao mesmo propósito de definir esse valor padrão (pelo menos para o FastAPI).
 
@@ -164,13 +164,13 @@ Como `Annotated` pode ter mais de uma anotação de metadados, você agora pode 
 
 Você também pode adicionar um parâmetro `min_length`:
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## Adicione expressões regulares { #add-regular-expressions }
 
 Você pode definir um `pattern` de <dfn title="Uma expressão regular, regex ou regexp é uma sequência de caracteres que define um padrão de busca para strings.">expressão regular</dfn> que o parâmetro deve corresponder:
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 Esse padrão específico de expressão regular verifica se o valor recebido no parâmetro:
 
@@ -188,7 +188,7 @@ Você pode, claro, usar valores padrão diferentes de `None`.
 
 Digamos que você queira declarar o parâmetro de consulta `q` com `min_length` de `3` e ter um valor padrão de `"fixedquery"`:
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | Nota
 
@@ -218,15 +218,23 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 Então, quando você precisa declarar um valor como obrigatório usando `Query`, você pode simplesmente não declarar um valor padrão:
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
-### Obrigatório, pode ser `None` { #required-can-be-none }
+### Parâmetros obrigatórios e `None` { #required-parameters-and-none }
 
-Você pode declarar que um parâmetro pode aceitar `None`, mas que ainda assim é obrigatório. Isso forçaria os clientes a enviarem um valor, mesmo que o valor seja `None`.
+O tipo `str | None` permite `None` como valor Python, mas não torna um parâmetro de consulta opcional. Sem um valor padrão, o parâmetro continua obrigatório:
 
-Para isso, você pode declarar que `None` é um tipo válido, mas simplesmente não declarar um valor padrão:
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+Os valores dos parâmetros de consulta chegam como strings e não têm uma representação nativa de `None`. Enviar `?q=None` ou `?q=null` envia as strings `"None"` e `"null"`, respectivamente. Enviar `?q=` envia uma string vazia, que falha na validação `min_length=3` neste exemplo.
+
+Para permitir que os clientes omitam `q` e usem `None` como seu valor, atribua a ele o valor padrão `None`:
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+Corpos de requisição JSON, ao contrário dos parâmetros de consulta, podem conter um valor `null` explícito.
 
 ## Lista de parâmetros de consulta / múltiplos valores { #query-parameter-list-multiple-values }
 
@@ -234,7 +242,7 @@ Quando você define explicitamente um parâmetro de consulta com `Query`, você 
 
 Por exemplo, para declarar um parâmetro de consulta `q` que pode aparecer várias vezes na URL, você pode escrever:
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 Então, com uma URL como:
 
@@ -269,7 +277,7 @@ A documentação interativa da API será atualizada de acordo, permitindo múlti
 
 Você também pode definir uma `list` de valores padrão caso nenhum seja fornecido:
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 Se você for até:
 
@@ -292,13 +300,13 @@ o valor padrão de `q` será: `["foo", "bar"]` e sua resposta será:
 
 Você também pode usar `list` diretamente em vez de `list[str]`:
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | Nota
 
-Tenha em mente que, neste caso, o FastAPI não verificará o conteúdo da lista.
+Tenha em mente que, neste caso, o FastAPI não verificará o conteúdo da list.
 
-Por exemplo, `list[int]` verificaria (e documentaria) que os conteúdos da lista são inteiros. Mas `list` sozinho não.
+Por exemplo, `list[int]` verificaria (e documentaria) que os conteúdos da list são inteiros. Mas `list` sozinho não.
 
 ///
 
@@ -318,11 +326,11 @@ Algumas delas podem ainda não mostrar todas as informações extras declaradas,
 
 Você pode adicionar um `title`:
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 E uma `description`:
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## Parâmetros com alias { #alias-parameters }
 
@@ -342,7 +350,7 @@ Mas você ainda precisa que seja exatamente `item-query`...
 
 Então você pode declarar um `alias`, e esse alias será usado para encontrar o valor do parâmetro:
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## Descontinuando parâmetros { #deprecating-parameters }
 
@@ -352,17 +360,17 @@ Você tem que deixá-lo por um tempo, pois há clientes usando-o, mas quer que a
 
 Então passe o parâmetro `deprecated=True` para `Query`:
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 A documentação vai mostrar assim:
 
 <img src="/img/tutorial/query-params-str-validations/image01.png">
 
-## Excluir parâmetros do OpenAPI { #exclude-parameters-from-openapi }
+## Exclua parâmetros do OpenAPI { #exclude-parameters-from-openapi }
 
 Para excluir um parâmetro de consulta do esquema OpenAPI gerado (e portanto, dos sistemas de documentação automáticos), defina o parâmetro `include_in_schema` de `Query` como `False`:
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## Validação personalizada { #custom-validation }
 
@@ -380,7 +388,7 @@ O Pydantic também tem [`BeforeValidator`](https://pydantic.dev/docs/validation/
 
 Por exemplo, este validador personalizado verifica se o ID do item começa com `isbn-` para um número de livro <abbr title="International Standard Book Number - Número Padrão Internacional de Livro">ISBN</abbr> ou com `imdb-` para um ID de URL de filme <abbr title="Internet Movie Database - Base de Dados de Filmes da Internet: um site com informações sobre filmes">IMDB</abbr>:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | Nota
 
@@ -408,7 +416,7 @@ Mas se você estiver curioso sobre este exemplo de código específico e ainda e
 
 Percebeu? Uma string usando `value.startswith()` pode receber uma tupla, e verificará cada valor na tupla:
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### Um item aleatório { #a-random-item }
 
@@ -416,7 +424,7 @@ Com `data.items()` obtemos um <dfn title="Algo que podemos iterar com um laço f
 
 Convertemos esse objeto iterável em uma `list` adequada com `list(data.items())`.
 
-Em seguida, com `random.choice()` podemos obter um **valor aleatório** da lista, então obtemos uma tupla com `(id, name)`. Será algo como `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
+Em seguida, com `random.choice()` podemos obter um **valor aleatório** da list, então obtemos uma tupla com `(id, name)`. Será algo como `("imdb-tt0371724", "The Hitchhiker's Guide to the Galaxy")`.
 
 Depois **atribuímos esses dois valores** da tupla às variáveis `id` e `name`.
 
@@ -424,7 +432,7 @@ Assim, se o usuário não fornecer um ID de item, ele ainda receberá uma sugest
 
 ...fazemos tudo isso em uma **única linha simples**. 🤯 Você não ama Python? 🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## Recapitulando { #recap }
 

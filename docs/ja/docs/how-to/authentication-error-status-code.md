@@ -8,7 +8,7 @@ FastAPI バージョン `0.122.0` 以降では、より適切な HTTP ステー�
 
 たとえば、既定の `401 Unauthorized` エラーの代わりに `403 Forbidden` エラーを返す `HTTPBearer` のサブクラスを作成できます:
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001.py hl[9:13] *}
 
 /// tip | 豆知識
 

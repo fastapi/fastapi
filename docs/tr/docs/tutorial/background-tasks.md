@@ -15,7 +15,7 @@ Bu, request’ten sonra yapılması gereken; ancak client’ın response’u alm
 
 Önce `BackgroundTasks`’i import edin ve *path operation function*’ınızda `BackgroundTasks` tip bildirimi olan bir parametre tanımlayın:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI**, sizin için `BackgroundTasks` tipinde bir obje oluşturur ve onu ilgili parametre olarak geçirir.
 
@@ -31,13 +31,13 @@ Bu örnekte görev fonksiyonu bir dosyaya yazacaktır (email göndermeyi simüle
 
 Ve yazma işlemi `async` ve `await` kullanmadığı için fonksiyonu normal `def` ile tanımlarız:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## Arka Plan Görevini Ekleyin { #add-the-background-task }
 
 *Path operation function*’ınızın içinde, görev fonksiyonunuzu `.add_task()` metodu ile *background tasks* objesine ekleyin:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` şu argümanları alır:
 
@@ -52,7 +52,7 @@ Ve yazma işlemi `async` ve `await` kullanmadığı için fonksiyonu normal `def
 **FastAPI** her durumda ne yapılacağını ve aynı objenin nasıl yeniden kullanılacağını bilir; böylece tüm arka plan görevleri birleştirilir ve sonrasında arka planda çalıştırılır:
 
 
-{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 
 Bu örnekte, response gönderildikten *sonra* mesajlar `log.txt` dosyasına yazılacaktır.

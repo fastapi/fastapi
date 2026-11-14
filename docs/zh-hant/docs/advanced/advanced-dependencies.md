@@ -19,7 +19,7 @@
 
 要做到這點，我們宣告一個 `__call__` 方法：
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 在這個情境中，**FastAPI** 會用這個 `__call__` 來檢查額外的參數與子相依，並在之後呼叫它，把回傳值傳遞給你的「路徑操作函式」中的參數。
 
@@ -27,7 +27,7 @@
 
 接著，我們可以用 `__init__` 來宣告這個實例的參數，用以「參數化」這個相依：
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 在這裡，**FastAPI** 完全不會接觸或在意 `__init__`，我們會直接在自己的程式碼中使用它。
 
@@ -35,7 +35,7 @@
 
 我們可以這樣建立該類別的實例：
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 如此一來我們就能「參數化」相依，現在它內部含有 `"bar"`，作為屬性 `checker.fixed_content`。
 
@@ -51,7 +51,7 @@ checker(q="somequery")
 
 ...並將其回傳值，作為相依的值，以參數 `fixed_content_included` 傳給我們的「路徑操作函式」：
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip | 提示
 
@@ -115,21 +115,21 @@ checker(q="somequery")
 
 可能會像這樣：
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 結束程式碼（自動關閉 `Session`）在：
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 ...會在回應完成傳送這些慢速資料後才執行：
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 但因為 `generate_stream()` 並未使用資料庫 session，實際上不需要在傳送回應時保持 session 開啟。
 
 如果你用的是 SQLModel（或 SQLAlchemy）且有這種特定情境，你可以在不再需要時明確關閉該 session：
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 如此一來，該 session 就會釋放資料庫連線，讓其他請求可以使用。
 

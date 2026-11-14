@@ -2,7 +2,7 @@
 
 When you declare other function parameters that are not part of the path parameters, they are automatically interpreted as "query" parameters.
 
-{* ../../docs_src/query_params/tutorial001_py310.py hl[9] *}
+{* ../../docs_src/query_params/tutorial001.py hl[9] *}
 
 The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.
 
@@ -61,7 +61,7 @@ The parameter values in your function will be:
 
 The same way, you can declare optional query parameters, by setting their default to `None`:
 
-{* ../../docs_src/query_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial002.py hl[7] *}
 
 In this case, the function parameter `q` will be optional, and will be `None` by default.
 
@@ -75,7 +75,7 @@ Also notice that **FastAPI** is smart enough to notice that the path parameter `
 
 You can also declare `bool` types, and they will be converted:
 
-{* ../../docs_src/query_params/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/query_params/tutorial003.py hl[7] *}
 
 In this case, if you go to:
 
@@ -107,7 +107,13 @@ or
 http://127.0.0.1:8000/items/foo?short=yes
 ```
 
-or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.
+or any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`.
+
+Values such as `0`, `false`, `off`, and `no` (including case variations) are converted to `False`.
+
+If `short` is omitted, **FastAPI** uses its default value, which is `False` in this example.
+
+An empty value (`?short=`) or an unrecognized value (for example, `?short=maybe`) produces a `422` validation error.
 
 
 ## Multiple path and query parameters { #multiple-path-and-query-parameters }
@@ -118,7 +124,7 @@ And you don't have to declare them in any specific order.
 
 They will be detected by name:
 
-{* ../../docs_src/query_params/tutorial004_py310.py hl[6,8] *}
+{* ../../docs_src/query_params/tutorial004.py hl[6,8] *}
 
 ## Required query parameters { #required-query-parameters }
 
@@ -128,7 +134,7 @@ If you don't want to add a specific value but just make it optional, set the def
 
 But when you want to make a query parameter required, you can just not declare any default value:
 
-{* ../../docs_src/query_params/tutorial005_py310.py hl[6:7] *}
+{* ../../docs_src/query_params/tutorial005.py hl[6:7] *}
 
 Here the query parameter `needy` is a required query parameter of type `str`.
 
@@ -173,7 +179,7 @@ http://127.0.0.1:8000/items/foo-item?needy=sooooneedy
 
 And of course, you can define some parameters as required, some as having a default value, and some entirely optional:
 
-{* ../../docs_src/query_params/tutorial006_py310.py hl[8] *}
+{* ../../docs_src/query_params/tutorial006.py hl[8] *}
 
 In this case, there are 3 query parameters:
 

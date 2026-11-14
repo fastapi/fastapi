@@ -10,7 +10,7 @@
 
 다음과 같이 첫 번째 의존성("dependable")을 만들 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 이 의존성은 선택적 쿼리 파라미터 `q`를 `str`로 선언하고, 그대로 반환합니다.
 
@@ -20,7 +20,7 @@
 
 그다음, 또 다른 의존성 함수("dependable")를 만들 수 있는데, 이 함수는 동시에 자기 자신의 의존성도 선언합니다(그래서 "dependant"이기도 합니다):
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 선언된 파라미터를 살펴보겠습니다:
 
@@ -33,7 +33,7 @@
 
 그다음 다음과 같이 의존성을 사용할 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | 참고
 
@@ -64,8 +64,10 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+```Python hl_lines="2"
+async def needy_dependency(
+    fresh_value: Annotated[str, Depends(get_value, use_cache=False)],
+):
     return {"fresh_value": fresh_value}
 ```
 

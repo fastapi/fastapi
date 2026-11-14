@@ -31,7 +31,7 @@ $ uv add jinja2
 * Declare a `Request` parameter in the *path operation* that will return a template.
 * Use the `templates` you created to render and return a `TemplateResponse`, pass the name of the template, the request object, and a "context" dictionary with key-value pairs to be used inside of the Jinja2 template.
 
-{* ../../docs_src/templates/tutorial001_py310.py hl[4,11,15:18] *}
+{* ../../docs_src/templates/tutorial001.py hl[4,11,15:18] *}
 
 /// note
 
@@ -113,7 +113,7 @@ For links to the same site, you can use the `.path` attribute to get only the UR
 
 Pass the template's name to `TemplateResponse`:
 
-{* ../../docs_src/templates/tutorial002_py310.py ln[14:18] hl[17] *}
+{* ../../docs_src/templates/tutorial002.py ln[14:18] hl[17] *}
 
 With the same example, the item link would render:
 

@@ -11,6 +11,8 @@ from fastapi.testclient import TestClient
 if sys.version_info >= (3, 13):  # pragma: no cover
     from inspect import iscoroutinefunction
 else:  # pragma: no cover
+    # Match FastAPI's fallback to preserve legacy _is_coroutine marker
+    # detection on Python 3.11 and 3.12.
     from asyncio import iscoroutinefunction
 
 
@@ -43,12 +45,14 @@ def noop_wrap_async(func):
 
     @wraps(func)
     async def wrapper(*args, **kwargs):
-        if inspect.isroutine(func) and iscoroutinefunction(func):
+        if (
+            inspect.isroutine(func) and iscoroutinefunction(func)  # ty: ignore[deprecated]
+        ):
             return await func(*args, **kwargs)
         if inspect.isclass(func):
             return await run_in_threadpool(func, *args, **kwargs)
         dunder_call = getattr(func, "__call__", None)  # noqa: B004
-        if iscoroutinefunction(dunder_call):
+        if iscoroutinefunction(dunder_call):  # ty: ignore[deprecated]
             return await dunder_call(*args, **kwargs)
         return await run_in_threadpool(func, *args, **kwargs)
 

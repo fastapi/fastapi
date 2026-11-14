@@ -15,7 +15,7 @@ Esto incluye, por ejemplo:
 
 Primero, importa `BackgroundTasks` y define un parámetro en tu *path operation function* con una declaración de tipo de `BackgroundTasks`:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** creará el objeto de tipo `BackgroundTasks` por ti y lo pasará como ese parámetro.
 
@@ -31,13 +31,13 @@ En este caso, la función de tarea escribirá en un archivo (simulando el envío
 
 Y como la operación de escritura no usa `async` y `await`, definimos la función con un `def` normal:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## Agrega la tarea en segundo plano { #add-the-background-task }
 
 Dentro de tu *path operation function*, pasa tu función de tarea al objeto de *tareas en segundo plano* con el método `.add_task()`:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` recibe como argumentos:
 
@@ -52,7 +52,7 @@ Usar `BackgroundTasks` también funciona con el sistema de inyección de depende
 **FastAPI** sabe qué hacer en cada caso y cómo reutilizar el mismo objeto, de modo que todas las tareas en segundo plano se combinan y ejecutan en segundo plano después:
 
 
-{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 
 En este ejemplo, los mensajes se escribirán en el archivo `log.txt` *después* de que se envíe el response.

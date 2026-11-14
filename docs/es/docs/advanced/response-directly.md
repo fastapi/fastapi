@@ -40,7 +40,7 @@ Por ejemplo, no puedes poner un modelo de Pydantic en un `JSONResponse` sin prim
 
 Para esos casos, puedes usar el `jsonable_encoder` para convertir tus datos antes de pasarlos a un response:
 
-{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
+{* ../../docs_src/response_directly/tutorial001.py hl[5:6,20:21] *}
 
 /// note | Detalles técnicos
 
@@ -60,13 +60,13 @@ Digamos que quieres devolver un response en [XML](https://en.wikipedia.org/wiki/
 
 Podrías poner tu contenido XML en un string, poner eso en un `Response`, y devolverlo:
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## Cómo funciona un Response Model { #how-a-response-model-works }
 
 Cuando declaras un [Response Model - Return Type](../tutorial/response-model.md) en una *path operation*, **FastAPI** lo usará para serializar los datos a JSON, usando Pydantic.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 Como eso sucederá del lado de Rust, el rendimiento será mucho mejor que si se hiciera con Python normal y la clase `JSONResponse`.
 

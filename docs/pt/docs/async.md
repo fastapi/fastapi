@@ -15,7 +15,7 @@ results = await some_library()
 Então, declare suas *funções de operação de rota* com `async def` como:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ Você só pode usar `await` dentro de funções criadas com `async def`.
 Se você está usando uma biblioteca de terceiros que se comunica com alguma coisa (um banco de dados, uma API, o sistema de arquivos etc.) e não tem suporte para utilizar `await` (esse é atualmente o caso para a maioria das bibliotecas de banco de dados), então declare suas *funções de operação de rota* normalmente, com apenas `def`, como:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -316,7 +316,7 @@ Para o `await` funcionar, tem que estar dentro de uma função que suporte essa 
 
 ```Python hl_lines="1"
 async def get_burgers(number: int):
-    # Faz alguma coisa assíncrona para criar os hambúrgueres
+    # Faça alguma coisa assíncrona para criar os hambúrgueres
     return burgers
 ```
 
@@ -325,7 +325,7 @@ async def get_burgers(number: int):
 ```Python hl_lines="2"
 # Isso não é assíncrono
 def get_sequential_burgers(number: int):
-    # Faz alguma coisa sequencial para criar os hambúrgueres
+    # Faça alguma coisa sequencial para criar os hambúrgueres
     return burgers
 ```
 
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 Então, se você está usando uma biblioteca que diz que você pode chamá-la com `await`, você precisa criar as *funções de operação de rota* que a utilizam com `async def`, como em:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers

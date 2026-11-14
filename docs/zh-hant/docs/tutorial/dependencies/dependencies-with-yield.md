@@ -29,15 +29,15 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 只有 `yield` 之前（含 `yield` 本身）的程式碼會在產生回應之前執行：
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 由 `yield` 產生的值會被注入到路徑操作（path operation）與其他相依中：
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 位於 `yield` 之後的程式碼會在回應之後執行：
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
 /// tip
 
@@ -57,7 +57,7 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 同樣地，你可以使用 `finally` 來確保無論是否有例外都會執行結束步驟。
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## 含 `yield` 的子相依 { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 例如，`dependency_c` 可以相依於 `dependency_b`，而 `dependency_b` 相依於 `dependency_a`：
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[6,14,22] *}
 
 而且它們都可以使用 `yield`。
 
@@ -75,7 +75,7 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 同理，`dependency_b` 為了執行它的結束程式碼，需要來自 `dependency_a`（此處命名為 `dep_a`）的值可用。
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[18:19,26:27] *}
 
 同樣地，你可以同時擁有使用 `yield` 的相依與使用 `return` 的相依，並讓其中一些相依彼此相依。
 
@@ -109,7 +109,7 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b.py hl[18:22,31] *}
 
 如果你想攔截例外並據此回傳自訂回應，請建立一個[自訂例外處理器](../handling-errors.md#install-custom-exception-handlers)。
 
@@ -117,7 +117,7 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 如果你在含 `yield` 的相依中用 `except` 攔截了例外，且沒有再次拋出它（或拋出新的例外），FastAPI 將無法察覺有例外發生，就像在一般的 Python 中一樣：
 
-{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c.py hl[15:16] *}
 
 在這種情況下，客戶端會如預期地看到一個 *HTTP 500 Internal Server Error* 回應（因為我們沒有拋出 `HTTPException` 或類似的東西），但伺服器將不會有任何日誌或其他錯誤線索。😱
 
@@ -127,7 +127,7 @@ FastAPI 支援在完成後執行一些<dfn title="有時也稱為「結束程式
 
 你可以使用 `raise` 重新拋出同一個例外：
 
-{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d.py hl[17] *}
 
 現在客戶端仍會獲得同樣的 *HTTP 500 Internal Server Error* 回應，但伺服器的日誌中會有我們自訂的 `InternalError`。😎
 
@@ -190,7 +190,7 @@ participant tasks as Background tasks
 
 但如果你確定在從路徑操作函式返回後就不會再使用該相依，你可以使用 `Depends(scope="function")`，告訴 FastAPI 應在路徑操作函式返回之後、但在回應送出之前關閉該相依。
 
-{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e.py hl[12,16] *}
 
 `Depends()` 接受一個 `scope` 參數，可以是：
 
@@ -269,7 +269,7 @@ with open("./somefile.txt") as f:
 
 你也可以在 **FastAPI** 的含 `yield` 相依中，於相依函式內使用 `with` 或 `async with` 陳述式來使用它們：
 
-{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
 /// tip
 

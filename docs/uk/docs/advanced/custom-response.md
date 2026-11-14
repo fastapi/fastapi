@@ -30,7 +30,7 @@
 
 Коротко: якщо вам потрібна максимальна продуктивність, використовуйте [Модель відповіді](../tutorial/response-model.md) і не оголошуйте `response_class` у декораторі операції шляху.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
+{* ../../docs_src/response_model/tutorial001_01.py ln[15:17] hl[16] *}
 
 ## HTML-відповідь { #html-response }
 
@@ -39,7 +39,7 @@
 - Імпортуйте `HTMLResponse`.
 - Передайте `HTMLResponse` як параметр `response_class` вашого декоратора операції шляху.
 
-{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// note | Примітка
 
@@ -57,7 +57,7 @@
 
 Той самий приклад вище, що повертає `HTMLResponse`, може виглядати так:
 
-{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning | Попередження
 
@@ -81,7 +81,7 @@
 
 Наприклад, це може бути щось на кшталт:
 
-{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 У цьому прикладі функція `generate_html_response()` уже генерує та повертає `Response` замість повернення HTML як `str`.
 
@@ -120,7 +120,7 @@
 
 FastAPI (насправді Starlette) автоматично додасть заголовок Content-Length. Також буде додано заголовок Content-Type на основі `media_type` з додаванням набору символів для текстових типів.
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -130,7 +130,7 @@ FastAPI (насправді Starlette) автоматично додасть з�
 
 Приймає текст або байти та повертає відповідь звичайним текстом.
 
-{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -152,14 +152,14 @@ FastAPI (насправді Starlette) автоматично додасть з�
 
 Ви можете повернути `RedirectResponse` безпосередньо:
 
-{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 Або ви можете використати його в параметрі `response_class`:
 
 
-{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 У такому разі ви можете повертати URL безпосередньо з вашої функції операції шляху.
 
@@ -169,13 +169,13 @@ FastAPI (насправді Starlette) автоматично додасть з�
 
 Ви також можете використати параметр `status_code` разом із параметром `response_class`:
 
-{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 Приймає async-генератор або звичайний генератор/ітератор (функцію з `yield`) і потоково передає тіло відповіді.
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+{* ../../docs_src/custom_response/tutorial007.py hl[3,16] *}
 
 /// note | Технічні деталі
 
@@ -208,11 +208,11 @@ FastAPI (насправді Starlette) автоматично додасть з�
 
 Відповіді з файлами включатимуть відповідні заголовки `Content-Length`, `Last-Modified` і `ETag`.
 
-{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 Ви також можете використати параметр `response_class`:
 
-{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 У цьому випадку ви можете повертати шлях до файлу безпосередньо з вашої функції операції шляху.
 
@@ -226,7 +226,7 @@ FastAPI (насправді Starlette) автоматично додасть з�
 
 Ви можете створити `CustomORJSONResponse`. Головне, що потрібно зробити, це створити метод `Response.render(content)`, який повертає вміст як `bytes`:
 
-{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 Тепер замість повернення:
 
@@ -260,7 +260,7 @@ FastAPI (насправді Starlette) автоматично додасть з�
 
 У прикладі нижче **FastAPI** використовуватиме `HTMLResponse` за замовчуванням в усіх операціях шляху, замість JSON.
 
-{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip | Порада
 

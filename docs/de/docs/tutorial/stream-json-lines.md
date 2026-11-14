@@ -76,11 +76,11 @@ Wenn Sie Binärdaten streamen möchten, zum Beispiel Video oder Audio, sehen Sie
 
 Um JSON Lines mit FastAPI zu streamen, können Sie anstelle von `return` in Ihrer *Pfadoperation-Funktion* `yield` verwenden, um jedes Element der Reihe nach zu erzeugen.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 Wenn jedes JSON-Item, das Sie zurücksenden möchten, vom Typ `Item` ist (ein Pydantic-Modell) und es sich um eine async-Funktion handelt, können Sie den Rückgabetyp als `AsyncIterable[Item]` deklarieren:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 Wenn Sie den Rückgabetyp deklarieren, wird FastAPI ihn verwenden, um die Daten zu **validieren**, sie in OpenAPI zu **dokumentieren**, sie zu **filtern** und sie mit Pydantic zu **serialisieren**.
 
@@ -98,13 +98,13 @@ FastAPI stellt sicher, dass sie korrekt ausgeführt werden, sodass der Event Loo
 
 Da die Funktion in diesem Fall nicht async ist, wäre der richtige Rückgabetyp `Iterable[Item]`:
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### Kein Rückgabetyp { #no-return-type }
 
 Sie können den Rückgabetyp auch weglassen. FastAPI verwendet dann den [`jsonable_encoder`](./encoder.md), um die Daten in etwas zu konvertieren, das zu JSON serialisiert werden kann, und sendet sie anschließend als JSON Lines.
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## Server-Sent Events (SSE) { #server-sent-events-sse }
 

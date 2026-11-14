@@ -18,7 +18,7 @@
 
 Для этого объявляем метод `__call__`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 В этом случае именно `__call__` **FastAPI** использует для проверки дополнительных параметров и подзависимостей, и именно он будет вызван, чтобы позже передать значение параметру в вашей *функции-обработчике пути*.
 
@@ -26,7 +26,7 @@
 
 Теперь мы можем использовать `__init__`, чтобы объявить параметры экземпляра, с помощью которых будем «параметризовать» зависимость:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 В этом случае **FastAPI** вовсе не трогает `__init__` и не зависит от него — мы используем его напрямую в нашем коде.
 
@@ -34,7 +34,7 @@
 
 Мы можем создать экземпляр этого класса так:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 Так мы «параметризуем» нашу зависимость: теперь внутри неё хранится `"bar"` в атрибуте `checker.fixed_content`.
 
@@ -50,7 +50,7 @@ checker(q="somequery")
 
 …и передаст возвращённое значение как значение зависимости в нашу *функцию-обработчик пути* в параметр `fixed_content_included`:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip | Совет
 
@@ -114,21 +114,21 @@ checker(q="somequery")
 
 Это могло бы выглядеть так:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 Код после `yield`, автоматическое закрытие `Session` в:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 …будет выполнен после того, как ответ закончит отправку медленных данных:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 Но поскольку `generate_stream()` не использует сессию базы данных, нет реальной необходимости держать сессию открытой во время отправки ответа.
 
 Если у вас именно такой сценарий с SQLModel (или SQLAlchemy), вы можете явно закрыть сессию, когда она больше не нужна:
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 Так сессия освободит подключение к базе данных, и другие запросы смогут его использовать.
 

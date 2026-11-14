@@ -8,7 +8,7 @@ from inline_snapshot import snapshot
 @pytest.fixture(
     name="mod",
     params=[
-        pytest.param("tutorial002_py310"),
+        pytest.param("tutorial002"),
     ],
 )
 def get_mod(request: pytest.FixtureRequest):

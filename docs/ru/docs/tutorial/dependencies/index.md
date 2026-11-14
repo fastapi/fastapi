@@ -31,7 +31,7 @@
 
 Это просто функция, которая может принимать те же параметры, что и *функция обработки пути*:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8:9] *}
 
 И всё.
 
@@ -63,13 +63,13 @@ FastAPI добавил поддержку `Annotated` (и начал реком�
 
 ### Импорт `Depends` { #import-depends }
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[3] *}
 
 ### Объявите зависимость в «зависимом» { #declare-the-dependency-in-the-dependant }
 
 Точно так же, как вы используете `Body`, `Query` и т.д. с параметрами вашей *функции обработки пути*, используйте `Depends` с новым параметром:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[13,18] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[13,18] *}
 
 Хотя вы используете `Depends` в параметрах вашей функции так же, как `Body`, `Query` и т.д., `Depends` работает немного иначе.
 
@@ -126,7 +126,7 @@ commons: Annotated[dict, Depends(common_parameters)]
 
 Но поскольку мы используем `Annotated`, мы можем сохранить это значение `Annotated` в переменную и использовать его в нескольких местах:
 
-{* ../../docs_src/dependencies/tutorial001_02_an_py310.py hl[12,16,21] *}
+{* ../../docs_src/dependencies/tutorial001_02.py hl[12,16,21] *}
 
 /// tip | Подсказка
 

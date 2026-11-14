@@ -6,7 +6,7 @@
 
 어트리뷰트를 서브타입으로 정의할 수 있습니다. 예를 들어 파이썬 `list`는:
 
-{* ../../docs_src/body_nested_models/tutorial001_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial001.py hl[12] *}
 
 이는 `tags`를 리스트로 만들지만, 리스트 요소의 타입을 선언하지는 않습니다.
 
@@ -29,7 +29,7 @@ my_list: list[str]
 
 마찬가지로 예제에서 `tags`를 구체적으로 "문자열의 리스트"로 만들 수 있습니다:
 
-{* ../../docs_src/body_nested_models/tutorial002_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial002.py hl[12] *}
 
 ## 집합 타입 { #set-types }
 
@@ -39,7 +39,7 @@ my_list: list[str]
 
 그렇다면 `tags`를 문자열의 집합으로 선언할 수 있습니다:
 
-{* ../../docs_src/body_nested_models/tutorial003_py310.py hl[12] *}
+{* ../../docs_src/body_nested_models/tutorial003.py hl[12] *}
 
 이렇게 하면 중복 데이터가 있는 요청을 받더라도 고유한 항목들의 집합으로 변환됩니다.
 
@@ -61,13 +61,13 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 예를 들어, `Image` 모델을 정의할 수 있습니다:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[7:9] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[7:9] *}
 
 ### 서브모델을 타입으로 사용 { #use-the-submodel-as-a-type }
 
 그리고 이를 어트리뷰트의 타입으로 사용할 수 있습니다:
 
-{* ../../docs_src/body_nested_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial004.py hl[18] *}
 
 이는 **FastAPI**가 다음과 유사한 본문을 기대한다는 것을 의미합니다:
 
@@ -100,7 +100,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 예를 들어 `Image` 모델에는 `url` 필드가 있으므로, 이를 `str` 대신 Pydantic의 `HttpUrl` 인스턴스로 선언할 수 있습니다:
 
-{* ../../docs_src/body_nested_models/tutorial005_py310.py hl[2,8] *}
+{* ../../docs_src/body_nested_models/tutorial005.py hl[2,8] *}
 
 이 문자열은 유효한 URL인지 검사되며, JSON Schema / OpenAPI에도 그에 맞게 문서화됩니다.
 
@@ -108,7 +108,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 `list`, `set` 등의 서브타입으로 Pydantic 모델을 사용할 수도 있습니다:
 
-{* ../../docs_src/body_nested_models/tutorial006_py310.py hl[18] *}
+{* ../../docs_src/body_nested_models/tutorial006.py hl[18] *}
 
 아래와 같은 JSON 본문을 예상(변환, 검증, 문서화 등)합니다:
 
@@ -146,7 +146,7 @@ Pydantic 모델의 각 어트리뷰트는 타입을 갖습니다.
 
 임의로 깊게 중첩된 모델을 정의할 수 있습니다:
 
-{* ../../docs_src/body_nested_models/tutorial007_py310.py hl[7,12,18,21,25] *}
+{* ../../docs_src/body_nested_models/tutorial007.py hl[7,12,18,21,25] *}
 
 /// note | 참고
 
@@ -164,7 +164,7 @@ images: list[Image]
 
 이를 아래처럼:
 
-{* ../../docs_src/body_nested_models/tutorial008_py310.py hl[13] *}
+{* ../../docs_src/body_nested_models/tutorial008.py hl[13] *}
 
 ## 어디서나 편집기 지원 { #editor-support-everywhere }
 
@@ -194,7 +194,7 @@ Pydantic 모델 대신 `dict`로 직접 작업한다면 이런 종류의 편집�
 
 이 경우, `int` 키와 `float` 값을 가진 한 어떤 `dict`든 받아들입니다:
 
-{* ../../docs_src/body_nested_models/tutorial009_py310.py hl[7] *}
+{* ../../docs_src/body_nested_models/tutorial009.py hl[7] *}
 
 /// tip | 팁
 

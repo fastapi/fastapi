@@ -8,8 +8,8 @@
 
 * [**OpenAPI**](https://github.com/OAI/OpenAPI-Specification) para la creación de APIs, incluyendo declaraciones de <dfn title="también conocido como: endpoints, rutas">path</dfn> <dfn title="también conocido como métodos HTTP, como POST, GET, PUT, DELETE">operations</dfn>, parámetros, request bodies, seguridad, etc.
 * Documentación automática de modelos de datos con [**JSON Schema**](https://json-schema.org/) (ya que OpenAPI en sí mismo está basado en JSON Schema).
-* Diseñado alrededor de estos estándares, tras un estudio meticuloso. En lugar de ser una capa adicional.
-* Esto también permite el uso de **generación de código cliente automática** en muchos idiomas.
+* Diseñado alrededor de estos estándares, tras un estudio meticuloso. En lugar de ser una capa adicional añadida a posteriori.
+* Esto también permite el uso de **generación de código cliente automática** en muchos lenguajes.
 
 ### Documentación automática { #automatic-docs }
 
@@ -36,8 +36,9 @@ from datetime import date
 
 from pydantic import BaseModel
 
+
 # Declara una variable como un str
-# y obtiene soporte del editor dentro de la función
+# y obtén soporte del editor dentro de la función
 def main(user_id: str):
     return user_id
 
@@ -77,7 +78,7 @@ Todo el framework fue diseñado para ser fácil e intuitivo de usar, todas las d
 
 En las encuestas a desarrolladores de Python, es claro [que una de las funcionalidades más usadas es el "autocompletado"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
-Todo el framework **FastAPI** está basado para satisfacer eso. El autocompletado funciona en todas partes.
+Todo el framework **FastAPI** está diseñado para satisfacer eso. El autocompletado funciona en todas partes.
 
 Rara vez necesitarás regresar a la documentación.
 
@@ -190,11 +191,11 @@ Con **FastAPI** obtienes todas las funcionalidades de **Pydantic** (ya que FastA
 * **Sin complicaciones**:
     * Sin micro-lenguaje de definición de esquemas nuevo que aprender.
     * Si conoces los tipos en Python sabes cómo usar Pydantic.
-* Se lleva bien con tu **<abbr title="Integrated Development Environment - Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que verifica errores de código">linter</dfn>/cerebro**:
+* Se lleva bien con tu **<abbr title="Integrated Development Environment - Entorno de Desarrollo Integrado: similar a un editor de código">IDE</abbr>/<dfn title="Un programa que revisa errores de código">linter</dfn>/cerebro**:
     * Porque las estructuras de datos de pydantic son solo instances de clases que defines; autocompletado, linting, mypy y tu intuición deberían funcionar correctamente con tus datos validados.
 * Valida **estructuras complejas**:
     * Uso de modelos jerárquicos de Pydantic, `List` y `Dict` de `typing` de Python, etc.
-    * Y los validadores permiten definir, verificar y documentar de manera clara y fácil esquemas de datos complejos como JSON Schema.
+    * Y los validadores permiten definir, revisar y documentar de manera clara y fácil esquemas de datos complejos como JSON Schema.
     * Puedes tener objetos JSON profundamente **anidados** y validarlos todos y anotarlos.
 * **Extensible**:
     * Pydantic permite definir tipos de datos personalizados o puedes extender la validación con métodos en un modelo decorados con el decorador validator.

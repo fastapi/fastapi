@@ -13,20 +13,20 @@ include_yaml:
   <a href="https://fastapi.tiangolo.com/pt"><img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI"></a>
 </p>
 <p align="center">
-    <em>Framework FastAPI, alta performance, fácil de aprender, rápido para codar, pronto para produção</em>
+    <em>Framework FastAPI, alta performance, fácil de aprender, rápido para programar, pronto para produção</em>
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster">
-    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Teste">
 </a>
 <a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Cobertura">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Versão do pacote">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Versões de Python suportadas">
 </a>
 </p>
 
@@ -40,12 +40,14 @@ include_yaml:
 
 FastAPI é um framework web moderno e rápido (alta performance) para construção de APIs com Python, baseado nas anotações de tipo padrão do Python.
 
+<!-- agent-banner -->
+
 Os recursos chave são:
 
 * **Rápido**: alta performance, equivalente a **NodeJS** e **Go** (graças ao Starlette e Pydantic). [Um dos frameworks Python mais rápidos disponíveis](#performance).
-* **Rápido para codar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
+* **Rápido para programar**: Aumenta a velocidade para desenvolver recursos entre 200% a 300%. *
 * **Poucos bugs**: Reduz cerca de 40% de erros induzidos por humanos (desenvolvedores). *
-* **Intuitivo**: Grande suporte a editores. <dfn title="também conhecido como: autocompletar, preenchimento automático, IntelliSense">Completação</dfn> em todos os lugares. Menos tempo debugando.
+* **Intuitivo**: Grande suporte a editores. <dfn title="também conhecido como: autocompletar, preenchimento automático, IntelliSense">Completação</dfn> em todos os lugares. Menos tempo depurando.
 * **Fácil**: Projetado para ser fácil de aprender e usar. Menos tempo lendo documentação.
 * **Enxuto**: Minimize duplicação de código. Múltiplas funcionalidades para cada declaração de parâmetro. Menos bugs.
 * **Robusto**: Tenha código pronto para produção. E com documentação interativa automática.
@@ -105,7 +107,7 @@ Os recursos chave são:
   </div>
 
   <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
-    <blockquote class="fastapi-opinions__quote">"Estou usando o <strong>FastAPI</strong> muito esses dias. Estou na verdade planejando utilizá-lo em todos os meus times de <strong>serviços ML na Microsoft</strong>. Alguns deles estão sendo integrados no produto <strong>Windows</strong> principal e alguns produtos do <strong>Office</strong>."</blockquote>
+    <blockquote class="fastapi-opinions__quote">"Estou usando o <strong>FastAPI</strong> muito esses dias. Estou na verdade planejando utilizá-lo em todos os <strong>serviços ML da minha equipe na Microsoft</strong>. Alguns deles estão sendo integrados no produto <strong>Windows</strong> principal e alguns produtos do <strong>Office</strong>."</blockquote>
     <div class="fastapi-opinions__attr">— Kabir Khan, <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(ref)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
@@ -125,7 +127,7 @@ Os recursos chave são:
 
 <div class="only-github" markdown="1">
 
-"_[...] Estou usando **FastAPI** muito esses dias. [...] Estou na verdade planejando utilizar ele em todos os times de **serviços ML na Microsoft**. Alguns deles estão sendo integrados no _core_ do produto **Windows** e alguns produtos **Office**._"
+"_[...] Estou usando **FastAPI** muito esses dias. [...] Estou na verdade planejando utilizá-lo em todos os **serviços ML da minha equipe na Microsoft**. Alguns deles estão sendo integrados no _core_ do produto **Windows** e alguns produtos **Office**._"
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(ref)</small></a></div>
 
@@ -155,7 +157,7 @@ Os recursos chave são:
 
 Há um [mini documentário do FastAPI](https://www.youtube.com/watch?v=mpR8ngthqiE) lançado no fim de 2025, você pode assisti-lo online:
 
-<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="Mini documentário do FastAPI"></a>
 
 ## **Typer**, o FastAPI das interfaces de linhas de comando { #typer-the-fastapi-of-clis }
 
@@ -360,11 +362,11 @@ Agora vá para [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
 * Clique no botão "Try it out", ele permitirá que você preencha os parâmetros e interaja diretamente com a API:
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
+![Interação com Swagger UI](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
 * Então clique no botão "Execute", a interface do usuário irá se comunicar com a API, enviar os parâmetros, pegar os resultados e mostrá-los na tela:
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
+![Interação com Swagger UI](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
 ### Evoluindo a Documentação Alternativa da API { #alternative-api-docs-upgrade }
 
@@ -467,7 +469,7 @@ Experimente mudar a seguinte linha:
 
 ...e veja como seu editor irá autocompletar os atributos e saberá os tipos:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![Suporte ao editor](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 Para um exemplo mais completo incluindo mais recursos, veja o <a href="https://fastapi.tiangolo.com/pt/tutorial/">Tutorial - Guia do Usuário</a>.
 
@@ -486,7 +488,7 @@ Para um exemplo mais completo incluindo mais recursos, veja o <a href="https://f
     * **Cookie Sessions**
     * ...e mais.
 
-### Implemente sua aplicação (opcional) { #deploy-your-app-optional }
+### Implante sua aplicação (opcional) { #deploy-your-app-optional }
 
 Você pode opcionalmente implantar sua aplicação FastAPI na [FastAPI Cloud](https://fastapicloud.com) com um único comando. 🚀
 
@@ -544,7 +546,7 @@ Utilizado pelo Pydantic:
 
 Utilizado pelo Starlette:
 
-* [`httpx`](https://www.python-httpx.org) - Obrigatório caso você queira utilizar o `TestClient`.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (ou `httpx`) - Utilizado pelo `TestClient`.
 * [`jinja2`](https://jinja.palletsprojects.com) - Obrigatório se você quer utilizar a configuração padrão de templates.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - Obrigatório se você deseja suporte a <dfn title="convertendo a string que vem de uma requisição HTTP em dados Python">"parsing"</dfn> de formulário, com `request.form()`.
 

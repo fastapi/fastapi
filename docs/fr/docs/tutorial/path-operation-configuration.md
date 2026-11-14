@@ -17,7 +17,7 @@ Vous pouvez passer directement le code `int`, comme `404`.
 
 Mais si vous ne vous souvenez pas à quoi correspond chaque code numérique, vous pouvez utiliser les constantes abrégées dans `status` :
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 Ce code d'état sera utilisé dans la réponse et ajouté au schéma OpenAPI.
 
@@ -33,7 +33,7 @@ Vous pouvez également utiliser `from starlette import status`.
 
 Vous pouvez ajouter des tags à votre *chemin d'accès*, en passant le paramètre `tags` avec une `list` de `str` (généralement un seul `str`) :
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 Ils seront ajoutés au schéma OpenAPI et utilisés par les interfaces de documentation automatiques :
 
@@ -47,13 +47,13 @@ Dans ces cas, il peut être judicieux de stocker les tags dans un `Enum`.
 
 **FastAPI** le prend en charge de la même manière qu'avec des chaînes simples :
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## Ajouter un résumé et une description { #summary-and-description }
 
 Vous pouvez ajouter un `summary` et une `description` :
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## Utiliser la description depuis la docstring { #description-from-docstring }
 
@@ -61,7 +61,7 @@ Comme les descriptions ont tendance à être longues et à couvrir plusieurs lig
 
 Vous pouvez écrire [Markdown](https://en.wikipedia.org/wiki/Markdown) dans la docstring, il sera interprété et affiché correctement (en tenant compte de l'indentation de la docstring).
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 Elle sera utilisée dans les documents interactifs :
 
@@ -71,7 +71,7 @@ Elle sera utilisée dans les documents interactifs :
 
 Vous pouvez spécifier la description de la réponse avec le paramètre `response_description` :
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | Remarque
 
@@ -93,7 +93,7 @@ Donc, si vous n'en fournissez pas, **FastAPI** en générera automatiquement une
 
 Si vous devez marquer un *chemin d'accès* comme <dfn title="obsolète, il est recommandé de ne pas l'utiliser">déprécié</dfn>, sans pour autant le supprimer, passez le paramètre `deprecated` :
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 Il sera clairement marqué comme déprécié dans les documents interactifs :
 

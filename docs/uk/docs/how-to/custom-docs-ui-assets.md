@@ -18,7 +18,7 @@
 
 Щоб їх вимкнути, встановіть їхні URL у `None` під час створення вашого застосунку `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### Додайте користувацьку документацію { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@
 
 Аналогічно для ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | Порада
 
@@ -50,7 +50,7 @@ Swagger UI впорається з цим «за лаштунками», але 
 
 Тепер, щоб перевірити, що все працює, створіть *операцію шляху*:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
 ### Перевірте { #test-it }
 
@@ -118,7 +118,7 @@ Swagger UI впорається з цим «за лаштунками», але 
 - Імпортуйте `StaticFiles`.
 - Змонтуйте екземпляр `StaticFiles()` у певному шляху.
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### Перевірте статичні файли { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Swagger UI впорається з цим «за лаштунками», але 
 
 Щоб їх вимкнути, встановіть їхні URL у `None` під час створення вашого застосунку `FastAPI`:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### Додайте користувацьку документацію для статичних файлів { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Swagger UI впорається з цим «за лаштунками», але 
 
 Аналогічно для ReDoc...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | Порада
 
@@ -176,7 +176,7 @@ Swagger UI впорається з цим «за лаштунками», але 
 
 Тепер, щоб перевірити, що все працює, створіть *операцію шляху*:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
 ### Перевірте UI зі статичними файлами { #test-static-files-ui }
 

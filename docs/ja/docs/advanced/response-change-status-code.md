@@ -21,7 +21,7 @@
 
 そして、その*一時的な*レスポンスオブジェクトに `status_code` を設定できます。
 
-{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
 その後は通常どおり、必要な任意のオブジェクト（`dict`、データベースモデルなど）を返せます。
 

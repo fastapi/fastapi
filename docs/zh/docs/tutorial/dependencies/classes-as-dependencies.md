@@ -6,7 +6,7 @@
 
 在前面的例子中, 我们从依赖项 ("可依赖对象") 中返回了一个 `dict`:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 但是后面我们在路径操作函数的参数 `commons` 中得到了一个 `dict`。
 
@@ -69,15 +69,15 @@ fluffy = Cat(name="Mr Fluffy")
 
 所以，我们可以将上面的依赖项 "可依赖对象" `common_parameters` 更改为类 `CommonQueryParams`:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 注意用于创建类实例的 `__init__` 方法：
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ...它与我们以前的 `common_parameters` 具有相同的参数：
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 这些参数就是 **FastAPI** 用来 "处理" 依赖项的。
 
@@ -93,7 +93,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 现在，你可以使用这个类来声明你的依赖项了。
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** 调用 `CommonQueryParams` 类。这将创建该类的一个 "实例"，该实例将作为参数 `commons` 被传递给你的函数。
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ..就像:
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 但是声明类型是被鼓励的，因为那样你的编辑器就会知道将传递什么作为参数 `commons` ，然后它可以帮助你完成代码，类型检查，等等：
 
@@ -275,7 +275,7 @@ commons: CommonQueryParams = Depends()
 
 同样的例子看起来像这样：
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ... **FastAPI** 会知道怎么处理。
 

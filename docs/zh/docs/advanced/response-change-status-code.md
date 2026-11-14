@@ -20,7 +20,7 @@
 
 然后你可以在这个*临时*响应对象中设置`status_code`。
 
-{* ../../docs_src/response_change_status_code/tutorial001_py310.py hl[1,9,12] *}
+{* ../../docs_src/response_change_status_code/tutorial001.py hl[1,9,12] *}
 
 然后你可以像平常一样返回任何你需要的对象（一个`dict`、一个数据库模型等）。
 

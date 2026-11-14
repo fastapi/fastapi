@@ -31,7 +31,7 @@ Tendrá una *path operation* que recibirá un cuerpo `Invoice`, y un parámetro 
 
 Esta parte es bastante normal, probablemente ya estés familiarizado con la mayor parte del código:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | Consejo
 
@@ -90,7 +90,7 @@ Adoptar temporalmente este punto de vista (del *desarrollador externo*) puede ay
 
 Primero crea un nuevo `APIRouter` que contendrá uno o más callbacks.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Crea la *path operation* del callback { #create-the-callback-path-operation }
 
@@ -101,7 +101,7 @@ Debería verse como una *path operation* normal de FastAPI:
 * Probablemente debería tener una declaración del body que debería recibir, por ejemplo `body: InvoiceEvent`.
 * Y también podría tener una declaración del response que debería devolver, por ejemplo `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 Hay 2 diferencias principales respecto a una *path operation* normal:
 
@@ -169,7 +169,7 @@ En este punto tienes las *callback path operation(s)* necesarias (las que el *de
 
 Ahora usa el parámetro `callbacks` en el *decorador de path operation de tu API* para pasar el atributo `.routes` de ese router de callback:
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | Consejo
 

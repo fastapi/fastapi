@@ -55,8 +55,8 @@
 
 यहाँ ऊपर दिए गए कुछ types का उपयोग करते हुए parameters वाला एक उदाहरण *path operation* है।
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 ध्यान दें कि function के अंदर parameters के अपने natural data type होते हैं, और उदाहरण के लिए, आप सामान्य date manipulations कर सकते हैं, जैसे:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

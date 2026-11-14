@@ -10,7 +10,7 @@ Bunları çözme işini **FastAPI** üstlenir.
 
 Şöyle bir ilk bağımlılık ("dependable") oluşturabilirsiniz:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[8:9] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[8:9] *}
 
 Burada `q` adında opsiyonel bir query parametresi `str` olarak tanımlanır ve sonra doğrudan geri döndürülür.
 
@@ -20,7 +20,7 @@ Bu oldukça basit (pek faydalı değil), ama alt bağımlılıkların nasıl ça
 
 Ardından, aynı zamanda kendi içinde bir bağımlılık da tanımlayan başka bir bağımlılık fonksiyonu (bir "dependable") oluşturabilirsiniz (yani o da bir "dependant" olur):
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[13] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[13] *}
 
 Tanımlanan parametrelere odaklanalım:
 
@@ -33,7 +33,7 @@ Tanımlanan parametrelere odaklanalım:
 
 Sonra bu bağımlılığı şöyle kullanabiliriz:
 
-{* ../../docs_src/dependencies/tutorial005_an_py310.py hl[23] *}
+{* ../../docs_src/dependencies/tutorial005.py hl[23] *}
 
 /// note | Not
 
@@ -58,14 +58,16 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 Bağımlılıklarınızdan biri aynı *path operation* için birden fazla kez tanımlanırsa (örneğin birden fazla bağımlılığın ortak bir alt bağımlılığı varsa), **FastAPI** o alt bağımlılığı request başına yalnızca bir kez çağıracağını bilir.
 
-Dönen değeri bir <dfn title="Hesaplanan/üretilen değerleri saklayıp, tekrar hesaplamak yerine yeniden kullanmayı sağlayan bir yardımcı araç/sistem.">"önbellek"</dfn> içinde saklar ve aynı request içinde buna ihtiyaç duyan tüm "dependant"lara aktarır; böylece aynı request için bağımlılığı tekrar tekrar çağırmaz.
+Dönen değeri bir <dfn title="Hesaplanan/üretilen değerleri saklayıp, tekrar hesaplamak yerine yeniden kullanmayı sağlayan bir yardımcı araç/sistem.">"önbellek"</dfn> içinde saklar ve aynı request içinde buna ihtiyaç duyan tüm "dependant"'lara aktarır; böylece aynı request için bağımlılığı tekrar tekrar çağırmaz.
 
 Daha ileri bir senaryoda, "cached" değeri kullanmak yerine aynı request içinde her adımda (muhtemelen birden fazla kez) bağımlılığın çağrılması gerektiğini biliyorsanız, `Depends` kullanırken `use_cache=False` parametresini ayarlayabilirsiniz:
 
 //// tab | Python 3.10+
 
-```Python hl_lines="1"
-async def needy_dependency(fresh_value: Annotated[str, Depends(get_value, use_cache=False)]):
+```Python hl_lines="2"
+async def needy_dependency(
+    fresh_value: Annotated[str, Depends(get_value, use_cache=False)],
+):
     return {"fresh_value": fresh_value}
 ```
 
@@ -92,7 +94,7 @@ Burada kullanılan havalı terimlerin ötesinde, **Dependency Injection** sistem
 
 *Path operation function*'lara benzeyen fonksiyonlardan ibarettir.
 
-Yine de çok güçlüdür ve keyfi derecede derin iç içe geçmiş bağımlılık "graph"ları (ağaçları) tanımlamanıza izin verir.
+Yine de çok güçlüdür ve keyfi derecede derin iç içe geçmiş bağımlılık "graph"'ları (ağaçları) tanımlamanıza izin verir.
 
 /// tip | İpucu
 

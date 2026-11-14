@@ -12,9 +12,9 @@ from fastapi.testclient import TestClient
 @pytest.fixture(
     name="module",
     params=[
-        "tutorial008_py310",
+        "tutorial008_non_an",
         pytest.param(
-            "tutorial008_an_py310",
+            "tutorial008",
             marks=pytest.mark.xfail(
                 sys.version_info < (3, 14),
                 reason="Fails with `NameError: name 'DepA' is not defined`",

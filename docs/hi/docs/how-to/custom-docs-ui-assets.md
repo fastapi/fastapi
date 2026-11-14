@@ -18,7 +18,7 @@ Default रूप से, वे files एक <abbr title="Content Delivery Netw
 
 उन्हें disable करने के लिए, अपना `FastAPI` app बनाते समय उनके URLs को `None` पर set करें:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### कस्टम docs शामिल करें { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ Default रूप से, वे files एक <abbr title="Content Delivery Netw
 
 और ReDoc के लिए भी इसी तरह...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | सुझाव
 
@@ -50,7 +50,7 @@ Swagger UI आपके लिए इसे behind the scenes handle करे�
 
 अब, यह test करने के लिए कि सब कुछ काम करता है, एक *path operation* बनाएं:
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
 ### इसे test करें { #test-it }
 
@@ -118,7 +118,7 @@ Docs के लिए जरूरी static files download करें और 
 * `StaticFiles` import करें।
 * किसी विशिष्ट path में `StaticFiles()` instance को "Mount" करें।
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### Static files को test करें { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Docs के लिए जरूरी static files download करें और 
 
 उन्हें disable करने के लिए, अपना `FastAPI` app बनाते समय उनके URLs को `None` पर set करें:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### Static files के लिए कस्टम docs शामिल करें { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Docs के लिए जरूरी static files download करें और 
 
 और ReDoc के लिए भी इसी तरह...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | सुझाव
 
@@ -176,7 +176,7 @@ Swagger UI आपके लिए इसे behind the scenes handle करे�
 
 अब, यह test करने के लिए कि सब कुछ काम करता है, एक *path operation* बनाएं:
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
 ### Static Files UI को test करें { #test-static-files-ui }
 

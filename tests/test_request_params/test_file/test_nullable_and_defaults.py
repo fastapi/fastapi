@@ -300,6 +300,112 @@ def test_individual_file_alias_choices(alias: str):
     assert response.json() == "hello"
 
 
+def test_file_alias_choices_errors_use_selected_aliases():
+    app = FastAPI()
+
+    @app.post("/")
+    def read_files(
+        file: Annotated[
+            UploadFile,
+            File(alias="legacy", validation_alias=AliasChoices("primary", "secondary")),
+        ],
+        files: Annotated[
+            list[UploadFile],
+            File(validation_alias=AliasChoices("primary-files", "secondary-files")),
+        ],
+    ):
+        return {"file": file.filename, "files": [item.filename for item in files]}
+
+    client = TestClient(app)
+    response = client.post(
+        "/",
+        files=[
+            ("secondary", ("one.txt", b"one")),
+            ("secondary-files", ("two.txt", b"two")),
+            ("secondary-files", ("three.txt", b"three")),
+        ],
+    )
+    assert response.status_code == 200
+    assert response.json() == {"file": "one.txt", "files": ["two.txt", "three.txt"]}
+
+    response = client.post(
+        "/",
+        files=[
+            ("secondary", (None, "invalid")),
+            ("secondary-files", ("valid.txt", b"valid")),
+            ("secondary-files", (None, "invalid")),
+            ("legacy", ("ignored.txt", b"ignored")),
+        ],
+    )
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("value_error", ["body", "secondary"]),
+        ("value_error", ["body", "secondary-files", 1]),
+    ]
+
+    response = client.post(
+        "/",
+        files=[
+            ("primary", (None, "invalid")),
+            ("secondary", ("valid.txt", b"valid")),
+            ("primary-files", (None, "invalid")),
+            ("secondary-files", ("valid.txt", b"valid")),
+        ],
+    )
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("value_error", ["body", "primary"]),
+        ("value_error", ["body", "primary-files", 0]),
+    ]
+
+    response = client.post("/")
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "primary"]),
+        ("missing", ["body", "primary-files"]),
+    ]
+
+
+def test_unselected_file_alias_choices_use_the_next_alias():
+    app = FastAPI()
+
+    @app.post("/")
+    def read_file(
+        file: Annotated[
+            bytes,
+            File(alias="legacy", validation_alias=AliasChoices("file", "selected")),
+        ],
+    ):
+        return file.decode()
+
+    client = TestClient(app)
+    response = client.post(
+        "/",
+        content=(
+            b"--boundary\r\n"
+            b'Content-Disposition: form-data; name="file"; filename=""\r\n'
+            b"Content-Type: application/octet-stream\r\n\r\n"
+            b"\r\n--boundary\r\n"
+            b'Content-Disposition: form-data; name="selected"; filename="hello.txt"\r\n'
+            b"Content-Type: application/octet-stream\r\n\r\n"
+            b"hello\r\n--boundary--\r\n"
+        ),
+        headers={"content-type": "multipart/form-data; boundary=boundary"},
+    )
+    assert response.status_code == 200
+    assert response.json() == "hello"
+
+    response = client.post(
+        "/",
+        content=EMPTY_FILE_FORM,
+        headers={"content-type": "multipart/form-data; boundary=boundary"},
+    )
+    assert response.status_code == 422
+    assert [(error["type"], error["loc"]) for error in response.json()["detail"]] == [
+        ("missing", ["body", "file"]),
+    ]
+
+
 @pytest.mark.parametrize(
     "file_alias,files_alias",
     [("primary", "primary-files"), ("secondary", "secondary-files"), ("file", "files")],

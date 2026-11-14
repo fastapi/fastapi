@@ -17,7 +17,7 @@
 
 * [**Swagger UI**](https://github.com/swagger-api/swagger-ui)，可交互式操作，能在浏览器中直接调用和测试你的 API。
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
+![Swagger UI 交互](https://fastapi.tiangolo.com/img/index/index-03-swagger-02.png)
 
 * 另外的 API 文档：[**ReDoc**](https://github.com/Redocly/redoc)。
 
@@ -27,7 +27,7 @@
 
 全部都基于标准的 **Python 类型** 声明（感谢 Pydantic）。没有新的语法需要学习。只需要标准的现代 Python。
 
-如果你需要2分钟来学习如何使用 Python 类型（即使你不使用 FastAPI），看看这个简短的教程：[Python 类型](python-types.md)。
+如果你需要2分钟来复习如何使用 Python 类型（即使你不使用 FastAPI），看看这个简短的教程：[Python 类型](python-types.md)。
 
 编写带有类型标注的标准 Python：
 
@@ -35,6 +35,7 @@
 from datetime import date
 
 from pydantic import BaseModel
+
 
 # 将变量声明为 str
 # 并在函数内获得编辑器支持
@@ -63,7 +64,6 @@ second_user_data = {
 my_second_user: User = User(**second_user_data)
 ```
 
-
 /// note | 注意
 
 `**second_user_data` 意思是：
@@ -86,11 +86,11 @@ my_second_user: User = User(**second_user_data)
 
 * 在 [Visual Studio Code](https://code.visualstudio.com/) 中:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![编辑器支持](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * 在 [PyCharm](https://www.jetbrains.com/pycharm/) 中:
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![编辑器支持](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 你将能进行代码补全，这是在之前你可能曾认为不可能的事。例如，在来自请求 JSON 体（可能是嵌套的）中的键 `price`。
 
@@ -98,7 +98,7 @@ my_second_user: User = User(**second_user_data)
 
 ### 简洁 { #short }
 
-任何类型都有合理的**默认值**，任何地方都有可选配置。所有的参数被微调，来满足你的需求，定义成你需要的 API。
+任何类型都有合理的**默认值**，任何地方都有可选配置。所有的参数都可以微调，来满足你的需求，定义成你需要的 API。
 
 但是默认情况下，一切都能**“顺利工作”**。
 
@@ -107,7 +107,7 @@ my_second_user: User = User(**second_user_data)
 * 校验大部分（甚至所有？）的 Python **数据类型**，包括：
     * JSON 对象 (`dict`)。
     * JSON 数组 (`list`) 定义成员类型。
-    * 字符串 (`str`) 字段，定义最小或最大长度。
+    * 字符串 (`str`) 字段，定义最小和最大长度。
     * 数字 (`int`, `float`) 有最大值和最小值，等等。
 
 * 校验更特殊的类型，比如：
@@ -133,18 +133,18 @@ OpenAPI 中定义的所有安全模式，包括：
 
 加上来自 Starlette（包括 **session cookies**）的所有安全特性。
 
-所有的这些都是可复用的工具和组件，可以轻松与你的系统，数据仓库，关系型以及 NoSQL 数据库等等集成。
+所有的这些都是可复用的工具和组件，可以轻松与你的系统，数据存储，关系型以及 NoSQL 数据库等等集成。
 
 ### 依赖注入 { #dependency-injection }
 
-FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为 "components"、"resources"、"services"、"providers"'><strong>依赖注入</strong></dfn>系统。
+FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为 "组件"、"资源"、"服务"、"提供者"'><strong>依赖注入</strong></dfn>系统。
 
 * 甚至依赖也可以有依赖，创建一个层级或者**“图”依赖**。
 * 所有**自动化处理**都由框架完成。
 * 所有的依赖关系都可以从请求中获取数据，并且**增加了路径操作**约束和自动文档生成。
 * 即使是在依赖项中定义的*路径操作*参数也会**自动验证**。
 * 支持复杂的用户身份认证系统，**数据库连接**等等。
-* **不依赖**数据库，前端等。但是和它们集成很简单。
+* **无需迁就**数据库，前端等。但是和它们集成很简单。
 
 ### 无限制的“插件” { #unlimited-plug-ins }
 
@@ -169,7 +169,7 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 * 令人惊叹的性能。它是[Python 可用的最快的框架之一，和 **NodeJS** 及 **Go** 相当](https://github.com/encode/starlette#performance)。
 * **支持 WebSocket**。
 * 进程内后台任务。
-* Startup 和 shutdown 事件。
+* 启动和关闭事件。
 * 测试客户端基于 HTTPX。
 * **CORS**、GZip、静态文件、流响应。
 * 支持 **Session 和 Cookie**。
@@ -180,23 +180,23 @@ FastAPI 有一个使用非常简单，但是非常强大的<dfn title='也称为
 
 **FastAPI** 与 [**Pydantic**](https://pydantic.dev/docs/) 完全兼容（并基于它构建）。所以，你有的其他的 Pydantic 代码也能正常工作。
 
-兼容包括基于 Pydantic 的外部库，例如用于数据库的 <abbr title="Object-Relational Mapper - 对象关系映射">ORM</abbr>s、<abbr title="Object-Document Mapper - 对象文档映射">ODM</abbr>s。
+兼容包括基于 Pydantic 的外部库，例如用于数据库的 <abbr title="Object-Relational Mapper - 对象关系映射器">ORM</abbr> 和 <abbr title="Object-Document Mapper - 对象文档映射器">ODM</abbr>。
 
 这也意味着在很多情况下，你可以将从请求中获得的相同对象**直接传到数据库**，因为所有的验证都是自动的。
 
 反之亦然，在很多情况下，你也可以将从数据库中获取的对象**直接传到客户端**。
 
-通过 **FastAPI** 你可以获得所有 **Pydantic**（FastAPI 基于 Pydantic 做了所有的数据处理）：
+通过 **FastAPI** 你可以获得所有 **Pydantic** 的特性（FastAPI 基于 Pydantic 做了所有的数据处理）：
 
 * **不烧脑**：
-    * 没有新的模式定义 micro-language 需要学习。
+    * 没有新的模式定义微型语言需要学习。
     * 如果你知道 Python 类型，你就知道如何使用 Pydantic。
-* 和你 **<abbr title="Integrated Development Environment - 集成开发环境: 类似于代码编辑器">IDE</abbr>/<dfn title="一个检查代码错误的程序">linter</dfn>/brain** 适配:
+* 和你 **<abbr title="Integrated Development Environment - 集成开发环境: 类似于代码编辑器">IDE</abbr>/<dfn title="一个检查代码错误的程序">linter</dfn>/大脑** 适配:
     * 因为 pydantic 数据结构仅仅是你定义的类的实例；自动补全，linting，mypy 以及你的直觉应该可以和你验证的数据一起正常工作。
 * 验证**复杂结构**:
     * 使用分层的 Pydantic 模型，Python `typing` 的 `List` 和 `Dict` 等等。
     * 验证器使我们能够简单清楚地将复杂的数据模式定义、检查并记录为 JSON Schema。
     * 你可以拥有深度**嵌套的 JSON** 对象并对它们进行验证和注释。
 * **可扩展**:
-    * Pydantic 允许定义自定义数据类型或者你可以用验证器装饰器对被装饰的模型上的方法扩展验证。
+    * Pydantic 允许定义自定义数据类型，或者你可以通过模型上使用验证器装饰器装饰的方法扩展验证。
 * 100% 测试覆盖率。

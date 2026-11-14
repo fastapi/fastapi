@@ -9,7 +9,7 @@ from ...utils import needs_py310
 @pytest.mark.parametrize(
     "module_name",
     [
-        pytest.param("tutorial003_04_py310", marks=needs_py310),
+        pytest.param("tutorial003_04", marks=needs_py310),
     ],
 )
 def test_invalid_response_model(module_name: str) -> None:

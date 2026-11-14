@@ -18,7 +18,7 @@ La première étape consiste à désactiver les docs automatiques, car par défa
 
 Pour les désactiver, définissez leurs URL sur `None` lors de la création de votre application `FastAPI` :
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[8] *}
 
 ### Inclure les docs personnalisées { #include-the-custom-docs }
 
@@ -34,7 +34,7 @@ Vous pouvez réutiliser les fonctions internes de FastAPI pour créer les pages 
 
 Et de même pour ReDoc ...
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[2:6,11:19,22:24,27:33] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[2:6,11:19,22:24,27:33] *}
 
 /// tip | Astuce
 
@@ -50,7 +50,7 @@ Swagger UI s’en chargera en arrière‑plan pour vous, mais il a besoin de cet
 
 Maintenant, pour pouvoir vérifier que tout fonctionne, créez un chemin d'accès :
 
-{* ../../docs_src/custom_docs_ui/tutorial001_py310.py hl[36:38] *}
+{* ../../docs_src/custom_docs_ui/tutorial001.py hl[36:38] *}
 
 ### Tester { #test-it }
 
@@ -118,7 +118,7 @@ Après cela, votre structure de fichiers pourrait ressembler à :
 - Importer `StaticFiles`.
 - « Monter » une instance `StaticFiles()` sur un chemin spécifique.
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[7,11] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[7,11] *}
 
 ### Tester les fichiers statiques { #test-the-static-files }
 
@@ -144,7 +144,7 @@ Comme lors de l’utilisation d’un CDN personnalisé, la première étape cons
 
 Pour les désactiver, définissez leurs URL sur `None` lors de la création de votre application `FastAPI` :
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[9] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[9] *}
 
 ### Inclure les docs personnalisées pour les fichiers statiques { #include-the-custom-docs-for-static-files }
 
@@ -160,7 +160,7 @@ Là encore, vous pouvez réutiliser les fonctions internes de FastAPI pour crée
 
 Et de même pour ReDoc ...
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[2:6,14:22,25:27,30:36] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[2:6,14:22,25:27,30:36] *}
 
 /// tip | Astuce
 
@@ -176,7 +176,7 @@ Swagger UI s’en chargera en arrière‑plan pour vous, mais il a besoin de cet
 
 Maintenant, pour pouvoir vérifier que tout fonctionne, créez un chemin d'accès :
 
-{* ../../docs_src/custom_docs_ui/tutorial002_py310.py hl[39:41] *}
+{* ../../docs_src/custom_docs_ui/tutorial002.py hl[39:41] *}
 
 ### Tester l’UI avec des fichiers statiques { #test-static-files-ui }
 

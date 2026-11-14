@@ -35,7 +35,7 @@ Common **web APIs** की तुलना में इसके **advantages**
 
 यहाँ एक छोटा preview है कि आप Strawberry को FastAPI के साथ कैसे integrate कर सकते हैं:
 
-{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
+{* ../../docs_src/graphql_/tutorial001.py hl[3,22,25] *}
 
 आप [Strawberry documentation](https://strawberry.rocks/) में Strawberry के बारे में और जान सकते हैं।
 

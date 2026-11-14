@@ -17,16 +17,16 @@ include_yaml:
 </p>
 <p align="center">
 <a href="https://github.com/fastapi/fastapi/actions?query=workflow%3ATest+event%3Apush+branch%3Amaster">
-    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Test">
+    <img src="https://github.com/fastapi/fastapi/actions/workflows/test.yml/badge.svg?event=push&branch=master" alt="Тест">
 </a>
 <a href="https://coverage-badge.samuelcolvin.workers.dev/redirect/fastapi/fastapi">
-    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Coverage">
+    <img src="https://coverage-badge.samuelcolvin.workers.dev/fastapi/fastapi.svg" alt="Покриття">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Package version">
+    <img src="https://img.shields.io/pypi/v/fastapi?color=%2334D058&label=pypi%20package" alt="Версія пакета">
 </a>
 <a href="https://pypi.org/project/fastapi">
-    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Supported Python versions">
+    <img src="https://img.shields.io/pypi/pyversions/fastapi.svg?color=%2334D058" alt="Підтримувані версії Python">
 </a>
 </p>
 
@@ -40,10 +40,12 @@ include_yaml:
 
 FastAPI - це сучасний, швидкий (високопродуктивний) вебфреймворк для створення API за допомогою Python, що базується на стандартних підказках типів Python.
 
+<!-- agent-banner -->
+
 Ключові особливості:
 
 * **Швидкий**: дуже висока продуктивність, на рівні з **NodeJS** та **Go** (завдяки Starlette та Pydantic). [Один із найшвидших Python-фреймворків](#performance).
-* **Швидке написання коду**: пришвидшує розробку функціоналу приблизно на 200%–300%. *
+* **Швидке написання коду**: пришвидшує розробку функціоналу приблизно на 200%-300%. *
 * **Менше помилок**: зменшує приблизно на 40% кількість помилок, спричинених людиною (розробником). *
 * **Інтуїтивний**: чудова підтримка редакторами коду. <dfn title="також відоме як автодоповнення, автозавершення, IntelliSense">Автодоповнення</dfn> всюди. Менше часу на налагодження.
 * **Простий**: спроєктований так, щоб бути простим у використанні та вивченні. Менше часу на читання документації.
@@ -125,25 +127,25 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 
 <div class="only-github" markdown="1">
 
-"_[...] Я дуже часто використовую **FastAPI** останнім часом. [...] Я насправді планую використовувати його для всіх **ML-сервісів моєї команди в Microsoft**. Деякі з них інтегруються до основного продукту **Windows** і деяких продуктів **Office**._"
+«_[...] Я дуже часто використовую **FastAPI** останнім часом. [...] Я насправді планую використовувати його для всіх **ML-сервісів моєї команди в Microsoft**. Деякі з них інтегруються до основного продукту **Windows** і деяких продуктів **Office**._»
 
 <div style="text-align: right; margin-right: 10%;">Kabir Khan - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(джерело)</small></a></div>
 
 ---
 
-"_Ми прийняли бібліотеку **FastAPI**, щоб запустити сервер **REST**, до якого можна надсилати запити для отримання **прогнозів**. [для Ludwig]_"
+«_Ми прийняли бібліотеку **FastAPI**, щоб запустити сервер **REST**, до якого можна надсилати запити для отримання **прогнозів**. [для Ludwig]_»
 
-<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin, and Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(джерело)</small></a></div>
+<div style="text-align: right; margin-right: 10%;">Piero Molino, Yaroslav Dudin та Sai Sumanth Miryala - <strong>Uber</strong> <a href="https://www.uber.com/us/en/blog/ludwig-v0-2/"><small>(джерело)</small></a></div>
 
 ---
 
-"_**Netflix** із задоволенням оголошує про випуск з відкритим кодом нашого фреймворку оркестрації **керування кризами**: **Dispatch**! [побудовано з **FastAPI**]_"
+«_**Netflix** із задоволенням оголошує про випуск з відкритим кодом нашого фреймворку оркестрації **керування кризами**: **Dispatch**! [побудовано з **FastAPI**]_»
 
 <div style="text-align: right; margin-right: 10%;">Kevin Glisson, Marc Vilanova, Forest Monsen - <strong>Netflix</strong> <a href="https://netflixtechblog.com/introducing-dispatch-da4b8a2a8072"><small>(джерело)</small></a></div>
 
 ---
 
-"_Якщо хтось хоче створювати продакшн-API на Python, я дуже рекомендую **FastAPI**. Він **чудово спроєктований**, **простий у використанні** і **дуже масштабований**, він став **ключовим компонентом** у нашій стратегії розробки з пріоритетом API і забезпечує багато автоматизацій та сервісів, як-от наш Virtual TAC Engineer._"
+«_Якщо хтось хоче створювати продакшн-API на Python, я дуже рекомендую **FastAPI**. Він **чудово спроєктований**, **простий у використанні** і **дуже масштабований**, він став **ключовим компонентом** у нашій стратегії розробки з пріоритетом API і забезпечує багато автоматизацій та сервісів, як-от наш Virtual TAC Engineer._»
 
 <div style="text-align: right; margin-right: 10%;">Deon Pillsbury - <strong>Cisco</strong> <a href="https://www.linkedin.com/posts/deonpillsbury_cisco-cx-python-activity-6963242628536487936-trAp/"><small>(джерело)</small></a></div>
 
@@ -155,7 +157,7 @@ FastAPI - це сучасний, швидкий (високопродуктив�
 
 Наприкінці 2025 року вийшов [міні-документальний фільм про FastAPI](https://www.youtube.com/watch?v=mpR8ngthqiE), ви можете переглянути його онлайн:
 
-<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="FastAPI Mini Documentary"></a>
+<a class="fastapi-feature-banner" href="https://www.youtube.com/watch?v=mpR8ngthqiE"><img src="https://fastapi.tiangolo.com/img/fastapi-documentary.jpg" alt="Міні-документальний фільм про FastAPI"></a>
 
 ## **Typer**, FastAPI для CLI { #typer-the-fastapi-of-clis }
 
@@ -360,11 +362,11 @@ def update_item(item_id: int, item: Item):
 
 * Натисніть кнопку «Try it out», вона дозволяє заповнити параметри та безпосередньо взаємодіяти з API:
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
+![Взаємодія зі Swagger UI](https://fastapi.tiangolo.com/img/index/index-04-swagger-03.png)
 
 * Потім натисніть кнопку «Execute», інтерфейс користувача зв'яжеться з вашим API, надішле параметри, отримає результати та покаже їх на екрані:
 
-![Swagger UI interaction](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
+![Взаємодія зі Swagger UI](https://fastapi.tiangolo.com/img/index/index-05-swagger-04.png)
 
 ### Оновлення альтернативної документації API { #alternative-api-docs-upgrade }
 
@@ -467,7 +469,7 @@ item: Item
 
 ...і побачите, як ваш редактор автоматично доповнюватиме атрибути та знатиме їхні типи:
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![Підтримка редактора](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 Для більш повного прикладу, що включає більше можливостей, перегляньте <a href="https://fastapi.tiangolo.com/uk/tutorial/">Навчальний посібник - Посібник користувача</a>.
 
@@ -483,7 +485,7 @@ item: Item
     * **WebSockets**
     * надзвичайно прості тести на основі HTTPX та `pytest`
     * **CORS**
-    * **Cookie Sessions**
+    * **Сесії на основі кукі**
     * ...та більше.
 
 ### Розгортання застосунку (необовʼязково) { #deploy-your-app-optional }
@@ -544,7 +546,7 @@ FastAPI залежить від Pydantic і Starlette.
 
 Використовується Starlette:
 
-* [`httpx`](https://www.python-httpx.org) - потрібно, якщо ви хочете використовувати `TestClient`.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (або `httpx`) - використовується `TestClient`.
 * [`jinja2`](https://jinja.palletsprojects.com) - потрібно, якщо ви хочете використовувати конфігурацію шаблонів за замовчуванням.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - потрібно, якщо ви хочете підтримувати форми з <dfn title="перетворення строки, що надходить із HTTP-запиту, у дані Python">«парсингом»</dfn> через `request.form()`.
 

@@ -8,7 +8,7 @@
 
 Наприклад, ви можете створити підклас `HTTPBearer`, який повертатиме помилку `403 Forbidden` замість типового `401 Unauthorized`:
 
-{* ../../docs_src/authentication_error_status_code/tutorial001_an_py310.py hl[9:13] *}
+{* ../../docs_src/authentication_error_status_code/tutorial001.py hl[9:13] *}
 
 /// tip | Порада
 

@@ -20,7 +20,7 @@
 
 यह एक object, जैसे Pydantic model, प्राप्त करता है और JSON संगत version लौटाता है:
 
-{* ../../docs_src/encoder/tutorial001_py310.py hl[4,21] *}
+{* ../../docs_src/encoder/tutorial001.py hl[4,21] *}
 
 इस उदाहरण में, यह Pydantic model को `dict` में और `datetime` को `str` में convert करेगा।
 

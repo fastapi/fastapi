@@ -6,7 +6,7 @@
 
 पहले `Cookie` import करें:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## `Cookie` parameters declare करें { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@
 
 आप default value के साथ-साथ सभी extra validation या annotation parameters भी define कर सकते हैं:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | तकनीकी विवरण
 

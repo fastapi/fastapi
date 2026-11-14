@@ -42,7 +42,7 @@
 
 Таким чином один і той самий клас маршруту зможе обробляти як стиснені gzip, так і нестиснені запити.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[9:16] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[9:16] *}
 
 ### Створіть користувацький клас `GzipRoute` { #create-a-custom-gziproute-class }
 
@@ -54,7 +54,7 @@
 
 Тут ми використовуємо її, щоб створити `GzipRequest` з початкового запиту.
 
-{* ../../docs_src/custom_request_and_route/tutorial001_an_py310.py hl[19:27] *}
+{* ../../docs_src/custom_request_and_route/tutorial001.py hl[19:27] *}
 
 /// note | Технічні деталі
 
@@ -92,18 +92,18 @@
 
 Усе, що потрібно, - обробити запит усередині блоку `try`/`except`:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[14,16] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[14,16] *}
 
 Якщо станеться виключення, екземпляр `Request` усе ще буде у видимості, тож ми зможемо прочитати й використати тіло запиту під час обробки помилки:
 
-{* ../../docs_src/custom_request_and_route/tutorial002_an_py310.py hl[17:19] *}
+{* ../../docs_src/custom_request_and_route/tutorial002.py hl[17:19] *}
 
 ## Користувацький клас `APIRoute` у маршрутизаторі { #custom-apiroute-class-in-a-router }
 
 Можна також встановити параметр `route_class` у `APIRouter`:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[26] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[26] *}
 
 У цьому прикладі *операції шляху* в `router` використовуватимуть користувацький клас `TimedRoute` і матимуть додатковий заголовок відповіді `X-Response-Time` із часом, витраченим на формування відповіді:
 
-{* ../../docs_src/custom_request_and_route/tutorial003_py310.py hl[13:20] *}
+{* ../../docs_src/custom_request_and_route/tutorial003.py hl[13:20] *}

@@ -22,7 +22,7 @@ Da davon abgeraten wird, zeigt die interaktive Dokumentation mit Swagger UI die 
 
 Zuerst müssen Sie `BaseModel` von `pydantic` importieren:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[2] *}
+{* ../../docs_src/body/tutorial001.py hl[2] *}
 
 ## Ihr Datenmodell erstellen { #create-your-data-model }
 
@@ -30,7 +30,7 @@ Dann deklarieren Sie Ihr Datenmodell als eine Klasse, die von `BaseModel` erbt.
 
 Verwenden Sie Standard-Python-Typen für alle Attribute:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[5:9] *}
+{* ../../docs_src/body/tutorial001.py hl[5:9] *}
 
 
 Wie auch bei der Deklaration von Query-Parametern gilt: Wenn ein Modellattribut einen Defaultwert hat, ist das Attribut nicht erforderlich. Andernfalls ist es erforderlich. Verwenden Sie `None`, um es einfach optional zu machen.
@@ -59,7 +59,7 @@ Zum Beispiel deklariert das obige Modell ein JSON „`object`“ (oder Python-<a
 
 Um es zu Ihrer *Pfadoperation* hinzuzufügen, deklarieren Sie es auf die gleiche Weise, wie Sie Pfad- und Query-Parameter deklariert haben:
 
-{* ../../docs_src/body/tutorial001_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial001.py hl[16] *}
 
 ... und deklarieren Sie dessen Typ als das Modell, welches Sie erstellt haben, `Item`.
 
@@ -126,7 +126,7 @@ Es verbessert die Editor-Unterstützung für Pydantic-Modelle, mit:
 
 Innerhalb der Funktion können Sie alle Attribute des Modellobjekts direkt verwenden:
 
-{* ../../docs_src/body/tutorial002_py310.py *}
+{* ../../docs_src/body/tutorial002.py *}
 
 ## Requestbody + Pfad-Parameter { #request-body-path-parameters }
 
@@ -134,7 +134,7 @@ Sie können Pfad-Parameter und den Requestbody gleichzeitig deklarieren.
 
 **FastAPI** erkennt, dass Funktionsparameter, die mit Pfad-Parametern übereinstimmen, **vom Pfad genommen** werden sollen, und dass Funktionsparameter, welche Pydantic-Modelle sind, **vom Requestbody genommen** werden sollen.
 
-{* ../../docs_src/body/tutorial003_py310.py hl[15:16] *}
+{* ../../docs_src/body/tutorial003.py hl[15:16] *}
 
 
 ## Requestbody + Pfad- + Query-Parameter { #request-body-path-query-parameters }
@@ -143,7 +143,7 @@ Sie können auch zur gleichen Zeit **Body-**, **Pfad-** und **Query-Parameter** 
 
 **FastAPI** wird jeden von ihnen korrekt erkennen und die Daten vom richtigen Ort holen.
 
-{* ../../docs_src/body/tutorial004_py310.py hl[16] *}
+{* ../../docs_src/body/tutorial004.py hl[16] *}
 
 Die Funktionsparameter werden wie folgt erkannt:
 

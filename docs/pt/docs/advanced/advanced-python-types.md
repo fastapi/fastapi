@@ -13,17 +13,17 @@ from typing import Union
 
 
 def say_hi(name: Union[str, None]):
-        print(f"Hi {name}!")
+    print(f"Hi {name}!")
 ```
 
 O `typing` também tem um atalho para declarar que algo pode ser `None`, com `Optional`.
 
-Aqui vai uma dica do meu ponto de vista bem subjetivo:
+Aqui vai uma dica do meu ponto de vista bem **subjetivo**:
 
 * 🚨 Evite usar `Optional[SomeType]`
-* Em vez disso ✨ use **`Union[SomeType, None]`** ✨.
+* Em vez disso ✨ **use `Union[SomeType, None]`** ✨.
 
-Ambos são equivalentes e, por baixo, são a mesma coisa, mas eu recomendaria `Union` em vez de `Optional` porque a palavra "opcional" sugere que o valor é opcional; na verdade, significa "pode ser `None`", mesmo quando não é opcional e continua sendo obrigatório.
+Ambos são equivalentes e, por baixo, são a mesma coisa, mas eu recomendaria `Union` em vez de `Optional` porque a palavra "**opcional**" sugere que o valor é opcional; na verdade, significa "pode ser `None`", mesmo quando não é opcional e continua sendo obrigatório.
 
 Acho que `Union[SomeType, None]` é mais explícito quanto ao significado.
 
@@ -39,13 +39,13 @@ def say_hi(name: Optional[str]):
     print(f"Hey {name}!")
 ```
 
-O parâmetro `name` é definido como `Optional[str]`, mas não é opcional; não é possível chamar a função sem o parâmetro:
+O parâmetro `name` é definido como `Optional[str]`, mas **não é opcional**; não é possível chamar a função sem o parâmetro:
 
 ```Python
 say_hi()  # Ah, não, isso gera um erro! 😱
 ```
 
-O parâmetro `name` continua obrigatório (não é opcional) porque não tem valor padrão. Ainda assim, `name` aceita `None` como valor:
+O parâmetro `name` **continua obrigatório** (não é *opcional*) porque não tem valor padrão. Ainda assim, `name` aceita `None` como valor:
 
 ```Python
 say_hi(name=None)  # Isso funciona, None é válido 🎉

@@ -20,7 +20,7 @@
 
 以下是模型大致長相、與其密碼欄位以及它們被使用的位置：
 
-{* ../../docs_src/extra_models/tutorial001_py310.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
+{* ../../docs_src/extra_models/tutorial001.py hl[7,9,14,20,22,27:28,31:33,38:39] *}
 
 ### 關於 `**user_in.model_dump()` { #about-user-in-model-dump }
 
@@ -54,10 +54,10 @@ print(user_dict)
 
 ```Python
 {
-    'username': 'john',
-    'password': 'secret',
-    'email': 'john.doe@example.com',
-    'full_name': None,
+    "username": "john",
+    "password": "secret",
+    "email": "john.doe@example.com",
+    "full_name": None,
 }
 ```
 
@@ -86,10 +86,10 @@ UserInDB(
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
 )
 ```
 
@@ -124,11 +124,11 @@ UserInDB(**user_in.model_dump(), hashed_password=hashed_password)
 
 ```Python
 UserInDB(
-    username = user_dict["username"],
-    password = user_dict["password"],
-    email = user_dict["email"],
-    full_name = user_dict["full_name"],
-    hashed_password = hashed_password,
+    username=user_dict["username"],
+    password=user_dict["password"],
+    email=user_dict["email"],
+    full_name=user_dict["full_name"],
+    hashed_password=hashed_password,
 )
 ```
 
@@ -154,7 +154,7 @@ UserInDB(
 
 如此一來，我們只需要宣告模型之間的差異（含明文 `password`、含 `hashed_password`、或不含密碼）：
 
-{* ../../docs_src/extra_models/tutorial002_py310.py hl[7,13:14,17:18,21:22] *}
+{* ../../docs_src/extra_models/tutorial002.py hl[7,13:14,17:18,21:22] *}
 
 ## `Union` 或 `anyOf` { #union-or-anyof }
 
@@ -170,7 +170,7 @@ UserInDB(
 
 ///
 
-{* ../../docs_src/extra_models/tutorial003_py310.py hl[1,14:15,18:20,33] *}
+{* ../../docs_src/extra_models/tutorial003.py hl[1,14:15,18:20,33] *}
 
 ### Python 3.10 中的 `Union` { #union-in-python-3-10 }
 
@@ -192,7 +192,7 @@ some_variable: PlaneItem | CarItem
 
 為此，使用標準的 Python `list`：
 
-{* ../../docs_src/extra_models/tutorial004_py310.py hl[18] *}
+{* ../../docs_src/extra_models/tutorial004.py hl[18] *}
 
 ## 以任意 `dict` 作為回應 { #response-with-arbitrary-dict }
 
@@ -202,7 +202,7 @@ some_variable: PlaneItem | CarItem
 
 此時可使用 `dict`：
 
-{* ../../docs_src/extra_models/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/extra_models/tutorial005.py hl[6] *}
 
 ## 重點回顧 { #recap }
 

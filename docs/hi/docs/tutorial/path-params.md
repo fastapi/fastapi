@@ -2,7 +2,7 @@
 
 आप Python format strings द्वारा इस्तेमाल किए जाने वाले समान syntax के साथ path "parameters" या "variables" declare कर सकते हैं:
 
-{* ../../docs_src/path_params/tutorial001_py310.py hl[6:7] *}
+{* ../../docs_src/path_params/tutorial001.py hl[6:7] *}
 
 path parameter `item_id` की value आपके function को argument `item_id` के रूप में pass की जाएगी।
 
@@ -16,7 +16,7 @@ path parameter `item_id` की value आपके function को argument `ite
 
 आप standard Python type annotations का उपयोग करके function में किसी path parameter का type declare कर सकते हैं:
 
-{* ../../docs_src/path_params/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/path_params/tutorial002.py hl[7] *}
 
 इस मामले में, `item_id` को `int` declare किया गया है।
 
@@ -118,13 +118,13 @@ path parameter `item_id` की value आपके function को argument `ite
 
 क्योंकि *path operations* का evaluation क्रम में किया जाता है, आपको यह सुनिश्चित करना होगा कि `/users/me` के लिए path, `/users/{user_id}` वाले path से पहले declare किया गया हो:
 
-{* ../../docs_src/path_params/tutorial003_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003.py hl[6,11] *}
 
 अन्यथा, `/users/{user_id}` के लिए path `/users/me` से भी match करेगा, यह "सोचते हुए" कि उसे `user_id` parameter मिल रहा है जिसकी value `"me"` है।
 
 इसी तरह, आप किसी path operation को फिर से define नहीं कर सकते:
 
-{* ../../docs_src/path_params/tutorial003b_py310.py hl[6,11] *}
+{* ../../docs_src/path_params/tutorial003b.py hl[6,11] *}
 
 पहला वाला हमेशा इस्तेमाल किया जाएगा क्योंकि path पहले match करता है।
 
@@ -140,7 +140,7 @@ path parameter `item_id` की value आपके function को argument `ite
 
 फिर fixed values के साथ class attributes बनाएं, जो उपलब्ध valid values होंगी:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[1,6:9] *}
+{* ../../docs_src/path_params/tutorial005.py hl[1,6:9] *}
 
 /// tip | सुझाव
 
@@ -152,7 +152,7 @@ path parameter `item_id` की value आपके function को argument `ite
 
 फिर आपके द्वारा बनाई गई enum class (`ModelName`) का उपयोग करके type annotation के साथ एक *path parameter* बनाएं:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[16] *}
+{* ../../docs_src/path_params/tutorial005.py hl[16] *}
 
 ### Docs देखें { #check-the-docs }
 
@@ -168,13 +168,13 @@ path parameter `item_id` की value आपके function को argument `ite
 
 आप इसकी तुलना अपने बनाए हुए enum `ModelName` में मौजूद *enumeration member* से कर सकते हैं:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[17] *}
+{* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
 #### *Enumeration value* प्राप्त करें { #get-the-enumeration-value }
 
 आप `model_name.value` का उपयोग करके actual value (इस मामले में एक `str`) प्राप्त कर सकते हैं, या सामान्य रूप से, `your_enum_member.value`:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[20] *}
+{* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
 /// tip | सुझाव
 
@@ -188,7 +188,7 @@ path parameter `item_id` की value आपके function को argument `ite
 
 Client को return करने से पहले उन्हें उनकी संबंधित values (इस मामले में strings) में convert कर दिया जाएगा:
 
-{* ../../docs_src/path_params/tutorial005_py310.py hl[18,21,23] *}
+{* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
 अपने client में आपको ऐसा JSON response मिलेगा:
 
@@ -227,7 +227,7 @@ Starlette से सीधे एक option का उपयोग करके,
 
 तो, आप इसे इसके साथ इस्तेमाल कर सकते हैं:
 
-{* ../../docs_src/path_params/tutorial004_py310.py hl[6] *}
+{* ../../docs_src/path_params/tutorial004.py hl[6] *}
 
 /// tip | सुझाव
 

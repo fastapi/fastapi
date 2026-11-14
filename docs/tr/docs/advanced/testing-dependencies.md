@@ -28,7 +28,7 @@ Test için bir dependency'yi override etmek istediğinizde, key olarak orijinal 
 
 Böylece **FastAPI**, orijinal dependency yerine bu override'ı çağırır.
 
-{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
 /// tip | İpucu
 

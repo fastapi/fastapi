@@ -12,7 +12,7 @@ OpenAPI konusunda "uzman" değilseniz, muhtemelen buna ihtiyacınız yok.
 
 Bunun her operation için benzersiz olduğundan emin olmanız gerekir.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial001.py hl[6] *}
 
 ### operationId olarak *path operation function* adını kullanma { #using-the-path-operation-function-name-as-the-operationid }
 
@@ -20,7 +20,7 @@ API’lerinizin function adlarını `operationId` olarak kullanmak istiyorsanız
 
 Bu function her bir `APIRoute`'u alır ve ilgili *path operation* için kullanılacak `operationId`'yi döndürür.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial002_py310.py hl[2,5:6,9] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial002.py hl[2,5:6,9] *}
 
 /// warning | Uyarı
 
@@ -34,7 +34,7 @@ Farklı modüllerde (Python dosyalarında) olsalar bile.
 
 Bir *path operation*’ı üretilen OpenAPI şemasından (dolayısıyla otomatik dokümantasyon sistemlerinden) hariç tutmak için `include_in_schema` parametresini kullanın ve `False` yapın:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial003_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial003.py hl[6] *}
 
 ## Docstring’den İleri Düzey Açıklama { #advanced-description-from-docstring }
 
@@ -44,7 +44,7 @@ Bir `\f` (escape edilmiş "form feed" karakteri) eklerseniz, **FastAPI** OpenAPI
 
 Dokümantasyonda görünmez, ancak diğer araçlar (Sphinx gibi) geri kalan kısmı kullanabilir.
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial004_py310.py hl[17:27] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial004.py hl[17:27] *}
 
 ## Ek Responses { #additional-responses }
 
@@ -86,7 +86,7 @@ Bir *path operation* için OpenAPI şemasını `openapi_extra` parametresiyle ge
 
 Örneğin bu `openapi_extra`, [OpenAPI Uzantıları](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specificationExtensions) tanımlamak için faydalı olabilir:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial005_py310.py hl[6] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial005.py hl[6] *}
 
 Otomatik API dokümanlarını açtığınızda, extension’ınız ilgili *path operation*’ın en altında görünür.
 
@@ -133,7 +133,7 @@ Böylece otomatik üretilen şemaya ek veri ekleyebilirsiniz.
 
 Bunu `openapi_extra` ile yapabilirsiniz:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial006_py310.py hl[19:36, 39:40] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial006.py hl[19:36, 39:40] *}
 
 Bu örnekte herhangi bir Pydantic model tanımlamadık. Hatta request body JSON olarak <dfn title="bytes gibi düz bir formattan, ör. bytes, Python nesnelerine dönüştürme">ayrıştırılmıyor</dfn>; doğrudan `bytes` olarak okunuyor ve `magic_data_reader()` fonksiyonu bunu bir şekilde parse etmekten sorumlu oluyor.
 
@@ -147,7 +147,7 @@ Ve bunu, request içindeki veri tipi JSON olmasa bile yapabilirsiniz.
 
 Örneğin bu uygulamada, FastAPI’nin Pydantic modellerinden JSON Schema çıkarmaya yönelik entegre işlevselliğini ve JSON için otomatik doğrulamayı kullanmıyoruz. Hatta request content type’ını JSON değil, YAML olarak tanımlıyoruz:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[15:20, 22] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[15:20, 22] *}
 
 Buna rağmen, varsayılan entegre işlevselliği kullanmasak da, YAML olarak almak istediğimiz veri için JSON Schema’yı manuel üretmek üzere bir Pydantic model kullanmaya devam ediyoruz.
 
@@ -155,7 +155,7 @@ Ardından request’i doğrudan kullanıp body’yi `bytes` olarak çıkarıyoru
 
 Sonrasında kodumuzda bu YAML içeriğini doğrudan parse ediyor, ardından YAML içeriğini doğrulamak için yine aynı Pydantic modeli kullanıyoruz:
 
-{* ../../docs_src/path_operation_advanced_configuration/tutorial007_py310.py hl[24:31] *}
+{* ../../docs_src/path_operation_advanced_configuration/tutorial007.py hl[24:31] *}
 
 /// tip | İpucu
 

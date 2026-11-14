@@ -40,7 +40,9 @@ include_yaml:
 
 FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्शन) web framework है जो standard Python type hints के आधार पर Python से APIs बनाने के लिए है।
 
-मुख्य विशेषताएँ:
+<!-- agent-banner -->
+
+मुख्य features:
 
 * **तेज़**: बहुत उच्च प्रदर्शन, **NodeJS** और **Go** के समकक्ष (Starlette और Pydantic की बदौलत)। [उपलब्ध सबसे तेज़ Python frameworks में से एक](#performance)।
 * **कोड लिखने में तेज़**: features विकसित करने की गति लगभग 200% से 300% तक बढ़ाएँ। *
@@ -89,7 +91,7 @@ FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्
 
 <!-- only-mkdocs -->
 <div class="fastapi-opinions" data-fastapi-opinions>
-  <div class="fastapi-opinions__tabs" role="tablist" aria-label="Companies using FastAPI">
+  <div class="fastapi-opinions__tabs" role="tablist" aria-label="FastAPI का उपयोग करने वाली कंपनियाँ">
     <button class="fastapi-opinions__tab" role="tab" type="button" id="fo-tab-microsoft" aria-controls="fo-panel-microsoft" aria-selected="true" tabindex="0">
       <span class="fastapi-opinions__mark"><img src="/img/logos/microsoft.svg" alt="Microsoft" loading="lazy"></span>
     </button>
@@ -105,7 +107,7 @@ FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्
   </div>
 
   <div class="fastapi-opinions__panel" id="fo-panel-microsoft" role="tabpanel" aria-labelledby="fo-tab-microsoft" tabindex="0">
-    <blockquote class="fastapi-opinions__quote">"मैं इन दिनों <strong>FastAPI</strong> का बहुत उपयोग कर रहा/रही हूँ। वास्तव में मैं अपनी team की <strong>Microsoft में ML सेवाओं</strong> के लिए इसे उपयोग करने की योजना बना रहा/रही हूँ। इनमें से कुछ को मुख्य <strong>Windows</strong> product और कुछ <strong>Office</strong> products में इंटीग्रेट किया जा रहा है।"</blockquote>
+    <blockquote class="fastapi-opinions__quote">"मैं इन दिनों <strong>FastAPI</strong> का बहुत उपयोग कर रहा/रही हूँ। वास्तव में मैं अपनी team की <strong>Microsoft में सभी ML सेवाओं</strong> के लिए इसे उपयोग करने की योजना बना रहा/रही हूँ। इनमें से कुछ को मुख्य <strong>Windows</strong> product और कुछ <strong>Office</strong> products में इंटीग्रेट किया जा रहा है।"</blockquote>
     <div class="fastapi-opinions__attr">— कबीर खान, <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26">(संदर्भ)</a></div>
   </div>
   <div class="fastapi-opinions__panel" id="fo-panel-uber" role="tabpanel" aria-labelledby="fo-tab-uber" tabindex="0" hidden>
@@ -125,7 +127,7 @@ FastAPI एक आधुनिक, तेज़ (उच्च-प्रदर्
 
 <div class="only-github" markdown="1">
 
-"_[...] मैं इन दिनों **FastAPI** का बहुत उपयोग कर रहा/रही हूँ। [...] वास्तव में मैं अपनी team की **Microsoft में ML सेवाओं** के लिए इसे उपयोग करने की योजना बना रहा/रही हूँ। इनमें से कुछ को मुख्य **Windows** product और कुछ **Office** products में इंटीग्रेट किया जा रहा है._"
+"_[...] मैं इन दिनों **FastAPI** का बहुत उपयोग कर रहा/रही हूँ। [...] वास्तव में मैं अपनी team की **Microsoft में सभी ML सेवाओं** के लिए इसे उपयोग करने की योजना बना रहा/रही हूँ। इनमें से कुछ को मुख्य **Windows** product और कुछ **Office** products में इंटीग्रेट किया जा रहा है._"
 
 <div style="text-align: right; margin-right: 10%;">कबीर खान - <strong>Microsoft</strong> <a href="https://github.com/fastapi/fastapi/pull/26"><small>(संदर्भ)</small></a></div>
 
@@ -544,7 +546,7 @@ Pydantic द्वारा उपयोग किया गया:
 
 Starlette द्वारा उपयोग किया गया:
 
-* [`httpx`](https://www.python-httpx.org) - यदि आप `TestClient` का उपयोग करना चाहते हैं तो required।
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (या `httpx`) - `TestClient` द्वारा उपयोग किया जाता है।
 * [`jinja2`](https://jinja.palletsprojects.com) - यदि आप default टेम्पलेट कॉन्फ़िगरेशन का उपयोग करना चाहते हैं तो required।
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - यदि आप form <dfn title="HTTP request से आने वाली string को Python data में convert करना">"parsing"</dfn> का समर्थन करना चाहते हैं, `request.form()` के साथ, तो required।
 

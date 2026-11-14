@@ -359,20 +359,26 @@ def test_cookie_model_preserves_unused_choice_as_extra():
     "convert_underscores, name, rejected_name",
     [(True, "x-values", "x_values"), (False, "x_values", "x-values")],
 )
+@pytest.mark.parametrize(
+    "field_info",
+    [
+        Field(alias="X-Second"),
+        Field(validation_alias="X-Second"),
+        Field(validation_alias=AliasChoices("X-First", "X-Second")),
+    ],
+)
 def test_header_model_name_fallback(
-    config, expected_value, convert_underscores, name, rejected_name
+    config, expected_value, convert_underscores, name, rejected_name, field_info
 ):
     app = FastAPI()
 
     class Model(BaseModel):
         model_config = config
-        x_values: Annotated[
-            list[int], Field(validation_alias=AliasChoices("X-First", "X-Second"))
-        ]
+        x_values: Annotated[list[int], field_info]
 
     @app.get("/")
     def read(data: Annotated[Model, Header(convert_underscores=convert_underscores)]):
-        return data
+        return {"x_values": data.x_values}
 
     client = TestClient(app)
     response = client.get("/", headers={name: "1"})
@@ -403,16 +409,24 @@ def test_header_model_name_fallback(
         ),
     ],
 )
-def test_cookie_model_name_fallback(config, expected_value):
+@pytest.mark.parametrize(
+    "field_info",
+    [
+        Field(alias="second"),
+        Field(validation_alias="second"),
+        Field(validation_alias=AliasChoices("first", "second")),
+    ],
+)
+def test_cookie_model_name_fallback(config, expected_value, field_info):
     app = FastAPI()
 
     class Model(BaseModel):
         model_config = config
-        value: Annotated[int, Field(validation_alias=AliasChoices("first", "second"))]
+        value: Annotated[int, field_info]
 
     @app.get("/")
     def read(data: Annotated[Model, Cookie()]):
-        return data
+        return {"value": data.value}
 
     client = TestClient(app)
     response = client.get("/", headers={"cookie": "value=1"})
@@ -423,7 +437,7 @@ def test_cookie_model_name_fallback(config, expected_value):
     assert response.json() == {"value": expected_value}
 
 
-def test_path_alias_choices_are_unchanged():
+def test_unmatched_path_alias_choices_preserve_parameter_name():
     response = client.get("/path/1")
     assert response.status_code == 200
     assert response.json() == 1

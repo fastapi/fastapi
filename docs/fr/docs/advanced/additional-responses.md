@@ -26,7 +26,7 @@ Chacun de ces `dict` de réponse peut avoir une clé `model`, contenant un modè
 
 Par exemple, pour déclarer une autre réponse avec un code HTTP `404` et un modèle Pydantic `Message`, vous pouvez écrire :
 
-{* ../../docs_src/additional_responses/tutorial001_py310.py hl[18,22] *}
+{* ../../docs_src/additional_responses/tutorial001.py hl[18,22] *}
 
 /// note | Remarque
 
@@ -175,7 +175,7 @@ Vous pouvez utiliser ce même paramètre `responses` pour ajouter différents ty
 
 Par exemple, vous pouvez ajouter un type de média supplémentaire `image/png`, en déclarant que votre *chemin d'accès* peut renvoyer un objet JSON (avec le type de média `application/json`) ou une image PNG :
 
-{* ../../docs_src/additional_responses/tutorial002_py310.py hl[17:22,26] *}
+{* ../../docs_src/additional_responses/tutorial002.py hl[17:22,26] *}
 
 /// note | Remarque
 
@@ -203,7 +203,7 @@ Par exemple, vous pouvez déclarer une réponse avec un code HTTP `404` qui util
 
 Et une réponse avec un code HTTP `200` qui utilise votre `response_model`, mais inclut un `example` personnalisé :
 
-{* ../../docs_src/additional_responses/tutorial003_py310.py hl[20:31] *}
+{* ../../docs_src/additional_responses/tutorial003.py hl[20:31] *}
 
 Tout sera combiné et inclus dans votre OpenAPI, et affiché dans la documentation de l'API :
 
@@ -237,7 +237,7 @@ Vous pouvez utiliser cette technique pour réutiliser certaines réponses préd�
 
 Par exemple :
 
-{* ../../docs_src/additional_responses/tutorial004_py310.py hl[11:15,24] *}
+{* ../../docs_src/additional_responses/tutorial004.py hl[11:15,24] *}
 
 ## Plus d'informations sur les réponses OpenAPI { #more-information-about-openapi-responses }
 

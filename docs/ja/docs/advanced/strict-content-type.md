@@ -77,7 +77,7 @@ http://localhost:8000/v1/agents/multivac
 
 `Content-Type` ヘッダーを送らないクライアントをサポートする必要がある場合は、`strict_content_type=False` を設定して厳格チェックを無効化できます。
 
-{* ../../docs_src/strict_content_type/tutorial001_py310.py hl[4] *}
+{* ../../docs_src/strict_content_type/tutorial001.py hl[4] *}
 
 この設定では、`Content-Type` ヘッダーがないリクエストでもボディが JSON として解析されます。これは古いバージョンの FastAPI と同じ挙動です。
 

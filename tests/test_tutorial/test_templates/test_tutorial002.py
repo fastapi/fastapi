@@ -21,7 +21,7 @@ def test_main(
     shutil.copytree(tutorial_dir / "templates", tmp_path / "templates")
     shutil.copytree(tutorial_dir / "static", tmp_path / "static")
     monkeypatch.chdir(tmp_path)
-    from docs_src.templates.tutorial002_py310 import app
+    from docs_src.templates.tutorial002 import app
 
     if mount_path:
         main_app = FastAPI()

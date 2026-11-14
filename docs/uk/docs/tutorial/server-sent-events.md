@@ -39,13 +39,13 @@ SSE часто використовують для стрімінгу чатів
 
 Імпортуйте `EventSourceResponse` з `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 Кожен елемент, повернений через `yield`, кодується як JSON і надсилається в полі `data:` події SSE.
 
 Якщо ви оголосите тип повернення як `AsyncIterable[Item]`, FastAPI використає його, щоб **перевіряти**, **документувати** і **серіалізувати** дані за допомогою Pydantic.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip | Порада
 
@@ -61,13 +61,13 @@ FastAPI подбає про коректне виконання, щоб воно
 
 Оскільки в цьому випадку функція не async, коректним типом повернення буде `Iterable[Item]`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### Без типу повернення { #no-return-type }
 
 Можна також опустити тип повернення. FastAPI використає [`jsonable_encoder`](./encoder.md), щоб конвертувати дані і надіслати їх.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ FastAPI подбає про коректне виконання, щоб воно
 
 Імпортуйте `ServerSentEvent` з `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 Поле `data` завжди кодується як JSON. Ви можете передати будь-яке значення, яке можна серіалізувати в JSON, включно з моделями Pydantic.
 
@@ -85,7 +85,7 @@ FastAPI подбає про коректне виконання, щоб воно
 
 Це корисно для надсилання попередньо відформатованого тексту, рядків логів або спеціальних значень <dfn title="Значення, яке використовується для позначення особливої умови або стану">«значення-сторож»</dfn>, як-от `[DONE]`.
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note | Примітка
 
@@ -99,7 +99,7 @@ FastAPI подбає про коректне виконання, щоб воно
 
 Ви можете прочитати його як параметр заголовка і використати, щоб відновити потік із місця, де клієнт зупинився:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## SSE з POST { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE працює з будь-яким HTTP-методом, не лише з `GET
 
 Це корисно для протоколів на кшталт [MCP](https://modelcontextprotocol.io), які транслюють SSE через `POST`:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## Технічні деталі { #technical-details }
 

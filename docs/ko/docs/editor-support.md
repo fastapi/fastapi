@@ -22,3 +22,7 @@
 - **애플리케이션 로그 스트리밍** - FastAPI Cloud에 배포된 애플리케이션의 로그를 실시간으로 스트리밍하며, 레벨 필터링과 텍스트 검색을 제공합니다.
 
 확장의 기능을 먼저 익혀보고 싶다면, 명령 팔레트(<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>, macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>)를 열고 "Welcome: Open walkthrough..."를 선택한 뒤 "Get started with FastAPI" walkthrough를 선택해 보세요.
+
+## AI 코딩 에이전트 { #ai-coding-agents }
+
+공식 FastAPI 스킬을 설치하고 사용하려면 [AI로 개발하기](ai-development.md)를 참고하세요.

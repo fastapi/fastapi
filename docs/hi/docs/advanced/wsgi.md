@@ -18,7 +18,7 @@
 
 और फिर उसे किसी path के अंतर्गत mount करें।
 
-{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001.py hl[1,3,23] *}
 
 /// note | नोट
 

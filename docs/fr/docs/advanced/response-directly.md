@@ -40,7 +40,7 @@ Par exemple, vous ne pouvez pas mettre un modèle Pydantic dans une `JSONRespons
 
 Pour ces cas, vous pouvez utiliser le `jsonable_encoder` pour convertir vos données avant de les passer à une réponse :
 
-{* ../../docs_src/response_directly/tutorial001_py310.py hl[5:6,20:21] *}
+{* ../../docs_src/response_directly/tutorial001.py hl[5:6,20:21] *}
 
 /// note | Détails techniques
 
@@ -60,13 +60,13 @@ Disons que vous voulez renvoyer une [réponse XML](https://en.wikipedia.org/wiki
 
 Vous pouvez placer votre contenu XML dans une chaîne de caractères, le mettre dans une `Response` et le renvoyer :
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ## Comprendre le fonctionnement d'un Modèle de réponse { #how-a-response-model-works }
 
 Lorsque vous déclarez un [Modèle de réponse - Type de retour](../tutorial/response-model.md) dans un chemin d'accès, **FastAPI** l'utilise pour sérialiser les données en JSON, en utilisant Pydantic.
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py hl[16,21] *}
+{* ../../docs_src/response_model/tutorial001_01.py hl[16,21] *}
 
 Comme cela se passe côté Rust, la performance sera bien meilleure que si cela était fait avec le Python classique et la classe `JSONResponse`.
 

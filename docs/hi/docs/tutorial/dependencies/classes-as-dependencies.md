@@ -6,7 +6,7 @@
 
 पिछले उदाहरण में, हम अपनी dependency ("dependable") से एक `dict` return कर रहे थे:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
 लेकिन फिर हमें *path operation function* के parameter `commons` में एक `dict` मिलता है।
 
@@ -69,15 +69,15 @@ FastAPI वास्तव में यह check करता है कि व
 
 फिर, हम ऊपर वाली dependency "dependable" `common_parameters` को class `CommonQueryParams` में बदल सकते हैं:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[11:15] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
 Class का instance बनाने के लिए उपयोग की गई `__init__` method पर ध्यान दें:
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[12] *}
 
 ...इसमें वही parameters हैं जो हमारे पिछले `common_parameters` में थे:
 
-{* ../../docs_src/dependencies/tutorial001_an_py310.py hl[8] *}
+{* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
 यही parameters **FastAPI** dependency को "solve" करने के लिए उपयोग करेगा।
 
@@ -93,7 +93,7 @@ Class का instance बनाने के लिए उपयोग की �
 
 अब आप इस class का उपयोग करके अपनी dependency declare कर सकते हैं।
 
-{* ../../docs_src/dependencies/tutorial002_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial002.py hl[19] *}
 
 **FastAPI** `CommonQueryParams` class को call करता है। यह उस class का एक "instance" बनाता है और वह instance आपके function को parameter `commons` के रूप में pass किया जाएगा।
 
@@ -187,7 +187,7 @@ commons = Depends(CommonQueryParams)
 
 ...जैसे:
 
-{* ../../docs_src/dependencies/tutorial003_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial003.py hl[19] *}
 
 लेकिन type declare करने को प्रोत्साहित किया जाता है क्योंकि इस तरह आपका editor जान पाएगा कि parameter `commons` के रूप में क्या pass होगा, और फिर यह code completion, type checks, आदि में आपकी मदद कर सकता है:
 
@@ -275,7 +275,7 @@ commons: CommonQueryParams = Depends()
 
 फिर वही उदाहरण इस तरह दिखेगा:
 
-{* ../../docs_src/dependencies/tutorial004_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial004.py hl[19] *}
 
 ...और **FastAPI** जान जाएगा कि क्या करना है।
 

@@ -10,13 +10,13 @@ Let's see how that works and how to change it if you need to do that.
 
 Let's say you have a Pydantic model with default values, like this one:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### Model for Input { #model-for-input }
 
 If you use this model as an input like here:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ...then the `description` field will **not be required**. Because it has a default value of `None`.
 
@@ -32,7 +32,7 @@ You can confirm that in the docs, the `description` field doesn't have a **red a
 
 But if you use the same model as an output, like here:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ...then because `description` has a default value, if you **don't return anything** for that field, it will still have that **default value**.
 
@@ -91,7 +91,7 @@ Support for `separate_input_output_schemas` was added in FastAPI `0.102.0`. 🤓
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### Same Schema for Input and Output Models in Docs { #same-schema-for-input-and-output-models-in-docs }
 

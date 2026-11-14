@@ -9,7 +9,7 @@ from tests.utils import needs_py310
 
 @pytest.fixture(
     name="client",
-    params=[pytest.param("tutorial001_py310", marks=needs_py310)],
+    params=[pytest.param("tutorial001", marks=needs_py310)],
 )
 def get_client(request: pytest.FixtureRequest):
     mod = importlib.import_module(f"docs_src.json_base64_bytes.{request.param}")

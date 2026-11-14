@@ -15,7 +15,7 @@ results = await some_library()
 然后，通过 `async def` 声明你的 *路径操作函数*：
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ async def read_results():
 如果你正在使用一个第三方库和某些组件（比如：数据库、API、文件系统等）进行通信，而该第三方库不支持使用 `await`（目前大多数数据库库都是这样），这种情况你可以像平常那样使用 `def` 声明一个路径操作函数，就像这样：
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -221,7 +221,7 @@ Python 的现代版本支持通过一种叫**“协程”**——使用 `async` 
 
 ---
 
-这将是与汉堡的类似故事。🍔
+这就是汉堡故事对应的并行版本。🍔
 
 一种更“贴近生活”的例子，想象一家银行。
 
@@ -235,7 +235,7 @@ Python 的现代版本支持通过一种叫**“协程”**——使用 `async` 
 
 ### 汉堡结论 { #burger-conclusion }
 
-在“你与恋人一起吃汉堡”的这个场景中，因为有很多人在等待 🕙，使用并发系统更有意义 ⏸🔀⏯。
+在“你与恋人一起吃汉堡”的这个场景中，因为有很多等待 🕙，使用并发系统更有意义 ⏸🔀⏯。
 
 大多数 Web 应用都是这样的。
 
@@ -288,7 +288,7 @@ CPU 密集型操作的常见示例是需要复杂的数学处理。
 * **音频**或**图像**处理；
 * **计算机视觉**：一幅图像由数百万像素组成，每个像素有 3 种颜色值，处理通常需要同时对这些像素进行计算；
 * **机器学习**：它通常需要大量的“矩阵”和“向量”乘法。想象一个包含数字的巨大电子表格，并同时将所有数字相乘；
-* **深度学习**：这是机器学习的一个子领域，同样适用。只是没有一个数字的电子表格可以相乘，而是一个庞大的数字集合，在很多情况下，你需要使用一个特殊的处理器来构建和/或使用这些模型。
+* **深度学习**：这是机器学习的一个子领域，同样适用。只是需要做乘法的不再是单个数字电子表格，而是一大批这样的表格，在很多情况下，你需要使用一个特殊的处理器来构建和/或使用这些模型。
 
 ### 并发 + 并行: Web + 机器学习 { #concurrency-parallelism-web-machine-learning }
 
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 因此，如果你使用的库告诉你可以使用 `await` 调用它，则需要使用 `async def` 创建路径操作函数，如：
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers
@@ -419,7 +419,7 @@ Starlette（和 **FastAPI**）是基于 [AnyIO](https://anyio.readthedocs.io/en/
 
 如果你使用过另一个不以上述方式工作的异步框架，并且你习惯于用普通的 `def` 定义普通的仅计算路径操作函数，以获得微小的性能增益（大约 100 纳秒），请注意，在 FastAPI 中，效果将完全相反。在这些情况下，最好使用 `async def`，除非路径操作函数内使用执行阻塞 <abbr title="Input/Output - 输入/输出：磁盘读写，网络通信。">I/O</abbr> 的代码。
 
-在这两种情况下，**FastAPI** [仍然会更快](index.md#performance)（或至少与之前的框架相当）。
+在这两种情况下，**FastAPI** 很可能[仍然会更快](index.md#performance)（或至少与之前的框架相当）。
 
 ### 依赖 { #dependencies }
 

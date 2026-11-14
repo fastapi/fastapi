@@ -17,7 +17,7 @@ Bu parametrelerin *path operation function*’ınıza değil, doğrudan *path op
 
 Ancak her sayısal kodun ne işe yaradığını hatırlamıyorsanız, `status` içindeki kısayol sabitlerini kullanabilirsiniz:
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 Bu status code response’da kullanılacak ve OpenAPI şemasına eklenecektir.
 
@@ -33,7 +33,7 @@ Bu status code response’da kullanılacak ve OpenAPI şemasına eklenecektir.
 
 *Path operation*’ınıza tag ekleyebilirsiniz; `tags` parametresine `str` öğelerinden oluşan bir `list` verin (genellikle tek bir `str`):
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 Bunlar OpenAPI şemasına eklenecek ve otomatik dokümantasyon arayüzleri tarafından kullanılacaktır:
 
@@ -47,13 +47,13 @@ Bu durumlarda tag’leri bir `Enum` içinde tutmak mantıklı olabilir.
 
 **FastAPI** bunu düz string’lerde olduğu gibi aynı şekilde destekler:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## Özet ve açıklama { #summary-and-description }
 
 Bir `summary` ve `description` ekleyebilirsiniz:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## Docstring’den Açıklama { #description-from-docstring }
 
@@ -61,7 +61,7 @@ Açıklamalar genelde uzun olur ve birden fazla satıra yayılır; bu yüzden *p
 
 Docstring içinde [Markdown](https://en.wikipedia.org/wiki/Markdown) yazabilirsiniz; doğru şekilde yorumlanır ve gösterilir (docstring girintisi dikkate alınarak).
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 Interactive docs’ta şöyle kullanılacaktır:
 
@@ -71,7 +71,7 @@ Interactive docs’ta şöyle kullanılacaktır:
 
 `response_description` parametresi ile response açıklamasını belirtebilirsiniz:
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | Not
 
@@ -93,7 +93,7 @@ Bu yüzden siz sağlamazsanız, **FastAPI** otomatik olarak "Successful response
 
 Bir *path operation*’ı kaldırmadan, <dfn title="eskimiş, kullanılması önerilmez">deprecated</dfn> olarak işaretlemeniz gerekiyorsa `deprecated` parametresini verin:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 Interactive docs’ta deprecated olduğu net şekilde işaretlenecektir:
 

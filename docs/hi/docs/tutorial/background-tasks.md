@@ -15,7 +15,7 @@
 
 सबसे पहले, `BackgroundTasks` import करें और अपनी *path operation function* में `BackgroundTasks` की type declaration के साथ एक parameter define करें:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[1,13] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[1,13] *}
 
 **FastAPI** आपके लिए `BackgroundTasks` type का object बनाएगा और उसे उस parameter के रूप में pass करेगा।
 
@@ -31,13 +31,13 @@ background task के रूप में चलाने के लिए ए�
 
 और क्योंकि write operation `async` और `await` का उपयोग नहीं करता, हम function को normal `def` के साथ define करते हैं:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[6:9] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[6:9] *}
 
 ## background task जोड़ें { #add-the-background-task }
 
 अपनी *path operation function* के अंदर, अपनी task function को *background tasks* object में method `.add_task()` के साथ pass करें:
 
-{* ../../docs_src/background_tasks/tutorial001_py310.py hl[14] *}
+{* ../../docs_src/background_tasks/tutorial001.py hl[14] *}
 
 `.add_task()` arguments के रूप में receive करता है:
 
@@ -52,7 +52,7 @@ background task के रूप में चलाने के लिए ए�
 **FastAPI** जानता है कि हर case में क्या करना है और same object को कैसे reuse करना है, ताकि सभी background tasks merge हो जाएँ और बाद में background में run हों:
 
 
-{* ../../docs_src/background_tasks/tutorial002_an_py310.py hl[13,15,22,25] *}
+{* ../../docs_src/background_tasks/tutorial002.py hl[13,15,22,25] *}
 
 
 इस example में, response भेजे जाने के *बाद* messages `log.txt` file में लिखे जाएँगे।

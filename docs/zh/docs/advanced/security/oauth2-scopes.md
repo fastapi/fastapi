@@ -62,7 +62,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 首先，让我们快速看看与**用户指南**中 [OAuth2 实现密码（含哈希）、Bearer + JWT 令牌](../../tutorial/security/oauth2-jwt.md) 示例相比有哪些变化。现在开始使用 OAuth2 作用域：
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 下面我们逐步回顾这些更改。
 
@@ -72,7 +72,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 参数 `scopes` 接收一个 `dict`，以作用域为键、描述为值：
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 因为我们现在声明了这些作用域，所以当你登录/授权时，它们会显示在 API 文档里。
 
@@ -98,7 +98,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## 在*路径操作*与依赖项中声明作用域 { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | 技术细节
 
@@ -150,7 +150,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 这个 `SecurityScopes` 类类似于 `Request`（`Request` 用来直接获取请求对象）。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## 使用 `scopes` { #use-the-scopes }
 
@@ -164,7 +164,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 在这个异常中，我们包含所需的作用域（如果有的话），以空格分隔的字符串（使用 `scope_str`）。我们把这个包含作用域的字符串放在 `WWW-Authenticate` 响应头中（这是规范要求的一部分）。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## 校验 `username` 与数据形状 { #verify-the-username-and-data-shape }
 
@@ -180,7 +180,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 我们还验证是否存在该用户名的用户，如果没有，就抛出前面创建的同一个异常。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## 校验 `scopes` { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ OAuth2 规范将“作用域”定义为由空格分隔的字符串列表。
 
 为此，我们使用 `security_scopes.scopes`，它包含一个由这些作用域组成的 `list[str]`。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## 依赖树与作用域 { #dependency-tree-and-scopes }
 

@@ -9,7 +9,7 @@ De la même manière que vous pouvez spécifier un modèle de réponse, vous pou
 * `@app.delete()`
 * etc.
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 /// note | Remarque
 
@@ -75,7 +75,7 @@ Pour en savoir plus sur chaque code d'état et à quoi il correspond, consultez 
 
 Reprenons l'exemple précédent :
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201` est le code d'état pour « Créé ».
 
@@ -83,7 +83,7 @@ Mais vous n'avez pas à mémoriser la signification de chacun de ces codes.
 
 Vous pouvez utiliser les variables pratiques de `fastapi.status`.
 
-{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 Elles ne sont qu'une commodité, elles contiennent le même nombre, mais de cette façon vous pouvez utiliser l'autocomplétion de l'éditeur pour les trouver :
 

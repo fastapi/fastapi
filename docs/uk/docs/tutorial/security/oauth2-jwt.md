@@ -116,7 +116,7 @@ pwdlib також підтримує алгоритм хешування bcrypt,
 
 І ще одну - для автентифікації та повернення користувача.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[8,49,51,58:59,62:63,72:79] *}
+{* ../../docs_src/security/tutorial004.py hl[8,49,51,58:59,62:63,72:79] *}
 
 Коли `authenticate_user` викликається з ім'ям користувача, якого немає в базі даних, ми все одно запускаємо `verify_password` для «підставного» хешу.
 
@@ -156,7 +156,7 @@ $ openssl rand -hex 32
 
 Створіть утилітарну функцію для генерації нового токена доступу.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[4,7,13:15,29:31,82:90] *}
+{* ../../docs_src/security/tutorial004.py hl[4,7,13:15,29:31,82:90] *}
 
 ## Оновіть залежності { #update-the-dependencies }
 
@@ -166,7 +166,7 @@ $ openssl rand -hex 32
 
 Якщо токен недійсний, одразу поверніть помилку HTTP.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[93:110] *}
+{* ../../docs_src/security/tutorial004.py hl[93:110] *}
 
 ## Оновіть *операцію шляху* `/token` { #update-the-token-path-operation }
 
@@ -174,7 +174,7 @@ $ openssl rand -hex 32
 
 Створіть справжній токен доступу JWT і поверніть його.
 
-{* ../../docs_src/security/tutorial004_an_py310.py hl[121:136] *}
+{* ../../docs_src/security/tutorial004.py hl[121:136] *}
 
 ### Технічні деталі про «subject» `sub` у JWT { #technical-details-about-the-jwt-subject-sub }
 

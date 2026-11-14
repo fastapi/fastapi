@@ -36,7 +36,7 @@ npm run build
 
 然后使用 `app.frontend()` 提供服务：
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 这样，对 `/assets/app.js` 的请求可以提供 `dist/assets/app.js`。
 
@@ -50,7 +50,7 @@ npm run build
 
 为此，使用 `fallback="index.html"`：
 
-{* ../../docs_src/frontend/tutorial002_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial002.py hl[5] *}
 
 **FastAPI** 只会对明确使用 `Accept: text/html` 或 `Accept: application/xhtml+xml` 接受 HTML 的 `GET` 和 `HEAD` 请求使用此 fallback，就像浏览器导航请求通常会做的那样。缺失的 JavaScript、CSS 和图片等文件仍会返回 `404`。
 
@@ -68,7 +68,7 @@ npm run build
 
 你也可以为缺失的前端路径提供一个静态 `404.html` 页面：
 
-{* ../../docs_src/frontend/tutorial003_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial003.py hl[5] *}
 
 该响应会保持 `404` 状态码。
 
@@ -94,13 +94,13 @@ npm run build
 
 因此，在大多数情况下，你可以使用 `app.frontend("/", directory="dist")`，而无需指定 `fallback` 参数。
 
-{* ../../docs_src/frontend/tutorial001_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial001.py hl[5] *}
 
 ## 禁用 Fallback { #disable-fallback }
 
 如果你不想为缺失的前端路径提供 fallback 文件，请使用 `fallback=None`：
 
-{* ../../docs_src/frontend/tutorial005_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial005.py hl[5] *}
 
 这样，缺失的前端路径会返回普通的 `404`。
 
@@ -116,7 +116,7 @@ npm run build
 
 如果你的前端文件会稍后创建，例如在应用对象创建之后由单独的构建步骤创建，请设置 `check_dir=False`：
 
-{* ../../docs_src/frontend/tutorial006_py310.py hl[5] *}
+{* ../../docs_src/frontend/tutorial006.py hl[5] *}
 
 使用 `check_dir=False` 时，**FastAPI** 不会在应用创建时检查目录。如果在处理请求时配置的目录仍然缺失，**FastAPI** 会在那时抛出错误。
 
@@ -124,7 +124,7 @@ npm run build
 
 你也可以将前端文件添加到一个 `APIRouter`，并使用前缀包含它：
 
-{* ../../docs_src/frontend/tutorial004_py310.py hl[6,7] *}
+{* ../../docs_src/frontend/tutorial004.py hl[6,7] *}
 
 在这个示例中，前端路径会在 `/app` 下提供服务。
 

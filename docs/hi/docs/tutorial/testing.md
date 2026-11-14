@@ -30,7 +30,7 @@ $ uv add httpx
 
 जिन चीज़ों की आपको जाँच करनी है उनके लिए standard Python expressions के साथ सरल `assert` statements लिखें (फिर से, standard `pytest`)।
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | टिप
 
@@ -76,7 +76,7 @@ $ uv add httpx
 `main.py` file में आपकी **FastAPI** app है:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### Testing file { #testing-file }
 
@@ -92,7 +92,7 @@ $ uv add httpx
 
 क्योंकि यह file उसी package में है, आप `main` module (`main.py`) से object `app` को import करने के लिए relative imports का उपयोग कर सकते हैं:
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...और tests के लिए code पहले जैसा ही रख सकते हैं।
@@ -121,13 +121,13 @@ $ uv add httpx
 
 दोनों *path operations* को `X-Token` header required है।
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### विस्तारित testing file { #extended-testing-file }
 
 फिर आप विस्तारित tests के साथ `test_main.py` को update कर सकते हैं:
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 जब भी आपको client से request में जानकारी pass करवानी हो और आपको पता न हो कि कैसे, तो आप खोज (Google) सकते हैं कि इसे `httpx` में कैसे करें, या यहाँ तक कि `requests` के साथ कैसे करें, क्योंकि HTTPX का design Requests के design पर आधारित है।

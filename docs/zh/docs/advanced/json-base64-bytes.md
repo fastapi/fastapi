@@ -16,7 +16,7 @@ Base64 可以把二进制数据编码为字符串，但为此会使用比原始�
 
 你可以声明带有 `bytes` 字段的 Pydantic 模型，然后在模型配置中使用 `val_json_bytes` 指定用 base64 来*验证*输入的 JSON 数据；作为验证的一部分，它会将该 base64 字符串解码为字节。
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:9,29:35] hl[9] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:9,29:35] hl[9] *}
 
 查看 `/docs` 时，你会看到字段 `data` 期望接收 base64 编码的字节：
 
@@ -54,10 +54,10 @@ Base64 可以把二进制数据编码为字符串，但为此会使用比原始�
 
 对于输出数据，你也可以在模型配置中为 `bytes` 字段使用 `ser_json_bytes`，Pydantic 会在生成 JSON 响应时将字节以 base64 进行*序列化*。
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:2,12:16,29,38:41] hl[16] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:2,12:16,29,38:41] hl[16] *}
 
 ## 用于输入和输出数据的 Pydantic `bytes` { #pydantic-bytes-for-input-and-output-data }
 
 当然，你也可以使用同一个配置了 base64 的模型，在接收和发送 JSON 数据时，同时处理输入（使用 `val_json_bytes` 进行*验证*）和输出（使用 `ser_json_bytes` 进行*序列化*）。
 
-{* ../../docs_src/json_base64_bytes/tutorial001_py310.py ln[1:2,19:26,29,44:46] hl[23:26] *}
+{* ../../docs_src/json_base64_bytes/tutorial001.py ln[1:2,19:26,29,44:46] hl[23:26] *}

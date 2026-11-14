@@ -8,13 +8,13 @@ Vamos ver como nós podemos fazer isso funcionar.
 
 ## pytest.mark.anyio { #pytest-mark-anyio }
 
-Se quisermos chamar funções assíncronas em nossos testes, as nossas funções de teste precisam ser assíncronas. O AnyIO oferece um plugin bem legal para isso, que nos permite especificar que algumas das nossas funções de teste precisam ser chamadas de forma assíncrona.
+Se quisermos chamar funções assíncronas em nossos testes, as nossas funções de teste precisam ser assíncronas. O AnyIO oferece um plugin útil para isso, que nos permite especificar que algumas das nossas funções de teste precisam ser chamadas de forma assíncrona.
 
 ## HTTPX { #httpx }
 
 Mesmo que a sua aplicação **FastAPI** utilize funções normais com `def` no lugar de `async def`, ela ainda é uma aplicação `async` por baixo dos panos.
 
-O `TestClient` faz algumas mágicas para invocar a aplicação FastAPI assíncrona em suas funções `def` normais, utilizando o pytest padrão. Porém a mágica não acontece mais quando nós estamos utilizando dentro de funções assíncronas. Ao executar os nossos testes de forma assíncrona, nós não podemos mais utilizar o `TestClient` dentro das nossas funções de teste.
+O `TestClient` faz algumas mágicas para invocar a aplicação FastAPI assíncrona em suas funções de teste `def` normais, utilizando o pytest padrão. Porém a mágica não acontece mais quando nós estamos utilizando dentro de funções assíncronas. Ao executar os nossos testes de forma assíncrona, nós não podemos mais utilizar o `TestClient` dentro das nossas funções de teste.
 
 O `TestClient` é baseado no [HTTPX](https://www.python-httpx.org), e felizmente nós podemos utilizá-lo diretamente para testar a API.
 
@@ -32,13 +32,13 @@ Para um exemplo simples, vamos considerar uma estrutura de arquivos semelhante �
 
 O arquivo `main.py` teria:
 
-{* ../../docs_src/async_tests/app_a_py310/main.py *}
+{* ../../docs_src/async_tests/app_a/main.py *}
 
 O arquivo `test_main.py` teria os testes para o arquivo `main.py`, ele poderia ficar assim agora:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py *}
+{* ../../docs_src/async_tests/app_a/test_main.py *}
 
-## Executá-lo { #run-it }
+## Execute { #run-it }
 
 Você pode executar os seus testes normalmente via:
 
@@ -56,7 +56,7 @@ $ uv run pytest
 
 O marcador `@pytest.mark.anyio` informa ao pytest que esta função de teste deve ser invocada de maneira assíncrona:
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[7] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[7] *}
 
 /// tip | Dica
 
@@ -66,12 +66,12 @@ Note que a função de teste é `async def` agora, no lugar de apenas `def` como
 
 Então podemos criar um `AsyncClient` com a aplicação, e enviar requisições assíncronas para ela utilizando `await`.
 
-{* ../../docs_src/async_tests/app_a_py310/test_main.py hl[9:12] *}
+{* ../../docs_src/async_tests/app_a/test_main.py hl[9:12] *}
 
 Isso é equivalente a:
 
 ```Python
-response = client.get('/')
+response = client.get("/")
 ```
 
 ...que nós utilizamos para fazer as nossas requisições utilizando o `TestClient`.

@@ -28,7 +28,7 @@
 
 Для цього потрібно звернутися до запиту безпосередньо.
 
-{* ../../docs_src/using_request_directly/tutorial001_py310.py hl[1,7:8] *}
+{* ../../docs_src/using_request_directly/tutorial001.py hl[1,7:8] *}
 
 Якщо вказати у *функції операції шляху* параметр типу `Request`, **FastAPI** передасть у нього об'єкт `Request`.
 

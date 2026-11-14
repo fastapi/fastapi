@@ -27,7 +27,7 @@ Documentação interativa da API e navegação web da interface de usuário. Com
 
 Tudo é baseado no padrão das declarações de **tipos do Python** (graças ao Pydantic). Nenhuma sintaxe nova para aprender. Apenas o padrão moderno do Python.
 
-Se você precisa refrescar a memória rapidamente sobre como usar tipos do Python (mesmo que você não use o FastAPI), confira esse rápido tutorial: [Tipos do Python](python-types.md).
+Se você precisa refrescar a memória em 2 minutos sobre como usar tipos do Python (mesmo que você não use o FastAPI), confira esse rápido tutorial: [Tipos do Python](python-types.md).
 
 Você escreve Python padrão com tipos:
 
@@ -35,6 +35,7 @@ Você escreve Python padrão com tipos:
 from datetime import date
 
 from pydantic import BaseModel
+
 
 # Declare uma variável como str
 # e obtenha suporte do editor dentro da função
@@ -85,19 +86,19 @@ Aqui está como o editor poderá te ajudar:
 
 * no [Visual Studio Code](https://code.visualstudio.com/):
 
-![editor support](https://fastapi.tiangolo.com/img/vscode-completion.png)
+![suporte do editor](https://fastapi.tiangolo.com/img/vscode-completion.png)
 
 * no [PyCharm](https://www.jetbrains.com/pycharm/):
 
-![editor support](https://fastapi.tiangolo.com/img/pycharm-completion.png)
+![suporte do editor](https://fastapi.tiangolo.com/img/pycharm-completion.png)
 
 Você terá preenchimento automático no seu código que você poderia considerar impossível antes. Como por exemplo, a chave `price` dentro do corpo JSON (que poderia ter sido aninhado) que vem de uma requisição.
 
-Sem a necessidade de digitar nomes de chaves erroneamente, ir e voltar entre documentações, ou rolar pela página para descobrir se você utilizou `username` ou `user_name`.
+Chega de digitar nomes de chaves erroneamente, ir e voltar entre documentações, ou rolar pela página para descobrir se você utilizou `username` ou `user_name`.
 
 ### Breve { #short }
 
-Há **valores padrão** sensíveis para tudo, com configurações adicionais em todos os lugares. Todos os parâmetros podem ser regulados para fazer o que você precisa e para definir a API que você necessita.
+Há **valores padrão** sensatos para tudo, com configurações opcionais em todos os lugares. Todos os parâmetros podem ser regulados para fazer o que você precisa e para definir a API que você necessita.
 
 Mas, por padrão, tudo **"simplesmente funciona"**.
 
@@ -167,7 +168,7 @@ Com **FastAPI**, você terá todas as funcionalidades do **Starlette** (já que 
 
 * Desempenho realmente impressionante. É [um dos frameworks Python disponíveis mais rápidos, a par com o **NodeJS** e **Go**](https://github.com/encode/starlette#performance).
 * Suporte a **WebSocket**.
-* Tarefas em processo background.
+* Tarefas em segundo plano no mesmo processo.
 * Eventos de inicialização e encerramento.
 * Cliente de testes construído sobre HTTPX.
 * Respostas **CORS**, GZip, Static Files, Streaming.
@@ -187,15 +188,15 @@ O mesmo se aplica no sentido inverso, em muitos casos você poderá simplesmente
 
 Com **FastAPI** você terá todas as funcionalidades do **Pydantic** (já que FastAPI utiliza o Pydantic para todo o controle dos dados):
 
-* **Sem pegadinhas**:
+* **Sem complicações**:
     * Sem novas definições de esquema de micro-linguagem para aprender.
     * Se você conhece os tipos do Python, você sabe como usar o Pydantic.
 * Vai bem com o/a seu/sua **<abbr title="Integrated Development Environment - Ambiente de Desenvolvimento Integrado: similar a um editor de código">IDE</abbr>/<dfn title="Um programa que confere erros de código">linter</dfn>/cérebro**:
     * Como as estruturas de dados do Pydantic são apenas instâncias de classes que você define, o preenchimento automático, linting, mypy e a sua intuição devem funcionar corretamente com seus dados validados.
-* Valida **estruturas complexas**:
+* Valide **estruturas complexas**:
     * Use modelos hierárquicos do Pydantic, `List` e `Dict` do `typing` do Python, etc.
-    * Validadores permitem que esquemas de dados complexos sejam limpos e facilmente definidos, conferidos e documentados como JSON Schema.
-    * Você pode ter **JSONs aninhados** profundamente e tê-los todos validados e anotados.
+    * E validadores permitem que esquemas de dados complexos sejam definidos, conferidos e documentados como JSON Schema de forma clara e fácil.
+    * Você pode ter **objetos JSON aninhados** profundamente e tê-los todos validados e anotados.
 * **Extensível**:
-    * Pydantic permite que tipos de dados personalizados sejam definidos ou você pode estender a validação com métodos em um modelo decorado com seu decorador de validador.
+    * Pydantic permite que tipos de dados personalizados sejam definidos ou você pode estender a validação com métodos em um modelo decorados com seu decorador de validador.
 * 100% de cobertura de testes.

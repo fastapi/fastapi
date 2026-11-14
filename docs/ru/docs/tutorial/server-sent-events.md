@@ -39,13 +39,13 @@ SSE часто используют для стриминга ответов И�
 
 Импортируйте `EventSourceResponse` из `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 Каждый возвращаемый через `yield` элемент кодируется как JSON и отправляется в поле `data:` события SSE.
 
 Если вы объявите тип возврата как `AsyncIterable[Item]`, FastAPI будет использовать его, чтобы выполнить **валидацию**, добавить **документацию** и **сериализовать** данные с помощью Pydantic.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip | Совет
 
@@ -61,13 +61,13 @@ FastAPI проследит, чтобы выполнение прошло кор�
 
 Так как в этом случае функция не async, правильным типом возврата будет `Iterable[Item]`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### Без объявленного типа возврата { #no-return-type }
 
 Вы также можете опустить тип возврата. FastAPI использует [`jsonable_encoder`](./encoder.md) для преобразования данных и их отправки.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ FastAPI проследит, чтобы выполнение прошло кор�
 
 Импортируйте `ServerSentEvent` из `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 Поле `data` всегда кодируется как JSON. Вы можете передавать любое значение, сериализуемое в JSON, включая Pydantic-модели.
 
@@ -85,7 +85,7 @@ FastAPI проследит, чтобы выполнение прошло кор�
 
 Это полезно для отправки заранее отформатированного текста, строк логов или специальных значений <dfn title="Значение, используемое для обозначения особого условия или состояния">«сентинель»</dfn>, например `[DONE]`.
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note | Примечание
 
@@ -99,7 +99,7 @@ FastAPI проследит, чтобы выполнение прошло кор�
 
 Вы можете прочитать его как параметр заголовка и использовать, чтобы возобновить поток с того места, где клиент остановился:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## SSE с POST { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE работает с любым HTTP-методом, не только с `GE
 
 Это полезно для таких протоколов, как [MCP](https://modelcontextprotocol.io), которые стримят SSE по `POST`:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## Технические детали { #technical-details }
 

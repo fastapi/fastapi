@@ -8,7 +8,7 @@
 
 你还可以通过将默认值设置为 `None` 来将请求体参数声明为可选参数：
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | 注意
 
@@ -31,7 +31,7 @@
 
 但是你也可以声明多个请求体参数，例如 `item` 和 `user`：
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 在这种情况下，**FastAPI** 将注意到该函数中有多个请求体参数（两个 Pydantic 模型参数）。
 
@@ -72,7 +72,7 @@
 
 但是你可以使用 `Body` 指示 **FastAPI** 将其作为请求体的另一个键进行处理。
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 在这种情况下，**FastAPI** 将期望像这样的请求体：
 
@@ -106,7 +106,7 @@ q: str | None = None
 
 比如：
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 /// note | 注意
 
@@ -128,7 +128,7 @@ item: Annotated[Item, Body(embed=True)]
 
 比如：
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 在这种情况下，**FastAPI** 将期望像这样的请求体：
 

@@ -22,7 +22,7 @@
 
 Если вы укажете `response_class=StreamingResponse` в своей *функции-обработчике пути*, вы можете использовать `yield`, чтобы по очереди отправлять каждый чанк данных.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[1:23] hl[20,23] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[1:23] hl[20,23] *}
 
 FastAPI будет передавать каждый чанк данных в `StreamingResponse` как есть, не пытаясь конвертировать его в JSON или что-то подобное.
 
@@ -30,7 +30,7 @@ FastAPI будет передавать каждый чанк данных в `S
 
 Можно использовать и обычные функции `def` (без `async`) и точно так же применять `yield`.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[26:29] hl[27] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[26:29] hl[27] *}
 
 ### Без аннотации { #no-annotation }
 
@@ -38,7 +38,7 @@ FastAPI будет передавать каждый чанк данных в `S
 
 Поскольку FastAPI не будет пытаться конвертировать данные в JSON с помощью Pydantic или сериализовать их каким-либо образом, в данном случае аннотация типа нужна только для вашего редактора кода и инструментов, FastAPI её использовать не будет.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[32:35] hl[33] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[32:35] hl[33] *}
 
 Это также означает, что с `StreamingResponse` у вас есть и **свобода**, и **ответственность** — производить и кодировать байты данных ровно в том виде, в котором они должны быть отправлены, независимо от аннотаций типов. 🤓
 
@@ -46,7 +46,7 @@ FastAPI будет передавать каждый чанк данных в `S
 
 Один из основных сценариев — стримить `bytes` вместо строк, и, конечно, это можно сделать.
 
-{* ../../docs_src/stream_data/tutorial001_py310.py ln[44:47] hl[47] *}
+{* ../../docs_src/stream_data/tutorial001.py ln[44:47] hl[47] *}
 
 ## Пользовательский `PNGStreamingResponse` { #a-custom-pngstreamingresponse }
 
@@ -56,11 +56,11 @@ FastAPI будет передавать каждый чанк данных в `S
 
 Например, вы можете создать `PNGStreamingResponse`, который устанавливает HTTP-заголовок `Content-Type` в `image/png` с помощью атрибута `media_type`:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[6,19:20] hl[20] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[6,19:20] hl[20] *}
 
 Затем вы можете использовать этот новый класс в `response_class=PNGStreamingResponse` в своей *функции-обработчике пути*:
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[23:27] hl[23] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[23:27] hl[23] *}
 
 ### Симулировать файл { #simulate-a-file }
 
@@ -68,7 +68,7 @@ FastAPI будет передавать каждый чанк данных в `S
 
 Например, мы можем итерироваться по нему, чтобы потреблять его содержимое, как и по обычному файлу.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[1:27] hl[3,12:13,25] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[1:27] hl[3,12:13,25] *}
 
 /// note | Технические детали
 
@@ -100,7 +100,7 @@ FastAPI будет передавать каждый чанк данных в `S
 
 Чтобы не блокировать цикл событий, вы можете просто объявить *функцию-обработчик пути* обычной `def` вместо `async def`. Тогда FastAPI выполнит её в воркере из пула потоков (threadpool), чтобы не блокировать основной цикл.
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[30:34] hl[31] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[30:34] hl[31] *}
 
 /// tip | Совет
 
@@ -114,4 +114,4 @@ FastAPI будет передавать каждый чанк данных в `S
 
 Это не специфично для FastAPI, это просто Python, но полезный приём. 😎
 
-{* ../../docs_src/stream_data/tutorial002_py310.py ln[37:40] hl[40] *}
+{* ../../docs_src/stream_data/tutorial002.py ln[37:40] hl[40] *}

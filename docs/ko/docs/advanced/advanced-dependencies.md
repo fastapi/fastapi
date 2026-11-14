@@ -18,7 +18,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 이를 위해 `__call__` 메서드를 선언합니다:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[12] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
 이 경우, **FastAPI**는 추가 매개변수와 하위 의존성을 확인하기 위해 `__call__`을 사용하게 되며,
 나중에 *경로 처리 함수*에서 매개변수에 값을 전달할 때 이를 호출하게 됩니다.
@@ -27,7 +27,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 이제 `__init__`을 사용하여 의존성을 "매개변수화"할 수 있는 인스턴스의 매개변수를 선언할 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[9] *}
 
 이 경우, **FastAPI**는 `__init__`에 전혀 관여하지 않으며, 우리는 이 메서드를 코드에서 직접 사용하게 됩니다.
 
@@ -35,7 +35,7 @@ Python에는 클래스의 인스턴스를 "호출 가능"하게 만드는 방법
 
 다음과 같이 이 클래스의 인스턴스를 생성할 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[18] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[18] *}
 
 이렇게 하면 `checker.fixed_content` 속성에 `"bar"`라는 값을 담아 의존성을 "매개변수화"할 수 있습니다.
 
@@ -51,7 +51,7 @@ checker(q="somequery")
 
 ...그리고 이때 반환되는 값을 *경로 처리 함수*의 의존성 값으로, `fixed_content_included` 매개변수에 전달합니다:
 
-{* ../../docs_src/dependencies/tutorial011_an_py310.py hl[22] *}
+{* ../../docs_src/dependencies/tutorial011.py hl[22] *}
 
 /// tip | 팁
 
@@ -115,21 +115,21 @@ FastAPI 0.118.0 이전에는 `yield`가 있는 의존성을 사용하면, *경�
 
 다음과 같이 보일 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py *}
+{* ../../docs_src/dependencies/tutorial013.py *}
 
 다음에서 `Session`을 자동으로 닫는 종료 코드는:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[19:21] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[19:21] *}
 
 ...응답이 느린 데이터 전송을 마친 뒤에 실행됩니다:
 
-{* ../../docs_src/dependencies/tutorial013_an_py310.py ln[30:38] hl[31:33] *}
+{* ../../docs_src/dependencies/tutorial013.py ln[30:38] hl[31:33] *}
 
 하지만 `generate_stream()`는 데이터베이스 세션을 사용하지 않으므로, 응답을 전송하는 동안 세션을 열린 채로 유지할 필요는 없습니다.
 
 SQLModel(또는 SQLAlchemy)을 사용하면서 이런 특정 사용 사례가 있다면, 더 이상 필요하지 않을 때 세션을 명시적으로 닫을 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial014_an_py310.py ln[24:28] hl[28] *}
+{* ../../docs_src/dependencies/tutorial014.py ln[24:28] hl[28] *}
 
 그러면 세션이 데이터베이스 연결을 해제하여, 다른 요청들이 이를 사용할 수 있게 됩니다.
 

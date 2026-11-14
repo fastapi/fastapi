@@ -10,13 +10,13 @@
 
 मान लीजिए आपके पास default values वाला एक Pydantic model है, जैसे यह:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### Input के लिए Model { #model-for-input }
 
 अगर आप इस model को यहाँ की तरह input के रूप में उपयोग करते हैं:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 ...तो `description` field **required नहीं होगा**। क्योंकि इसका default value `None` है।
 
@@ -32,7 +32,7 @@
 
 लेकिन अगर आप उसी model को output के रूप में उपयोग करते हैं, जैसे यहाँ:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 ...तो क्योंकि `description` का default value है, अगर आप उस field के लिए **कुछ भी return नहीं करते**, तब भी इसका वही **default value** रहेगा।
 
@@ -91,7 +91,7 @@ OpenAPI में इसे describe करने का तरीका है 
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### Docs में Input और Output Models के लिए Same Schema { #same-schema-for-input-and-output-models-in-docs }
 

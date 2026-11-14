@@ -57,13 +57,13 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 任何指向 `http` 或 `ws` 的請求都會被重新導向至對應的安全協定。
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 強制所有傳入請求正確設定 `Host` 標頭，以防範 HTTP Host Header 攻擊。
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 支援以下參數：
 
@@ -78,7 +78,7 @@ app.add_middleware(UnicornMiddleware, some_config="rainbow")
 
 此中介軟體會處理一般與串流回應。
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 支援以下參數：
 

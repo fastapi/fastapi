@@ -19,7 +19,7 @@
 
 接著把它掛載到某個路徑下。
 
-{* ../../docs_src/wsgi/tutorial001_py310.py hl[1,3,23] *}
+{* ../../docs_src/wsgi/tutorial001.py hl[1,3,23] *}
 
 /// note
 

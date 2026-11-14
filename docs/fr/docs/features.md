@@ -36,6 +36,7 @@ from datetime import date
 
 from pydantic import BaseModel
 
+
 # Déclarez une variable comme étant une str
 # et profitez de l'aide de l'éditeur dans cette fonction
 def main(user_id: str):
@@ -99,7 +100,7 @@ Fini de taper des noms de clés erronés, de faire des allers-retours entre les 
 
 Des **valeurs par défaut** sensées pour tout, avec des configurations optionnelles partout. Tous les paramètres peuvent être ajustés finement pour faire ce dont vous avez besoin et définir l'API dont vous avez besoin.
 
-Mais par défaut, tout **« just works »**.
+Mais par défaut, tout **« fonctionne tout simplement »**.
 
 ### Validation { #validation }
 

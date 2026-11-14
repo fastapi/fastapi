@@ -14,7 +14,7 @@
 
 `Depends()`로 된 `list`이어야 합니다:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[19] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[19] *}
 
 이러한 의존성들은 기존 의존성들과 같은 방식으로 실행/해결됩니다. 그러나 값은 (무엇이든 반환한다면) *경로 처리 함수*에 제공되지 않습니다.
 
@@ -44,13 +44,13 @@
 
 (헤더같은) 요청 요구사항이나 하위-의존성을 선언할 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[8,13] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[8,13] *}
 
 ### 오류 발생시키기 { #raise-exceptions }
 
 다음 의존성은 기존 의존성과 동일하게 예외를 `raise`할 수 있습니다:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[10,15] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[10,15] *}
 
 ### 값 반환하기 { #return-values }
 
@@ -58,7 +58,7 @@
 
 그래서 이미 다른 곳에서 사용된 (값을 반환하는) 일반적인 의존성을 재사용할 수 있고, 비록 값은 사용되지 않지만 의존성은 실행될 것입니다:
 
-{* ../../docs_src/dependencies/tutorial006_an_py310.py hl[11,16] *}
+{* ../../docs_src/dependencies/tutorial006.py hl[11,16] *}
 
 ## *경로 처리* 모음에 대한 의존성 { #dependencies-for-a-group-of-path-operations }
 

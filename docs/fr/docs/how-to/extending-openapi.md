@@ -51,19 +51,19 @@ Par exemple, ajoutons [l’extension OpenAPI de ReDoc pour inclure un logo perso
 
 Tout d’abord, écrivez votre application **FastAPI** comme d’habitude :
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[1,4,7:9] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[1,4,7:9] *}
 
 ### Générer le schéma OpenAPI { #generate-the-openapi-schema }
 
 Ensuite, utilisez la même fonction utilitaire pour générer le schéma OpenAPI, dans une fonction `custom_openapi()` :
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[2,15:21] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[2,15:21] *}
 
 ### Modifier le schéma OpenAPI { #modify-the-openapi-schema }
 
 Vous pouvez maintenant ajouter l’extension ReDoc, en ajoutant un `x-logo` personnalisé à l’« objet » `info` dans le schéma OpenAPI :
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[22:24] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[22:24] *}
 
 ### Mettre en cache le schéma OpenAPI { #cache-the-openapi-schema }
 
@@ -73,13 +73,13 @@ Ainsi, votre application n’aura pas à générer le schéma à chaque fois qu�
 
 Il ne sera généré qu’une seule fois, puis le même schéma en cache sera utilisé pour les requêtes suivantes.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[13:14,25:26] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[13:14,25:26] *}
 
 ### Remplacer la méthode { #override-the-method }
 
 Vous pouvez maintenant remplacer la méthode `.openapi()` par votre nouvelle fonction.
 
-{* ../../docs_src/extending_openapi/tutorial001_py310.py hl[29] *}
+{* ../../docs_src/extending_openapi/tutorial001.py hl[29] *}
 
 ### Vérifier { #check-it }
 

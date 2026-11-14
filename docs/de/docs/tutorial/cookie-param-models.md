@@ -20,7 +20,7 @@ Diese gleiche Technik gilt für `Query`, `Cookie` und `Header`. 😎
 
 Deklarieren Sie die **Cookie**-Parameter, die Sie benötigen, in einem **Pydantic-Modell**, und deklarieren Sie dann den Parameter als `Cookie`:
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI** wird die Daten für **jedes Feld** aus den im <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr> empfangenen **Cookies** **extrahieren** und Ihnen das von Ihnen definierte Pydantic-Modell bereitstellen.
 
@@ -50,7 +50,7 @@ Ihre API hat jetzt die Macht, ihre eigene <dfn title="Das ist ein Scherz, nur f�
 
 Sie können die Modellkonfiguration von Pydantic verwenden, um `extra` Felder zu verbieten (`forbid`):
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 Wenn ein Client versucht, einige **zusätzliche Cookies** zu senden, erhält er eine **Error-<abbr title="Response – Antwort: Daten, die der Server zum anfragenden Client zurücksendet">Response</abbr>**.
 
@@ -70,6 +70,22 @@ Wenn der Client beispielsweise versucht, ein `santa_tracker`-Cookie mit einem We
     ]
 }
 ```
+
+## Parametermodelle kombinieren { #combine-parameter-models }
+
+Sie können mehrere Cookie-Parameter-Modelle mit einzelnen Cookie-Parametern und Abhängigkeiten kombinieren. Jedes Modell wird unabhängig extrahiert und validiert, wie für [Query-Parameter-Modelle](query-param-models.md#combine-parameter-models) erklärt.
+
+Die `extra`-Konfiguration jedes Modells gilt für alle Cookie-Parameter, einschließlich derjenigen, die in anderen Modellen oder Abhängigkeiten deklariert sind. Mit `extra="forbid"` wird jedes Cookie außerhalb dieses Modells abgelehnt. Mit `extra="allow"` werden diese Cookies als zusätzliche Felder in das Modell aufgenommen.
+
+## Optionale Cookie-Parameter-Modelle { #optional-cookie-parameter-models }
+
+Deklarieren Sie ein Cookie-Parameter-Modell mit `| None` und einem Defaultwert von `None`, um die Gruppe optional zu machen.
+
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
+
+Wenn weder `theme` noch `locale` gesendet wird, ist `preferences` gleich `None`. Wenn eines davon gesendet wird, validiert FastAPI das Modell und erfordert beide Felder.
+
+Es gelten dieselben Regeln für Defaultwerte, zusätzliche Felder und OpenAPI wie für [optionale Query-Parameter-Modelle](query-param-models.md#optional-query-parameter-models).
 
 ## Zusammenfassung { #summary }
 

@@ -40,6 +40,8 @@ include_yaml:
 
 FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트에 기초한 Python의 API를 빌드하기 위한 웹 프레임워크입니다.
 
+<!-- agent-banner -->
+
 주요 특징으로:
 
 * **빠름**: (Starlette과 Pydantic 덕분에) **NodeJS** 및 **Go**와 대등할 정도로 매우 높은 성능. [사용 가능한 가장 빠른 파이썬 프레임워크 중 하나](#performance).
@@ -161,7 +163,7 @@ FastAPI는 현대적이고, 빠르며(고성능), 파이썬 표준 타입 힌트
 
 <a href="https://typer.tiangolo.com"><img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" style="width: 20%;"></a>
 
-웹 API 대신 터미널에서 사용할 <abbr title="Command Line Interface - 커맨드 라인 인터페이스">CLI</abbr> 앱을 만들고 있다면, [**Typer**](https://typer.tiangolo.com/)를 확인해 보십시오.
+웹 API 대신 터미널에서 사용할 <abbr title="Command Line Interface - 커맨드 라인 인터페이스">CLI</abbr> 애플리케이션을 만들고 있다면, [**Typer**](https://typer.tiangolo.com/)를 확인해 보십시오.
 
 **Typer**는 FastAPI의 동생입니다. 그리고 **CLI를 위한 FastAPI**가 되기 위해 생겼습니다. ⌨️ 🚀
 
@@ -241,7 +243,7 @@ async def read_item(item_id: int, q: str | None = None):
 
 ### 실행하기 { #run-it }
 
-다음 명령으로 서버를 실행하십시오:
+다음 명령어로 서버를 실행하십시오:
 
 <div class="termy">
 
@@ -271,9 +273,9 @@ INFO:     Application startup complete.
 </div>
 
 <details markdown="1">
-<summary><code>fastapi dev</code> 명령에 관하여...</summary>
+<summary><code>fastapi dev</code> 명령어에 관하여...</summary>
 
-`fastapi dev` 명령은 여러분의 `main.py` 파일을 자동으로 읽고, 그 안의 **FastAPI** 앱을 감지한 다음, [Uvicorn](https://uvicorn.dev)을 사용해 서버를 시작합니다.
+`fastapi dev` 명령어는 여러분의 `main.py` 파일을 자동으로 읽고, 그 안의 **FastAPI** 애플리케이션을 감지한 다음, [Uvicorn](https://uvicorn.dev)을 사용해 서버를 시작합니다.
 
 기본적으로 `fastapi dev`는 로컬 개발을 위해 auto-reload가 활성화된 상태로 시작됩니다.
 
@@ -431,7 +433,7 @@ item: Item
     * 그렇지 않다면 클라이언트는 유용하고 명확한 에러를 볼 수 있습니다.
 * `GET` 요청에 `q`라는 선택적인 쿼리 매개변수가 있는지 검사(`http://127.0.0.1:8000/items/foo?q=somequery`처럼).
     * `q` 매개변수는 `= None`으로 선언되었기 때문에 선택사항입니다.
-    * `None`이 없다면 필수사항입니다(`PUT`의 경우와 마찬가지로).
+    * `None`이 없다면 필수사항입니다(`PUT`의 본문과 마찬가지로).
 * `/items/{item_id}`으로의 `PUT` 요청은 본문을 JSON으로 읽음:
     * `name`을 필수 속성으로 갖고 `str` 형인지 검사.
     * `price`를 필수 속성으로 갖고 `float` 형이어야 하는지 검사.
@@ -486,9 +488,9 @@ item: Item
     * **쿠키 세션**
     * ...기타 등등.
 
-### 앱 배포하기(선택 사항) { #deploy-your-app-optional }
+### 애플리케이션 배포하기(선택 사항) { #deploy-your-app-optional }
 
-선택적으로 FastAPI 앱을 한 번의 명령어로 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 🚀
+선택적으로 FastAPI 애플리케이션을 한 번의 명령어로 [FastAPI Cloud](https://fastapicloud.com)에 배포할 수 있습니다. 🚀
 
 <div class="termy">
 
@@ -506,7 +508,7 @@ Deploying to FastAPI Cloud...
 
 CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하여 클라우드에 배포합니다. 로그인되어 있지 않다면, 인증을 완료하기 위해 브라우저가 열립니다.
 
-이게 전부입니다! 이제 해당 URL에서 앱에 접근할 수 있습니다. ✨
+이게 전부입니다! 이제 해당 URL에서 애플리케이션에 접근할 수 있습니다. ✨
 
 #### FastAPI Cloud 소개 { #about-fastapi-cloud }
 
@@ -514,15 +516,15 @@ CLI가 여러분의 FastAPI 애플리케이션을 자동으로 감지하여 클�
 
 최소한의 노력으로 API를 **빌드**, **배포**, **접근**하는 과정을 간소화합니다.
 
-FastAPI로 앱을 빌드할 때의 동일한 **개발자 경험**을 클라우드에 **배포**하는 데까지 확장해 줍니다. 🎉
+FastAPI로 애플리케이션을 빌드할 때의 동일한 **개발자 경험**을 클라우드에 **배포**하는 데까지 확장해 줍니다. 🎉
 
 FastAPI Cloud는 *FastAPI and friends* 오픈 소스 프로젝트의 주요 스폰서이자 자금 제공자입니다. ✨
 
 #### 다른 클라우드 제공자에 배포하기 { #deploy-to-other-cloud-providers }
 
-FastAPI는 오픈 소스이며 표준을 기반으로 합니다. 선택한 어떤 클라우드 제공자에도 FastAPI 앱을 배포할 수 있습니다.
+FastAPI는 오픈 소스이며 표준을 기반으로 합니다. 선택한 어떤 클라우드 제공자에도 FastAPI 애플리케이션을 배포할 수 있습니다.
 
-클라우드 제공자의 가이드를 따라 FastAPI 앱을 배포하세요. 🤓
+클라우드 제공자의 가이드를 따라 FastAPI 애플리케이션을 배포하세요. 🤓
 
 ## 성능 { #performance }
 
@@ -544,14 +546,14 @@ Pydantic이 사용하는:
 
 Starlette이 사용하는:
 
-* [`httpx`](https://www.python-httpx.org) - `TestClient`를 사용하려면 필요.
+* [`httpx2`](https://pydantic.dev/docs/httpx2/) (또는 `httpx`) - `TestClient`에서 사용.
 * [`jinja2`](https://jinja.palletsprojects.com) - 기본 템플릿 설정을 사용하려면 필요.
 * [`python-multipart`](https://github.com/Kludex/python-multipart) - `request.form()`과 함께 form <dfn title="HTTP 요청에서 온 문자열을 파이썬 데이터로 변환">"파싱"</dfn> 지원을 원하면 필요.
 
 FastAPI가 사용하는:
 
 * [`uvicorn`](https://uvicorn.dev) - 애플리케이션을 로드하고 제공하는 서버를 위한 것입니다. 여기에는 고성능 서빙에 필요한 일부 의존성(예: `uvloop`)이 포함된 `uvicorn[standard]`가 포함됩니다.
-* `fastapi-cli[standard]` - `fastapi` 명령을 제공하기 위한 것입니다.
+* `fastapi-cli[standard]` - `fastapi` 명령어를 제공하기 위한 것입니다.
     * 여기에는 [FastAPI Cloud](https://fastapicloud.com)에 FastAPI 애플리케이션을 배포할 수 있게 해주는 `fastapi-cloud-cli`가 포함됩니다.
 
 ### `standard` 의존성 없이 { #without-standard-dependencies }

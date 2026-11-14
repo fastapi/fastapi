@@ -15,7 +15,7 @@ results = await some_library()
 तो, अपने *path operation functions* को `async def` के साथ declare करें, जैसे:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 async def read_results():
     results = await some_library()
     return results
@@ -32,7 +32,7 @@ async def read_results():
 अगर आप ऐसी third party library का उपयोग कर रहे हैं जो किसी चीज़ (database, API, file system, आदि) से communicate करती है और `await` का उपयोग करने का support नहीं रखती, (वर्तमान में अधिकांश database libraries के साथ यही स्थिति है), तो अपने *path operation functions* को सामान्य रूप से, केवल `def` के साथ declare करें, जैसे:
 
 ```Python hl_lines="2"
-@app.get('/')
+@app.get("/")
 def results():
     results = some_library()
     return results
@@ -343,7 +343,7 @@ burgers = get_burgers(2)
 तो, अगर आप कोई library use कर रहे हैं जो आपको बताती है कि आप उसे `await` के साथ call कर सकते हैं, तो आपको उसका उपयोग करने वाले *path operation functions* को `async def` के साथ create करना होगा, जैसे:
 
 ```Python hl_lines="2-3"
-@app.get('/burgers')
+@app.get("/burgers")
 async def read_burgers():
     burgers = await get_burgers(2)
     return burgers

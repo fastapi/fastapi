@@ -20,7 +20,7 @@
 
 在 **Pydantic 模型**中宣告所需的 **Cookie** 參數，接著將參數宣告為 `Cookie`：
 
-{* ../../docs_src/cookie_param_models/tutorial001_an_py310.py hl[9:12,16] *}
+{* ../../docs_src/cookie_param_models/tutorial001.py hl[9:12,16] *}
 
 **FastAPI** 會從請求收到的 **Cookie** 中擷取 **每個欄位** 的資料，並交給你定義的 Pydantic 模型。
 
@@ -50,7 +50,7 @@
 
 你可以使用 Pydantic 的模型設定來 `forbid` 任何 `extra` 欄位：
 
-{* ../../docs_src/cookie_param_models/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/cookie_param_models/tutorial002.py hl[10] *}
 
 如果客戶端嘗試送出**額外的 Cookie**，會收到**錯誤**回應。
 
@@ -70,6 +70,22 @@
     ]
 }
 ```
+
+## 組合參數模型 { #combine-parameter-models }
+
+你可以將多個 Cookie 參數模型與個別的 Cookie 參數及依賴項目組合使用。每個模型都會獨立擷取資料並進行驗證，如[查詢參數模型](query-param-models.md#combine-parameter-models)中所述。
+
+每個模型的 `extra` 設定都會套用到所有 Cookie 參數，包括在其他模型或依賴項目中宣告的參數。使用 `extra="forbid"` 時，任何不屬於該模型的 Cookie 都會被拒絕。使用 `extra="allow"` 時，這些 Cookie 會作為模型的額外欄位納入。
+
+## 可選的 Cookie 參數模型 { #optional-cookie-parameter-models }
+
+宣告 Cookie 參數模型時，使用 `| None` 並將預設值設為 `None`，即可讓整組參數變成可選。
+
+{* ../../docs_src/cookie_param_models/tutorial003.py hl[15] *}
+
+如果 `theme` 和 `locale` 都未送出，`preferences` 就是 `None`。如果送出了其中任一個，FastAPI 就會驗證模型，並要求提供這兩個欄位。
+
+預設值、額外欄位與 OpenAPI 的規則，與[可選的查詢參數模型](query-param-models.md#optional-query-parameter-models)相同。
 
 ## 摘要 { #summary }
 

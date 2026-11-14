@@ -31,7 +31,7 @@ La fonction de middleware reçoit :
     * Puis elle renverra la `response` générée par le *chemin d'accès* correspondant.
 * Vous pouvez ensuite modifier la `response` avant de la renvoyer.
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[8:9,11,14] *}
+{* ../../docs_src/middleware/tutorial001.py hl[8:9,11,14] *}
 
 /// tip | Astuce
 
@@ -57,7 +57,7 @@ Et aussi après que la `response` a été générée, avant de la renvoyer.
 
 Par exemple, vous pourriez ajouter un en-tête personnalisé `X-Process-Time` contenant le temps en secondes nécessaire pour traiter la requête et générer une réponse :
 
-{* ../../docs_src/middleware/tutorial001_py310.py hl[10,12:13] *}
+{* ../../docs_src/middleware/tutorial001.py hl[10,12:13] *}
 
 /// tip | Astuce
 

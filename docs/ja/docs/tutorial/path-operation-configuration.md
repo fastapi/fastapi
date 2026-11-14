@@ -17,7 +17,7 @@
 
 しかし、それぞれの番号コードが何のためのものか覚えていない場合は、`status`のショートカット定数を使用することができます:
 
-{* ../../docs_src/path_operation_configuration/tutorial001_py310.py hl[1,15] *}
+{* ../../docs_src/path_operation_configuration/tutorial001.py hl[1,15] *}
 
 そのステータスコードはレスポンスで使用され、OpenAPIスキーマに追加されます。
 
@@ -33,7 +33,7 @@
 
 `tags`パラメータを`str`の`list`（通常は１つの`str`）と一緒に渡すと、*path operation*にタグを追加できます:
 
-{* ../../docs_src/path_operation_configuration/tutorial002_py310.py hl[15,20,25] *}
+{* ../../docs_src/path_operation_configuration/tutorial002.py hl[15,20,25] *}
 
 これらはOpenAPIスキーマに追加され、自動ドキュメントのインターフェースで使用されます:
 
@@ -47,13 +47,13 @@
 
 **FastAPI** は、プレーンな文字列の場合と同じ方法でそれをサポートしています:
 
-{* ../../docs_src/path_operation_configuration/tutorial002b_py310.py hl[1,8:10,13,18] *}
+{* ../../docs_src/path_operation_configuration/tutorial002b.py hl[1,8:10,13,18] *}
 
 ## 概要と説明 { #summary-and-description }
 
 `summary`と`description`を追加できます:
 
-{* ../../docs_src/path_operation_configuration/tutorial003_py310.py hl[17:18] *}
+{* ../../docs_src/path_operation_configuration/tutorial003.py hl[17:18] *}
 
 ## docstringを用いた説明 { #description-from-docstring }
 
@@ -61,7 +61,7 @@
 
 docstringに[Markdown](https://en.wikipedia.org/wiki/Markdown)を記述すれば、正しく解釈されて表示されます。（docstringのインデントを考慮して）
 
-{* ../../docs_src/path_operation_configuration/tutorial004_py310.py hl[17:25] *}
+{* ../../docs_src/path_operation_configuration/tutorial004.py hl[17:25] *}
 
 これは対話的ドキュメントで使用されます:
 
@@ -71,7 +71,7 @@ docstringに[Markdown](https://en.wikipedia.org/wiki/Markdown)を記述すれば
 
 `response_description`パラメータでレスポンスの説明をすることができます。
 
-{* ../../docs_src/path_operation_configuration/tutorial005_py310.py hl[18] *}
+{* ../../docs_src/path_operation_configuration/tutorial005.py hl[18] *}
 
 /// note | 備考
 
@@ -93,7 +93,7 @@ OpenAPIは*path operation*ごとにレスポンスの説明を必要としてい
 
 *path operation*を<dfn title="非推奨、使用しないことを推奨">deprecated</dfn>としてマークする必要があるが、それを削除しない場合は、`deprecated`パラメータを渡します:
 
-{* ../../docs_src/path_operation_configuration/tutorial006_py310.py hl[16] *}
+{* ../../docs_src/path_operation_configuration/tutorial006.py hl[16] *}
 
 対話的ドキュメントでは非推奨と明記されます:
 

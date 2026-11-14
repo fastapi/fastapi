@@ -31,7 +31,7 @@ Elle aura un *chemin d'accès* qui recevra un corps `Invoice`, et un paramètre 
 
 Cette partie est assez normale, la plupart du code vous est probablement déjà familier :
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[7:11,34:51] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[7:11,34:51] *}
 
 /// tip | Astuce
 
@@ -90,7 +90,7 @@ Adopter temporairement ce point de vue (celui de la *personne développeuse exte
 
 Commencez par créer un nouveau `APIRouter` qui contiendra un ou plusieurs callbacks.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[1,23] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[1,23] *}
 
 ### Créer le *chemin d'accès* du callback { #create-the-callback-path-operation }
 
@@ -101,7 +101,7 @@ Il devrait ressembler exactement à un *chemin d'accès* FastAPI normal :
 * Il devrait probablement déclarer le corps qu’il doit recevoir, par exemple `body: InvoiceEvent`.
 * Et il pourrait aussi déclarer la réponse qu’il doit renvoyer, par exemple `response_model=InvoiceEventReceived`.
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[14:16,19:20,26:30] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[14:16,19:20,26:30] *}
 
 Il y a 2 principales différences par rapport à un *chemin d'accès* normal :
 
@@ -169,7 +169,7 @@ Remarquez que l’URL de callback utilisée contient l’URL reçue en paramètr
 
 Utilisez maintenant le paramètre `callbacks` dans *le décorateur de chemin d'accès de votre API* pour passer l’attribut `.routes` depuis ce routeur de callback :
 
-{* ../../docs_src/openapi_callbacks/tutorial001_py310.py hl[33] *}
+{* ../../docs_src/openapi_callbacks/tutorial001.py hl[33] *}
 
 /// tip | Astuce
 

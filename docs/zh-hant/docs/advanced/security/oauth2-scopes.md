@@ -62,7 +62,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 先快速看看主要 **教學 - 使用者指南** 中 [OAuth2 with Password (and hashing), Bearer with JWT tokens](../../tutorial/security/oauth2-jwt.md) 範例的變更部分。現在加入了 OAuth2 scopes：
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 接著我們一步一步檢視這些變更。
 
@@ -72,7 +72,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 參數 `scopes` 接收一個 `dict`，以各 scope 為鍵、其描述為值：
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 由於現在宣告了這些 scopes，當你登入／授權時，它們會出現在 API 文件中。
 
@@ -98,7 +98,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## 在*路徑操作*與相依性中宣告 scopes { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | 技術細節
 
@@ -150,7 +150,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 這個 `SecurityScopes` 類似於 `Request`（`Request` 用來直接取得請求物件）。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## 使用這些 `scopes` { #use-the-scopes }
 
@@ -164,7 +164,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 在這個例外中，我們把所需的 scopes（若有）以空白分隔的字串形式（透過 `scope_str`）加入，並將該包含 scopes 的字串放在 `WWW-Authenticate` 標頭中（這是規格的一部分）。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## 驗證 `username` 與資料結構 { #verify-the-username-and-data-shape }
 
@@ -180,7 +180,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 我們也會確認該 `username` 對應的使用者是否存在，否則同樣丟出之前建立的例外。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## 驗證 `scopes` { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ OAuth2 規格將「scopes」定義為以空白分隔的一串字串列表。
 
 為此，我們使用 `security_scopes.scopes`，其中包含一個 `list`，列出所有這些 `str` 形式的 scopes。
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## 相依性樹與 scopes { #dependency-tree-and-scopes }
 

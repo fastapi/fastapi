@@ -39,13 +39,13 @@ Para transmitir SSE com FastAPI, use `yield` na sua função de operação de ro
 
 Importe `EventSourceResponse` de `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 Cada item produzido é codificado como JSON e enviado no campo `data:` de um evento SSE.
 
 Se você declarar o tipo de retorno como `AsyncIterable[Item]`, o FastAPI o usará para validar, documentar e serializar os dados com o Pydantic.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip | Dica
 
@@ -61,13 +61,13 @@ O FastAPI garantirá a execução correta para não bloquear o event loop.
 
 Como, neste caso, a função não é assíncrona, o tipo de retorno adequado seria `Iterable[Item]`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### Sem tipo de retorno { #no-return-type }
 
 Você também pode omitir o tipo de retorno. O FastAPI usará o [`jsonable_encoder`](./encoder.md) para converter os dados e enviá-los.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ Se você precisar definir campos de SSE como `event`, `id`, `retry` ou `comment`
 
 Importe `ServerSentEvent` de `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 O campo `data` é sempre codificado como JSON. Você pode passar qualquer valor que possa ser serializado como JSON, incluindo modelos do Pydantic.
 
@@ -85,7 +85,7 @@ Se você precisar enviar dados sem codificação JSON, use `raw_data` em vez de 
 
 Isto é útil para enviar texto pré-formatado, linhas de log ou valores <dfn title="um valor usado para indicar uma condição ou estado especial">"sentinela"</dfn> especiais como `[DONE]`.
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note | Nota
 
@@ -99,7 +99,7 @@ Quando um navegador se reconecta após uma queda na conexão, ele envia o últim
 
 Você pode lê-lo como um parâmetro de cabeçalho e usá-lo para retomar o stream de onde o cliente parou:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## SSE com POST { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE funciona com qualquer método HTTP, não apenas `GET`.
 
 Isso é útil para protocolos como o [MCP](https://modelcontextprotocol.io) que fazem stream de SSE via `POST`:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## Detalhes Técnicos { #technical-details }
 

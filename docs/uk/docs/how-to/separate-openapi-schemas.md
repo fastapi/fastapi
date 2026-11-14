@@ -10,13 +10,13 @@
 
 Припустімо, у вас є модель Pydantic зі значеннями за замовчуванням, наприклад:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:7] hl[7] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:7] hl[7] *}
 
 ### Модель для введення { #model-for-input }
 
 Якщо ви використовуєте цю модель як введення, як тут:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py ln[1:15] hl[14] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py ln[1:15] hl[14] *}
 
 …тоді поле `description` **не буде обов'язковим**. Адже воно має значення за замовчуванням `None`.
 
@@ -32,7 +32,7 @@
 
 Але якщо ви використовуєте цю саму модель для виведення, як тут:
 
-{* ../../docs_src/separate_openapi_schemas/tutorial001_py310.py hl[19] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial001.py hl[19] *}
 
 …тоді, оскільки `description` має значення за замовчуванням, якщо ви **нічого не повернете** для цього поля, воно все одно матиме це **значення за замовчуванням**.
 
@@ -91,7 +91,7 @@
 
 ///
 
-{* ../../docs_src/separate_openapi_schemas/tutorial002_py310.py hl[10] *}
+{* ../../docs_src/separate_openapi_schemas/tutorial002.py hl[10] *}
 
 ### Одна схема для моделей введення та виведення в документації { #same-schema-for-input-and-output-models-in-docs }
 

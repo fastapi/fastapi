@@ -8,7 +8,7 @@ Bir response model tanımlayabildiğiniz gibi, herhangi bir *path operation* iç
 * `@app.delete()`
 * vb.
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 /// note | Not
 
@@ -74,7 +74,7 @@ Her bir status code hakkında daha fazla bilgi almak ve hangi kodun ne için kul
 
 Önceki örneğe tekrar bakalım:
 
-{* ../../docs_src/response_status_code/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/response_status_code/tutorial001.py hl[6] *}
 
 `201`, "Created" için kullanılan status code'dur.
 
@@ -82,7 +82,7 @@ Ancak bu kodların her birinin ne anlama geldiğini ezberlemek zorunda değilsin
 
 `fastapi.status` içindeki kolaylık değişkenlerini (convenience variables) kullanabilirsiniz.
 
-{* ../../docs_src/response_status_code/tutorial002_py310.py hl[1,6] *}
+{* ../../docs_src/response_status_code/tutorial002.py hl[1,6] *}
 
 Bunlar sadece kolaylık sağlar; aynı sayıyı taşırlar. Ancak bu şekilde editörün autocomplete özelliğiyle kolayca bulabilirsiniz:
 

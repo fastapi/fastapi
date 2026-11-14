@@ -76,11 +76,11 @@ sequenceDiagram
 
 要用 FastAPI 串流 JSON Lines，你可以在你的*路徑操作函式*中改用 `yield` 逐一產生項目，而不是用 `return`。
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[24] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[24] *}
 
 如果你要回傳的每個 JSON 項目型別都是 `Item`（一個 Pydantic 模型），而且該函式是 async，你可以將回傳型別宣告為 `AsyncIterable[Item]`：
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[1:24] hl[9:11,22] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[1:24] hl[9:11,22] *}
 
 如果你宣告了回傳型別，FastAPI 會用它來進行資料的**驗證**、在 OpenAPI 中**文件化**、**過濾**，並使用 Pydantic 進行**序列化**。
 
@@ -98,13 +98,13 @@ FastAPI 會確保正確執行，不會阻塞事件迴圈。
 
 因為這種情況下函式不是 async，正確的回傳型別會是 `Iterable[Item]`：
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[27:30] hl[28] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[27:30] hl[28] *}
 
 ### 不宣告回傳型別 { #no-return-type }
 
 你也可以省略回傳型別。此時 FastAPI 會使用 [`jsonable_encoder`](./encoder.md) 將資料轉換為可序列化為 JSON 的形式，然後以 JSON Lines 傳送。
 
-{* ../../docs_src/stream_json_lines/tutorial001_py310.py ln[33:36] hl[34] *}
+{* ../../docs_src/stream_json_lines/tutorial001.py ln[33:36] hl[34] *}
 
 ## 伺服器推播事件（SSE） { #server-sent-events-sse }
 

@@ -6,7 +6,7 @@ Vous pouvez définir des paramètres de cookie de la même manière que vous dé
 
 Commencez par importer `Cookie` :
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## Déclarer des paramètres `Cookie` { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@ Déclarez ensuite les paramètres de cookie en utilisant la même structure qu'a
 
 Vous pouvez définir la valeur par défaut ainsi que tous les paramètres supplémentaires de validation ou d'annotation :
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | Détails techniques
 

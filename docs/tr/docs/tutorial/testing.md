@@ -30,7 +30,7 @@ Adı `test_` ile başlayan fonksiyonlar oluşturun (bu, `pytest`'in standart kon
 
 Kontrol etmeniz gereken şeyler için standart Python ifadeleriyle basit `assert` satırları yazın (bu da `pytest` standardıdır).
 
-{* ../../docs_src/app_testing/tutorial001_py310.py hl[2,12,15:18] *}
+{* ../../docs_src/app_testing/tutorial001.py hl[2,12,15:18] *}
 
 /// tip | İpucu
 
@@ -76,7 +76,7 @@ Ayrıca **FastAPI** uygulamanız birden fazla dosya/modül vb. ile de oluşturul
 `main.py` dosyasında **FastAPI** uygulamanız bulunuyor olsun:
 
 
-{* ../../docs_src/app_testing/app_a_py310/main.py *}
+{* ../../docs_src/app_testing/app_a/main.py *}
 
 ### Test Dosyası { #testing-file }
 
@@ -92,7 +92,7 @@ Sonra testlerinizin olduğu bir `test_main.py` dosyanız olabilir. Bu dosya ayn�
 
 Bu dosya aynı package içinde olduğu için, `main` modülünden (`main.py`) `app` nesnesini import etmek üzere relative import kullanabilirsiniz:
 
-{* ../../docs_src/app_testing/app_a_py310/test_main.py hl[3] *}
+{* ../../docs_src/app_testing/app_a/test_main.py hl[3] *}
 
 
 ...ve test kodunu da öncekiyle aynı şekilde yazabilirsiniz.
@@ -121,13 +121,13 @@ Birden fazla farklı hata döndürebilecek bir `POST` operation'ı var.
 
 Her iki *path operation* da `X-Token` header'ını gerektiriyor.
 
-{* ../../docs_src/app_testing/app_b_an_py310/main.py *}
+{* ../../docs_src/app_testing/app_b/main.py *}
 
 ### Genişletilmiş Test Dosyası { #extended-testing-file }
 
 Sonrasında `test_main.py` dosyanızı genişletilmiş testlerle güncelleyebilirsiniz:
 
-{* ../../docs_src/app_testing/app_b_an_py310/test_main.py *}
+{* ../../docs_src/app_testing/app_b/test_main.py *}
 
 
 Client'ın request içinde bir bilgi göndermesi gerektiğinde ve bunu nasıl yapacağınızı bilemediğinizde, `httpx` ile nasıl yapılacağını aratabilirsiniz (Google) ya da HTTPX’in tasarımı Requests’e dayandığı için `requests` ile nasıl yapıldığını da arayabilirsiniz.

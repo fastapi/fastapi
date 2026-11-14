@@ -30,7 +30,7 @@ FastAPI はデフォルトでJSONレスポンスを返します。
 
 結論として、最大のパフォーマンスを得たい場合は、[レスポンスモデル](../tutorial/response-model.md) を使い、*path operation デコレータ* で `response_class` は宣言しないでください。
 
-{* ../../docs_src/response_model/tutorial001_01_py310.py ln[15:17] hl[16] *}
+{* ../../docs_src/response_model/tutorial001_01.py ln[15:17] hl[16] *}
 
 ## HTMLレスポンス { #html-response }
 
@@ -39,7 +39,7 @@ FastAPI はデフォルトでJSONレスポンスを返します。
 * `HTMLResponse` をインポートする
 * *path operation デコレータ* のパラメータ `response_class` に `HTMLResponse` を渡す
 
-{* ../../docs_src/custom_response/tutorial002_py310.py hl[2,7] *}
+{* ../../docs_src/custom_response/tutorial002.py hl[2,7] *}
 
 /// note | 備考
 
@@ -57,7 +57,7 @@ FastAPI はデフォルトでJSONレスポンスを返します。
 
 上記と同じ例で、`HTMLResponse` を返すと次のようになります:
 
-{* ../../docs_src/custom_response/tutorial003_py310.py hl[2,7,19] *}
+{* ../../docs_src/custom_response/tutorial003.py hl[2,7,19] *}
 
 /// warning | 注意
 
@@ -81,7 +81,7 @@ FastAPI はデフォルトでJSONレスポンスを返します。
 
 例えば、次のようになります:
 
-{* ../../docs_src/custom_response/tutorial004_py310.py hl[7,21,23] *}
+{* ../../docs_src/custom_response/tutorial004.py hl[7,21,23] *}
 
 この例では、関数 `generate_html_response()` はHTMLの `str` を返すのではなく、すでに `Response` を生成して返しています。
 
@@ -120,7 +120,7 @@ FastAPI はデフォルトでJSONレスポンスを返します。
 
 FastAPI（実際にはStarlette）は自動的に Content-Length ヘッダーを含めます。また、`media_type` に基づいた Content-Type ヘッダーを含め、テキストタイプには charset を追加します。
 
-{* ../../docs_src/response_directly/tutorial002_py310.py hl[1,18] *}
+{* ../../docs_src/response_directly/tutorial002.py hl[1,18] *}
 
 ### `HTMLResponse` { #htmlresponse }
 
@@ -130,7 +130,7 @@ FastAPI（実際にはStarlette）は自動的に Content-Length ヘッダーを
 
 テキストやバイト列を受け取り、プレーンテキストのレスポンスを返します。
 
-{* ../../docs_src/custom_response/tutorial005_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial005.py hl[2,7,9] *}
 
 ### `JSONResponse` { #jsonresponse }
 
@@ -152,13 +152,13 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 
 `RedirectResponse` を直接返せます:
 
-{* ../../docs_src/custom_response/tutorial006_py310.py hl[2,9] *}
+{* ../../docs_src/custom_response/tutorial006.py hl[2,9] *}
 
 ---
 
 または、`response_class` パラメータで使用できます:
 
-{* ../../docs_src/custom_response/tutorial006b_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006b.py hl[2,7,9] *}
 
 その場合、*path operation* 関数からURLを直接返せます。
 
@@ -168,13 +168,13 @@ HTTPリダイレクトを返します。デフォルトでは307ステータス�
 
 さらに、`status_code` パラメータを `response_class` パラメータと組み合わせて使うこともできます:
 
-{* ../../docs_src/custom_response/tutorial006c_py310.py hl[2,7,9] *}
+{* ../../docs_src/custom_response/tutorial006c.py hl[2,7,9] *}
 
 ### `StreamingResponse` { #streamingresponse }
 
 非同期ジェネレータ、または通常のジェネレータ/イテレータ（`yield` を持つ関数）を受け取り、レスポンスボディをストリームします。
 
-{* ../../docs_src/custom_response/tutorial007_py310.py hl[3,16] *}
+{* ../../docs_src/custom_response/tutorial007.py hl[3,16] *}
 
 /// note | 技術詳細
 
@@ -207,11 +207,11 @@ JSON Lines をストリームする場合は、[JSON Lines をストリームす
 
 ファイルレスポンスには、適切な `Content-Length`、`Last-Modified`、`ETag` ヘッダーが含まれます。
 
-{* ../../docs_src/custom_response/tutorial009_py310.py hl[2,10] *}
+{* ../../docs_src/custom_response/tutorial009.py hl[2,10] *}
 
 `response_class` パラメータを使うこともできます:
 
-{* ../../docs_src/custom_response/tutorial009b_py310.py hl[2,8,10] *}
+{* ../../docs_src/custom_response/tutorial009b.py hl[2,8,10] *}
 
 この場合、*path operation* 関数からファイルパスを直接返せます。
 
@@ -225,7 +225,7 @@ JSON Lines をストリームする場合は、[JSON Lines をストリームす
 
 `CustomORJSONResponse` を作成できます。主に必要なのは、`bytes` を返す `Response.render(content)` メソッドを作ることです:
 
-{* ../../docs_src/custom_response/tutorial009c_py310.py hl[9:14,17] *}
+{* ../../docs_src/custom_response/tutorial009c.py hl[9:14,17] *}
 
 これまでは次のように返していたものが:
 
@@ -259,7 +259,7 @@ JSON Lines をストリームする場合は、[JSON Lines をストリームす
 
 以下の例では、**FastAPI** はすべての *path operation* で、JSONの代わりにデフォルトで `HTMLResponse` を使用します。
 
-{* ../../docs_src/custom_response/tutorial010_py310.py hl[2,4] *}
+{* ../../docs_src/custom_response/tutorial010.py hl[2,4] *}
 
 /// tip | 豆知識
 

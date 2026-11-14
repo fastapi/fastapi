@@ -39,13 +39,13 @@ To stream SSE with FastAPI, use `yield` in your *path operation function* and se
 
 Import `EventSourceResponse` from `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 Each yielded item is encoded as JSON and sent in the `data:` field of an SSE event.
 
 If you declare the return type as `AsyncIterable[Item]`, FastAPI will use it to **validate**, **document**, and **serialize** the data using Pydantic.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip
 
@@ -61,13 +61,13 @@ FastAPI will make sure it's run correctly so that it doesn't block the event loo
 
 As in this case the function is not async, the right return type would be `Iterable[Item]`:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### No Return Type { #no-return-type }
 
 You can also omit the return type. FastAPI will use the [`jsonable_encoder`](./encoder.md) to convert the data and send it.
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ If you need to set SSE fields like `event`, `id`, `retry`, or `comment`, you can
 
 Import `ServerSentEvent` from `fastapi.sse`:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 The `data` field is always encoded as JSON. You can pass any value that can be serialized as JSON, including Pydantic models.
 
@@ -85,7 +85,7 @@ If you need to send data **without** JSON encoding, use `raw_data` instead of `d
 
 This is useful for sending pre-formatted text, log lines, or special <dfn title="A value used to indicate a special condition or state">"sentinel"</dfn> values like `[DONE]`.
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note
 
@@ -99,7 +99,7 @@ When a browser reconnects after a connection drop, it sends the last received `i
 
 You can read it as a header parameter and use it to resume the stream from where the client left off:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## SSE with POST { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE works with **any HTTP method**, not just `GET`.
 
 This is useful for protocols like [MCP](https://modelcontextprotocol.io) that stream SSE over `POST`:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## Technical Details { #technical-details }
 

@@ -62,7 +62,7 @@ OAuth2 입장에서는 그저 문자열입니다.
 
 먼저, 메인 **튜토리얼 - 사용자 가이드**의 [비밀번호(및 해싱)를 사용하는 OAuth2, JWT 토큰을 사용하는 Bearer](../../tutorial/security/oauth2-jwt.md) 예제에서 어떤 부분이 바뀌는지 빠르게 살펴보겠습니다. 이제 OAuth2 스코프를 사용합니다:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 이제 변경 사항을 단계별로 살펴보겠습니다.
 
@@ -72,7 +72,7 @@ OAuth2 입장에서는 그저 문자열입니다.
 
 `scopes` 매개변수는 각 스코프를 키로 하고, 설명을 값으로 하는 `dict`를 받습니다:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 이제 스코프를 선언했기 때문에, 로그인/인가할 때 API 문서에 스코프가 표시됩니다.
 
@@ -98,7 +98,7 @@ OAuth2 입장에서는 그저 문자열입니다.
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## *경로 처리*와 의존성에서 스코프 선언하기 { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -124,7 +124,7 @@ OAuth2 입장에서는 그저 문자열입니다.
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | 기술 세부사항
 
@@ -150,7 +150,7 @@ OAuth2 입장에서는 그저 문자열입니다.
 
 이 `SecurityScopes` 클래스는 `Request`와 비슷합니다(`Request`는 요청 객체를 직접 얻기 위해 사용했습니다).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## `scopes` 사용하기 { #use-the-scopes }
 
@@ -164,7 +164,7 @@ OAuth2 입장에서는 그저 문자열입니다.
 
 이 예외에는 필요한 스코프(있다면)를 공백으로 구분된 문자열(`scope_str`)로 포함합니다. 그리고 그 스코프 문자열을 `WWW-Authenticate` 헤더에 넣습니다(이는 사양의 일부입니다).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## `username`과 데이터 형태 검증하기 { #verify-the-username-and-data-shape }
 
@@ -180,7 +180,7 @@ Pydantic으로 데이터를 검증하면, 예를 들어 스코프가 정확히 `
 
 또한 해당 username을 가진 사용자가 있는지 확인하고, 없다면 앞에서 만든 동일한 예외를 raise합니다.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## `scopes` 검증하기 { #verify-the-scopes }
 
@@ -188,7 +188,7 @@ Pydantic으로 데이터를 검증하면, 예를 들어 스코프가 정확히 `
 
 이를 위해, 모든 스코프를 `str`로 담고 있는 `security_scopes.scopes`를 사용합니다.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## 의존성 트리와 스코프 { #dependency-tree-and-scopes }
 

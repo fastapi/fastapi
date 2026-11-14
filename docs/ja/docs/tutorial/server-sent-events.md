@@ -39,13 +39,13 @@ FastAPI で SSE をストリーミングするには、*path operation 関数*�
 
 `EventSourceResponse` は `fastapi.sse` からインポートします:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[4,22] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[4,22] *}
 
 yield された各アイテムは JSON にエンコードされ、SSE イベントの `data:` フィールドで送信されます。
 
 戻り値の型を `AsyncIterable[Item]` と宣言すると、FastAPI は Pydantic を用いてデータを**検証**、**ドキュメント化**、**シリアライズ**します。
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[1:25] hl[10:12,23] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[1:25] hl[10:12,23] *}
 
 /// tip
 
@@ -61,13 +61,13 @@ Pydantic が**Rust** 側でシリアライズを行うため、戻り値の型�
 
 この場合は関数が async ではないため、適切な戻り値の型は `Iterable[Item]` です:
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[28:31] hl[29] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[28:31] hl[29] *}
 
 ### 戻り値の型なし { #no-return-type }
 
 戻り値の型を省略することもできます。FastAPI は [`jsonable_encoder`](./encoder.md) を使ってデータを変換し、送信します。
 
-{* ../../docs_src/server_sent_events/tutorial001_py310.py ln[34:37] hl[35] *}
+{* ../../docs_src/server_sent_events/tutorial001.py ln[34:37] hl[35] *}
 
 ## `ServerSentEvent` { #serversentevent }
 
@@ -75,7 +75,7 @@ Pydantic が**Rust** 側でシリアライズを行うため、戻り値の型�
 
 `ServerSentEvent` は `fastapi.sse` からインポートします:
 
-{* ../../docs_src/server_sent_events/tutorial002_py310.py hl[4,26] *}
+{* ../../docs_src/server_sent_events/tutorial002.py hl[4,26] *}
 
 `data` フィールドは常に JSON にエンコードされます。Pydantic モデルを含む、JSON にシリアライズ可能な任意の値を渡せます。
 
@@ -85,7 +85,7 @@ JSON エンコードせずにデータを送る必要がある場合は、`raw_d
 
 これは、整形済みテキスト、ログ行、または <dfn title="特別な条件や状態を示すために用いられる値">「センチネル」</dfn> といった特別な値（例: `[DONE]`）を送るのに有用です。
 
-{* ../../docs_src/server_sent_events/tutorial003_py310.py hl[17] *}
+{* ../../docs_src/server_sent_events/tutorial003.py hl[17] *}
 
 /// note
 
@@ -99,7 +99,7 @@ JSON エンコードせずにデータを送る必要がある場合は、`raw_d
 
 これをヘッダーパラメータとして受け取り、クライアントが離脱した位置からストリームを再開できます:
 
-{* ../../docs_src/server_sent_events/tutorial004_py310.py hl[25,27,31] *}
+{* ../../docs_src/server_sent_events/tutorial004.py hl[25,27,31] *}
 
 ## POST での SSE { #sse-with-post }
 
@@ -107,7 +107,7 @@ SSE は `GET` だけでなく、**任意の HTTP メソッド**で動作しま�
 
 これは、`POST` 上で SSE をストリーミングする [MCP](https://modelcontextprotocol.io) のようなプロトコルで有用です:
 
-{* ../../docs_src/server_sent_events/tutorial005_py310.py hl[14] *}
+{* ../../docs_src/server_sent_events/tutorial005.py hl[14] *}
 
 ## 技術詳細 { #technical-details }
 

@@ -57,13 +57,13 @@ Impose que toutes les requêtes entrantes soient soit `https`, soit `wss`.
 
 Toute requête entrante en `http` ou `ws` sera redirigée vers le schéma sécurisé correspondant.
 
-{* ../../docs_src/advanced_middleware/tutorial001_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial001.py hl[2,6] *}
 
 ## `TrustedHostMiddleware` { #trustedhostmiddleware }
 
 Impose que toutes les requêtes entrantes aient un en-tête `Host` correctement défini, afin de se prémunir contre les attaques de type HTTP Host Header.
 
-{* ../../docs_src/advanced_middleware/tutorial002_py310.py hl[2,6:8] *}
+{* ../../docs_src/advanced_middleware/tutorial002.py hl[2,6:8] *}
 
 Les arguments suivants sont pris en charge :
 
@@ -78,7 +78,7 @@ Gère les réponses GZip pour toute requête qui inclut « gzip » dans l'en-tê
 
 Le middleware gérera les réponses standard et en streaming.
 
-{* ../../docs_src/advanced_middleware/tutorial003_py310.py hl[2,6] *}
+{* ../../docs_src/advanced_middleware/tutorial003.py hl[2,6] *}
 
 Les arguments suivants sont pris en charge :
 

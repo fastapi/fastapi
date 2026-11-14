@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from inline_snapshot import snapshot
 
-from docs_src.middleware.tutorial001_py310 import app
+from docs_src.middleware.tutorial001 import app
 
 client = TestClient(app)
 

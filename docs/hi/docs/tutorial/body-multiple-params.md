@@ -8,7 +8,7 @@
 
 और आप body parameters को optional भी declare कर सकते हैं, default को `None` पर सेट करके:
 
-{* ../../docs_src/body_multiple_params/tutorial001_an_py310.py hl[18:20] *}
+{* ../../docs_src/body_multiple_params/tutorial001.py hl[18:20] *}
 
 /// note | नोट
 
@@ -31,7 +31,7 @@
 
 लेकिन आप कई body parameters भी declare कर सकते हैं, उदाहरण के लिए `item` और `user`:
 
-{* ../../docs_src/body_multiple_params/tutorial002_py310.py hl[20] *}
+{* ../../docs_src/body_multiple_params/tutorial002.py hl[20] *}
 
 
 इस मामले में, **FastAPI** ध्यान देगा कि function में एक से अधिक body parameter हैं (दो parameters हैं जो Pydantic models हैं)।
@@ -73,7 +73,7 @@
 
 लेकिन आप **FastAPI** को `Body` का उपयोग करके इसे एक और body key के रूप में treat करने का निर्देश दे सकते हैं:
 
-{* ../../docs_src/body_multiple_params/tutorial003_an_py310.py hl[23] *}
+{* ../../docs_src/body_multiple_params/tutorial003.py hl[23] *}
 
 
 इस मामले में, **FastAPI** ऐसी body की अपेक्षा करेगा:
@@ -108,7 +108,7 @@ q: str | None = None
 
 उदाहरण के लिए:
 
-{* ../../docs_src/body_multiple_params/tutorial004_an_py310.py hl[28] *}
+{* ../../docs_src/body_multiple_params/tutorial004.py hl[28] *}
 
 
 /// note | नोट
@@ -131,7 +131,7 @@ item: Annotated[Item, Body(embed=True)]
 
 जैसे कि:
 
-{* ../../docs_src/body_multiple_params/tutorial005_an_py310.py hl[17] *}
+{* ../../docs_src/body_multiple_params/tutorial005.py hl[17] *}
 
 
 इस मामले में **FastAPI** ऐसी body की अपेक्षा करेगा:

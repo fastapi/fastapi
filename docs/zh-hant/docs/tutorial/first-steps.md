@@ -2,7 +2,7 @@
 
 最簡單的 FastAPI 檔案可能看起來像這樣：
 
-{* ../../docs_src/first_steps/tutorial001_py310.py *}
+{* ../../docs_src/first_steps/tutorial001.py *}
 
 將其複製到一個名為 `main.py` 的文件中。
 
@@ -230,7 +230,7 @@ CLI 會自動偵測你的 FastAPI 應用並將它部署到雲端。若你尚未�
 
 ### 第一步：引入 `FastAPI` { #step-1-import-fastapi }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[1] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[1] *}
 
 `FastAPI` 是一個 Python 類別，提供你的 API 所需的所有功能。
 
@@ -244,7 +244,7 @@ CLI 會自動偵測你的 FastAPI 應用並將它部署到雲端。若你尚未�
 
 ### 第二步：建立一個 `FastAPI`「實例」 { #step-2-create-a-fastapi-instance }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[3] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[3] *}
 
 這裡的 `app` 變數將會是 `FastAPI` 類別的「實例」。
 
@@ -313,7 +313,7 @@ https://example.com/items/foo
 
 #### 定義一個*路徑操作裝飾器* { #define-a-path-operation-decorator }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[6] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[6] *}
 
 `@app.get("/")` 告訴 **FastAPI** 正下方的函式負責處理前往以下位置的請求：
 
@@ -367,7 +367,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 * **operation**：是 `get`。
 * **function**：是裝飾器下面的函式（在 `@app.get("/")` 下面）。
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[7] *}
 
 這就是一個 Python 函式。
 
@@ -379,7 +379,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 你也可以將它定義為一般函式，而不是 `async def`：
 
-{* ../../docs_src/first_steps/tutorial003_py310.py hl[7] *}
+{* ../../docs_src/first_steps/tutorial003.py hl[7] *}
 
 /// note
 
@@ -389,7 +389,7 @@ Python 中的 `@something` 語法被稱為「裝飾器」。
 
 ### 第五步：回傳內容 { #step-5-return-the-content }
 
-{* ../../docs_src/first_steps/tutorial001_py310.py hl[8] *}
+{* ../../docs_src/first_steps/tutorial001.py hl[8] *}
 
 你可以返回一個 `dict`、`list`、單個值作為 `str`、`int` 等。
 

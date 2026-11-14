@@ -28,7 +28,7 @@ Para sobrepor a dependência para os testes, você coloca como chave a dependên
 
 E então o **FastAPI** chamará a sobreposição no lugar da dependência original.
 
-{* ../../docs_src/dependency_testing/tutorial001_an_py310.py hl[26:27,30] *}
+{* ../../docs_src/dependency_testing/tutorial001.py hl[26:27,30] *}
 
 /// tip | Dica
 

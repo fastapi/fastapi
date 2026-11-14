@@ -21,3 +21,7 @@ Standardmäßig erkennt die Erweiterung FastAPI-Anwendungen in Ihrem Workspace a
 - **Anwendungslogs streamen** – Echtzeit-Logstreaming Ihrer auf FastAPI Cloud deployten Anwendung mit Loglevel-Filterung und Textsuche.
 
 Wenn Sie sich mit den Funktionen der Erweiterung vertraut machen möchten, können Sie den Erweiterungs‑Walkthrough aufrufen, indem Sie die Befehlspalette öffnen (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> oder unter macOS: <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>) und „Welcome: Open walkthrough ...“ auswählen und anschließend den Walkthrough „Get started with FastAPI“ wählen.
+
+## KI-Coding-Agenten { #ai-coding-agents }
+
+Unter [Mit KI entwickeln](ai-development.md) erfahren Sie, wie Sie den offiziellen FastAPI-Skill installieren und verwenden.

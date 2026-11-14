@@ -63,7 +63,7 @@ OAuth2 için bunlar sadece string'dir.
 
 Önce, ana **Tutorial - User Guide** içindeki [Password (ve hashing) ile OAuth2, JWT token'lı Bearer](../../tutorial/security/oauth2-jwt.md) örneklerinden, OAuth2 scope'larına geçince hangi kısımların değiştiğine hızlıca bakalım:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
+{* ../../docs_src/security/tutorial005.py hl[5,9,13,47,65,106,108:116,122:126,130:136,141,157] *}
 
 Şimdi bu değişiklikleri adım adım inceleyelim.
 
@@ -73,7 +73,7 @@ OAuth2 için bunlar sadece string'dir.
 
 `scopes` parametresi; her scope'un key, açıklamasının ise value olduğu bir `dict` alır:
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[63:66] *}
+{* ../../docs_src/security/tutorial005.py hl[63:66] *}
 
 Bu scope'ları tanımladığımız için, login/authorize yaptığınızda API dokümanlarında görünecekler.
 
@@ -99,7 +99,7 @@ Ama uygulamanızda güvenlik açısından, yalnızca kullanıcının gerçekten 
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[157] *}
+{* ../../docs_src/security/tutorial005.py hl[157] *}
 
 ## *Path operation*'larda ve dependency'lerde scope tanımlama { #declare-scopes-in-path-operations-and-dependencies }
 
@@ -125,7 +125,7 @@ Burada, **FastAPI**'nin farklı seviyelerde tanımlanan scope'ları nasıl ele a
 
 ///
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[5,141,172] *}
+{* ../../docs_src/security/tutorial005.py hl[5,141,172] *}
 
 /// note | Teknik Detaylar
 
@@ -151,7 +151,7 @@ Ayrıca `fastapi.security` içinden import edilen, `SecurityScopes` tipinde öze
 
 Bu `SecurityScopes` sınıfı, `Request`'e benzer (`Request`, request nesnesini doğrudan almak için kullanılmıştı).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[9,106] *}
+{* ../../docs_src/security/tutorial005.py hl[9,106] *}
 
 ## `scopes`'ları kullanma { #use-the-scopes }
 
@@ -165,7 +165,7 @@ Sonrasında birkaç farklı noktada tekrar kullanabileceğimiz (`raise` edebilec
 
 Bu exception içinde, gerekiyorsa, gerekli scope'ları boşlukla ayrılmış bir string olarak (`scope_str` ile) ekliyoruz. Bu scope'ları içeren string'i `WWW-Authenticate` header'ına koyuyoruz (spesifikasyonun bir parçası).
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[106,108:116] *}
+{* ../../docs_src/security/tutorial005.py hl[106,108:116] *}
 
 ## `username` ve veri şeklinin doğrulanması { #verify-the-username-and-data-shape }
 
@@ -181,7 +181,7 @@ Aksi halde, örneğin bir `dict` veya başka bir şey gelebilir; bu da daha sonr
 
 Ayrıca bu `username` ile bir kullanıcı olduğunu doğruluyoruz; yoksa yine aynı exception'ı fırlatıyoruz.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[47,117:129] *}
+{* ../../docs_src/security/tutorial005.py hl[47,117:129] *}
 
 ## `scopes`'ların doğrulanması { #verify-the-scopes }
 
@@ -189,7 +189,7 @@ Ayrıca bu `username` ile bir kullanıcı olduğunu doğruluyoruz; yoksa yine ay
 
 Bunun için, tüm bu scope'ları `str` olarak içeren bir `list` olan `security_scopes.scopes` kullanılır.
 
-{* ../../docs_src/security/tutorial005_an_py310.py hl[130:136] *}
+{* ../../docs_src/security/tutorial005.py hl[130:136] *}
 
 ## Dependency ağacı ve scope'lar { #dependency-tree-and-scopes }
 

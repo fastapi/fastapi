@@ -29,15 +29,15 @@ Hatta FastAPI bu iki decorator'ı içeride (internally) kullanır.
 
 Response oluşturulmadan önce yalnızca `yield` satırına kadar olan (ve `yield` dahil) kod çalıştırılır:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[2:4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[2:4] *}
 
 `yield` edilen değer, *path operation*'lara ve diğer dependency'lere enjekte edilen (injected) değerdir:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[4] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[4] *}
 
 Response'dan sonra `yield` satırını takip eden kod çalıştırılır:
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[5:6] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[5:6] *}
 
 /// tip | İpucu
 
@@ -57,7 +57,7 @@ Dolayısıyla `except SomeException` ile dependency içinde o spesifik exception
 
 Aynı şekilde, exception olsun ya da olmasın çıkış (exit) adımlarının çalıştırılmasını garanti etmek için `finally` kullanabilirsiniz.
 
-{* ../../docs_src/dependencies/tutorial007_py310.py hl[3,5] *}
+{* ../../docs_src/dependencies/tutorial007.py hl[3,5] *}
 
 ## `yield` ile Alt Dependency'ler { #sub-dependencies-with-yield }
 
@@ -67,7 +67,7 @@ Her boyutta ve şekilde alt dependency'ler ve alt dependency "ağaçları" (tree
 
 Örneğin, `dependency_c`, `dependency_b`'ye; `dependency_b` de `dependency_a`'ya bağlı olabilir:
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[6,14,22] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[6,14,22] *}
 
 Ve hepsi `yield` kullanabilir.
 
@@ -75,7 +75,7 @@ Bu durumda `dependency_c`, exit code'unu çalıştırabilmek için `dependency_b
 
 Aynı şekilde `dependency_b` de exit code'u için `dependency_a`'dan gelen değerin (burada `dep_a`) erişilebilir olmasına ihtiyaç duyar.
 
-{* ../../docs_src/dependencies/tutorial008_an_py310.py hl[18:19,26:27] *}
+{* ../../docs_src/dependencies/tutorial008.py hl[18:19,26:27] *}
 
 Benzer şekilde, bazı dependency'ler `yield`, bazıları `return` kullanabilir ve bunların bazıları diğerlerine bağlı olabilir.
 
@@ -109,7 +109,7 @@ Ama ihtiyaç duyarsanız diye burada. 🤓
 
 ///
 
-{* ../../docs_src/dependencies/tutorial008b_an_py310.py hl[18:22,31] *}
+{* ../../docs_src/dependencies/tutorial008b.py hl[18:22,31] *}
 
 Exception yakalayıp buna göre özel bir response oluşturmak istiyorsanız bir [Özel Exception Handler](../handling-errors.md#install-custom-exception-handlers) oluşturun.
 
@@ -117,7 +117,7 @@ Exception yakalayıp buna göre özel bir response oluşturmak istiyorsanız bir
 
 `yield` kullanan bir dependency içinde `except` ile bir exception yakalar ve bunu tekrar fırlatmazsanız (ya da yeni bir exception fırlatmazsanız), FastAPI normal Python'da olduğu gibi bir exception olduğunu fark edemez:
 
-{* ../../docs_src/dependencies/tutorial008c_an_py310.py hl[15:16] *}
+{* ../../docs_src/dependencies/tutorial008c.py hl[15:16] *}
 
 Bu durumda client, biz `HTTPException` veya benzeri bir şey fırlatmadığımız için olması gerektiği gibi *HTTP 500 Internal Server Error* response'u görür; ancak server **hiç log üretmez** ve hatanın ne olduğuna dair başka bir işaret de olmaz. 😱
 
@@ -127,7 +127,7 @@ Bu durumda client, biz `HTTPException` veya benzeri bir şey fırlatmadığımı
 
 Aynı exception'ı `raise` ile tekrar fırlatabilirsiniz:
 
-{* ../../docs_src/dependencies/tutorial008d_an_py310.py hl[17] *}
+{* ../../docs_src/dependencies/tutorial008d.py hl[17] *}
 
 Artık client yine aynı *HTTP 500 Internal Server Error* response'unu alır, ama server log'larda bizim özel `InternalError`'ımızı görür. 😎
 
@@ -190,7 +190,7 @@ Normalde `yield` kullanan dependency'lerin exit code'u, client'a response gönde
 
 Ama *path operation function*'dan döndükten sonra dependency'yi kullanmayacağınızı biliyorsanız, `Depends(scope="function")` kullanarak FastAPI'ye dependency'yi *path operation function* döndükten sonra kapatmasını, ancak **response gönderilmeden önce** kapatmasını söyleyebilirsiniz.
 
-{* ../../docs_src/dependencies/tutorial008e_an_py310.py hl[12,16] *}
+{* ../../docs_src/dependencies/tutorial008e.py hl[12,16] *}
 
 `Depends()` şu değerleri alabilen bir `scope` parametresi alır:
 
@@ -269,7 +269,7 @@ Python'da Context Manager'ları, [iki method'a sahip bir class oluşturarak: `__
 
 Ayrıca dependency fonksiyonunun içinde `with` veya `async with` ifadeleri kullanarak **FastAPI**'de `yield` kullanan dependency'lerin içinde de kullanabilirsiniz:
 
-{* ../../docs_src/dependencies/tutorial010_py310.py hl[1:9,13] *}
+{* ../../docs_src/dependencies/tutorial010.py hl[1:9,13] *}
 
 /// tip | İpucu
 

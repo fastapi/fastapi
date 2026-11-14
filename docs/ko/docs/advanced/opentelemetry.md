@@ -29,7 +29,7 @@ $ uv add "fastapi[standard]"
 
 `main.py` 파일을 만드세요:
 
-{* ../../docs_src/opentelemetry/tutorial001_py310.py *}
+{* ../../docs_src/opentelemetry/tutorial001.py *}
 
 텔레메트리를 수집하기 위해 별도의 코드를 작성할 필요가 없습니다.
 
@@ -92,7 +92,7 @@ $ curl http://127.0.0.1:8000/items/1
 
 `telemetry` 딕셔너리에 프로바이더를 직접 전달할 수도 있습니다. 예를 들어, 다음 프로바이더는 OpenTelemetry의 콘솔 익스포터를 사용하여 터미널에 요청 스팬을 출력합니다:
 
-{* ../../docs_src/opentelemetry/tutorial002_py310.py hl[2:8] *}
+{* ../../docs_src/opentelemetry/tutorial002.py hl[2:8] *}
 
 **익스포터**는 스팬을 대상으로 보냅니다. `BatchSpanProcessor`는 스팬을 그룹으로 묶어 백그라운드에서 보냅니다. 모니터링 라이브러리의 대상으로 보내려면 콘솔 익스포터를 해당 라이브러리에서 제공하는 익스포터로 바꾸세요. 더 많은 설정 옵션은 [OpenTelemetry의 Python 계측 가이드](https://opentelemetry.io/docs/languages/python/instrumentation/)를 참고하세요.
 
@@ -112,7 +112,7 @@ OpenTelemetry는 기본적으로 전역 프로바이더를 사용합니다. [마
 
 HTTP 요청 스팬만 기록하려면 `operation_spans`를 `False`로 설정하세요:
 
-{* ../../docs_src/opentelemetry/tutorial003_py310.py hl[3] *}
+{* ../../docs_src/opentelemetry/tutorial003.py hl[3] *}
 
 
 ### WebSocket 연결 추적하기 { #trace-websocket-connections }

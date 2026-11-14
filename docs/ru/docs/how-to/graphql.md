@@ -36,7 +36,7 @@
 
 Вот небольшой пример того, как можно интегрировать Strawberry с FastAPI:
 
-{* ../../docs_src/graphql_/tutorial001_py310.py hl[3,22,25] *}
+{* ../../docs_src/graphql_/tutorial001.py hl[3,22,25] *}
 
 Подробнее о Strawberry можно узнать в [документации Strawberry](https://strawberry.rocks/).
 

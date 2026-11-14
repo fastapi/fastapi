@@ -6,7 +6,7 @@
 
 まず、`Cookie`をインポートします:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## `Cookie`のパラメータを宣言 { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@
 
 最初の値がデフォルト値で、追加の検証パラメータや注釈パラメータをすべて渡すことができます:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | 技術詳細
 

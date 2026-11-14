@@ -6,7 +6,7 @@ Você pode definir parâmetros de Cookie da mesma maneira que define parâmetros
 
 Primeiro importe `Cookie`:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[3] *}
 
 ## Declare parâmetros de `Cookie` { #declare-cookie-parameters }
 
@@ -14,7 +14,7 @@ Então declare os parâmetros de cookie usando a mesma estrutura que em `Path` e
 
 Você pode definir o valor padrão, assim como todas as validações extras ou parâmetros de anotação:
 
-{* ../../docs_src/cookie_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/cookie_params/tutorial001.py hl[9] *}
 
 /// note | Detalhes Técnicos
 

@@ -4,7 +4,7 @@
 
 以下面這個應用為例：
 
-{* ../../docs_src/query_params_str_validations/tutorial001_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial001.py hl[7] *}
 
 查詢參數 `q` 的型別是 `str | None`，表示它是 `str` 但也可以是 `None`，而且預設值就是 `None`，因此 FastAPI 會知道它不是必填。
 
@@ -27,7 +27,7 @@ FastAPI 會因為預設值是 `= None` 而知道 `q` 不是必填。
 * 從 `fastapi` 匯入 `Query`
 * 從 `typing` 匯入 `Annotated`
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[1,3] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[1,3] *}
 
 /// note | 注意
 
@@ -65,7 +65,7 @@ q: Annotated[str | None] = None
 
 既然我們有可以放更多資訊的 `Annotated`（在此是額外驗證），就把 `Query` 放進 `Annotated`，並把參數 `max_length` 設為 `50`：
 
-{* ../../docs_src/query_params_str_validations/tutorial002_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial002.py hl[9] *}
 
 注意預設值仍然是 `None`，所以這個參數仍是可選。
 
@@ -95,7 +95,7 @@ FastAPI 現在會：
 
 這是把 `Query()` 作為函式參數預設值的寫法，並把參數 `max_length` 設為 50：
 
-{* ../../docs_src/query_params_str_validations/tutorial002_py310.py hl[7] *}
+{* ../../docs_src/query_params_str_validations/tutorial002_non_an.py hl[7] *}
 
 在這種情況下（未使用 `Annotated`），我們必須用 `Query()` 取代函式中的預設值 `None`，因此需要用 `Query(default=None)` 來設定預設值；對 FastAPI 而言，這達到相同目的。
 
@@ -164,13 +164,13 @@ q: str = Query(default="rick")
 
 你也可以加入 `min_length` 參數：
 
-{* ../../docs_src/query_params_str_validations/tutorial003_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial003.py hl[10] *}
 
 ## 加入正規表示式 { #add-regular-expressions }
 
 你可以定義參數必須符合的 <dfn title="正規表示式、regex 或 regexp 是一組用於定義字串搜尋樣式的字元序列。">正規表示式</dfn> `pattern`：
 
-{* ../../docs_src/query_params_str_validations/tutorial004_an_py310.py hl[11] *}
+{* ../../docs_src/query_params_str_validations/tutorial004.py hl[11] *}
 
 這個特定的正規表示式樣式會檢查收到的參數值是否：
 
@@ -188,7 +188,7 @@ q: str = Query(default="rick")
 
 假設你想宣告查詢參數 `q` 的 `min_length` 是 `3`，且預設值是 `"fixedquery"`：
 
-{* ../../docs_src/query_params_str_validations/tutorial005_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial005.py hl[9] *}
 
 /// note | 注意
 
@@ -218,15 +218,23 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 因此，在使用 `Query` 時若要宣告值為必填，只要不要宣告預設值即可：
 
-{* ../../docs_src/query_params_str_validations/tutorial006_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial006.py hl[9] *}
 
-### 必填，但可為 `None` { #required-can-be-none }
+### 必填參數與 `None` { #required-parameters-and-none }
 
-你可以宣告參數可以接受 `None`，但仍然是必填。這會強制用戶端一定要送出一個值，即使該值是 `None`。
+型別 `str | None` 允許 `None` 作為 Python 值，但不會讓查詢參數變成可選。沒有預設值時，參數仍然是必填：
 
-要做到這點，你可以宣告 `None` 是合法型別，但不要宣告預設值：
+{* ../../docs_src/query_params_str_validations/tutorial006c.py hl[9] *}
 
-{* ../../docs_src/query_params_str_validations/tutorial006c_an_py310.py hl[9] *}
+查詢參數的值以字串形式傳入，沒有內建的 `None` 表示方式。傳送 `?q=None` 或 `?q=null` 時，傳送的分別是字串 `"None"` 和 `"null"`。傳送 `?q=` 時，傳送的是空字串，在此範例中無法通過 `min_length=3` 的驗證。
+
+若要允許用戶端省略 `q` 並以 `None` 作為它的值，請將預設值設為 `None`：
+
+```Python
+q: Annotated[str | None, Query(min_length=3)] = None
+```
+
+與查詢參數不同，JSON 請求本文可以包含明確的 `null` 值。
 
 ## 查詢參數清單／多個值 { #query-parameter-list-multiple-values }
 
@@ -234,7 +242,7 @@ q: Annotated[str | None, Query(min_length=3)] = None
 
 例如，要宣告查詢參數 `q` 可以在 URL 中出現多次，你可以這樣寫：
 
-{* ../../docs_src/query_params_str_validations/tutorial011_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial011.py hl[9] *}
 
 接著，若使用這樣的 URL：
 
@@ -269,7 +277,7 @@ http://localhost:8000/items/?q=foo&q=bar
 
 也可以在未提供任何值時，定義 `list` 型別的預設值：
 
-{* ../../docs_src/query_params_str_validations/tutorial012_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial012.py hl[9] *}
 
 如果你前往：
 
@@ -292,7 +300,7 @@ http://localhost:8000/items/
 
 你也可以直接使用 `list`，而不是 `list[str]`：
 
-{* ../../docs_src/query_params_str_validations/tutorial013_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial013.py hl[9] *}
 
 /// note | 注意
 
@@ -318,11 +326,11 @@ http://localhost:8000/items/
 
 你可以加入 `title`：
 
-{* ../../docs_src/query_params_str_validations/tutorial007_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial007.py hl[10] *}
 
 以及 `description`：
 
-{* ../../docs_src/query_params_str_validations/tutorial008_an_py310.py hl[14] *}
+{* ../../docs_src/query_params_str_validations/tutorial008.py hl[14] *}
 
 ## 別名參數 { #alias-parameters }
 
@@ -342,7 +350,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 那你可以宣告一個 `alias`，實際上就會用這個別名來讀取參數值：
 
-{* ../../docs_src/query_params_str_validations/tutorial009_an_py310.py hl[9] *}
+{* ../../docs_src/query_params_str_validations/tutorial009.py hl[9] *}
 
 ## 棄用參數 { #deprecating-parameters }
 
@@ -352,7 +360,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 接著把參數 `deprecated=True` 傳給 `Query`：
 
-{* ../../docs_src/query_params_str_validations/tutorial010_an_py310.py hl[19] *}
+{* ../../docs_src/query_params_str_validations/tutorial010.py hl[19] *}
 
 文件會這樣顯示：
 
@@ -362,7 +370,7 @@ http://127.0.0.1:8000/items/?item-query=foobaritems
 
 若要把某個查詢參數從產生的 OpenAPI schema（以及自動文件系統）中排除，將 `Query` 的 `include_in_schema` 設為 `False`：
 
-{* ../../docs_src/query_params_str_validations/tutorial014_an_py310.py hl[10] *}
+{* ../../docs_src/query_params_str_validations/tutorial014.py hl[10] *}
 
 ## 自訂驗證 { #custom-validation }
 
@@ -380,7 +388,7 @@ Pydantic 也有 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/
 
 例如，以下自訂驗證器會檢查項目 ID 是否以 `isbn-` 開頭（<abbr title="International Standard Book Number - 國際標準書號">ISBN</abbr> 書籍編號），或以 `imdb-` 開頭（<abbr title="Internet Movie Database - 互聯網電影資料庫: 含有電影資訊的網站">IMDB</abbr> 電影 URL 的 ID）：
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py hl[5,16:19,24] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py hl[5,16:19,24] *}
 
 /// note | 注意
 
@@ -408,7 +416,7 @@ Pydantic 也有 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/
 
 你注意到了嗎？字串的 `value.startswith()` 可以接收一個 tuple，並逐一檢查 tuple 中的每個值：
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[16:19] hl[17] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[16:19] hl[17] *}
 
 #### 隨機項目 { #a-random-item }
 
@@ -424,7 +432,7 @@ Pydantic 也有 [`BeforeValidator`](https://pydantic.dev/docs/validation/latest/
 
 ...而這全部只用**一行簡單的程式碼**完成。🤯 你不愛 Python 嗎？🐍
 
-{* ../../docs_src/query_params_str_validations/tutorial015_an_py310.py ln[22:30] hl[29] *}
+{* ../../docs_src/query_params_str_validations/tutorial015.py ln[22:30] hl[29] *}
 
 ## 重點回顧 { #recap }
 

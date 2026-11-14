@@ -6,7 +6,7 @@
 
 Önce `Header`'ı import edin:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## `Header` Parametrelerini Tanımlayın { #declare-header-parameters }
 
@@ -14,7 +14,7 @@ Ardından header parametrelerini, `Path`, `Query` ve `Cookie` ile kullandığın
 
 Default değeri ve ek validation ya da annotation parametrelerinin tamamını belirleyebilirsiniz:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | Teknik Detaylar
 
@@ -46,7 +46,7 @@ Yani `User_Agent` gibi bir şey yazıp ilk harfleri büyütmeniz gerekmeden, Pyt
 
 Herhangi bir nedenle underscore'ların hyphen'lara otomatik dönüştürülmesini kapatmanız gerekirse, `Header`'ın `convert_underscores` parametresini `False` yapın:
 
-{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning | Uyarı
 
@@ -64,7 +64,7 @@ Yinelenen header'daki tüm değerleri Python `list` olarak alırsınız.
 
 Örneğin, birden fazla kez gelebilen `X-Token` header'ını tanımlamak için şöyle yazabilirsiniz:
 
-{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 Eğer bu *path operation* ile iki HTTP header göndererek iletişim kurarsanız:
 

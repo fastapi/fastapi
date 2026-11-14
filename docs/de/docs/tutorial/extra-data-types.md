@@ -55,8 +55,8 @@ Hier sind einige der zusätzlichen Datentypen, die Sie verwenden können:
 
 Hier ist ein Beispiel für eine *Pfadoperation* mit Parametern, die einige der oben genannten Typen verwenden.
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[1,3,12:16] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[1,3,12:16] *}
 
 Beachten Sie, dass die Parameter innerhalb der Funktion ihren natürlichen Datentyp haben und Sie beispielsweise normale Datumsmanipulationen durchführen können, wie zum Beispiel:
 
-{* ../../docs_src/extra_data_types/tutorial001_an_py310.py hl[18:19] *}
+{* ../../docs_src/extra_data_types/tutorial001.py hl[18:19] *}

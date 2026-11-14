@@ -27,6 +27,7 @@ from fastapi.dependencies.models import (
 from fastapi.dependencies.utils import (
     _get_flat_fields_from_params,
     _get_param_aliases,
+    _get_param_model,
     get_flat_params,
 )
 from fastapi.encoders import jsonable_encoder
@@ -42,7 +43,6 @@ from fastapi.utils import (
     generate_operation_id_for_path,
     is_body_allowed_for_status_code,
 )
-from pydantic import BaseModel
 from starlette.responses import JSONResponse
 from starlette.routing import BaseRoute
 
@@ -166,60 +166,57 @@ def _get_openapi_operation_parameters(
     separate_input_output_schemas: bool = True,
 ) -> list[dict[str, Any]]:
     parameters = []
-    path_params = _get_flat_fields_from_params(dependency_data.path_params)
-    query_params = _get_flat_fields_from_params(dependency_data.query_params)
-    header_params = _get_flat_fields_from_params(dependency_data.header_params)
-    cookie_params = _get_flat_fields_from_params(dependency_data.cookie_params)
     parameter_groups = [
-        (ParamTypes.path, path_params),
-        (ParamTypes.query, query_params),
-        (ParamTypes.header, header_params),
-        (ParamTypes.cookie, cookie_params),
+        (ParamTypes.path, dependency_data.path_params),
+        (ParamTypes.query, dependency_data.query_params),
+        (ParamTypes.header, dependency_data.header_params),
+        (ParamTypes.cookie, dependency_data.cookie_params),
     ]
-    default_convert_underscores = True
-    if len(dependency_data.header_params) == 1:
-        first_field = dependency_data.header_params[0]
-        if lenient_issubclass(first_field.field_info.annotation, BaseModel):
-            default_convert_underscores = getattr(
-                first_field.field_info, "convert_underscores", True
-            )
     for param_type, param_group in parameter_groups:
-        for param in param_group:
-            field_info = param.field_info
-            # field_info = cast(Param, field_info)
-            if not getattr(field_info, "include_in_schema", True):
+        for parent in param_group:
+            if not getattr(parent.field_info, "include_in_schema", True):
                 continue
-            convert_underscores = param_type == ParamTypes.header and getattr(
-                field_info, "convert_underscores", default_convert_underscores
+            model = _get_param_model(parent)
+            optional_model = (
+                model is not None
+                and parent.field_info.annotation is not model
+                and not parent.field_info.is_required()
             )
-            alias, name = _get_param_aliases(
-                param, convert_underscores=convert_underscores
-            )[0]
-            param_schema = get_schema_from_model_field(
-                field=param,
-                model_name_map=model_name_map,
-                field_mapping=field_mapping,
-                separate_input_output_schemas=separate_input_output_schemas,
-                field_alias=alias,
-            )
+            for param in _get_flat_fields_from_params([parent]):
+                field_info = param.field_info
+                convert_underscores = param_type == ParamTypes.header and getattr(
+                    field_info,
+                    "convert_underscores",
+                    getattr(parent.field_info, "convert_underscores", True),
+                )
+                alias, name = _get_param_aliases(
+                    param, convert_underscores=convert_underscores
+                )[0]
+                param_schema = get_schema_from_model_field(
+                    field=param,
+                    model_name_map=model_name_map,
+                    field_mapping=field_mapping,
+                    separate_input_output_schemas=separate_input_output_schemas,
+                    field_alias=alias,
+                )
 
-            parameter = {
-                "name": name,
-                "in": param_type.value,
-                "required": param.field_info.is_required(),
-                "schema": param_schema,
-            }
-            if field_info.description:
-                parameter["description"] = field_info.description
-            openapi_examples = getattr(field_info, "openapi_examples", None)
-            example = getattr(field_info, "example", None)
-            if openapi_examples:
-                parameter["examples"] = jsonable_encoder(openapi_examples)
-            elif example is not _Unset:
-                parameter["example"] = jsonable_encoder(example)
-            if getattr(field_info, "deprecated", None):
-                parameter["deprecated"] = True
-            parameters.append(parameter)
+                parameter = {
+                    "name": name,
+                    "in": param_type.value,
+                    "required": param.field_info.is_required() and not optional_model,
+                    "schema": param_schema,
+                }
+                if field_info.description:
+                    parameter["description"] = field_info.description
+                openapi_examples = getattr(field_info, "openapi_examples", None)
+                example = getattr(field_info, "example", None)
+                if openapi_examples:
+                    parameter["examples"] = jsonable_encoder(openapi_examples)
+                elif example is not _Unset:
+                    parameter["example"] = jsonable_encoder(example)
+                if getattr(field_info, "deprecated", None):
+                    parameter["deprecated"] = True
+                parameters.append(parameter)
     return parameters
 
 

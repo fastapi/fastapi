@@ -6,7 +6,7 @@ Você pode definir parâmetros de Cabeçalho da mesma maneira que define parâme
 
 Primeiro importe `Header`:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[3] *}
+{* ../../docs_src/header_params/tutorial001.py hl[3] *}
 
 ## Declare parâmetros de `Header` { #declare-header-parameters }
 
@@ -14,7 +14,7 @@ Então declare os parâmetros de cabeçalho usando a mesma estrutura que em `Pat
 
 Você pode definir o valor padrão, assim como todas as validações extras ou parâmetros de anotação:
 
-{* ../../docs_src/header_params/tutorial001_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial001.py hl[9] *}
 
 /// note | Detalhes Técnicos
 
@@ -46,7 +46,7 @@ Portanto, você pode usar `user_agent` como faria normalmente no código Python,
 
 Se por algum motivo você precisar desabilitar a conversão automática de sublinhados para hífens, defina o parâmetro `convert_underscores` de `Header` para `False`:
 
-{* ../../docs_src/header_params/tutorial002_an_py310.py hl[10] *}
+{* ../../docs_src/header_params/tutorial002.py hl[10] *}
 
 /// warning | Atenção
 
@@ -64,7 +64,7 @@ Você receberá todos os valores do cabeçalho duplicado como uma `list` Python.
 
 Por exemplo, para declarar um cabeçalho de `X-Token` que pode aparecer mais de uma vez, você pode escrever:
 
-{* ../../docs_src/header_params/tutorial003_an_py310.py hl[9] *}
+{* ../../docs_src/header_params/tutorial003.py hl[9] *}
 
 Se você se comunicar com essa *operação de rota* enviando dois cabeçalhos HTTP como:
 
