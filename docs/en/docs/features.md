@@ -74,7 +74,7 @@ Pass the keys and values of the `second_user_data` dict directly as key-value ar
 
 ### Editor support { #editor-support }
 
-The whole framework was designed to be easy and intuitive to use, all the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
+The whole framework was designed to be easy and intuitive to use. All the decisions were tested on multiple editors even before starting development, to ensure the best development experience.
 
 In the Python developer surveys, it's clear [that one of the most used features is "autocompletion"](https://www.jetbrains.com/research/python-developers-survey-2017/#tools-and-features).
 
@@ -171,7 +171,7 @@ With **FastAPI** you get all of **Starlette**'s features (as FastAPI is just Sta
 * In-process background tasks.
 * Startup and shutdown events.
 * Test client built on HTTPX.
-* **CORS**, GZip, Static Files, Streaming responses.
+* **CORS**, GZip, static files, streaming responses.
 * **Session and Cookie** support.
 * 100% test coverage.
 * 100% type annotated codebase.
@@ -192,7 +192,7 @@ With **FastAPI** you get all of **Pydantic**'s features (as FastAPI is based on 
     * No new schema definition micro-language to learn.
     * If you know Python types you know how to use Pydantic.
 * Plays nicely with your **<abbr title="Integrated Development Environment: similar to a code editor">IDE</abbr>/<dfn title="A program that checks for code errors">linter</dfn>/brain**:
-    * Because pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
+    * Because Pydantic data structures are just instances of classes you define; auto-completion, linting, mypy and your intuition should all work properly with your validated data.
 * Validate **complex structures**:
     * Use of hierarchical Pydantic models, Python `typing`’s `List` and `Dict`, etc.
     * And validators allow complex data schemas to be clearly and easily defined, checked and documented as JSON Schema.
