@@ -62,7 +62,7 @@ Y guardará el valor devuelto en un <dfn title="Una utilidad/sistema para almace
 
 En un escenario avanzado donde sabes que necesitas que la dependencia se llame en cada paso (posiblemente varias veces) en el mismo request en lugar de usar el valor "en caché", puedes establecer el parámetro `use_cache=False` al usar `Depends`:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ sin Anotaciones
+//// tab | Python sin Anotaciones
 
 /// tip | Consejo
 

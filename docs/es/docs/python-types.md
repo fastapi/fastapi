@@ -52,7 +52,7 @@ Pero luego tienes que llamar "ese método que convierte la primera letra a mayú
 
 Entonces, pruebas con el amigo del viejo programador, el autocompletado del editor.
 
-Escribes el primer parámetro de la función, `first_name`, luego un punto (`.`) y luego presionas `Ctrl+Espacio` para activar el autocompletado.
+Escribes el primer parámetro de la función, `first_name`, luego un punto (`.`) y luego presionas `Ctrl+Space` para activar el autocompletado.
 
 Pero, tristemente, no obtienes nada útil:
 
@@ -94,7 +94,7 @@ Y agregar anotaciones de tipos normalmente no cambia lo que sucede de lo que ocu
 
 Pero ahora, imagina que nuevamente estás en medio de la creación de esa función, pero con anotaciones de tipos.
 
-En el mismo punto, intentas activar el autocompletado con `Ctrl+Espacio` y ves:
+En el mismo punto, intentas activar el autocompletado con `Ctrl+Space` y ves:
 
 <img src="/img/python-types/image02.png">
 
@@ -237,7 +237,7 @@ Esto significa que `item` podría ser un `int` o un `str`.
 
 Puedes declarar que un valor podría tener un tipo, como `str`, pero que también podría ser `None`.
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}

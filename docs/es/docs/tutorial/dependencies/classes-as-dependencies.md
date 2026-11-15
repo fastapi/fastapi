@@ -61,7 +61,7 @@ Entonces, una clase en Python también es un **callable**.
 
 Entonces, en **FastAPI**, podrías usar una clase de Python como una dependencia.
 
-Lo que **FastAPI** realmente comprueba es que sea un "callable" (función, clase o cualquier otra cosa) y los parámetros definidos.
+Lo que FastAPI realmente revisa es que sea un "callable" (función, clase o cualquier otra cosa) y los parámetros definidos.
 
 Si pasas un "callable" como dependencia en **FastAPI**, analizará los parámetros de ese "callable", y los procesará de la misma manera que los parámetros de una *path operation function*. Incluyendo sub-dependencias.
 
@@ -101,7 +101,7 @@ Ahora puedes declarar tu dependencia usando esta clase.
 
 Nota cómo escribimos `CommonQueryParams` dos veces en el código anterior:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ sin `Annotated`
+//// tab | Python sin `Annotated`
 
 /// tip | Consejo
 
@@ -131,13 +131,13 @@ El último `CommonQueryParams`, en:
 
 ...es lo que **FastAPI** utilizará realmente para saber cuál es la dependencia.
 
-Es a partir de este que **FastAPI** extraerá los parámetros declarados y es lo que **FastAPI** realmente llamará.
+Es a partir de este que FastAPI extraerá los parámetros declarados y es lo que FastAPI realmente llamará.
 
 ---
 
 En este caso, el primer `CommonQueryParams`, en:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.10+ sin `Annotated`
+//// tab | Python sin `Annotated`
 
 /// tip | Consejo
 
@@ -159,11 +159,11 @@ commons: CommonQueryParams ...
 
 ////
 
-...no tiene ningún significado especial para **FastAPI**. **FastAPI** no lo usará para la conversión de datos, validación, etc. (ya que está usando `Depends(CommonQueryParams)` para eso).
+...no tiene ningún significado especial para **FastAPI**. FastAPI no lo usará para la conversión de datos, validación, etc. (ya que está usando `Depends(CommonQueryParams)` para eso).
 
 De hecho, podrías escribir simplemente:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ sin `Annotated`
+//// tab | Python sin `Annotated`
 
 /// tip | Consejo
 
@@ -197,7 +197,7 @@ Pero declarar el tipo es recomendable, ya que de esa manera tu editor sabrá lo 
 
 Pero ves que estamos teniendo algo de repetición de código aquí, escribiendo `CommonQueryParams` dos veces:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ sin `Annotated`
+//// tab | Python sin `Annotated`
 
 /// tip | Consejo
 
@@ -225,7 +225,7 @@ Para esos casos específicos, puedes hacer lo siguiente:
 
 En lugar de escribir:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ sin `Annotated`
+//// tab | Python sin `Annotated`
 
 /// tip | Consejo
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...escribes:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.10+ sin `Annotated`
+//// tab | Python sin `Annotated`
 
 /// tip | Consejo
 

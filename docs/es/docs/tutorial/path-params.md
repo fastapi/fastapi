@@ -132,11 +132,11 @@ La primera siempre será utilizada ya que el path coincide primero.
 
 Si tienes una *path operation* que recibe un *path parameter*, pero quieres que los valores posibles válidos del *path parameter* estén predefinidos, puedes usar un <abbr title="Enumeración">`Enum`</abbr> estándar de Python.
 
-### Crear una clase `Enum` { #create-an-enum-class }
+### Crea una clase `Enum` { #create-an-enum-class }
 
-Importa `Enum` y crea una subclase que herede de `str` y de `Enum`.
+Importa `StrEnum` y crea una subclase que herede de ella.
 
-Al heredar de `str`, la documentación de la API podrá saber que los valores deben ser de tipo `string` y podrá representarlos correctamente.
+Los miembros de `StrEnum` también son strings, así que la documentación de la API sabrá que los valores deben ser de tipo `string` y los representará correctamente.
 
 Luego crea atributos de clase con valores fijos, que serán los valores válidos disponibles:
 
@@ -148,7 +148,7 @@ Si te estás preguntando, "AlexNet", "ResNet" y "LeNet" son solo nombres de <dfn
 
 ///
 
-### Declarar un *path parameter* { #declare-a-path-parameter }
+### Declara un *path parameter* { #declare-a-path-parameter }
 
 Luego crea un *path parameter* con una anotación de tipo usando la clase enum que creaste (`ModelName`):
 
@@ -164,15 +164,15 @@ Como los valores disponibles para el *path parameter* están predefinidos, la do
 
 El valor del *path parameter* será un *miembro* de enumeración.
 
-#### Comparar *miembros* de enumeraciones { #compare-enumeration-members }
+#### Compara *miembros* de enumeraciones { #compare-enumeration-members }
 
 Puedes compararlo con el *miembro* de enumeración en tu enum creada `ModelName`:
 
 {* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
-#### Obtener el valor de *enumeración* { #get-the-enumeration-value }
+#### Obtén el valor de *enumeración* { #get-the-enumeration-value }
 
-Puedes obtener el valor actual (un `str` en este caso) usando `model_name.value`, o en general, `your_enum_member.value`:
+Puedes obtener el valor real (un `str` en este caso) usando `model_name.value`, o en general, `your_enum_member.value`:
 
 {* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
@@ -182,11 +182,11 @@ También podrías acceder al valor `"lenet"` con `ModelName.lenet.value`.
 
 ///
 
-#### Devolver *miembros* de enumeración { #return-enumeration-members }
+#### Devuelve *miembros* de enumeración { #return-enumeration-members }
 
 Puedes devolver *miembros de enum* desde tu *path operation*, incluso anidados en un cuerpo JSON (por ejemplo, un `dict`).
 
-Serán convertidos a sus valores correspondientes (cadenas en este caso) antes de devolverlos al cliente:
+Serán convertidos a sus valores correspondientes (strings en este caso) antes de devolverlos al cliente:
 
 {* ../../docs_src/path_params/tutorial005.py hl[18,21,23] *}
 
