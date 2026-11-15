@@ -387,3 +387,38 @@ def test_override_with_sub_router_decorator_depends_k_bar():
     assert response.status_code == 200
     assert response.json() == {"in": "router-decorator-depends"}
     app.dependency_overrides = {}
+
+
+def test_override_does_not_rebuild_non_overridden_dependencies(monkeypatch):
+    from fastapi.dependencies import utils
+
+    async def dep_a() -> str:
+        return "a"
+
+    async def dep_b() -> str:
+        return "b"
+
+    async def dep_a_override() -> str:
+        return "a-override"
+
+    local_app = FastAPI()
+
+    @local_app.get("/items/")
+    async def read_items(a: str = Depends(dep_a), b: str = Depends(dep_b)):
+        return {"a": a, "b": b}
+
+    rebuilt_calls: list = []
+    real_get_dependant = utils.get_dependant
+
+    def counting_get_dependant(*args, **kwargs):
+        rebuilt_calls.append(kwargs.get("call"))
+        return real_get_dependant(*args, **kwargs)
+
+    monkeypatch.setattr(utils, "get_dependant", counting_get_dependant)
+    local_app.dependency_overrides[dep_a] = dep_a_override
+    response = TestClient(local_app).get("/items/")
+    assert response.status_code == 200
+    assert response.json() == {"a": "a-override", "b": "b"}
+    # Only the overridden dependency is rebuilt, the untouched one is reused.
+    assert dep_a_override in rebuilt_calls
+    assert dep_b not in rebuilt_calls
