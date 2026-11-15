@@ -62,7 +62,7 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 高度なシナリオでは、「キャッシュされた」値を使うのではなく、同じリクエストの各ステップ（おそらく複数回）で依存関係を呼び出す必要があることがわかっている場合、`Depends`を使用する際に、`use_cache=False`というパラメータを設定することができます:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ 非Annotated
+//// tab | Python 非Annotated
 
 /// tip | 豆知識
 

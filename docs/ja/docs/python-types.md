@@ -237,7 +237,7 @@ def some_function(data: Any):
 
 値が `str` のような型を持つ可能性がある一方で、`None` にもなり得ることを宣言できます。
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}
