@@ -142,6 +142,14 @@ def test_nested_computed_field_schemas():
     def create_item(item: Envelope) -> Envelope:
         return item
 
+    client = TestClient(app)
+    response = client.post("/", json={"item": {"name": "a"}, "children": []})
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "children": [],
+        "item": {"name": "a", "label": "Item: a"},
+    }
+
     schema = app.openapi()
     operation = schema["paths"]["/"]["post"]
     assert operation["requestBody"]["content"]["application/json"]["schema"] == {
@@ -166,6 +174,13 @@ def test_computed_field_with_after_model_validator():
     @app.post("/")
     def create_item(item: ValidatedComputedItem) -> list[ValidatedComputedItem]:
         return [item]
+
+    client = TestClient(app)
+    response = client.post("/", json={"name": "a"})
+    assert response.status_code == 200, response.text
+    assert response.json() == [{"name": "a", "label": "Item: a"}]
+    response = client.post("/", json={"name": ""})
+    assert response.status_code == 422, response.text
 
     schema = app.openapi()
     operation = schema["paths"]["/"]["post"]
@@ -195,6 +210,15 @@ def test_recursive_computed_field_schemas():
     @app.post("/")
     def create_item(item: RecursiveItem) -> RecursiveItem:
         return item
+
+    client = TestClient(app)
+    response = client.post("/", json={"name": "a", "children": [{"name": "b"}]})
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "name": "a",
+        "children": [{"name": "b", "children": [], "label": "Item: b"}],
+        "label": "Item: a",
+    }
 
     schema = app.openapi()
     operation = schema["paths"]["/"]["post"]
@@ -246,3 +270,10 @@ def test_shared_models_do_not_rebuild_field_schemas_per_route():
     assert build_counts[0] == build_counts[1]
     assert schemas[0] == schemas[1]
     assert set(schemas[0]) == {"Item", "Envelope"}
+
+    response = TestClient(app).get("/items/0")
+    assert response.status_code == 200, response.text
+    assert response.json() == {
+        "first": {"value": 1, "child": None},
+        "second": {"value": 2, "child": None},
+    }
