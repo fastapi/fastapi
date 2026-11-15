@@ -134,9 +134,9 @@ Wenn Sie eine *Pfadoperation* haben, welche einen *Pfad-Parameter* erhält, aber
 
 ### Eine `Enum`-Klasse erstellen { #create-an-enum-class }
 
-Importieren Sie `Enum` und erstellen Sie eine Unterklasse, die von `str` und `Enum` erbt.
+Importieren Sie `StrEnum` und erstellen Sie eine Unterklasse, die davon erbt.
 
-Indem Sie von `str` erben, weiß die API-Dokumentation, dass die Werte vom Typ `string` sein müssen, und wird in der Lage sein, korrekt zu rendern.
+`StrEnum`-Member sind auch Strings, sodass die API-Dokumentation weiß, dass die Werte vom Typ `string` sein müssen, und sie korrekt rendert.
 
 Erstellen Sie dann Klassen-Attribute mit festgelegten Werten, welche die verfügbaren gültigen Werte sein werden:
 

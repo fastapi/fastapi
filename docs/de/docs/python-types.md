@@ -237,7 +237,7 @@ Das bedeutet, dass `item` ein `int` oder ein `str` sein könnte.
 
 Sie können deklarieren, dass ein Wert einen Typ haben könnte, wie `str`, dass er aber auch `None` sein könnte.
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}
@@ -330,7 +330,7 @@ Mit **FastAPI** deklarieren Sie Parameter mit Typhinweisen, und Sie erhalten:
 
 ... und **FastAPI** verwendet dieselben Deklarationen, um:
 
-* **Anforderungen** zu definieren: aus <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>-Pfadparametern, Query-Parametern, Headern, Bodys, Abhängigkeiten, usw.
+* **Anforderungen** zu definieren: aus <abbr title="Request – Anfrage: Daten, die der Client zum Server sendet">Request</abbr>-Pfad-Parametern, Query-Parametern, Headern, Bodys, Abhängigkeiten, usw.
 * **Daten umzuwandeln**: aus dem Request in den erforderlichen Typ.
 * **Daten zu validieren**: aus jedem Request:
     * **Automatische Fehler** generieren, die an den Client zurückgegeben werden, wenn die Daten ungültig sind.

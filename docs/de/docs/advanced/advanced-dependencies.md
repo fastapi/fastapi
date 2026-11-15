@@ -65,6 +65,93 @@ Wenn Sie das hier alles verstanden haben, wissen Sie bereits, wie diese Sicherhe
 
 ///
 
+## Nebenläufigkeit von Abhängigkeiten begrenzen { #limit-dependency-concurrency }
+
+In manchen Fällen möchten Sie vielleicht begrenzen, wie viele Requests eine Abhängigkeit gleichzeitig verwenden können.
+
+Beispielsweise könnte Ihre Datenbank nur eine begrenzte Anzahl an Verbindungen zur Verfügung haben. Sie könnten neue Requests vor dem Erstellen einer Session warten lassen, bis ein anderer Request seine Session nicht mehr verwendet.
+
+Das können Sie mit `max_concurrency` in `Depends()` erreichen.
+
+Aktualisieren wir den Alias `SessionDep` aus dem [Tutorial zu SQL-Datenbanken](../tutorial/sql-databases.md):
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+Jetzt können bis zu **fünf Requests** gleichzeitig über diese Abhängigkeit eine Datenbanksession offen haben.
+
+Wenn ein weiterer Request eine Session benötigt, wartet er, bis eine dieser Sessions geschlossen wird.
+
+Während des Wartens **belegt er keinen Workerthread**, sodass diese Threads für die Ausführung anderen Codes zur Verfügung stehen.
+
+Der Wert muss eine positive Ganzzahl sein. Der Defaultwert ist `None`, was bedeutet, dass FastAPI nicht begrenzt, wie oft die Abhängigkeit gleichzeitig ausgeführt werden kann.
+
+### Das Limit zwischen Routen teilen { #share-the-limit-between-routes }
+
+Alle Routen in diesem Beispiel verwenden denselben Alias `SessionDep`, sodass sie sich das Limit von fünf Sessions teilen.
+
+Um ein Limit zu teilen, verwenden Sie **dasselbe `Depends()`-Objekt** wieder, beispielsweise in einem `Annotated`-Alias wie diesem.
+
+Wenn Sie für jede Route ein neues `Depends(get_session, max_concurrency=5)` schreiben, hat jede ihr eigenes Limit von fünf. Das gilt auch dann, wenn alle dieselbe Funktion `get_session` verwenden.
+
+Die Wiederverwendung desselben `SessionDep` in einer anderen Anwendung teilt ebenfalls das Limit, solange beide Anwendungen im selben Eventloop laufen. Das schließt gemountete Anwendungen ein.
+
+Wenn beispielsweise zwei Anwendungen dieses `SessionDep` für denselben Datenbankpool verwenden, können sie zusammen bis zu fünf Sessions über diese Abhängigkeit offen haben.
+
+Wenn die Anwendungen getrennte Pools verwenden und unabhängige Limits benötigen, erstellen Sie für jede Anwendung ein separates `Depends()`-Objekt.
+
+### Die Session schließen, bevor eine weitere zugelassen wird { #close-the-session-before-allowing-another-one }
+
+In diesem Beispiel verwendet `get_session` `yield`. Die Session zählt zum Limit, bis der Exit-Code sie vollständig geschlossen hat.
+
+Der `scope` der Abhängigkeit bestimmt, wann dieser Exit-Code ausgeführt wird:
+
+* Mit `scope="request"`, dem Default, wird er ausgeführt, nachdem die Response gesendet wurde.
+* Mit `scope="function"` wird er nach dem Ende der *Pfadoperation-Funktion* ausgeführt, bevor die Response gesendet wird.
+
+Mehr dazu finden Sie unter [Frühes Beenden und Scope](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
+
+Bei einer Abhängigkeit ohne `yield` zählt der Aufruf nur bis zum Ende der Funktion zum Limit.
+
+Wenn Sie eine Abhängigkeit mit `yield` in einem WebSocket-Handler verwenden, zählt sie zum Limit, bis der Handler beendet ist und der Exit-Code der Abhängigkeit vollständig ausgeführt wurde.
+
+/// note | Hinweis
+
+Die Wiederverwendung eines [zwischengespeicherten Abhängigkeitswerts](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times) zählt nicht erneut zum Limit. Wenn verschiedene Deklarationen diesen Wert teilen, zählt nur die Deklaration, die die Abhängigkeit aufruft, zu ihrem Limit.
+
+///
+
+### Ein Limit für Ihre Anwendung wählen { #choose-a-limit-for-your-application }
+
+Wählen Sie ein Limit, das zur Anzahl der für diese Sessions verfügbaren Datenbankverbindungen passt.
+
+Wenn andere Teile Ihrer Anwendung diese Verbindungen ebenfalls verwenden, lassen Sie auch dafür Spielraum. FastAPI kennt die Größe Ihres Datenbankverbindungspools nicht.
+
+Jeder Workerprozess hat sein eigenes Limit. Beispielsweise könnten zwei Workerprozesse mit dieser Abhängigkeit zusammen bis zu zehn Sessions offen haben.
+
+/// note | Technische Details
+
+Die Limits sind auch für jeden Eventloop getrennt. Anwendungen, die in verschiedenen Eventloops laufen, teilen kein Limit, selbst wenn sie dasselbe `Depends()`-Objekt wiederverwenden.
+
+///
+
+### Abhängigkeiten, die mehr als eine Ressource benötigen { #dependencies-that-need-more-than-one-resource }
+
+FastAPI führt die Unterabhängigkeiten einer Abhängigkeit aus, bevor es das Limit dieser Abhängigkeit anwendet.
+
+Um also Datenbanksessions zu begrenzen, setzen Sie `max_concurrency` auf `Depends(get_session, ...)`, wo die Session erstellt wird.
+
+Ein Request kann blockiert werden, wenn er eine weitere Session benötigt, während er noch eine hält, die erst am Ende des Requests geschlossen wird.
+
+Stellen Sie sich beispielsweise ein gemeinsam genutztes `Depends(get_session, max_concurrency=1, use_cache=False)` vor, das zweimal im selben Request verwendet wird.
+
+Der erste Aufruf erstellt eine Session. Der zweite Aufruf wartet darauf, dass sie geschlossen wird. Aber die erste Session kann erst geschlossen werden, wenn der Request beendet ist, und der Request wartet auf den zweiten Aufruf.
+
+Auch zwei Requests können blockiert werden, wenn einer eine Session hält und auf eine andere Ressource wartet, während der andere diese Ressource hält und auf eine Session wartet.
+
+Wenn Ihre Requests mehrere Ressourcen benötigen, fordern Sie diese in derselben Reihenfolge an. FastAPI wendet jedes Limit separat an, es reserviert nicht alle Ressourcen, die ein Request benötigen wird, im Voraus.
+
 ## Abhängigkeiten mit `yield`, `HTTPException`, `except` und Hintergrundtasks { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 /// warning | Achtung
@@ -109,7 +196,7 @@ Wie Sie unten sehen werden, ähnelt dies sehr dem Verhalten vor Version 0.106.0,
 
 Es gibt einige Anwendungsfälle mit spezifischen Bedingungen, die vom alten Verhalten profitieren könnten, den Exit-Code von Abhängigkeiten mit `yield` vor dem Senden der Response auszuführen.
 
-Stellen Sie sich zum Beispiel vor, Sie haben Code, der in einer Abhängigkeit mit `yield` eine Datenbanksession verwendet, nur um einen Benutzer zu verifizieren, die Datenbanksession wird aber in der *Pfadoperation-Funktion* nie wieder verwendet, sondern nur in der Abhängigkeit, und die Response benötigt lange, um gesendet zu werden, wie eine `StreamingResponse`, die Daten langsam sendet, aus irgendeinem Grund aber die Datenbank nicht verwendet.
+Stellen Sie sich zum Beispiel vor, Sie haben Code, der in einer Abhängigkeit mit `yield` eine Datenbanksession verwendet, nur um einen Benutzer zu verifizieren, die Datenbanksession wird aber in der *Pfadoperation-Funktion* nie wieder verwendet, sondern nur in der Abhängigkeit, **und** die Response benötigt lange, um gesendet zu werden, wie eine `StreamingResponse`, die Daten langsam sendet, aus irgendeinem Grund aber die Datenbank nicht verwendet.
 
 In diesem Fall würde die Datenbanksession gehalten, bis das Senden der Response abgeschlossen ist, aber wenn Sie sie nicht verwenden, wäre es nicht notwendig, sie zu halten.
 
@@ -145,7 +232,7 @@ Dies wurde in Version 0.110.0 geändert, um unbehandelten Speicherverbrauch durc
 
 ### Hintergrundtasks und Abhängigkeiten mit `yield`, Technische Details { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Vor FastAPI 0.106.0 war das Werfen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, nachdem die Response gesendet wurde, sodass [Exceptionhandler](../tutorial/handling-errors.md#install-custom-exception-handlers) bereits ausgeführt worden wären.
+Vor FastAPI 0.106.0 war das Werfen von Exceptions nach `yield` nicht möglich, der Exit-Code in Abhängigkeiten mit `yield` wurde ausgeführt, *nachdem* die Response gesendet wurde, sodass [Exceptionhandler](../tutorial/handling-errors.md#install-custom-exception-handlers) bereits ausgeführt worden wären.
 
 Dies war so designt, hauptsächlich um die Verwendung derselben von Abhängigkeiten „geyieldeten“ Objekte in Hintergrundtasks zu ermöglichen, da der Exit-Code erst ausgeführt wurde, nachdem die Hintergrundtasks abgeschlossen waren.
 
