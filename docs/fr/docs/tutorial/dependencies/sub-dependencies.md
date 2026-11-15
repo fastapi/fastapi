@@ -62,7 +62,7 @@ Et il enregistrera la valeur renvoyée dans un <dfn title="Un utilitaire/systèm
 
 Dans un scénario avancé où vous savez que vous avez besoin que la dépendance soit appelée à chaque étape (éventuellement plusieurs fois) dans la même requête au lieu d'utiliser la valeur « mise en cache », vous pouvez définir le paramètre `use_cache=False` lors de l'utilisation de `Depends` :
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ non annoté
+//// tab | Python non annoté
 
 /// tip | Astuce
 
