@@ -130,13 +130,13 @@ path parameter `item_id` की value आपके function को argument `ite
 
 ## पहले से तय values { #predefined-values }
 
-अगर आपके पास ऐसा *path operation* है जो एक *path parameter* प्राप्त करता है, लेकिन आप चाहते हैं कि संभव valid *path parameter* values पहले से तय हों, तो आप standard Python <abbr title="Enumeration">`Enum`</abbr> का उपयोग कर सकते हैं।
+अगर आपके पास ऐसा *path operation* है जो एक *path parameter* प्राप्त करता है, लेकिन आप चाहते हैं कि संभव valid *path parameter* values पहले से तय हों, तो आप standard Python <abbr title="Enumeration - enumeration">`Enum`</abbr> का उपयोग कर सकते हैं।
 
 ### एक `Enum` class बनाएं { #create-an-enum-class }
 
-`Enum` import करें और एक sub-class बनाएं जो `str` और `Enum` से inherit करती हो।
+`StrEnum` import करें और एक subclass बनाएं जो उससे inherit करती हो।
 
-`str` से inherit करने पर API docs यह जान पाएंगे कि values का type `string` होना चाहिए और उन्हें सही तरह से render कर पाएंगे।
+`StrEnum` members भी strings होते हैं, इसलिए API docs यह जान पाएंगे कि values का type `string` होना चाहिए और उन्हें सही तरह से render कर पाएंगे।
 
 फिर fixed values के साथ class attributes बनाएं, जो उपलब्ध valid values होंगी:
 

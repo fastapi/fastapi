@@ -34,7 +34,7 @@ Function निम्नलिखित करता है:
 
 * एक `first_name` और `last_name` लेता है।
 * प्रत्येक के पहले अक्षर को `title()` के साथ upper case में बदलता है।
-* उन्हें बीच में एक space के साथ <dfn title="उन्हें एक साथ रखता है, एक के रूप में। एक की सामग्री के बाद दूसरे की सामग्री के साथ।">Concatenate</dfn> करता है।
+* उन्हें बीच में एक space के साथ <dfn title="उन्हें एक साथ रखता है, एक के रूप में। एक की सामग्री के बाद दूसरे की सामग्री के साथ।">संयोजित</dfn> करता है।
 
 {* ../../docs_src/python_types/tutorial001.py hl[2] *}
 
@@ -223,7 +223,7 @@ Types के बिना, इसे हासिल करना लगभग �
 
 आप declare कर सकते हैं कि कोई variable **कई types** में से कोई भी हो सकता है, उदाहरण के लिए, एक `int` या एक `str`।
 
-इसे define करने के लिए आप दोनों types को separate करने के लिए <dfn title='इसे "bitwise or operator" भी कहा जाता है, लेकिन वह अर्थ यहाँ relevant नहीं है'>vertical bar (`|`)</dfn> का उपयोग करते हैं।
+इसे define करने के लिए आप दोनों types को separate करने के लिए <dfn title='इसे "bitwise or operator" भी कहा जाता है, लेकिन वह अर्थ यहाँ प्रासंगिक नहीं है'>खड़ी रेखा (`|`)</dfn> का उपयोग करते हैं।
 
 इसे "union" कहा जाता है, क्योंकि variable उन दो type sets के union में कुछ भी हो सकता है।
 
@@ -237,7 +237,7 @@ Types के बिना, इसे हासिल करना लगभग �
 
 आप declare कर सकते हैं कि किसी value का type, जैसे `str`, हो सकता है, लेकिन वह `None` भी हो सकती है।
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}
