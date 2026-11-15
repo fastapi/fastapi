@@ -238,7 +238,7 @@ Bu, `item`'ın `int` veya `str` olabileceği anlamına gelir.
 
 Bir değerin `str` gibi bir tipi olabileceğini ama aynı zamanda `None` da olabileceğini bildirebilirsiniz.
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}
@@ -246,7 +246,7 @@ Bir değerin `str` gibi bir tipi olabileceğini ama aynı zamanda `None` da olab
 
 ////
 
-Sadece `str` yerine `str | None` kullanmak, aslında değer `None` olabilecekken her zaman `str` olduğunu varsaydığınız hataları editörün yakalamanıza yardımcı olur.
+Sadece `str` yerine `str | None` kullanmak, aslında değer `None` olabilecekken her zaman `str` olduğunu varsaydığınız hataları yakalamanıza editörün yardımcı olmasını sağlar.
 
 ### Tip olarak sınıflar { #classes-as-types }
 
@@ -270,7 +270,7 @@ Bunun "`one_person`, `Person` sınıfının bir **instance**'ıdır" anlamına g
 
 ## Pydantic modelleri { #pydantic-models }
 
-[Pydantic](https://pydantic.dev/docs/) is a Python kütüphanesidir.
+[Pydantic](https://pydantic.dev/docs/), veri doğrulamak için kullanılan bir Python kütüphanesidir.
 
 Verinin "shape"'ini attribute'lara sahip sınıflar olarak tanımlarsınız.
 
@@ -296,7 +296,7 @@ Bunların pratikte nasıl çalıştığını [Eğitim - Kullanım Kılavuzu](tut
 
 ## Metadata Annotations ile Type Hints { #type-hints-with-metadata-annotations }
 
-Python'da ayrıca, `Annotated` kullanarak bu type hints içine **ek <dfn title="Veri hakkında veri; bu durumda tip hakkında bilgi, örneğin bir açıklama.">üstveri</dfn>** koymayı sağlayan bir özellik de vardır.
+Python'da ayrıca, `Annotated` kullanarak bu type hints içine **ek <dfn title="Veri hakkında veri; bu durumda tip hakkında bilgi, örneğin bir açıklama.">metadata</dfn>** koymayı sağlayan bir özellik de vardır.
 
 `Annotated`'ı `typing` içinden import edebilirsiniz.
 
@@ -306,7 +306,7 @@ Python'un kendisi bu `Annotated` ile bir şey yapmaz. Editörler ve diğer araç
 
 Ama **FastAPI**'ye uygulamanızın nasıl davranmasını istediğinize dair ek metadata sağlamak için `Annotated` içindeki bu alanı kullanabilirsiniz.
 
-Hatırlanması gereken önemli nokta: `Annotated`'a verdiğiniz **ilk *type parameter***, **gerçek tip**tir. Geri kalanı ise diğer araçlar için metadatadır.
+Hatırlanması gereken önemli nokta: `Annotated`'a verdiğiniz **ilk *type parameter***, **gerçek tip**tir. Geri kalanı ise diğer araçlar için metadata'dır.
 
 Şimdilik, sadece `Annotated`'ın var olduğunu ve bunun standart Python olduğunu bilmeniz yeterli. 😎
 
@@ -331,7 +331,7 @@ Ayrıca kodunuzun pek çok başka Python aracı ve kütüphanesiyle çok uyumlu 
 
 ...ve **FastAPI** aynı bildirimleri şunlar için de kullanır:
 
-* **Gereksinimleri tanımlamak**: request path parameters, query parameters, headers, bodies, bağımlılıklar (dependencies), vb.
+* **Gereksinimleri tanımlamak**: request path parametreleri, query parametreleri, header'lar, body'ler, bağımlılıklar (dependencies), vb.
 * **Veriyi dönüştürmek**: request'ten gerekli tipe.
 * **Veriyi doğrulamak**: her request'ten gelen veriyi:
     * Veri geçersiz olduğunda client'a dönen **otomatik hatalar** üretmek.

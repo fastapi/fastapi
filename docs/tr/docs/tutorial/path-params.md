@@ -134,9 +134,9 @@ Bir *path operation*'ınız *path parameter* alıyorsa ama olası geçerli *path
 
 ### Bir `Enum` Sınıfı Oluşturalım { #create-an-enum-class }
 
-`Enum`'u import edin ve `str` ile `Enum`'dan miras alan bir alt sınıf oluşturun.
+`StrEnum`'u import edin ve ondan miras alan bir alt sınıf oluşturun.
 
-`str`'den miras aldığınızda API dokümanları değerlerin `string` tipinde olması gerektiğini anlayabilir ve doğru şekilde render edebilir.
+`StrEnum` üyeleri aynı zamanda string olduğu için API dokümanları değerlerin `string` tipinde olması gerektiğini bilir ve bunları doğru şekilde render eder.
 
 Sonra, kullanılabilir geçerli değerler olacak sabit değerli class attribute'ları oluşturun:
 

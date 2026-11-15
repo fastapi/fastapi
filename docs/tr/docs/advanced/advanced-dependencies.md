@@ -64,6 +64,93 @@ Buradaki her şeyi anladıysanız, security için kullanılan bu yardımcı ara�
 
 ///
 
+## Dependency Eşzamanlılığını Sınırlama { #limit-dependency-concurrency }
+
+Bazı durumlarda, bir dependency'yi aynı anda kaç request'in kullanabileceğini sınırlamak isteyebilirsiniz.
+
+Örneğin, veritabanınızda kullanılabilir bağlantı sayısı sınırlı olabilir. Yeni request'lerin session oluşturmadan önce, başka bir request'in kendi session'ıyla işini bitirmesini beklemesini sağlayabilirsiniz.
+
+Bunu `Depends()` içindeki `max_concurrency` ile yapabilirsiniz.
+
+[SQL veritabanları rehberindeki](../tutorial/sql-databases.md) `SessionDep` alias'ını güncelleyelim:
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+Artık bu dependency aracılığıyla aynı anda en fazla **beş request** açık bir veritabanı session'ına sahip olabilir.
+
+Başka bir request'in session'a ihtiyacı olursa, bu session'lardan biri kapanana kadar bekler.
+
+Beklerken **bir worker thread'i meşgul etmez**, böylece bu thread'ler başka kodları çalıştırabilir.
+
+Değer pozitif bir tam sayı olmalıdır. Varsayılan değer `None`'dır; bu, FastAPI'nin dependency'nin aynı anda kaç kez çalışabileceğini sınırlamadığı anlamına gelir.
+
+### Limiti Route'lar Arasında Paylaşma { #share-the-limit-between-routes }
+
+Bu örnekteki tüm route'lar aynı `SessionDep` alias'ını kullandığından, beş session'lık limiti paylaşır.
+
+Bir limiti paylaşmak için, örneğin buradaki gibi bir `Annotated` alias'ında, **aynı `Depends()` objesini** yeniden kullanın.
+
+Her route için yeni bir `Depends(get_session, max_concurrency=5)` yazarsanız, her birinin kendine ait beş session'lık limiti olur. Hepsi aynı `get_session` function'ını kullansa da bu durum değişmez.
+
+Aynı `SessionDep` başka bir uygulamada yeniden kullanıldığında da, her iki uygulama aynı event loop içinde çalıştığı sürece limit paylaşılır. Buna mount edilmiş uygulamalar da dahildir.
+
+Örneğin, iki uygulama aynı veritabanı bağlantı havuzu için bu `SessionDep`'i kullanıyorsa, bu dependency aracılığıyla toplamda en fazla beş açık session'a sahip olabilir.
+
+Uygulamalar ayrı havuzlar kullanıyor ve bağımsız limitlere ihtiyaç duyuyorsa, her uygulama için ayrı bir `Depends()` objesi oluşturun.
+
+### Yeni Bir Session'a İzin Vermeden Önce Mevcut Session'ı Kapatma { #close-the-session-before-allowing-another-one }
+
+Bu örnekte `get_session`, `yield` kullanır. Çıkış kodu session'ı kapatmayı bitirene kadar session limit kapsamında sayılır.
+
+Bu çıkış kodunun ne zaman çalışacağını dependency'nin `scope` değeri belirler:
+
+* Varsayılan olan `scope="request"` ile, response gönderildikten sonra çalışır.
+* `scope="function"` ile, *path operation function* bittikten sonra, response gönderilmeden önce çalışır.
+
+[Erken çıkış ve scope](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope) hakkında daha fazla bilgi edinebilirsiniz.
+
+`yield` kullanmayan bir dependency'de çağrı, yalnızca function bitene kadar limit kapsamında sayılır.
+
+WebSocket handler içinde `yield` kullanan bir dependency kullanırsanız, handler sonlanana ve dependency'nin çıkış kodu tamamlanana kadar limit kapsamında sayılır.
+
+/// note | Not
+
+[Önbelleğe alınmış bir dependency değerini](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times) yeniden kullanmak, limit kapsamında tekrar sayılmaz. Farklı tanımlar bu değeri paylaşıyorsa, yalnızca dependency'yi çağıran tanımın limiti kapsamında sayılır.
+
+///
+
+### Uygulamanız İçin Bir Limit Seçme { #choose-a-limit-for-your-application }
+
+Bu session'ların kullanabileceği veritabanı bağlantısı sayısına uygun bir limit seçin.
+
+Uygulamanızın başka bölümleri de bu bağlantıları kullanıyorsa, onlar için de pay bırakın. FastAPI, veritabanı bağlantı havuzunuzun boyutunu bilmez.
+
+Her worker process'in kendi limiti vardır. Örneğin, bu dependency'yi kullanan iki worker process toplamda en fazla on açık session'a sahip olabilir.
+
+/// note | Teknik Detaylar
+
+Limitler her event loop için de ayrıdır. Farklı event loop'larda çalışan uygulamalar, aynı `Depends()` objesini yeniden kullansalar bile limiti paylaşmaz.
+
+///
+
+### Birden Fazla Kaynağa İhtiyaç Duyan Dependency'ler { #dependencies-that-need-more-than-one-resource }
+
+FastAPI, bir dependency'nin limitini uygulamadan önce onun alt-dependency'lerini çalıştırır.
+
+Bu nedenle, veritabanı session'larını sınırlamak için `max_concurrency` değerini session'ın oluşturulduğu `Depends(get_session, ...)` üzerinde ayarlayın.
+
+Bir request, yalnızca request sonunda kapatılacak bir session'ı elinde tutarken başka bir session'a ihtiyaç duyarsa kilitlenebilir.
+
+Örneğin, paylaşılan bir `Depends(get_session, max_concurrency=1, use_cache=False)` objesinin aynı request içinde iki kez kullanıldığını düşünün.
+
+İlk çağrı bir session oluşturur. İkinci çağrı bunun kapanmasını bekler. Ancak request bitene kadar ilk session kapanamaz ve request de ikinci çağrıyı beklemektedir.
+
+İki request de kilitlenebilir: Biri bir session'ı elinde tutup başka bir kaynağı beklerken, diğeri o kaynağı elinde tutup bir session bekliyor olabilir.
+
+Request'leriniz birden fazla kaynağa ihtiyaç duyuyorsa, kaynakları aynı sırayla edinin. FastAPI her limiti ayrı ayrı uygular; bir request'in ihtiyaç duyacağı tüm kaynakları önceden ayırmaz.
+
 ## `yield`, `HTTPException`, `except` ve Background Tasks ile Dependency'ler { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 /// warning | Uyarı
