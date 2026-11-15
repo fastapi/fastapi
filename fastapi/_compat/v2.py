@@ -244,11 +244,35 @@ class ModelField:
         return id(self)
 
 
-def _has_computed_fields(field: ModelField) -> bool:
-    computed_fields = field._type_adapter.core_schema.get("schema", {}).get(
-        "computed_fields", []
+def _annotation_has_computed_fields(
+    annotation: Any, *, known_models: set[type[BaseModel]]
+) -> bool:
+    if lenient_issubclass(annotation, BaseModel):
+        if annotation in known_models:
+            return False
+        known_models.add(annotation)
+        if annotation.model_computed_fields:
+            return True
+        return any(
+            _annotation_has_computed_fields(
+                field_info.annotation, known_models=known_models
+            )
+            for field_info in annotation.model_fields.values()
+        )
+    return any(
+        _annotation_has_computed_fields(arg, known_models=known_models)
+        for arg in get_args(annotation)
     )
-    return len(computed_fields) > 0
+
+
+def _has_computed_fields(field: ModelField) -> bool:
+    type_adapter_core_schema = field._type_adapter.core_schema
+    # Dataclasses can have computed fields without being BaseModel subclasses.
+    if type_adapter_core_schema.get("schema", {}).get("computed_fields", []):
+        return True
+    return _annotation_has_computed_fields(
+        field.field_info.annotation, known_models=set()
+    )
 
 
 def get_schema_from_model_field(
@@ -261,11 +285,9 @@ def get_schema_from_model_field(
     separate_input_output_schemas: bool = True,
     field_alias: str | None = None,
 ) -> dict[str, Any]:
-    override_mode: Literal["validation"] | None = (
-        None
-        if (separate_input_output_schemas or _has_computed_fields(field))
-        else "validation"
-    )
+    override_mode: Literal["validation"] | None = None
+    if not separate_input_output_schemas:
+        override_mode = None if _has_computed_fields(field) else "validation"
     if field_alias is None:
         field_alias = (
             (field.validation_alias or field.alias)
