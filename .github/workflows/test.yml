@@ -52,7 +52,7 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest, macos-latest ]
-        python-version: [ "3.14", "3.14t", "3.15", "3.15t" ]
+        python-version: [ "3.15", "3.15t" ]
         deprecated-tests: [ "no-deprecation" ]
         uv-resolution:
           - highest
