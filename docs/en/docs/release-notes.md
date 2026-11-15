@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.163.1 (2026-11-15)
+
 ### Fixes
 
 * 🐛 Fix OpenAPI for response model with nested computed field. PR [#14490](https://github.com/fastapi/fastapi/pull/14490) by [@YuriiMotov](https://github.com/YuriiMotov).
