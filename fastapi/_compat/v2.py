@@ -287,11 +287,7 @@ def get_schema_from_model_field(
 ) -> dict[str, Any]:
     override_mode: Literal["validation"] | None = None
     if not separate_input_output_schemas:
-        override_mode = (
-            None
-            if (separate_input_output_schemas or _has_computed_fields(field))
-            else "validation"
-        )
+        override_mode = None if _has_computed_fields(field) else "validation"
     if field_alias is None:
         field_alias = (
             (field.validation_alias or field.alias)
