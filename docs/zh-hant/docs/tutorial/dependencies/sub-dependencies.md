@@ -62,7 +62,7 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 在進階情境下，如果你確定需要在同一次請求的每個步驟都呼叫該相依（可能呼叫多次），而不是使用「快取」的值，你可以在使用 `Depends` 時設定參數 `use_cache=False`：
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ 未使用 Annotated
+//// tab | Python 未使用 Annotated
 
 /// tip
 
