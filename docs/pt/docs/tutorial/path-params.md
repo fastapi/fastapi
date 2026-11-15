@@ -26,7 +26,7 @@ Isso fornecerá suporte do editor dentro da sua função, com verificações de 
 
 ///
 
-## Dados <dfn title="também conhecido como: serialização, parsing, marshalling">conversão</dfn> { #data-conversion }
+## <dfn title="também conhecido como: serialização, parsing, marshalling">Conversão</dfn> de dados { #data-conversion }
 
 Se você executar este exemplo e abrir seu navegador em [http://127.0.0.1:8000/items/3](http://127.0.0.1:8000/items/3), você verá uma resposta:
 
@@ -134,9 +134,9 @@ Se você tem uma *operação de rota* que recebe um *parâmetro de path*, mas qu
 
 ### Crie uma classe `Enum` { #create-an-enum-class }
 
-Importe `Enum` e crie uma subclasse que herde de `str` e de `Enum`.
+Importe `StrEnum` e crie uma subclasse que herde dela.
 
-Ao herdar de `str`, a documentação da API saberá que os valores devem ser do tipo `string` e poderá renderizá-los corretamente.
+Os membros de `StrEnum` também são strings, então a documentação da API saberá que os valores devem ser do tipo `string` e os renderizará corretamente.
 
 Em seguida, crie atributos de classe com valores fixos, que serão os valores válidos disponíveis:
 
@@ -144,11 +144,11 @@ Em seguida, crie atributos de classe com valores fixos, que serão os valores v�
 
 /// tip | Dica
 
-Se você está se perguntando, "AlexNet", "ResNet" e "LeNet" são apenas nomes de modelos de Aprendizado de Máquina <dfn title="Tecnicamente, arquiteturas de modelos de Deep Learning">modelos</dfn>.
+Se você está se perguntando, "AlexNet", "ResNet" e "LeNet" são apenas nomes de <dfn title="Tecnicamente, arquiteturas de modelos de Deep Learning">modelos</dfn> de Aprendizado de Máquina.
 
 ///
 
-### Declare um parâmetro de path { #declare-a-path-parameter }
+### Declare um *parâmetro de path* { #declare-a-path-parameter }
 
 Em seguida, crie um *parâmetro de path* com anotação de tipo usando a classe enum que você criou (`ModelName`):
 
@@ -164,13 +164,13 @@ Como os valores disponíveis para o *parâmetro de path* são predefinidos, a do
 
 O valor do *parâmetro de path* será um *membro de enumeração*.
 
-#### Compare membros de enumeração { #compare-enumeration-members }
+#### Compare *membros de enumeração* { #compare-enumeration-members }
 
 Você pode compará-lo com o *membro de enumeração* no seu enum `ModelName` criado:
 
 {* ../../docs_src/path_params/tutorial005.py hl[17] *}
 
-#### Obtenha o valor da enumeração { #get-the-enumeration-value }
+#### Obtenha o *valor da enumeração* { #get-the-enumeration-value }
 
 Você pode obter o valor real (um `str` neste caso) usando `model_name.value`, ou, em geral, `your_enum_member.value`:
 
@@ -182,7 +182,7 @@ Você também pode acessar o valor `"lenet"` com `ModelName.lenet.value`.
 
 ///
 
-#### Retorne membros de enumeração { #return-enumeration-members }
+#### Retorne *membros de enumeração* { #return-enumeration-members }
 
 Você pode retornar *membros de enum* da sua *operação de rota*, até mesmo aninhados em um corpo JSON (por exemplo, um `dict`).
 
