@@ -223,7 +223,7 @@ def some_function(data: Any):
 
 你可以声明一个变量可以是**若干种类型**中的任意一种，比如既可以是 `int` 也可以是 `str`。
 
-定义时使用<dfn title='也叫“按位或运算符（bitwise or operator）”，但这里与该含义无关'>竖线（`|`）</dfn>把两种类型分开。
+定义时使用<dfn title='也叫“按位或运算符”，但这里与该含义无关'>竖线（`|`）</dfn>把两种类型分开。
 
 这称为“联合类型”（union），因为变量可以是这两类类型集合的并集中的任意一个。
 
@@ -237,7 +237,7 @@ def some_function(data: Any):
 
 你可以声明一个值的类型是某种类型（比如 `str`），但它也可能是 `None`。
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}

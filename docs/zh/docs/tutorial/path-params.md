@@ -92,7 +92,7 @@
 
 ## 基于标准的好处，备选文档 { #standards-based-benefits-alternative-documentation }
 
-**FastAPI** 使用 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 生成概图，所以能兼容很多工具。
+生成的 schema 基于 [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.0.md) 标准，所以能兼容很多工具。
 
 因此，**FastAPI** 还内置了 ReDoc 生成的备选 API 文档，可在此查看 [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)：
 
@@ -134,9 +134,9 @@
 
 ### 创建 `Enum` 类 { #create-an-enum-class }
 
-导入 `Enum` 并创建继承自 `str` 和 `Enum` 的子类。
+导入 `StrEnum` 并创建继承自它的子类。
 
-通过从 `str` 继承，API 文档就能把值的类型定义为**字符串**，并且能正确渲染。
+`StrEnum` 成员也是字符串，因此 API 文档会知道值必须是 `string` 类型，并且能正确渲染。
 
 然后，创建包含固定值的类属性，这些固定值是可用的有效值：
 
@@ -184,7 +184,7 @@
 
 #### 返回*枚举成员* { #return-enumeration-members }
 
-即使嵌套在 JSON 请求体里（例如，`dict`），也可以从你的*路径操作*返回*枚举成员*。
+即使嵌套在 JSON 响应体里（例如，`dict`），也可以从你的*路径操作*返回*枚举成员*。
 
 返回给客户端之前，会把它们转换为对应的值（本例中为字符串）：
 
@@ -231,7 +231,7 @@ OpenAPI 不支持声明内部包含*路径*的*路径参数*，因为这会导�
 
 /// tip | 提示
 
-注意，包含 `/home/johndoe/myfile.txt` 的路径参数要以斜杠（`/`）开头。
+你可能需要参数包含 `/home/johndoe/myfile.txt`，即以斜杠（`/`）开头。
 
 本例中的 URL 是 `/files//home/johndoe/myfile.txt`。注意，`files` 和 `home` 之间要使用双斜杠（`//`）。
 
