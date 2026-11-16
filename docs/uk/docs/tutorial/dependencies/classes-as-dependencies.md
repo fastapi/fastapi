@@ -4,7 +4,7 @@
 
 ## `dict` з попереднього прикладу { #a-dict-from-the-previous-example }
 
-У попередньому прикладі ми повертали `dict` із нашого «залежного»:
+У попередньому прикладі ми повертали `dict` із нашої залежності («залежного»):
 
 {* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
@@ -67,7 +67,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 Це також стосується викликаємих без жодних параметрів. Так само, як і для функцій операцій шляху без параметрів.
 
-Тоді ми можемо змінити залежність `common_parameters` вище на клас `CommonQueryParams`:
+Тоді ми можемо змінити залежність («залежний») `common_parameters` вище на клас `CommonQueryParams`:
 
 {* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
@@ -101,7 +101,7 @@ fluffy = Cat(name="Mr Fluffy")
 
 Зверніть увагу, що вище ми двічі пишемо `CommonQueryParams`:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ без Annotated
+//// tab | Python без Annotated
 
 /// tip | Порада
 
@@ -129,7 +129,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 ... Depends(CommonQueryParams)
 ```
 
- - це те, що **FastAPI** фактично використає, щоб дізнатися, яка залежність.
+…це те, що **FastAPI** фактично використає, щоб дізнатися, яка залежність.
 
 Саме з нього **FastAPI** витягне оголошені параметри і саме його **FastAPI** буде викликати.
 
@@ -137,7 +137,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 У цьому випадку перший `CommonQueryParams` у:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.10+ без Annotated
+//// tab | Python без Annotated
 
 /// tip | Порада
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 Насправді ви могли б написати просто:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ без Annotated
+//// tab | Python без Annotated
 
 /// tip | Порада
 
@@ -197,7 +197,7 @@ commons = Depends(CommonQueryParams)
 
 Але ви бачите, що тут маємо деяке дублювання коду - `CommonQueryParams` пишемо двічі:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ без Annotated
+//// tab | Python без Annotated
 
 /// tip | Порада
 
@@ -225,7 +225,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 Замість того щоб писати:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ без Annotated
+//// tab | Python без Annotated
 
 /// tip | Порада
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 …напишіть:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.10+ без Annotated
+//// tab | Python без Annotated
 
 /// tip | Порада
 
