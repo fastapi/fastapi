@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for hi (add-missing). PR [#16753](https://github.com/fastapi/fastapi/pull/16753) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ja (add-missing). PR [#16752](https://github.com/fastapi/fastapi/pull/16752) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for ru (add-missing). PR [#16754](https://github.com/fastapi/fastapi/pull/16754) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for de (add-missing). PR [#16757](https://github.com/fastapi/fastapi/pull/16757) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
