@@ -52,7 +52,7 @@ Mais ensuite vous devez appeler « cette méthode qui convertit la première let
 
 Vous essayez alors avec l'ami de toujours des programmeurs, l'autocomplétion de l'éditeur.
 
-Vous tapez le premier paramètre de la fonction, `first_name`, puis un point (`.`) et appuyez sur `Ctrl+Espace` pour déclencher l'autocomplétion.
+Vous tapez le premier paramètre de la fonction, `first_name`, puis un point (`.`) et appuyez sur `Ctrl+Space` pour déclencher l'autocomplétion.
 
 Mais, malheureusement, vous n'obtenez rien d'utile :
 
@@ -94,7 +94,7 @@ Et ajouter des annotations de type ne change normalement pas ce qui se passe par
 
 Mais maintenant, imaginez que vous êtes à nouveau en train de créer cette fonction, mais avec des annotations de type.
 
-Au même moment, vous essayez de déclencher l'autocomplétion avec `Ctrl+Espace` et vous voyez :
+Au même moment, vous essayez de déclencher l'autocomplétion avec `Ctrl+Space` et vous voyez :
 
 <img src="/img/python-types/image02.png">
 
@@ -237,7 +237,7 @@ Cela signifie que `item` peut être un `int` ou un `str`.
 
 Vous pouvez déclarer qu'une valeur peut avoir un type, comme `str`, mais qu'elle peut aussi être `None`.
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}

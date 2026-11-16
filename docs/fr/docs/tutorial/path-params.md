@@ -134,9 +134,9 @@ Si vous avez un *chemin d'accès* qui reçoit un *paramètre de chemin*, mais qu
 
 ### Créer une classe `Enum` { #create-an-enum-class }
 
-Importez `Enum` et créez une sous-classe qui hérite de `str` et de `Enum`.
+Importez `StrEnum` et créez une sous-classe qui en hérite.
 
-En héritant de `str`, la documentation de l'API saura que les valeurs doivent être de type `string` et pourra donc s'afficher correctement.
+Les membres de `StrEnum` sont aussi des chaînes de caractères, donc les documents de l'API sauront que les valeurs doivent être de type `string` et les afficheront correctement.
 
 Créez ensuite des attributs de classe avec des valeurs fixes, qui seront les valeurs valides disponibles :
 
@@ -148,7 +148,7 @@ Si vous vous demandez, « AlexNet », « ResNet » et « LeNet » sont juste des
 
 ///
 
-### Déclarer un paramètre de chemin { #declare-a-path-parameter }
+### Déclarer un *paramètre de chemin* { #declare-a-path-parameter }
 
 Créez ensuite un *paramètre de chemin* avec une annotation de type utilisant la classe d'énumération que vous avez créée (`ModelName`) :
 
@@ -156,7 +156,7 @@ Créez ensuite un *paramètre de chemin* avec une annotation de type utilisant l
 
 ### Consultez les documents { #check-the-docs }
 
-Comme les valeurs disponibles pour le *paramètre de chemin* sont prédéfinies, la documentation interactive peut les afficher clairement :
+Comme les valeurs disponibles pour le *paramètre de chemin* sont prédéfinies, les documents interactifs peuvent les afficher clairement :
 
 <img src="/img/tutorial/path-params/image03.png">
 
@@ -172,7 +172,7 @@ Vous pouvez le comparer avec le *membre d'énumération* dans votre enum `ModelN
 
 #### Obtenir la *valeur de l'énumération* { #get-the-enumeration-value }
 
-Vous pouvez obtenir la valeur réelle (une `str` dans ce cas) avec `model_name.value`, ou en général, `votre_membre_d_enum.value` :
+Vous pouvez obtenir la valeur réelle (une `str` dans ce cas) avec `model_name.value`, ou en général, `your_enum_member.value` :
 
 {* ../../docs_src/path_params/tutorial005.py hl[20] *}
 
@@ -213,7 +213,7 @@ OpenAPI ne prend pas en charge une manière de déclarer un *paramètre de chemi
 
 Néanmoins, vous pouvez toujours le faire dans **FastAPI**, en utilisant l'un des outils internes de Starlette.
 
-Et la documentation fonctionnera quand même, même si aucune indication supplémentaire ne sera ajoutée pour dire que le paramètre doit contenir un chemin.
+Et les documents fonctionneront quand même, même si aucune indication supplémentaire ne sera ajoutée pour dire que le paramètre doit contenir un chemin.
 
 ### Convertisseur de chemin { #path-convertor }
 

@@ -64,6 +64,93 @@ Si vous avez compris tout cela, vous savez déjà comment ces outils utilitaires
 
 ///
 
+## Limiter la concurrence des dépendances { #limit-dependency-concurrency }
+
+Dans certains cas, vous pouvez souhaiter limiter le nombre de requêtes pouvant utiliser une dépendance en même temps.
+
+Par exemple, votre base de données peut disposer d’un nombre limité de connexions. Vous pouvez faire attendre les nouvelles requêtes avant de créer une session, jusqu’à ce qu’une autre requête ait fini d’utiliser sa session.
+
+Vous pouvez le faire avec `max_concurrency` dans `Depends()`.
+
+Mettons à jour l’alias `SessionDep` du [tutoriel sur les bases de données SQL](../tutorial/sql-databases.md) :
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+Désormais, jusqu’à **cinq requêtes** peuvent avoir une session de base de données ouverte via cette dépendance en même temps.
+
+Si une autre requête a besoin d’une session, elle attend que l’une de ces sessions soit fermée.
+
+Pendant cette attente, elle **n’occupe pas de thread de travail**, ce qui laisse ces threads disponibles pour exécuter d’autres parties du code.
+
+La valeur doit être un entier strictement positif. La valeur par défaut est `None`, ce qui signifie que FastAPI ne limite pas le nombre d’exécutions simultanées de la dépendance.
+
+### Partager la limite entre les routes { #share-the-limit-between-routes }
+
+Toutes les routes de cet exemple utilisent le même alias `SessionDep`, elles partagent donc la limite de cinq sessions.
+
+Pour partager une limite, réutilisez le **même objet `Depends()`**, par exemple dans un alias `Annotated` comme celui-ci.
+
+Si vous écrivez un nouveau `Depends(get_session, max_concurrency=5)` pour chaque route, chacune aura sa propre limite de cinq. Cela reste vrai même si elles utilisent toutes la même fonction `get_session`.
+
+Réutiliser le même `SessionDep` dans une autre application partage également la limite, tant que les deux applications s’exécutent dans la même boucle d’événements. Cela inclut les applications montées.
+
+Par exemple, si deux applications utilisent ce `SessionDep` pour le même pool de connexions à la base de données, elles peuvent avoir à elles deux jusqu’à cinq sessions ouvertes via cette dépendance.
+
+Si les applications utilisent des pools distincts et ont besoin de limites indépendantes, créez un objet `Depends()` distinct pour chaque application.
+
+### Fermer la session avant d’en autoriser une autre { #close-the-session-before-allowing-another-one }
+
+Dans cet exemple, `get_session` utilise `yield`. La session est comptabilisée dans la limite jusqu’à ce que le code d’arrêt ait fini de la fermer.
+
+Le `scope` de la dépendance détermine quand ce code d’arrêt s’exécute :
+
+* Avec `scope="request"`, la valeur par défaut, il s’exécute après l’envoi de la réponse.
+* Avec `scope="function"`, il s’exécute après la fin de la *fonction de chemin d'accès*, avant l’envoi de la réponse.
+
+Vous pouvez en lire davantage sur la [sortie anticipée et la portée](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
+
+Pour une dépendance sans `yield`, l’appel est comptabilisé dans la limite uniquement jusqu’à la fin de la fonction.
+
+Si vous utilisez une dépendance avec `yield` dans un gestionnaire WebSocket, elle est comptabilisée dans la limite jusqu’à la fin du gestionnaire et du code d’arrêt de la dépendance.
+
+/// note | Remarque
+
+Réutiliser une [valeur de dépendance mise en cache](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times) ne la comptabilise pas à nouveau dans la limite. Si différentes déclarations partagent cette valeur, seule la déclaration qui appelle la dépendance est comptabilisée dans sa limite.
+
+///
+
+### Choisir une limite pour votre application { #choose-a-limit-for-your-application }
+
+Choisissez une limite adaptée au nombre de connexions à la base de données disponibles pour ces sessions.
+
+Si d’autres parties de votre application utilisent également ces connexions, laissez-leur aussi de la marge. FastAPI ne connaît pas la taille de votre pool de connexions à la base de données.
+
+Chaque processus worker a sa propre limite. Par exemple, deux processus workers utilisant cette dépendance peuvent avoir jusqu’à dix sessions ouvertes à eux deux.
+
+/// note | Détails techniques
+
+Les limites sont également distinctes pour chaque boucle d’événements. Les applications qui s’exécutent dans des boucles d’événements différentes ne partagent pas de limite, même si elles réutilisent le même objet `Depends()`.
+
+///
+
+### Dépendances nécessitant plusieurs ressources { #dependencies-that-need-more-than-one-resource }
+
+FastAPI exécute les sous-dépendances d’une dépendance avant d’appliquer la limite de cette dépendance.
+
+Ainsi, pour limiter les sessions de base de données, placez `max_concurrency` sur `Depends(get_session, ...)`, là où la session est créée.
+
+Une requête peut se bloquer si elle a besoin d’une autre session alors qu’elle en conserve une qui ne sera fermée qu’à la fin de la requête.
+
+Par exemple, imaginez un `Depends(get_session, max_concurrency=1, use_cache=False)` partagé, utilisé deux fois dans la même requête.
+
+Le premier appel crée une session. Le second attend sa fermeture. Mais la première session ne peut pas être fermée avant la fin de la requête, et la requête attend le second appel.
+
+Deux requêtes peuvent aussi se bloquer si l’une conserve une session en attendant une autre ressource, et que l’autre conserve cette ressource en attendant une session.
+
+Si vos requêtes ont besoin de plusieurs ressources, acquérez-les dans le même ordre. FastAPI applique chaque limite séparément, il ne réserve pas à l’avance toutes les ressources dont une requête aura besoin.
+
 ## Dépendances avec `yield`, `HTTPException`, `except` et tâches d'arrière‑plan { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 /// warning | Alertes
@@ -108,7 +195,7 @@ Comme vous le verrez ci‑dessous, c’est très similaire au comportement avant
 
 Il existe certains cas d’utilisation avec des conditions spécifiques qui pourraient bénéficier de l’ancien comportement, où le code d’arrêt des dépendances avec `yield` s’exécute avant l’envoi de la réponse.
 
-Par exemple, imaginez que vous ayez du code qui utilise une session de base de données dans une dépendance avec `yield` uniquement pour vérifier un utilisateur, mais que la session de base de données ne soit plus jamais utilisée dans la *fonction de chemin d'accès*, seulement dans la dépendance, et que la réponse mette longtemps à être envoyée, comme une `StreamingResponse` qui envoie les données lentement mais qui, pour une raison quelconque, n’utilise pas la base de données.
+Par exemple, imaginez que vous ayez du code qui utilise une session de base de données dans une dépendance avec `yield` uniquement pour vérifier un utilisateur, mais que la session de base de données ne soit plus jamais utilisée dans la *fonction de chemin d'accès*, seulement dans la dépendance, **et** que la réponse mette longtemps à être envoyée, comme une `StreamingResponse` qui envoie les données lentement mais qui, pour une raison quelconque, n’utilise pas la base de données.
 
 Dans ce cas, la session de base de données serait conservée jusqu’à la fin de l’envoi de la réponse, mais si vous ne l’utilisez pas, il ne serait pas nécessaire de la conserver.
 
@@ -144,7 +231,7 @@ Cela a été modifié dans la version 0.110.0 pour corriger une consommation de 
 
 ### Tâches d'arrière‑plan et dépendances avec `yield`, Détails techniques { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Avant FastAPI 0.106.0, lever des exceptions après `yield` n’était pas possible, le code d’arrêt dans les dépendances avec `yield` s’exécutait après l’envoi de la réponse, donc les [Gestionnaires d'exceptions](../tutorial/handling-errors.md#install-custom-exception-handlers) avaient déjà été exécutés.
+Avant FastAPI 0.106.0, lever des exceptions après `yield` n’était pas possible, le code d’arrêt dans les dépendances avec `yield` s’exécutait *après* l’envoi de la réponse, donc les [Gestionnaires d'exceptions](../tutorial/handling-errors.md#install-custom-exception-handlers) avaient déjà été exécutés.
 
 Cela avait été conçu ainsi principalement pour permettre d’utiliser les mêmes objets « générés par yield » par les dépendances à l’intérieur de tâches d’arrière‑plan, car le code d’arrêt s’exécutait après la fin des tâches d’arrière‑plan.
 
