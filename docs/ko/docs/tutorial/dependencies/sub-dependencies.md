@@ -62,7 +62,7 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 고급 시나리오로, 같은 요청에서 "cached" 값을 쓰는 대신 매 단계마다(아마도 여러 번) 의존성이 호출되어야 한다는 것을 알고 있다면, `Depends`를 사용할 때 `use_cache=False` 파라미터를 설정할 수 있습니다:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ 비 Annotated
+//// tab | Python 비 Annotated
 
 /// tip | 팁
 

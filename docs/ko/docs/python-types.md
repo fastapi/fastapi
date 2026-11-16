@@ -239,7 +239,7 @@ def some_function(data: Any):
 
 값이 `str` 같은 타입일 수도 있지만, `None`일 수도 있다고 선언할 수 있습니다.
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}
