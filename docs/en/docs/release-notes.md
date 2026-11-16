@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for ko (update-outdated). PR [#16760](https://github.com/fastapi/fastapi/pull/16760) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for tr (add-missing). PR [#16772](https://github.com/fastapi/fastapi/pull/16772) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for pt (add-missing). PR [#16771](https://github.com/fastapi/fastapi/pull/16771) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for uk (update-outdated). PR [#16773](https://github.com/fastapi/fastapi/pull/16773) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
