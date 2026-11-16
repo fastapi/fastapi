@@ -62,7 +62,7 @@ FastAPI 不会为同一个请求多次调用同一个依赖项，而是把依赖
 
 在高级使用场景中，如果不想使用「缓存」值，而是需要在同一请求的每一步操作（可能多次）中都实际调用依赖项，可以在使用 `Depends` 时设置参数 `use_cache=False`：
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ 非 Annotated
+//// tab | Python 非 Annotated
 
 /// tip | 提示
 

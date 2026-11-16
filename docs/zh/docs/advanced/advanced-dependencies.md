@@ -65,6 +65,93 @@ checker(q="somequery")
 
 ///
 
+## 限制依赖项并发数 { #limit-dependency-concurrency }
+
+在某些情况下，你可能希望限制同时使用某个依赖项的请求数量。
+
+例如，你的数据库可用连接数可能有限。你可以让新请求在创建会话之前等待，直到另一个请求使用完它的会话。
+
+你可以通过 `Depends()` 中的 `max_concurrency` 来实现这一点。
+
+我们来更新 [SQL 数据库教程](../tutorial/sql-databases.md)中的 `SessionDep` 别名：
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+现在，最多可以有**五个请求**同时通过这个依赖项保持数据库会话打开。
+
+如果另一个请求需要会话，它会等待，直到其中一个会话关闭。
+
+等待期间，它**不会占用工作线程**，因此这些线程可以运行其他代码。
+
+该值必须是正整数。默认值是 `None`，表示 FastAPI 不限制该依赖项同时运行的次数。
+
+### 在路由之间共享限制 { #share-the-limit-between-routes }
+
+该示例中的所有路由都使用同一个 `SessionDep` 别名，因此它们共享五个会话的限制。
+
+要共享限制，请复用**同一个 `Depends()` 对象**，例如像这里一样在 `Annotated` 别名中使用它。
+
+如果你为每个路由都编写一个新的 `Depends(get_session, max_concurrency=5)`，那么每个路由都会有各自独立的五个会话的限制。即使它们都使用同一个 `get_session` 函数，也是如此。
+
+在另一个应用中复用同一个 `SessionDep` 也会共享限制，前提是两个应用运行在同一个事件循环中。这也包括挂载的应用。
+
+例如，如果两个应用为同一个数据库连接池使用这个 `SessionDep`，那么它们通过这个依赖项总共最多可以保持五个会话打开。
+
+如果这些应用使用不同的连接池，并且需要独立的限制，请为每个应用创建单独的 `Depends()` 对象。
+
+### 关闭会话后再允许创建下一个 { #close-the-session-before-allowing-another-one }
+
+在这个示例中，`get_session` 使用了 `yield`。在退出代码完成会话关闭之前，该会话会一直占用并发名额。
+
+依赖项的 `scope` 决定了退出代码何时运行：
+
+* 使用默认的 `scope="request"` 时，它会在响应发送之后运行。
+* 使用 `scope="function"` 时，它会在*路径操作函数*结束后、发送响应之前运行。
+
+你可以阅读关于[提前退出与作用域](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope)的更多内容。
+
+对于不带 `yield` 的依赖项，调用只会在函数结束之前占用并发名额。
+
+如果你在 WebSocket 处理函数中使用带 `yield` 的依赖项，它会一直占用并发名额，直到处理函数退出且依赖项的退出代码执行完毕。
+
+/// note | 注意
+
+复用[缓存的依赖项值](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times)不会再次占用并发名额。如果不同的声明共享该值，只有实际调用依赖项的声明才会占用其自身的并发名额。
+
+///
+
+### 为应用选择限制值 { #choose-a-limit-for-your-application }
+
+根据这些会话可用的数据库连接数，选择合适的限制值。
+
+如果应用的其他部分也使用这些连接，请为它们预留空间。FastAPI 不知道你的数据库连接池大小。
+
+每个工作进程都有自己的限制。例如，使用这个依赖项的两个工作进程总共最多可以保持十个会话打开。
+
+/// note | 技术细节
+
+每个事件循环的限制也是独立的。在不同事件循环中运行的应用不会共享限制，即使它们复用了同一个 `Depends()` 对象。
+
+///
+
+### 需要多个资源的依赖项 { #dependencies-that-need-more-than-one-resource }
+
+FastAPI 会先运行依赖项的子依赖项，然后再应用该依赖项的限制。
+
+因此，要限制数据库会话数，请在创建会话的 `Depends(get_session, ...)` 上设置 `max_concurrency`。
+
+如果一个请求在仍持有某个会话时又需要另一个会话，而持有的会话只有在请求结束时才会关闭，那么该请求可能会陷入阻塞。
+
+例如，假设同一个请求两次使用了一个共享的 `Depends(get_session, max_concurrency=1, use_cache=False)`。
+
+第一次调用创建一个会话。第二次调用等待该会话关闭。但第一个会话必须等请求结束才能关闭，而请求正在等待第二次调用。
+
+两个请求也可能陷入阻塞：一个持有会话并等待另一个资源，而另一个持有该资源并等待会话。
+
+如果你的请求需要多个资源，请按相同的顺序获取它们。FastAPI 会分别应用每个限制，不会提前预留请求所需的全部资源。
+
 ## 带 `yield` 的依赖项、`HTTPException`、`except` 与后台任务 { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 /// warning | 警告
