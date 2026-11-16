@@ -81,8 +81,38 @@ def decimal_encoder(dec_value: Decimal) -> int | float:
         return float(dec_value)
 
 
+def _bytes_encoder(o: bytes) -> str:
+    """Encode bytes as a UTF-8 string for JSON serialisation.
+
+    Explicitly decoding with ``"utf-8"`` makes the intended JSON serialisation
+    behaviour clear and raises a ``ValueError`` with an actionable message when
+    the bytes are not valid UTF-8, rather than letting a bare
+    ``UnicodeDecodeError`` propagate with no context about what to do next.
+
+    If your endpoint returns non-UTF-8 binary data you have two alternatives:
+
+    * Pass a ``custom_encoder`` mapping ``bytes`` to a serialiser of your
+      choice (e.g. ``{bytes: lambda v: base64.b64encode(v).decode()}``).
+    * Return a :class:`fastapi.Response` (or a subclass such as
+      :class:`fastapi.responses.StreamingResponse`) with an explicit
+      ``media_type`` instead of letting FastAPI serialise the value as JSON.
+    """
+    try:
+        return o.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise ValueError(
+            "bytes value is not valid UTF-8 and cannot be "
+            "automatically converted to a JSON string. "
+            "If you intentionally have non-UTF-8 binary data, either:\n"
+            "  • provide a custom_encoder for bytes "
+            "(e.g. {bytes: lambda v: base64.b64encode(v).decode()}), or\n"
+            "  • return a fastapi.Response with an appropriate media_type "
+            "instead of letting FastAPI serialise the response as JSON."
+        ) from exc
+
+
 ENCODERS_BY_TYPE: dict[type[Any], Callable[[Any], Any]] = {
-    bytes: lambda o: o.decode(),
+    bytes: _bytes_encoder,
     Color: str,
     PyExtraColor: str,
     datetime.date: isoformat,

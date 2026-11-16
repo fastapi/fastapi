@@ -343,3 +343,78 @@ def test_encode_color(module_path):
 
     data = {"color": Color("blue")}
     assert jsonable_encoder(data) == {"color": "blue"}
+
+
+# ---------------------------------------------------------------------------
+# Regression tests for bytes encoding (issue / PR #16350)
+# ---------------------------------------------------------------------------
+
+
+def test_encode_bytes_valid_utf8():
+    """Valid UTF-8 bytes are decoded to a string without error."""
+    # ASCII subset
+    assert jsonable_encoder(b"hello") == "hello"
+    # Multi-byte UTF-8 (€ = U+20AC = 0xe2 0x82 0xac)
+    assert jsonable_encoder(b"\xe2\x82\xac") == "\u20ac"
+    # Empty bytes
+    assert jsonable_encoder(b"") == ""
+
+
+def test_encode_bytes_invalid_utf8_raises_value_error():
+    """
+    Non-UTF-8 bytes must raise ValueError with an actionable message rather
+    than leaking a bare UnicodeDecodeError with no context.
+    """
+    with pytest.raises(ValueError, match="is not valid UTF-8"):
+        jsonable_encoder(b"\xff\xfe")
+
+
+def test_encode_bytes_invalid_utf8_error_mentions_custom_encoder():
+    """The error message explains the custom_encoder escape hatch."""
+    with pytest.raises(ValueError, match="custom_encoder"):
+        jsonable_encoder(b"\xff\xfe")
+
+
+def test_encode_bytes_invalid_utf8_error_mentions_response():
+    """The error message suggests returning a Response with a media_type."""
+    with pytest.raises(ValueError, match="fastapi.Response"):
+        jsonable_encoder(b"\xff\xfe")
+
+
+def test_encode_bytes_invalid_utf8_with_custom_encoder():
+    """
+    A custom_encoder for bytes lets callers serialise non-UTF-8 binary data
+    without raising — the standard pattern for binary payloads in JSON.
+    """
+    import base64
+
+    custom = {bytes: lambda v: base64.b64encode(v).decode()}
+
+    # Non-UTF-8 bytes encoded via base64 should succeed
+    result = jsonable_encoder(b"\xff\xfe", custom_encoder=custom)
+    assert result == base64.b64encode(b"\xff\xfe").decode()
+
+    # Valid UTF-8 bytes also honoured by the custom encoder
+    result = jsonable_encoder(b"hello", custom_encoder=custom)
+    assert result == base64.b64encode(b"hello").decode()
+
+
+def test_encode_bytes_nested_invalid_utf8_raises_value_error():
+    """Non-UTF-8 bytes nested inside a dict or list also raise ValueError."""
+    with pytest.raises(ValueError, match="is not valid UTF-8"):
+        jsonable_encoder({"data": b"\x80\x81"})
+
+    with pytest.raises(ValueError, match="is not valid UTF-8"):
+        jsonable_encoder([b"\xc3\x28"])  # 0xc3 0x28 — invalid 2-byte seq
+
+
+def test_encode_bytes_invalid_utf8_chains_unicode_decode_error():
+    """
+    The ValueError raised for non-UTF-8 bytes must chain the original
+    UnicodeDecodeError as its __cause__, preserving the precise byte-position
+    information for debugging.
+    """
+    with pytest.raises(ValueError) as exc_info:
+        jsonable_encoder(b"\xff\xfe")
+
+    assert isinstance(exc_info.value.__cause__, UnicodeDecodeError)
