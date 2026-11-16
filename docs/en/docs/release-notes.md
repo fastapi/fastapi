@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for ja (update-outdated). PR [#16770](https://github.com/fastapi/fastapi/pull/16770) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for tr (update-outdated). PR [#16765](https://github.com/fastapi/fastapi/pull/16765) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for zh-hant (update-outdated). PR [#16764](https://github.com/fastapi/fastapi/pull/16764) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for zh-hant (add-missing). PR [#16768](https://github.com/fastapi/fastapi/pull/16768) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
