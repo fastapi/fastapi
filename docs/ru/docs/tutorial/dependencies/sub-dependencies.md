@@ -62,7 +62,7 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 В расширенном сценарии, когда вы знаете, что вам нужно, чтобы зависимость вызывалась на каждом шаге (возможно, несколько раз) в одном и том же HTTP-запросе, вместо использования "кэшированного" значения, вы можете установить параметр `use_cache=False` при использовании `Depends`:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ без Annotated
+//// tab | Python без Annotated
 
 /// tip | Подсказка
 
