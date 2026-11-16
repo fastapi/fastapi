@@ -62,7 +62,7 @@ E o valor retornado é salvo em um <dfn title="Um utilitário/sistema para armaz
 
 Em um cenário avançado onde você precise que a dependência seja chamada em cada passo (possivelmente várias vezes) de uma requisição em vez de utilizar o valor em "cache", você pode definir o parâmetro `use_cache=False` em `Depends`:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,11 +73,11 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python non-Annotated
 
 /// tip | Dica
 
-Utilize a versão com `Annotated` se possível.
+Prefira utilizar a versão com `Annotated` se possível.
 
 ///
 
@@ -98,7 +98,7 @@ Mas ainda assim, é bastante poderoso, e permite que você declare grafos (árvo
 
 /// tip | Dica
 
-Tudo isso pode não parecer muito útil com esses exemplos.
+Tudo isso pode não parecer muito útil com esses exemplos simples.
 
 Mas você verá o quão útil isso é nos capítulos sobre **segurança**.
 

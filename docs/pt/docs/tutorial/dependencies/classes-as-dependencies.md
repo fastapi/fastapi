@@ -4,7 +4,7 @@ Antes de nos aprofundarmos no sistema de **Injeção de Dependência**, vamos me
 
 ## `dict` do exemplo anterior { #a-dict-from-the-previous-example }
 
-No exemplo anterior, nós retornávamos um `dict` da nossa dependência ("injetável"):
+No exemplo anterior, nós retornávamos um `dict` da nossa dependência ("dependable"):
 
 {* ../../docs_src/dependencies/tutorial001.py hl[9] *}
 
@@ -20,11 +20,11 @@ Até agora você apenas viu dependências declaradas como funções.
 
 Mas essa não é a única forma de declarar dependências (mesmo que provavelmente seja a mais comum).
 
-O fator principal para uma dependência é que ela deve ser "chamável"
+O fator principal para uma dependência é que ela deve ser "chamável".
 
-Um objeto "chamável" em Python é qualquer coisa que o Python possa "chamar" como uma função
+Um objeto "**chamável**" em Python é qualquer coisa que o Python possa "chamar" como uma função.
 
-Então se você tiver um objeto `alguma_coisa` (que pode *não* ser uma função) que você possa "chamar" (executá-lo) dessa maneira:
+Então se você tiver um objeto `something` (que pode *não* ser uma função) que você possa "chamar" (executá-lo) dessa maneira:
 
 ```Python
 something()
@@ -57,7 +57,7 @@ Nesse caso,  `fluffy` é uma instância da classe `Cat`.
 
 E para criar `fluffy`, você está "chamando" `Cat`.
 
-Então, uma classe Python também é "chamável".
+Então, uma classe Python também é **chamável**.
 
 Então, no **FastAPI**, você pode utilizar uma classe Python como uma dependência.
 
@@ -67,7 +67,7 @@ Se você passar algo "chamável" como uma dependência do **FastAPI**, o framewo
 
 Isso também se aplica a objetos chamáveis que não recebem nenhum parâmetro. Da mesma forma que uma *função de operação de rota* sem parâmetros.
 
-Então, podemos mudar o "injetável" na dependência `common_parameters` acima para a classe `CommonQueryParams`:
+Então, podemos mudar o "dependable" na dependência `common_parameters` acima para a classe `CommonQueryParams`:
 
 {* ../../docs_src/dependencies/tutorial002.py hl[11:15] *}
 
@@ -79,7 +79,7 @@ Observe o método `__init__` usado para criar uma instância da classe:
 
 {* ../../docs_src/dependencies/tutorial001.py hl[8] *}
 
-Esses parâmetros são utilizados pelo **FastAPI** para "definir" a dependência.
+Esses parâmetros são utilizados pelo **FastAPI** para "resolver" a dependência.
 
 Em ambos os casos teremos:
 
@@ -89,7 +89,7 @@ Em ambos os casos teremos:
 
 Os dados serão convertidos, validados, documentados no esquema da OpenAPI e etc nos dois casos.
 
-## Utilizando { #use-it }
+## Utilize { #use-it }
 
 Agora você pode declarar sua dependência utilizando essa classe.
 
@@ -99,9 +99,9 @@ O **FastAPI** chama a classe `CommonQueryParams`. Isso cria uma "instância" des
 
 ## Anotações de Tipo vs `Depends` { #type-annotation-vs-depends }
 
-Perceba como escrevemos `CommonQueryParams` duas vezes no código abaixo:
+Perceba como escrevemos `CommonQueryParams` duas vezes no código acima:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python non-Annotated
 
 /// tip | Dica
 
@@ -131,13 +131,13 @@ O último `CommonQueryParams`, em:
 
 ...é o que o **FastAPI** irá realmente usar para saber qual é a dependência.
 
-É a partir dele que o FastAPI irá extrair os parâmetros passados e será o que o FastAPI irá realmente chamar.
+É a partir dele que o FastAPI irá extrair os parâmetros declarados e será o que o FastAPI irá realmente chamar.
 
 ---
 
 Nesse caso, o primeiro `CommonQueryParams`, em:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python non-Annotated
 
 /// tip | Dica
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 Na verdade você poderia escrever apenas:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python non-Annotated
 
 /// tip | Dica
 
@@ -197,7 +197,7 @@ Mas declarar o tipo é encorajado por que é a forma que o seu editor de texto s
 
 Mas você pode ver que temos uma repetição do código neste exemplo, escrevendo `CommonQueryParams` duas vezes:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python non-Annotated
 
 /// tip | Dica
 
@@ -225,7 +225,7 @@ Para esses casos específicos, você pode fazer o seguinte:
 
 Em vez de escrever:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python non-Annotated
 
 /// tip | Dica
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...escreva:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python non-Annotated
 
 /// tip | Dica
 

@@ -58,7 +58,7 @@ Mas, infelizmente, você não obtém nada útil:
 
 <img src="/img/python-types/image01.png">
 
-### Adicionar tipos { #add-types }
+### Adicione tipos { #add-types }
 
 Vamos modificar uma única linha da versão anterior.
 
@@ -237,7 +237,7 @@ Isso significa que `item` pode ser um `int` ou um `str`.
 
 Você pode declarar que um valor pode ter um tipo, como `str`, mas que ele também pode ser `None`.
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}
