@@ -9,6 +9,7 @@ hide:
 
 ### Internal
 
+* ⬆ Bump opentelemetry-api from 1.45.1 to 1.45.2. PR [#16743](https://github.com/fastapi/fastapi/pull/16743) by [@dependabot[bot]](https://github.com/apps/dependabot).
 * 👷 Limit the full test matrix to Python 3.15. PR [#16776](https://github.com/fastapi/fastapi/pull/16776) by [@tiangolo](https://github.com/tiangolo).
 
 ## 0.163.1 (2026-11-15)
