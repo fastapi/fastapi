@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Translations
+
+* 🌐 Update translations for ru (update-outdated). PR [#16763](https://github.com/fastapi/fastapi/pull/16763) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
+
 ### Internal
 
 * ⬆ Bump opentelemetry-api from 1.45.1 to 1.45.2. PR [#16743](https://github.com/fastapi/fastapi/pull/16743) by [@dependabot[bot]](https://github.com/apps/dependabot).
