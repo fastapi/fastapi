@@ -62,7 +62,7 @@ Und es speichert den zurückgegebenen Wert in einem <dfn title="Hilfsprogramm/Sy
 
 In einem fortgeschrittenen Szenario, bei dem Sie wissen, dass die Abhängigkeit bei jedem Schritt (möglicherweise mehrmals) in demselben Request aufgerufen werden muss, anstatt den zwischengespeicherten Wert zu verwenden, können Sie den Parameter `use_cache=False` festlegen, wenn Sie `Depends` verwenden:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ nicht annotiert
+//// tab | Python nicht annotiert
 
 /// tip | Tipp
 
