@@ -101,7 +101,7 @@ FastAPI 其實檢查的是它是否為「callable」（函式、類別或其他�
 
 注意上面程式碼裡我們寫了兩次 `CommonQueryParams`：
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ 非 Annotated
+//// tab | Python 非 Annotated
 
 /// tip
 
@@ -137,7 +137,7 @@ FastAPI 會從這個物件中提取宣告的參數，並且實際呼叫它。
 
 在這個例子中，前面的 `CommonQueryParams`，於：
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.10+ 非 Annotated
+//// tab | Python 非 Annotated
 
 /// tip
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 其實你可以只寫：
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ 非 Annotated
+//// tab | Python 非 Annotated
 
 /// tip
 
@@ -197,7 +197,7 @@ commons = Depends(CommonQueryParams)
 
 不過你會發現這裡有些重複程式碼，我們寫了兩次 `CommonQueryParams`：
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ 非 Annotated
+//// tab | Python 非 Annotated
 
 /// tip
 
@@ -225,7 +225,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 不要寫：
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ 非 Annotated
+//// tab | Python 非 Annotated
 
 /// tip
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...而是改為：
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.10+ 非 Annotated
+//// tab | Python 非 Annotated
 
 /// tip
 

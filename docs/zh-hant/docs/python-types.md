@@ -137,7 +137,7 @@ John Doe
 
 ### `typing` 模組 { #typing-module }
 
-在一些其他情境中，你可能需要從標準程式庫的 `typing` 模組匯入一些東西，比如當你想宣告某個東西可以是「任何型別」時，可以用 `Any`：
+在一些其他情境中，你可能需要從標準程式庫的 `typing` 模組匯入一些東西，比如當你想宣告某個東西可以是「任何型別」時，可以用 `typing` 中的 `Any`：
 
 ```python
 from typing import Any
@@ -237,7 +237,7 @@ def some_function(data: Any):
 
 你可以宣告某個值可以是某個型別（例如 `str`），但它也可能是 `None`。
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="1"
 {!> ../../docs_src/python_types/tutorial009.py!}

@@ -65,6 +65,93 @@ checker(q="somequery")
 
 ///
 
+## 限制相依的並行數 { #limit-dependency-concurrency }
+
+在某些情況下，你可能想限制同時能使用某個相依的請求數量。
+
+例如，你的資料庫可能只有有限的可用連線。你可以讓新的請求在建立 session 之前等待，直到另一個請求使用完它的 session。
+
+你可以透過 `Depends()` 中的 `max_concurrency` 來達成這點。
+
+讓我們更新 [SQL 資料庫教學](../tutorial/sql-databases.md)中的 `SessionDep` 別名：
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+現在，同一時間最多有**五個請求**能透過這個相依保持資料庫 session 開啟。
+
+如果另一個請求需要 session，它會等待，直到其中一個 session 關閉。
+
+等待期間，它**不會占用工作執行緒**，因此這些執行緒可以用來執行其他程式碼。
+
+這個值必須是正整數。預設值為 `None`，表示 FastAPI 不會限制該相依同時執行的次數。
+
+### 在路由之間共用限制 { #share-the-limit-between-routes }
+
+該範例中的所有路由都使用相同的 `SessionDep` 別名，因此它們共用五個 session 的限制。
+
+若要共用限制，請重複使用**同一個 `Depends()` 物件**，例如將它放在像這樣的 `Annotated` 別名中。
+
+如果你為每個路由各自撰寫一個新的 `Depends(get_session, max_concurrency=5)`，每個路由都會有各自的五個 session 限制。即使它們都使用相同的 `get_session` 函式，也是如此。
+
+在另一個應用中重複使用同一個 `SessionDep` 也會共用限制，只要兩個應用在同一個事件迴圈中執行。這也包含掛載的應用。
+
+例如，如果兩個應用對同一個資料庫連線池使用這個 `SessionDep`，它們透過這個相依開啟的 session 合計最多只能有五個。
+
+如果應用使用不同的連線池，且需要各自獨立的限制，請為每個應用建立獨立的 `Depends()` 物件。
+
+### 關閉 session 後才允許建立下一個 { #close-the-session-before-allowing-another-one }
+
+在這個範例中，`get_session` 使用 `yield`。在結束程式碼完成關閉 session 之前，該 session 都會計入限制。
+
+相依的 `scope` 決定結束程式碼何時執行：
+
+* 使用預設的 `scope="request"` 時，它會在回應送出之後執行。
+* 使用 `scope="function"` 時，它會在「路徑操作函式」執行完畢後、發送回應之前執行。
+
+你可以閱讀更多關於[提前結束與 scope](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope) 的說明。
+
+對於不含 `yield` 的相依，該次呼叫只會在函式執行完畢之前計入限制。
+
+如果你在 WebSocket 處理函式中使用含有 `yield` 的相依，它會持續計入限制，直到處理函式結束，且相依的結束程式碼執行完畢。
+
+/// note | 注意
+
+重複使用[快取的相依值](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times)不會再次計入限制。如果不同的宣告共用該值，只有實際呼叫相依的宣告才會計入它的限制。
+
+///
+
+### 為你的應用選擇限制 { #choose-a-limit-for-your-application }
+
+請根據這些 session 可用的資料庫連線數量，選擇合適的限制。
+
+如果應用的其他部分也會使用這些連線，請同樣為它們預留空間。FastAPI 不知道你的資料庫連線池大小。
+
+每個工作處理程序都有各自的限制。例如，兩個使用這個相依的工作處理程序，合計最多可以開啟十個 session。
+
+/// note | 技術細節
+
+每個事件迴圈的限制也各自獨立。在不同事件迴圈中執行的應用不會共用限制，即使它們重複使用同一個 `Depends()` 物件也是如此。
+
+///
+
+### 需要多個資源的相依 { #dependencies-that-need-more-than-one-resource }
+
+FastAPI 會先執行相依的子相依，再套用該相依的限制。
+
+因此，若要限制資料庫 session 的數量，請將 `max_concurrency` 設定在建立 session 的 `Depends(get_session, ...)` 上。
+
+如果請求仍持有一個直到請求結束才會關閉的 session，卻又需要另一個 session，就可能卡住。
+
+例如，假設同一個請求中使用了兩次共用的 `Depends(get_session, max_concurrency=1, use_cache=False)`。
+
+第一次呼叫會建立 session。第二次呼叫會等待它關閉。但第一個 session 必須等到請求結束才能關閉，而請求卻正在等待第二次呼叫。
+
+如果一個請求持有 session 並等待另一個資源，而另一個請求持有該資源並等待 session，這兩個請求也可能卡住。
+
+如果你的請求需要多個資源，請以相同的順序取得它們。FastAPI 會分別套用每個限制，不會事先保留請求所需的所有資源。
+
 ## 同時含有 `yield`、`HTTPException`、`except` 與背景任務的相依 { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 /// warning | 警告
