@@ -62,7 +62,7 @@ Dönen değeri bir <dfn title="Hesaplanan/üretilen değerleri saklayıp, tekrar
 
 Daha ileri bir senaryoda, "cached" değeri kullanmak yerine aynı request içinde her adımda (muhtemelen birden fazla kez) bağımlılığın çağrılması gerektiğini biliyorsanız, `Depends` kullanırken `use_cache=False` parametresini ayarlayabilirsiniz:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ Annotated olmayan
+//// tab | Python Annotated olmayan
 
 /// tip | İpucu
 
