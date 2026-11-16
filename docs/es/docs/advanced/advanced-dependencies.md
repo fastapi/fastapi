@@ -20,9 +20,9 @@ Para hacer eso, declaramos un método `__call__`:
 
 {* ../../docs_src/dependencies/tutorial011.py hl[12] *}
 
-En este caso, este `__call__` es lo que **FastAPI** usará para comprobar parámetros adicionales y sub-dependencias, y es lo que llamará para pasar un valor al parámetro en tu *path operation function* más adelante.
+En este caso, este `__call__` es lo que **FastAPI** usará para revisar parámetros adicionales y sub-dependencias, y es lo que llamará para pasar un valor al parámetro en tu *path operation function* más adelante.
 
-## Parametrizar la instance { #parameterize-the-instance }
+## Parametriza la instance { #parameterize-the-instance }
 
 Y ahora, podemos usar `__init__` para declarar los parámetros de la instance que podemos usar para "parametrizar" la dependencia:
 
@@ -30,7 +30,7 @@ Y ahora, podemos usar `__init__` para declarar los parámetros de la instance qu
 
 En este caso, **FastAPI** nunca tocará ni se preocupará por `__init__`, lo usaremos directamente en nuestro código.
 
-## Crear una instance { #create-an-instance }
+## Crea una instance { #create-an-instance }
 
 Podríamos crear una instance de esta clase con:
 
@@ -38,7 +38,7 @@ Podríamos crear una instance de esta clase con:
 
 Y de esa manera podemos "parametrizar" nuestra dependencia, que ahora tiene `"bar"` dentro de ella, como el atributo `checker.fixed_content`.
 
-## Usar la instance como una dependencia { #use-the-instance-as-a-dependency }
+## Usa la instance como una dependencia { #use-the-instance-as-a-dependency }
 
 Luego, podríamos usar este `checker` en un `Depends(checker)`, en lugar de `Depends(FixedContentQueryChecker)`, porque la dependencia es la instance, `checker`, no la clase en sí.
 
@@ -63,6 +63,93 @@ En los capítulos sobre seguridad, hay funciones utilitarias que se implementan 
 Si entendiste todo esto, ya sabes cómo funcionan por debajo esas herramientas de utilidad para seguridad.
 
 ///
+
+## Limita la concurrencia de dependencias { #limit-dependency-concurrency }
+
+En algunos casos, puede que quieras limitar cuántas requests pueden usar una dependencia al mismo tiempo.
+
+Por ejemplo, tu base de datos podría tener un número limitado de conexiones disponibles. Podrías hacer que las nuevas requests esperen antes de crear una sesión, hasta que otra request termine de usar su sesión.
+
+Puedes hacer esto con `max_concurrency` en `Depends()`.
+
+Actualicemos el alias `SessionDep` del [tutorial de bases de datos SQL](../tutorial/sql-databases.md):
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+Ahora, hasta **cinco requests** pueden tener una sesión de base de datos abierta a través de esta dependencia al mismo tiempo.
+
+Si otra request necesita una sesión, espera hasta que se cierre una de esas sesiones.
+
+Mientras espera, **no ocupa un hilo de worker**, por lo que esos hilos están disponibles para ejecutar otro código.
+
+El valor debe ser un entero positivo. El valor por defecto es `None`, lo que significa que FastAPI no limita cuántas veces puede ejecutarse la dependencia al mismo tiempo.
+
+### Comparte el límite entre rutas { #share-the-limit-between-routes }
+
+Todas las rutas de ese ejemplo usan el mismo alias `SessionDep`, por lo que comparten el límite de cinco sesiones.
+
+Para compartir un límite, reutiliza el **mismo objeto `Depends()`**, por ejemplo en un alias `Annotated` como este.
+
+Si escribes un nuevo `Depends(get_session, max_concurrency=5)` para cada ruta, cada una tendrá su propio límite de cinco. Esto es así aunque todas usen la misma función `get_session`.
+
+Reutilizar el mismo `SessionDep` en otra aplicación también comparte el límite, siempre que ambas aplicaciones se ejecuten en el mismo loop de eventos. Esto incluye las aplicaciones montadas.
+
+Por ejemplo, si dos aplicaciones usan este `SessionDep` para el mismo pool de conexiones de base de datos, entre las dos pueden tener hasta cinco sesiones abiertas a través de esta dependencia.
+
+Si las aplicaciones usan pools separados y necesitan límites independientes, crea un objeto `Depends()` separado para cada aplicación.
+
+### Cierra la sesión antes de permitir otra { #close-the-session-before-allowing-another-one }
+
+En este ejemplo, `get_session` usa `yield`. La sesión cuenta para el límite hasta que el código de salida termina de cerrarla.
+
+El `scope` de la dependencia determina cuándo se ejecuta ese código de salida:
+
+* Con `scope="request"`, el valor por defecto, se ejecuta después de que se envía la response.
+* Con `scope="function"`, se ejecuta después de que termina la *path operation function*, antes de enviar la response.
+
+Puedes leer más sobre [salida temprana y scope](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope).
+
+Para una dependencia sin `yield`, la llamada cuenta para el límite solo hasta que termina la función.
+
+Si usas una dependencia con `yield` en un manejador de WebSocket, cuenta para el límite hasta que el manejador termina y finaliza el código de salida de la dependencia.
+
+/// note | Nota
+
+Reutilizar un [valor de dependencia en caché](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times) no vuelve a contar para el límite. Si diferentes declaraciones comparten ese valor, solo la declaración que llama a la dependencia cuenta para su límite.
+
+///
+
+### Elige un límite para tu aplicación { #choose-a-limit-for-your-application }
+
+Elige un límite que se ajuste al número de conexiones de base de datos disponibles para estas sesiones.
+
+Si otras partes de tu aplicación también usan esas conexiones, deja espacio para ellas también. FastAPI no conoce el tamaño de tu pool de conexiones de base de datos.
+
+Cada worker process tiene su propio límite. Por ejemplo, dos worker processes con esta dependencia podrían tener hasta diez sesiones abiertas entre los dos.
+
+/// note | Detalles técnicos
+
+Los límites también son independientes para cada loop de eventos. Las aplicaciones que se ejecutan en diferentes loops de eventos no comparten un límite, aunque reutilicen el mismo objeto `Depends()`.
+
+///
+
+### Dependencias que necesitan más de un recurso { #dependencies-that-need-more-than-one-resource }
+
+FastAPI ejecuta las sub-dependencias de una dependencia antes de aplicar el límite de esa dependencia.
+
+Por lo tanto, para limitar las sesiones de base de datos, pon `max_concurrency` en `Depends(get_session, ...)`, donde se crea la sesión.
+
+Una request puede quedarse bloqueada si necesita otra sesión mientras aún mantiene una que solo se cerrará al final de la request.
+
+Por ejemplo, imagina un `Depends(get_session, max_concurrency=1, use_cache=False)` compartido que se usa dos veces en la misma request.
+
+La primera llamada crea una sesión. La segunda llamada espera a que se cierre. Pero la primera sesión no puede cerrarse hasta que termine la request, y la request está esperando a la segunda llamada.
+
+Dos requests también pueden quedarse bloqueadas si una mantiene una sesión mientras espera otro recurso, y la otra mantiene ese recurso mientras espera una sesión.
+
+Si tus requests necesitan varios recursos, adquiérelos en el mismo orden. FastAPI aplica cada límite por separado, no reserva de antemano todos los recursos que necesitará una request.
 
 ## Dependencias con `yield`, `HTTPException`, `except` y Tareas en segundo plano { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
@@ -144,7 +231,7 @@ Esto cambió en la versión 0.110.0 para arreglar consumo de memoria no manejado
 
 ### Tareas en segundo plano y dependencias con `yield`, detalles técnicos { #background-tasks-and-dependencies-with-yield-technical-details }
 
-Antes de FastAPI 0.106.0, elevar excepciones después de `yield` no era posible, el código de salida en dependencias con `yield` se ejecutaba después de que la response era enviada, por lo que [Manejadores de Excepciones](../tutorial/handling-errors.md#install-custom-exception-handlers) ya habrían corrido.
+Antes de FastAPI 0.106.0, elevar excepciones después de `yield` no era posible, el código de salida en dependencias con `yield` se ejecutaba *después* de que la response era enviada, por lo que [Manejadores de Excepciones](../tutorial/handling-errors.md#install-custom-exception-handlers) ya habrían corrido.
 
 Esto se diseñó así principalmente para permitir usar los mismos objetos devueltos con `yield` por las dependencias dentro de tareas en segundo plano, porque el código de salida se ejecutaría después de que las tareas en segundo plano terminaran.
 
