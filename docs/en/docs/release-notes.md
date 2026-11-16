@@ -9,6 +9,7 @@ hide:
 
 ### Translations
 
+* 🌐 Update translations for zh (add-missing). PR [#16756](https://github.com/fastapi/fastapi/pull/16756) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for es (update-outdated). PR [#16758](https://github.com/fastapi/fastapi/pull/16758) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for es (add-missing). PR [#16751](https://github.com/fastapi/fastapi/pull/16751) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
 * 🌐 Update translations for zh (update-outdated). PR [#16767](https://github.com/fastapi/fastapi/pull/16767) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
