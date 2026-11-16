@@ -1,6 +1,6 @@
-# Advanced Dependencies { #advanced-dependencies }
+# उन्नत Dependencies { #advanced-dependencies }
 
-## Parameterized dependencies { #parameterized-dependencies }
+## Parameterize की गई dependencies { #parameterized-dependencies }
 
 अब तक हमने जो भी dependencies देखी हैं, वे एक निश्चित function या class हैं।
 
@@ -64,6 +64,93 @@ Security वाले chapters में utility functions हैं जिन�
 
 ///
 
+## Dependency concurrency सीमित करें { #limit-dependency-concurrency }
+
+कुछ मामलों में, आप यह सीमित करना चाह सकते हैं कि एक ही समय में कितने requests किसी dependency का उपयोग कर सकते हैं।
+
+उदाहरण के लिए, आपके database में सीमित संख्या में connections उपलब्ध हो सकते हैं। आप session बनाने से पहले नए requests को तब तक प्रतीक्षा करवा सकते हैं, जब तक कोई दूसरा request अपने session का उपयोग करना समाप्त न कर दे।
+
+आप `Depends()` में `max_concurrency` से ऐसा कर सकते हैं।
+
+आइए [SQL databases ट्यूटोरियल](../tutorial/sql-databases.md) के `SessionDep` alias को अपडेट करें:
+
+```Python
+SessionDep = Annotated[Session, Depends(get_session, max_concurrency=5)]
+```
+
+अब, इस dependency के माध्यम से एक ही समय में अधिकतम **पाँच requests** का database session खुला रह सकता है।
+
+यदि किसी अन्य request को session चाहिए, तो वह उन sessions में से किसी एक के बंद होने तक प्रतीक्षा करता है।
+
+प्रतीक्षा करते समय, यह **किसी worker thread को व्यस्त नहीं रखता**, इसलिए वे threads अन्य code चलाने के लिए उपलब्ध रहते हैं।
+
+इसकी value एक धनात्मक पूर्णांक होनी चाहिए। default `None` है, जिसका अर्थ है कि FastAPI यह सीमित नहीं करता कि dependency एक ही समय में कितनी बार चल सकती है।
+
+### Routes के बीच सीमा साझा करें { #share-the-limit-between-routes }
+
+उस उदाहरण के सभी routes एक ही `SessionDep` alias का उपयोग करते हैं, इसलिए वे पाँच sessions की सीमा साझा करते हैं।
+
+सीमा साझा करने के लिए, **उसी `Depends()` object** का दोबारा उपयोग करें, उदाहरण के लिए इस तरह के किसी `Annotated` alias में।
+
+यदि आप प्रत्येक route के लिए नया `Depends(get_session, max_concurrency=5)` लिखते हैं, तो हर एक की पाँच sessions की अपनी सीमा होगी। ऐसा तब भी होगा जब वे सभी एक ही `get_session` function का उपयोग करते हों।
+
+किसी अन्य application में उसी `SessionDep` का दोबारा उपयोग करने पर भी सीमा साझा होती है, बशर्ते दोनों applications एक ही event loop में चल रही हों। इसमें mounted applications भी शामिल हैं।
+
+उदाहरण के लिए, यदि दो applications एक ही database pool के लिए इस `SessionDep` का उपयोग करती हैं, तो इस dependency के माध्यम से दोनों के मिलाकर अधिकतम पाँच sessions खुले रह सकते हैं।
+
+यदि applications अलग-अलग pools का उपयोग करती हैं और उन्हें स्वतंत्र सीमाएँ चाहिए, तो प्रत्येक application के लिए अलग `Depends()` object बनाएँ।
+
+### दूसरे session की अनुमति देने से पहले session बंद करें { #close-the-session-before-allowing-another-one }
+
+इस उदाहरण में, `get_session` में `yield` का उपयोग होता है। session तब तक सीमा में गिना जाता है जब तक exit code उसे बंद करना समाप्त नहीं कर देता।
+
+Dependency का `scope` तय करता है कि वह exit code कब चलता है:
+
+* default `scope="request"` के साथ, यह response भेजे जाने के बाद चलता है।
+* `scope="function"` के साथ, यह *path operation function* के समाप्त होने के बाद, response भेजने से पहले चलता है।
+
+आप [early exit और scope](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope) के बारे में अधिक पढ़ सकते हैं।
+
+बिना `yield` वाली dependency के लिए, call केवल function के समाप्त होने तक सीमा में गिनी जाती है।
+
+यदि आप WebSocket handler में `yield` वाली dependency का उपयोग करते हैं, तो वह तब तक सीमा में गिनी जाती है जब तक handler समाप्त नहीं हो जाता और dependency का exit code पूरा नहीं हो जाता।
+
+/// note | ध्यान दें
+
+[Cached dependency value](../tutorial/dependencies/sub-dependencies.md#using-the-same-dependency-multiple-times) का दोबारा उपयोग सीमा में फिर से नहीं गिना जाता। यदि अलग-अलग declarations उस value को साझा करती हैं, तो केवल वह declaration अपनी सीमा में गिनी जाती है जो dependency को call करती है।
+
+///
+
+### अपनी application के लिए सीमा चुनें { #choose-a-limit-for-your-application }
+
+ऐसी सीमा चुनें जो इन sessions के लिए उपलब्ध database connections की संख्या के अनुकूल हो।
+
+यदि आपकी application के अन्य हिस्से भी उन connections का उपयोग करते हैं, तो उनके लिए भी गुंजाइश रखें। FastAPI को आपके database connection pool का आकार पता नहीं होता।
+
+हर worker process की अपनी सीमा होती है। उदाहरण के लिए, इस dependency वाले दो worker processes में कुल मिलाकर अधिकतम दस sessions खुले हो सकते हैं।
+
+/// note | तकनीकी विवरण
+
+हर event loop के लिए भी सीमाएँ अलग होती हैं। अलग-अलग event loops में चलने वाली applications सीमा साझा नहीं करतीं, भले ही वे उसी `Depends()` object का दोबारा उपयोग करें।
+
+///
+
+### ऐसी dependencies जिन्हें एक से अधिक resource चाहिए { #dependencies-that-need-more-than-one-resource }
+
+FastAPI किसी dependency की सीमा लागू करने से पहले उसकी sub-dependencies चलाता है।
+
+इसलिए, database sessions को सीमित करने के लिए, `max_concurrency` को `Depends(get_session, ...)` पर लगाएँ, जहाँ session बनाया जाता है।
+
+कोई request अटक सकता है यदि उसे एक और session चाहिए, जबकि वह पहले से ऐसा session पकड़े हुए है जो केवल request के अंत में बंद होगा।
+
+उदाहरण के लिए, कल्पना करें कि एक साझा `Depends(get_session, max_concurrency=1, use_cache=False)` का एक ही request में दो बार उपयोग होता है।
+
+पहली call एक session बनाती है। दूसरी call उसके बंद होने की प्रतीक्षा करती है। लेकिन पहला session request के समाप्त होने तक बंद नहीं हो सकता, और request दूसरी call की प्रतीक्षा कर रहा है।
+
+दो requests भी अटक सकते हैं यदि एक किसी अन्य resource की प्रतीक्षा करते हुए session पकड़े हुए है, और दूसरा session की प्रतीक्षा करते हुए उस resource को पकड़े हुए है।
+
+यदि आपके requests को कई resources चाहिए, तो उन्हें एक ही क्रम में प्राप्त करें। FastAPI हर सीमा अलग से लागू करता है, वह किसी request को लगने वाले सभी resources पहले से आरक्षित नहीं करता।
+
 ## `yield`, `HTTPException`, `except` और Background Tasks वाली Dependencies { #dependencies-with-yield-httpexception-except-and-background-tasks }
 
 /// warning | चेतावनी
@@ -84,7 +171,7 @@ Version 0.121.0 में, FastAPI ने `yield` वाली dependencies क�
 
 और `Depends(scope="request")` (default) का उपयोग करने पर, `yield` के बाद का exit code response भेजे जाने के बाद execute होता है।
 
-आप इसके बारे में docs में [Dependencies with `yield` - Early exit and `scope`](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope) में अधिक पढ़ सकते हैं।
+आप इसके बारे में docs में [`yield` वाली Dependencies - Early exit और `scope`](../tutorial/dependencies/dependencies-with-yield.md#early-exit-and-scope) में अधिक पढ़ सकते हैं।
 
 ### `yield` और `StreamingResponse` वाली Dependencies, तकनीकी विवरण { #dependencies-with-yield-and-streamingresponse-technical-details }
 

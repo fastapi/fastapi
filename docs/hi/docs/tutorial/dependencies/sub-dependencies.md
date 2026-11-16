@@ -62,7 +62,7 @@ query_extractor --> query_or_cookie_extractor --> read_query
 
 एक advanced scenario में, जहाँ आप जानते हैं कि आपको उसी request में "cached" value का उपयोग करने के बजाय हर step पर dependency को call करवाना है (संभवतः कई बार), आप `Depends` का उपयोग करते समय parameter `use_cache=False` set कर सकते हैं:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python hl_lines="2"
 async def needy_dependency(
@@ -73,7 +73,7 @@ async def needy_dependency(
 
 ////
 
-//// tab | Python 3.10+ बिना Annotated के
+//// tab | Python बिना Annotated के
 
 /// tip | सुझाव
 

@@ -101,7 +101,7 @@ Class का instance बनाने के लिए उपयोग की �
 
 ध्यान दें कि ऊपर के code में हम `CommonQueryParams` को दो बार कैसे लिखते हैं:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -109,7 +109,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python बिना Annotated के
 
 /// tip | सुझाव
 
@@ -137,7 +137,7 @@ FastAPI इसी से declared parameters extract करेगा और व�
 
 इस case में, पहला `CommonQueryParams`, इसमें:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, ...
@@ -145,7 +145,7 @@ commons: Annotated[CommonQueryParams, ...
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python बिना Annotated के
 
 /// tip | सुझाव
 
@@ -163,7 +163,7 @@ commons: CommonQueryParams ...
 
 आप वास्तव में सिर्फ यह लिख सकते हैं:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[Any, Depends(CommonQueryParams)]
@@ -171,7 +171,7 @@ commons: Annotated[Any, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python बिना Annotated के
 
 /// tip | सुझाव
 
@@ -197,7 +197,7 @@ commons = Depends(CommonQueryParams)
 
 लेकिन आप देखते हैं कि यहाँ कुछ code repetition हो रहा है, `CommonQueryParams` को दो बार लिखते हुए:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -205,7 +205,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python बिना Annotated के
 
 /// tip | सुझाव
 
@@ -225,7 +225,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 यह लिखने के बजाय:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
@@ -233,7 +233,7 @@ commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python बिना Annotated के
 
 /// tip | सुझाव
 
@@ -249,7 +249,7 @@ commons: CommonQueryParams = Depends(CommonQueryParams)
 
 ...आप लिखते हैं:
 
-//// tab | Python 3.10+
+//// tab | Python
 
 ```Python
 commons: Annotated[CommonQueryParams, Depends()]
@@ -257,7 +257,7 @@ commons: Annotated[CommonQueryParams, Depends()]
 
 ////
 
-//// tab | Python 3.10+ non-Annotated
+//// tab | Python बिना Annotated के
 
 /// tip | सुझाव
 
