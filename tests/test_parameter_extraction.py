@@ -68,7 +68,7 @@ def test_parameter_model_extraction_has_linear_scan_cost(
         ]
     else:
         assert errors == []
-        assert values["data"].model_dump() == {
+        assert endpoint(**values).model_dump() == {
             "value": "default",
             **(expected_extras if extra == "allow" else {}),
         }
@@ -116,11 +116,12 @@ async def test_form_extraction_has_linear_scan_cost(
         assert errors == []
         assert backing_items.visited <= 10 * len(received)
         if kind == "model":
-            assert values["data"].model_dump() == {"value": "default"}
+            assert endpoint(**values).model_dump() == {"value": "default"}
         elif kind == "scalar":
             assert values == {"value": "default"}
+            assert endpoint(**values) == "default"
         else:
-            assert values["upload"] is upload
+            assert endpoint(**values) is upload
             assert contents.tell() == 0
 
 
@@ -175,7 +176,7 @@ async def test_model_before_validator_receives_ignored_extras(
     assert inputs == [
         {"tags": ["one", "two"], "extra": ["first", "second"], "empty": ""}
     ]
-    assert values["data"].model_dump() == {"tags": ["one", "two"]}
+    assert endpoint(**values).model_dump() == {"tags": ["one", "two"]}
 
 
 @pytest.mark.parametrize("location", ["query", "header"])
@@ -205,8 +206,8 @@ def test_parameter_model_extras_reflect_mutation(
     received.update({"extra": "changed"})
     after, errors = request_params_to_args(fields, received)
     assert errors == []
-    assert before["data"].model_extra == {"extra": ["first", "second"]}
-    assert after["data"].model_extra == {"extra": "changed"}
+    assert endpoint(**before).model_extra == {"extra": ["first", "second"]}
+    assert endpoint(**after).model_extra == {"extra": "changed"}
 
 
 @pytest.mark.parametrize("location", ["query", "header"])
@@ -293,7 +294,7 @@ async def test_form_union_normalization_has_linear_scan_cost(
     )
 
     assert errors == []
-    assert values["data"].model_dump() == {
+    assert endpoint(**values).model_dump() == {
         "kind": "second",
         "tags": ["one", "two"],
     }
