@@ -881,6 +881,30 @@ def _get_multidict_value(
     return value
 
 
+def _get_multidict_extras(
+    received_params: Mapping[str, Any], processed_keys: set[str]
+) -> Iterator[tuple[str, Any]]:
+    if isinstance(received_params, ImmutableMultiDict):
+        # Unlike items(), multi_items() preserves duplicate query and form keys.
+        items = received_params.multi_items()
+    elif isinstance(received_params, Headers):
+        # Headers.items() already includes every occurrence of each header.
+        items = received_params.items()
+    else:
+        for key in received_params:
+            if key not in processed_keys:
+                yield key, received_params.get(key)
+        return
+
+    # Group repeated values once instead of scanning all entries for every key.
+    grouped: dict[str, list[Any]] = {}
+    for key, value in items:
+        if key not in processed_keys:
+            grouped.setdefault(key, []).append(value)
+    for key, values in grouped.items():
+        yield key, values[0] if len(values) == 1 else values
+
+
 def _request_param_model_to_args(
     model_field: ModelField,
     model: type[BaseModel],
@@ -925,16 +949,7 @@ def _request_param_model_to_args(
             processed_keys.add(request_alias)
 
     # Let each model apply its extra policy to all remaining inputs.
-    for key in received_params.keys():
-        if key not in processed_keys:
-            if isinstance(received_params, (ImmutableMultiDict, Headers)):
-                value = received_params.getlist(key)
-                if isinstance(value, list) and (len(value) == 1):
-                    params_to_process[key] = value[0]
-                else:
-                    params_to_process[key] = value
-            else:
-                params_to_process[key] = received_params.get(key)
+    params_to_process.update(_get_multidict_extras(received_params, processed_keys))
 
     field_info = model_field.field_info
     assert isinstance(field_info, params.Param), "Params must be subclasses of Param"
@@ -1116,13 +1131,8 @@ def _extract_form_items(
                 yield alias, value, field
                 # Leave later aliases unchanged for other fields or extra validation.
                 break
-    for key in received_body.keys():
-        if key not in field_aliases:
-            param_values = received_body.getlist(key)
-            if len(param_values) == 1:
-                yield key, param_values[0], None
-            else:
-                yield key, param_values, None
+    for key, value in _get_multidict_extras(received_body, field_aliases):
+        yield key, value, None
 
 
 async def _read_file_bytes(file: UploadFile) -> bytes:
@@ -1214,14 +1224,15 @@ async def request_body_to_args(
             field for field in body_fields if not _get_form_models(field)
         ]
         body_to_process = {}
-        async for alias, value, field in _extract_form_body(
-            fields_to_extract,
-            received_body,
-        ):
-            body_to_process[alias] = value
-            if field is not None:
-                # Keep each parameter's selected alias and scalar/list shape.
-                form_values[field.name] = (alias, value)
+        if fields_to_extract:
+            async for alias, value, field in _extract_form_body(
+                fields_to_extract,
+                received_body,
+            ):
+                body_to_process[alias] = value
+                if field is not None:
+                    # Keep each parameter's selected alias and scalar/list shape.
+                    form_values[field.name] = (alias, value)
 
     if single_not_embedded_field:
         loc: tuple[str, ...] = ("body",)
