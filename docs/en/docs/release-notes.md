@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.163.2 (2026-11-17)
+
 ### Refactors
 
 * ♻️ Refactor query, header, and form parameter extraction. PR [#16779](https://github.com/fastapi/fastapi/pull/16779) by [@tiangolo](https://github.com/tiangolo).
