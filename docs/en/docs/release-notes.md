@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Refactors
+
+* ♻️ Refactor query, header, and form parameter extraction. PR [#16779](https://github.com/fastapi/fastapi/pull/16779) by [@tiangolo](https://github.com/tiangolo).
+
 ### Translations
 
 * 🌐 Update translations for ko (update-outdated). PR [#16760](https://github.com/fastapi/fastapi/pull/16760) by [@pr-submit[bot]](https://github.com/apps/pr-submit).
