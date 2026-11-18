@@ -150,7 +150,7 @@ This could be especially useful during testing, as it's very easy to override a 
 
 Coming from the previous example, your `config.py` file could look like:
 
-{* ../../docs_src/settings/app02/config.py hl[10] *}
+{* ../../docs_src/settings/app02/config.py *}
 
 Notice that now we don't create a default instance `settings = Settings()`.
 

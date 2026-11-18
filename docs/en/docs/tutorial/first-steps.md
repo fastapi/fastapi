@@ -56,7 +56,7 @@ $ <font color="#4E9A06">uv run fastapi</font> dev
 
 In the output, there's a line with something like:
 
-```hl_lines="4"
+```
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 ```
 
