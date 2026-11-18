@@ -17,6 +17,7 @@ Official FastAPI skill to write code with best practices, keeping up to date wit
 * OpenTelemetry: use FastAPI's native traces, metrics, and logs. See [OpenTelemetry](#opentelemetry).
 * Dependencies: use `Annotated[..., Depends(...)]`; see [Dependency Injection](#dependency-injection) and [the dependency injection reference](references/dependencies.md) for `yield`, scopes, concurrency limits, and class dependencies.
 * Response models: prefer return types; use `response_model` when the public response schema differs from the internal return value; see [the response reference](references/responses.md).
+* Request body limits: use `max_body_size` on the app, router, or path operation. See [Request Body Limits](#request-body-limits).
 * Parameter models: `Query`, `Header`, `Cookie`, and `Form` support multiple models and optional groups. See [the parameter models reference](references/parameter-models.md) for declarations, form unions, and extra-field behavior.
 * Pydantic models: do not use ellipsis or `RootModel`; see [the Pydantic reference](references/pydantic.md).
 * Routing: declare router-level prefix, tags, and shared dependencies on the `APIRouter`; see [the path operation reference](references/path-operations.md).
@@ -188,6 +189,16 @@ app.include_router(router)
 ```
 
 See [the path operation reference](references/path-operations.md) for more routing patterns.
+
+## Request Body Limits
+
+Use `max_body_size` when an application needs a limit on total HTTP request body bytes. The limit includes uploaded files and multipart overhead. Enforcement counts received bytes, so a Content-Length-only dependency is not a substitute.
+
+Configure a default with `FastAPI(max_body_size=...)`, a router default with `APIRouter(max_body_size=...)`, or a specific limit on a path operation. More specific configured limits can raise or lower the default. `None` inherits, and `0` allows only an empty body. Without a configured limit, bodies remain unlimited.
+
+Middleware that reads the body before routing uses the application limit, even when an upload endpoint allows more. This total limit is separate from per-file validation, parser field counts, and the spool threshold.
+
+See [Request Body Limits](https://fastapi.tiangolo.com/advanced/request-body-limits/) for an example.
 
 ## Serve Frontend Apps
 
