@@ -55,6 +55,7 @@ from fastapi._compat import (
     Undefined,
     lenient_issubclass,
 )
+from fastapi._form_limits import _FormLimits, _validate_form_limits
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.dependencies.models import (
     Dependant,
@@ -419,6 +420,7 @@ def get_request_handler(
     strict_content_type: bool | DefaultPlaceholder = Default(True),
     stream_item_field: ModelField | None = None,
     is_json_stream: bool = False,
+    form_limits: _FormLimits | None = None,
 ) -> Callable[[Request], Coroutine[Any, Any, Response]]:
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = _is_coroutine_callable(dependant.call)
@@ -460,7 +462,10 @@ def get_request_handler(
             body: Any = Undefined
             if body_field:
                 if is_body_form:
-                    body = await request.form()
+                    limits = _resolve_form_limits(
+                        request.scope.get(_FASTAPI_SCOPE_KEY, {}), form_limits
+                    )
+                    body = await request.form(**limits)
                     file_stack.push_async_callback(body.close)
                 else:
                     body_bytes = await request.body()
@@ -904,6 +909,7 @@ class APIWebSocketRoute(routing.WebSocketRoute):
 
 _FASTAPI_SCOPE_KEY = "fastapi"
 _FASTAPI_EFFECTIVE_ROUTE_CONTEXT_KEY = "effective_route_context"
+_FASTAPI_FORM_LIMITS_KEY = "form_limits"
 _FASTAPI_FRONTEND_PATH_KEY = "frontend_path"
 _FASTAPI_FRONTEND_SPECIFICITY_KEY = "frontend_specificity"
 _FASTAPI_INCLUDED_ROUTER_KEY = "included_router"
@@ -944,13 +950,28 @@ def _get_fastapi_scope(scope: Scope) -> dict[str, Any]:
     return fastapi_scope
 
 
+def _resolve_form_limits(
+    fastapi_scope: dict[str, Any], overrides: _FormLimits | None
+) -> _FormLimits:
+    inherited: _FormLimits = fastapi_scope.get(_FASTAPI_FORM_LIMITS_KEY, {})
+    return {**inherited, **overrides} if overrides else inherited
+
+
+def _apply_router_form_limits(scope: Scope, limits: _FormLimits) -> None:
+    if limits and scope["type"] == "http":
+        fastapi_scope = _get_fastapi_scope(scope)
+        fastapi_scope[_FASTAPI_FORM_LIMITS_KEY] = _resolve_form_limits(
+            fastapi_scope, limits
+        )
+
+
 def _update_scope(scope: Scope, child_scope: Scope) -> None:
-    fastapi_child_scope = child_scope.get(_FASTAPI_SCOPE_KEY)
-    for key, value in child_scope.items():
-        if key != _FASTAPI_SCOPE_KEY:
-            scope[key] = value
-    if isinstance(fastapi_child_scope, dict):
-        _get_fastapi_scope(scope).update(fastapi_child_scope)
+    if _FASTAPI_SCOPE_KEY in child_scope:
+        child_scope = dict(child_scope)
+        fastapi_child_scope = child_scope.pop(_FASTAPI_SCOPE_KEY)
+        if isinstance(fastapi_child_scope, dict):
+            _get_fastapi_scope(scope).update(fastapi_child_scope)
+    scope.update(child_scope)
 
 
 def _get_scope_effective_route_context(scope: Scope) -> Any | None:
@@ -1260,7 +1281,9 @@ class APIRoute(routing.Route):
         | DefaultPlaceholder = Default(generate_unique_id),
         strict_content_type: bool | DefaultPlaceholder = Default(True),
         max_body_size: int | None = None,
+        form_limits: _FormLimits | None = None,
     ) -> None:
+        self.form_limits = _validate_form_limits(form_limits)
         _populate_api_route_state(
             cast(_APIRouteLike, self),
             path,
@@ -1318,6 +1341,7 @@ class APIRoute(routing.Route):
             dependency_overrides_provider=route.dependency_overrides_provider,
             embed_body_fields=route._embed_body_fields,
             strict_content_type=route.strict_content_type,
+            form_limits=self.form_limits,
             stream_item_field=route.stream_item_field,
             is_json_stream=route.is_json_stream,
         )
@@ -1372,6 +1396,7 @@ class _RouterIncludeContext:
     )
     dependency_overrides_provider: Any | None = None
     max_body_size: int | None = None
+    form_limits: _FormLimits = field(default_factory=_FormLimits)
 
     @classmethod
     def for_include(
@@ -1392,10 +1417,15 @@ class _RouterIncludeContext:
         generate_unique_id_function: Callable[[APIRoute], str]
         | DefaultPlaceholder = Default(generate_unique_id),
         max_body_size: int | None = None,
+        form_limits: _FormLimits | None = None,
     ) -> "_RouterIncludeContext":
         validate_max_body_size(max_body_size)
         return cls(
             included_router=included_router,
+            form_limits={
+                **_validate_form_limits(form_limits),
+                **included_router.form_limits,
+            },
             prefix=parent_router.prefix + prefix,
             tags=[*parent_router.tags, *(tags or [])],
             dependencies=[*parent_router.dependencies, *(dependencies or [])],
@@ -1423,6 +1453,8 @@ class _RouterIncludeContext:
     ) -> "_RouterIncludeContext":
         return _RouterIncludeContext(
             included_router=child_context.included_router,
+            # The enclosing router applies its form limits when it enters the request.
+            form_limits=child_context.form_limits,
             prefix=self.prefix + child_context.prefix,
             tags=[*self.tags, *child_context.tags],
             dependencies=[*self.dependencies, *child_context.dependencies],
@@ -1879,6 +1911,7 @@ class _IncludedRouter(BaseRoute):
             )
 
     async def handle(self, scope: Scope, receive: Receive, send: Send) -> None:
+        _apply_router_form_limits(scope, self.include_context.form_limits)
         _get_fastapi_scope(scope)[_FASTAPI_INCLUDED_ROUTER_KEY] = self
         await self.original_router.handle(scope, receive, send)
 
@@ -1892,7 +1925,7 @@ class _IncludedRouter(BaseRoute):
             )
             await default(scope, receive, send)
             return
-        scope.update(child_scope)
+        _update_scope(scope, child_scope)
         if isinstance(route, _IncludedRouter):
             await route.handle(scope, receive, send)
             return
@@ -2656,6 +2689,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> None:
         validate_max_body_size(max_body_size)
         # Determine the lifespan context to use
@@ -2708,6 +2749,7 @@ class APIRouter(routing.Router):
         self.route_class = route_class
         self.default_response_class = default_response_class
         self.generate_unique_id_function = generate_unique_id_function
+        self.form_limits = _validate_form_limits(form_limits)
         self.strict_content_type = strict_content_type
         self.max_body_size = max_body_size
         self._routes_version = 0
@@ -2866,6 +2908,7 @@ class APIRouter(routing.Router):
     async def app(self, scope: Scope, receive: Receive, send: Send) -> None:
         assert scope["type"] in ("http", "websocket", "lifespan")
 
+        _apply_router_form_limits(scope, self.form_limits)
         if "router" not in scope:
             scope["router"] = self
 
@@ -2877,7 +2920,7 @@ class APIRouter(routing.Router):
         for route in self.routes:
             match, child_scope = route.matches(scope)
             if match == Match.FULL:
-                scope.update(child_scope)
+                _update_scope(scope, child_scope)
                 _route_selected(
                     scope=scope,
                     path=getattr(route, "path_format", None),
@@ -2890,7 +2933,7 @@ class APIRouter(routing.Router):
 
         if partial is not None:
             route, child_scope = partial
-            scope.update(child_scope)
+            _update_scope(scope, child_scope)
             _route_selected(
                 scope=scope,
                 path=getattr(route, "path_format", None),
@@ -3116,6 +3159,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> None:
         route_class = route_class_override or self.route_class
         responses = responses or {}
@@ -3135,6 +3186,10 @@ class APIRouter(routing.Router):
         current_generate_unique_id = get_value_or_default(
             generate_unique_id_function, self.generate_unique_id_function
         )
+        # Keep the existing constructor call for custom routes without form settings.
+        route_options: dict[str, Any] = {}
+        if form_limits is not None:
+            route_options["form_limits"] = form_limits
         route = route_class(
             self.prefix + path,
             endpoint=endpoint,
@@ -3166,6 +3221,7 @@ class APIRouter(routing.Router):
                 strict_content_type, self.strict_content_type
             ),
             max_body_size=get_body_size_limit(max_body_size, self.max_body_size),
+            **route_options,
         )
         self.routes.append(route)
         self._mark_routes_changed()
@@ -3215,6 +3271,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.add_api_route(
@@ -3244,6 +3308,7 @@ class APIRouter(routing.Router):
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
                 max_body_size=max_body_size,
+                form_limits=form_limits,
             )
             return func
 
@@ -3474,6 +3539,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> None:
         """
         Include another `APIRouter` in the same current `APIRouter`.
@@ -3539,6 +3612,7 @@ class APIRouter(routing.Router):
             include_in_schema=include_in_schema,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
         self.routes.append(
             _IncludedRouter(original_router=router, include_context=include_context)
@@ -3900,6 +3974,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP GET operation.
@@ -3945,6 +4027,7 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def put(
@@ -4294,6 +4377,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -4344,6 +4435,7 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def post(
@@ -4693,6 +4785,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -4743,6 +4843,7 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def delete(
@@ -5092,6 +5193,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP DELETE operation.
@@ -5137,6 +5246,7 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def options(
@@ -5486,6 +5596,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP OPTIONS operation.
@@ -5531,6 +5649,7 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def head(
@@ -5880,6 +5999,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP HEAD operation.
@@ -5930,6 +6057,7 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def patch(
@@ -6279,6 +6407,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PATCH operation.
@@ -6329,6 +6465,7 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def trace(
@@ -6678,6 +6815,14 @@ class APIRouter(routing.Router):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP TRACE operation.
@@ -6728,6 +6873,7 @@ class APIRouter(routing.Router):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     # TODO: remove this once the lifespan (or alternative) interface is improved

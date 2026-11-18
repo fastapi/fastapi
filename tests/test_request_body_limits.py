@@ -5,6 +5,7 @@ import anyio
 import httpx
 import pytest
 from fastapi import APIRouter, Body, FastAPI, File, Request, UploadFile, WebSocket
+from fastapi._form_limits import _FormLimits
 from fastapi.routing import APIRoute
 from fastapi.testclient import TestClient
 from starlette.exceptions import HTTPException
@@ -115,16 +116,24 @@ async def test_boundary_sizes(limit, size, expected):
         "add_api_route",
     ],
 )
-async def test_operation_methods_forward_limit(owner, method):
+async def test_operation_methods_forward_limits(owner, method):
     app = FastAPI(max_body_size=1)
     router = APIRouter()
     target = app if owner == "app" else router
+    limits: _FormLimits = {"max_fields": 1}
     if method == "add_api_route":
-        target.add_api_route("/", echo, methods=["POST"], max_body_size=5)
+        target.add_api_route(
+            "/", echo, methods=["POST"], max_body_size=5, form_limits=limits
+        )
     elif method == "api_route":
-        target.api_route("/", methods=["POST"], max_body_size=5)(echo)
+        target.api_route("/", methods=["POST"], max_body_size=5, form_limits=limits)(
+            echo
+        )
     else:
-        getattr(target, method)("/", max_body_size=5)(echo)
+        getattr(target, method)("/", max_body_size=5, form_limits=limits)(echo)
+    route = target.routes[-1]
+    assert isinstance(route, APIRoute)
+    assert route.form_limits == limits
     if owner == "router":
         app.include_router(router)
     http_method = "POST" if method in {"api_route", "add_api_route"} else method.upper()
