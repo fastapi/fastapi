@@ -147,3 +147,15 @@ def test_old_multipart_installed(monkeypatch):
         @app.post("/")
         async def root(username: str = Form()):
             return username  # pragma: nocover
+
+
+def test_new_multipart_version_without_multipart_alias(monkeypatch):
+    monkeypatch.setattr("python_multipart.__version__", "0.0.100")
+    with warnings.catch_warnings(record=True):
+        warnings.simplefilter("always")
+        monkeypatch.delattr("multipart.__version__", raising=False)
+        app = FastAPI()
+
+        @app.post("/")
+        async def root(username: str = Form()):
+            return username  # pragma: nocover

@@ -1,4 +1,19 @@
-from fastapi.dependencies.utils import get_typed_annotation
+from fastapi.dependencies.utils import _version_str_to_tuple, get_typed_annotation
+
+
+def test_version_str_to_tuple():
+    assert _version_str_to_tuple("0.0.12") == (0, 0, 12)
+    assert _version_str_to_tuple("0.0.100") == (0, 0, 100)
+    assert _version_str_to_tuple("1.2.3a1") == (1, 2, 3)
+    assert _version_str_to_tuple("") == ()
+
+
+def test_version_str_to_tuple_ignores_trailing_zeros():
+    # "0.0.12.0" is the same version as "0.0.12", so it must not be
+    # considered newer than the minimum supported version.
+    assert _version_str_to_tuple("0.0.12.0") == (0, 0, 12)
+    assert not _version_str_to_tuple("0.0.12.0") > (0, 0, 12)
+    assert _version_str_to_tuple("0.0.12.1") > (0, 0, 12)
 
 
 def test_get_typed_annotation():
