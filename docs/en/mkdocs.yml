@@ -172,6 +172,7 @@ nav:
     - advanced/advanced-python-types.md
     - advanced/json-base64-bytes.md
     - advanced/strict-content-type.md
+    - advanced/request-body-limits.md
   - fastapi-cli.md
   - editor-support.md
   - ai-development.md
