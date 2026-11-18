@@ -8,6 +8,9 @@ on:
 
 permissions: {}
 
+env:
+  UV_NO_SYNC: true
+
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
