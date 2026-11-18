@@ -35,3 +35,19 @@ If the middleware passes the request to a mounted app, the mounted app's limit a
 If your middleware needs to read those uploads, set the app's limit large enough for them and set smaller limits on the *path operations* that need them.
 
 ///
+
+## Set limits for form fields and files { #set-limits-for-form-fields-and-files }
+
+You can set limits for form fields and files in the `form_limits` configuration.
+
+Each setting inherits independently, so you can override just the limits you need on the app, on a router, in `include_router()`, or on a single *path operation*.
+
+{* ../../docs_src/request_body_limits/tutorial002.py hl[5,13] *}
+
+* `max_fields` sets the maximum number of text fields. The default is 1,000.
+* `max_files` sets the maximum number of files in a multipart form. The default is 1,000.
+* `max_part_size` sets the maximum size in bytes of each text field. The default is 1 MiB. For URL-encoded forms, Starlette counts the encoded name and value together.
+
+FastAPI passes these settings to Starlette when it parses a request for a `Form`, `File`, or `UploadFile` parameter, including parameters in dependencies. Exceeding a parser limit returns HTTP 400. Use `max_body_size` to bound the whole request, including uploaded file contents.
+
+If you parse a form yourself, pass your limits to the first `request.form()` call. Starlette caches the parsed form on that request.

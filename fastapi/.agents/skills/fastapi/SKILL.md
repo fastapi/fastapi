@@ -198,6 +198,8 @@ Configure a default with `FastAPI(max_body_size=...)`, a router default with `AP
 
 Middleware that reads the body before routing uses the application limit, even when an upload endpoint allows more. This total limit is separate from per-file validation, parser field counts, and the spool threshold.
 
+Use `form_limits` with `max_fields`, `max_files`, or `max_part_size` to configure automatic form parsing. Each key inherits independently from the router or app. `max_part_size` applies to text fields. Use `max_body_size` for a total byte limit that includes files.
+
 See [Request Body Limits](https://fastapi.tiangolo.com/advanced/request-body-limits/) for an example.
 
 ## Serve Frontend Apps

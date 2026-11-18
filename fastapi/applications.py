@@ -7,6 +7,7 @@ from typing import Annotated, Any, Literal, TypeVar
 from annotated_doc import Doc
 from fastapi import routing
 from fastapi._body_limit import AppBodyLimitMiddleware
+from fastapi._form_limits import _FormLimits
 from fastapi.datastructures import Default, DefaultPlaceholder
 from fastapi.exception_handlers import (
     http_exception_handler,
@@ -884,6 +885,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> None:
         self.max_body_size = max_body_size
         self.debug = debug
@@ -1012,6 +1021,7 @@ class FastAPI(Starlette):
             generate_unique_id_function=generate_unique_id_function,
             strict_content_type=strict_content_type,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
         self.exception_handlers: dict[
             Any, Callable[[Request, Any], Response | Awaitable[Response]]
@@ -1269,6 +1279,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> None:
         self.router.add_api_route(
             path,
@@ -1296,6 +1314,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def frontend(
@@ -1421,6 +1440,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         def decorator(func: DecoratedCallable) -> DecoratedCallable:
             self.router.add_api_route(
@@ -1449,6 +1476,7 @@ class FastAPI(Starlette):
                 openapi_extra=openapi_extra,
                 generate_unique_id_function=generate_unique_id_function,
                 max_body_size=max_body_size,
+                form_limits=form_limits,
             )
             return func
 
@@ -1723,6 +1751,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> None:
         """
         Include an `APIRouter` in the same app.
@@ -1754,6 +1790,7 @@ class FastAPI(Starlette):
             callbacks=callbacks,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def get(
@@ -2103,6 +2140,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP GET operation.
@@ -2144,6 +2189,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def put(
@@ -2493,6 +2539,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PUT operation.
@@ -2539,6 +2593,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def post(
@@ -2888,6 +2943,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP POST operation.
@@ -2934,6 +2997,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def delete(
@@ -3283,6 +3347,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP DELETE operation.
@@ -3324,6 +3396,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def options(
@@ -3673,6 +3746,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP OPTIONS operation.
@@ -3714,6 +3795,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def head(
@@ -4063,6 +4145,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP HEAD operation.
@@ -4104,6 +4194,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def patch(
@@ -4453,6 +4544,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP PATCH operation.
@@ -4499,6 +4598,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def trace(
@@ -4848,6 +4948,14 @@ class FastAPI(Starlette):
                 """
             ),
         ] = None,
+        form_limits: Annotated[
+            _FormLimits | None,
+            Doc(
+                "Limits for automatic form parsing. Set field and file counts with "
+                "`max_fields` and `max_files`, or the size of a text field in bytes "
+                "with `max_part_size`. Each omitted setting inherits its default."
+            ),
+        ] = None,
     ) -> Callable[[DecoratedCallable], DecoratedCallable]:
         """
         Add a *path operation* using an HTTP TRACE operation.
@@ -4889,6 +4997,7 @@ class FastAPI(Starlette):
             openapi_extra=openapi_extra,
             generate_unique_id_function=generate_unique_id_function,
             max_body_size=max_body_size,
+            form_limits=form_limits,
         )
 
     def websocket_route(
