@@ -3,6 +3,7 @@ from typing import Annotated
 import pytest
 from fastapi import FastAPI, File, UploadFile
 from fastapi.testclient import TestClient
+from inline_snapshot import Is, snapshot
 
 from .utils import get_body_model_name
 
@@ -33,18 +34,21 @@ def test_required_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "p": {
-                "title": "P",
-                "type": "string",
-                "contentMediaType": "application/octet-stream",
+    assert app.openapi()["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "p": {
+                    "title": "P",
+                    "format": "binary",
+                    "type": "string",
+                    "contentMediaType": "application/octet-stream",
+                },
             },
-        },
-        "required": ["p"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["p"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -111,18 +115,21 @@ def test_required_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "p_alias": {
-                "title": "P Alias",
-                "type": "string",
-                "contentMediaType": "application/octet-stream",
+    assert app.openapi()["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "p_alias": {
+                    "title": "P Alias",
+                    "format": "binary",
+                    "type": "string",
+                    "contentMediaType": "application/octet-stream",
+                },
             },
-        },
-        "required": ["p_alias"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["p_alias"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -219,18 +226,21 @@ def test_required_validation_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "p_val_alias": {
-                "title": "P Val Alias",
-                "type": "string",
-                "contentMediaType": "application/octet-stream",
+    assert app.openapi()["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "p_val_alias": {
+                    "title": "P Val Alias",
+                    "format": "binary",
+                    "type": "string",
+                    "contentMediaType": "application/octet-stream",
+                },
             },
-        },
-        "required": ["p_val_alias"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["p_val_alias"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
@@ -332,18 +342,21 @@ def test_required_alias_and_validation_alias_schema(path: str):
     openapi = app.openapi()
     body_model_name = get_body_model_name(openapi, path)
 
-    assert app.openapi()["components"]["schemas"][body_model_name] == {
-        "properties": {
-            "p_val_alias": {
-                "title": "P Val Alias",
-                "type": "string",
-                "contentMediaType": "application/octet-stream",
+    assert app.openapi()["components"]["schemas"][body_model_name] == snapshot(
+        {
+            "properties": {
+                "p_val_alias": {
+                    "title": "P Val Alias",
+                    "type": "string",
+                    "format": "binary",
+                    "contentMediaType": "application/octet-stream",
+                },
             },
-        },
-        "required": ["p_val_alias"],
-        "title": body_model_name,
-        "type": "object",
-    }
+            "required": ["p_val_alias"],
+            "title": Is(body_model_name),
+            "type": "object",
+        }
+    )
 
 
 @pytest.mark.parametrize(
