@@ -7,6 +7,8 @@ hide:
 
 ## Latest Changes
 
+## 0.165.0 (2026-11-18)
+
 ### Features
 
 * ✨ Add configurable form parsing limits. PR [#16784](https://github.com/fastapi/fastapi/pull/16784) by [@tiangolo](https://github.com/tiangolo).
