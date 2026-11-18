@@ -7,6 +7,10 @@ hide:
 
 ## Latest Changes
 
+### Features
+
+* ✨ Add configurable request body size limits. PR [#16781](https://github.com/fastapi/fastapi/pull/16781) by [@tiangolo](https://github.com/tiangolo).
+
 ## 0.163.2 (2026-11-17)
 
 ### Refactors
