@@ -339,6 +339,7 @@ async def serialize_response(
     is_coroutine: bool = True,
     endpoint_ctx: EndpointContext | None = None,
     dump_json: bool = False,
+    mode: Literal["json", "python"] = "json",
 ) -> Any:
     if field:
         if is_coroutine:
@@ -354,7 +355,11 @@ async def serialize_response(
                 body=response_content,
                 endpoint_ctx=ctx,
             )
-        serializer = field.serialize_json if dump_json else field.serialize
+        serializer = (
+            field.serialize_json
+            if dump_json
+            else functools.partial(field.serialize, mode=mode)
+        )
         return serializer(
             value,
             include=include,
@@ -365,6 +370,8 @@ async def serialize_response(
             exclude_none=exclude_none,
         )
 
+    elif mode == "python":
+        return response_content
     else:
         return jsonable_encoder(response_content)
 
@@ -429,6 +436,14 @@ def get_request_handler(
         actual_response_class: type[Response] = response_class.value
     else:
         actual_response_class = response_class
+    # A response class that renders Python data itself (MessagePack, CBOR...)
+    # declares `serialization_mode = "python"` and is handed the return value
+    # as Python data, not converted to JSON-compatible data first.
+    serialization_mode: Literal["json", "python"] = (
+        "python"
+        if getattr(actual_response_class, "serialization_mode", "json") == "python"
+        else "json"
+    )
     is_sse_stream = lenient_issubclass(actual_response_class, EventSourceResponse)
     if isinstance(strict_content_type, DefaultPlaceholder):
         actual_strict_content_type: bool = strict_content_type.value
@@ -793,6 +808,7 @@ def get_request_handler(
                             is_coroutine=is_coroutine,
                             endpoint_ctx=endpoint_ctx,
                             dump_json=use_dump_json,
+                            mode=serialization_mode,
                         )
                     if use_dump_json:
                         response = Response(

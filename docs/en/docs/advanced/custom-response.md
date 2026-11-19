@@ -244,6 +244,36 @@ Now instead of returning:
 
 Of course, you will probably find much better ways to take advantage of this than formatting JSON. 😉
 
+### Python data in a custom response class { #python-data-in-a-custom-response-class }
+
+Before your response class renders the data you return, **FastAPI** converts it to JSON-compatible data: a `tuple` or a `set` becomes a `list`, a `datetime` becomes a `str`.
+
+A response class that renders Python data itself, for example with [MessagePack](https://msgpack.org/) or CBOR, can receive that data as it is by declaring `serialization_mode = "python"`:
+
+```Python
+from typing import Any
+
+import msgpack
+from fastapi import FastAPI, Response
+
+app = FastAPI()
+
+
+class MessagePackResponse(Response):
+    media_type = "application/msgpack"
+    serialization_mode = "python"
+
+    def render(self, content: Any) -> bytes:
+        return msgpack.packb(content)
+
+
+@app.get("/", response_class=MessagePackResponse)
+async def main():
+    return {"point": (1, 2)}
+```
+
+If there is a response model, the data is still validated with it, and then dumped by Pydantic in Python mode: a model becomes a `dict`, while a `tuple`, a `set`, a `datetime` or a `Decimal` stays as it is. Without a response model, your class receives the value you returned, unchanged.
+
 ### `orjson` or Response Model { #orjson-or-response-model }
 
 If what you are looking for is performance, you are probably better off using a [Response Model](../tutorial/response-model.md) than an `orjson` response.
