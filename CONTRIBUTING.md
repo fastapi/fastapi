@@ -158,7 +158,7 @@ uv run mypy .            # Type check
 
 ### 🌐 Translations
 
-FastAPI documentation is translated by the community! 
+FastAPI documentation is translated by the community!
 
 See [Translations Guide](https://fastapi.tiangolo.com/translations/) for:
 - How to start a new language
