@@ -1,7 +1,5 @@
 # Contributing
 
-First, you might want to see the basic ways to [help FastAPI and get help](help-fastapi.md).
+Please see the root-level [CONTRIBUTING.md](../../../CONTRIBUTING.md) for comprehensive contribution guidelines.
 
-## Developing
-
-To contribute code to the project, please follow the guidelines in [tiangolo.com - Contributing](https://tiangolo.com/open-source/contributing/).
+For detailed development setup, testing, and documentation workflows, also refer to the [external contributing guide](https://tiangolo.com/open-source/contributing/).
