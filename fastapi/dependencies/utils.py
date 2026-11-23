@@ -1,5 +1,6 @@
 import dataclasses
 import inspect
+import json
 import sys
 from collections.abc import (
     AsyncGenerator,
@@ -672,7 +673,8 @@ async def solve_dependencies(
     *,
     request: Request | WebSocket,
     dependant: Dependant,
-    body: Any = Undefined,
+    body: bytes | FormData | None = None,
+    is_body_json: bool = False,
     background_tasks: StarletteBackgroundTasks | None = None,
     response: Response | None = None,
     dependency_overrides_provider: Any | None = None,
@@ -727,6 +729,7 @@ async def solve_dependencies(
             request=request,
             dependant=use_sub_dependant,
             body=body,
+            is_body_json=is_body_json,
             background_tasks=background_tasks,
             response=response,
             dependency_overrides_provider=dependency_overrides_provider,
@@ -800,6 +803,7 @@ async def solve_dependencies(
         ) = await request_body_to_args(  # body_params checked above
             body_fields=dependant.body_params,
             received_body=body,
+            is_body_json=is_body_json,
             embed_body_fields=embed_body_fields,
         )
         values.update(body_values)
@@ -829,16 +833,30 @@ async def solve_dependencies(
     )
 
 
+def _validate_json_body_as_model_field(
+    *, field: ModelField, value: bytes, loc: tuple[str, ...]
+) -> tuple[Any, list[Any]]:
+    result, errors = field.validate_json(value, loc=loc)
+    for i, error in enumerate(errors):
+        # Pydantic model.validate_json returns raw body data, bytes with json content
+        # Replace with parsed JSON data
+        if "input" in error and isinstance(error["input"], bytes):
+            try:
+                errors[i]["input"] = json.loads(error["input"])
+            except ValueError:
+                pass
+    return result, errors
+
+
 def _validate_value_with_model_field(
-    *, field: ModelField, value: Any, values: dict[str, Any], loc: tuple[str, ...]
+    *, field: ModelField, value: Any, loc: tuple[str, ...]
 ) -> tuple[Any, list[Any]]:
     if value is Undefined:
         if field.field_info.is_required():
             return None, [get_missing_field_error(loc=loc)]
-        value = deepcopy(field.default)
-        if not field.field_info.validate_default:
-            return value, []
-    return field.validate(value, values, loc=loc)
+        else:
+            return deepcopy(field.default), []
+    return field.validate(value, loc=loc)
 
 
 def _is_json_field(field: ModelField) -> bool:
@@ -924,10 +942,9 @@ def _request_param_model_to_args(
         convert_underscores = isinstance(received_params, Headers) and getattr(
             field.field_info, "convert_underscores", default_convert_underscores
         )
-        aliases = _get_param_aliases(field, convert_underscores=convert_underscores)
-        own_names.update(
-            name.lower() if isinstance(received_params, Headers) else name
-            for _, name in aliases
+        loc: tuple[str, ...] = (field_info.in_.value,)
+        v_, errors_ = _validate_value_with_model_field(
+            field=first_field, value=params_to_process, loc=loc
         )
         alias, request_alias = next(
             (pair for pair in aliases if pair[1] in received_params), aliases[0]
@@ -985,22 +1002,15 @@ def request_params_to_args(
     if not fields:
         return values, errors
     for field in fields:
-        if (model := _get_param_model(field)) is not None:
-            v_, errors_ = _request_param_model_to_args(field, model, received_params)
-        else:
-            aliases = _get_param_aliases(field)
-            _, alias = next(
-                (pair for pair in aliases if pair[1] in received_params), aliases[0]
-            )
-            value = _get_multidict_value(field, received_params, alias=alias)
-            field_info = field.field_info
-            assert isinstance(field_info, params.Param), (
-                "Params must be subclasses of Param"
-            )
-            loc = (field_info.in_.value, alias)
-            v_, errors_ = _validate_value_with_model_field(
-                field=field, value=value, values=values, loc=loc
-            )
+        value = _get_multidict_value(field, received_params)
+        field_info = field.field_info
+        assert isinstance(field_info, params.Param), (
+            "Params must be subclasses of Param"
+        )
+        loc = (field_info.in_.value, get_validation_alias(field))
+        v_, errors_ = _validate_value_with_model_field(
+            field=field, value=value, loc=loc
+        )
         if errors_:
             errors.extend(errors_)
         else:
@@ -1203,7 +1213,8 @@ async def _extract_form_model(
 
 async def request_body_to_args(
     body_fields: list[ModelField],
-    received_body: Any,
+    received_body: bytes | FormData | None,
+    is_body_json: bool,
     embed_body_fields: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     values: dict[str, Any] = {}
@@ -1216,8 +1227,16 @@ async def request_body_to_args(
         and not _get_form_models(body_fields[0])
     )
     first_field = body_fields[0]
-    body_to_process = received_body
-    form_values: dict[str, tuple[str, Any]] = {}
+    body_to_process: bytes | FormData | dict[str, Any] | None = received_body
+
+    fields_to_extract: list[ModelField] = body_fields
+
+    if (
+        single_not_embedded_field
+        and lenient_issubclass(first_field.field_info.annotation, BaseModel)
+        and isinstance(received_body, FormData)
+    ):
+        fields_to_extract = get_cached_model_fields(first_field.field_info.annotation)
 
     if isinstance(received_body, FormData):
         fields_to_extract = [
@@ -1234,15 +1253,25 @@ async def request_body_to_args(
                     # Keep each parameter's selected alias and scalar/list shape.
                     form_values[field.name] = (alias, value)
 
+    loc: tuple[str, ...] = ("body",)
     if single_not_embedded_field:
-        loc: tuple[str, ...] = ("body",)
-        v_, errors_ = _validate_value_with_model_field(
-            field=first_field,
-            value=body_to_process,
-            values=values,
-            loc=loc,
-        )
+        if is_body_json:
+            v_, errors_ = _validate_json_body_as_model_field(
+                field=first_field, value=cast("bytes", received_body), loc=loc
+            )
+        else:
+            v_, errors_ = _validate_value_with_model_field(
+                field=first_field, value=body_to_process, loc=loc
+            )
         return {first_field.name: v_}, errors_
+
+    if is_body_json:
+        # for multiple fields there is no one TypeAdapter,
+        # fallback to parsing body with json module
+        body_to_process, errors = parse_json(cast("bytes", received_body), loc=loc)
+        if errors:
+            return values, errors
+
     for field in body_fields:
         aliases = [alias for alias, _ in _get_param_aliases(field)]
         loc = ("body", aliases[0])
@@ -1268,7 +1297,7 @@ async def request_body_to_args(
                 errors.append(get_missing_field_error(loc))
                 continue
         v_, errors_ = _validate_value_with_model_field(
-            field=field, value=value, values=values, loc=loc
+            field=field, value=value, loc=loc
         )
         if errors_:
             errors.extend(errors_)
@@ -1478,36 +1507,25 @@ def get_validation_alias(field: ModelField) -> str:
     return va or field.alias
 
 
-def _get_param_aliases(
-    field: ModelField, *, convert_underscores: bool = False
-) -> list[tuple[str, str]]:
-    """Return (validation alias, request key) pairs in preference order."""
-    alias = get_validation_alias(field)
-    request_alias = alias
-    if convert_underscores and alias == field.name:
-        request_alias = alias.replace("_", "-")
-    validation_alias = field.field_info.validation_alias
-    if isinstance(field.field_info, params.Path) or isinstance(
-        validation_alias, AliasPath
-    ):
-        return [(alias, request_alias)]
-    aliases = [(alias, request_alias)]
-    if isinstance(validation_alias, AliasChoices):
-        if any(isinstance(choice, AliasPath) for choice in validation_alias.choices):
-            return aliases
-        # Explicit choices are literal names, including underscores in headers.
-        aliases = [
-            (choice, choice) for choice in cast(list[str], validation_alias.choices)
+def parse_json(
+    data: bytes,
+    loc: tuple[str, ...],
+) -> tuple[Any, list[dict[str, Any]]]:
+    try:
+        return json.loads(data), []
+    except json.JSONDecodeError as e:
+        # Pydantic JSON parser returns different error message and context,
+        # but other fields are the same
+        return None, [
+            {
+                "type": "json_invalid",
+                "loc": loc,
+                "input": data,
+                "msg": f"Invalid JSON: {e.msg}",
+                "ctx": {
+                    "pos": e.pos,
+                    "lineno": e.lineno,
+                    "colno": e.colno,
+                },
+            }
         ]
-    config = field.config or {}
-    if config.get("validate_by_alias") is False or config.get(
-        "validate_by_name", config.get("populate_by_name", False)
-    ):
-        request_name = field.name
-        if convert_underscores:
-            request_name = request_name.replace("_", "-")
-        if config.get("validate_by_alias") is False:
-            return [(field.name, request_name)]
-        if field.name not in [alias for alias, _ in aliases]:
-            aliases.append((field.name, request_name))
-    return aliases
