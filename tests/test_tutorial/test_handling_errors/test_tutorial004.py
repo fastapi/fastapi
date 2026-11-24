@@ -9,8 +9,10 @@ client = TestClient(app)
 def test_get_validation_error():
     response = client.get("/items/foo")
     assert response.status_code == 400, response.text
-    assert "Validation errors:" in response.text
-    assert "Field: ('path', 'item_id')" in response.text
+    assert (
+        response.text
+        == "Validation errors:\nField: ('path', 'item_id'), Error: Input should be a valid integer, unable to parse string as an integer"
+    )
 
 
 def test_get_http_error():

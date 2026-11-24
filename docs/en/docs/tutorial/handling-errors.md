@@ -135,12 +135,13 @@ Now, if you go to `/items/foo`, instead of getting the default JSON error with:
 {
     "detail": [
         {
+            "type": "int_parsing",
             "loc": [
                 "path",
                 "item_id"
             ],
-            "msg": "value is not a valid integer",
-            "type": "type_error.integer"
+            "msg": "Input should be a valid integer, unable to parse string as an integer",
+            "input": "foo"
         }
     ]
 }
@@ -196,16 +197,17 @@ Now try sending an invalid item like:
 
 You will receive a response telling you that the data is invalid containing the received body:
 
-```JSON hl_lines="12-15"
+```JSON hl_lines="13-16"
 {
   "detail": [
     {
+      "type": "int_parsing",
       "loc": [
         "body",
         "size"
       ],
-      "msg": "value is not a valid integer",
-      "type": "type_error.integer"
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "XL"
     }
   ],
   "body": {
