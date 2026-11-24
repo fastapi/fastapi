@@ -204,6 +204,11 @@ def test_current_sentry(sampling):
     from sentry_sdk.integrations.starlette import StarletteIntegration
     from sentry_sdk.transport import Transport
 
+    if sentry_sdk.VERSION.startswith("2."):
+        trace_item_type = "transaction"
+    else:
+        trace_item_type = "span"
+
     items = []
 
     class LocalTransport(Transport):
@@ -243,7 +248,7 @@ def test_current_sentry(sampling):
     assert items.count("event") == 2, items
     (unhandled,) = logs.get_finished_logs()
     assert isinstance(unhandled.log_record.exception, ValueError)
-    assert items.count("transaction") == (3 if sampling else 0), items
+    assert items.count(trace_item_type) == (3 if sampling else 0), items
     assert len(exporter.get_finished_spans()) == 10
 
     @app.websocket("/ws")
@@ -256,7 +261,7 @@ def test_current_sentry(sampling):
             pass  # pragma: no cover
     sentry_sdk.flush()
     assert items.count("event") == 3, items
-    assert items.count("transaction") == (4 if sampling else 0), items
+    assert items.count(trace_item_type) == (4 if sampling else 0), items
     assert len(exporter.get_finished_spans()) == 13
     assert len(logs.get_finished_logs()) == 2
 

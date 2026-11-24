@@ -185,7 +185,11 @@ def test_environment_export_with_existing_integrations(mode):
                 }
             if mode == "sentry-classic":
                 assert items.count("event") == 2, items
-                assert items.count("transaction") == 2, items
+                if sentry_sdk.VERSION.startswith("2."):
+                    trace_item_type = "transaction"
+                else:
+                    trace_item_type = "span"
+                assert items.count(trace_item_type) == 2, items
 
             log_requests = [
                 ExportLogsServiceRequest.FromString(body)
