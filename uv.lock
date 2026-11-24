@@ -3585,15 +3585,15 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.70.0"
+version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/52/0a/e37553f3106d0f7f0d4b8ad2c7b92410d131929786ffd116833d3b8164df/sentry_sdk-2.70.0.tar.gz", hash = "sha256:27e4b512f47be93136645dbe8f02d430473ee73a389ce430b2b7104baa66cf75", size = 1047234, upload-time = "2026-09-22T09:40:11.721Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/63/25/54c58ddabc95f72ca32c2188247e0bf12584c0d65e117aba212afa6b54e1/sentry_sdk-3.0.0.tar.gz", hash = "sha256:daa5f0baa931dfd8c4d6844b4992764683a1abdcbad968c76703c34f0e244f13", size = 888885, upload-time = "2026-11-23T09:30:35.104Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/eb/ff/b1e56f009bfb9b8023910b533d5ebf4ec5650da49891f2b8c7f3d4815401/sentry_sdk-2.70.0-py3-none-any.whl", hash = "sha256:89600e8bb5fc5239cad5c4434217f453204f2207ad29399ea58947460b37a62e", size = 531752, upload-time = "2026-09-22T09:40:10.063Z" },
+    { url = "https://files.pythonhosted.org/packages/2e/4b/69643d19c9954f930a03deb06e3f80c57b2d6ecb325bdc9ca3fa1b6d1d30/sentry_sdk-3.0.0-py3-none-any.whl", hash = "sha256:22cfcdb11b494e8efa82a48edd655afdf99179df37f2ed37f18846b938455c36", size = 472979, upload-time = "2026-11-23T09:30:33.705Z" },
 ]
 
 [[package]]
