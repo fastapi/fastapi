@@ -41,13 +41,34 @@ _DURATION_BUCKETS = (
 )
 _SCHEMA_URL = "https://opentelemetry.io/schemas/1.44.0"
 # https://opentelemetry.io/docs/specs/semconv/http/http-spans/#http-server-span
+#
+# Query strings carry credentials far more often than cloud signature names:
+# OAuth callbacks (?code=...), bearer-style APIs (?access_token=...), and the
+# conventional password/api_key/client_secret names. Matching is
+# case-insensitive, because `SIG=` leaks the same secret as `sig=`.
 _SENSITIVE_QUERY_PARAMETERS = frozenset(
     {
-        "X-Amz-Signature",
-        "X-Amz-Credential",
-        "X-Amz-Security-Token",
+        "x-amz-signature",
+        "x-amz-credential",
+        "x-amz-security-token",
         "sig",
-        "X-Goog-Signature",
+        "signature",
+        "x-goog-signature",
+        "access_token",
+        "refresh_token",
+        "id_token",
+        "token",
+        "api_key",
+        "apikey",
+        "key",
+        "password",
+        "secret",
+        "client_secret",
+        "code",
+        "session",
+        "sessionid",
+        "csrf",
+        "xsrf",
     }
 )
 
@@ -308,7 +329,7 @@ class NativeTelemetry:
                             (
                                 key,
                                 "REDACTED"
-                                if key in _SENSITIVE_QUERY_PARAMETERS
+                                if key.lower() in _SENSITIVE_QUERY_PARAMETERS
                                 else value,
                             )
                             for key, value in parse_qsl(

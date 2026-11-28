@@ -100,8 +100,15 @@ def test_server_fallback_without_host_header(telemetry):
             "sig=REDACTED&q=hello%26world",
         ),
         (
-            "?x-amz-signature=keep&x-amz-credential=keep&x-amz-security-token=keep&SIG=keep&x-goog-signature=keep",
-            "x-amz-signature=keep&x-amz-credential=keep&x-amz-security-token=keep&SIG=keep&x-goog-signature=keep",
+            # The names are matched case-insensitively: a proxy that lowercases
+            # the header, or a client using `SIG=`, leaks the same signature.
+            "?x-amz-signature=secret&x-amz-credential=secret&x-amz-security-token=secret&SIG=secret&x-goog-signature=secret",
+            "x-amz-signature=REDACTED&x-amz-credential=REDACTED&x-amz-security-token=REDACTED&SIG=REDACTED&x-goog-signature=REDACTED",
+        ),
+        (
+            # Conventional credential names, not only cloud signature names.
+            "?access_token=secret&refresh_token=secret&id_token=secret&token=secret&api_key=secret&apikey=secret&key=secret&password=secret&secret=secret&client_secret=secret&code=secret&session=secret&sessionid=secret&csrf=secret&xsrf=secret&client_id=keep",
+            "access_token=REDACTED&refresh_token=REDACTED&id_token=REDACTED&token=REDACTED&api_key=REDACTED&apikey=REDACTED&key=REDACTED&password=REDACTED&secret=REDACTED&client_secret=REDACTED&code=REDACTED&session=REDACTED&sessionid=REDACTED&csrf=REDACTED&xsrf=REDACTED&client_id=keep",
         ),
         (
             "?sig=one&sig=two&sig=&q=hello+world",
