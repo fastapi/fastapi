@@ -1189,6 +1189,18 @@ def _populate_api_route_state(
                 response_model = None
             else:
                 response_model = return_annotation
+    elif (
+        response_model is not None
+        and (route.is_json_stream or route.is_sse_stream)
+        and not lenient_issubclass(response_model, ServerSentEvent)
+    ):
+        # An explicit `response_model` on a stream route describes each streamed
+        # item, the same way the `AsyncIterator[Item]` annotation does. Running
+        # it against the whole iterator (the non-streaming path) never happens,
+        # so leaving it there would silently skip the documentation, filtering
+        # and validation the parameter promises.
+        route.stream_item_type = response_model
+        response_model = None
     route.response_model = response_model
     if route.response_model:
         assert is_body_allowed_for_status_code(status_code), (
