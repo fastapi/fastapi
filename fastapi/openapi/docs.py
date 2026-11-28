@@ -1,4 +1,5 @@
 import json
+from html import escape as _escape_html
 from typing import Annotated, Any
 
 from annotated_doc import Doc
@@ -16,6 +17,26 @@ def _html_safe_json(value: Any) -> str:
         .replace("<", "\\u003c")
         .replace(">", "\\u003e")
         .replace("&", "\\u0026")
+    )
+
+
+def _html_safe_js_string(value: str) -> str:
+    """Escape a value for a single-quoted JavaScript string literal.
+
+    The docs URLs are built from the request `root_path` (a parameterized
+    `Mount` writes the raw path prefix into it), so they are request data and
+    must not be able to close the string or the `<script>` element.
+    """
+    return (
+        value.replace("\\", "\\\\")
+        .replace("'", "\\'")
+        .replace("<", "\\u003c")
+        .replace(">", "\\u003e")
+        .replace("&", "\\u0026")
+        .replace("\r", "\\r")
+        .replace("\n", "\\n")
+        .replace("\u2028", "\\u2028")
+        .replace("\u2029", "\\u2029")
     )
 
 
@@ -165,14 +186,18 @@ def get_swagger_ui_html(
     <!-- `SwaggerUIBundle` is now available on the page -->
     <script>
     const ui = SwaggerUIBundle({{
-        url: '{openapi_url}',
+        url: '{_html_safe_js_string(openapi_url)}',
     """
 
     for key, value in current_swagger_ui_parameters.items():
         html += f"{_html_safe_json(key)}: {_html_safe_json(jsonable_encoder(value))},\n"
 
     if oauth2_redirect_url:
-        html += f"oauth2RedirectUrl: window.location.origin + '{oauth2_redirect_url}',"
+        escaped_redirect_url = _html_safe_js_string(oauth2_redirect_url)
+        html += (
+            "oauth2RedirectUrl: window.location.origin + "
+            f"'{escaped_redirect_url}',"
+        )
 
     html += """
     presets: [
@@ -290,7 +315,7 @@ def get_redoc_html(
     <noscript>
         ReDoc requires Javascript to function. Please enable it to browse the documentation.
     </noscript>
-    <redoc spec-url="{openapi_url}"></redoc>
+    <redoc spec-url="{_escape_html(openapi_url, quote=True)}"></redoc>
     <script src="{redoc_js_url}"> </script>
     </body>
     </html>
