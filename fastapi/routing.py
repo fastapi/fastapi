@@ -403,6 +403,17 @@ def _build_response_args(
     return response_args
 
 
+def _is_json_content_type(content_type: str | None) -> bool:
+    if not content_type:
+        return False
+    message = email.message.Message()
+    message["content-type"] = content_type
+    if message.get_content_maintype() != "application":
+        return False
+    subtype = message.get_content_subtype()
+    return subtype == "json" or subtype.endswith("+json")
+
+
 def get_request_handler(
     dependant: Dependant,
     body_field: ModelField | None = None,
@@ -425,6 +436,20 @@ def get_request_handler(
     assert dependant.call is not None, "dependant.call must be a function"
     is_coroutine = _is_coroutine_callable(dependant.call)
     is_body_form = body_field and isinstance(body_field.field_info, params.Form)
+    # An operation mixing form parameters with plain JSON body parameters
+    # builds a single form-typed body field, so without this check every
+    # request would be read as a form, and a JSON request carrying all the
+    # body fields would still fail validation with every field missing.
+    # For mixed bodies, dispatch on the request content type instead: JSON
+    # requests are parsed as JSON, anything else is parsed as a form.
+    body_params = _get_flat_body_params(dependant)
+    is_mixed_body = any(
+        isinstance(field.field_info, params.Form) for field in body_params
+    ) and any(
+        isinstance(field.field_info, params.Body)
+        and not isinstance(field.field_info, params.Form)
+        for field in body_params
+    )
     if isinstance(response_class, DefaultPlaceholder):
         actual_response_class: type[Response] = response_class.value
     else:
@@ -461,7 +486,10 @@ def get_request_handler(
         try:
             body: Any = Undefined
             if body_field:
-                if is_body_form:
+                if is_body_form and not (
+                    is_mixed_body
+                    and _is_json_content_type(request.headers.get("content-type"))
+                ):
                     limits = _resolve_form_limits(
                         request.scope.get(_FASTAPI_SCOPE_KEY, {}), form_limits
                     )
