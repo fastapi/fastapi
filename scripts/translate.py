@@ -243,7 +243,7 @@ def translate_lang(language: Annotated[str, typer.Option(envvar="LANGUAGE")]) ->
     print(f"Total paths to process: {len(missing_paths)}")
     for p in missing_paths:
         print(f"Translating: {p}")
-        translate_page(language="es", en_path=p)
+        translate_page(language=language, en_path=p)
         print(f"Done translating: {p}")
 
 
