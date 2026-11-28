@@ -33,21 +33,29 @@ def test_security_http_basic_no_credentials():
 
 
 def test_security_http_basic_invalid_credentials():
+    # `auto_error=False` means unusable credentials are "no credentials", not
+    # an error: the dependency returns None so another scheme can authenticate.
     response = client.get(
         "/users/me", headers={"Authorization": "Basic notabase64token"}
     )
-    assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
-    assert response.json() == {"detail": "Not authenticated"}
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "Create an account first"}
 
 
 def test_security_http_basic_non_basic_credentials():
     payload = b64encode(b"johnsecret").decode("ascii")
     auth_header = f"Basic {payload}"
     response = client.get("/users/me", headers={"Authorization": auth_header})
-    assert response.status_code == 401, response.text
-    assert response.headers["WWW-Authenticate"] == "Basic"
-    assert response.json() == {"detail": "Not authenticated"}
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "Create an account first"}
+
+
+def test_security_http_basic_non_base64_characters():
+    payload = b64encode(b"john:secret").decode("ascii") + "!"
+    auth_header = f"Basic {payload}"
+    response = client.get("/users/me", headers={"Authorization": auth_header})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "Create an account first"}
 
 
 def test_openapi_schema():
