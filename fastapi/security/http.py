@@ -201,23 +201,29 @@ class HTTPBasic(HTTPBase):
             return {"WWW-Authenticate": f'Basic realm="{self.realm}"'}
         return {"WWW-Authenticate": "Basic"}
 
+    def _not_authenticated(self) -> None:
+        if self.auto_error:
+            raise self.make_not_authenticated_error()
+        return None
+
     async def __call__(  # type: ignore
         self, request: HTTPConnection
     ) -> HTTPBasicCredentials | None:
         authorization = request.headers.get("Authorization")
         scheme, param = get_authorization_scheme_param(authorization)
         if not authorization or scheme.lower() != "basic":
-            if self.auto_error:
-                raise self.make_not_authenticated_error()
-            else:
-                return None
+            return self._not_authenticated()
         try:
-            data = b64decode(param).decode("ascii")
+            # RFC 7617 credentials are base64; a value that needs characters
+            # dropped to decode is not the credentials the client sent.
+            data = b64decode(param, validate=True).decode("ascii")
         except (ValueError, UnicodeDecodeError, binascii.Error) as e:
-            raise self.make_not_authenticated_error() from e
+            if self.auto_error:
+                raise self.make_not_authenticated_error() from e
+            return None
         username, separator, password = data.partition(":")
         if not separator:
-            raise self.make_not_authenticated_error()
+            return self._not_authenticated()
         return HTTPBasicCredentials(username=username, password=password)
 
 
