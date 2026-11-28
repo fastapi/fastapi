@@ -1,3 +1,4 @@
+# mypy: disable-error-code="import-not-found"
 import json
 import os
 import secrets
@@ -5,11 +6,11 @@ from collections.abc import Iterable
 from functools import lru_cache
 from os import sep as pathsep
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, cast
 
 import git
 import typer
-import yaml
+import yaml  # type: ignore[import-untyped]
 from github import Github
 from pydantic_ai import Agent
 from rich import print
@@ -43,7 +44,10 @@ os.environ["PYDANTIC_AI_NO_BANNER"] = "1"
 
 @lru_cache
 def get_langs() -> dict[str, str]:
-    return yaml.safe_load(Path("docs/language_names.yml").read_text(encoding="utf-8"))
+    return cast(
+        dict[str, str],
+        yaml.safe_load(Path("docs/language_names.yml").read_text(encoding="utf-8")),
+    )
 
 
 def generate_lang_path(*, lang: str, path: Path) -> Path:
@@ -180,7 +184,9 @@ def translate_page(
             old_translation = out_content
             continue  # Retry if not reached max attempts
     else:  # Max retry attempts reached
-        print(f"Translation failed for {out_path} after {MAX_ATTEMPTS} attempts")
+        raise RuntimeError(
+            f"Translation failed for {out_path} after {MAX_ATTEMPTS} attempts"
+        )
 
     print(f"Saving translation to {out_path}")
     out_path.write_text(out_content, encoding="utf-8", newline="\n")
