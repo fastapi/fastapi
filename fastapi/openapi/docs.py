@@ -194,10 +194,7 @@ def get_swagger_ui_html(
 
     if oauth2_redirect_url:
         escaped_redirect_url = _html_safe_js_string(oauth2_redirect_url)
-        html += (
-            "oauth2RedirectUrl: window.location.origin + "
-            f"'{escaped_redirect_url}',"
-        )
+        html += f"oauth2RedirectUrl: window.location.origin + '{escaped_redirect_url}',"
 
     html += """
     presets: [
